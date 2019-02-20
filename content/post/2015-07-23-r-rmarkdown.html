@@ -1,49 +1,45 @@
 ---
-title: "Hello R Markdown"
-author: "Frida Gomam"
-date: 2015-07-23T21:13:14-05:00
+title: "Hello blogdown"
+author: "胡华平"
+date: 2019-02-20T21:18:21-19:00
 categories: ["R"]
-tags: ["R Markdown", "plot", "regression"]
+tags: ["R Markdown", "blogdown", "github"]
 ---
 
 
 
-<div id="r-markdown" class="section level1">
-<h1>R Markdown</h1>
-<p>This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <a href="http://rmarkdown.rstudio.com" class="uri">http://rmarkdown.rstudio.com</a>.</p>
-<p>You can embed an R code chunk like this:</p>
-<pre class="r"><code>summary(cars)
-##      speed           dist       
-##  Min.   : 4.0   Min.   :  2.00  
-##  1st Qu.:12.0   1st Qu.: 26.00  
-##  Median :15.0   Median : 36.00  
-##  Mean   :15.4   Mean   : 42.98  
-##  3rd Qu.:19.0   3rd Qu.: 56.00  
-##  Max.   :25.0   Max.   :120.00
-fit &lt;- lm(dist ~ speed, data = cars)
-fit
-## 
-## Call:
-## lm(formula = dist ~ speed, data = cars)
-## 
-## Coefficients:
-## (Intercept)        speed  
-##     -17.579        3.932</code></pre>
+<div id="rstudioblogdown-site" class="section level1">
+<h1>在Rstudio中创建blogdown site</h1>
+<p>blogdown的设置比较简单，教程里基本也说得清楚。具体操作时，还是需要注意以下几个要点：</p>
+<ul>
+<li>选取中意的网站模板，比如学术型模板</li>
+</ul>
+<pre class="r"><code># for example, create a new site with the academic theme
+blogdown::new_site(theme = &quot;gcushen/hugo-academic&quot;)</code></pre>
+<ul>
+<li>设置全局选项（global options）。</li>
+</ul>
+<p>一个是设置默认的“作者”和“文件格式”。需要在工作目录下新建一个.Rprofile文件：</p>
+<pre class="r"><code>file.edit(&#39;.Rprofile&#39;)</code></pre>
+<p>文件里面的内容配置为:</p>
+<pre class="r"><code>options(blogdown.ext = &quot;.Rmd&quot;, blogdown.author = &quot;huhuaping&quot;)</code></pre>
+<p>另外就是要配置工作文件下的config.toml文件，主要就是修改网站的名字：</p>
+<pre class="r"><code># Title of your site
+title = &quot;Huhuaping&quot;</code></pre>
+<ul>
+<li>最后要记得装载hugo，最重要得是弄清楚hugo_version（后面netlify建站时需要配置环境变量hugo_version，否则会<a href="https://gohugo.io/hosting-and-deployment/hosting-on-netlify/">报错255</a>，二者应该要一致，且有最低版本要求）。在Rstudio里判明版本号的办法是：</li>
+</ul>
+<pre class="r"><code># 安装hugo
+install_hugo()
+
+# 判明版本号
+blogdown::hugo_version()</code></pre>
 </div>
-<div id="including-plots" class="section level1">
-<h1>Including Plots</h1>
-<p>You can also embed plots. See Figure <a href="#fig:pie">1</a> for example:</p>
-<pre class="r"><code>par(mar = c(0, 1, 0, 1))
-pie(
-  c(280, 60, 20),
-  c(&#39;Sky&#39;, &#39;Sunny side of pyramid&#39;, &#39;Shady side of pyramid&#39;),
-  col = c(&#39;#0292D8&#39;, &#39;#F7EA39&#39;, &#39;#C4B632&#39;),
-  init.angle = -50, border = NA
-)</code></pre>
-<div class="figure"><span id="fig:pie"></span>
-<img src="/post/2015-07-23-r-rmarkdown_files/figure-html/pie-1.png" alt="A fancy pie chart." width="672" />
-<p class="caption">
-Figure 1: A fancy pie chart.
-</p>
+<div id="gitgithub" class="section level1">
+<h1>利用git工具来管理github仓库</h1>
+<p>git版本控制工具，还是需要学会的。这里就列出一个很好的参考学习资源吧——<a href="https://git-scm.com/book/zh/v2">git book(多国语言版)</a></p>
 </div>
+<div id="netlifygithub" class="section level1">
+<h1>在netlify上关联github仓库并建站</h1>
+<p>如前所述，这里很重要的一步就是要记得设置hugo_version的环境变量，版本号需要与blogdown里安装的版本号一致。</p>
 </div>

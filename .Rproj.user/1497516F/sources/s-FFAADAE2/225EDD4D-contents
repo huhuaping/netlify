@@ -1,37 +1,58 @@
 ---
-title: "Hello R Markdown"
-author: "Frida Gomam"
-date: 2015-07-23T21:13:14-05:00
+title: "Hello blogdown"
+author: "胡华平"
+date: 2019-02-20T21:18:21-19:00
 categories: ["R"]
-tags: ["R Markdown", "plot", "regression"]
+tags: ["R Markdown", "blogdown", "github"]
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(collapse = TRUE)
 ```
 
-# R Markdown
+# 在Rstudio中创建blogdown site
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+blogdown的设置比较简单，教程里基本也说得清楚。具体操作时，还是需要注意以下几个要点：
 
-You can embed an R code chunk like this:
+- 选取中意的网站模板，比如学术型模板
 
-```{r cars}
-summary(cars)
-fit <- lm(dist ~ speed, data = cars)
-fit
+```r
+# for example, create a new site with the academic theme
+blogdown::new_site(theme = "gcushen/hugo-academic")
 ```
 
-# Including Plots
+- 设置全局选项（global options）。
 
-You can also embed plots. See Figure \@ref(fig:pie) for example:
+一个是设置默认的“作者”和“文件格式”。需要在工作目录下新建一个.Rprofile文件：
 
-```{r pie, fig.cap='A fancy pie chart.', tidy=FALSE}
-par(mar = c(0, 1, 0, 1))
-pie(
-  c(280, 60, 20),
-  c('Sky', 'Sunny side of pyramid', 'Shady side of pyramid'),
-  col = c('#0292D8', '#F7EA39', '#C4B632'),
-  init.angle = -50, border = NA
-)
+```r
+file.edit('.Rprofile')
 ```
+文件里面的内容配置为:
+
+```r
+options(blogdown.ext = ".Rmd", blogdown.author = "huhuaping")
+```
+
+另外就是要配置工作文件下的config.toml文件，主要就是修改网站的名字：
+
+```r
+# Title of your site
+title = "Huhuaping"
+```
+- 最后要记得装载hugo，最重要得是弄清楚hugo_version（后面netlify建站时需要配置环境变量hugo_version，否则会[报错255](https://gohugo.io/hosting-and-deployment/hosting-on-netlify/)，二者应该要一致，且有最低版本要求）。在Rstudio里判明版本号的办法是：
+
+```r
+# 安装hugo
+install_hugo()
+
+# 判明版本号
+blogdown::hugo_version()
+```
+# 利用git工具来管理github仓库
+
+git版本控制工具，还是需要学会的。这里就列出一个很好的参考学习资源吧——[git book(多国语言版)](https://git-scm.com/book/zh/v2)
+
+# 在netlify上关联github仓库并建站
+
+如前所述，这里很重要的一步就是要记得设置hugo_version的环境变量，版本号需要与blogdown里安装的版本号一致。

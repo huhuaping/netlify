@@ -100,8 +100,8 @@
   
 
   
-  <link rel="alternate" href="/tags/r-markdown/index.xml" type="application/rss+xml" title="Academic">
-  <link rel="feed" href="/tags/r-markdown/index.xml" type="application/rss+xml" title="Academic">
+  <link rel="alternate" href="/tags/r-markdown/index.xml" type="application/rss+xml" title="Huhuaping">
+  <link rel="feed" href="/tags/r-markdown/index.xml" type="application/rss+xml" title="Huhuaping">
   
 
   <link rel="manifest" href="/site.webmanifest">
@@ -119,20 +119,20 @@
   
   <meta property="twitter:card" content="summary">
   
-  <meta property="og:site_name" content="Academic">
+  <meta property="og:site_name" content="Huhuaping">
   <meta property="og:url" content="/tags/r-markdown/">
-  <meta property="og:title" content="R Markdown | Academic">
+  <meta property="og:title" content="R Markdown | Huhuaping">
   <meta property="og:description" content="Professor of Artificial Intelligence"><meta property="og:image" content="/img/icon-192.png">
   <meta property="og:locale" content="en-us">
   
-  <meta property="og:updated_time" content="2015-07-23T21:13:14-05:00">
+  <meta property="og:updated_time" content="2019-02-20T21:18:21-19:00">
   
 
   
 
   
 
-  <title>R Markdown | Academic</title>
+  <title>R Markdown | Huhuaping</title>
 
 </head>
 <body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" >
@@ -172,7 +172,7 @@
   <div class="container">
 
     
-      <a class="navbar-brand" href="/">Academic</a>
+      <a class="navbar-brand" href="/">Huhuaping</a>
       
       <button type="button" class="navbar-toggler" data-toggle="collapse"
               data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -366,12 +366,31 @@
   
   
   <div>
-    <h2><a href="/post/2015-07-23-r-rmarkdown/">Hello R Markdown</a></h2>
+    <h2><a href="/post/2015-07-23-r-rmarkdown/">Hello blogdown</a></h2>
     <div class="article-style">
       
-      R MarkdownThis is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.
-You can embed an R code chunk like this:
-summary(cars)## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 26.00 ## Median :15.0 Median : 36.00 ## Mean :15.4 Mean : 42.98 ## 3rd Qu.
+      在Rstudio中创建blogdown siteblogdown的设置比较简单，教程里基本也说得清楚。具体操作时，还是需要注意以下几个要点：
+选取中意的网站模板，比如学术型模板# for example, create a new site with the academic themeblogdown::new_site(theme = &quot;gcushen/hugo-academic&quot;)设置全局选项（global options）。一个是设置默认的“作者”和“文件格式”。需要在工作目录下新建一个.Rprofile文件：
+file.edit(&#39;.Rprofile&#39;)文件里面的内容配置为:
+options(blogdown.ext = &quot;.Rmd&quot;, blogdown.author = &quot;huhuaping&quot;)另外就是要配置工作文件下的config.toml文件，主要就是修改网站的名字：
+# Title of your sitetitle = &quot;Huhuaping&quot;最后要记得装载hugo，最重要得是弄清楚hugo_version（后面netlify建站时需要配置环境变量hugo_version，否则会报错255，二者应该要一致，且有最低版本要求）。在Rstudio里判明版本号的办法是：# 安装hugoinstall_hugo()# 判明版本号blogdown::hugo_version()利用git工具来管理github仓库git版本控制工具，还是需要学会的。这里就列出一个很好的参考学习资源吧——git book(多国语言版)
+在netlify上关联github仓库并建站如前所述，这里很重要的一步就是要记得设置hugo_version的环境变量，版本号需要与blogdown里安装的版本号一致。
+
+      
+    </div>
+  </div>
+  
+  <div>
+    <h2><a href="/post/2019-02-20-create-website/">利用github和netlify建立自己的网站</a></h2>
+    <div class="article-style">
+      
+      在Rstudio中创建blogdown siteblogdown的设置比较简单，教程里基本也说得清楚。具体操作时，还是需要注意以下几个要点：
+选取中意的网站模板，比如学术型模板# for example, create a new site with the academic themeblogdown::new_site(theme = &quot;gcushen/hugo-academic&quot;)设置全局选项（global options）。一个是设置默认的“作者”和“文件格式”。需要在工作目录下新建一个.Rprofile文件：
+file.edit(&#39;.Rprofile&#39;)文件里面的内容配置为:
+options(blogdown.ext = &quot;.Rmd&quot;, blogdown.author = &quot;huhuaping&quot;)另外就是要配置工作文件下的config.toml文件，主要就是修改网站的名字：
+# Title of your sitetitle = &quot;Huhuaping&quot;最后要记得装载hugo，最重要得是弄清楚hugo_version（后面netlify建站时需要配置环境变量hugo_version，否则会报错255，二者应该要一致，且有最低版本要求）。在Rstudio里判明版本号的办法是：# 安装hugoinstall_hugo()# 判明版本号blogdown::hugo_version()利用git工具来管理github仓库git版本控制工具，还是需要学会的。这里就列出一个很好的参考学习资源吧——git book(多国语言版)
+在netlify上关联github仓库并建站如前所述，这里很重要的一步就是要记得设置hugo_version的环境变量，版本号需要与blogdown里安装的版本号一致。
+
       
     </div>
   </div>
@@ -389,7 +408,7 @@ summary(cars)## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 2
   
 
   <p class="powered-by">
-    
+    huhuaping@2019 &middot; 
 
     Powered by the
     <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
