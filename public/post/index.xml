@@ -13,21 +13,6 @@
     
     
     <item>
-      <title>Hello blogdown</title>
-      <link>/post/2015-07-23-r-rmarkdown/</link>
-      <pubDate>Wed, 20 Feb 2019 21:18:21 -1900</pubDate>
-      
-      <guid>/post/2015-07-23-r-rmarkdown/</guid>
-      <description>在Rstudio中创建blogdown siteblogdown的设置比较简单，教程里基本也说得清楚。具体操作时，还是需要注意以下几个要点：
-选取中意的网站模板，比如学术型模板# for example, create a new site with the academic themeblogdown::new_site(theme = &amp;quot;gcushen/hugo-academic&amp;quot;)设置全局选项（global options）。一个是设置默认的“作者”和“文件格式”。需要在工作目录下新建一个.Rprofile文件：
-file.edit(&amp;#39;.Rprofile&amp;#39;)文件里面的内容配置为:
-options(blogdown.ext = &amp;quot;.Rmd&amp;quot;, blogdown.author = &amp;quot;huhuaping&amp;quot;)另外就是要配置工作文件下的config.toml文件，主要就是修改网站的名字：
-# Title of your sitetitle = &amp;quot;Huhuaping&amp;quot;最后要记得装载hugo，最重要得是弄清楚hugo_version（后面netlify建站时需要配置环境变量hugo_version，否则会报错255，二者应该要一致，且有最低版本要求）。在Rstudio里判明版本号的办法是：# 安装hugoinstall_hugo()# 判明版本号blogdown::hugo_version()利用git工具来管理github仓库git版本控制工具，还是需要学会的。这里就列出一个很好的参考学习资源吧——git book(多国语言版)
-在netlify上关联github仓库并建站如前所述，这里很重要的一步就是要记得设置hugo_version的环境变量，版本号需要与blogdown里安装的版本号一致。
-</description>
-    </item>
-    
-    <item>
       <title>利用github和netlify建立自己的网站</title>
       <link>/post/2019-02-20-create-website/</link>
       <pubDate>Wed, 20 Feb 2019 21:18:21 -1900</pubDate>
