@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1550657984099.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2637436732",
+    "id" : "37A5EA29",
+    "lastKnownWriteTime" : 1550658025,
+    "last_content_update" : 1550658025890,
+    "path" : "D:/github/netlify/.Rprofile",
+    "project_path" : ".Rprofile",
+    "properties" : {
+        "cursorPosition" : "0,51",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
