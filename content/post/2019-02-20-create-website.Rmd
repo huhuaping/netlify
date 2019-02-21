@@ -56,3 +56,7 @@ git版本控制工具，还是需要学会的。这里就列出一个很好的�
 # 在netlify上关联github仓库并建站
 
 如前所述，这里很重要的一步就是要记得设置hugo_version的环境变量，版本号需要与blogdown里安装的版本号一致。
+
+# 额外的问题
+
+baseurl 的[斜杠问题](https://github.com/rstudio/blogdown/issues/114)
