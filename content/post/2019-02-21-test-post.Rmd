@@ -1,0 +1,15 @@
+---
+title: test post
+author: huhuaping
+date: '2019-02-21'
+slug: test-post
+categories: []
+tags: []
+image:
+  caption: ''
+  focal_point: ''
+---
+
+# why not display my new post?
+
+I don't know what's wrong?
