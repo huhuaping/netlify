@@ -4,6 +4,7 @@ author: "胡华平"
 date: 2019-02-20T21:18:21-19:00
 categories: ["R"]
 tags: ["R Markdown", "blogdown", "github"]
+draft: true
 ---
 
 ```{r setup, include=FALSE}
