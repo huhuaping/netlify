@@ -22,6 +22,15 @@
     </item>
     
     <item>
+      <title>experience for create website with github and netlify</title>
+      <link>/post/experience-for-create-website-with-github-and-netlify/</link>
+      <pubDate>Thu, 21 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/experience-for-create-website-with-github-and-netlify/</guid>
+      <description>在Rstudio中创建blogdown site blogdown的设置比较简单，教程里基本也说得清楚。具体操作时，还是需要注意以下几个要点： 选取中意</description>
+    </item>
+    
+    <item>
       <title>test post</title>
       <link>/post/test-post/</link>
       <pubDate>Thu, 21 Feb 2019 00:00:00 +0000</pubDate>
