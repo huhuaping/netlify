@@ -4,32 +4,16 @@
     
     <url>
     
-      <loc>/post/2019-02-20-create-website/</loc>
-      <lastmod>2019-02-20T21:18:21-19:00</lastmod>
+      <loc>/post/xaringan-for-course-slide/</loc>
+      <lastmod>2019-02-24T00:00:00+00:00</lastmod>
     </url>
     
   
     
     <url>
     
-      <loc>/post/experience-for-create-website-with-github-and-netlify/</loc>
+      <loc>/post/three-sord/</loc>
       <lastmod>2019-02-21T00:00:00+00:00</lastmod>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/post/test-post/</loc>
-      <lastmod>2019-02-21T00:00:00+00:00</lastmod>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/post/jupyter/</loc>
-      <lastmod>2019-02-05T00:00:00+00:00</lastmod>
     </url>
     
   
@@ -84,14 +68,6 @@
     
     <url>
     
-      <loc>/post/getting-started/</loc>
-      <lastmod>2018-01-13T00:00:00+08:00</lastmod>
-    </url>
-    
-  
-    
-    <url>
-    
       <loc>/publication/person-re-id/</loc>
       <lastmod>2015-09-01T00:00:00+08:00</lastmod>
     </url>
@@ -126,15 +102,6 @@
     
       <loc>/publication_types/2/</loc>
       <lastmod>2015-09-01T00:00:00+08:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/tags/academic/</loc>
-      <lastmod>2018-01-13T00:00:00+08:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -194,7 +161,7 @@
     <url>
     
       <loc>/</loc>
-      <lastmod>2019-02-20T21:18:21-19:00</lastmod>
+      <lastmod>2019-02-24T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -212,7 +179,7 @@
     <url>
     
       <loc>/post/</loc>
-      <lastmod>2019-02-20T21:18:21-19:00</lastmod>
+      <lastmod>2019-02-24T00:00:00+00:00</lastmod>
     </url>
     
   
@@ -246,16 +213,7 @@
     <url>
     
       <loc>/categories/r/</loc>
-      <lastmod>2019-02-20T21:18:21-19:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/tags/r-markdown/</loc>
-      <lastmod>2019-02-20T21:18:21-19:00</lastmod>
+      <lastmod>2019-02-24T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -287,7 +245,7 @@
     <url>
     
       <loc>/tags/</loc>
-      <lastmod>2018-01-13T00:00:00+08:00</lastmod>
+      <lastmod>2016-04-27T00:00:00+08:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -296,7 +254,6 @@
     <url>
     
       <loc>/authors/admin/</loc>
-      <lastmod>2019-02-05T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -305,7 +262,16 @@
     <url>
     
       <loc>/tags/blogdown/</loc>
-      <lastmod>2019-02-20T21:18:21-19:00</lastmod>
+      <lastmod>2019-02-21T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/econometrics/</loc>
+      <lastmod>2019-02-24T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -314,7 +280,16 @@
     <url>
     
       <loc>/tags/github/</loc>
-      <lastmod>2019-02-20T21:18:21-19:00</lastmod>
+      <lastmod>2019-02-21T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/netlify/</loc>
+      <lastmod>2019-02-21T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     

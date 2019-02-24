@@ -7,18 +7,27 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>huhuaping@2019</copyright>
-    <lastBuildDate>Wed, 20 Feb 2019 21:18:21 -1900</lastBuildDate>
+    <lastBuildDate>Sun, 24 Feb 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/r/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>利用github和netlify建立自己的网站</title>
-      <link>/post/2019-02-20-create-website/</link>
-      <pubDate>Wed, 20 Feb 2019 21:18:21 -1900</pubDate>
+      <title>create course slide by using Xaringan</title>
+      <link>/post/xaringan-for-course-slide/</link>
+      <pubDate>Sun, 24 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/2019-02-20-create-website/</guid>
-      <description>在Rstudio中创建blogdown site blogdown的设置比较简单，教程里基本也说得清楚。具体操作时，还是需要注意以下几个要点： 选取中意</description>
+      <guid>/post/xaringan-for-course-slide/</guid>
+      <description>利用xaringan来设计课程slide。 现在对（本科）教学工作的要求，已经发生了很大的改变：教学的内容变得更加专业化和细分化（学生就业市场</description>
+    </item>
+    
+    <item>
+      <title>three-sords (blogdown; github; netlify) to develole personal website</title>
+      <link>/post/three-sord/</link>
+      <pubDate>Thu, 21 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/three-sord/</guid>
+      <description>“三剑”合璧持续性打造个人网站(blogdown; github; netlify) 在Rstudio中创建blogdown site blogdown的设置比较简单，教程里基本也说</description>
     </item>
     
   </channel>

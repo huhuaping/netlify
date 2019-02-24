@@ -1,0 +1,83 @@
+---
+title: create course slide by using Xaringan
+author: huhuaping
+date: '2019-02-24'
+slug: xaringan-for-course-slide
+categories:
+  - R
+tags:
+  - econometrics
+image:
+  caption: ''
+  focal_point: ''
+---
+
+利用xaringan来设计课程slide。
+
+现在对（本科）教学工作的要求，已经发生了很大的改变：教学的内容变得更加专业化和细分化（学生就业市场的倒逼）；教学过程/流程需要标准化（一切变得透明公开）；教学活动应该能够便于复制并规模化运行（课程最好能以公开课/慕课方式运作）；个性化教学和灵活性调整被反复强调（对学生多元考核、“一人一套试卷”）；其他方面。
+
+教师在讲台上的台前“艺术化”魅力（仪态、表情、音色等）已经不再如曾经那么重要；教师在台后的“技术性”设计（内容、互动、展示等）上升到了无与伦比的地位。
+
+尤其是对于哪些**技术性课程**，如计量经济学（Econometrics）和统计学（Statistics），“技术性”设计必须要赶上这些教学新要求的呼声。（当你发现一位大学教师还在“坚持”使用Office2007，你一点都不要惊讶——经管现在已经是2019年了。）
+
+# 为什么要逃离PowerPoint，拥抱HTML形式的slide？
+
+PowerPoint的“断、舍、离”：
+
+- office版本太过分散，ppt可能会上演各种“变形记”。（现在国内有很多学生，已经不能区分WPS和Office了。学生的毕业论文或作业提交，那酸爽，真是谁看谁知道。）
+
+- ppt维护和更新的各种“梗”。最让我纠结的就是mathtype公式，神一般地会一夜之间“变砖”（倒腾几下，公式变图片，或者干脆显示不了），更不要说公式的重复使用和编辑修改。如果使用一些新技巧、新字体，那一定会让你记住“凡走过的都是一个一个的巨坑”。
+
+- 难以逾越数据、图形和模型分析的“天堑”。表格数据加总等分析基本等于不可能（事实上也可以关联excel，但是“关联越多，等价于羁绊越多”！）；数据图形化，你只能老老实实拷贝统计软件里的做好的图吧（泪奔！）；建模分析结果的调用，就更别提了（反复在多个软件窗口中切换和敲键盘，眼花缭乱的“骚操作”不说，最担心的还是手一抖怕敲错了结果啊！）。
+
+HTML形式slide的“前世今生”：
+
+- 一个浏览器就够了。HTML是互联网世界最广泛使用的交流形式。每台电脑都会安装浏览器（chrome、firefox、IE...），但不是都会安装Microsoft office全家桶（365家庭版那可是每年500RMB啊，心疼一下下！）。
+
+- 一份文本多种输出形态的终极需求。就像KTV里嗨唱切歌，老师们常常要在word、pdf、html、ppt、png等格式中不断切换啊。一个逗号或减号，在word里改了，那还得改ppt啊，就问你蛋疼不蛋疼。所以，仅维护一份文本，随时获得各种输出（html、word、ppt、slide...）简直就是人类共同的梦想啊。
+
+- “纯文本”就是你的最底层“话语”。一切的文字、代码、图形、格式、排版...，统统汇集于一份“纯文本”中！**Plain Text**，正如其名，平铺直叙，朴素而不简单，包含了你所需的一切，你想说和想呈现的一切。
+
+# Xaringan的优势和不足
+
+
+Xaringan的优势：
+
+- R语言和RMarkdown的应用就是它最大的优势。这赋予了教学准备工作更强的“生产力”：代码可重复利用、统计处理和分析报告完美整合。
+
+- Xaringan Slide可以高度灵活的定制化。本质上形式的呈现，完全依赖于CSS技术，这与PowerPoint中的模板使用是完全不同的体验，效率上完全秒掉后者。
+
+- Xaringan Slide可以完美转成pdf格式的slide。其实直接用Chrome浏览器打开HTML Slide不就完了嘛，这种格式转换的操作本来就是多此一举！总之，你说，世界需要pdf；于是Xaringan便说，给你pdf！
+
+- 与GitHub版本控制技术融合。我想说的是，这是一种全新的师生交互和反馈机制！
+
+Xaringan的不足：
+
+- 对行内公式支持不是很友好。比如`$\beta$`必须要保持独立一行！一段话要是有很多这样的inline equation，那么xaringan::moon_reader 文档就显得很破碎了。
+
+- 风格调整CSS技术的学习还是有一定成本的。换言之，制作一份自己喜欢的“专属”模板，还需要花费一些时间。
+
+- 强迫症的一些小细节。使用`knitr::kable()`制表，转pdf时表格无法显示，替代办法就是用`DT::datatable()`的表格风格，而它往往不是真正的Table风格！另外，就是windows环境下，不支持Rstudio面板Viewer中预览slide，只能在浏览器中预览。
+
+# Xaringan使用中需要注意的几个细节
+
+选用一个好的模板：
+
+- 比如我使用的杜克大学模板：[Slide Template for Duke University](https://johnlittle.info/dukeslides/)。
+
+- 初学者最好先不要删除模板的内容，里面的示例说明可以很好地参考。
+
+定制自己的字体大小：
+
+- 在Rmd文档里添加代码：(参看[Customize font size for all the slides in xaringan](https://stackoverflow.com/questions/53481699/customize-font-size-for-all-the-slides-in-xaringan))
+
+```
+<style type="text/css">
+.remark-slide-content {
+    font-size: 30px;
+    padding: 1em 4em 1em 4em;
+}
+</style>
+
+```
+

@@ -7,18 +7,85 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>huhuaping@2019</copyright>
-    <lastBuildDate>Wed, 20 Feb 2019 21:18:21 -1900</lastBuildDate>
+    <lastBuildDate>Sun, 24 Feb 2019 00:00:00 +0000</lastBuildDate>
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>利用github和netlify建立自己的网站</title>
-      <link>/post/2019-02-20-create-website/</link>
-      <pubDate>Wed, 20 Feb 2019 21:18:21 -1900</pubDate>
+      <title>create course slide by using Xaringan</title>
+      <link>/post/xaringan-for-course-slide/</link>
+      <pubDate>Sun, 24 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/2019-02-20-create-website/</guid>
+      <guid>/post/xaringan-for-course-slide/</guid>
       <description>
 
 
+&lt;p&gt;利用xaringan来设计课程slide。&lt;/p&gt;
+&lt;p&gt;现在对（本科）教学工作的要求，已经发生了很大的改变：教学的内容变得更加专业化和细分化（学生就业市场的倒逼）；教学过程/流程需要标准化（一切变得透明公开）；教学活动应该能够便于复制并规模化运行（课程最好能以公开课/慕课方式运作）；个性化教学和灵活性调整被反复强调（对学生多元考核、“一人一套试卷”）；其他方面。&lt;/p&gt;
+&lt;p&gt;教师在讲台上的台前“艺术化”魅力（仪态、表情、音色等）已经不再如曾经那么重要；教师在台后的“技术性”设计（内容、互动、展示等）上升到了无与伦比的地位。&lt;/p&gt;
+&lt;p&gt;尤其是对于哪些&lt;strong&gt;技术性课程&lt;/strong&gt;，如计量经济学（Econometrics）和统计学（Statistics），“技术性”设计必须要赶上这些教学新要求的呼声。（当你发现一位大学教师还在“坚持”使用Office2007，你一点都不要惊讶——经管现在已经是2019年了。）&lt;/p&gt;
+&lt;div id=&#34;powerpointhtmlslide&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;为什么要逃离PowerPoint，拥抱HTML形式的slide？&lt;/h1&gt;
+&lt;p&gt;PowerPoint的“断、舍、离”：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;office版本太过分散，ppt可能会上演各种“变形记”。（现在国内有很多学生，已经不能区分WPS和Office了。学生的毕业论文或作业提交，那酸爽，真是谁看谁知道。）&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;ppt维护和更新的各种“梗”。最让我纠结的就是mathtype公式，神一般地会一夜之间“变砖”（倒腾几下，公式变图片，或者干脆显示不了），更不要说公式的重复使用和编辑修改。如果使用一些新技巧、新字体，那一定会让你记住“凡走过的都是一个一个的巨坑”。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;难以逾越数据、图形和模型分析的“天堑”。表格数据加总等分析基本等于不可能（事实上也可以关联excel，但是“关联越多，等价于羁绊越多”！）；数据图形化，你只能老老实实拷贝统计软件里的做好的图吧（泪奔！）；建模分析结果的调用，就更别提了（反复在多个软件窗口中切换和敲键盘，眼花缭乱的“骚操作”不说，最担心的还是手一抖怕敲错了结果啊！）。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;HTML形式slide的“前世今生”：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;一个浏览器就够了。HTML是互联网世界最广泛使用的交流形式。每台电脑都会安装浏览器（chrome、firefox、IE…），但不是都会安装Microsoft office全家桶（365家庭版那可是每年500RMB啊，心疼一下下！）。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;一份文本多种输出形态的终极需求。就像KTV里嗨唱切歌，老师们常常要在word、pdf、html、ppt、png等格式中不断切换啊。一个逗号或减号，在word里改了，那还得改ppt啊，就问你蛋疼不蛋疼。所以，仅维护一份文本，随时获得各种输出（html、word、ppt、slide…）简直就是人类共同的梦想啊。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;“纯文本”就是你的最底层“话语”。一切的文字、代码、图形、格式、排版…，统统汇集于一份“纯文本”中！&lt;strong&gt;Plain Text&lt;/strong&gt;，正如其名，平铺直叙，朴素而不简单，包含了你所需的一切，你想说和想呈现的一切。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;xaringan&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Xaringan的优势和不足&lt;/h1&gt;
+&lt;p&gt;Xaringan的优势：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;R语言和RMarkdown的应用就是它最大的优势。这赋予了教学准备工作更强的“生产力”：代码可重复利用、统计处理和分析报告完美整合。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Xaringan Slide可以高度灵活的定制化。本质上形式的呈现，完全依赖于CSS技术，这与PowerPoint中的模板使用是完全不同的体验，效率上完全秒掉后者。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Xaringan Slide可以完美转成pdf格式的slide。其实直接用Chrome浏览器打开HTML Slide不就完了嘛，这种格式转换的操作本来就是多此一举！总之，你说，世界需要pdf；于是Xaringan便说，给你pdf！&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;与GitHub版本控制技术融合。我想说的是，这是一种全新的师生交互和反馈机制！&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Xaringan的不足：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;对行内公式支持不是很友好。比如&lt;code&gt;$\beta$&lt;/code&gt;必须要保持独立一行！一段话要是有很多这样的inline equation，那么xaringan::moon_reader 文档就显得很破碎了。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;风格调整CSS技术的学习还是有一定成本的。换言之，制作一份自己喜欢的“专属”模板，还需要花费一些时间。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;强迫症的一些小细节。使用&lt;code&gt;knitr::kable()&lt;/code&gt;制表，转pdf时表格无法显示，替代办法就是用&lt;code&gt;DT::datatable()&lt;/code&gt;的表格风格，而它往往不是真正的Table风格！另外，就是windows环境下，不支持Rstudio面板Viewer中预览slide，只能在浏览器中预览。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;xaringan&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Xaringan使用中需要注意的几个细节&lt;/h1&gt;
+&lt;p&gt;选用一个好的模板：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;比如我使用的杜克大学模板：&lt;a href=&#34;https://johnlittle.info/dukeslides/&#34;&gt;Slide Template for Duke University&lt;/a&gt;。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;初学者最好先不要删除模板的内容，里面的示例说明可以很好地参考。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;定制自己的字体大小：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;在Rmd文档里添加代码：(参看&lt;a href=&#34;https://stackoverflow.com/questions/53481699/customize-font-size-for-all-the-slides-in-xaringan&#34;&gt;Customize font size for all the slides in xaringan&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;style type=&amp;quot;text/css&amp;quot;&amp;gt;
+.remark-slide-content {
+    font-size: 30px;
+    padding: 1em 4em 1em 4em;
+}
+&amp;lt;/style&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>three-sords (blogdown; github; netlify) to develole personal website</title>
+      <link>/post/three-sord/</link>
+      <pubDate>Thu, 21 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/three-sord/</guid>
+      <description>
+
+
+&lt;p&gt;“三剑”合璧持续性打造个人网站(blogdown; github; netlify)&lt;/p&gt;
 &lt;div id=&#34;rstudioblogdown-site&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;在Rstudio中创建blogdown site&lt;/h1&gt;
 &lt;p&gt;blogdown的设置比较简单，教程里基本也说得清楚。具体操作时，还是需要注意以下几个要点：&lt;/p&gt;
@@ -56,138 +123,17 @@ blogdown::hugo_version()&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class=&#34;section level1&#34;&gt;
 &lt;h1&gt;额外的问题&lt;/h1&gt;
-&lt;p&gt;baseurl 的&lt;a href=&#34;https://github.com/rstudio/blogdown/issues/114&#34;&gt;斜杠问题&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>experience for create website with github and netlify</title>
-      <link>/post/experience-for-create-website-with-github-and-netlify/</link>
-      <pubDate>Thu, 21 Feb 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/post/experience-for-create-website-with-github-and-netlify/</guid>
-      <description>
-
-
-&lt;div id=&#34;rstudioblogdown-site&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;在Rstudio中创建blogdown site&lt;/h1&gt;
-&lt;p&gt;blogdown的设置比较简单，教程里基本也说得清楚。具体操作时，还是需要注意以下几个要点：&lt;/p&gt;
+&lt;p&gt;config.toml配置：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;选取中意的网站模板，比如学术型模板&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;baseurl存在的&lt;a href=&#34;https://github.com/rstudio/blogdown/issues/114&#34;&gt;斜杠问题&lt;/a&gt;，可能会影响netlify建站更新。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;网页链接显示最好是稳定的。可以通过日期+slug的形式来固定，具体设置为：&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# for example, create a new site with the academic theme
-blogdown::new_site(theme = &amp;quot;gcushen/hugo-academic&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;设置全局选项（global options）。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;一个是设置默认的“作者”和“文件格式”。需要在工作目录下新建一个.Rprofile文件：&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;file.edit(&amp;#39;.Rprofile&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;文件里面的内容配置为:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;options(blogdown.ext = &amp;quot;.Rmd&amp;quot;, blogdown.author = &amp;quot;huhuaping&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;另外就是要配置工作文件下的config.toml文件，主要就是修改网站的名字：&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Title of your site
-title = &amp;quot;Huhuaping&amp;quot;&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;最后要记得装载hugo，最重要得是弄清楚hugo_version（后面netlify建站时需要配置环境变量hugo_version，否则会&lt;a href=&#34;https://gohugo.io/hosting-and-deployment/hosting-on-netlify/&#34;&gt;报错255&lt;/a&gt;，二者应该要一致，且有最低版本要求）。在Rstudio里判明版本号的办法是：&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# 安装hugo
-install_hugo()
-
-# 判明版本号
-blogdown::hugo_version()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;[permalinks]
+  post = &amp;quot;/:year/:month/:day/:slug/&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;版本控制（github repo）：记得在工作目录下的.gitignore里添加忽视文件（否则会影响netlify建站更新）。&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;public&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;提交新的博客文章(post)：最好使用Rstudio里Addin菜单中的New Post来写Rmd格式的博文。&lt;/p&gt;
 &lt;/div&gt;
-&lt;div id=&#34;gitgithub&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;利用git工具来管理github仓库&lt;/h1&gt;
-&lt;p&gt;git版本控制工具，还是需要学会的。这里就列出一个很好的参考学习资源吧——&lt;a href=&#34;https://git-scm.com/book/zh/v2&#34;&gt;git book(多国语言版)&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;netlifygithub&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;在netlify上关联github仓库并建站&lt;/h1&gt;
-&lt;p&gt;如前所述，这里很重要的一步就是要记得设置hugo_version的环境变量，版本号需要与blogdown里安装的版本号一致。&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level1&#34;&gt;
-&lt;h1&gt;额外的问题&lt;/h1&gt;
-&lt;p&gt;baseurl 的&lt;a href=&#34;https://github.com/rstudio/blogdown/issues/114&#34;&gt;斜杠问题&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>test post</title>
-      <link>/post/test-post/</link>
-      <pubDate>Thu, 21 Feb 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/post/test-post/</guid>
-      <description>
-
-
-&lt;div id=&#34;why-not-display-my-new-post&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;why not display my new post?&lt;/h1&gt;
-&lt;p&gt;I don’t know what’s wrong?&lt;/p&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Display Jupyter Notebooks with Academic</title>
-      <link>/post/jupyter/</link>
-      <pubDate>Tue, 05 Feb 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/post/jupyter/</guid>
-      <description>
-
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from IPython.core.display import Image
-Image(&#39;https://www.python.org/static/community_logos/python-logo-master-v3-TM-flattened.png&#39;)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;img src=&#34;./academic_0_0.png&#34; alt=&#34;png&#34; /&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;print(&amp;quot;Welcome to Academic!&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code&gt;Welcome to Academic!
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;install-python-and-jupyter&#34;&gt;Install Python and Jupyter&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://www.anaconda.com/distribution/#download-section&#34; target=&#34;_blank&#34;&gt;Install Anaconda&lt;/a&gt; which includes Python 3 and Jupyter notebook.&lt;/p&gt;
-
-&lt;p&gt;Otherwise, for advanced users, install Jupyter notebook with &lt;code&gt;pip3 install jupyter&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h2 id=&#34;create-a-new-blog-post-as-usual-https-sourcethemes-com-academic-docs-managing-content-create-a-blog-post&#34;&gt;Create a new blog post &lt;a href=&#34;https://sourcethemes.com/academic/docs/managing-content/#create-a-blog-post&#34; target=&#34;_blank&#34;&gt;as usual&lt;/a&gt;&lt;/h2&gt;
-
-&lt;p&gt;Run the following commands in your Terminal, substituting &lt;code&gt;&amp;lt;MY_WEBSITE_FOLDER&amp;gt;&lt;/code&gt; and &lt;code&gt;my-post&lt;/code&gt; with the file path to your Academic website folder and a name for your blog post (without spaces), respectively:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cd &amp;lt;MY_WEBSITE_FOLDER&amp;gt;
-hugo new  --kind post post/my-post
-cd &amp;lt;MY_WEBSITE_FOLDER&amp;gt;/content/post/my-post/
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;create-or-upload-a-jupyter-notebook&#34;&gt;Create or upload a Jupyter notebook&lt;/h2&gt;
-
-&lt;p&gt;Run the following command to start Jupyter within your new blog post folder. Then create a new Jupyter notebook (&lt;em&gt;New &amp;gt; Python Notebook&lt;/em&gt;) or upload a notebook.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;jupyter notebook
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;convert-notebook-to-markdown&#34;&gt;Convert notebook to Markdown&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;jupyter nbconvert Untitled.ipynb --to markdown --NbConvertApp.output_files_dir=.
-
-# Copy the contents of Untitled.md and append it to index.md:
-cat Untitled.md | tee -a index.md
-
-# Remove the temporary file:
-rm Untitled.md
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;edit-your-post-metadata&#34;&gt;Edit your post metadata&lt;/h2&gt;
-
-&lt;p&gt;Open &lt;code&gt;index.md&lt;/code&gt; in your text editor and edit the title etc. in the &lt;a href=&#34;https://sourcethemes.com/academic/docs/front-matter/&#34; target=&#34;_blank&#34;&gt;front matter&lt;/a&gt; according to your preference.&lt;/p&gt;
-
-&lt;p&gt;To set a &lt;a href=&#34;https://sourcethemes.com/academic/docs/managing-content/#featured-image&#34; target=&#34;_blank&#34;&gt;featured image&lt;/a&gt;, place an image named &lt;code&gt;featured&lt;/code&gt; into your post&amp;rsquo;s folder.&lt;/p&gt;
-
-&lt;p&gt;For other tips, such as using math, see the guide on &lt;a href=&#34;https://sourcethemes.com/academic/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34;&gt;writing content with Academic&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -271,386 +217,6 @@ rm Untitled.md
 &lt;p&gt;Suspendisse a tincidunt lacus. Curabitur at urna sagittis, dictum ante sit amet, euismod magna. Sed rutrum massa id tortor commodo, vitae elementum turpis tempus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean purus turpis, venenatis a ullamcorper nec, tincidunt et massa. Integer posuere quam rutrum arcu vehicula imperdiet. Mauris ullamcorper quam vitae purus congue, quis euismod magna eleifend. Vestibulum semper vel augue eget tincidunt. Fusce eget justo sodales, dapibus odio eu, ultrices lorem. Duis condimentum lorem id eros commodo, in facilisis mauris scelerisque. Morbi sed auctor leo. Nullam volutpat a lacus quis pharetra. Nulla congue rutrum magna a ornare.&lt;/p&gt;
 
 &lt;p&gt;Aliquam in turpis accumsan, malesuada nibh ut, hendrerit justo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque sed erat nec justo posuere suscipit. Donec ut efficitur arcu, in malesuada neque. Nunc dignissim nisl massa, id vulputate nunc pretium nec. Quisque eget urna in risus suscipit ultricies. Pellentesque odio odio, tincidunt in eleifend sed, posuere a diam. Nam gravida nisl convallis semper elementum. Morbi vitae felis faucibus, vulputate orci placerat, aliquet nisi. Aliquam erat volutpat. Maecenas sagittis pulvinar purus, sed porta quam laoreet at.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Academic: the website designer for Hugo</title>
-      <link>/post/getting-started/</link>
-      <pubDate>Wed, 20 Apr 2016 00:00:00 +0800</pubDate>
-      
-      <guid>/post/getting-started/</guid>
-      <description>
-
-&lt;p&gt;&lt;strong&gt;Academic&lt;/strong&gt; makes it easy to create a beautiful website for free using Markdown. Customize anything on your site with widgets, themes, and language packs.&lt;/p&gt;
-
-&lt;p&gt;Follow our easy &lt;a href=&#34;https://sourcethemes.com/academic/docs/install/&#34; target=&#34;_blank&#34;&gt;step by step guide&lt;/a&gt; to learn how to build your own free website with Academic. &lt;a href=&#34;https://academic-demo.netlify.com/&#34; target=&#34;_blank&#34;&gt;Check out the personal demo&lt;/a&gt; or the &lt;a href=&#34;https://sourcethemes.com/academic/&#34; target=&#34;_blank&#34;&gt;business demo&lt;/a&gt; of what you&amp;rsquo;ll get in less than 10 minutes.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://sourcethemes.com/academic/docs/&#34; target=&#34;_blank&#34;&gt;View the documentation&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://discuss.gohugo.io/&#34; target=&#34;_blank&#34;&gt;Ask a question&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/gcushen/hugo-academic/issues&#34; target=&#34;_blank&#34;&gt;Request a feature or report a bug&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Updating? View the &lt;a href=&#34;https://sourcethemes.com/academic/docs/update/&#34; target=&#34;_blank&#34;&gt;Update Guide&lt;/a&gt; and &lt;a href=&#34;https://sourcethemes.com/academic/updates/&#34; target=&#34;_blank&#34;&gt;Release Notes&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Support development of Academic:
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://paypal.me/cushen&#34; target=&#34;_blank&#34;&gt;Donate a coffee&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.patreon.com/cushen&#34; target=&#34;_blank&#34;&gt;Become a backer on Patreon&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.redbubble.com/people/neutreno/works/34387919-academic&#34; target=&#34;_blank&#34;&gt;Decorate your laptop or journal with an Academic sticker&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://academic.threadless.com/&#34; target=&#34;_blank&#34;&gt;Wear the T-shirt&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://github.com/gcushen/hugo-academic/&#34; target=&#34;_blank&#34;&gt;&lt;img src=&#34;https://raw.githubusercontent.com/gcushen/hugo-academic/master/academic.png&#34; alt=&#34;Screenshot&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Key features:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Easily manage various content including homepage, blog posts, publications, talks, and projects&lt;/li&gt;
-&lt;li&gt;Extensible via &lt;strong&gt;color themes&lt;/strong&gt; and &lt;strong&gt;widgets/plugins&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;Write in &lt;a href=&#34;https://sourcethemes.com/academic/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34;&gt;Markdown&lt;/a&gt; for easy formatting and code highlighting, with &lt;a href=&#34;https://en.wikibooks.org/wiki/LaTeX/Mathematics&#34; target=&#34;_blank&#34;&gt;LaTeX&lt;/a&gt; for mathematical expressions&lt;/li&gt;
-&lt;li&gt;Social/academic network linking, &lt;a href=&#34;https://analytics.google.com&#34; target=&#34;_blank&#34;&gt;Google Analytics&lt;/a&gt;, and &lt;a href=&#34;https://disqus.com&#34; target=&#34;_blank&#34;&gt;Disqus&lt;/a&gt; comments&lt;/li&gt;
-&lt;li&gt;Responsive and mobile friendly&lt;/li&gt;
-&lt;li&gt;Simple and refreshing one page design&lt;/li&gt;
-&lt;li&gt;Multilingual and easy to customize&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;color-themes&#34;&gt;Color Themes&lt;/h2&gt;
-
-&lt;p&gt;Academic is available in different color themes and font themes.&lt;/p&gt;
-
-
-
-&lt;div class=&#34;gallery&#34;&gt;
-
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-    
-  &lt;a data-fancybox=&#34;gallery-gallery&#34; href=&#34;/post/getting-started/gallery/theme-1950s.png&#34; data-caption=&#34;1950s&#34;&gt;
-  &lt;img src=&#34;/post/getting-started/gallery/theme-1950s_huaf5482f8cea0c5a703a328640e3b7509_21614_0x190_resize_lanczos_2.png&#34; alt=&#34;&#34;&gt;
-  &lt;/a&gt;
-  
-    
-    
-    
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-    
-  &lt;a data-fancybox=&#34;gallery-gallery&#34; href=&#34;/post/getting-started/gallery/theme-apogee.png&#34; data-caption=&#34;Apogee&#34;&gt;
-  &lt;img src=&#34;/post/getting-started/gallery/theme-apogee_hu4b45d99db97150df01464c393bfd17d4_24119_0x190_resize_lanczos_2.png&#34; alt=&#34;&#34;&gt;
-  &lt;/a&gt;
-  
-    
-    
-    
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-    
-  &lt;a data-fancybox=&#34;gallery-gallery&#34; href=&#34;/post/getting-started/gallery/theme-coffee-playfair.png&#34; data-caption=&#34;Coffee theme with Playfair font&#34;&gt;
-  &lt;img src=&#34;/post/getting-started/gallery/theme-coffee-playfair_hu446a8f670cc5622adcc77b97ba95f6c5_22462_0x190_resize_lanczos_2.png&#34; alt=&#34;&#34;&gt;
-  &lt;/a&gt;
-  
-    
-    
-    
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-    
-  &lt;a data-fancybox=&#34;gallery-gallery&#34; href=&#34;/post/getting-started/gallery/theme-cupcake.png&#34; data-caption=&#34;Cupcake&#34;&gt;
-  &lt;img src=&#34;/post/getting-started/gallery/theme-cupcake_hueba8cfa8cfbc7543924fcbf387a99e92_23986_0x190_resize_lanczos_2.png&#34; alt=&#34;&#34;&gt;
-  &lt;/a&gt;
-  
-    
-    
-    
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-    
-  &lt;a data-fancybox=&#34;gallery-gallery&#34; href=&#34;/post/getting-started/gallery/theme-dark.png&#34; data-caption=&#34;Dark&#34;&gt;
-  &lt;img src=&#34;/post/getting-started/gallery/theme-dark_hu1e8601ecc47f58eada7743fdcd709d3d_21456_0x190_resize_lanczos_2.png&#34; alt=&#34;&#34;&gt;
-  &lt;/a&gt;
-  
-    
-    
-    
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-    
-  &lt;a data-fancybox=&#34;gallery-gallery&#34; href=&#34;/post/getting-started/gallery/theme-default.png&#34; data-caption=&#34;Default&#34;&gt;
-  &lt;img src=&#34;/post/getting-started/gallery/theme-default_huba6228b7bdf30e2f03f12ea91b2cba0d_21751_0x190_resize_lanczos_2.png&#34; alt=&#34;&#34;&gt;
-  &lt;/a&gt;
-  
-    
-    
-    
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-    
-  &lt;a data-fancybox=&#34;gallery-gallery&#34; href=&#34;/post/getting-started/gallery/theme-forest.png&#34; data-caption=&#34;Forest&#34;&gt;
-  &lt;img src=&#34;/post/getting-started/gallery/theme-forest_hu4f093a1c683134431456584193ea41ee_21797_0x190_resize_lanczos_2.png&#34; alt=&#34;&#34;&gt;
-  &lt;/a&gt;
-  
-    
-    
-    
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-    
-  &lt;a data-fancybox=&#34;gallery-gallery&#34; href=&#34;/post/getting-started/gallery/theme-ocean.png&#34; data-caption=&#34;Ocean&#34;&gt;
-  &lt;img src=&#34;/post/getting-started/gallery/theme-ocean_hu14831ccafc2219f30a7a096fa7617e01_21760_0x190_resize_lanczos_2.png&#34; alt=&#34;&#34;&gt;
-  &lt;/a&gt;
-  
-
-  
-&lt;/div&gt;
-
-&lt;h2 id=&#34;ecosystem&#34;&gt;Ecosystem&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://github.com/sourcethemes/academic-admin&#34; target=&#34;_blank&#34;&gt;Academic Admin&lt;/a&gt;:&lt;/strong&gt; An admin tool to import publications from BibTeX or import assets for an offline site&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://github.com/sourcethemes/academic-scripts&#34; target=&#34;_blank&#34;&gt;Academic Scripts&lt;/a&gt;:&lt;/strong&gt; Scripts to help migrate content to new versions of Academic&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;install&#34;&gt;Install&lt;/h2&gt;
-
-&lt;p&gt;You can choose from one of the following four methods to install:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;one-click install using your web browser (recommended)&lt;/li&gt;
-&lt;li&gt;install on your computer using Git with the Command Prompt/Terminal app&lt;/li&gt;
-&lt;li&gt;install on your computer by downloading the ZIP files&lt;/li&gt;
-&lt;li&gt;install on your computer with RStudio&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;quick-install-using-your-web-browser&#34;&gt;Quick install using your web browser&lt;/h3&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;https://app.netlify.com/start/deploy?repository=https://github.com/sourcethemes/academic-kickstart&#34; target=&#34;_blank&#34;&gt;Install Academic with Netlify&lt;/a&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Netlify will provide you with a customizable URL to access your new site&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;On GitHub, go to your newly created &lt;code&gt;academic-kickstart&lt;/code&gt; repository and edit &lt;code&gt;config.toml&lt;/code&gt; to personalize your site. Shortly after saving the file, your site will automatically update&lt;/li&gt;
-&lt;li&gt;Read the &lt;a href=&#34;https://sourcethemes.com/academic/docs/&#34; target=&#34;_blank&#34;&gt;Quick Start Guide&lt;/a&gt; to learn how to add Markdown content. For inspiration, refer to the &lt;a href=&#34;https://github.com/gcushen/hugo-academic/tree/master/exampleSite&#34; target=&#34;_blank&#34;&gt;Markdown content&lt;/a&gt; which powers the &lt;a href=&#34;https://academic-demo.netlify.com/&#34; target=&#34;_blank&#34;&gt;Demo&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&#34;install-with-git&#34;&gt;Install with Git&lt;/h3&gt;
-
-&lt;p&gt;Prerequisites:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://git-scm.com/downloads&#34; target=&#34;_blank&#34;&gt;Download and install Git&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://gohugo.io/getting-started/installing/#quick-install&#34; target=&#34;_blank&#34;&gt;Download and install Hugo&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://github.com/sourcethemes/academic-kickstart#fork-destination-box&#34; target=&#34;_blank&#34;&gt;Fork&lt;/a&gt; the &lt;em&gt;Academic Kickstart&lt;/em&gt; repository and clone your fork with Git:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;git clone https://github.com/sourcethemes/academic-kickstart.git My_Website
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;em&gt;Note that if you forked Academic Kickstart, the above command should be edited to clone your fork, i.e. replace &lt;code&gt;sourcethemes&lt;/code&gt; with your GitHub username.&lt;/em&gt;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Initialize the theme:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;cd My_Website
-git submodule update --init --recursive
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&#34;install-with-zip&#34;&gt;Install with ZIP&lt;/h3&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/sourcethemes/academic-kickstart/archive/master.zip&#34; target=&#34;_blank&#34;&gt;Download&lt;/a&gt; and extract &lt;em&gt;Academic Kickstart&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/gcushen/hugo-academic/archive/master.zip&#34; target=&#34;_blank&#34;&gt;Download&lt;/a&gt; and extract the &lt;em&gt;Academic theme&lt;/em&gt; to the &lt;code&gt;themes/academic/&lt;/code&gt; folder from the above step&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&#34;install-with-rstudio&#34;&gt;Install with RStudio&lt;/h3&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://sourcethemes.com/academic/docs/install/#install-with-rstudio&#34; target=&#34;_blank&#34;&gt;View the guide to installing Academic with RStudio&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;quick-start&#34;&gt;Quick start&lt;/h2&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;If you installed on your computer, view your new website by running the following command:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;hugo server
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now visit &lt;a href=&#34;http://localhost:1313&#34; target=&#34;_blank&#34;&gt;localhost:1313&lt;/a&gt; and your new Academic powered website will appear. Otherwise, if using Netlify, they will provide you with your URL.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Read the &lt;a href=&#34;https://sourcethemes.com/academic/docs/&#34; target=&#34;_blank&#34;&gt;Quick Start Guide&lt;/a&gt; to learn how to add Markdown content, customize your site, and deploy it. For inspiration, refer to the &lt;a href=&#34;https://github.com/gcushen/hugo-academic/tree/master/exampleSite&#34; target=&#34;_blank&#34;&gt;Markdown content&lt;/a&gt; which powers the &lt;a href=&#34;https://academic-demo.netlify.com/&#34; target=&#34;_blank&#34;&gt;Demo&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Build your site by running the &lt;code&gt;hugo&lt;/code&gt; command. Then &lt;a href=&#34;https://georgecushen.com/create-your-website-with-hugo/&#34; target=&#34;_blank&#34;&gt;host it for free using Github Pages&lt;/a&gt; or Netlify (refer to the first installation method). Alternatively, copy the generated &lt;code&gt;public/&lt;/code&gt; directory (by FTP, Rsync, etc.) to your production web server (such as a university&amp;rsquo;s hosting service).&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&#34;updating&#34;&gt;Updating&lt;/h2&gt;
-
-&lt;p&gt;Feel free to &lt;em&gt;star&lt;/em&gt; the project on &lt;a href=&#34;https://github.com/gcushen/hugo-academic/&#34; target=&#34;_blank&#34;&gt;Github&lt;/a&gt; to help keep track of updates and check out the &lt;a href=&#34;https://sourcethemes.com/academic/updates&#34; target=&#34;_blank&#34;&gt;release notes&lt;/a&gt; prior to updating your site.&lt;/p&gt;
-
-&lt;p&gt;Before updating the framework, it is recommended to make a backup of your entire website directory (or at least your &lt;code&gt;themes/academic&lt;/code&gt; directory) and record your current version number.&lt;/p&gt;
-
-&lt;p&gt;By default, Academic is installed as a Git submodule which can be updated by running the following command:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;git submodule update --remote --merge
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://sourcethemes.com/academic/docs/update/&#34; target=&#34;_blank&#34;&gt;Check out the update guide&lt;/a&gt; for full instructions and alternative methods.&lt;/p&gt;
-
-&lt;h2 id=&#34;feedback-contributing&#34;&gt;Feedback &amp;amp; Contributing&lt;/h2&gt;
-
-&lt;p&gt;Please use the &lt;a href=&#34;https://github.com/gcushen/hugo-academic/issues&#34; target=&#34;_blank&#34;&gt;issue tracker&lt;/a&gt; to let me know about any bugs or feature requests, or alternatively make a pull request.&lt;/p&gt;
-
-&lt;p&gt;For support, head over to the &lt;a href=&#34;http://discuss.gohugo.io&#34; target=&#34;_blank&#34;&gt;Hugo discussion forum&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h2 id=&#34;license&#34;&gt;License&lt;/h2&gt;
-
-&lt;p&gt;Copyright 2016-present &lt;a href=&#34;https://georgecushen.com&#34; target=&#34;_blank&#34;&gt;George Cushen&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Released under the &lt;a href=&#34;https://github.com/gcushen/hugo-academic/blob/master/LICENSE.md&#34; target=&#34;_blank&#34;&gt;MIT&lt;/a&gt; license.&lt;/p&gt;
 </description>
     </item>
     

@@ -7,59 +7,27 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>huhuaping@2019</copyright>
-    <lastBuildDate>Wed, 20 Feb 2019 21:18:21 -1900</lastBuildDate>
+    <lastBuildDate>Sun, 24 Feb 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>利用github和netlify建立自己的网站</title>
-      <link>/post/2019-02-20-create-website/</link>
-      <pubDate>Wed, 20 Feb 2019 21:18:21 -1900</pubDate>
+      <title>create course slide by using Xaringan</title>
+      <link>/post/xaringan-for-course-slide/</link>
+      <pubDate>Sun, 24 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/2019-02-20-create-website/</guid>
-      <description>在Rstudio中创建blogdown site blogdown的设置比较简单，教程里基本也说得清楚。具体操作时，还是需要注意以下几个要点： 选取中意</description>
+      <guid>/post/xaringan-for-course-slide/</guid>
+      <description>利用xaringan来设计课程slide。 现在对（本科）教学工作的要求，已经发生了很大的改变：教学的内容变得更加专业化和细分化（学生就业市场</description>
     </item>
     
     <item>
-      <title>experience for create website with github and netlify</title>
-      <link>/post/experience-for-create-website-with-github-and-netlify/</link>
+      <title>three-sords (blogdown; github; netlify) to develole personal website</title>
+      <link>/post/three-sord/</link>
       <pubDate>Thu, 21 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/experience-for-create-website-with-github-and-netlify/</guid>
-      <description>在Rstudio中创建blogdown site blogdown的设置比较简单，教程里基本也说得清楚。具体操作时，还是需要注意以下几个要点： 选取中意</description>
-    </item>
-    
-    <item>
-      <title>test post</title>
-      <link>/post/test-post/</link>
-      <pubDate>Thu, 21 Feb 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/post/test-post/</guid>
-      <description>why not display my new post?I don’t know what’s wrong?
-</description>
-    </item>
-    
-    <item>
-      <title>Display Jupyter Notebooks with Academic</title>
-      <link>/post/jupyter/</link>
-      <pubDate>Tue, 05 Feb 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/post/jupyter/</guid>
-      <description>from IPython.core.display import Image Image(&#39;https://www.python.org/static/community_logos/python-logo-master-v3-TM-flattened.png&#39;)  print(&amp;quot;Welcome to Academic!&amp;quot;)  Welcome to Academic!  Install Python and Jupyter Install Anaconda which includes Python 3 and Jupyter notebook.
-Otherwise, for advanced users, install Jupyter notebook with pip3 install jupyter.
-Create a new blog post as usual Run the following commands in your Terminal, substituting &amp;lt;MY_WEBSITE_FOLDER&amp;gt; and my-post with the file path to your Academic website folder and a name for your blog post (without spaces), respectively:</description>
-    </item>
-    
-    <item>
-      <title>Academic: the website designer for Hugo</title>
-      <link>/post/getting-started/</link>
-      <pubDate>Wed, 20 Apr 2016 00:00:00 +0800</pubDate>
-      
-      <guid>/post/getting-started/</guid>
-      <description>Academic makes it easy to create a beautiful website for free using Markdown. Customize anything on your site with widgets, themes, and language packs.
-Follow our easy step by step guide to learn how to build your own free website with Academic. Check out the personal demo or the business demo of what you&amp;rsquo;ll get in less than 10 minutes.
- View the documentation Ask a question Request a feature or report a bug Updating?</description>
+      <guid>/post/three-sord/</guid>
+      <description>“三剑”合璧持续性打造个人网站(blogdown; github; netlify) 在Rstudio中创建blogdown site blogdown的设置比较简单，教程里基本也说</description>
     </item>
     
   </channel>

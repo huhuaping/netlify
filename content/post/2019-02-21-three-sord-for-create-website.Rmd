@@ -1,15 +1,20 @@
 ---
-title: "利用github和netlify建立自己的网站"
-author: "胡华平"
-date: 2019-02-20T21:18:21-19:00
-categories: ["R"]
-tags: ["R Markdown", "blogdown", "github"]
-draft: true
+title: three-sords (blogdown; github; netlify) to develole personal website
+author: huhuaping
+date: '2019-02-21'
+slug: three-sord
+categories: 
+  - R
+tags: 
+  - blogdown
+  - github
+  - netlify
+image:
+  caption: ''
+  focal_point: ''
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(collapse = TRUE)
-```
+“三剑”合璧持续性打造个人网站(blogdown; github; netlify)
 
 # 在Rstudio中创建blogdown site
 
@@ -60,4 +65,21 @@ git版本控制工具，还是需要学会的。这里就列出一个很好的�
 
 # 额外的问题
 
-baseurl 的[斜杠问题](https://github.com/rstudio/blogdown/issues/114)
+config.toml配置：
+
+- baseurl存在的[斜杠问题](https://github.com/rstudio/blogdown/issues/114)，可能会影响netlify建站更新。
+
+- 网页链接显示最好是稳定的。可以通过日期+slug的形式来固定，具体设置为：
+
+```r
+[permalinks]
+  post = "/:year/:month/:day/:slug/"
+```
+
+版本控制（github repo）：记得在工作目录下的.gitignore里添加忽视文件（否则会影响netlify建站更新）。
+
+```r
+public
+```
+
+提交新的博客文章(post)：最好使用Rstudio里Addin菜单中的New Post来写Rmd格式的博文。
