@@ -67,6 +67,20 @@ Xaringan的不足：
 
 - 初学者最好先不要删除模板的内容，里面的示例说明可以很好地参考。
 
+
+Xaringan支持"实时"预览了：
+
+- 赶紧去看Yihui的blog，[The Ultimate Infinite Moon Reader for xaringan Slides](https://yihui.name/en/2019/02/ultimate-inf-mr/)。赶快安装更新包：
+
+```
+remotes::install_github('yihui/xaringan', upgrade = TRUE)
+
+```
+
+- 而且是Windows用户的又一个福音啊。前面刚说Rstudio里不能Viewer预览，但是更新Xaringan包后发现Chrome浏览器竟然可以“实时”同步预览了！yoo！
+
+
+
 定制自己的字体大小：
 
 - 在Rmd文档里添加代码：(参看[Customize font size for all the slides in xaringan](https://stackoverflow.com/questions/53481699/customize-font-size-for-all-the-slides-in-xaringan))
