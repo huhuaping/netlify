@@ -61,6 +61,15 @@
 &lt;li&gt;&lt;p&gt;比如我使用的杜克大学模板：&lt;a href=&#34;https://johnlittle.info/dukeslides/&#34;&gt;Slide Template for Duke University&lt;/a&gt;。&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;初学者最好先不要删除模板的内容，里面的示例说明可以很好地参考。&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
+&lt;p&gt;Xaringan支持“实时”预览了：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;赶紧去看Yihui的blog，&lt;a href=&#34;https://yihui.name/en/2019/02/ultimate-inf-mr/&#34;&gt;The Ultimate Infinite Moon Reader for xaringan Slides&lt;/a&gt;。赶快安装更新包：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;remotes::install_github(&amp;#39;yihui/xaringan&amp;#39;, upgrade = TRUE)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;而且是Windows用户的又一个福音啊。前面刚说Rstudio里不能Viewer预览，但是更新Xaringan包后发现Chrome浏览器竟然可以“实时”同步预览了！yoo！&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;定制自己的字体大小：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;在Rmd文档里添加代码：(参看&lt;a href=&#34;https://stackoverflow.com/questions/53481699/customize-font-size-for-all-the-slides-in-xaringan&#34;&gt;Customize font size for all the slides in xaringan&lt;/a&gt;)&lt;/li&gt;
