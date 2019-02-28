@@ -6,7 +6,7 @@ title: Slides
 
 # Welcome to Slides
 
-[Academic](https://sourcethemes.com/academic/)
+Generating an HTML5 presentation based on xaringan: [slides/02-simple-reg-basic-slide.html](slides/02-simple-reg-basic-slide.html) (Rmd source: static/slides/02-simple-reg-basic-slide.Rmd).
 
 ---
 

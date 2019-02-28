@@ -416,7 +416,7 @@ blogdown::hugo_version()&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h1 id=&#34;welcome-to-slides&#34;&gt;Welcome to Slides&lt;/h1&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://sourcethemes.com/academic/&#34; target=&#34;_blank&#34;&gt;Academic&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Generating an HTML5 presentation based on xaringan: &lt;a href=&#34;slides/02-simple-reg-basic-slide.html&#34; target=&#34;_blank&#34;&gt;slides/02-simple-reg-basic-slide.html&lt;/a&gt; (Rmd source: static/slides/02-simple-reg-basic-slide.Rmd).&lt;/p&gt;
 
 &lt;hr /&gt;
 
