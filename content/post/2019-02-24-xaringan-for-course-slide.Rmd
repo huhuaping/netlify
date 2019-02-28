@@ -61,14 +61,14 @@ Xaringan的不足：
 
 # Xaringan使用中需要注意的几个细节
 
-选用一个好的模板：
+## 选用一个好的模板：
 
 - 比如我使用的杜克大学模板：[Slide Template for Duke University](https://johnlittle.info/dukeslides/)。
 
 - 初学者最好先不要删除模板的内容，里面的示例说明可以很好地参考。
 
 
-Xaringan支持"实时"预览了：
+## Xaringan支持"实时"预览了：
 
 - 赶紧去看Yihui的blog，[The Ultimate Infinite Moon Reader for xaringan Slides](https://yihui.name/en/2019/02/ultimate-inf-mr/)。赶快安装更新包：
 

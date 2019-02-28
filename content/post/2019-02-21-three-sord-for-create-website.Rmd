@@ -27,6 +27,12 @@ blogdown的设置比较简单，教程里基本也说得清楚。具体操作时
 blogdown::new_site(theme = "gcushen/hugo-academic")
 ```
 
+这个模板还内部支持[数学公式显示](https://github.com/rstudio/blogdown/issues/36)！需要在Rmarkdown文档的yaml区域里设置
+
+```
+math: true
+```
+
 - 设置全局选项（global options）。
 
 一个是设置默认的“作者”和“文件格式”。需要在工作目录下新建一个.Rprofile文件：

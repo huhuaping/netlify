@@ -207,12 +207,15 @@ sep= &amp;quot;\n&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div id=&#34;xaringan&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Xaringan使用中需要注意的几个细节&lt;/h1&gt;
-&lt;p&gt;选用一个好的模板：&lt;/p&gt;
+&lt;div class=&#34;section level2&#34;&gt;
+&lt;h2&gt;选用一个好的模板：&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;比如我使用的杜克大学模板：&lt;a href=&#34;https://johnlittle.info/dukeslides/&#34;&gt;Slide Template for Duke University&lt;/a&gt;。&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;初学者最好先不要删除模板的内容，里面的示例说明可以很好地参考。&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Xaringan支持“实时”预览了：&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;xaringan&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Xaringan支持“实时”预览了：&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;赶紧去看Yihui的blog，&lt;a href=&#34;https://yihui.name/en/2019/02/ultimate-inf-mr/&#34;&gt;The Ultimate Infinite Moon Reader for xaringan Slides&lt;/a&gt;。赶快安装更新包：&lt;/li&gt;
 &lt;/ul&gt;
@@ -232,6 +235,7 @@ sep= &amp;quot;\n&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 }
 &amp;lt;/style&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 </description>
     </item>
@@ -254,6 +258,8 @@ sep= &amp;quot;\n&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;/ul&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# for example, create a new site with the academic theme
 blogdown::new_site(theme = &amp;quot;gcushen/hugo-academic&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这个模板还内部支持&lt;a href=&#34;https://github.com/rstudio/blogdown/issues/36&#34;&gt;数学公式显示&lt;/a&gt;！需要在Rmarkdown文档的yaml区域里设置&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;math: true&lt;/code&gt;&lt;/pre&gt;
 &lt;ul&gt;
 &lt;li&gt;设置全局选项（global options）。&lt;/li&gt;
 &lt;/ul&gt;
