@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>huhuaping@2019</copyright>
-    <lastBuildDate>Sun, 24 Feb 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 28 Feb 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/r/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Improve Latex math with Rmarkdown chunk</title>
+      <link>/post/improve-latex-math-with-rmarkdown-chunk/</link>
+      <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/improve-latex-math-with-rmarkdown-chunk/</guid>
+      <description>“计量经济学”形式的数学公式 本科生课程《计量经济学》会大量使用各类公式。这些公式大概有两类： 理论公式：这些数学公式的呈现基本上用不到数据报告</description>
+    </item>
     
     <item>
       <title>create course slide by using Xaringan</title>

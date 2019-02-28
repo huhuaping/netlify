@@ -1,0 +1,190 @@
+---
+title: Improve Latex math with Rmarkdown chunk
+author: huhuaping
+date: '2019-02-28'
+slug: improve-latex-math-with-rmarkdown-chunk
+categories:
+  - R
+tags:
+  - LaTex math
+  - Rmarkdown
+  - knitr chunk
+image:
+  caption: ''
+  focal_point: ''
+
+math: true
+---
+
+# “计量经济学”形式的数学公式
+
+本科生课程《计量经济学》会大量使用各类公式。这些公式大概有两类：
+
+- 理论公式：这些数学公式的呈现基本上用不到数据报告的结果。在Rmarkdown文档中处理办法相对简单，直接使用LaTex形式代码输入即可。
+
+- 报告公式：这些数学公式的呈现，跟某些数据分析报告紧密联系。此时，手工输入LaTex将会变得很不现实！一个系统性的解决思路是，利用Rmardown chunk 自己编写代码块。前边分析步骤负责出数据报告结果，后面Chunk里公式创造时直接调用数据报告的各类数值。
+
+
+所以，如果一切顺利，“计量经济学”课程的大量报告公式，都可以自动地使用R函数调用实现，可谓一本万利，合算得很！
+
+# 代码实现过程中的各种“梗”
+
+实现思路倒是很清晰，Rmarkdown下的操作也是可行的。下面就是需要撸起袖子加油干，找到“聪明”的实现办法，破除各种“梗”！
+
+## 格式选择真是一个大问题：关于pdf、html、word输出形式
+
+选择Rmarkdown的一个很重要理由，就是它可以实现一份文档种格式输出。这个“理想”确实比较宏大。在数学公式领域，起码就有这几个问题：
+
+- 数学公式友好度差别较大。word比较另类，数学公式支持是最糟糕的；Latex（pdf）下是最灵活的。html则最通用。所以，复杂的公式，在latex（pdf）下OK，放到word里可能就吃不消了。
+
+- package实现各不相同。如果写书，最好就是用bookdown包；如果做演示slide可以用Xaringan包；写网站文章，可以用blogdown。对于数学公式而言，最需要注意是：是否需要交叉引用（cross reference）公式。基本就是两种情形：写slide和blog默认是不交叉应用公式的；写book则必然需要的。
+
+## 数学公式的排版（alignment）
+
+这个部分折腾我很久。因为主要使用Latex语法形式来编写R chunk代码。所以必须要熟悉Latex math equation的公式环境（environment）。
+
+独立公式环境：
+
+- `\begin{equation} ... \end{equation}`
+
+- `\begin{align} ... \end{align}`
+
+- `\begin{aligned} ... \end{aligned}`
+
+- `\begin{alignedat}{3} ... \end{alignedat}`
+
+组合公式环境：
+
+```{r, results="asis", eval=TRUE}
+cat(
+"\\begin{equation}",
+"\\begin{alignedat}{999}",
+"&\\widehat{Y}=&&+17.81&&+0.62X\\\\",
+      "&\\text{(t)}&&(1.9238)&&(11.9968)\\\\",
+      "&\\text{(se)}&&(9.2556)&&(0.0516)\\\\",
+      "&\\text{(fitness)}&& n=10;&& R^2=0.9473;&& \\bar{R^2}=0.9408\\\\",
+      "& && F^{\\ast}=143.92;&& p=0.0000",
+"\\end{alignedat}",
+"\\end{equation}")
+
+```
+
+## 公式分行显示
+
+本质上，这还是公式排版问题。但是需要结果代码语句和公式环境来共同解决。
+
+```
+if (k<=lm.n) {
+    cat(
+      "$$\\begin{equation}",
+      paste0('\\begin{alignedat}{',999,'}'),
+      paste0('&\\widehat{',table_lm$name.y,'}=',fun_line_eq(1,k),'\\\\'),
+      paste0('&\\text{(t)}',fun_line_t(1,k),'\\\\'),
+      paste0('&\\text{(se)}',fun_line_se(1,k),'\\\\'),
+      paste0('&\\text{(fitness)}',
+             '&& n=',table_lm$n,";",
+             '&& R^2=',formatC(table_lm$R2, digits = 4,format = "f"),";",
+             '&& \\bar{R^2}=',formatC(table_lm$R2.adj, digits = 4,format = "f"),
+             "\\\\"),
+      paste0('& ',
+             '&& F^{\\ast}=',formatC(table_lm$F.star, digits = 2,format = "f"),";",
+             '&& p=',formatC(table_lm$F.p, digits=4,format = "f")),
+      "\\end{alignedat}",
+      # default no equation label
+      if (!is.null(lm.label)) {
+        (paste0('(\\#eq:',lm.label,')'))
+      },
+      "\\end{equation}$$"
+      )
+  } else if {
+  ...
+  }
+```
+
+
+## label的取舍
+
+理论上，用一个if函数是可以搞定的。
+
+```
+# default no equation label
+  if (!is.null(lm.label)) {
+    (paste0('(\\#eq:',lm.label,')'))
+  }
+```
+
+那么组合起来大概就是：
+
+```{r, results="asis", eval=TRUE}
+
+lm.label <- "eq-SRF"
+
+cat(
+"\\begin{equation}",
+"\\begin{alignedat}{999}",
+"&\\widehat{Y}=&&+17.81&&+0.62X\\\\",
+      "&\\text{(t)}&&(1.9238)&&(11.9968)\\\\",
+      "&\\text{(se)}&&(9.2556)&&(0.0516)\\\\",
+      "&\\text{(fitness)}&& n=10;&& R^2=0.9473;&& \\bar{R^2}=0.9408\\\\",
+      "& && F^{\\ast}=143.92;&& p=0.0000",
+"\\end{alignedat}",
+# default no equation label
+  if (!is.null(lm.label)) {
+    (paste0('(\\#eq:',lm.label,')'))
+  },
+"\\end{equation}")
+
+```
+
+问题是blog里不支持对label进行公式交叉引用；Xaringan里也不支持。只有bookdown或bookdown::render(out= html_document2)才支持。当然这个问题也不是很大：只要在Xanringan或blog里不输label就好了！如果写书，再加上label呗！
+
+## "美元"焦虑！
+
+Rmarkdown的公式世界里，比较喜欢铜臭味——美元符号。行内公式采用的是$\$...\$$形式，独立公式采用$\$\$...\$\$$形式。
+
+所以，记得要时刻保持“富有”！如下的美元符号：
+
+```{r, results="asis", echo=TRUE}
+cat(
+"$$\\begin{equation}",
+"\\begin{alignedat}{999}",
+"&\\widehat{Y}=&&+17.81&&+0.62X\\\\",
+      "&\\text{(t)}&&(1.9238)&&(11.9968)\\\\",
+      "&\\text{(se)}&&(9.2556)&&(0.0516)\\\\",
+      "&\\text{(fitness)}&& n=10;&& R^2=0.9473;&& \\bar{R^2}=0.9408\\\\",
+      "& && F^{\\ast}=143.92;&& p=0.0000",
+"\\end{alignedat}",
+"\\end{equation}$$")
+
+```
+
+## 小心猫（cat）！
+
+理论上，`cat(, sep="\n")`函数里只要设置`sep="\n"`就能保证换行，输出也很有层次和条理。
+
+但是你还是要保持美元“富有”，并小心猫（cat）的这个挠人小利爪（`sep="\n"`）。
+
+换言之，下面的代码就可能会让你“很受伤”！
+
+``` {r , results="asis", echo=TRUE, eval=FALSE}
+cat(
+"\\begin{equation}",
+"\\begin{alignedat}{999}",
+"&\\widehat{Y}=&&+17.81&&+0.62X\\\\",
+      "&\\text{(t)}&&(1.9238)&&(11.9968)\\\\",
+      "&\\text{(se)}&&(9.2556)&&(0.0516)\\\\",
+      "&\\text{(fitness)}&& n=10;&& R^2=0.9473;&& \\bar{R^2}=0.9408\\\\",
+      "& && F^{\\ast}=143.92;&& p=0.0000",
+"\\end{alignedat}",
+"\\end{equation}",
+sep= "\n")
+```
+
+## 外部文档关联
+
+如果完事顺利，你只需要在Rmardown里直接调用公式文件.R
+
+```
+source("external-math-equation.R")
+
+```

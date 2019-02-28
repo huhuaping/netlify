@@ -31,6 +31,24 @@
     </item>
     
     <item>
+      <title>LaTex math</title>
+      <link>/tags/latex-math/</link>
+      <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/latex-math/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Rmarkdown</title>
+      <link>/tags/rmarkdown/</link>
+      <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/rmarkdown/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>blogdown</title>
       <link>/tags/blogdown/</link>
       <pubDate>Thu, 21 Feb 2019 00:00:00 +0000</pubDate>
@@ -54,6 +72,15 @@
       <pubDate>Thu, 21 Feb 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/github/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>knitr chunk</title>
+      <link>/tags/knitr-chunk/</link>
+      <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/knitr-chunk/</guid>
       <description></description>
     </item>
     

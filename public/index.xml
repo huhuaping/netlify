@@ -7,8 +7,159 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>huhuaping@2019</copyright>
-    <lastBuildDate>Sun, 24 Feb 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 28 Feb 2019 00:00:00 +0000</lastBuildDate>
     <atom:link href="/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Improve Latex math with Rmarkdown chunk</title>
+      <link>/post/improve-latex-math-with-rmarkdown-chunk/</link>
+      <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/improve-latex-math-with-rmarkdown-chunk/</guid>
+      <description>
+
+
+&lt;div class=&#34;section level1&#34;&gt;
+&lt;h1&gt;“计量经济学”形式的数学公式&lt;/h1&gt;
+&lt;p&gt;本科生课程《计量经济学》会大量使用各类公式。这些公式大概有两类：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;理论公式：这些数学公式的呈现基本上用不到数据报告的结果。在Rmarkdown文档中处理办法相对简单，直接使用LaTex形式代码输入即可。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;报告公式：这些数学公式的呈现，跟某些数据分析报告紧密联系。此时，手工输入LaTex将会变得很不现实！一个系统性的解决思路是，利用Rmardown chunk 自己编写代码块。前边分析步骤负责出数据报告结果，后面Chunk里公式创造时直接调用数据报告的各类数值。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;所以，如果一切顺利，“计量经济学”课程的大量报告公式，都可以自动地使用R函数调用实现，可谓一本万利，合算得很！&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section level1&#34;&gt;
+&lt;h1&gt;代码实现过程中的各种“梗”&lt;/h1&gt;
+&lt;p&gt;实现思路倒是很清晰，Rmarkdown下的操作也是可行的。下面就是需要撸起袖子加油干，找到“聪明”的实现办法，破除各种“梗”！&lt;/p&gt;
+&lt;div id=&#34;pdfhtmlword&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;格式选择真是一个大问题：关于pdf、html、word输出形式&lt;/h2&gt;
+&lt;p&gt;选择Rmarkdown的一个很重要理由，就是它可以实现一份文档种格式输出。这个“理想”确实比较宏大。在数学公式领域，起码就有这几个问题：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;数学公式友好度差别较大。word比较另类，数学公式支持是最糟糕的；Latex（pdf）下是最灵活的。html则最通用。所以，复杂的公式，在latex（pdf）下OK，放到word里可能就吃不消了。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;package实现各不相同。如果写书，最好就是用bookdown包；如果做演示slide可以用Xaringan包；写网站文章，可以用blogdown。对于数学公式而言，最需要注意是：是否需要交叉引用（cross reference）公式。基本就是两种情形：写slide和blog默认是不交叉应用公式的；写book则必然需要的。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;alignment&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;数学公式的排版（alignment）&lt;/h2&gt;
+&lt;p&gt;这个部分折腾我很久。因为主要使用Latex语法形式来编写R chunk代码。所以必须要熟悉Latex math equation的公式环境（environment）。&lt;/p&gt;
+&lt;p&gt;独立公式环境：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;\begin{equation} ... \end{equation}&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;\begin{align} ... \end{align}&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;\begin{aligned} ... \end{aligned}&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;\begin{alignedat}{3} ... \end{alignedat}&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;组合公式环境：&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;cat(
+&amp;quot;\\begin{equation}&amp;quot;,
+&amp;quot;\\begin{alignedat}{999}&amp;quot;,
+&amp;quot;&amp;amp;\\widehat{Y}=&amp;amp;&amp;amp;+17.81&amp;amp;&amp;amp;+0.62X\\\\&amp;quot;,
+      &amp;quot;&amp;amp;\\text{(t)}&amp;amp;&amp;amp;(1.9238)&amp;amp;&amp;amp;(11.9968)\\\\&amp;quot;,
+      &amp;quot;&amp;amp;\\text{(se)}&amp;amp;&amp;amp;(9.2556)&amp;amp;&amp;amp;(0.0516)\\\\&amp;quot;,
+      &amp;quot;&amp;amp;\\text{(fitness)}&amp;amp;&amp;amp; n=10;&amp;amp;&amp;amp; R^2=0.9473;&amp;amp;&amp;amp; \\bar{R^2}=0.9408\\\\&amp;quot;,
+      &amp;quot;&amp;amp; &amp;amp;&amp;amp; F^{\\ast}=143.92;&amp;amp;&amp;amp; p=0.0000&amp;quot;,
+&amp;quot;\\end{alignedat}&amp;quot;,
+&amp;quot;\\end{equation}&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\begin{equation} \begin{alignedat}{999} &amp;amp;\widehat{Y}=&amp;amp;&amp;amp;+17.81&amp;amp;&amp;amp;+0.62X\\ &amp;amp;\text{(t)}&amp;amp;&amp;amp;(1.9238)&amp;amp;&amp;amp;(11.9968)\\ &amp;amp;\text{(se)}&amp;amp;&amp;amp;(9.2556)&amp;amp;&amp;amp;(0.0516)\\ &amp;amp;\text{(fitness)}&amp;amp;&amp;amp; n=10;&amp;amp;&amp;amp; R^2=0.9473;&amp;amp;&amp;amp; \bar{R^2}=0.9408\\ &amp;amp; &amp;amp;&amp;amp; F^{\ast}=143.92;&amp;amp;&amp;amp; p=0.0000 \end{alignedat} \end{equation}\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section level2&#34;&gt;
+&lt;h2&gt;公式分行显示&lt;/h2&gt;
+&lt;p&gt;本质上，这还是公式排版问题。但是需要结果代码语句和公式环境来共同解决。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;if (k&amp;lt;=lm.n) {
+    cat(
+      &amp;quot;$$\\begin{equation}&amp;quot;,
+      paste0(&amp;#39;\\begin{alignedat}{&amp;#39;,999,&amp;#39;}&amp;#39;),
+      paste0(&amp;#39;&amp;amp;\\widehat{&amp;#39;,table_lm$name.y,&amp;#39;}=&amp;#39;,fun_line_eq(1,k),&amp;#39;\\\\&amp;#39;),
+      paste0(&amp;#39;&amp;amp;\\text{(t)}&amp;#39;,fun_line_t(1,k),&amp;#39;\\\\&amp;#39;),
+      paste0(&amp;#39;&amp;amp;\\text{(se)}&amp;#39;,fun_line_se(1,k),&amp;#39;\\\\&amp;#39;),
+      paste0(&amp;#39;&amp;amp;\\text{(fitness)}&amp;#39;,
+             &amp;#39;&amp;amp;&amp;amp; n=&amp;#39;,table_lm$n,&amp;quot;;&amp;quot;,
+             &amp;#39;&amp;amp;&amp;amp; R^2=&amp;#39;,formatC(table_lm$R2, digits = 4,format = &amp;quot;f&amp;quot;),&amp;quot;;&amp;quot;,
+             &amp;#39;&amp;amp;&amp;amp; \\bar{R^2}=&amp;#39;,formatC(table_lm$R2.adj, digits = 4,format = &amp;quot;f&amp;quot;),
+             &amp;quot;\\\\&amp;quot;),
+      paste0(&amp;#39;&amp;amp; &amp;#39;,
+             &amp;#39;&amp;amp;&amp;amp; F^{\\ast}=&amp;#39;,formatC(table_lm$F.star, digits = 2,format = &amp;quot;f&amp;quot;),&amp;quot;;&amp;quot;,
+             &amp;#39;&amp;amp;&amp;amp; p=&amp;#39;,formatC(table_lm$F.p, digits=4,format = &amp;quot;f&amp;quot;)),
+      &amp;quot;\\end{alignedat}&amp;quot;,
+      # default no equation label
+      if (!is.null(lm.label)) {
+        (paste0(&amp;#39;(\\#eq:&amp;#39;,lm.label,&amp;#39;)&amp;#39;))
+      },
+      &amp;quot;\\end{equation}$$&amp;quot;
+      )
+  } else if {
+  ...
+  }&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;label&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;label的取舍&lt;/h2&gt;
+&lt;p&gt;理论上，用一个if函数是可以搞定的。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# default no equation label
+  if (!is.null(lm.label)) {
+    (paste0(&amp;#39;(\\#eq:&amp;#39;,lm.label,&amp;#39;)&amp;#39;))
+  }&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;那么组合起来大概就是：&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;lm.label &amp;lt;- &amp;quot;eq-SRF&amp;quot;
+
+cat(
+&amp;quot;\\begin{equation}&amp;quot;,
+&amp;quot;\\begin{alignedat}{999}&amp;quot;,
+&amp;quot;&amp;amp;\\widehat{Y}=&amp;amp;&amp;amp;+17.81&amp;amp;&amp;amp;+0.62X\\\\&amp;quot;,
+      &amp;quot;&amp;amp;\\text{(t)}&amp;amp;&amp;amp;(1.9238)&amp;amp;&amp;amp;(11.9968)\\\\&amp;quot;,
+      &amp;quot;&amp;amp;\\text{(se)}&amp;amp;&amp;amp;(9.2556)&amp;amp;&amp;amp;(0.0516)\\\\&amp;quot;,
+      &amp;quot;&amp;amp;\\text{(fitness)}&amp;amp;&amp;amp; n=10;&amp;amp;&amp;amp; R^2=0.9473;&amp;amp;&amp;amp; \\bar{R^2}=0.9408\\\\&amp;quot;,
+      &amp;quot;&amp;amp; &amp;amp;&amp;amp; F^{\\ast}=143.92;&amp;amp;&amp;amp; p=0.0000&amp;quot;,
+&amp;quot;\\end{alignedat}&amp;quot;,
+# default no equation label
+  if (!is.null(lm.label)) {
+    (paste0(&amp;#39;(\\#eq:&amp;#39;,lm.label,&amp;#39;)&amp;#39;))
+  },
+&amp;quot;\\end{equation}&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34; id=&#34;eq:eq-SRF&#34;&gt;\[\begin{equation} \begin{alignedat}{999} &amp;amp;\widehat{Y}=&amp;amp;&amp;amp;+17.81&amp;amp;&amp;amp;+0.62X\\ &amp;amp;\text{(t)}&amp;amp;&amp;amp;(1.9238)&amp;amp;&amp;amp;(11.9968)\\ &amp;amp;\text{(se)}&amp;amp;&amp;amp;(9.2556)&amp;amp;&amp;amp;(0.0516)\\ &amp;amp;\text{(fitness)}&amp;amp;&amp;amp; n=10;&amp;amp;&amp;amp; R^2=0.9473;&amp;amp;&amp;amp; \bar{R^2}=0.9408\\ &amp;amp; &amp;amp;&amp;amp; F^{\ast}=143.92;&amp;amp;&amp;amp; p=0.0000 \\tag{1}t} (#eq:eq-SRF) \end{equation}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;问题是blog里不支持对label进行公式交叉引用；Xaringan里也不支持。只有bookdown或bookdown::render(out= html_document2)才支持。当然这个问题也不是很大：只要在Xanringan或blog里不输label就好了！如果写书，再加上label呗！&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section level2&#34;&gt;
+&lt;h2&gt;“美元”焦虑！&lt;/h2&gt;
+&lt;p&gt;Rmarkdown的公式世界里，比较喜欢铜臭味——美元符号。行内公式采用的是&lt;span class=&#34;math inline&#34;&gt;\(\$...\$\)&lt;/span&gt;形式，独立公式采用&lt;span class=&#34;math inline&#34;&gt;\(\$\$...\$\$\)&lt;/span&gt;形式。&lt;/p&gt;
+&lt;p&gt;所以，记得要时刻保持“富有”！如下的美元符号：&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;cat(
+&amp;quot;$$\\begin{equation}&amp;quot;,
+&amp;quot;\\begin{alignedat}{999}&amp;quot;,
+&amp;quot;&amp;amp;\\widehat{Y}=&amp;amp;&amp;amp;+17.81&amp;amp;&amp;amp;+0.62X\\\\&amp;quot;,
+      &amp;quot;&amp;amp;\\text{(t)}&amp;amp;&amp;amp;(1.9238)&amp;amp;&amp;amp;(11.9968)\\\\&amp;quot;,
+      &amp;quot;&amp;amp;\\text{(se)}&amp;amp;&amp;amp;(9.2556)&amp;amp;&amp;amp;(0.0516)\\\\&amp;quot;,
+      &amp;quot;&amp;amp;\\text{(fitness)}&amp;amp;&amp;amp; n=10;&amp;amp;&amp;amp; R^2=0.9473;&amp;amp;&amp;amp; \\bar{R^2}=0.9408\\\\&amp;quot;,
+      &amp;quot;&amp;amp; &amp;amp;&amp;amp; F^{\\ast}=143.92;&amp;amp;&amp;amp; p=0.0000&amp;quot;,
+&amp;quot;\\end{alignedat}&amp;quot;,
+&amp;quot;\\end{equation}$$&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\begin{equation} \begin{alignedat}{999} &amp;amp;\widehat{Y}=&amp;amp;&amp;amp;+17.81&amp;amp;&amp;amp;+0.62X\\ &amp;amp;\text{(t)}&amp;amp;&amp;amp;(1.9238)&amp;amp;&amp;amp;(11.9968)\\ &amp;amp;\text{(se)}&amp;amp;&amp;amp;(9.2556)&amp;amp;&amp;amp;(0.0516)\\ &amp;amp;\text{(fitness)}&amp;amp;&amp;amp; n=10;&amp;amp;&amp;amp; R^2=0.9473;&amp;amp;&amp;amp; \bar{R^2}=0.9408\\ &amp;amp; &amp;amp;&amp;amp; F^{\ast}=143.92;&amp;amp;&amp;amp; p=0.0000 \end{alignedat} \end{equation}\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;cat&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;小心猫（cat）！&lt;/h2&gt;
+&lt;p&gt;理论上，&lt;code&gt;cat(, sep=&amp;quot;\n&amp;quot;)&lt;/code&gt;函数里只要设置&lt;code&gt;sep=&amp;quot;\n&amp;quot;&lt;/code&gt;就能保证换行，输出也很有层次和条理。&lt;/p&gt;
+&lt;p&gt;但是你还是要保持美元“富有”，并小心猫（cat）的这个挠人小利爪（&lt;code&gt;sep=&amp;quot;\n&amp;quot;&lt;/code&gt;）。&lt;/p&gt;
+&lt;p&gt;换言之，下面的代码就可能会让你“很受伤”！&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;cat(
+&amp;quot;\\begin{equation}&amp;quot;,
+&amp;quot;\\begin{alignedat}{999}&amp;quot;,
+&amp;quot;&amp;amp;\\widehat{Y}=&amp;amp;&amp;amp;+17.81&amp;amp;&amp;amp;+0.62X\\\\&amp;quot;,
+      &amp;quot;&amp;amp;\\text{(t)}&amp;amp;&amp;amp;(1.9238)&amp;amp;&amp;amp;(11.9968)\\\\&amp;quot;,
+      &amp;quot;&amp;amp;\\text{(se)}&amp;amp;&amp;amp;(9.2556)&amp;amp;&amp;amp;(0.0516)\\\\&amp;quot;,
+      &amp;quot;&amp;amp;\\text{(fitness)}&amp;amp;&amp;amp; n=10;&amp;amp;&amp;amp; R^2=0.9473;&amp;amp;&amp;amp; \\bar{R^2}=0.9408\\\\&amp;quot;,
+      &amp;quot;&amp;amp; &amp;amp;&amp;amp; F^{\\ast}=143.92;&amp;amp;&amp;amp; p=0.0000&amp;quot;,
+&amp;quot;\\end{alignedat}&amp;quot;,
+&amp;quot;\\end{equation}&amp;quot;,
+sep= &amp;quot;\n&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class=&#34;section level2&#34;&gt;
+&lt;h2&gt;外部文档关联&lt;/h2&gt;
+&lt;p&gt;如果完事顺利，你只需要在Rmardown里直接调用公式文件.R&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;source(&amp;quot;external-math-equation.R&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
     
     <item>
       <title>create course slide by using Xaringan</title>
