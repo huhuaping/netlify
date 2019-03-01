@@ -1,12 +1,12 @@
 ---
-active: true
+active: false
 filter:
 - name: All
   tag: '*'
-- name: Deep Learning
-  tag: Deep Learning
-- name: Other
-  tag: Demo
+- name: R language (R语言)
+  tag: R language
+- name: data science (数据科学)
+  tag: data science
 filter_default: 0
 flip_alt_rows: false
 folder: project

@@ -1,5 +1,5 @@
 ---
-active: true
+active: false
 publication_type: "-1"
 subtitle: ""
 title: Featured Publications

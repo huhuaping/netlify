@@ -49,6 +49,15 @@
     </item>
     
     <item>
+      <title>Xaringan</title>
+      <link>/tags/xaringan/</link>
+      <pubDate>Fri, 01 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/xaringan/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>blogdown</title>
       <link>/tags/blogdown/</link>
       <pubDate>Thu, 21 Feb 2019 00:00:00 +0000</pubDate>
@@ -90,6 +99,42 @@
       <pubDate>Thu, 21 Feb 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/netlify/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>simple regress</title>
+      <link>/tags/simple-regress/</link>
+      <pubDate>Fri, 01 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/simple-regress/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>slide</title>
+      <link>/tags/slide/</link>
+      <pubDate>Fri, 01 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/slide/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>static website</title>
+      <link>/tags/static-website/</link>
+      <pubDate>Fri, 01 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/static-website/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>website</title>
+      <link>/tags/website/</link>
+      <pubDate>Fri, 01 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/website/</guid>
       <description></description>
     </item>
     

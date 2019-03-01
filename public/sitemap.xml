@@ -2,6 +2,70 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
     
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+    <url>
+    
+      <loc>/tutorial/</loc>
+      <lastmod>2019-03-01T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/post/chapter2-simple-regression-basic-thought/</loc>
+      <lastmod>2019-03-01T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/slides/chapter2-simple-regression-basic-thought/</loc>
+      <lastmod>2019-03-01T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/post/post-xaringan-slide-to-website/</loc>
+      <lastmod>2019-03-01T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
     <url>
     
       <loc>/post/improve-latex-math-with-rmarkdown-chunk/</loc>
@@ -28,7 +92,7 @@
     
     <url>
     
-      <loc>/tutorial/example/</loc>
+      <loc>/tutorial/chapter1-introduction/</loc>
       <lastmod>2018-09-09T00:00:00+08:00</lastmod>
     </url>
     
@@ -36,7 +100,7 @@
     
     <url>
     
-      <loc>/tutorial/</loc>
+      <loc>/tutorial/chapter2-simple-regression-basic-thought/</loc>
       <lastmod>2018-09-09T00:00:00+08:00</lastmod>
     </url>
     
@@ -53,6 +117,14 @@
     <url>
     
       <loc>/talk/example/</loc>
+      <lastmod>2017-01-01T00:00:00+08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/course/</loc>
       <lastmod>2017-01-01T00:00:00+08:00</lastmod>
     </url>
     
@@ -169,7 +241,7 @@
     <url>
     
       <loc>/</loc>
-      <lastmod>2019-02-28T00:00:00+00:00</lastmod>
+      <lastmod>2019-03-01T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -196,7 +268,7 @@
     <url>
     
       <loc>/post/</loc>
-      <lastmod>2019-02-28T00:00:00+00:00</lastmod>
+      <lastmod>2019-03-01T00:00:00+00:00</lastmod>
     </url>
     
   
@@ -230,7 +302,7 @@
     <url>
     
       <loc>/categories/r/</loc>
-      <lastmod>2019-02-28T00:00:00+00:00</lastmod>
+      <lastmod>2019-03-01T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -256,6 +328,7 @@
     <url>
     
       <loc>/slides/</loc>
+      <lastmod>2019-03-01T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -279,6 +352,15 @@
     
     <url>
     
+      <loc>/tags/xaringan/</loc>
+      <lastmod>2019-03-01T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
       <loc>/authors/admin/</loc>
       <priority>0</priority>
     </url>
@@ -289,6 +371,15 @@
     
       <loc>/tags/blogdown/</loc>
       <lastmod>2019-02-21T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/categories/econometrics/</loc>
+      <lastmod>2019-03-01T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -325,6 +416,42 @@
     
       <loc>/tags/netlify/</loc>
       <lastmod>2019-02-21T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/simple-regress/</loc>
+      <lastmod>2019-03-01T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/slide/</loc>
+      <lastmod>2019-03-01T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/static-website/</loc>
+      <lastmod>2019-03-01T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/website/</loc>
+      <lastmod>2019-03-01T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     

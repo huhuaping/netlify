@@ -5,4 +5,4 @@ share: false
 title: Privacy Policy
 ---
 
-...
+本网站所有资料，作者保有知识产权。

@@ -1,26 +1,33 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Overview on Huhuaping</title>
+    <title>Overview (简介) on Huhuaping</title>
     <link>/tutorial/</link>
-    <description>Recent content in Overview on Huhuaping</description>
+    <description>Recent content in Overview (简介) on Huhuaping</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>huhuaping@2019</copyright>
-    <lastBuildDate>Sun, 09 Sep 2018 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 01 Mar 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tutorial/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Example Page</title>
-      <link>/tutorial/example/</link>
+      <title>Econometrics (计量经济学)</title>
+      <link>/tutorial/chapter1-introduction/</link>
       <pubDate>Sun, 09 Sep 2018 00:00:00 +0800</pubDate>
       
-      <guid>/tutorial/example/</guid>
-      <description>In this tutorial, I&amp;rsquo;ll share my top 10 tips for getting started with Academic:
-Tip 1 &amp;hellip;
-Tip 2 &amp;hellip;</description>
+      <guid>/tutorial/chapter1-introduction/</guid>
+      <description>true 第1章 绪论 操作提示： 点击课件区域，按F键，可全屏观看 按方向键，可以前进/后退 敲击数字键，再按Enter可进入任意指定的页码。如，敲击数字1</description>
+    </item>
+    
+    <item>
+      <title>Econometrics (计量经济学)</title>
+      <link>/tutorial/chapter2-simple-regression-basic-thought/</link>
+      <pubDate>Sun, 09 Sep 2018 00:00:00 +0800</pubDate>
+      
+      <guid>/tutorial/chapter2-simple-regression-basic-thought/</guid>
+      <description>true 第2章 一元回归：基本思想 操作提示： 点击课件区域，按F键，可全屏观看 按方向键，可以前进/后退 敲击数字键，再按Enter可进入任意指定的页码。</description>
     </item>
     
   </channel>

@@ -1,0 +1,24 @@
+---
+title: 'chapter2 simple regression: basic thought'
+author: huhuaping
+date: '2019-03-01'
+slug: chapter2-simple-regression-basic-thought
+categories:
+  - econometrics
+tags:
+  - simple regress
+
+---
+
+# Title
+
+Author Name
+
+```{r, echo=FALSE}
+knitr::include_url("/slides-course/02-simple-reg-basic-slide.html")
+```
+
+
+---
+
+## Slide 2

@@ -7,586 +7,179 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>huhuaping@2019</copyright>
-    <lastBuildDate>Thu, 28 Feb 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 01 Mar 2019 00:00:00 +0000</lastBuildDate>
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Improve Latex math with Rmarkdown chunk</title>
-      <link>/post/improve-latex-math-with-rmarkdown-chunk/</link>
-      <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
+      <title></title>
+      <link>/course/slider/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/post/improve-latex-math-with-rmarkdown-chunk/</guid>
-      <description>
+      <guid>/course/slider/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Academic</title>
+      <link>/course/hero/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/course/hero/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;The Best Way to Create the Website You Want from Markdown (or RStudio/Jupyter)&lt;/strong&gt;&lt;/p&gt;
 
+&lt;p&gt;Build &lt;strong&gt;Anything&lt;/strong&gt; with Widgets&lt;/p&gt;
 
-&lt;div class=&#34;section level1&#34;&gt;
-&lt;h1&gt;“计量经济学”形式的数学公式&lt;/h1&gt;
-&lt;p&gt;本科生课程《计量经济学》会大量使用各类公式。这些公式大概有两类：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;理论公式：这些数学公式的呈现基本上用不到数据报告的结果。在Rmarkdown文档中处理办法相对简单，直接使用LaTex形式代码输入即可。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;报告公式：这些数学公式的呈现，跟某些数据分析报告紧密联系。此时，手工输入LaTex将会变得很不现实！一个系统性的解决思路是，利用Rmardown chunk 自己编写代码块。前边分析步骤负责出数据报告结果，后面Chunk里公式创造时直接调用数据报告的各类数值。&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;所以，如果一切顺利，“计量经济学”课程的大量报告公式，都可以自动地使用R函数调用实现，可谓一本万利，合算得很！&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level1&#34;&gt;
-&lt;h1&gt;代码实现过程中的各种“梗”&lt;/h1&gt;
-&lt;p&gt;实现思路倒是很清晰，Rmarkdown下的操作也是可行的。下面就是需要撸起袖子加油干，找到“聪明”的实现办法，破除各种“梗”！&lt;/p&gt;
-&lt;div id=&#34;pdfhtmlword&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;格式选择真是一个大问题：关于pdf、html、word输出形式&lt;/h2&gt;
-&lt;p&gt;选择Rmarkdown的一个很重要理由，就是它可以实现一份文档种格式输出。这个“理想”确实比较宏大。在数学公式领域，起码就有这几个问题：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;数学公式友好度差别较大。word比较另类，数学公式支持是最糟糕的；Latex（pdf）下是最灵活的。html则最通用。所以，复杂的公式，在latex（pdf）下OK，放到word里可能就吃不消了。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;package实现各不相同。如果写书，最好就是用bookdown包；如果做演示slide可以用Xaringan包；写网站文章，可以用blogdown。对于数学公式而言，最需要注意是：是否需要交叉引用（cross reference）公式。基本就是两种情形：写slide和blog默认是不交叉应用公式的；写book则必然需要的。&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;alignment&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;数学公式的排版（alignment）&lt;/h2&gt;
-&lt;p&gt;这个部分折腾我很久。因为主要使用Latex语法形式来编写R chunk代码。所以必须要熟悉Latex math equation的公式环境（environment）。&lt;/p&gt;
-&lt;p&gt;独立公式环境：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;\begin{equation} ... \end{equation}&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;\begin{align} ... \end{align}&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;\begin{aligned} ... \end{aligned}&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;\begin{alignedat}{3} ... \end{alignedat}&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;组合公式环境：&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;cat(
-&amp;quot;\\begin{equation}&amp;quot;,
-&amp;quot;\\begin{alignedat}{999}&amp;quot;,
-&amp;quot;&amp;amp;\\widehat{Y}=&amp;amp;&amp;amp;+17.81&amp;amp;&amp;amp;+0.62X\\\\&amp;quot;,
-      &amp;quot;&amp;amp;\\text{(t)}&amp;amp;&amp;amp;(1.9238)&amp;amp;&amp;amp;(11.9968)\\\\&amp;quot;,
-      &amp;quot;&amp;amp;\\text{(se)}&amp;amp;&amp;amp;(9.2556)&amp;amp;&amp;amp;(0.0516)\\\\&amp;quot;,
-      &amp;quot;&amp;amp;\\text{(fitness)}&amp;amp;&amp;amp; n=10;&amp;amp;&amp;amp; R^2=0.9473;&amp;amp;&amp;amp; \\bar{R^2}=0.9408\\\\&amp;quot;,
-      &amp;quot;&amp;amp; &amp;amp;&amp;amp; F^{\\ast}=143.92;&amp;amp;&amp;amp; p=0.0000&amp;quot;,
-&amp;quot;\\end{alignedat}&amp;quot;,
-&amp;quot;\\end{equation}&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\begin{equation} \begin{alignedat}{999} &amp;amp;\widehat{Y}=&amp;amp;&amp;amp;+17.81&amp;amp;&amp;amp;+0.62X\\ &amp;amp;\text{(t)}&amp;amp;&amp;amp;(1.9238)&amp;amp;&amp;amp;(11.9968)\\ &amp;amp;\text{(se)}&amp;amp;&amp;amp;(9.2556)&amp;amp;&amp;amp;(0.0516)\\ &amp;amp;\text{(fitness)}&amp;amp;&amp;amp; n=10;&amp;amp;&amp;amp; R^2=0.9473;&amp;amp;&amp;amp; \bar{R^2}=0.9408\\ &amp;amp; &amp;amp;&amp;amp; F^{\ast}=143.92;&amp;amp;&amp;amp; p=0.0000 \end{alignedat} \end{equation}\]&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;公式分行显示&lt;/h2&gt;
-&lt;p&gt;本质上，这还是公式排版问题。但是需要结果代码语句和公式环境来共同解决。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;if (k&amp;lt;=lm.n) {
-    cat(
-      &amp;quot;$$\\begin{equation}&amp;quot;,
-      paste0(&amp;#39;\\begin{alignedat}{&amp;#39;,999,&amp;#39;}&amp;#39;),
-      paste0(&amp;#39;&amp;amp;\\widehat{&amp;#39;,table_lm$name.y,&amp;#39;}=&amp;#39;,fun_line_eq(1,k),&amp;#39;\\\\&amp;#39;),
-      paste0(&amp;#39;&amp;amp;\\text{(t)}&amp;#39;,fun_line_t(1,k),&amp;#39;\\\\&amp;#39;),
-      paste0(&amp;#39;&amp;amp;\\text{(se)}&amp;#39;,fun_line_se(1,k),&amp;#39;\\\\&amp;#39;),
-      paste0(&amp;#39;&amp;amp;\\text{(fitness)}&amp;#39;,
-             &amp;#39;&amp;amp;&amp;amp; n=&amp;#39;,table_lm$n,&amp;quot;;&amp;quot;,
-             &amp;#39;&amp;amp;&amp;amp; R^2=&amp;#39;,formatC(table_lm$R2, digits = 4,format = &amp;quot;f&amp;quot;),&amp;quot;;&amp;quot;,
-             &amp;#39;&amp;amp;&amp;amp; \\bar{R^2}=&amp;#39;,formatC(table_lm$R2.adj, digits = 4,format = &amp;quot;f&amp;quot;),
-             &amp;quot;\\\\&amp;quot;),
-      paste0(&amp;#39;&amp;amp; &amp;#39;,
-             &amp;#39;&amp;amp;&amp;amp; F^{\\ast}=&amp;#39;,formatC(table_lm$F.star, digits = 2,format = &amp;quot;f&amp;quot;),&amp;quot;;&amp;quot;,
-             &amp;#39;&amp;amp;&amp;amp; p=&amp;#39;,formatC(table_lm$F.p, digits=4,format = &amp;quot;f&amp;quot;)),
-      &amp;quot;\\end{alignedat}&amp;quot;,
-      # default no equation label
-      if (!is.null(lm.label)) {
-        (paste0(&amp;#39;(\\#eq:&amp;#39;,lm.label,&amp;#39;)&amp;#39;))
-      },
-      &amp;quot;\\end{equation}$$&amp;quot;
-      )
-  } else if {
-  ...
-  }&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;label&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;label的取舍&lt;/h2&gt;
-&lt;p&gt;理论上，用一个if函数是可以搞定的。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;# default no equation label
-  if (!is.null(lm.label)) {
-    (paste0(&amp;#39;(\\#eq:&amp;#39;,lm.label,&amp;#39;)&amp;#39;))
-  }&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;那么组合起来大概就是：&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;lm.label &amp;lt;- &amp;quot;eq-SRF&amp;quot;
-
-cat(
-&amp;quot;\\begin{equation}&amp;quot;,
-&amp;quot;\\begin{alignedat}{999}&amp;quot;,
-&amp;quot;&amp;amp;\\widehat{Y}=&amp;amp;&amp;amp;+17.81&amp;amp;&amp;amp;+0.62X\\\\&amp;quot;,
-      &amp;quot;&amp;amp;\\text{(t)}&amp;amp;&amp;amp;(1.9238)&amp;amp;&amp;amp;(11.9968)\\\\&amp;quot;,
-      &amp;quot;&amp;amp;\\text{(se)}&amp;amp;&amp;amp;(9.2556)&amp;amp;&amp;amp;(0.0516)\\\\&amp;quot;,
-      &amp;quot;&amp;amp;\\text{(fitness)}&amp;amp;&amp;amp; n=10;&amp;amp;&amp;amp; R^2=0.9473;&amp;amp;&amp;amp; \\bar{R^2}=0.9408\\\\&amp;quot;,
-      &amp;quot;&amp;amp; &amp;amp;&amp;amp; F^{\\ast}=143.92;&amp;amp;&amp;amp; p=0.0000&amp;quot;,
-&amp;quot;\\end{alignedat}&amp;quot;,
-# default no equation label
-  if (!is.null(lm.label)) {
-    (paste0(&amp;#39;(\\#eq:&amp;#39;,lm.label,&amp;#39;)&amp;#39;))
-  },
-&amp;quot;\\end{equation}&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34; id=&#34;eq:eq-SRF&#34;&gt;\[\begin{equation} \begin{alignedat}{999} &amp;amp;\widehat{Y}=&amp;amp;&amp;amp;+17.81&amp;amp;&amp;amp;+0.62X\\ &amp;amp;\text{(t)}&amp;amp;&amp;amp;(1.9238)&amp;amp;&amp;amp;(11.9968)\\ &amp;amp;\text{(se)}&amp;amp;&amp;amp;(9.2556)&amp;amp;&amp;amp;(0.0516)\\ &amp;amp;\text{(fitness)}&amp;amp;&amp;amp; n=10;&amp;amp;&amp;amp; R^2=0.9473;&amp;amp;&amp;amp; \bar{R^2}=0.9408\\ &amp;amp; &amp;amp;&amp;amp; F^{\ast}=143.92;&amp;amp;&amp;amp; p=0.0000 \\tag{1}t} (#eq:eq-SRF) \end{equation}\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;问题是blog里不支持对label进行公式交叉引用；Xaringan里也不支持。只有bookdown或bookdown::render(out= html_document2)才支持。当然这个问题也不是很大：只要在Xanringan或blog里不输label就好了！如果写书，再加上label呗！&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;“美元”焦虑！&lt;/h2&gt;
-&lt;p&gt;Rmarkdown的公式世界里，比较喜欢铜臭味——美元符号。行内公式采用的是&lt;span class=&#34;math inline&#34;&gt;\(\$...\$\)&lt;/span&gt;形式，独立公式采用&lt;span class=&#34;math inline&#34;&gt;\(\$\$...\$\$\)&lt;/span&gt;形式。&lt;/p&gt;
-&lt;p&gt;所以，记得要时刻保持“富有”！如下的美元符号：&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;cat(
-&amp;quot;$$\\begin{equation}&amp;quot;,
-&amp;quot;\\begin{alignedat}{999}&amp;quot;,
-&amp;quot;&amp;amp;\\widehat{Y}=&amp;amp;&amp;amp;+17.81&amp;amp;&amp;amp;+0.62X\\\\&amp;quot;,
-      &amp;quot;&amp;amp;\\text{(t)}&amp;amp;&amp;amp;(1.9238)&amp;amp;&amp;amp;(11.9968)\\\\&amp;quot;,
-      &amp;quot;&amp;amp;\\text{(se)}&amp;amp;&amp;amp;(9.2556)&amp;amp;&amp;amp;(0.0516)\\\\&amp;quot;,
-      &amp;quot;&amp;amp;\\text{(fitness)}&amp;amp;&amp;amp; n=10;&amp;amp;&amp;amp; R^2=0.9473;&amp;amp;&amp;amp; \\bar{R^2}=0.9408\\\\&amp;quot;,
-      &amp;quot;&amp;amp; &amp;amp;&amp;amp; F^{\\ast}=143.92;&amp;amp;&amp;amp; p=0.0000&amp;quot;,
-&amp;quot;\\end{alignedat}&amp;quot;,
-&amp;quot;\\end{equation}$$&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\begin{equation} \begin{alignedat}{999} &amp;amp;\widehat{Y}=&amp;amp;&amp;amp;+17.81&amp;amp;&amp;amp;+0.62X\\ &amp;amp;\text{(t)}&amp;amp;&amp;amp;(1.9238)&amp;amp;&amp;amp;(11.9968)\\ &amp;amp;\text{(se)}&amp;amp;&amp;amp;(9.2556)&amp;amp;&amp;amp;(0.0516)\\ &amp;amp;\text{(fitness)}&amp;amp;&amp;amp; n=10;&amp;amp;&amp;amp; R^2=0.9473;&amp;amp;&amp;amp; \bar{R^2}=0.9408\\ &amp;amp; &amp;amp;&amp;amp; F^{\ast}=143.92;&amp;amp;&amp;amp; p=0.0000 \end{alignedat} \end{equation}\]&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;cat&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;小心猫（cat）！&lt;/h2&gt;
-&lt;p&gt;理论上，&lt;code&gt;cat(, sep=&amp;quot;\n&amp;quot;)&lt;/code&gt;函数里只要设置&lt;code&gt;sep=&amp;quot;\n&amp;quot;&lt;/code&gt;就能保证换行，输出也很有层次和条理。&lt;/p&gt;
-&lt;p&gt;但是你还是要保持美元“富有”，并小心猫（cat）的这个挠人小利爪（&lt;code&gt;sep=&amp;quot;\n&amp;quot;&lt;/code&gt;）。&lt;/p&gt;
-&lt;p&gt;换言之，下面的代码就可能会让你“很受伤”！&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;cat(
-&amp;quot;\\begin{equation}&amp;quot;,
-&amp;quot;\\begin{alignedat}{999}&amp;quot;,
-&amp;quot;&amp;amp;\\widehat{Y}=&amp;amp;&amp;amp;+17.81&amp;amp;&amp;amp;+0.62X\\\\&amp;quot;,
-      &amp;quot;&amp;amp;\\text{(t)}&amp;amp;&amp;amp;(1.9238)&amp;amp;&amp;amp;(11.9968)\\\\&amp;quot;,
-      &amp;quot;&amp;amp;\\text{(se)}&amp;amp;&amp;amp;(9.2556)&amp;amp;&amp;amp;(0.0516)\\\\&amp;quot;,
-      &amp;quot;&amp;amp;\\text{(fitness)}&amp;amp;&amp;amp; n=10;&amp;amp;&amp;amp; R^2=0.9473;&amp;amp;&amp;amp; \\bar{R^2}=0.9408\\\\&amp;quot;,
-      &amp;quot;&amp;amp; &amp;amp;&amp;amp; F^{\\ast}=143.92;&amp;amp;&amp;amp; p=0.0000&amp;quot;,
-&amp;quot;\\end{alignedat}&amp;quot;,
-&amp;quot;\\end{equation}&amp;quot;,
-sep= &amp;quot;\n&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;外部文档关联&lt;/h2&gt;
-&lt;p&gt;如果完事顺利，你只需要在Rmardown里直接调用公式文件.R&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;source(&amp;quot;external-math-equation.R&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+&lt;p&gt;&lt;span style=&#34;text-shadow: none;&#34;&gt;&lt;a class=&#34;github-button&#34; href=&#34;https://github.com/gcushen/hugo-academic&#34; data-icon=&#34;octicon-star&#34; data-size=&#34;large&#34; data-show-count=&#34;true&#34; aria-label=&#34;Star this on GitHub&#34;&gt;Star&lt;/a&gt;&lt;script async defer src=&#34;https://buttons.github.io/buttons.js&#34;&gt;&lt;/script&gt;&lt;/span&gt;&lt;/p&gt;
 </description>
     </item>
     
     <item>
-      <title>create course slide by using Xaringan</title>
-      <link>/post/xaringan-for-course-slide/</link>
-      <pubDate>Sun, 24 Feb 2019 00:00:00 +0000</pubDate>
+      <title>Biography</title>
+      <link>/course/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/post/xaringan-for-course-slide/</guid>
-      <description>
-
-
-&lt;p&gt;利用xaringan来设计课程slide。&lt;/p&gt;
-&lt;p&gt;现在对（本科）教学工作的要求，已经发生了很大的改变：教学的内容变得更加专业化和细分化（学生就业市场的倒逼）；教学过程/流程需要标准化（一切变得透明公开）；教学活动应该能够便于复制并规模化运行（课程最好能以公开课/慕课方式运作）；个性化教学和灵活性调整被反复强调（对学生多元考核、“一人一套试卷”）；其他方面。&lt;/p&gt;
-&lt;p&gt;教师在讲台上的台前“艺术化”魅力（仪态、表情、音色等）已经不再如曾经那么重要；教师在台后的“技术性”设计（内容、互动、展示等）上升到了无与伦比的地位。&lt;/p&gt;
-&lt;p&gt;尤其是对于哪些&lt;strong&gt;技术性课程&lt;/strong&gt;，如计量经济学（Econometrics）和统计学（Statistics），“技术性”设计必须要赶上这些教学新要求的呼声。（当你发现一位大学教师还在“坚持”使用Office2007，你一点都不要惊讶——经管现在已经是2019年了。）&lt;/p&gt;
-&lt;div id=&#34;powerpointhtmlslide&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;为什么要逃离PowerPoint，拥抱HTML形式的slide？&lt;/h1&gt;
-&lt;p&gt;PowerPoint的“断、舍、离”：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;office版本太过分散，ppt可能会上演各种“变形记”。（现在国内有很多学生，已经不能区分WPS和Office了。学生的毕业论文或作业提交，那酸爽，真是谁看谁知道。）&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;ppt维护和更新的各种“梗”。最让我纠结的就是mathtype公式，神一般地会一夜之间“变砖”（倒腾几下，公式变图片，或者干脆显示不了），更不要说公式的重复使用和编辑修改。如果使用一些新技巧、新字体，那一定会让你记住“凡走过的都是一个一个的巨坑”。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;难以逾越数据、图形和模型分析的“天堑”。表格数据加总等分析基本等于不可能（事实上也可以关联excel，但是“关联越多，等价于羁绊越多”！）；数据图形化，你只能老老实实拷贝统计软件里的做好的图吧（泪奔！）；建模分析结果的调用，就更别提了（反复在多个软件窗口中切换和敲键盘，眼花缭乱的“骚操作”不说，最担心的还是手一抖怕敲错了结果啊！）。&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;HTML形式slide的“前世今生”：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;一个浏览器就够了。HTML是互联网世界最广泛使用的交流形式。每台电脑都会安装浏览器（chrome、firefox、IE…），但不是都会安装Microsoft office全家桶（365家庭版那可是每年500RMB啊，心疼一下下！）。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;一份文本多种输出形态的终极需求。就像KTV里嗨唱切歌，老师们常常要在word、pdf、html、ppt、png等格式中不断切换啊。一个逗号或减号，在word里改了，那还得改ppt啊，就问你蛋疼不蛋疼。所以，仅维护一份文本，随时获得各种输出（html、word、ppt、slide…）简直就是人类共同的梦想啊。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;“纯文本”就是你的最底层“话语”。一切的文字、代码、图形、格式、排版…，统统汇集于一份“纯文本”中！&lt;strong&gt;Plain Text&lt;/strong&gt;，正如其名，平铺直叙，朴素而不简单，包含了你所需的一切，你想说和想呈现的一切。&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;xaringan&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Xaringan的优势和不足&lt;/h1&gt;
-&lt;p&gt;Xaringan的优势：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;R语言和RMarkdown的应用就是它最大的优势。这赋予了教学准备工作更强的“生产力”：代码可重复利用、统计处理和分析报告完美整合。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Xaringan Slide可以高度灵活的定制化。本质上形式的呈现，完全依赖于CSS技术，这与PowerPoint中的模板使用是完全不同的体验，效率上完全秒掉后者。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Xaringan Slide可以完美转成pdf格式的slide。其实直接用Chrome浏览器打开HTML Slide不就完了嘛，这种格式转换的操作本来就是多此一举！总之，你说，世界需要pdf；于是Xaringan便说，给你pdf！&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;与GitHub版本控制技术融合。我想说的是，这是一种全新的师生交互和反馈机制！&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Xaringan的不足：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;对行内公式支持不是很友好。比如&lt;code&gt;$\beta$&lt;/code&gt;必须要保持独立一行！一段话要是有很多这样的inline equation，那么xaringan::moon_reader 文档就显得很破碎了。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;风格调整CSS技术的学习还是有一定成本的。换言之，制作一份自己喜欢的“专属”模板，还需要花费一些时间。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;强迫症的一些小细节。使用&lt;code&gt;knitr::kable()&lt;/code&gt;制表，转pdf时表格无法显示，替代办法就是用&lt;code&gt;DT::datatable()&lt;/code&gt;的表格风格，而它往往不是真正的Table风格！另外，就是windows环境下，不支持Rstudio面板Viewer中预览slide，只能在浏览器中预览。&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;xaringan&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Xaringan使用中需要注意的几个细节&lt;/h1&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;选用一个好的模板：&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;比如我使用的杜克大学模板：&lt;a href=&#34;https://johnlittle.info/dukeslides/&#34;&gt;Slide Template for Duke University&lt;/a&gt;。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;初学者最好先不要删除模板的内容，里面的示例说明可以很好地参考。&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;xaringan&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Xaringan支持“实时”预览了：&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;赶紧去看Yihui的blog，&lt;a href=&#34;https://yihui.name/en/2019/02/ultimate-inf-mr/&#34;&gt;The Ultimate Infinite Moon Reader for xaringan Slides&lt;/a&gt;。赶快安装更新包：&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code&gt;remotes::install_github(&amp;#39;yihui/xaringan&amp;#39;, upgrade = TRUE)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;而且是Windows用户的又一个福音啊。前面刚说Rstudio里不能Viewer预览，但是更新Xaringan包后发现Chrome浏览器竟然可以“实时”同步预览了！yoo！&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;定制自己的字体大小：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;在Rmd文档里添加代码：(参看&lt;a href=&#34;https://stackoverflow.com/questions/53481699/customize-font-size-for-all-the-slides-in-xaringan&#34;&gt;Customize font size for all the slides in xaringan&lt;/a&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;style type=&amp;quot;text/css&amp;quot;&amp;gt;
-.remark-slide-content {
-    font-size: 30px;
-    padding: 1em 4em 1em 4em;
-}
-&amp;lt;/style&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</description>
+      <guid>/course/about/</guid>
+      <description></description>
     </item>
     
     <item>
-      <title>three-sords (blogdown; github; netlify) to develole personal website</title>
-      <link>/post/three-sord/</link>
-      <pubDate>Thu, 21 Feb 2019 00:00:00 +0000</pubDate>
+      <title>Skills</title>
+      <link>/course/skills/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/post/three-sord/</guid>
-      <description>
-
-
-&lt;p&gt;“三剑”合璧持续性打造个人网站(blogdown; github; netlify)&lt;/p&gt;
-&lt;div id=&#34;rstudioblogdown-site&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;在Rstudio中创建blogdown site&lt;/h1&gt;
-&lt;p&gt;blogdown的设置比较简单，教程里基本也说得清楚。具体操作时，还是需要注意以下几个要点：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;选取中意的网站模板，比如学术型模板&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# for example, create a new site with the academic theme
-blogdown::new_site(theme = &amp;quot;gcushen/hugo-academic&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;这个模板还内部支持&lt;a href=&#34;https://github.com/rstudio/blogdown/issues/36&#34;&gt;数学公式显示&lt;/a&gt;！需要在Rmarkdown文档的yaml区域里设置&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;math: true&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;设置全局选项（global options）。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;一个是设置默认的“作者”和“文件格式”。需要在工作目录下新建一个.Rprofile文件：&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;file.edit(&amp;#39;.Rprofile&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;文件里面的内容配置为:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;options(blogdown.ext = &amp;quot;.Rmd&amp;quot;, blogdown.author = &amp;quot;huhuaping&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;另外就是要配置工作文件下的config.toml文件，主要就是修改网站的名字：&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Title of your site
-title = &amp;quot;Huhuaping&amp;quot;&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;最后要记得装载hugo，最重要得是弄清楚hugo_version（后面netlify建站时需要配置环境变量hugo_version，否则会&lt;a href=&#34;https://gohugo.io/hosting-and-deployment/hosting-on-netlify/&#34;&gt;报错255&lt;/a&gt;，二者应该要一致，且有最低版本要求）。在Rstudio里判明版本号的办法是：&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# 安装hugo
-install_hugo()
-
-# 判明版本号
-blogdown::hugo_version()&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;gitgithub&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;利用git工具来管理github仓库&lt;/h1&gt;
-&lt;p&gt;git版本控制工具，还是需要学会的。这里就列出一个很好的参考学习资源吧——&lt;a href=&#34;https://git-scm.com/book/zh/v2&#34;&gt;git book(多国语言版)&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;netlifygithub&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;在netlify上关联github仓库并建站&lt;/h1&gt;
-&lt;p&gt;如前所述，这里很重要的一步就是要记得设置hugo_version的环境变量，版本号需要与blogdown里安装的版本号一致。&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level1&#34;&gt;
-&lt;h1&gt;额外的问题&lt;/h1&gt;
-&lt;p&gt;config.toml配置：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;baseurl存在的&lt;a href=&#34;https://github.com/rstudio/blogdown/issues/114&#34;&gt;斜杠问题&lt;/a&gt;，可能会影响netlify建站更新。&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;网页链接显示最好是稳定的。可以通过日期+slug的形式来固定，具体设置为：&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;[permalinks]
-  post = &amp;quot;/:year/:month/:day/:slug/&amp;quot;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;版本控制（github repo）：记得在工作目录下的.gitignore里添加忽视文件（否则会影响netlify建站更新）。&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;public&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;提交新的博客文章(post)：最好使用Rstudio里Addin菜单中的New Post来写Rmd格式的博文。&lt;/p&gt;
-&lt;/div&gt;
-</description>
+      <guid>/course/skills/</guid>
+      <description></description>
     </item>
     
     <item>
-      <title>Example Page</title>
-      <link>/tutorial/example/</link>
-      <pubDate>Sun, 09 Sep 2018 00:00:00 +0800</pubDate>
+      <title>Experience</title>
+      <link>/course/experience/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/tutorial/example/</guid>
-      <description>
-
-&lt;p&gt;In this tutorial, I&amp;rsquo;ll share my top 10 tips for getting started with Academic:&lt;/p&gt;
-
-&lt;h2 id=&#34;tip-1&#34;&gt;Tip 1&lt;/h2&gt;
-
-&lt;p&gt;&amp;hellip;&lt;/p&gt;
-
-&lt;h2 id=&#34;tip-2&#34;&gt;Tip 2&lt;/h2&gt;
-
-&lt;p&gt;&amp;hellip;&lt;/p&gt;
-</description>
+      <guid>/course/experience/</guid>
+      <description></description>
     </item>
     
     <item>
-      <title>Privacy Policy</title>
-      <link>/privacy/</link>
-      <pubDate>Thu, 28 Jun 2018 00:00:00 +0800</pubDate>
+      <title>Accomplish&amp;shy;ments</title>
+      <link>/course/accomplishments/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/privacy/</guid>
-      <description>&lt;p&gt;&amp;hellip;&lt;/p&gt;
-</description>
+      <guid>/course/accomplishments/</guid>
+      <description></description>
     </item>
     
     <item>
-      <title>Example Talk</title>
-      <link>/talk/example/</link>
-      <pubDate>Sun, 01 Jan 2017 00:00:00 +0800</pubDate>
+      <title>Featured Publications</title>
+      <link>/course/publications_featured/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/talk/example/</guid>
+      <guid>/course/publications_featured/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Recent Publications</title>
+      <link>/course/publications/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/course/publications/</guid>
       <description>&lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    &lt;p&gt;Click on the &lt;strong&gt;Slides&lt;/strong&gt; button above to view the built-in slides feature.&lt;/p&gt;
+    &lt;p&gt;Quickly discover relevant content by &lt;a href=&#34;/publication/&#34;&gt;filtering publications&lt;/a&gt;.&lt;/p&gt;
+
+  &lt;/div&gt;
+&lt;/div&gt;
+
+</description>
+    </item>
+    
+    <item>
+      <title>Featured Talks</title>
+      <link>/course/talks_featured/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/course/talks_featured/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Recent &amp; Upcoming Talks</title>
+      <link>/course/talks/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/course/talks/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Recent Posts</title>
+      <link>/course/posts/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/course/posts/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Projects</title>
+      <link>/course/projects/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/course/projects/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Teaching</title>
+      <link>/course/teaching/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/course/teaching/</guid>
+      <description>
+
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    &lt;p&gt;This is an example of using the &lt;em&gt;custom&lt;/em&gt; widget to create your own homepage section.&lt;/p&gt;
+
+&lt;p&gt;This section also demonstrates how to apply the &lt;em&gt;background&lt;/em&gt; option to create an &lt;em&gt;image parallax&lt;/em&gt; effect. Backgrounds can be applied to any section.&lt;/p&gt;
 
   &lt;/div&gt;
 &lt;/div&gt;
 
 
-&lt;p&gt;Slides can be added in a few ways:&lt;/p&gt;
+&lt;h2 id=&#34;example-content&#34;&gt;Example content&lt;/h2&gt;
+
+&lt;p&gt;I am a teaching instructor for the following courses at University X:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Create&lt;/strong&gt; slides using Academic&amp;rsquo;s &lt;em&gt;Slides&lt;/em&gt; feature and link using &lt;code&gt;url_slides&lt;/code&gt; parameter in the front matter of the talk file&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Upload&lt;/strong&gt; an existing slide deck to &lt;code&gt;static/&lt;/code&gt; and link using &lt;code&gt;url_slides&lt;/code&gt; parameter in the front matter of the talk file&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Embed&lt;/strong&gt; your slides (e.g. Google Slides) or presentation video on this page using &lt;a href=&#34;https://sourcethemes.com/academic/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34;&gt;shortcodes&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;CS101: An intro to computer science&lt;/li&gt;
+&lt;li&gt;CS102: An intro to computer science&lt;/li&gt;
+&lt;li&gt;CS103: An intro to computer science&lt;/li&gt;
+&lt;li&gt;CS104: An intro to computer science&lt;/li&gt;
+&lt;li&gt;CS105: An intro to computer science&lt;/li&gt;
+&lt;li&gt;CS106: An intro to computer science&lt;/li&gt;
+&lt;li&gt;CS107: An intro to computer science&lt;/li&gt;
 &lt;/ul&gt;
-
-&lt;p&gt;Further talk details can easily be added to this page using &lt;em&gt;Markdown&lt;/em&gt; and $\rm \LaTeX$ math code.&lt;/p&gt;
 </description>
     </item>
     
     <item>
-      <title>External Project</title>
-      <link>/project/external-project/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 +0800</pubDate>
+      <title>Tags</title>
+      <link>/course/tags/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/project/external-project/</guid>
+      <guid>/course/tags/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Internal Project</title>
-      <link>/project/internal-project/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 +0800</pubDate>
-      
-      <guid>/project/internal-project/</guid>
-      <description>&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum. Sed ac faucibus dolor, scelerisque sollicitudin nisi. Cras purus urna, suscipit quis sapien eu, pulvinar tempor diam. Quisque risus orci, mollis id ante sit amet, gravida egestas nisl. Sed ac tempus magna. Proin in dui enim. Donec condimentum, sem id dapibus fringilla, tellus enim condimentum arcu, nec volutpat est felis vel metus. Vestibulum sit amet erat at nulla eleifend gravida.&lt;/p&gt;
-
-&lt;p&gt;Nullam vel molestie justo. Curabitur vitae efficitur leo. In hac habitasse platea dictumst. Sed pulvinar mauris dui, eget varius purus congue ac. Nulla euismod, lorem vel elementum dapibus, nunc justo porta mi, sed tempus est est vel tellus. Nam et enim eleifend, laoreet sem sit amet, elementum sem. Morbi ut leo congue, maximus velit ut, finibus arcu. In et libero cursus, rutrum risus non, molestie leo. Nullam congue quam et volutpat malesuada. Sed risus tortor, pulvinar et dictum nec, sodales non mi. Phasellus lacinia commodo laoreet. Nam mollis, erat in feugiat consectetur, purus eros egestas tellus, in auctor urna odio at nibh. Mauris imperdiet nisi ac magna convallis, at rhoncus ligula cursus.&lt;/p&gt;
-
-&lt;p&gt;Cras aliquam rhoncus ipsum, in hendrerit nunc mattis vitae. Duis vitae efficitur metus, ac tempus leo. Cras nec fringilla lacus. Quisque sit amet risus at ipsum pharetra commodo. Sed aliquam mauris at consequat eleifend. Praesent porta, augue sed viverra bibendum, neque ante euismod ante, in vehicula justo lorem ac eros. Suspendisse augue libero, venenatis eget tincidunt ut, malesuada at lorem. Donec vitae bibendum arcu. Aenean maximus nulla non pretium iaculis. Quisque imperdiet, nulla in pulvinar aliquet, velit quam ultrices quam, sit amet fringilla leo sem vel nunc. Mauris in lacinia lacus.&lt;/p&gt;
-
-&lt;p&gt;Suspendisse a tincidunt lacus. Curabitur at urna sagittis, dictum ante sit amet, euismod magna. Sed rutrum massa id tortor commodo, vitae elementum turpis tempus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean purus turpis, venenatis a ullamcorper nec, tincidunt et massa. Integer posuere quam rutrum arcu vehicula imperdiet. Mauris ullamcorper quam vitae purus congue, quis euismod magna eleifend. Vestibulum semper vel augue eget tincidunt. Fusce eget justo sodales, dapibus odio eu, ultrices lorem. Duis condimentum lorem id eros commodo, in facilisis mauris scelerisque. Morbi sed auctor leo. Nullam volutpat a lacus quis pharetra. Nulla congue rutrum magna a ornare.&lt;/p&gt;
-
-&lt;p&gt;Aliquam in turpis accumsan, malesuada nibh ut, hendrerit justo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque sed erat nec justo posuere suscipit. Donec ut efficitur arcu, in malesuada neque. Nunc dignissim nisl massa, id vulputate nunc pretium nec. Quisque eget urna in risus suscipit ultricies. Pellentesque odio odio, tincidunt in eleifend sed, posuere a diam. Nam gravida nisl convallis semper elementum. Morbi vitae felis faucibus, vulputate orci placerat, aliquet nisi. Aliquam erat volutpat. Maecenas sagittis pulvinar purus, sed porta quam laoreet at.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>A Person Re-Identification System For Mobile Devices</title>
-      <link>/publication/person-re-id/</link>
-      <pubDate>Tue, 01 Sep 2015 00:00:00 +0800</pubDate>
-      
-      <guid>/publication/person-re-id/</guid>
-      <description>&lt;p&gt;More detail can easily be written here using &lt;em&gt;Markdown&lt;/em&gt; and $\rm \LaTeX$ math code.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Mobile visual clothing search</title>
-      <link>/publication/clothing-search/</link>
-      <pubDate>Mon, 01 Jul 2013 00:00:00 +0800</pubDate>
-      
-      <guid>/publication/clothing-search/</guid>
-      <description>&lt;p&gt;More detail can easily be written here using &lt;em&gt;Markdown&lt;/em&gt; and $\rm \LaTeX$ math code.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Slides</title>
-      <link>/slides/example-slides/</link>
+      <title>People</title>
+      <link>/course/people/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/slides/example-slides/</guid>
-      <description>
-
-&lt;h1 id=&#34;welcome-to-slides&#34;&gt;Welcome to Slides&lt;/h1&gt;
-
-&lt;p&gt;Generating an HTML5 presentation based on xaringan: &lt;a href=&#34;slides/02-simple-reg-basic-slide.html&#34; target=&#34;_blank&#34;&gt;slides/02-simple-reg-basic-slide.html&lt;/a&gt; (Rmd source: static/slides/02-simple-reg-basic-slide.Rmd).&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&#34;features&#34;&gt;Features&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Efficiently write slides in Markdown&lt;/li&gt;
-&lt;li&gt;3-in-1: Create, Present, and Publish your slides&lt;/li&gt;
-&lt;li&gt;Supports speaker notes&lt;/li&gt;
-&lt;li&gt;Mobile friendly slides&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&#34;controls&#34;&gt;Controls&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Next: &lt;code&gt;Right Arrow&lt;/code&gt; or &lt;code&gt;Space&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Previous: &lt;code&gt;Left Arrow&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Start: &lt;code&gt;Home&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Finish: &lt;code&gt;End&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Overview: &lt;code&gt;Esc&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Speaker notes: &lt;code&gt;S&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Fullscreen: &lt;code&gt;F&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Zoom: &lt;code&gt;Alt + Click&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/hakimel/reveal.js#pdf-export&#34; target=&#34;_blank&#34;&gt;PDF Export&lt;/a&gt;: &lt;code&gt;E&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&#34;code-highlighting&#34;&gt;Code Highlighting&lt;/h2&gt;
-
-&lt;p&gt;Inline code: &lt;code&gt;variable&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Code block:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;porridge = &amp;quot;blueberry&amp;quot;
-if porridge == &amp;quot;blueberry&amp;quot;:
-    print(&amp;quot;Eating...&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&#34;math&#34;&gt;Math&lt;/h2&gt;
-
-&lt;p&gt;In-line math: $x + y = z$&lt;/p&gt;
-
-&lt;p&gt;Block math:&lt;/p&gt;
-
-&lt;p&gt;$$
-f\left( x \right) = \;\frac{{2\left( {x + 4} \right)\left( {x - 4} \right)}}{{\left( {x + 4} \right)\left( {x + 1} \right)}}
-$$&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&#34;fragments&#34;&gt;Fragments&lt;/h2&gt;
-
-&lt;p&gt;Make content appear incrementally&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;{{% fragment %}} One {{% /fragment %}}
-{{% fragment %}} **Two** {{% /fragment %}}
-{{% fragment %}} Three {{% /fragment %}}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Press &lt;code&gt;Space&lt;/code&gt; to play!&lt;/p&gt;
-
-&lt;p&gt;&lt;span class=&#34;fragment &#34; &gt;
-  One
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; &gt;
-  &lt;strong&gt;Two&lt;/strong&gt;
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; &gt;
-  Three
-&lt;/span&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;A fragment can accept two optional parameters:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;class&lt;/code&gt;: use a custom style (requires definition in custom CSS)&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;weight&lt;/code&gt;: sets the order in which a fragment appears&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&#34;speaker-notes&#34;&gt;Speaker Notes&lt;/h2&gt;
-
-&lt;p&gt;Add speaker notes to your presentation&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-markdown&#34;&gt;{{% speaker_note %}}
-- Only the speaker can read these notes
-- Press `S` key to view
-{{% /speaker_note %}}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Press the &lt;code&gt;S&lt;/code&gt; key to view the speaker notes!&lt;/p&gt;
-
-&lt;aside class=&#34;notes&#34;&gt;
-  &lt;ul&gt;
-&lt;li&gt;Only the speaker can read these notes&lt;/li&gt;
-&lt;li&gt;Press &lt;code&gt;S&lt;/code&gt; key to view&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;/aside&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&#34;themes&#34;&gt;Themes&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;black: Black background, white text, blue links (default)&lt;/li&gt;
-&lt;li&gt;white: White background, black text, blue links&lt;/li&gt;
-&lt;li&gt;league: Gray background, white text, blue links&lt;/li&gt;
-&lt;li&gt;beige: Beige background, dark text, brown links&lt;/li&gt;
-&lt;li&gt;sky: Blue background, thin dark text, blue links&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-&lt;li&gt;night: Black background, thick white text, orange links&lt;/li&gt;
-&lt;li&gt;serif: Cappuccino background, gray text, brown links&lt;/li&gt;
-&lt;li&gt;simple: White background, black text, blue links&lt;/li&gt;
-&lt;li&gt;solarized: Cream-colored background, dark green text, blue links&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-
-&lt;section data-noprocess data-shortcode-slide
-  
-      
-      data-background-image=&#34;/img/boards.jpg&#34;
-  &gt;
-
-
-&lt;h2 id=&#34;custom-slide&#34;&gt;Custom Slide&lt;/h2&gt;
-
-&lt;p&gt;Customize the slide style and background&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-markdown&#34;&gt;{{&amp;lt; slide background-image=&amp;quot;/img/boards.jpg&amp;quot; &amp;gt;}}
-{{&amp;lt; slide background-color=&amp;quot;#0000FF&amp;quot; &amp;gt;}}
-{{&amp;lt; slide class=&amp;quot;my-style&amp;quot; &amp;gt;}}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&#34;custom-css-example&#34;&gt;Custom CSS Example&lt;/h2&gt;
-
-&lt;p&gt;Let&amp;rsquo;s make headers navy colored.&lt;/p&gt;
-
-&lt;p&gt;Create &lt;code&gt;assets/css/reveal_custom.css&lt;/code&gt; with:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;.reveal section h1,
-.reveal section h2,
-.reveal section h3 {
-  color: navy;
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;hr /&gt;
-
-&lt;h1 id=&#34;questions&#34;&gt;Questions?&lt;/h1&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://discourse.gohugo.io&#34; target=&#34;_blank&#34;&gt;Ask&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://sourcethemes.com/academic/docs/&#34; target=&#34;_blank&#34;&gt;Documentation&lt;/a&gt;&lt;/p&gt;
-</description>
+      <guid>/course/people/</guid>
+      <description></description>
     </item>
     
   </channel>

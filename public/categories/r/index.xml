@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>huhuaping@2019</copyright>
-    <lastBuildDate>Thu, 28 Feb 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 01 Mar 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/r/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>post Xaringan slide to website</title>
+      <link>/post/post-xaringan-slide-to-website/</link>
+      <pubDate>Fri, 01 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/post-xaringan-slide-to-website/</guid>
+      <description>如何把Xaringan 演示Slides以静态网页（static webpage）形式载入个人网站。 主要参考资料和实现办法 Yihui Xie的blogdo</description>
+    </item>
     
     <item>
       <title>Improve Latex math with Rmarkdown chunk</title>

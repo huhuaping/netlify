@@ -10,20 +10,8 @@ weight: 60
 widget: custom
 ---
 
-{{% alert note %}}
-This is an example of using the *custom* widget to create your own homepage section.
+I am a teaching instructor for the following courses at Northwest A &F University in Shannxi Province.
 
-This section also demonstrates how to apply the *background* option to create an *image parallax* effect. Backgrounds can be applied to any section.
-{{% /alert %}}
-
-## Example content
-
-I am a teaching instructor for the following courses at University X:
-
-- CS101: An intro to computer science
-- CS102: An intro to computer science
-- CS103: An intro to computer science
-- CS104: An intro to computer science
-- CS105: An intro to computer science
-- CS106: An intro to computer science
-- CS107: An intro to computer science
+- Econometrics（计量经济学） （本科生/ for undergraduate students）
+- Statistic Principle（统计学原理） （本科生/ for undergraduate students）
+- Econometrics (II)（中级计量经济学） （研究生/ for dergraduate student）

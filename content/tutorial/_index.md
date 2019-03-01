@@ -1,23 +1,30 @@
 ---
-date: "2018-09-09T00:00:00+08:00"
+date: "2019-03-01"
 draft: false
 menu:
   tutorial:
-    name: Overview
+    name: Overview (简介)
     weight: 1
-title: Overview
+title: Overview (简介)
 toc: true
 type: docs
 ---
 
-This feature can be used for publishing content such as:
+此处放置了本科生《计量经济学》教学课件。
 
-* **Project or software documentation**
-* **Online courses**
-* **Tutorials**
+- 课件采用[Rmarkdown语言](https://rmarkdown.rstudio.com/
+)编写而成，课件Slide的形式由[Xaringan包](https://github.com/yihui/xaringan)渲染得到。
 
-The parent folder may be renamed, for example, to `docs` for project documentation or `course` for creating an online course.
+- 只要你电脑装有浏览器（chrome, firefox, ...），就可以在线浏览这些课件Slide。
 
-To disable this feature, either delete the parent folder, or set `draft = true` in the front matter of all its pages. 
 
-After renaming or deleting the parent folder, you may wish to update any `[[menu.main]]` menu links to it in the `config.toml`. 
+浏览器（chrome, firefox, ...）观看课件可以有如下一些有意思的键盘操作：
+
+- 点击**课件区域**，按F键，可全屏观看
+
+- 按方向键，可以前进/后退
+
+- 敲击数字键，再按Enter可进入任意指定的页码。如，敲击数字10，观看第10页
+- ...
+
+
