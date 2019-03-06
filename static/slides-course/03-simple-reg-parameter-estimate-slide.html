@@ -37,7 +37,7 @@ class: center,middle
 
 ### huhuaping01@hotmail.com
 
-### 2019-03-05
+### 2019-03-06
 
 
 
@@ -51,7 +51,7 @@ class: center,middle
 &lt;/style&gt;
 
 ---
-class: center, middle,inverse,animated, slideInRight
+class: center, middle,inverse
 # 第3章：一元回归：参数估计
 
 ## 内容目录
@@ -78,7 +78,7 @@ class: inverse, middle, center
 
 
 ---
-class: animated, bounceInDown
+
 # 普通最小二乘法（OLS）
 
 估计回归函数中的系数，有多种方法
@@ -401,8 +401,7 @@ C &amp;= - 2E \left[ (\hat{\beta}_2 - \beta_2)\sum{x_i(u_i-\bar{u})} \right ] \\
 - 其中：
 
 `$$\begin{align}
-\hat{\beta}_2 &amp; = \sum{k_iY_i} = \sum{k_i(\beta_1 +\beta_2X_i +u_i)}  \\
-&amp; = \beta_1\sum{k_i} +\beta_2 \sum{k_iX_i}+\sum{k_iu_i}  
+\hat{\beta}_2 &amp; = \sum{k_iY_i} = \sum{k_i(\beta_1 +\beta_2X_i +u_i)}   = \beta_1\sum{k_i} +\beta_2 \sum{k_iX_i}+\sum{k_iu_i}  
 = \beta_2 +\sum{k_iu_i} \\
 \hat{\beta}_2 - \beta_2 &amp; = \sum{k_iu_i} = \frac{ \sum{x_iu_i} }{\sum{x_i^2}}
 \end{align}$$`
@@ -670,16 +669,16 @@ X是固定的（给定的）是什么含义：
 
 扁数据形态：“非标准”数据形态（但很直观）
 
-<div id="htmlwidget-3c5e2a85c9a286135dfa" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-3c5e2a85c9a286135dfa">{"x":{"filter":"none","caption":"<caption>60个家庭的收入和支出情况：假设的总体<\/caption>","data":[["1","2","3","4","5","6","7","8"],["X","Y1","Y2","Y3","Y4","Y5","Y6","Y7"],[80,55,60,65,70,75,null,null],[100,65,70,74,80,85,88,null],[120,79,84,90,94,98,null,null],[140,80,93,95,103,108,113,115],[160,102,107,110,116,118,125,null],[180,110,115,120,130,135,140,null],[200,120,136,140,144,145,null,null],[220,135,137,140,152,157,160,162],[240,137,145,155,165,175,189,null],[260,150,152,175,178,180,185,191]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Mark<\/th>\n      <th>G1<\/th>\n      <th>G2<\/th>\n      <th>G3<\/th>\n      <th>G4<\/th>\n      <th>G5<\/th>\n      <th>G6<\/th>\n      <th>G7<\/th>\n      <th>G8<\/th>\n      <th>G9<\/th>\n      <th>G10<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":9,"dom":"tip","columnDefs":[{"className":"dt-right","targets":[2,3,4,5,6,7,8,9,10,11]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[9,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-54fe7e847f80cd6a3d57" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-54fe7e847f80cd6a3d57">{"x":{"filter":"none","caption":"<caption>60个家庭的收入和支出情况：假设的总体<\/caption>","data":[["1","2","3","4","5","6","7","8"],["X","Y1","Y2","Y3","Y4","Y5","Y6","Y7"],[80,55,60,65,70,75,null,null],[100,65,70,74,80,85,88,null],[120,79,84,90,94,98,null,null],[140,80,93,95,103,108,113,115],[160,102,107,110,116,118,125,null],[180,110,115,120,130,135,140,null],[200,120,136,140,144,145,null,null],[220,135,137,140,152,157,160,162],[240,137,145,155,165,175,189,null],[260,150,152,175,178,180,185,191]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Mark<\/th>\n      <th>G1<\/th>\n      <th>G2<\/th>\n      <th>G3<\/th>\n      <th>G4<\/th>\n      <th>G5<\/th>\n      <th>G6<\/th>\n      <th>G7<\/th>\n      <th>G8<\/th>\n      <th>G9<\/th>\n      <th>G10<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":9,"dom":"tip","columnDefs":[{"className":"dt-right","targets":[2,3,4,5,6,7,8,9,10,11]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[9,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 
 ---
 ## 关于自变量X的假设
 
 长数据形态：标准数据形态（但不直观）
 
-<div id="htmlwidget-a4293ea63caa39102f0c" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-a4293ea63caa39102f0c">{"x":{"filter":"none","caption":"<caption>60个家庭的收入和支出情况：假设的总体<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60"],[1,1,1,1,1,2,2,2,2,2,2,3,3,3,3,3,4,4,4,4,4,4,4,5,5,5,5,5,5,6,6,6,6,6,6,7,7,7,7,7,8,8,8,8,8,8,8,9,9,9,9,9,9,10,10,10,10,10,10,10],[80,80,80,80,80,100,100,100,100,100,100,120,120,120,120,120,140,140,140,140,140,140,140,160,160,160,160,160,160,180,180,180,180,180,180,200,200,200,200,200,220,220,220,220,220,220,220,240,240,240,240,240,240,260,260,260,260,260,260,260],[55,60,65,70,75,65,70,74,80,85,88,79,84,90,94,98,80,93,95,103,108,113,115,102,107,110,116,118,125,110,115,120,130,135,140,120,136,140,144,145,135,137,140,152,157,160,162,137,145,155,165,175,189,150,152,175,178,178,185,191]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>group<\/th>\n      <th>X<\/th>\n      <th>Y<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":7,"dom":"tip","columnDefs":[{"className":"dt-right","targets":[1,2,3]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[7,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-2272048878eb7addb851" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2272048878eb7addb851">{"x":{"filter":"none","caption":"<caption>60个家庭的收入和支出情况：假设的总体<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60"],[1,1,1,1,1,2,2,2,2,2,2,3,3,3,3,3,4,4,4,4,4,4,4,5,5,5,5,5,5,6,6,6,6,6,6,7,7,7,7,7,8,8,8,8,8,8,8,9,9,9,9,9,9,10,10,10,10,10,10,10],[80,80,80,80,80,100,100,100,100,100,100,120,120,120,120,120,140,140,140,140,140,140,140,160,160,160,160,160,160,180,180,180,180,180,180,200,200,200,200,200,220,220,220,220,220,220,220,240,240,240,240,240,240,260,260,260,260,260,260,260],[55,60,65,70,75,65,70,74,80,85,88,79,84,90,94,98,80,93,95,103,108,113,115,102,107,110,116,118,125,110,115,120,130,135,140,120,136,140,144,145,135,137,140,152,157,160,162,137,145,155,165,175,189,150,152,175,178,178,185,191]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>group<\/th>\n      <th>X<\/th>\n      <th>Y<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":7,"dom":"tip","columnDefs":[{"className":"dt-right","targets":[1,2,3]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[7,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 
 
 
@@ -1021,7 +1020,7 @@ OLS方法中，
 `\(E(u|X_i)=0\)`）
 
 ---
-class: animated, bounceInDown, middle, center, inverse
+class: middle, center, inverse
 # OLS估计量的精度
 
 
@@ -1187,7 +1186,7 @@ S_{\hat{\beta}_1} &amp;=\sqrt{\frac{\sum{X^2_i}}{n} \cdot \frac{\hat{\sigma}^2}{
 \end{align}$$`
 
 ---
-class: inverse, middle, center, animated, bounceInDown
+class: inverse, middle, center
 # 最小二乘估计量的性质
 
 
@@ -1395,7 +1394,7 @@ class: inverse, middle, center, animated, bounceInDown
 = \frac{ \sum{x_iX_i}} {\sum{x_i^2}} 
 = \frac{ \sum{x_i(x_i+ \bar{X})}} {\sum{x_i^2}} \\
 &amp;= \frac{ \sum{x_i^2+x_i \bar{X}}} {\sum{x_i^2}} 
-= \frac{ \sum{x_i^2}+\bar{X}\sum{x_i} } {\sum{x_i^2}} 
+= \frac{ \sum{x_i^2}+\bar{X}\sum{x_i} } {\sum{x_i^2}}
 = 1
 \end{align}$$`
 
@@ -1403,10 +1402,10 @@ class: inverse, middle, center, animated, bounceInDown
 
 `$$\begin{align}
 \hat{\beta}_2 &amp; =  \beta_2 +\sum{k_iu_i} \\
-E(\hat{\beta}_2) &amp; =  E(\beta_2 +\sum{k_iu_i}) \\
-&amp; =  \beta_2 +E(\sum{k_iu_i}) \\
-&amp; =  \beta_2 +\sum{\left[ k_iE(u_i) \right]} \\
-&amp; =  \beta_2
+E(\hat{\beta}_2) &amp; =  E(\beta_2 +\sum{k_iu_i}) 
+ =  \beta_2 +E(\sum{k_iu_i}) \\
+ &amp; =  \beta_2 +\sum{\left[ k_iE(u_i) \right]} 
+ =  \beta_2
 \end{align}$$`
 
 **[证明完毕]**！
@@ -1658,7 +1657,7 @@ class: inverse, middle, center
 
 
 ---
-## 计算表FF和ff
+### 计算表FF和ff
 
 
 
@@ -1918,8 +1917,9 @@ class: inverse, middle, center
 &lt;img src="03-simple-reg-parameter-estimate-slide_files/figure-html/unnamed-chunk-27-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
-## 计算得到拟合值和残差
+### 计算得到拟合值和残差
 
+.pull-left[
 
 &lt;table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
@@ -2047,18 +2047,24 @@ class: inverse, middle, center
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
+
+]
+
 .pull-right[
+
+根据以上样本回归方程，可以计算得到
+`\(Y_i\)`的回归拟合值
+`\(\hat{Y}_i\)`，以及回归残差
+`\(e_i\)`。
+
 `$$\begin{align}
 \hat{Y}_i &amp;=\hat{\beta}_1 +\hat{\beta}_2X_i\\
 e_i &amp;= Y_i - \hat{Y}_i
 \end{align}$$`
 ]
 
-???
-根据以上样本回归方程，可以计算得到
-`\(Y_i\)`的回归拟合值
-`\(\hat{Y}_i\)`，以及回归残差
-`\(e_i\)`。
+
+
 
 ---
 ## 回归误差方差和标准差
@@ -2100,9 +2106,9 @@ S_{\hat{\beta}_1} &amp;= \sqrt{\frac{\sum{X_i^2}}{n}\frac{\hat{\sigma}^2} {\sum{
 ## 计算平方和分解
 
 `$$\begin{align}
-TSS &amp;= \sum{Y_i- \bar{Y}}=105.1183\\
-RSS &amp;= \sum{Y_i- \hat{Y}_i}=9.693\\
-ESS &amp;= \sum{\hat{Y}_i- \bar{Y}}=95.4253
+TSS &amp;= \sum{(Y_i- \bar{Y})^2}=105.1183\\
+RSS &amp;= \sum{(Y_i- \hat{Y}_i)^2}=9.693\\
+ESS &amp;= \sum{(\hat{Y}_i- \bar{Y})^2}=95.4253
 \end{align}$$`
 
 ---
@@ -2422,7 +2428,7 @@ slideshow._releaseMath(document);
 (function () {
   var script = document.createElement('script');
   script.type = 'text/javascript';
-  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_HTMLorMML';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
   if (location.protocol !== 'file:' && /^https?:/.test(script.src))
     script.src  = script.src.replace(/^https?:/, '');
   document.getElementsByTagName('head')[0].appendChild(script);
