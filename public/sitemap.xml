@@ -36,6 +36,14 @@
     
     <url>
     
+      <loc>/post/chating-and-teaching-in-econometrics-manner/</loc>
+      <lastmod>2019-03-10T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
       <loc>/tutorial/chapter3-simple-regression-parameter-estimate-slide/</loc>
       <lastmod>2019-03-05T00:00:00+08:00</lastmod>
     </url>
@@ -44,15 +52,15 @@
     
     <url>
     
-      <loc>/tutorial/</loc>
-      <lastmod>2019-03-01T00:00:00+00:00</lastmod>
+      <loc>/tutorial/chapter4-simple-reg-hypothesis-test-slide/</loc>
+      <lastmod>2019-03-05T00:00:00+08:00</lastmod>
     </url>
     
   
     
     <url>
     
-      <loc>/post/chapter2-simple-regression-basic-thought/</loc>
+      <loc>/tutorial/</loc>
       <lastmod>2019-03-01T00:00:00+00:00</lastmod>
     </url>
     
@@ -249,7 +257,7 @@
     <url>
     
       <loc>/</loc>
-      <lastmod>2019-03-05T00:00:00+08:00</lastmod>
+      <lastmod>2019-03-10T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -276,7 +284,7 @@
     <url>
     
       <loc>/post/</loc>
-      <lastmod>2019-03-01T00:00:00+00:00</lastmod>
+      <lastmod>2019-03-10T00:00:00+00:00</lastmod>
     </url>
     
   
@@ -386,8 +394,8 @@
     
     <url>
     
-      <loc>/tags/econometrics/</loc>
-      <lastmod>2019-02-24T00:00:00+00:00</lastmod>
+      <loc>/categories/econometrics/</loc>
+      <lastmod>2019-03-10T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -395,8 +403,8 @@
     
     <url>
     
-      <loc>/categories/econometrics/</loc>
-      <lastmod>2019-03-01T00:00:00+00:00</lastmod>
+      <loc>/tags/econometrics/</loc>
+      <lastmod>2019-02-24T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -432,7 +440,7 @@
     <url>
     
       <loc>/tags/simple-regress/</loc>
-      <lastmod>2019-03-01T00:00:00+00:00</lastmod>
+      <lastmod>2019-03-10T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     

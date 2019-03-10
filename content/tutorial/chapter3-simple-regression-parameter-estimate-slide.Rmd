@@ -1,7 +1,7 @@
 ---
 date: "2019-03-05T00:00:00+08:00"
 draft: false
-linktitle: 第三章课件
+linktitle: 第3章课件
 menu:
   tutorial:
     parent: Econometrics (计量经济学)
