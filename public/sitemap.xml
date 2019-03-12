@@ -36,6 +36,14 @@
     
     <url>
     
+      <loc>/tutorial/chapter5-simple-reg-eq-forms-slide/</loc>
+      <lastmod>2019-03-12T00:00:00+08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
       <loc>/post/chating-and-teaching-in-econometrics-manner/</loc>
       <lastmod>2019-03-10T00:00:00+00:00</lastmod>
     </url>
@@ -257,7 +265,7 @@
     <url>
     
       <loc>/</loc>
-      <lastmod>2019-03-10T00:00:00+00:00</lastmod>
+      <lastmod>2019-03-12T00:00:00+08:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -394,8 +402,8 @@
     
     <url>
     
-      <loc>/categories/econometrics/</loc>
-      <lastmod>2019-03-10T00:00:00+00:00</lastmod>
+      <loc>/tags/econometrics/</loc>
+      <lastmod>2019-02-24T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -403,8 +411,8 @@
     
     <url>
     
-      <loc>/tags/econometrics/</loc>
-      <lastmod>2019-02-24T00:00:00+00:00</lastmod>
+      <loc>/categories/econometrics/</loc>
+      <lastmod>2019-03-10T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
