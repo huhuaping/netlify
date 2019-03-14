@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Overview (简介) on Huhuaping</title>
+    <title>计量在线课程 (简介) on Huhuaping</title>
     <link>/tutorial/</link>
-    <description>Recent content in Overview (简介) on Huhuaping</description>
+    <description>Recent content in 计量在线课程 (简介) on Huhuaping</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>huhuaping@2019</copyright>
@@ -37,6 +37,15 @@
       
       <guid>/tutorial/chapter3-simple-regression-parameter-estimate-slide/</guid>
       <description>true 第3章 一元回归：估计问题 操作提示： 点击课件区域，按F键，可全屏观看 按方向键，可以前进/后退 敲击数字键，再按Enter可进入任意指定的页码。</description>
+    </item>
+    
+    <item>
+      <title>EViews实验指导</title>
+      <link>/tutorial/lab-eviews-introduction/</link>
+      <pubDate>Sun, 09 Sep 2018 00:00:00 +0800</pubDate>
+      
+      <guid>/tutorial/lab-eviews-introduction/</guid>
+      <description>true 《计量经济学原理与方法：EViews软件实现》是对计量经济学课程的实验环节的详细说明书。共包括8次实验指导说明： 请点击下面链接进入各个实验</description>
     </item>
     
     <item>

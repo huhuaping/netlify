@@ -1,0 +1,3080 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="胡华平" />
+
+<meta name="date" content="2019-03-14" />
+
+<title>lab 1 Introduction of EViews</title>
+
+<script src="Lab-01-introduction_files/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="Lab-01-introduction_files/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="Lab-01-introduction_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="Lab-01-introduction_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="Lab-01-introduction_files/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="Lab-01-introduction_files/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="Lab-01-introduction_files/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="Lab-01-introduction_files/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="Lab-01-introduction_files/navigation-1.1/tabsets.js"></script>
+<link href="Lab-01-introduction_files/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="Lab-01-introduction_files/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">lab 1 Introduction of EViews</h1>
+<h4 class="author"><em>胡华平</em></h4>
+<h4 class="date"><em>2019-03-14</em></h4>
+
+</div>
+
+
+<div id="introduction" class="section level1">
+<h1><span class="header-section-number">1</span> EViews 软件入门与基本操作</h1>
+<div id="eviews" class="section level2">
+<h2><span class="header-section-number">1.1</span> 为何选择EViews？</h2>
+<p>EViews全称为Econometrics Views，是计量经济分析的常用软件之一。1981年David Lilien开发一款名为MicroTSP（Time Series Processor）分析工具，主要用于大型计算机进行时间序列数据分析。1994年QMS（Quantitative Micro Software）公司用C++语言对MicroTSP进行重新设计，成功开发出EViews，使其广泛适用于Windows操作系统。2010年QMS公司被IHS公司收购<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>。</p>
+<p>实际上，计量经济分析软件类型多样，功能特征各有侧重，不同使用群体根据自身情况可以灵活选择。常用的计量经济分析软件就包括SPSS、EViews、Stata、SAS、Matlab等，它们也是各有优势和不足。作为参考，不同任务情形和学习阶段应选择合适的软件：</p>
+<ul>
+<li>计量经济初级学习者往往以菜单驱动型操作为主，适合的软件包括：
+<ul>
+<li>EViews：属于商业软件，基于C++语言</li>
+<li>SPSS：属于商业软件，基于Java语言</li>
+<li>Stata：属于商业软件，基于C语言</li>
+<li><span class="math inline">\(\cdots\)</span></li>
+</ul></li>
+<li>计量经济中高级学习者则追求更多灵活的命令编程设计和操作，适合的软件包括：
+<ul>
+<li>Matlab：属于商业软件，基于C++、Java、MATLAB语言</li>
+<li>SAS：属于商业软件，基于C语言</li>
+<li>R：属于开源软件，基于C、Fortran、R语言</li>
+<li>Python：属于开源软件</li>
+<li><span class="math inline">\(\cdots\)</span></li>
+</ul></li>
+</ul>
+<p>计量经济学课程中使用到的数据类型主要包括截面数据（cross-section data）、时间序列数据（time series data）和面板数据（pannel data）。EViews软件因为继承了其前身软件MicroTSP的主要特征，在计量经济分析中能满足基本功能分析需求，并且拥有十分全面的时间序列分析工具。此外，EViews软件同时支持菜单型操作和命令代码操作，很适合计量经济学初学者使用，学习门槛相对较低，使用者可以集中于关注计量建模分析的理论应用与验证。而对于中高级使用者，EViews也可以进行代码编程实现各种定制化的计量分析需求，从而保证软件使用的连贯性和一致性。</p>
+</div>
+<div id="eviews" class="section level2">
+<h2><span class="header-section-number">1.2</span> 怎样理解Eviews的运作逻辑？</h2>
+<ul>
+<li>使用者通过菜单操作基本就可以实现大部分的EViews功能
+<ul>
+<li>主要的统计和计量分析工具都被<strong>菜单化</strong>设计到EViews软件中。</li>
+<li><strong>鼠标+键盘</strong>的操作符合使用者的直观化学习习惯。</li>
+<li>意味着使用者要<strong>熟记</strong>各类统计和计量分析操作的准确菜单位置，这一定程度上增加了使用者的记忆负担。</li>
+</ul></li>
+<li>使用者也可以通过运行命令来实现各种EViews功能
+<ul>
+<li>单独编写命令行，独立运行每一行命令。适用于<strong>简单分析任务</strong>，与菜单操作进行配合使用。</li>
+<li>批量编写命令代码，整体运行代码文件。适合于<strong>复杂的或个性化的分析任务</strong>，便于命令代码维护，而且代码可重复使用，可以灵活开发出使用者定制化的分析流程（往往是EViews常用分析流程不能满足需求）。</li>
+<li>EViews具有<strong>独树一帜</strong>命令代码编写体系，使用者需要理解EViews代码规则，避免与其他统计软件代码编写规则的混淆使用。</li>
+</ul></li>
+<li>EViews是以对象（Object）方式来进行操作结果的管理和维护
+<ul>
+<li>所有的数据（data）、表格（table）、图片（graph）、方程（equation）等都将保存为对象（Object）。</li>
+<li>所有的对象（Object）都存放在一个工作文件（workfile）中。</li>
+<li>所有对象都可以进行复制（copy）、粘贴（paste）、保存（save）、重命名（rename）等操作。</li>
+</ul></li>
+</ul>
+</div>
+<div id="eviews" class="section level2">
+<h2><span class="header-section-number">1.3</span> 如何获取Eviews官方帮助？</h2>
+<p>作为一款商业软件，EViews能得到商业公司持续的软件维护和版本更新，不同EViews版本的界面、功能、特性等会有一定的改进和变化。2010年以后，IHS公司拥有EViews软件的商标和版权，目前发布的最新版本为EViews 10。本书所用示例均以<strong>EViews 10</strong>版本进行运行和演示，使用者应注意实际使用版本下可能细节上的变化和差异<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>。</p>
+<p>如果正确安装EViews 10，使用者将得到IHS公司官方提供的详尽帮助手册和在线文档。菜单操作的具体获取办法是：运行EViews 10 <span class="math inline">\(\Rightarrow\)</span> 点击Help <span class="math inline">\(\Rightarrow\)</span> 下拉选择相应帮助手册或文档。</p>
+<ul>
+<li>快速帮助手册
+<ul>
+<li>Object Reference</li>
+<li>Basic Command Reference</li>
+<li>Function Reference</li>
+<li>Matrix Reference</li>
+<li>Programming Reference</li>
+<li>Online Tutorials</li>
+</ul></li>
+<li>pdf帮助文档
+<ul>
+<li>User Guide I.pdf</li>
+<li>User Guide II.pdf</li>
+<li>Command &amp; Programming Ref.pdf</li>
+<li>Object Reference.pdf</li>
+<li>Eviews Illustrated.pdf</li>
+</ul></li>
+</ul>
+</div>
+<div class="section level2">
+<h2><span class="header-section-number">1.4</span> 实验内容</h2>
+<ul>
+<li>构建工作文件
+<ol style="list-style-type: decimal">
+<li>配置工作文件
+<ul>
+<li>文件名称</li>
+<li>存放路径</li>
+</ul></li>
+<li>认清数据类型
+<ul>
+<li>截面数据</li>
+<li>时序数据</li>
+<li>面板数据</li>
+</ul></li>
+<li>设定样本数量
+<ul>
+<li>观测数</li>
+<li>起始时间</li>
+<li>截面单元</li>
+</ul></li>
+</ol></li>
+<li>构造变量对象
+<ol style="list-style-type: decimal">
+<li>选定对象类型
+<ul>
+<li>系统对象</li>
+<li>数据对象</li>
+<li>图表对象</li>
+<li>模型对象</li>
+<li><span class="math inline">\(\cdots\)</span></li>
+</ul></li>
+<li><p>设置变量名称</p></li>
+<li>输入变量数据
+<ul>
+<li>键盘输入</li>
+<li>外部导入
+4.变量生成运算</li>
+<li><code>+ - * /</code> log运算</li>
+<li>赋值/提取操作</li>
+</ul></li>
+</ol></li>
+<li>构建分析模型
+<ol style="list-style-type: decimal">
+<li>简单图表分析
+<ul>
+<li>相关分析矩阵</li>
+<li>散点图</li>
+<li>直方图</li>
+<li><span class="math inline">\(\cdots\)</span></li>
+</ul></li>
+<li>描述性统计建模
+<ul>
+<li>集中趋势</li>
+<li>离散趋势</li>
+<li>偏态/峰态</li>
+</ul></li>
+<li>推断性统计建模
+<ul>
+<li>简单线性回归</li>
+<li>Logistic回归</li>
+<li><span class="math inline">\(\cdots\)</span></li>
+</ul></li>
+</ol></li>
+<li>模型比较检验
+<ol style="list-style-type: decimal">
+<li>模型竞争比较
+<ul>
+<li>可转化线性模型</li>
+<li>虚拟变量模型</li>
+</ul></li>
+<li>模型检验分析
+<ul>
+<li>经济学检验</li>
+<li>拟合优度检验</li>
+<li>统计学检验</li>
+<li>计量经济检验</li>
+<li>预测性检验</li>
+</ul></li>
+<li>模型诊断矫正
+<ul>
+<li>多重共线性</li>
+<li>异方差</li>
+<li>自相关</li>
+<li>自变量随机</li>
+</ul></li>
+</ol></li>
+<li>撰写分析报告
+<ol style="list-style-type: decimal">
+<li>简明报告</li>
+<li>详细报告</li>
+</ol></li>
+</ul>
+<p>利用EViews软件进行如下操作：</p>
+<ul>
+<li>EViews 软件的启动；</li>
+<li>数据的输入、编辑与序列生成；</li>
+<li>图形分析与描述统计分析；</li>
+<li>数据文件的存贮、调用；</li>
+</ul>
+</div>
+<div class="section level2">
+<h2><span class="header-section-number">1.5</span> 实验准备</h2>
+<div class="section level3">
+<h3><span class="header-section-number">1.5.1</span> 实验软件</h3>
+<p>本次实验需要提前准备好如下软件：</p>
+<ul>
+<li>统计分析软件Eviews 9.0版本及以上</li>
+<li>公式编辑软件Mathtype 6.0版本及以上</li>
+<li>写作编辑软件Office Word/Excel 2010版本及以上</li>
+<li>浏览器软件chrome 66.0版本及以上或 360极速浏览器9.5版本及以上</li>
+</ul>
+</div>
+<div class="section level3">
+<h3><span class="header-section-number">1.5.2</span> 实验材料</h3>
+</div>
+<div class="section level3">
+<h3><span class="header-section-number">1.5.3</span> 实验规则</h3>
+</div>
+</div>
+<div id="quick-sample" class="section level2">
+<h2><span class="header-section-number">1.6</span> EViews快速入门</h2>
+<p><strong>宏观经济数据</strong>：表<a href="#tab:data-development">1.1</a>给出给出了一国1980年第1季度到2012年第1季度间共计129个季度，关于quarter季度，GDP国内生产总值（10亿美元），PCE人均消费支出（美元），Investment投资（10亿美元），Government政府支出（10亿美元）等方面的数据。</p>
+<table>
+<caption><span id="tab:data-development">Table 1.1: </span>宏观经济发展数据(n=129)</caption>
+<thead>
+<tr class="header">
+<th align="left">year</th>
+<th align="left">quarter</th>
+<th align="right">GDP</th>
+<th align="right">PCE</th>
+<th align="right">Investment</th>
+<th align="right">Government</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1980</td>
+<td align="left">Q1</td>
+<td align="right">5903</td>
+<td align="right">3797</td>
+<td align="right">778.3</td>
+<td align="right">1365</td>
+</tr>
+<tr class="even">
+<td align="left">1980</td>
+<td align="left">Q2</td>
+<td align="right">5782</td>
+<td align="right">3710</td>
+<td align="right">708.1</td>
+<td align="right">1370</td>
+</tr>
+<tr class="odd">
+<td align="left">1980</td>
+<td align="left">Q3</td>
+<td align="right">5772</td>
+<td align="right">3750</td>
+<td align="right">654.1</td>
+<td align="right">1351</td>
+</tr>
+<tr class="even">
+<td align="left">1980</td>
+<td align="left">Q4</td>
+<td align="right">5878</td>
+<td align="right">3800</td>
+<td align="right">720.6</td>
+<td align="right">1349</td>
+</tr>
+<tr class="odd">
+<td align="left">1981</td>
+<td align="left">Q1</td>
+<td align="right">6001</td>
+<td align="right">3821</td>
+<td align="right">792.2</td>
+<td align="right">1367</td>
+</tr>
+<tr class="even">
+<td align="left">2011</td>
+<td align="left">Q1</td>
+<td align="right">13228</td>
+<td align="right">9377</td>
+<td align="right">1750.9</td>
+<td align="right">2514</td>
+</tr>
+<tr class="odd">
+<td align="left">2011</td>
+<td align="left">Q2</td>
+<td align="right">13272</td>
+<td align="right">9393</td>
+<td align="right">1778.4</td>
+<td align="right">2508</td>
+</tr>
+<tr class="even">
+<td align="left">2011</td>
+<td align="left">Q3</td>
+<td align="right">13332</td>
+<td align="right">9434</td>
+<td align="right">1784.2</td>
+<td align="right">2508</td>
+</tr>
+<tr class="odd">
+<td align="left">2011</td>
+<td align="left">Q4</td>
+<td align="right">13429</td>
+<td align="right">9482</td>
+<td align="right">1875.7</td>
+<td align="right">2481</td>
+</tr>
+<tr class="even">
+<td align="left">2012</td>
+<td align="left">Q1</td>
+<td align="right">13502</td>
+<td align="right">9550</td>
+<td align="right">1903.0</td>
+<td align="right">2462</td>
+</tr>
+</tbody>
+</table>
+<p>变量定义和说明见表<a href="#tab:label-development">1.2</a>：</p>
+<table>
+<caption><span id="tab:label-development">Table 1.2: </span>变量定义及说明</caption>
+<thead>
+<tr class="header">
+<th align="left">variable</th>
+<th align="left">label</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">year</td>
+<td align="left">年</td>
+</tr>
+<tr class="even">
+<td align="left">quarter</td>
+<td align="left">季度</td>
+</tr>
+<tr class="odd">
+<td align="left">GDP</td>
+<td align="left">国内生产总值（10亿美元）</td>
+</tr>
+<tr class="even">
+<td align="left">PCE</td>
+<td align="left">人均消费支出（美元）</td>
+</tr>
+<tr class="odd">
+<td align="left">Investment</td>
+<td align="left">投资（10亿美元）</td>
+</tr>
+<tr class="even">
+<td align="left">Government</td>
+<td align="left">政府支出（10亿美元）</td>
+</tr>
+</tbody>
+</table>
+<p>使用EViews软件分析该国宏观经济发展情况，一般需要事先将相关经济变量收集和整理成规范化的数据表（见表<a href="#tab:data-development">1.1</a>）。其中，每列代表变量（variables），每行代表样本（observations），数据文件格式为电子表格文件（.xlsx）等。</p>
+<p>利用<strong>数据导入</strong>菜单，可以把预备好的电子表格文件（.xlsx）导入到EViews**工作文件（workfile）*中。导入数据后的EViews界面见图<a href="#fig:demon-import">1.1</a></p>
+<div class="figure" style="text-align: center"><span id="fig:demon-import"></span>
+<img src="picture/lab1-introduction/1-demon-import.png" alt="导入宏观经济发展数据" width="798" />
+<p class="caption">
+Figure 1.1: 导入宏观经济发展数据
+</p>
+</div>
+<p>为了掌握宏观经济的样本数据特征，可以进行EViews基本的<strong>描述性统计分析</strong>。描述性统计分析结果见图<a href="#fig:demon-exploratory">1.2</a></p>
+<div class="figure" style="text-align: center"><span id="fig:demon-exploratory"></span>
+<img src="picture/lab1-introduction/1-demon-exploratory.png" alt="宏观经济发展数据的描述性统计" width="764" />
+<p class="caption">
+Figure 1.2: 宏观经济发展数据的描述性统计
+</p>
+</div>
+<p>进一步地，利用<strong>绘图</strong>操作，可以得到4个主要变量的<strong>多线图</strong>（见图<a href="#fig:demon-line">1.3</a>）</p>
+<div class="figure" style="text-align: center"><span id="fig:demon-line"></span>
+<img src="picture/lab1-introduction/1-demon-line.png" alt="4个时间序列变量的多线图" width="716" />
+<p class="caption">
+Figure 1.3: 4个时间序列变量的多线图
+</p>
+</div>
+<p>同时，还可以绘制对数化的国内生产总值GDP与其他变量（PCE,Investment,Government）之间的<strong>相关系数表</strong>（见图<a href="#fig:demon-corrl">1.4</a>）。</p>
+<div class="figure" style="text-align: center"><span id="fig:demon-corrl"></span>
+<img src="picture/lab1-introduction/1-demon-corrl.png" alt="多个变量之间的相关系数表" width="840" />
+<p class="caption">
+Figure 1.4: 多个变量之间的相关系数表
+</p>
+</div>
+<p>一个重要的工作还包括进行回归建模分析，可以尝试如下的回归模型：</p>
+<p><span class="math display" id="eq:demon-SRM" id="eq:demon-PRM">\[\begin{align}
+GDP&amp;=\beta_1+\beta_2PCE+\beta_3Investment+\beta_4Government+u_i \tag{1.1}\\
+GDP&amp;=\hat{\beta}_1+\hat{\beta}_2PCE+\hat{\beta}_3Investment+\hat{\beta}_4Government+e_i \tag{1.2}
+\end{align}\]</span></p>
+<p>利用EViews<strong>回归分析操作</strong>，可以得到如下的回归分析报告结果（见图<a href="#fig:demon-report">1.5</a>）</p>
+<div class="figure" style="text-align: center"><span id="fig:demon-report"></span>
+<img src="picture/lab1-introduction/1-demon-report.png" alt="国内生产总值ln(GDP)回归结果" width="714" />
+<p class="caption">
+Figure 1.5: 国内生产总值ln(GDP)回归结果
+</p>
+</div>
+</div>
+<div id="eviews" class="section level2">
+<h2><span class="header-section-number">1.7</span> EViews菜单操作流程</h2>
+<p>上述的快速案例速览，简要列出了使用EViews进行一次样本数据实证分析的主要步骤过程，是<strong>典型的</strong>实践操作流程。我们基本可以总结为如下6个步骤：</p>
+<ul>
+<li>准备数据（data preparing）</li>
+<li>构建工作文件（workfile creating）</li>
+<li>构造对象（objects generating）</li>
+<li>探索性分析（exploratory analyzing）</li>
+<li>线性回归分析（linear regression analyzing）</li>
+<li>报告结果输出（output reporting）</li>
+</ul>
+<p>下面将逐条进行简要说明。</p>
+<div id="data-preparing" class="section level3">
+<h3><span class="header-section-number">1.7.1</span> 准备数据（data preparing）</h3>
+<p>准备数据（data preparing）属于前期准备工作，包括数据收集、清洗、整理等环节。目标是获得规范的数据表，要求每列都代表变量（variables），每行都代表样本（observations）。在进行正式EViews分析之前，提前准备一份规范的数据表是极为重要的。需要做的准备工作包括：</p>
+<ul>
+<li>数据收集：根据研究目的设计理论模型，模型中的<strong>理论变量</strong>需要找到对应的现实<strong>数据变量</strong>。一般情况下，一个理论变量可以对应多个数据变量，但由于实际情况制约（如人力、资金、技术等条件约束），数据变量并不总是可以收集得到。</li>
+<li>数据清洗：收集得到的数据并不总是完美和理想，比如常常有<strong>数据缺失</strong>、<strong>虚假数据</strong>、<strong>错误数据</strong>等，从而需要进行数据替换、删减、调整等操作。</li>
+<li>数据整理：清洗后的数据，还需要以某种形式呈现出来。数据整理就是把数据的<strong>统计结构</strong>（变量和样本）与<strong>物理结构</strong>（行和列）进行某种匹配整合。</li>
+</ul>
+<p>规范的数据表要求具有下面的结构形式<span class="citation">[@hadley2016]</span>：</p>
+<ul>
+<li>每列都代表变量（variables）</li>
+<li>每行都代表样本（observations）</li>
+</ul>
+<p>规范的数据表可以称为<strong>坐标型数据（Cartesian data）</strong>，数据的统计结构和物理结构是严格对应的，也即每列代表变量，每行都代表样本，数据点通过<strong>行坐标</strong>和<strong>列坐标</strong>一起定位得到。</p>
+<p>大部分不规范的数据表则可以称为<strong>索引型数据（indexed data）</strong>，数据的统计结构和物理结构并不是严格对应的，数据点往往是通过查询索引序号而得到（有点像通过偏旁部首查字典的方式）。</p>
+<p>一份规范化的数据数据表，具有属于<strong>坐标型数据</strong>的形式，以表<a href="#tab:data-ok1">1.3</a>为例：</p>
+<ul>
+<li>每一行都代表一个观测样本（observation），分别从1980年Q1季度到2012年Q1季度，共有129行（也即129个季度）；</li>
+<li>每一列都代表一个变量（variable），分别是year年、quarter季度、GDP国内生产总值（10亿美元）、PCE人均消费支出（美元）、Investment投资（10亿美元）、Government政府支出（10亿美元），共有6列（也即6个变量）。</li>
+<li>数据表的维度为(行数=129;列数=6)，统计结构和物理结构严格对应。</li>
+</ul>
+<table>
+<caption><span id="tab:data-ok1">Table 1.3: </span>宏观经济发展数据（规范数据表）(行数=129;列数=6)</caption>
+<thead>
+<tr class="header">
+<th align="left">year</th>
+<th align="left">quarter</th>
+<th align="right">GDP</th>
+<th align="right">PCE</th>
+<th align="right">Investment</th>
+<th align="right">Government</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1980</td>
+<td align="left">Q1</td>
+<td align="right">5903</td>
+<td align="right">3797</td>
+<td align="right">778.3</td>
+<td align="right">1365</td>
+</tr>
+<tr class="even">
+<td align="left">1980</td>
+<td align="left">Q2</td>
+<td align="right">5782</td>
+<td align="right">3710</td>
+<td align="right">708.1</td>
+<td align="right">1370</td>
+</tr>
+<tr class="odd">
+<td align="left">1980</td>
+<td align="left">Q3</td>
+<td align="right">5772</td>
+<td align="right">3750</td>
+<td align="right">654.1</td>
+<td align="right">1351</td>
+</tr>
+<tr class="even">
+<td align="left">1980</td>
+<td align="left">Q4</td>
+<td align="right">5878</td>
+<td align="right">3800</td>
+<td align="right">720.6</td>
+<td align="right">1349</td>
+</tr>
+<tr class="odd">
+<td align="left">1981</td>
+<td align="left">Q1</td>
+<td align="right">6001</td>
+<td align="right">3821</td>
+<td align="right">792.2</td>
+<td align="right">1367</td>
+</tr>
+<tr class="even">
+<td align="left">2011</td>
+<td align="left">Q1</td>
+<td align="right">13228</td>
+<td align="right">9377</td>
+<td align="right">1750.9</td>
+<td align="right">2514</td>
+</tr>
+<tr class="odd">
+<td align="left">2011</td>
+<td align="left">Q2</td>
+<td align="right">13272</td>
+<td align="right">9393</td>
+<td align="right">1778.4</td>
+<td align="right">2508</td>
+</tr>
+<tr class="even">
+<td align="left">2011</td>
+<td align="left">Q3</td>
+<td align="right">13332</td>
+<td align="right">9434</td>
+<td align="right">1784.2</td>
+<td align="right">2508</td>
+</tr>
+<tr class="odd">
+<td align="left">2011</td>
+<td align="left">Q4</td>
+<td align="right">13429</td>
+<td align="right">9482</td>
+<td align="right">1875.7</td>
+<td align="right">2481</td>
+</tr>
+<tr class="even">
+<td align="left">2012</td>
+<td align="left">Q1</td>
+<td align="right">13502</td>
+<td align="right">9550</td>
+<td align="right">1903.0</td>
+<td align="right">2462</td>
+</tr>
+</tbody>
+</table>
+<p>而糟糕的数据表往往有很多种形式，下面列出三种形式（见表<a href="#tab:data-mess-wide-q">1.4</a>、表<a href="#tab:data-mess-wide">1.5</a>和表<a href="#tab:data-mess-long">1.6</a>）。它们都属于<strong>索引型数据</strong>形式，其中：</p>
+<ul>
+<li><p>对于表<a href="#tab:data-mess-wide-q">1.4</a>：统计结构中，我们所关心的<strong>变量</strong>被分散在第2列所对应的各行中，而<strong>观测样本</strong>则被割裂在第一列对应的各行（表示年份）和第3列到第4列（表示季度）。整个数据表的维度为(行数=132;列数=6)，统计结构和物理结构不能一一对应，而是通过索引指标才能查到数据点。</p></li>
+<li><p>对于表<a href="#tab:data-mess-wide">1.5</a>：统计结构中，我们所关心的<strong>变量</strong>与<strong>观测样本</strong>糅合在一起，除第1列之外，其他列都是这样的混合体，如GDP_Q1, GDP_Q2, GDP_Q3表示国内生产总值GDP分别与Q1~Q4季度的混合。同时，<strong>观测样本</strong>（如1980年Q1季度）也是被割裂开来了。整个数据表的维度为(行数=33;列数=17)，统计结构和物理结构不能一一对应，而是通过索引指标才能查到数据点。</p></li>
+<li><p>对于表<a href="#tab:data-mess-long">1.6</a>：该形式的数据表属于典型的<strong>索引型数据</strong>形式。其中，我们所关系的<strong>变量</strong>全部作为索引指标之一，出现在第3列（variable）；而数据值则全部出现在第4列（value）。数据值必须通过<strong>观测样本</strong>索引指标（第1列的year和第2列的quarter）与<strong>变量</strong>索引指标（第3列的variable）才能查询得到。该数据表的维度为(行数=516;列数=4)，统计结构和物理结构不能一一对应，而是通过索引指标才能查到数据点。</p></li>
+</ul>
+<table>
+<caption><span id="tab:data-mess-wide-q">Table 1.4: </span>宏观经济发展数据（糟糕数据表1）(行数=132;列数=6)</caption>
+<thead>
+<tr class="header">
+<th align="left">year</th>
+<th align="left">variable</th>
+<th align="right">Q1</th>
+<th align="right">Q2</th>
+<th align="right">Q3</th>
+<th align="right">Q4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1980</td>
+<td align="left">GDP</td>
+<td align="right">5903.4</td>
+<td align="right">5782.4</td>
+<td align="right">5771.7</td>
+<td align="right">5878.4</td>
+</tr>
+<tr class="even">
+<td align="left">1980</td>
+<td align="left">PCE</td>
+<td align="right">3796.7</td>
+<td align="right">3710.5</td>
+<td align="right">3750.3</td>
+<td align="right">3800.3</td>
+</tr>
+<tr class="odd">
+<td align="left">1980</td>
+<td align="left">Investment</td>
+<td align="right">778.3</td>
+<td align="right">708.1</td>
+<td align="right">654.1</td>
+<td align="right">720.6</td>
+</tr>
+<tr class="even">
+<td align="left">1980</td>
+<td align="left">Government</td>
+<td align="right">1365.4</td>
+<td align="right">1369.7</td>
+<td align="right">1350.8</td>
+<td align="right">1349.4</td>
+</tr>
+<tr class="odd">
+<td align="left">1981</td>
+<td align="left">GDP</td>
+<td align="right">6000.6</td>
+<td align="right">5952.7</td>
+<td align="right">6025.0</td>
+<td align="right">5950.0</td>
+</tr>
+<tr class="even">
+<td align="left">2011</td>
+<td align="left">GDP</td>
+<td align="right">13227.9</td>
+<td align="right">13271.8</td>
+<td align="right">13331.6</td>
+<td align="right">13429.0</td>
+</tr>
+<tr class="odd">
+<td align="left">2011</td>
+<td align="left">PCE</td>
+<td align="right">9376.7</td>
+<td align="right">9392.7</td>
+<td align="right">9433.5</td>
+<td align="right">9482.1</td>
+</tr>
+<tr class="even">
+<td align="left">2011</td>
+<td align="left">Investment</td>
+<td align="right">1750.9</td>
+<td align="right">1778.4</td>
+<td align="right">1784.2</td>
+<td align="right">1875.7</td>
+</tr>
+<tr class="odd">
+<td align="left">2011</td>
+<td align="left">Government</td>
+<td align="right">2513.9</td>
+<td align="right">2508.2</td>
+<td align="right">2507.6</td>
+<td align="right">2481.2</td>
+</tr>
+<tr class="even">
+<td align="left">2012</td>
+<td align="left">GDP</td>
+<td align="right">13502.4</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">2012</td>
+<td align="left">PCE</td>
+<td align="right">9550.2</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="left">2012</td>
+<td align="left">Investment</td>
+<td align="right">1903.0</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">2012</td>
+<td align="left">Government</td>
+<td align="right">2462.2</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+</tbody>
+</table>
+<table>
+<caption><span id="tab:data-mess-wide">Table 1.5: </span>宏观经济发展数据（糟糕数据表2）(行数=33;列数=17)</caption>
+<thead>
+<tr class="header">
+<th align="left">year</th>
+<th align="right">GDP_Q1</th>
+<th align="right">GDP_Q2</th>
+<th align="right">GDP_Q3</th>
+<th align="right">GDP_Q4</th>
+<th align="right">Government_Q3</th>
+<th align="right">Government_Q4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1980</td>
+<td align="right">5903</td>
+<td align="right">5782</td>
+<td align="right">5772</td>
+<td align="right">5878</td>
+<td align="right">1351</td>
+<td align="right">1349</td>
+</tr>
+<tr class="even">
+<td align="left">1981</td>
+<td align="right">6001</td>
+<td align="right">5953</td>
+<td align="right">6025</td>
+<td align="right">5950</td>
+<td align="right">1367</td>
+<td align="right">1380</td>
+</tr>
+<tr class="odd">
+<td align="left">1982</td>
+<td align="right">5852</td>
+<td align="right">5884</td>
+<td align="right">5861</td>
+<td align="right">5866</td>
+<td align="right">1396</td>
+<td align="right">1420</td>
+</tr>
+<tr class="even">
+<td align="left">1983</td>
+<td align="right">5939</td>
+<td align="right">6072</td>
+<td align="right">6192</td>
+<td align="right">6320</td>
+<td align="right">1468</td>
+<td align="right">1443</td>
+</tr>
+<tr class="odd">
+<td align="left">1984</td>
+<td align="right">6443</td>
+<td align="right">6554</td>
+<td align="right">6618</td>
+<td align="right">6672</td>
+<td align="right">1500</td>
+<td align="right">1532</td>
+</tr>
+<tr class="even">
+<td align="left">2008</td>
+<td align="right">13267</td>
+<td align="right">13310</td>
+<td align="right">13187</td>
+<td align="right">12884</td>
+<td align="right">2511</td>
+<td align="right">2520</td>
+</tr>
+<tr class="odd">
+<td align="left">2009</td>
+<td align="right">12663</td>
+<td align="right">12641</td>
+<td align="right">12694</td>
+<td align="right">12814</td>
+<td align="right">2554</td>
+<td align="right">2548</td>
+</tr>
+<tr class="even">
+<td align="left">2010</td>
+<td align="right">12938</td>
+<td align="right">13058</td>
+<td align="right">13140</td>
+<td align="right">13216</td>
+<td align="right">2570</td>
+<td align="right">2552</td>
+</tr>
+<tr class="odd">
+<td align="left">2011</td>
+<td align="right">13228</td>
+<td align="right">13272</td>
+<td align="right">13332</td>
+<td align="right">13429</td>
+<td align="right">2508</td>
+<td align="right">2481</td>
+</tr>
+<tr class="even">
+<td align="left">2012</td>
+<td align="right">13502</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+</tbody>
+</table>
+<table>
+<caption><span id="tab:data-mess-long">Table 1.6: </span>宏观经济发展数据（糟糕数据表3）(行数=516;列数=4)</caption>
+<thead>
+<tr class="header">
+<th align="left">year</th>
+<th align="left">quarter</th>
+<th align="left">variable</th>
+<th align="right">value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1980</td>
+<td align="left">Q1</td>
+<td align="left">GDP</td>
+<td align="right">5903</td>
+</tr>
+<tr class="even">
+<td align="left">1980</td>
+<td align="left">Q2</td>
+<td align="left">GDP</td>
+<td align="right">5782</td>
+</tr>
+<tr class="odd">
+<td align="left">1980</td>
+<td align="left">Q3</td>
+<td align="left">GDP</td>
+<td align="right">5772</td>
+</tr>
+<tr class="even">
+<td align="left">1980</td>
+<td align="left">Q4</td>
+<td align="left">GDP</td>
+<td align="right">5878</td>
+</tr>
+<tr class="odd">
+<td align="left">1981</td>
+<td align="left">Q1</td>
+<td align="left">GDP</td>
+<td align="right">6001</td>
+</tr>
+<tr class="even">
+<td align="left">1981</td>
+<td align="left">Q2</td>
+<td align="left">GDP</td>
+<td align="right">5953</td>
+</tr>
+<tr class="odd">
+<td align="left">2010</td>
+<td align="left">Q3</td>
+<td align="left">Government</td>
+<td align="right">2570</td>
+</tr>
+<tr class="even">
+<td align="left">2010</td>
+<td align="left">Q4</td>
+<td align="left">Government</td>
+<td align="right">2552</td>
+</tr>
+<tr class="odd">
+<td align="left">2011</td>
+<td align="left">Q1</td>
+<td align="left">Government</td>
+<td align="right">2514</td>
+</tr>
+<tr class="even">
+<td align="left">2011</td>
+<td align="left">Q2</td>
+<td align="left">Government</td>
+<td align="right">2508</td>
+</tr>
+<tr class="odd">
+<td align="left">2011</td>
+<td align="left">Q3</td>
+<td align="left">Government</td>
+<td align="right">2508</td>
+</tr>
+<tr class="even">
+<td align="left">2011</td>
+<td align="left">Q4</td>
+<td align="left">Government</td>
+<td align="right">2481</td>
+</tr>
+<tr class="odd">
+<td align="left">2012</td>
+<td align="left">Q1</td>
+<td align="left">Government</td>
+<td align="right">2462</td>
+</tr>
+</tbody>
+</table>
+<p>简单地总结起来就是：</p>
+<ul>
+<li>一份<strong>规范的数据表</strong>（见表<a href="#tab:data-ok1">1.3</a>）可以直接导入到EViews的工作文件（workfile）中，并马上可以用于实证建模分析的。</li>
+<li>一份<strong>糟糕的数据表</strong>（见表<a href="#tab:data-mess-wide-q">1.4</a>、表<a href="#tab:data-mess-wide">1.5</a>和表<a href="#tab:data-mess-long">1.6</a>）是<strong>不能</strong>直接导入到EViews工作文件（workfile）中（更严格地说，导入进去后是无意义的或无效的）。</li>
+</ul>
+</div>
+<div id="workfile-create" class="section level3">
+<h3><span class="header-section-number">1.7.2</span> 构建工作文件（workfile creating）</h3>
+<p>工作文件（workfile）是EViews所有操作结果的“大容器”，操作结果将“分门别类”地以各种对象（objects）形式留存在这个“大容器”里。工作文件（workfile）的构建跟数据类型（截面数据、时间序列数据、面板数据）很有关系，一般都需要提前设置（当然也可以事后修改）。</p>
+<div id="eviews" class="section level4">
+<h4><span class="header-section-number">1.7.2.1</span> 启动EViews软件</h4>
+<p>在电脑操作系统中，找到EViews安装程序，点击运行后将显示EViews软件界面（见图<a href="#fig:window-show">1.6</a>）</p>
+<div class="figure" style="text-align: center"><span id="fig:window-show"></span>
+<img src="picture/lab1-introduction/1-window-show.png" alt="EViews 10软件界面" width="846" />
+<p class="caption">
+Figure 1.6: EViews 10软件界面
+</p>
+</div>
+<p>其中界面分块情况如下：</p>
+<ul>
+<li>标题栏：用于显示EViews任务的标题信息，并控制窗口状态。</li>
+<li>菜单栏：菜单栏中排列着按照功能划分的10个主菜单选项，用鼠标单击任意选项会出现不同的下拉菜单，显示该部分的具体功能。</li>
+<li>命令窗口：用户可在光标位置用键盘输入各种Eviews命名，并按回车键执行该命令。</li>
+<li>工作区窗口：操作过程中打开的各子窗口在工作区内显示。</li>
+<li>状态栏：Eviews主窗口的底部是状态栏，从左到右分别为：信息框、路径框、当前数据库框和当前工作文件框。</li>
+</ul>
+</div>
+<div id="workfile" class="section level4">
+<h4><span class="header-section-number">1.7.2.2</span> 创建工作文件（workfile）</h4>
+<p>进入EViews软件后的第一件工作应从创建新的或调入原有的工作文件（workfile）开始。只有新建或调入原有工作文件，EViews才允许用户输入开始进行数据处理。</p>
+<p>EViews工作文件（workfile）的创建需要提前考虑如下几个方面：</p>
+<ul>
+<li>工作文件的结构类型（workfile structure type），一般包括截面数据、时间序列数据、面板数据三种类型
+<ul>
+<li>对于截面数据，可以选择<strong>非结构型/非日期型</strong>（Unstructured/Undated）</li>
+<li>对于时间序列数据，可以选择<strong>有规则日期型</strong>（Data-regular frequency）</li>
+<li>对于面板数据，可以选择平衡面板（Balanced Panel）</li>
+</ul></li>
+<li>数据长度或起止时间（data specification），依据数据类型而不同
+<ul>
+<li>对于截面数据，需要设置观测样本数（observations）</li>
+<li>对于时间序列数据，需要设置数据频率（frequency）和起止时间（start date 和end date）</li>
+<li>对于面板数据，需要设置数据频率（frequency）、起止时间（start date 和end date）和截面单元数（number of cross sections）</li>
+</ul></li>
+<li>工作文件的命名（workfile names），而且在一个工作文件下可以开展多个分析任务。不同分析任务可以设置不同的子页（page），并可以对子页进行命名以便区分</li>
+<li>工作文件的存放地址（path），可以决定存放在电脑本地的具体文件夹位置</li>
+</ul>
+<p>此次实验演示的<strong>宏观经济发展案例</strong>为<strong>时间序列数据</strong>，我们将构建一个工作文件（workfile）和一个子页（page），具体步骤是（见图<a href="#fig:new-workfile">1.7</a>和图图<a href="#fig:new-workfile-ok">1.8</a>）：</p>
+<ul>
+<li>启动EViews软件并新建workfile
+<ul>
+<li>在菜单上依次点击<span class="math inline">\(\Rightarrow\)</span> File<span class="math inline">\(\Rightarrow\)</span> New<span class="math inline">\(\Rightarrow\)</span> Workfile</li>
+</ul></li>
+<li>设置工作文件的结构类型（workfile structure type）
+<ul>
+<li>点击选择<strong>有规则日期型</strong>（Data-regular frequency）</li>
+</ul></li>
+<li>设置数据长度或起止时间（data specification）
+<ul>
+<li>设置数据频率（frequency）：点击选择季度（Quarterly）</li>
+<li>设置起始时间（start date）：手工输入<code>1980/1</code></li>
+<li>设置结束时间（end date）：手工输入<code>2012/1</code></li>
+</ul></li>
+<li>设置工作文件的命名（workfile names）
+<ul>
+<li>WF：手工输入<code>macro_economic</code>（建议命名）</li>
+<li>page：手工输入<code>gdp</code>（建议命名）</li>
+</ul></li>
+<li>完成设置，查看工作文件，并保存到指定本地地址。
+<ul>
+<li><span class="math inline">\(\Rightarrow\)</span> 点击Ok。</li>
+<li>此时可以看到已经建好的工作文件视窗。</li>
+<li>保存工作文件到指定的本地地址（如<code>D:\econometrics\eviews\macro_economic.wf1</code>）。
+<ul>
+<li>方法1（快捷保存）：在工作文件视窗下，同时按键盘Ctrl+S <span class="math inline">\(\Rightarrow\)</span> 选择本地路径地址 <span class="math inline">\(\Rightarrow\)</span> 点击确认</li>
+<li>方法2（菜单保存）：在工作文件视窗下，点击菜单栏中的Save <span class="math inline">\(\Rightarrow\)</span> 选择本地路径地址 <span class="math inline">\(\Rightarrow\)</span> 点击确认</li>
+</ul></li>
+</ul></li>
+</ul>
+<div class="figure" style="text-align: center"><span id="fig:new-workfile"></span>
+<img src="picture/lab1-introduction/1-new-workfile.png" alt="创建宏观经济案例的工作文件" width="1041" />
+<p class="caption">
+Figure 1.7: 创建宏观经济案例的工作文件
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:new-workfile-ok"></span>
+<img src="picture/lab1-introduction/1-new-workfile-ok.png" alt="宏观经济案例的工作文件视窗" width="1023" />
+<p class="caption">
+Figure 1.8: 宏观经济案例的工作文件视窗
+</p>
+</div>
+</div>
+<div id="import-data" class="section level4">
+<h4><span class="header-section-number">1.7.2.3</span> 导入数据</h4>
+<p>建立或调入工作文件以后，可以输入和编辑数据。 输入数据的基本方法有三种：</p>
+<ul>
+<li>方式1：通过菜单操作导入（import）数据
+<ul>
+<li>直接导入（import）<strong>外部数据</strong>（最为常用），支持的外部数据文件格式包括：
+<ul>
+<li>表格文件excel file（最为常用的.xls、.xlsx）</li>
+<li>文本文件text file（较为常用的.txt、.csv、.dat）</li>
+<li>其他文件<span class="math inline">\(\cdots\)</span></li>
+</ul></li>
+<li>从EViews数据库中抓取（fetch）数据（较为常用）</li>
+<li>其他方式的导入<span class="math inline">\(\cdots\)</span></li>
+</ul></li>
+<li>方式2：在工作文件下手工输入数据（较少使用）
+<ul>
+<li>手工一个一个数据输入（重复且单调）</li>
+<li>复制粘贴数据，利用操作系统的剪贴板功能把外部数据复制并粘贴过来（对外部数据格式有一定要求，出错率较高）</li>
+</ul></li>
+<li>方式3：在命令窗口下，使用EViews代码输入数据（较少使用，此处细节略过）</li>
+</ul>
+<p>此次实验演示的<strong>宏观经济发展案例</strong>，我们采取方式1，直接导入已经规范化的外部表格数据（.xlsx）文件，具体操作过程为：</p>
+<ul>
+<li>通过菜单操作读取外部文件（见图<a href="#fig:import-menu">1.9</a>）：
+<ul>
+<li>在菜单上依次点击：<span class="math inline">\(\Rightarrow\)</span> File <span class="math inline">\(\Rightarrow\)</span> Import <span class="math inline">\(\Rightarrow\)</span> Import from file …</li>
+<li>选择本地数据文件：选择文件路径<code>d:/econometrics/eviews/macro_economic.xlsx</code>（根据文件位置而定）</li>
+</ul></li>
+<li>设置数据导入的引导界面：（如果数据足够规范，基本无需调整各项默认设置，见图<a href="#fig:import-intro">1.10</a>）。
+<ul>
+<li>step 1 of 4：设置并确认数据读取范围</li>
+<li>step 2 of 4：设置并确认变量名和行数据说明</li>
+<li>step 3 of 4：设置并确认缺失值和列数据说明</li>
+<li>step 4 of 4：设置并确认导入方法、选项、数据结构等</li>
+<li>完成导入：点击finish</li>
+</ul></li>
+<li>检查数据是否正确导入。
+<ul>
+<li>以序列对象形式查看个别数据。在工作文件视窗下：
+<ul>
+<li>双击打开并查看序列对象<img src="picture/object/Series.png" />gdp</li>
+</ul></li>
+<li>以组对象形式查看全部数据（见图<a href="#fig:import-check">1.11</a>）。
+<ul>
+<li>选择4个主要变量。工作文件视窗中：
+<ul>
+<li>按住键盘CTRL键，鼠标左键依次点击选择对象<img src="picture/object/Series.png" />gdp、<img src="picture/object/Series.png" />pce、<img src="picture/object/Series.png" />investment、<img src="picture/object/Series.png" />government</li>
+</ul></li>
+<li>构造组对象。在工作文件的选定区（有底域阴影）上：
+<ul>
+<li>点击右键<span class="math inline">\(\Rightarrow\)</span> 选择<code>Open</code> <span class="math inline">\(\Rightarrow\)</span> 选择<code>as Group</code></li>
+<li>得到未命名组对象<img src="picture/object/Group.png" />UNTITLED</li>
+</ul></li>
+<li>命名组对象并保存。在未命名组对象<img src="picture/object/Group.png" />UNTITLED视窗下
+<ul>
+<li>点击菜单栏中的<code>Name</code></li>
+<li>输入命名<code>group_vars</code> （建议命名）</li>
+<li>点击<code>Ok</code></li>
+</ul></li>
+<li>查看组对象。在工作文件视窗中，
+<ul>
+<li>双击查看已经命名的组对象<img src="picture/object/Group.png" />group_vars</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<div class="figure" style="text-align: center"><span id="fig:import-menu"></span>
+<img src="picture/lab1-introduction/1-import-menu.png" alt="导入外部xlsx数据文件1：菜单" width="1023" />
+<p class="caption">
+Figure 1.9: 导入外部xlsx数据文件1：菜单
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:import-intro"></span>
+<img src="picture/lab1-introduction/1-import-intro.png" alt="导入外部xlsx数据文2：引导" width="1204" />
+<p class="caption">
+Figure 1.10: 导入外部xlsx数据文2：引导
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:import-check"></span>
+<img src="picture/lab1-introduction/1-import-check.png" alt="导入外部xlsx数据文件3：检查" width="1042" />
+<p class="caption">
+Figure 1.11: 导入外部xlsx数据文件3：检查
+</p>
+</div>
+</div>
+</div>
+<div id="objects-generating" class="section level3">
+<h3><span class="header-section-number">1.7.3</span> 构造对象（objects generating）</h3>
+<p>既然EViews是以对象（Object）方式来进行操作结果的管理和维护，那么所有的EViews操作过程几乎都会<strong>“凡走过必留下痕迹”</strong>，这些可见的“痕迹”就是<strong>EViews对象</strong>（object）。简言之，EViews操作中的所有信息都存放在<strong>对象</strong>（object）里。同时，构造对象（objects generating）是一系列EViews操作过程的<strong>副产品</strong>：</p>
+<ul>
+<li>随着分析操作环节的增加，各种对象都会相应产生，如表格（table）、图片（graph）、方程（equation）等。</li>
+<li>如有必要，可能还会基于某个对象产生另一个新对象，如从方程（equation）对象中提取得到系数（beta）对象；或基于X变量的序列对象（series）生成新的ln(X)序列（series）对象。</li>
+</ul>
+<div id="family-objects" class="section level4">
+<h4><span class="header-section-number">1.7.3.1</span> EViews对象（object）的<strong>“全家福”</strong></h4>
+<p>对于EViews初学者，很有必要系统地了解<strong>EViews对象</strong>（object）都有哪些<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>。其中，尤其需要关注那些最为常用的（对于初级或中级使用者而言）EViews对象：</p>
+<table>
+<caption><span id="tab:object-show1">Table 1.7: </span>常用EViews对象列表及说明</caption>
+<thead>
+<tr class="header">
+<th align="left">常用指数</th>
+<th align="left">图标</th>
+<th align="left">英文名</th>
+<th align="left">中文名</th>
+<th align="left">用途</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\(4\star\)</span></td>
+<td align="left"><img src="picture/object/Alpha.png" /></td>
+<td align="left">Alpha</td>
+<td align="left">字母数字（序列型）</td>
+<td align="left">表达包含字母数字的变量</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(4\star\)</span></td>
+<td align="left"><img src="picture/object/Coef.png" /></td>
+<td align="left">Coef</td>
+<td align="left">系数（向量型）</td>
+<td align="left">表示方程(Equation)或系统(System)的参数</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(5\star\)</span></td>
+<td align="left"><img src="picture/object/Equation.png" /></td>
+<td align="left">Equation</td>
+<td align="left">方程</td>
+<td align="left">表示方程的估计、检验或预测</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(5\star\)</span></td>
+<td align="left"><img src="picture/object/Graph.png" /></td>
+<td align="left">Graph</td>
+<td align="left">图形</td>
+<td align="left">表示图形输出结果</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(5\star\)</span></td>
+<td align="left"><img src="picture/object/Group.png" /></td>
+<td align="left">Group</td>
+<td align="left">组</td>
+<td align="left">表示<strong>序列型对象</strong>(包括Series/Alpha等)的一个集合体</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(4\star\)</span></td>
+<td align="left"><img src="picture/object/Matrix.png" /></td>
+<td align="left">Matrix</td>
+<td align="left">矩阵</td>
+<td align="left">表示矩阵(二维数组)</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(4\star\)</span></td>
+<td align="left"><img src="picture/object/Scalar.png" /></td>
+<td align="left">Scalar</td>
+<td align="left">标量</td>
+<td align="left">表示标量(也即一个数值)</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(5\star\)</span></td>
+<td align="left"><img src="picture/object/Series.png" /></td>
+<td align="left">Series</td>
+<td align="left">序列（数值型）</td>
+<td align="left">表示时间序列变量，其元素需为数值</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(5\star\)</span></td>
+<td align="left"><img src="picture/object/Table.png" /></td>
+<td align="left">Table</td>
+<td align="left">表格</td>
+<td align="left">表示表格输出结果</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(4\star\)</span></td>
+<td align="left"><img src="picture/object/Vector.png" /></td>
+<td align="left">Vector</td>
+<td align="left">列向量（数值）</td>
+<td align="left">表示数值类型的列向量</td>
+</tr>
+</tbody>
+</table>
+<p>其他一些不太常用（对于初级或中级使用者而言）EViews对象包括：</p>
+<table>
+<caption><span id="tab:object-show2">Table 1.8: </span>其他不太常用EViews对象列表及说明</caption>
+<thead>
+<tr class="header">
+<th align="left">常用指数</th>
+<th align="left">图标</th>
+<th align="left">英文名</th>
+<th align="left">中文名</th>
+<th align="left">用途</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">-</td>
+<td align="left"><img src="picture/object/Factor.png" /></td>
+<td align="left">Factor</td>
+<td align="left">因子</td>
+<td align="left">表示因子分析结果</td>
+</tr>
+<tr class="even">
+<td align="left">-</td>
+<td align="left"><img src="picture/object/LogL.png" /></td>
+<td align="left">Logl</td>
+<td align="left">对数似然</td>
+<td align="left">表示对数似然分析结果</td>
+</tr>
+<tr class="odd">
+<td align="left">-</td>
+<td align="left"><img src="picture/object/Model.png" /></td>
+<td align="left">Model</td>
+<td align="left">模型</td>
+<td align="left">表示联立方程的预测、模拟等</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(3\star\)</span></td>
+<td align="left"><img src="picture/object/Pool.png" /></td>
+<td align="left">Pool</td>
+<td align="left">数据池</td>
+<td align="left">表示面板数据(同时含有时间和截面单元)</td>
+</tr>
+<tr class="odd">
+<td align="left">-</td>
+<td align="left"><img src="picture/object/Rowvector.png" /></td>
+<td align="left">Rowvector</td>
+<td align="left">行向量</td>
+<td align="left">表示行向量（一维数组）</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(3\star\)</span></td>
+<td align="left"><img src="picture/object/Sample.png" /></td>
+<td align="left">Sample</td>
+<td align="left">样本</td>
+<td align="left">表示观测样本的集合体</td>
+</tr>
+<tr class="odd">
+<td align="left">-</td>
+<td align="left"><img src="picture/object/Spool.png" /></td>
+<td align="left">Spool</td>
+<td align="left">对象池</td>
+<td align="left">表示包含各种输出对象的容器池</td>
+</tr>
+<tr class="even">
+<td align="left">-</td>
+<td align="left"><img src="picture/object/SSpace.png" /></td>
+<td align="left">Sspace</td>
+<td align="left">设置状态空间模型</td>
+<td align="left">表示状态空间模型分析结果</td>
+</tr>
+<tr class="odd">
+<td align="left">-</td>
+<td align="left"><img src="picture/object/String.png" /></td>
+<td align="left">String</td>
+<td align="left">字符串</td>
+<td align="left">表示标准字符串<strong>表达式</strong>(不同于字符串值)</td>
+</tr>
+<tr class="even">
+<td align="left">-</td>
+<td align="left"><img src="picture/object/SVector.png" /></td>
+<td align="left">Svector</td>
+<td align="left">列向量（字符串）</td>
+<td align="left">表示字符串类型的向量</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(2\star\)</span></td>
+<td align="left"><img src="picture/object/Sym.png" /></td>
+<td align="left">Sym</td>
+<td align="left">对称矩阵</td>
+<td align="left">表示对称矩阵</td>
+</tr>
+<tr class="even">
+<td align="left">-</td>
+<td align="left"><img src="picture/object/System.png" /></td>
+<td align="left">System</td>
+<td align="left">系统</td>
+<td align="left">表示估计方程的系统(与Model类似，但不能用于模拟仿真分析)</td>
+</tr>
+<tr class="odd">
+<td align="left">-</td>
+<td align="left"><img src="picture/object/Text.png" /></td>
+<td align="left">Text</td>
+<td align="left">文本</td>
+<td align="left">表示任意文本信息</td>
+</tr>
+<tr class="even">
+<td align="left">-</td>
+<td align="left"><img src="picture/object/UserObj.png" /></td>
+<td align="left">Userobj</td>
+<td align="left">自定义对象</td>
+<td align="left">用于用户自主设置的对象</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(2\star\)</span></td>
+<td align="left"><img src="picture/object/Valmap.png" /></td>
+<td align="left">Valmap</td>
+<td align="left">值映射</td>
+<td align="left">表示映射关系，给序列型对象(Series/Alpha)的值赋予标签</td>
+</tr>
+<tr class="even">
+<td align="left">-</td>
+<td align="left"><img src="picture/object/Var.png" /></td>
+<td align="left">Var</td>
+<td align="left">向量自回归</td>
+<td align="left">表示向量自回归和误差矫正模型分析结果</td>
+</tr>
+</tbody>
+</table>
+<p>在<strong>宏观经济发展模型</strong>案例中，我们就可以看到这些常见EViews对象的<strong>容貌</strong>（参看节<a href="#quick-sample">1.6</a>中的快速案例，以及图<a href="#fig:objects-quick">1.12</a>）：</p>
+<ul>
+<li>序列（Series）对象：<img src="picture/object/Series.png" />GDP、<img src="picture/object/Series.png" />PCE、<img src="picture/object/Series.png" />Government、<img src="picture/object/Series.png" />Investment、<span class="math inline">\(\cdots\)</span></li>
+<li>组（Group）对象：<a href="picture/object/Group.png"></a>group_vars</li>
+<li>表格（Table）对象：<img src="picture/object/Table.png" />tab_descriptive、<img src="picture/object/Table.png" />tab_corrl</li>
+<li>图形（Graph）对象：<a href="picture/object/Graph.png"></a>graph_line</li>
+<li>方程（Equation）对象：<img src="picture/object/Equation.png" />eq_gdp</li>
+<li>系统保留对象（一旦建立工作文件，就会自动产生的对象）
+<ul>
+<li>用来装载回归方程系数的<strong>系数</strong>（Coef）对象：<img src="picture/object/Coef.png" />C</li>
+<li>用来装载回归方程残差的<strong>序列</strong>（Series）对象：<img src="picture/object/Series.png" />resid</li>
+</ul></li>
+</ul>
+<div class="figure" style="text-align: center"><span id="fig:objects-quick"></span>
+<img src="picture/lab1-introduction/1-demo-objects.png" alt="快速案例中的EViews对象一览" width="898" />
+<p class="caption">
+Figure 1.12: 快速案例中的EViews对象一览
+</p>
+</div>
+</div>
+<div id="eviews" class="section level4">
+<h4><span class="header-section-number">1.7.3.2</span> EViews分析中常用的对象构造情形</h4>
+<p>给定特定的数据分析案例，所有的EViews操作过程要么会<strong>直接产生</strong>特定对象，要么迫于分析工作要求而需要<strong>手动生成</strong>特定对象。这些常见的对象构造情形可以初步概括为：</p>
+<ul>
+<li>自动生成新对象。每一个具体的EViews分析操作，都会自动生成新对象。
+<ul>
+<li>回归方程的分析操作，会直接生成一个<strong>方程</strong>对象<img src="picture/object/Equation.png" />。</li>
+<li>探索性分析的绘图操作，会直接生成一个<strong>图形</strong>对象<img src="picture/object/Graph.png" />。</li>
+<li>探索性分析的相关系数表计算，会生成得到一个<strong>表格</strong>对象<img src="picture/object/Table.png" />。</li>
+<li>数据的矩阵运算，会直接生成一个<strong>矩阵</strong>对象<img src="picture/object/Matrix.png" />。</li>
+<li><span class="math inline">\(\cdots\)</span></li>
+</ul></li>
+<li>手动生成新对象。根据分析任务需要，生成某些有助于分析工作进行的新对象。
+<ul>
+<li>通过功能菜单操作，直接生成新对象。
+<ul>
+<li>直接生成新对象是较为常用的，使用情形包括：直接手动构造一个新<strong>序列</strong><img src="picture/object/Series.png" />用于更灵活的建模分析；手动构造一个空白<strong>向量</strong><img src="picture/object/Vector.png" />，用于后续提取并存放重要数值（如若干个对比模型的弹性系数）；<span class="math inline">\(\cdots\)</span></li>
+<li>例如，<strong>宏观经济发展案例</strong>中，在导入Excel数据后，我们可能还需要额外增加一个序列对象（series）<code>时间趋势trend</code>来调整样本回归模型<a href="#eq:demon-SRM">(1.2)</a>，其中变量<code>trend</code>的取值为<span class="math inline">\(trend \in \{0,1,2,\cdots,128\}\)</span>。因为原数据表.xlsx中并没有该数据，需要手动产生一个新的序列对象<img src="picture/object/Series.png" />trend（变量名可以自己设置）<br />
+</li>
+</ul></li>
+<li>通过某些形式的公式运算，生成新对象。
+<ul>
+<li>常用的公式运算情形包括：对数变换<code>log()</code>；倒数变换<code>1/X</code>；差分变换<code>d()</code>；滞后变量运算<code>x(-1)</code>；<span class="math inline">\(\cdots\)</span></li>
+<li>例如，<strong>宏观经济发展案例</strong>中，在导入Excel数据后，可能还需要使用<code>对数化国内生产总值log(GDP)</code>变量来调整样本回归模型<a href="#eq:demon-SRM">(1.2)</a>或用于其他目的的分析。因此需要通过公式变换<span class="math inline">\(ln\_gdp=log(gdp)\)</span>，从而产生一个新的序列对象<img src="picture/object/Series.png" />log_gdp（变量名可以自己设置）</li>
+</ul></li>
+<li>通过提取已存在对象的部分或全部信息，生成新对象。
+<ul>
+<li>常用的信息提取情形包括：提取回归报告中的某些<strong>系数</strong><img src="picture/object/Beta.png" />;提取方差协方差<strong>矩阵</strong><img src="picture/object/Matrix.png" />；<span class="math inline">\(\cdots\)</span></li>
+<li>例如，<strong>宏观经济发展案例</strong>中，为了在撰写报告时使用样本回归模型<a href="#eq:demon-SRM">(1.2)</a>中的*<strong>政府支出的产出弹性</strong>，常常需要提取回归方程<img src="picture/object/Matrix.png" />eq_gdp中的系数值</li>
+</ul></li>
+</ul></li>
+</ul>
+<p>对于大部分常用Eviews对象（如表<a href="#tab:object-show1">1.7</a>）的创建工作，可以通过<strong>菜单操作</strong>来实现：</p>
+<ul>
+<li>打开对象创建引导界面：
+<ul>
+<li>依次点击<span class="math inline">\(\Rightarrow\)</span> Object <span class="math inline">\(\Rightarrow\)</span> New object…</li>
+</ul></li>
+<li>选择并设置对象：
+<ul>
+<li>手动选择对象类型：复选框（Type of object）选择</li>
+<li>命名对象：文本框（Name for object）输入</li>
+<li>完成操作：点击OK</li>
+</ul></li>
+<li>编辑对象数值或属性</li>
+<li>工作文件窗口中查看结果</li>
+</ul>
+<p>下面将展示<strong>宏观经济发展案例</strong>中，新增创建一个序列对象（series）<code>时间趋势trend</code>（取值为<span class="math inline">\(trend \in \{0,1,2,\cdots,128\}\)</span>）的基本步骤（见图<a href="#fig:object-create">1.13</a>）。</p>
+<ul>
+<li>打开对象创建引导界面。在工作视窗下：
+<ul>
+<li>依次点击菜单栏，<span class="math inline">\(\Rightarrow\)</span> Object <span class="math inline">\(\Rightarrow\)</span> New object…</li>
+</ul></li>
+<li>选择并设置对象。在对象创建引导视图下：
+<ul>
+<li>手动选择对象类型：复选框（Type of object）选择<code>Series</code></li>
+<li>命名对象：文本框（Name for object）输入<code>trend</code></li>
+<li>完成操作：点击OK</li>
+</ul></li>
+<li>查看并编辑对象数值。在序列对象视窗下：
+<ul>
+<li>点击菜单栏中的Edit+/-</li>
+<li>双击单元格</li>
+<li>手动填写或编辑数值</li>
+<li>保存编辑操作，按键盘快捷组合键Ctrl+S</li>
+</ul></li>
+</ul>
+<div class="figure" style="text-align: center"><span id="fig:object-create"></span>
+<img src="picture/lab1-introduction/1-object-create.png" alt="常用Eviews对象的菜单式创建操作" width="1224" />
+<p class="caption">
+Figure 1.13: 常用Eviews对象的菜单式创建操作
+</p>
+</div>
+</div>
+</div>
+<div id="exploratory-analyzing" class="section level3">
+<h3><span class="header-section-number">1.7.4</span> 探索性分析（exploratory analyzing）</h3>
+<p>探索性分析（exploratory analyzing）是借助统计学基本原理对研究问题进行探索性分析。分析用到的一些统计学基本概念包括均值、中位数、众数、极大值、极小值、标准差、正态性、偏度、峰度、显著度等。探索性分析一般以<strong>形象化</strong>的<strong>数据可视化（data visualization）</strong>方式呈现数据特征，主要是通过表格（table）或图形（graph）的形式展现变量之间的特征、趋势、和关系。</p>
+<div class="section level4">
+<h4><span class="header-section-number">1.7.4.1</span> 图表可视化的一般性原则</h4>
+<ul>
+<li>常用的表格形式包括：描述性统计表、相关系数表等。
+<ul>
+<li>绘制表格主要的目的是展示确定的数值大小、汇总统计关系等</li>
+<li>原始数据可以构造形成一张表格</li>
+<li>计算得到的统计量也可以构造形成一张表格</li>
+<li>特定的分析操作，往往意味着可以得到特定的表格。例如，回归分析能得到回归分析报告表；自相关分析就能得到自相关表；<span class="math inline">\(\cdots\)</span></li>
+</ul></li>
+<li>常用的图形形式包括：线形图（line）、描点图（dot）、柱状图（bar）、散点图（scatter）、箱线图（boxplot）等。图形可视化的关键在于——<strong>以合适的形式，合理地呈现必要的信息！</strong>。因此，选择合适的图形形式至为重要，而数据的类型、变量的多少等都会影响图形类型的选择。
+<ul>
+<li>图形设计需要考虑的一些基本原则有：
+<ul>
+<li>图中要展示多少个变量？</li>
+<li>每个变量要展示多少数据点？</li>
+<li>数据点是否以时间、项目或分组的方式呈现？</li>
+</ul></li>
+<li>根据不同的图形绘制目标，具体图形选择应视需要而定（见表<a href="#tab:chart-show">1.9</a>）：
+<ul>
+<li>分析<strong>数据比较</strong>（Data Comparison）时，可选择循环面积图(Circular Area Chart)、折线图(Line Chart)、柱状图(Column Chart)、簇状-折线图(Line Chart)、不等宽柱状图(Variable Width Column Chart)、表格型嵌图(Table with Embedded Charts)、簇状-条形图(Bar Chart)、簇状-柱状图(Column Chart)等图形</li>
+<li>分析<strong>数据构成</strong>（Data Composition）时，可选择饼形图(Pie Chart)、瀑布图(Waterfall Chart)、百分比多层构成图(Components of Components)、堆栈百分比柱状图(Stacked 100% column chart)、堆栈柱状图(Stacked Column Chart)、堆栈百分比面积图(Stacked 100% Area Chart)、堆栈面积图(Stacked Area Chart)等图形</li>
+<li>分析<strong>数据分布</strong>（Data Distribution）时，可选择柱状直方图(Column Histogram)、线状直方图(Line Histogram)、散点图(Scatter Chart)等图形</li>
+<li>分析<strong>数据关系</strong>（Data Relationship）时，可选择3D面积图(3D Area Chart)、散点图(Scatter Chart)、泡泡图(Bubble chart)等图形</li>
+</ul></li>
+</ul></li>
+</ul>
+<table>
+<caption><span id="tab:chart-show">Table 1.9: </span>探索数据比较的图形选择</caption>
+<thead>
+<tr class="header">
+<th align="center">序号</th>
+<th align="left">绘图目的</th>
+<th align="left">图形示例</th>
+<th align="left">图形名称</th>
+<th align="left">图形特征</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="left">数据比较</td>
+<td align="left"><img src="picture/lab1-introduction/circular-area-chart.png" /></td>
+<td align="left">循环面积图(Circular Area Chart)</td>
+<td align="left">时期间比较<span class="math inline">\(\Rightarrow\)</span>时期数较多<span class="math inline">\(\Rightarrow\)</span>周期性时期</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="left">数据比较</td>
+<td align="left"><img src="picture/lab1-introduction/line-chart.png" /></td>
+<td align="left">折线图(Line Chart)</td>
+<td align="left">时期间比较<span class="math inline">\(\Rightarrow\)</span>时期数较多<span class="math inline">\(\Rightarrow\)</span>非周期性时期</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td align="left">数据比较</td>
+<td align="left"><img src="picture/lab1-introduction/column-chart.png" /></td>
+<td align="left">柱状图(Column Chart)</td>
+<td align="left">时期间比较<span class="math inline">\(\Rightarrow\)</span>时期数较少<span class="math inline">\(\Rightarrow\)</span>分组较少</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td align="left">数据比较</td>
+<td align="left"><img src="picture/lab1-introduction/line-chart-stack.png" /></td>
+<td align="left">簇状-折线图(Line Chart)</td>
+<td align="left">时期间比较<span class="math inline">\(\Rightarrow\)</span>时期数较少<span class="math inline">\(\Rightarrow\)</span>分组较多</td>
+</tr>
+<tr class="odd">
+<td align="center">5</td>
+<td align="left">数据比较</td>
+<td align="left"><img src="picture/lab1-introduction/variable-width-column-chart.png" /></td>
+<td align="left">不等宽柱状图(Variable Width Column Chart)</td>
+<td align="left">条目间比较<span class="math inline">\(\Rightarrow\)</span>每个条目有两个变量<span class="math inline">\(\Rightarrow\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">6</td>
+<td align="left">数据比较</td>
+<td align="left"><img src="picture/lab1-introduction/table-with-embedded-charts.png" /></td>
+<td align="left">表格型嵌图(Table with Embedded Charts)</td>
+<td align="left">条目间比较<span class="math inline">\(\Rightarrow\)</span>每个条目有一个变量<span class="math inline">\(\Rightarrow\)</span>分组较多</td>
+</tr>
+<tr class="odd">
+<td align="center">7</td>
+<td align="left">数据比较</td>
+<td align="left"><img src="picture/lab1-introduction/bar-chart-stack.png" /></td>
+<td align="left">簇状-条形图(Bar Chart)</td>
+<td align="left">条目间比较<span class="math inline">\(\Rightarrow\)</span>每个条目有一个变量<span class="math inline">\(\Rightarrow\)</span>分组较少<span class="math inline">\(\Rightarrow\)</span>条目较多</td>
+</tr>
+<tr class="even">
+<td align="center">8</td>
+<td align="left">数据比较</td>
+<td align="left"><img src="picture/lab1-introduction/column-chart.png" /></td>
+<td align="left">簇状-柱状图(Column Chart)</td>
+<td align="left">条目间比较<span class="math inline">\(\Rightarrow\)</span>每个条目有一个变量<span class="math inline">\(\Rightarrow\)</span>分组较少<span class="math inline">\(\Rightarrow\)</span>条目较少</td>
+</tr>
+<tr class="odd">
+<td align="center">1</td>
+<td align="left">数据构成</td>
+<td align="left"><img src="picture/lab1-introduction/pie-chart.png" /></td>
+<td align="left">饼形图(Pie Chart)</td>
+<td align="left">构成无时期变化<span class="math inline">\(\Rightarrow\)</span>简单占比构成</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="left">数据构成</td>
+<td align="left"><img src="picture/lab1-introduction/waterfall-chart.png" /></td>
+<td align="left">瀑布图(Waterfall Chart)</td>
+<td align="left">构成无时期变化<span class="math inline">\(\Rightarrow\)</span>累积构成或落差构成</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td align="left">数据构成</td>
+<td align="left"><img src="picture/lab1-introduction/components-of-components.png" /></td>
+<td align="left">百分比多层构成图(Components of Components)</td>
+<td align="left">构成无时期变化<span class="math inline">\(\Rightarrow\)</span>多层次子类的百分比构成</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td align="left">数据构成</td>
+<td align="left"><img src="picture/lab1-introduction/stacked-per-column-chart.png" /></td>
+<td align="left">堆栈百分比柱状图(Stacked 100% column chart)</td>
+<td align="left">构成有时期变化<span class="math inline">\(\Rightarrow\)</span>时期较少<span class="math inline">\(\Rightarrow\)</span>仅关心成分之间的相对差异</td>
+</tr>
+<tr class="odd">
+<td align="center">5</td>
+<td align="left">数据构成</td>
+<td align="left"><img src="picture/lab1-introduction/stacked-column-chart.png" /></td>
+<td align="left">堆栈柱状图(Stacked Column Chart)</td>
+<td align="left">构成有时期变化<span class="math inline">\(\Rightarrow\)</span>时期较少<span class="math inline">\(\Rightarrow\)</span>仅关心成分之间的绝对差异</td>
+</tr>
+<tr class="even">
+<td align="center">6</td>
+<td align="left">数据构成</td>
+<td align="left"><img src="picture/lab1-introduction/stacked-per-area-chart.png" /></td>
+<td align="left">堆栈百分比面积图(Stacked 100% Area Chart)</td>
+<td align="left">构成有时期变化<span class="math inline">\(\Rightarrow\)</span>时期较多<span class="math inline">\(\Rightarrow\)</span>仅关心成分之间的相对差异</td>
+</tr>
+<tr class="odd">
+<td align="center">7</td>
+<td align="left">数据构成</td>
+<td align="left"><img src="picture/lab1-introduction/stacked-area-chart.png" /></td>
+<td align="left">堆栈面积图(Stacked Area Chart)</td>
+<td align="left">构成有时期变化<span class="math inline">\(\Rightarrow\)</span>时期较多<span class="math inline">\(\Rightarrow\)</span>仅关心成分之间的绝对差异</td>
+</tr>
+<tr class="even">
+<td align="center">1</td>
+<td align="left">数据分布</td>
+<td align="left"><img src="picture/lab1-introduction/column-histogram.png" /></td>
+<td align="left">柱状直方图(Column Histogram)</td>
+<td align="left">一个变量的分布<span class="math inline">\(\Rightarrow\)</span>数据点较少</td>
+</tr>
+<tr class="odd">
+<td align="center">2</td>
+<td align="left">数据分布</td>
+<td align="left"><img src="picture/lab1-introduction/line-histogram.png" /></td>
+<td align="left">线状直方图(Line Histogram)</td>
+<td align="left">一个变量的分布<span class="math inline">\(\Rightarrow\)</span>数据点较多</td>
+</tr>
+<tr class="even">
+<td align="center">3</td>
+<td align="left">数据分布</td>
+<td align="left"><img src="picture/lab1-introduction/scatter-chart.png" /></td>
+<td align="left">散点图(Scatter Chart)</td>
+<td align="left">两个变量的分布</td>
+</tr>
+<tr class="odd">
+<td align="center">1</td>
+<td align="left">数据关系</td>
+<td align="left"><img src="picture/lab1-introduction/3d-area-chart.png" /></td>
+<td align="left">3D面积图(3D Area Chart)</td>
+<td align="left">三个变量间的分布</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="left">数据关系</td>
+<td align="left"><img src="picture/lab1-introduction/scatter-chart.png" /></td>
+<td align="left">散点图(Scatter Chart)</td>
+<td align="left">两个变量间的关系</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td align="left">数据关系</td>
+<td align="left"><img src="picture/lab1-introduction/bubble-chart.png" /></td>
+<td align="left">泡泡图(Bubble chart)</td>
+<td align="left">三个变量间的关系</td>
+</tr>
+</tbody>
+</table>
+<!---
+
+Table: (\#tab:chart-show1)探索数据比较的图形选择
+
+ 序号  绘图目的   图形示例                                                         图形名称                                    图形特征                                                                            
+-----  ---------  ---------------------------------------------------------------  ------------------------------------------  ------------------------------------------------------------------------------------
+    1  数据比较   ![](picture/lab1-introduction/circular-area-chart.png)           循环面积图(Circular Area Chart)             时期间比较$\Rightarrow$时期数较多$\Rightarrow$周期性时期                            
+    2  数据比较   ![](picture/lab1-introduction/line-chart.png)                    折线图(Line Chart)                          时期间比较$\Rightarrow$时期数较多$\Rightarrow$非周期性时期                          
+    3  数据比较   ![](picture/lab1-introduction/column-chart.png)                  柱状图(Column Chart)                        时期间比较$\Rightarrow$时期数较少$\Rightarrow$分组较少                              
+    4  数据比较   ![](picture/lab1-introduction/line-chart-stack.png)              簇状-折线图(Line Chart)                     时期间比较$\Rightarrow$时期数较少$\Rightarrow$分组较多                              
+    5  数据比较   ![](picture/lab1-introduction/variable-width-column-chart.png)   不等宽柱状图(Variable Width Column Chart)   条目间比较$\Rightarrow$每个条目有两个变量$\Rightarrow$                              
+    6  数据比较   ![](picture/lab1-introduction/table-with-embedded-charts.png)    表格型嵌图(Table with Embedded Charts)      条目间比较$\Rightarrow$每个条目有一个变量$\Rightarrow$分组较多                      
+    7  数据比较   ![](picture/lab1-introduction/bar-chart-stack.png)               簇状-条形图(Bar Chart)                      条目间比较$\Rightarrow$每个条目有一个变量$\Rightarrow$分组较少$\Rightarrow$条目较多 
+    8  数据比较   ![](picture/lab1-introduction/column-chart.png)                  簇状-柱状图(Column Chart)                   条目间比较$\Rightarrow$每个条目有一个变量$\Rightarrow$分组较少$\Rightarrow$条目较少 
+
+
+
+Table: (\#tab:chart-show2)探索数据构成的图形选择
+
+ 序号  绘图目的   图形示例                                                      图形名称                                      图形特征                                                                 
+-----  ---------  ------------------------------------------------------------  --------------------------------------------  -------------------------------------------------------------------------
+    1  数据构成   ![](picture/lab1-introduction/pie-chart.png)                  饼形图(Pie Chart)                             构成无时期变化$\Rightarrow$简单占比构成                                  
+    2  数据构成   ![](picture/lab1-introduction/waterfall-chart.png)            瀑布图(Waterfall Chart)                       构成无时期变化$\Rightarrow$累积构成或落差构成                            
+    3  数据构成   ![](picture/lab1-introduction/components-of-components.png)   百分比多层构成图(Components of Components)    构成无时期变化$\Rightarrow$多层次子类的百分比构成                        
+    4  数据构成   ![](picture/lab1-introduction/stacked-per-column-chart.png)   堆栈百分比柱状图(Stacked 100% column chart)   构成有时期变化$\Rightarrow$时期较少$\Rightarrow$仅关心成分之间的相对差异 
+    5  数据构成   ![](picture/lab1-introduction/stacked-column-chart.png)       堆栈柱状图(Stacked Column Chart)              构成有时期变化$\Rightarrow$时期较少$\Rightarrow$仅关心成分之间的绝对差异 
+    6  数据构成   ![](picture/lab1-introduction/stacked-per-area-chart.png)     堆栈百分比面积图(Stacked 100% Area Chart)     构成有时期变化$\Rightarrow$时期较多$\Rightarrow$仅关心成分之间的相对差异 
+    7  数据构成   ![](picture/lab1-introduction/stacked-area-chart.png)         堆栈面积图(Stacked Area Chart)                构成有时期变化$\Rightarrow$时期较多$\Rightarrow$仅关心成分之间的绝对差异 
+
+
+
+Table: (\#tab:chart-show3)探索数据分布的图形选择
+
+ 序号  绘图目的   图形示例                                              图形名称                       图形特征                              
+-----  ---------  ----------------------------------------------------  -----------------------------  --------------------------------------
+    1  数据分布   ![](picture/lab1-introduction/column-histogram.png)   柱状直方图(Column Histogram)   一个变量的分布$\Rightarrow$数据点较少 
+    2  数据分布   ![](picture/lab1-introduction/line-histogram.png)     线状直方图(Line Histogram)     一个变量的分布$\Rightarrow$数据点较多 
+    3  数据分布   ![](picture/lab1-introduction/scatter-chart.png)      散点图(Scatter Chart)          两个变量的分布                        
+
+
+Table: (\#tab:chart-show4)探索数据关系的图形选择
+
+ 序号  绘图目的   图形示例                                           图形名称                  图形特征         
+-----  ---------  -------------------------------------------------  ------------------------  -----------------
+    1  数据关系   ![](picture/lab1-introduction/3d-area-chart.png)   3D面积图(3D Area Chart)   三个变量间的分布 
+    2  数据关系   ![](picture/lab1-introduction/scatter-chart.png)   散点图(Scatter Chart)     两个变量间的关系 
+    3  数据关系   ![](picture/lab1-introduction/bubble-chart.png)    泡泡图(Bubble chart)      三个变量间的关系 
+
+--->
+</div>
+<div id="eviews" class="section level4">
+<h4><span class="header-section-number">1.7.4.2</span> EViews图表可视化工具集</h4>
+<p>EViews软件中的<strong>表格可视化</strong>，大多数“<strong>隐藏</strong>”在每一项分析操作的背后。这就意味着：</p>
+<ul>
+<li>表格可视化应该更加重视<strong>特定的</strong>数据分析操作（例如序列自相关分析、或者异方差分析等）</li>
+<li>然后，根据分析结果，获得一份<strong>粗糙</strong>的原始表格</li>
+<li>最后，根据需要进行表格的细节修改和完善</li>
+</ul>
+<p>与表格可视化不同，EViews软件提供了丰富的<strong>图形可视化</strong>工具箱（见表<a href="#tab:chart-eviews-show">1.10</a>），与上述图形选择的一般性原则一致，需要综合考虑图形绘制目的、变量数据特征（变量个数、变量类型、数据分组、数据趋势、时期关系<span class="math inline">\(\cdots\)</span>）等。</p>
+<p>EViews软件中<strong>图形可视化</strong>的基本操作过程包括：</p>
+<ul>
+<li>选择变量数据（包括选择变量、数据分组、样本区间等）
+<ul>
+<li>一般是选择工作文件中的组（Group）对象或序列（Series）对象</li>
+</ul></li>
+<li>选择图形类型（选定什么样的数据，就会给出怎样的工具箱）
+<ul>
+<li>根据选择变量数据的不同，图形工具箱的界面会有差异</li>
+<li>EViews给出可选的图形包括：饼图(Pie)、不等宽柱状图(XY Bar)、带形图(Area Band)、点图(Dot Plot)、钉形图(Spike)、二维面积图(XY Area)、高低图(High-Low)、混合图(Mixed)、季节图(Seasonal Graph)、路径图(XY Line)、密度图(Distribution)、面积图(Area)、泡泡图(Bubble Plot)、散点图(Scatter)、条形图(Bar)、误差图(Error Plot)、线图(line &amp; Symbol)、箱线图(Boxplot)、正态图(Quantile-Quantile)等</li>
+</ul></li>
+<li>设置图形细节
+<ul>
+<li>设置图形的颜色、尺寸、边框等</li>
+<li>设置图形的坐标轴、网格线等</li>
+<li>设置图例</li>
+<li>设置图形要素</li>
+<li>设置字体</li>
+<li>……</li>
+</ul></li>
+<li>保存或输出图形对象
+<ul>
+<li>命名图形对象</li>
+<li>保存到本地文件或数据库</li>
+<li>导出为其他格式（.png/.jpg/.pdf/<span class="math inline">\(\cdots\)</span>）</li>
+</ul></li>
+</ul>
+<table>
+<caption><span id="tab:chart-eviews-show">Table 1.10: </span>EViews图形工具箱及示例</caption>
+<thead>
+<tr class="header">
+<th align="center">序号</th>
+<th align="left">英文名</th>
+<th align="left">中文名</th>
+<th align="left">示例</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="left">line &amp; Symbol</td>
+<td align="left">线图</td>
+<td align="left"><img src="picture/lab1-introduction/eviews-format/line.png" /></td>
+<td align="left">表现变化趋势，包含1个序列对象，数据点较多</td>
+</tr>
+<tr class="even">
+<td align="center">1</td>
+<td align="left">line &amp; Symbol</td>
+<td align="left">线图</td>
+<td align="left"><img src="picture/lab1-introduction/eviews-format/line-4var.png" /></td>
+<td align="left">表现变化趋势，包含4个序列对象，数据点较多</td>
+</tr>
+<tr class="odd">
+<td align="center">2</td>
+<td align="left">Bar</td>
+<td align="left">条形图</td>
+<td align="left"><img src="picture/lab1-introduction/eviews-format/bar.png" /></td>
+<td align="left">表现分组差异，水平条形，包含1个序列对象，数据分组较少</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="left">Bar</td>
+<td align="left">条形图</td>
+<td align="left"><img src="picture/lab1-introduction/eviews-format/bar-column.png" /></td>
+<td align="left">表现分组差异，垂直条形，包含1个序列对象，数据分组较少</td>
+</tr>
+<tr class="odd">
+<td align="center">2</td>
+<td align="left">Bar</td>
+<td align="left">条形图</td>
+<td align="left"><img src="picture/lab1-introduction/eviews-format/bar-column-stack.png" /></td>
+<td align="left">表现分组差异，垂直条形，包含若干序列对象，数据分组较少</td>
+</tr>
+<tr class="even">
+<td align="center">3</td>
+<td align="left">Spike</td>
+<td align="left">钉形图</td>
+<td align="left"><img src="picture/lab1-introduction/eviews-format/spike.png" /></td>
+<td align="left">表现数值大小，包含1个序列对象，数据分组较少</td>
+</tr>
+<tr class="odd">
+<td align="center">4</td>
+<td align="left">Area</td>
+<td align="left">面积图</td>
+<td align="left"><img src="picture/lab1-introduction/eviews-format/area.png" /></td>
+<td align="left">表现覆盖面积，包含1个序列对象，数据点较多</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td align="left">Area</td>
+<td align="left">面积图</td>
+<td align="left"><img src="picture/lab1-introduction/eviews-format/area-4var.png" /></td>
+<td align="left">表现覆盖面积，包含4个序列对象，数据点较多</td>
+</tr>
+<tr class="odd">
+<td align="center">5</td>
+<td align="left">Area Band</td>
+<td align="left">带形图</td>
+<td align="left"><img src="picture/lab1-introduction/eviews-format/area-band.png" /></td>
+<td align="left">表现面积差异，包含2个序列对象，数据点较多</td>
+</tr>
+<tr class="even">
+<td align="center">6</td>
+<td align="left">Mixed</td>
+<td align="left">混合图</td>
+<td align="left"><img src="picture/lab1-introduction/eviews-format/mixed.png" /></td>
+<td align="left">表现多样信息，包含多个序列对象，数据点较多</td>
+</tr>
+<tr class="odd">
+<td align="center">7</td>
+<td align="left">Dot Plot</td>
+<td align="left">点图</td>
+<td align="left"><img src="picture/lab1-introduction/eviews-format/dot.png" /></td>
+<td align="left">表现数值大小，包含1个序列对象，数据点较多</td>
+</tr>
+<tr class="even">
+<td align="center">8</td>
+<td align="left">Error Plot</td>
+<td align="left">误差图</td>
+<td align="left"><img src="picture/lab1-introduction/eviews-format/error-2var.png" /></td>
+<td align="left">表现数值差异，包含2个序列对象，数据点较少</td>
+</tr>
+<tr class="odd">
+<td align="center">8</td>
+<td align="left">Error Plot</td>
+<td align="left">误差图</td>
+<td align="left"><img src="picture/lab1-introduction/eviews-format/error-3var.png" /></td>
+<td align="left">表现数值差异，包含3个序列对象，数据点较少</td>
+</tr>
+<tr class="even">
+<td align="center">9</td>
+<td align="left">High-Low</td>
+<td align="left">高低图</td>
+<td align="left"><img src="picture/lab1-introduction/eviews-format/hilo-2var.png" /></td>
+<td align="left">表现数值位置关系，包含2个序列对象（最高价、最低价），数据点较少</td>
+</tr>
+<tr class="odd">
+<td align="center">9</td>
+<td align="left">High-Low</td>
+<td align="left">高低图</td>
+<td align="left"><img src="picture/lab1-introduction/eviews-format/hilo-3var.png" /></td>
+<td align="left">表现数值位置关系，包含3个序列对象（开盘价、最高价、最低价），数据点较少</td>
+</tr>
+<tr class="even">
+<td align="center">10</td>
+<td align="left">Scatter</td>
+<td align="left">散点图</td>
+<td align="left"><img src="picture/lab1-introduction/eviews-format/scatter-2var.png" /></td>
+<td align="left">表现变量关系，包含2个序列对象，数据点较多</td>
+</tr>
+<tr class="odd">
+<td align="center">10</td>
+<td align="left">Scatter</td>
+<td align="left">散点图</td>
+<td align="left"><img src="picture/lab1-introduction/eviews-format/scatter-matrix.png" /></td>
+<td align="left">表现变量关系，包含多个序列对象，数据点较多</td>
+</tr>
+<tr class="even">
+<td align="center">11</td>
+<td align="left">Bubble Plot</td>
+<td align="left">泡泡图</td>
+<td align="left"><img src="picture/lab1-introduction/eviews-format/bubble.png" /></td>
+<td align="left">表现变量关系，包含3个序列对象，数据点较多</td>
+</tr>
+<tr class="odd">
+<td align="center">12</td>
+<td align="left">XY Line</td>
+<td align="left">路径图</td>
+<td align="left"><img src="picture/lab1-introduction/eviews-format/xy-line.png" /></td>
+<td align="left">表现数据变化路径，包含2个序列对象，数据点较多</td>
+</tr>
+<tr class="even">
+<td align="center">13</td>
+<td align="left">XY Area</td>
+<td align="left">二维面积图</td>
+<td align="left"><img src="picture/lab1-introduction/eviews-format/xy-area.png" /></td>
+<td align="left">表现2D覆盖面积，包含个序列对象，数据点较多</td>
+</tr>
+<tr class="odd">
+<td align="center">14</td>
+<td align="left">XY Bar</td>
+<td align="left">不等宽柱状图</td>
+<td align="left"><img src="picture/lab1-introduction/eviews-format/xy-bar.png" /></td>
+<td align="left">表现分组差异，垂直条形，包含若干个序列对象，数据分组较少</td>
+</tr>
+<tr class="even">
+<td align="center">15</td>
+<td align="left">Pie</td>
+<td align="left">饼图</td>
+<td align="left"><img src="picture/lab1-introduction/eviews-format/pie.png" /></td>
+<td align="left">表现数据构成关系，包含1个序列对象，数据分组较少</td>
+</tr>
+<tr class="odd">
+<td align="center">16</td>
+<td align="left">Distribution</td>
+<td align="left">密度图</td>
+<td align="left"><img src="picture/lab1-introduction/eviews-format/histogram.png" /></td>
+<td align="left">表现数据分布密度，直方图，包含1个序列对象，数据点较多（自动分组）</td>
+</tr>
+<tr class="even">
+<td align="center">17</td>
+<td align="left">Quantile-Quantile</td>
+<td align="left">正态图</td>
+<td align="left"><img src="picture/lab1-introduction/eviews-format/qq.png" /></td>
+<td align="left">表现数据分布密度，正态QQ图，包含1个序列对象，数据点较多</td>
+</tr>
+<tr class="odd">
+<td align="center">18</td>
+<td align="left">Boxplot</td>
+<td align="left">箱线图</td>
+<td align="left"><img src="picture/lab1-introduction/eviews-format/boxplot.png" /></td>
+<td align="left">表现数据分布形态，包含若干序列对象，数据点较多</td>
+</tr>
+<tr class="even">
+<td align="center">19</td>
+<td align="left">Seasonal Graph</td>
+<td align="left">季节图</td>
+<td align="left"><img src="picture/lab1-introduction/eviews-format/seasonal.png" /></td>
+<td align="left">表现数据循环关系，包含1个序列对象，数据点较多，分组较少（在同一月份不同年份上的变化）</td>
+</tr>
+<tr class="odd">
+<td align="center">19</td>
+<td align="left">Seasonal Graph</td>
+<td align="left">季节图</td>
+<td align="left"><img src="picture/lab1-introduction/eviews-format/seasonal1.png" /></td>
+<td align="left">表现数据循环关系，包含1个序列对象，数据点较多，分组较少（在同一年份不同月份上的变化）</td>
+</tr>
+</tbody>
+</table>
+<p>下面将利用EViews菜单操作，对<strong>宏观经济发展案例</strong>进行简要的探索性分析。该部分内容将有助于快速了解EViews图表可视化的基本操作思路和流程。无论是表格可视化，还是图形可视化，如下的简要案例操作及过程都具有普遍的代表性，读者可以照此<strong>举一反三</strong>，而要达到熟练地<strong>推而广之</strong>则必须经历更多的实战摸索和训练。</p>
+</div>
+<div id="descriptive" class="section level4">
+<h4><span class="header-section-number">1.7.4.3</span> EViews表格可视化：描述性统计分析表的制作</h4>
+<p>首先，对<strong>宏观经济发展案例</strong>中的主要变量（GDP国内生产总值（10亿美元）、PCE人均消费支出（美元）、Investment投资（10亿美元）、Government政府支出（10亿美元））进行基本<strong>描述性统计</strong>分析，并得到表格（table）对象形式的<strong>描述性统计分析表</strong>。然后，对表格（table）对象形式的<strong>描述性统计分析表</strong>进行美学设计，修改表格细节，实现指定要求的<strong>三线表</strong>形式。</p>
+<ul>
+<li>进行基本描述性统计分析（EViews操步作骤见图<a href="#fig:explore-descriptive">1.14</a>）：
+<ul>
+<li>在工作文件视窗中，单击选择已经命名的组对象<img src="picture/object/Group.png" />group_vars</li>
+<li>在工作文件视窗中，点击菜单栏中的<code>Quick</code> <span class="math inline">\(\Rightarrow\)</span> 选择<code>Group Statistics</code> <span class="math inline">\(\Rightarrow\)</span> 选择<code>Descriptive Statistics</code> <span class="math inline">\(\Rightarrow\)</span> 选择<code>Common sample</code></li>
+<li>确认变量对象，<span class="math inline">\(\Rightarrow\)</span> 点击<code>Ok</code></li>
+<li>得到Group描述性统计分析视窗<img src="picture/object/Group.png" />group_vars</li>
+<li>将描述性分析结果转换成表格。在Group描述性统计分析视窗<img src="picture/object/Group.png" />group_vars下，<span class="math inline">\(\Rightarrow\)</span> 点击<code>Freeze</code><span class="math inline">\(\Rightarrow\)</span> 得到表格对象视窗<img src="picture/object/Table.png" />UNTITLED
+<ul>
+<li>给表格对象命名。在表格对象视窗<img src="picture/object/Table.png" />UNTITLED视窗下，<span class="math inline">\(\Rightarrow\)</span> 点击<code>Name</code></li>
+<li>填写表格对象名称。在Object Name窗口中，<span class="math inline">\(\Rightarrow\)</span> 输入<code>tab_descriptive</code>（建议命名）<span class="math inline">\(\Rightarrow\)</span> 点击<code>Ok</code></li>
+<li>查看保存的表格对象。在工作文件视窗中，确认可以看到已经保存的表格对象<img src="picture/object/Table.png" />tab_descriptive</li>
+</ul></li>
+</ul></li>
+<li>进行美学设计，修改表格细节，实现<strong>三线表</strong>形式的表格要求。（此处要求把<strong>初始表格</strong>调整为<strong>三线表</strong>，具体细节修改过程略。）。
+<ul>
+<li>工作文件视窗中，双击打开表格对象<img src="picture/object/Table.png" />tab_descriptive</li>
+<li>点击菜单<code>Edit+/-</code>，可以编辑修改单元格的内容</li>
+<li>点击菜单<code>CellFmt</code>，可以调整单元格的大小、颜色、边框等</li>
+<li>点击菜单<code>Title</code>，可以填写表格标题</li>
+<li>点击菜单<code>Grid+/-</code>，可以显示/隐藏网格线</li>
+<li><span class="math inline">\(\cdots\)</span></li>
+</ul></li>
+</ul>
+<div class="figure" style="text-align: center"><span id="fig:explore-descriptive"></span>
+<img src="picture/lab1-introduction/1-explore-descriptive.png" alt="构造主要变量的描述性统计分析表（三线表）" width="1059" />
+<p class="caption">
+Figure 1.14: 构造主要变量的描述性统计分析表（三线表）
+</p>
+</div>
+</div>
+<div id="eviewsline-symbol" class="section level4">
+<h4><span class="header-section-number">1.7.4.4</span> EViews图形可视化：多线图（Line &amp; Symbol）的绘制</h4>
+<p>下面将展示EViews软件在多变量下的线图（Line &amp; Symbol）的绘制过程。对<strong>宏观经济发展案例</strong>中的主要变量（GDP国内生产总值（10亿美元）、PCE人均消费支出（美元）、Investment投资（10亿美元）、Government政府支出（10亿美元））进行简单的<strong>图形可视化</strong>，绘制简单的（标准化的）多变量线图（Line &amp; Symbol）的主要过程如下：（见图<a href="#fig:explore-line-basic">1.15</a>）</p>
+<ul>
+<li>选择组（Group）对象。在工作文件视窗下，
+<ul>
+<li>鼠标单击选择已经命名的组对象<img src="picture/object/Group.png" />group_vars。</li>
+<li>点击菜单栏中的<code>Quick</code> <span class="math inline">\(\Rightarrow\)</span> 选择<code>Graph</code></li>
+<li>确认变量对象，点击<code>Ok</code></li>
+</ul></li>
+<li>设置图形引导界面。在引导窗口的目录<code>Graph Options</code> 中，分别点击设置如下子选项页：
+<ul>
+<li>Graph type （图类型）子选项页，主要用于修改图形类型
+<ul>
+<li>General（通用）下拉框
+<ul>
+<li>下拉选择Basic graph</li>
+</ul></li>
+<li><strong>Specific（设置）复选框</strong>（比较常用的选项设置）
+<ul>
+<li>点击选择Line &amp; Symbol</li>
+</ul></li>
+<li>Detail（细节）选项区，有多个设置下拉框选择
+<ul>
+<li>Graph data（图形数据）下拉框
+<ul>
+<li>默认设置</li>
+</ul></li>
+<li>Orientation（方向）下拉框
+<ul>
+<li>默认设置</li>
+</ul></li>
+<li>Axis Borders（坐标轴边框）下拉框
+<ul>
+<li>默认设置</li>
+</ul></li>
+<li>Multiple series（多序列）下拉框
+<ul>
+<li>下拉选择Single graph</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>Frame &amp; Size（图框和大小）子选项页，主要用于设置图形的颜色/边框、大小/缩进等
+<ul>
+<li>默认设置</li>
+</ul></li>
+<li>Axes &amp; Scaling（图轴和度量）子选项页，主要用于设置数据尺度、数轴标签、网格线等
+<ul>
+<li>默认设置</li>
+</ul></li>
+<li>Lgend（图例）子选项，主要用于设置图例相关选项
+<ul>
+<li>默认设置</li>
+</ul></li>
+<li>Graph Element（图形元素）子选项，主要用于设置线型/符号、填充块等
+<ul>
+<li>默认设置</li>
+</ul></li>
+<li>Quick Fonts（快速字体）子选项页，用于调整字体
+<ul>
+<li>默认设置</li>
+</ul></li>
+<li>Templates &amp; Objects（样式和对象），用于套用样式等
+<ul>
+<li>默认设置</li>
+</ul></li>
+<li>Graph Updating（图形更新）子选项页，用于更新修改
+<ul>
+<li>默认设置</li>
+</ul></li>
+<li>完成设置。
+<ul>
+<li>点击<code>Ok</code></li>
+<li>将得到未命名图形对象<img src="picture/object/Graph.png" />UNTITLED</li>
+</ul></li>
+</ul></li>
+<li>命名并保存图形对象。在未命名图形对象<img src="picture/object/Graph.png" />UNTITLED窗口中
+<ul>
+<li>点击菜单栏<code>Name</code> <span class="math inline">\(\Rightarrow\)</span> 输入命名<code>graph_line</code> <span class="math inline">\(\Rightarrow\)</span> 点击<code>Ok</code></li>
+<li>可以看到工作文件中，将出现已命名并保存的图形对象<img src="picture/object/Graph.png" />graph_line</li>
+</ul></li>
+</ul>
+<div class="figure" style="text-align: center"><span id="fig:explore-line-basic"></span>
+<img src="picture/lab1-introduction/1-explore-line-basic.png" alt="主要变量的简单多线图（Line &amp; Symbol）绘制" width="1062" />
+<p class="caption">
+Figure 1.15: 主要变量的简单多线图（Line &amp; Symbol）绘制
+</p>
+</div>
+<p>此外，根据研究报告撰写的特定要求，可以对图形进行个性化美学设计。美化图形，修改细节，使其满足<strong>个性化美学</strong>要求（见图<a href="#fig:explore-line-basic">1.15</a>，具体步骤此处略）。</p>
+<ul>
+<li>工作文件中，双击打开已保存的图形对象<img src="picture/object/Graph.png" />graph_line</li>
+<li>操作并编辑各种图表细节，在图形对象<img src="picture/object/Graph.png" />graph_line视窗中：
+<ul>
+<li>点击菜单<code>name</code>，可以修改图形对象命名</li>
+<li>点击菜单<code>Freeze</code>，可以设置图形是否<strong>冻结</strong>或<strong>可更新</strong>（如手工调整样本区间等）</li>
+<li>点击菜单<code>Options</code>，可以修改各种图形元素（<strong>这是最常用的细节修改内容</strong>）
+<ul>
+<li><code>Graph Type</code>，用于修改图形类型</li>
+<li><code>Frame &amp; Size</code>，用于修改图形大小、边框等</li>
+<li><code>Axes &amp; Scaling</code>，用于修改图形坐标轴、网格线、标尺等</li>
+<li><code>Legend</code>，用于修改图形的图例</li>
+<li><code>Graph Elements</code>，用于修改图形的数值标签、线型、符号等</li>
+<li><code>Quick Font</code>，用于修改图形的字体</li>
+<li><code>Templates &amp; Objects</code>，用于快速套用图形样式</li>
+<li><code>Graph Updating</code>，用于图形修改更新</li>
+</ul></li>
+<li>点击菜单<code>Update</code>，可以更新图形修改结果</li>
+<li>点击菜单<code>AddTex</code>，可以给图形添加文本</li>
+<li><span class="math inline">\(\cdots\)</span></li>
+</ul></li>
+</ul>
+<div class="figure" style="text-align: center"><span id="fig:explore-line-fine"></span>
+<img src="picture/lab1-introduction/1-explore-line-fine.png" alt="主要变量的个性化多线图（Line &amp; Symbol）绘制" width="716" />
+<p class="caption">
+Figure 1.16: 主要变量的个性化多线图（Line &amp; Symbol）绘制
+</p>
+</div>
+</div>
+</div>
+<div id="log-log" class="section level3">
+<h3><span class="header-section-number">1.7.5</span> 线性回归分析（linear regression analyzing）</h3>
+<p>线性回归分析（linear regression analyzing）是用来探究现象之间因果作用关系的最重要工具之一。线性回归分析属于一类有助于直观地理解复杂问题的<strong>理想化</strong>分析工具，一般需要较严苛的<strong>假设条件</strong>。</p>
+<p>EViews进行线性回归分析中需要考虑的问题可繁可简，取决于问题的复杂程度、研究的细致程度、条件的满足程度等等。一般而言，线性回归分析都需要进行：模型选择和调试、统计学检验（如t检验、F检验等）、计量经济学检验（如多重共线性、异方差、自相关等检验）、预测性检验、稳健性检验等。</p>
+<p>为了简便起见，下面将对<strong>宏观经济发展案例</strong>中的对数模型（见节<a href="#quick-sample">1.6</a>中的样本回归模型<a href="#eq:demon-SRM">(1.2)</a>）进行EViews线性回归分析。Eviews菜单操作的具体步骤为（见图<a href="#fig:regression-m0">1.17</a>）：</p>
+<ul>
+<li>进入方程分析的设置菜单。
+<ul>
+<li>在工作文件视窗下，点击菜单栏中的<code>Quick</code> <span class="math inline">\(\Rightarrow\)</span> <code>Estimation Equation</code> <span class="math inline">\(\Rightarrow\)</span> 将看到方程估计的引导界面</li>
+</ul></li>
+<li>完成引导设置。方程估计的引导界面<code>Equation Estimation</code>下，进行如下设置：
+<ul>
+<li>设置方程。<code>Equation Estimation</code> <span class="math inline">\(\Rightarrow\)</span> <code>Specification</code>
+<ul>
+<li>方程设置<code>Equation specification</code>：依次输入变量 gdp c pce investment government（注意变量之间的空格，以及截距<code>c</code>）</li>
+<li>估计方法<code>Estimation settings</code>：
+<ul>
+<li>方法<code>Method</code>: 下拉选择<code>LS - Least Squares (NLS and ARMA)</code></li>
+<li>样本<code>Sample</code>: <strong>默认设置</strong></li>
+</ul></li>
+</ul></li>
+<li>设置细节选项。<code>Equation Estimation</code> <span class="math inline">\(\Rightarrow\)</span> <code>Options</code>
+<ul>
+<li>协方差设置<code>Coefficient Covariance</code> <span class="math inline">\(\Rightarrow\)</span> （细节略）</li>
+<li>权重设置<code>Weights</code> <span class="math inline">\(\Rightarrow\)</span> （细节略）</li>
+<li>优化算子设置<code>Optimization</code> <span class="math inline">\(\Rightarrow\)</span> （细节略）</li>
+</ul></li>
+<li>完成设置，点击<code>OK</code> <span class="math inline">\(\Rightarrow\)</span> 将得到未命名的方程对象<img src="picture/object/Equation.png" />UNTITLED</li>
+</ul></li>
+<li>命名并保存回归方程。
+<ul>
+<li>在未命名的方程对象<img src="picture/object/Equation.png" />UNTITLED视窗下，点击菜单栏<code>Name</code> <span class="math inline">\(\Rightarrow\)</span> 输入命名<code>eq_main</code>（建议命名） <span class="math inline">\(\Rightarrow\)</span> 完成命名，点击<code>Ok</code></li>
+<li>此时，在工作文件视窗下可以看到已经保存命名的方程对象<img src="picture/object/Equation.png" />eq_main</li>
+</ul></li>
+</ul>
+<table>
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="left"><img src="tips1.png" /></td>
+<td align="left">- 构建并比较多个类似方程时，
+可以复制、粘贴、重命名多个方程对象<img src="picture/object/Equation.png" /><br />
+- 可以随时修改方程的属性，在方程对象<img src="picture/object/Equation.png" />
+视窗下，点击菜单栏中的<code>Estimate</code> <span class="math inline">\(\Rightarrow\)</span> 重新设置<code>Equation Estimation</code><br />
+</td>
+</tr>
+</tbody>
+</table>
+<div class="figure" style="text-align: center"><span id="fig:regression-m0"></span>
+<img src="picture/lab1-introduction/1-regression-m0.png" alt="主回归模型Eviews操作" width="1213" />
+<p class="caption">
+Figure 1.17: 主回归模型Eviews操作
+</p>
+</div>
+</div>
+<div id="output-reporting" class="section level3">
+<h3><span class="header-section-number">1.7.6</span> 报告结果输出（output reporting）</h3>
+<p>Eviews操作结果是以对象（object）形式存储在工作文件（workfile）中，在撰写研究报告时，往往需要呈现这些分析结果和主要结论。报告结果输出（output reporting）是指把EViews分析的结果<strong>导出</strong>或<strong>呈现</strong>在研究报告中的过程或操作。根据研究报告内容的实际需要，EViews的对象可能需要完整输出，也可能只是提取对象中的部分元素。但无论如何，进行合理的选取、整合、呈现、展示是极为必要的。例如：</p>
+<ul>
+<li>调整图形（graph）和表格（table）的各种美学细节以符合论文或报告的格式要求，如字体、颜色、线条、形状、图例、坐标等</li>
+<li>选取并整合成新的表格，如三线表、多模型对比表</li>
+<li>把一个EViews原始的回归分析报告（raw report），处理成简要报告（simple report），一般表达为三行或四行，包括样本回归方程（第一行）、回归系数的标准误（第二行）、t值（第三行）、拟合情况（第四行，包括拟合优度<span class="math inline">\(R^2\)</span>，F检验值、DW检验值等）</li>
+<li><span class="math inline">\(\cdots\)</span></li>
+</ul>
+<!--- 此处将放置一个专栏，展示报告结果输出的基本形式 --->
+<p>对于如下的回归方程：</p>
+<p><span class="math display" id="eq:prm-classic-model">\[\begin{equation}
+\begin{alignedat}{999}
+&amp;GDP=&amp;&amp; + \beta_{1} &amp;&amp; + \beta_{2} PCE&amp;&amp; + \beta_{3} Government&amp;&amp; + \beta_{4} Investment&amp;&amp;+u\\
+\end{alignedat}
+\tag{1.3}
+\end{equation}\]</span></p>
+<p>其回归报告，可以简要写成：</p>
+<p><span class="math display" id="eq:classic-model-coef">\[\begin{equation} \begin{alignedat}{999} &amp;\widehat{GDP}=&amp;&amp;+475.31&amp;&amp;+1.08PCE&amp;&amp;+0.66Government&amp;&amp;+0.55Investment\\ &amp;\text{(t)}&amp;&amp;(4.2880)&amp;&amp;(28.4200)&amp;&amp;(4.3940)&amp;&amp;(9.9401)\\&amp;\text{(se)}&amp;&amp;(110.8464)&amp;&amp;(0.0380)&amp;&amp;(0.1508)&amp;&amp;(0.0553)\\&amp;\text{(fitness)}&amp;&amp; R^2=0.9986;&amp;&amp; \bar{R^2}=0.9986\\&amp; &amp;&amp; F^{\ast}=30147.81;&amp;&amp\tag{1.4}t} (#eq:classic-model-coef) \end{equation}\]</span></p>
+</div>
+</div>
+<div id="command-system" class="section level2">
+<h2><span class="header-section-number">1.8</span> Eviews编程体系及语法</h2>
+<div class="section level3">
+<h3><span class="header-section-number">1.8.1</span> 命令运行方式</h3>
+<p>EViews提供了菜单和命令两种方式进行数据分析和处理。事实上，只要能够通过<strong>窗口菜单</strong>完成的功能，就都可以通过<strong>命令窗口</strong>中输入相应编程命令来执行实现。根据任务的复杂性、重复性、繁重性等的不同，EViews可以通过如下方式完成分析任务：</p>
+<ul>
+<li>（<strong>方式1</strong>）<strong>完全窗口菜单驱动</strong>，也即通过选择特定菜单栏功能进行分析操作
+<ul>
+<li>适合于简单的、一次性的、工作量小的分析任务</li>
+<li>适合于EViews软件初学者，可以更加集中于统计分析和计量分析本身</li>
+<li>优点：图形用户界面使得操作十分直观，常用对象窗口和菜单相对固定，简单的几次反复练习后便会形成稳定的“记忆路径”</li>
+<li>不足：操作效率较低，难以在底层上实现<strong>“掌控一切”</strong>的状态</li>
+</ul></li>
+<li>（<strong>方式2</strong>）<strong>完全程序命令驱动</strong>，也即通过执行特定编程命令来进行分析操作，具体又可分为两种情形：
+<ul>
+<li>（<strong>方式2.1</strong>）<strong>交互式命令驱动</strong>，也即在<strong>命令视窗</strong>中逐条地编写程序代码，逐条运行各个编程命令
+<ul>
+<li>类似于“看一步走一步”的模式，命令编程不需要十分严格的逻辑安排</li>
+<li>只要有特定分析需要，就随时编写命令，随时执行编程命令，得到想要的分析结果</li>
+<li>适合于相对复杂、有一定重复性，但又不太繁重的分析任务</li>
+<li>优点：灵活、自由，可以与菜单操作（方式1）互相结合——只要需要就可随时登台“串场”发挥作用！</li>
+<li>不足：代码管理困难，条理性较差，需要繁琐的手工编写和操作</li>
+</ul></li>
+<li>（<strong>方式2.2</strong>）<strong>批量式命令驱动</strong>，也即在<strong>程序文件</strong>中系统地编写程序代码，自动运行全部编程命令
+<ul>
+<li>EViews程序文件为<strong>.prg</strong>文件后缀，是一类通用<strong>文本文件</strong>，所有代码都以<strong>文本</strong>形式进行编写、组织和管理。</li>
+<li>类似于“照着剧本演戏”的模式，所有“剧本”内容（程序代码）都是经过精心设计和安排的</li>
+<li>一开始分析任务就极为明确，程序命令有整体“剧情”，各命令间的联系、顺序等逻辑性较强</li>
+<li>适合于较为复杂、重复性较高、极为繁重的分析任务</li>
+<li>优点：代码管理方便，代码可重复使用，代码逻辑性强，分析操作过程的条理性很清晰</li>
+<li>不足：需要系统掌握EViews编程语言，学习使用成本较大；需要较强的代码管理和统计分析逻辑，容易出现各类运行报错。</li>
+</ul></li>
+</ul></li>
+<li>（<strong>方式3</strong>）菜单窗口和程序命令<strong>并行驱动</strong>，也即同时结合了功能菜单和编程命令来开展相关分析工作
+<ul>
+<li>往往都是<strong>菜单驱动</strong>加上<strong>视窗命令</strong></li>
+<li><strong>菜单驱动</strong>的优点是简单直观（类似于“所见即所得”），不足是功能菜单的操作效率较为低下</li>
+<li><strong>命令视窗</strong>的优点是底层操作（类似于“我思故我在”），不足是命令语法的学习曲线较为陡峭，记忆负担大，代码写作要求较高</li>
+<li>优点：易用，上手快，特别适合于EViews中级或高级进阶学习。有效结合菜单操作和命令操作两种方式，相互取长补短，提高数据分析效率</li>
+<li>不足：常常要在菜单操作和命令操作两种方式中随时“切换”，容易引起分析混乱；又要熟悉功能菜单选项，又要记忆命令代码，可能“两边不讨好”。</li>
+</ul></li>
+</ul>
+<div id="both" class="section level4">
+<h4><span class="header-section-number">1.8.1.1</span> 菜单窗口和程序命令并行驱动</h4>
+<p>如前所述，<strong>菜单窗口和程序命令并行驱动</strong>，同时结合了功能菜单和编程命令来开展相关分析工作，是数据分析实践中最常用到的、最受初学者欢迎的操作方式之一。这种操作方式，首先需要掌握功能菜单驱动的数据分析操作，同时还要求了解并使用最基本的EViews编程语言进行简单代码编写和运行分析。总体看来，这种操作方式下，以<strong>功能菜单操作</strong>为主，以<strong>视窗命令操作</strong>为辅——数据分析者将主要利用菜单操作完成主要的常规性分析任务，而一些非常规的、需要定制化的分析任务则交给视窗命令去执行。</p>
+<p>下面通过<strong>宏观经济发展案例</strong>演示基本操作步骤，将展示“功能菜单操作-视窗命令操作”的交互执行。其中数据分析的目标任务有两个：一是得到一个向量（Vector）对象<img src="picture/object/Vector.png" />，用于存放判定系数<span class="math inline">\(R^2\)</span>和调整判定系数；二是得到一个标量（Scalar）对象<img src="picture/object/Scalar.png" />，用于存放给定显著性水平<span class="math inline">\(\alpha=0.05\)</span>，且自由度为<span class="math inline">\(f=128\)</span>时，理论查表t值<span class="math inline">\(t_{1-\alpha/2}(f)=t_{0.975}(128)\)</span>。</p>
+<ul>
+<li>假设前期已完成如下<strong>菜单操作</strong>工作：
+<ul>
+<li>（见节<a href="#workfile-create">1.7.2</a>）已经成功创建了工作文件<img src="picture/general/workfile-size.png" />macro_economic</li>
+<li>（见节<a href="#workfile-create">1.7.2</a>）已经成功导入数据</li>
+<li>（见节<a href="#log-log">1.7.5</a>）已经通过菜单操作进行双对数回归分析，并得到方程对象<img src="picture/object/Equation.png" />eq_main</li>
+<li>双击方程对象<img src="picture/object/Equation.png" />eq_main可以查看EViews给出的回归分析报告
+<ul>
+<li>可以看到，回归方程拟合优度中的判定系数<span class="math inline">\(R^2=0.998620\)</span>，调整判定系数判定系数<span class="math inline">\(\bar{R}^2=0.998587\)</span></li>
+</ul></li>
+</ul></li>
+<li>目标任务1（见图<a href="#fig:task-fitness">1.18</a>）：通过<strong>视窗命令操作</strong>，提取出双对数回归方程中的判定系数<span class="math inline">\(R^2\)</span>和调整判定系数<span class="math inline">\(\bar{R}^2\)</span>，并将这两个数值分别存放在一个向量（Vector）对象<img src="picture/object/Vector.png" />vec_fitness中。
+<ul>
+<li>在命令视窗中：
+<ul>
+<li>输入代码行<code>vector(2) vec_fitness(1)=eq_main.@r2</code></li>
+<li>鼠标光标停留在该代码行上 <span class="math inline">\(\Rightarrow\)</span> 然后按Enter键，便可以运行该代码行!</li>
+</ul></li>
+<li>在工作文件视窗下：
+<ul>
+<li>将看到生成了一个向量对象<img src="picture/object/Vector.png" />fitness</li>
+<li>双击查看<img src="picture/object/Vector.png" />fitness，发现该向量含有两个元素，其中第一个元素为0.998620（也即回归方程的判定系数<span class="math inline">\(R^2\)</span>值），第二个元素为0.000000</li>
+</ul></li>
+<li>在命令视窗中：
+<ul>
+<li>输入代码行<code>vec_fitness(2)=eq_main.@rbar2</code></li>
+<li>鼠标光标停留在该代码行上 <span class="math inline">\(\Rightarrow\)</span> 然后按Enter键，便可以运行该代码行!</li>
+</ul></li>
+<li>在工作文件视窗下：
+<ul>
+<li>双击查看<img src="picture/object/Vector.png" />vector_fitness，发现该向量含有两个元素，其中第一个元素为0.998620（也即回归方程的判定系数<span class="math inline">\(R^2\)</span>值），第二个元素为0.998587（也即回归方程的调整判定系数<span class="math inline">\(\bar{R}^2\)</span>值）</li>
+</ul></li>
+</ul></li>
+</ul>
+<div class="figure" style="text-align: center"><span id="fig:task-fitness"></span>
+<img src="picture/lab1-introduction/1-task-fitness.png" alt="通过命令视窗提取回归方程的判定系数$R^2$和调整判定系数$ar{R}^2$" width="1029" />
+<p class="caption">
+Figure 1.18: 通过命令视窗提取回归方程的判定系数<span class="math inline">\(R^2\)</span>和调整判定系数<span class="math inline">\(ar{R}^2\)</span>
+</p>
+</div>
+<ul>
+<li>目标任务2（见图<a href="#fig:task-tvalue">1.19</a>）：通过<strong>视窗命令操作</strong>，得到一个标量（Scalar）对象<img src="picture/object/Scalar.png" />t_value，用于存放给定显著性水平<span class="math inline">\(\alpha=0.05\)</span>，且自由度为<span class="math inline">\(f=125\)</span>时，理论查表t值<span class="math inline">\(t_{1-\alpha/2}(f)=t_{0.975}(125)\)</span>。
+<ul>
+<li>在命令视窗中：
+<ul>
+<li>输入代码行<code>scalar t_value=@qtdist(0.975,125)</code></li>
+<li>在该代码行上按Enter键</li>
+</ul></li>
+<li>在工作文件视窗下中：
+<ul>
+<li>将看到生成了一个标量对象<img src="picture/object/Scalar.png" />t_value</li>
+<li>双击查看<img src="picture/object/Scalar.png" />t_value，发现该标量含有一个元素，其数值为1.9791（也即计算表明，在给定显著性水平<span class="math inline">\(\alpha=0.05\)</span>，且自由度为<span class="math inline">\(f=125\)</span>时，理论查表t值<span class="math inline">\(t_{1-\alpha/2}(f)=t_{0.975}(125)=1.9791\)</span>）</li>
+</ul></li>
+</ul></li>
+</ul>
+<div class="figure" style="text-align: center"><span id="fig:task-tvalue"></span>
+<img src="picture/lab1-introduction/1-task-tvalue.png" alt="通过命令视窗计算得到理论t值$t_{1-lpha/2}(f)=t_{0.975}(125)$" width="1024" />
+<p class="caption">
+Figure 1.19: 通过命令视窗计算得到理论t值<span class="math inline">\(t_{1-lpha/2}(f)=t_{0.975}(125)\)</span>
+</p>
+</div>
+</div>
+<div class="section level4">
+<h4><span class="header-section-number">1.8.1.2</span> 批量式命令驱动</h4>
+<p>下面将简要介绍<strong>（方式2.2）批量式命令驱动</strong>运行模式的基本操作。作为EViews高级学习技巧，很有必要理解EViews程序文件<img src="picture/general/prg-size.png" />（文件后缀名为.prg）的创建和运行操作：</p>
+<ul>
+<li>创建程序文件（见图<a href="#fig:prg-file">1.20</a>）。
+<ul>
+<li>在工作文件视窗下，依次点击选择菜单栏File <span class="math inline">\(\Rightarrow\)</span> New <span class="math inline">\(\Rightarrow\)</span> Program。</li>
+<li>命名并保存程序文件。在程序文件视窗下，点击菜单栏Save <span class="math inline">\(\Rightarrow\)</span> 确定文件存放地址（如本地文件夹“d:\econometrics\eviews”下），输入文件名<code>first_program</code>（建议命名，可修改）<span class="math inline">\(\Rightarrow\)</span> 完成，点击OK</li>
+<li>查看已保存的程序文件<img src="picture/general/prg-size.png" />并双击打开。 在本地文件夹下（如“d:\econometrics\eviews”）可以看到程序文件<img src="picture/general/prg-size.png" />first_program.prg，可双击打开</li>
+</ul></li>
+<li>使用程序文件视窗的功能菜单。
+<ul>
+<li>在程序文件视窗（Program:first_grogram）下，可以看到如下功能菜单
+<ul>
+<li>运行菜单（Run）：用于运行全部代码</li>
+<li>打印菜单（Pringt）：</li>
+<li>保存菜单（Save）和另存菜单（SaveAs）：</li>
+<li>剪切菜单（Cut）、拷贝菜单（Copy）和粘贴菜单（Paste）：</li>
+<li>插入文本菜单（InsertTxt）：</li>
+<li>查找菜单（Find）和替换菜单（Replace）：</li>
+<li>打包命令菜单（Wrap+/-）：用于封装命令</li>
+<li>代码行号菜单（LineNum+/-）：用于显示或隐藏代码行号</li>
+<li>加密菜单（Encrypt）：用于给程序文件加密</li>
+</ul></li>
+</ul></li>
+<li>在程序文件<img src="picture/general/prg-size.png" />中编写、管理和运行EViews代码。
+<ul>
+<li>根据EViews编程语言规则（见节<a href="#language">1.8.2</a>），直接以文本形式编写程序代码。</li>
+<li>执行整个程序文件。在检查确认整个程序文件的全部代码后，可以直接运行整个程序文件。在程序文件视窗（Program:first_grogram）下，点击菜单栏中的Run</li>
+<li>执行部分代码行。
+<ul>
+<li><strong>选中</strong>已经编写的代码命令行，点击鼠标右键，选择Run Selected</li>
+<li><strong>选中</strong>已经编写的代码命令行，点击鼠标右键，还可以看到其他一些常用的快捷菜单。</li>
+</ul></li>
+</ul></li>
+</ul>
+<div class="figure" style="text-align: center"><span id="fig:prg-file"></span>
+<img src="picture/lab1-introduction/1-prg-file.png" alt="EViews程序文件（.prg）的创建操作" width="1024" />
+<p class="caption">
+Figure 1.20: EViews程序文件（.prg）的创建操作
+</p>
+</div>
+<p>下面所示为EViews程序文件<img src="picture/general/prg-size.png" />my_first_program.prg的代码文本，运行该EViews程序文件，将可以完全地、自动地再现第一章中“宏观经济发展案例”主要分析步骤，包括：</p>
+<ul>
+<li>创建工作文件。（工作文件名=development，子页命名=gdp）（效果与节<a href="#workfile">1.7.2.2</a>相同）</li>
+<li>导入外部数据。（效果与节<a href="#import-data">1.7.2.3</a>相同）</li>
+<li>构造组（Group）对象<img src="picture/object/Group.png" />group_vars。（效果与节<a href="#descriptive">1.7.4.3</a>相同）</li>
+<li>得到描述性分析的表格（Table）对象<img src="picture/object/Table.png" />tab_descriptive。（效果与节<a href="#descriptive">1.7.4.3</a>相同）</li>
+<li>得到堆栈多线图（Line &amp; Symbol）的图形对象<img src="picture/object/Graph.png" />graph_line。（效果与节<a href="#descriptive">1.7.4.3</a>相同）</li>
+<li>进行双对数线性回归模型分析，得到方程（Equation）对象<img src="picture/object/Equation.png" />eq_main。（效果与节<a href="#log-log">1.7.5</a>相同）</li>
+<li>提取出双对数回归方程中的判定系数<span class="math inline">\(R^2\)</span>和调整判定系数<span class="math inline">\(\bar{R}^2\)</span>，并将这两个数值分别存放在一个向量（Vector）对象<img src="picture/object/Vector.png" />vec_fitness中。（效果与节<a href="#both">1.8.1.1</a>相同）</li>
+<li>计算得到给定显著性水平<span class="math inline">\(\alpha=0.05\)</span>，且自由度为<span class="math inline">\(f=125\)</span>时，理论查表t值<span class="math inline">\(t_{1-\alpha/2}(f)=t_{0.975}(125)\)</span>，并将这个计算值存放到一个标量（Scalar）对象<img src="picture/object/Scalar.png" />t_value中。（效果与节<a href="#both">1.8.1.1</a>相同）</li>
+</ul>
+<pre><code>&#39;======================================================================================================
+&#39;说明：以下为EViews编程文件my_first_program.prg的代码
+&#39;      将展示第一章中“宏观经济发展案例”主要分析步骤的“批量式命令驱动”实现方法(:：
+&#39;      其中，符号&#39;起头的行，为注释行，其他为EViews命令行。
+&#39;======================================================================================================
+
+&#39;[命令行1]：创建工作文件（工作文件名=development，子页命名=gdp），季度数据，起始于1980年1季度，结束于2012年1季度
+wfcreate(wf=development,page=gdp)  q  1980/1 2012/1
+
+&#39;[命令行2]：导入外部数据，路径为d:\economitrics\macro-economic.xlsx
+import d:\economitrics\macro-economic.xlsx
+
+&#39;[命令行3]：构造组对象，名为group_vars，由序列gdp; pce; investment; government构成
+group group_vars gdp pce investment government
+
+&#39;[命令行4]：得到表格（表格命名为tab_descriptive）&lt;----组对象group_vars.进行描述性统计分析（Descriptive statistics）
+freeze(tab_descriptive) group_vars.stats
+
+&#39;[命令行5]：进行绘图，图形名为graph_line线图（堆栈图）&lt;----对组对象group_vars
+graph graph_line.line(s)  group_vars
+
+&#39;[命令行6]：构建方程，给方程命名为eq_main执行线性回归
+&#39;   其中，线性方程为 gdp ~ c+ pce+ investment+ government
+equation eq_main.ls gdp c pce investment government
+
+&#39;构造向量（含有2个元素），并将向量命名为vec_fitness，其中：
+&#39; [命令行7]：向量的第1个元素将用于提取并存放方程eq_main中的判定系数R^2
+&#39; [命令行8]：向量的第1个元素将用于提取并存放方程eq_main中的调整判定系数$\bar{R}^2$
+vector(2) vec_fitness(1)=eq_main.@r2
+vec_fitness(2)=eq_main.@rbar2
+
+&#39;[命令行9]：构造标量，标量命名为t_value=利用函数@qtdist(p,f)计算理论t值（a=0.05，f=125）
+scalar t_value=@qtdist(0.975,125)
+
+&#39;=======================================================================================================</code></pre>
+<p>通过以上EViews程序文件<img src="picture/general/prg-size.png" />my_first_program.prg，可以初步对EViews编程语言及命令体系有一个直观的认知，并可以利用数据进行实证练习。当然，里面的很多EViews编程命令与代码，会令初学者不知所以然（尽管只需要修改外部数据文件路径，就能完全再现实验分析结果）。因此，本章后续内容将会帮助梳理和总结EViews编程的命令语法结构，以及常用命令及函数。</p>
+</div>
+</div>
+<div id="language" class="section level3">
+<h3><span class="header-section-number">1.8.2</span> 命令语法结构</h3>
+<p>实际上<strong>EViews编程语言</strong>源自于一种比较<strong>古老的</strong>编程语言，最早于1965年由Robert Hall开发而成。<strong>EViews编程语言</strong>有其自身的体系性和逻辑性。如果具备一定的编程基础，可以很快掌握基本的EViews编程技巧。总体来看，学习<strong>EViews编程语言</strong>需要把握如下几个基本原则：</p>
+<ul>
+<li>Eviews编程的<strong>“前台”</strong>是各种EViews工作文件对象（workfile object，见节<a href="#family-objects">1.7.3.1</a>），这些都是在<strong>“前台”</strong>——工作文件视窗下——<strong>“可见的”</strong>。
+<ul>
+<li>这些EViews工作文件对象（workfile object）包括：序列（Series）对象<img src="picture/object/Series.png" />、方程（Equation）对象<img src="picture/object/Equation.png" />、表格（Table）对象<img src="picture/object/Table.png" />、图形（Graph）对象<img src="picture/object/Graph.png" />、标量（Scalar）对象<img src="picture/object/Scalar.png" />等</li>
+<li>大部分Eviews编程代码都会<strong>直接</strong>作用于或指向这些EViews工作文件对象（workfile object）</li>
+<li>Eviews编程代码直接产生的各种EViews工作文件对象，也往往就是数据分析的<strong>直接成果</strong>，将用于报告撰写，也是数据分析的最重要目标之一。</li>
+</ul></li>
+<li>Eviews编程的<strong>“后台”</strong>是<strong>命令视窗</strong>或者<strong>编程文件.prg</strong><img src="picture/general/prg-size.png" />，所有EViews命令代码在这里被编写、管理和运行。
+<ul>
+<li>其中的一些EViews命令代码，可能只是<strong>辅助性地</strong>帮助实现<strong>前台</strong>的结果——这些命令代码本身并不会直接“可见的”，也即不会<strong>直接作用</strong>或<strong>直接指向</strong>“EViews工作文件对象”。</li>
+<li>EViews开发有一系列<strong>编程变量</strong>（programming variables），它们大多只是在“后台”发挥<strong>桥梁</strong>或<strong>表征</strong>作用，从不直接在“前台”现身。
+<ul>
+<li><strong>控制变量（control variables）</strong>，用以代表数值型的变量，用感叹号!做前缀表达。例如，编写并运行命令<code>!x=7</code>，表示生成一个数值型变量<code>x</code>，其值为7。然而即便运行此命令行，在工作文件视窗下，也不会产生任何EViews工作文件对象——但控制变量<code>x</code>确确实实是隐身在<strong>后台</strong>，并可以发挥作用的！</li>
+<li><strong>字符变量（string variables）</strong>，用以代表字符型的变量，用百分号%做前缀表达。例如，编写并运行命令<code>%model=&quot;gdp~ c + investment + pce + government&quot;</code>，表示生成一个字符型变量model，其值为<code>&quot;gdp~ c + investment + pce + government&quot;</code>。同理，即便运行此命令行，在工作文件视窗下，也不会产生任何EViews工作文件对象——也即字符变量<code>model</code>是隐身在<strong>后台</strong>发挥作用的！</li>
+</ul></li>
+</ul></li>
+<li>作为初级或中级Eviews编程学习者，应该重点关注<strong>数据分析目标的实现</strong>而不是<strong>程序运行效率的提高</strong>。也就是说：
+<ul>
+<li>紧密围绕“可见的”工作文件<strong>对象（object）</strong>进行EViews代码编程，直接得到可见的分析结果</li>
+<li>为了提高编程代码的运行效率，或者为了改善编程代码的简洁性（很多编程者都会被认为有“代码洁癖”倾向），或者为了数据分析的代码可重复性使用，诸如此类目标的实现往往都需要对代码进行“费尽心机”的后台安排和管理。如果这些目标并不那么重要，这些“令人尊敬”的编程努力也就完全有理由可以暂时放弃。</li>
+</ul></li>
+</ul>
+<p>因此，假定Eviews编程学习者关注的重点是<strong>数据分析目标的实现</strong>，下面将展示EViews编程语言中基于对象（object）的一种标准语法结构（注意空格的使用）：</p>
+<div id="div2">
+<p><a id="action"><strong>action</strong></a><a id="options"><strong>(action_opt)</strong></a> <a id="object_name"><strong>object_name</strong></a>.<a id="view_or_proc"><strong>view_or_proc</strong></a><a id="options"><strong>(options_list)</strong></a> <a id="arg_list"><strong>arg_list</strong></a></p>
+</div>
+<p>该语法结构的大意是：将会执行一项动作（action），这项动作的执行必须按照若干标准（action_opt），这项动作将会施加在一个对象（名为object_name）的某种可执行状态上（view_or_proc），对象上的这种可执行状态可以是对象的视图（view）或者程序（proc），并且可能会要求提供这种状态下的具体要求（options_list），而这种状态（view_or_proc）的出现或执行也需要具体的参数条件。其中：</p>
+<ul>
+<li><a id="action"><strong>action</strong></a>表示<strong>动作（action Commands）</strong>命令，包括：
+<ul>
+<li><a id="action"><strong>show</strong></a>表示显示结果</li>
+<li><a id="action"><strong>do</strong></a>表示执行指定程序</li>
+<li><a id="action"><strong>freeze</strong></a>表示从对象视窗中生成表格或图形</li>
+<li><a id="action"><strong>print</strong></a>表示打印对象视窗</li>
+</ul></li>
+<li><p><a id="options"><strong>(action_opt)</strong></a>表示动作（action Commands）命令的各种<strong>选项设置（options）</strong></p></li>
+<li><a id="object_name"><strong>object_name</strong></a>表示EViews的<strong>对象名（object name）</strong>，例如：
+<ul>
+<li>名为<a id="object_name"><strong>eq_main</strong></a>的方程对象<img src="picture/object/Equation.png" />eq_main</li>
+<li>名为<a id="object_name"><strong>gdp</strong></a>的序列对象<img src="picture/object/Series.png" />gdp</li>
+<li>名为<a id="object_name"><strong>graph_line</strong></a>的图形对象<img src="picture/object/Graph.png" />graph_line</li>
+</ul></li>
+<li><a id="view_or_proc"><strong>view_or_proc</strong></a>表示对象可用于执行的<strong>视窗或程序命令（View and Procedure Commands）</strong>
+<ul>
+<li>对于不同的对象（object），其可用于执行的<strong>视窗或程序命令</strong>，都不尽相同。例如，序列（Series）对象<img src="picture/object/Series.png" />ser01可用于执行的<strong>视窗（View）命令</strong>包括：
+<ul>
+<li>显示为表单和描述性统计，分别是：ser01.sheet；ser01.stats</li>
+<li>显示为图形，包括：ser01.line；ser01.bar；ser01.hist</li>
+<li>显示为表单，包括：ser01.freq；ser01.correl；ser01.lrvar；ser01.uroot；ser01.vratio 2 4 8；ser01.bdstest；<span class="math inline">\(\cdots\)</span></li>
+<li><span class="math inline">\(\cdots\)</span></li>
+</ul></li>
+</ul></li>
+<li><p><a id="options"><strong>(options_list)</strong></a>表示对象可用于执行视窗或程序命令（View and Procedure Commands）的各种<strong>选项设置（options）</strong></p></li>
+<li><a id="arg_list"><strong>arg_list</strong></a>表示视窗或程序命令下的语法<strong>参数（arguments）</strong>
+<ul>
+<li>例如，方程对象<img src="picture/object/Series.png" />eq_main的线性回归程序表达为<code>eq_main.ls</code>，就需要提供线性回归方程参数：<code>gdp c investment pce government</code>，也即方程<span class="math inline">\(gdp=\hat{\beta_1}+\hat{\beta_2}investment+\hat{\beta_3}pce+\hat{\beta_4}government+e_i\)</span></li>
+</ul></li>
+</ul>
+<p>下面将展示3条典型的EViews编程命令行，它们的语法结构类似，但运行结果则迥然不同：</p>
+<pre><code>&#39;说明：以下三个EViews命令行，将简要展示EViews编程的语法结构及其特征。
+&#39;      其中，符号&#39;起头的行，为注释行，其他为EViews命令行。
+&#39; ===========================================================================
+&#39; 命令行1：生成线性回归方程对象eq_main01
+equation eq_main01.ls gdp c investment pce government
+
+&#39; 命令行2：生成并打开线性回归方程对象eq_main02
+show eq_main02.ls gdp c investment pce government
+
+&#39; 命令行3：生成线性回归方程对象eq_main03，并将回归报告保存为表格对象tab_output
+freeze(tab_output) eq_main03.ls gdp c investment pce government
+&#39; ===========================================================================</code></pre>
+<p>以上3条EViews编程命令行的具体解读如下：</p>
+<ul>
+<li>命令行1解读：将生成线性回归方程对象<img src="picture/object/Equation.png" />eq_main01
+<ul>
+<li><code>equation</code>表示声明（declare）一个方程对象<img src="picture/object/Equation.png" /></li>
+<li><code>eq_main01</code>表示对象名（object_name）</li>
+<li><code>.ls</code>表示对方程对象执行一个叫<code>ls</code>（也即线性回归分析）的程序（proc）</li>
+<li><code>gdp c investment pce government</code>表示执行<code>ls</code>（也即线性回归分析）程序（proc）需要调用的参数（此处为设定回归方程）</li>
+</ul></li>
+<li>命令行2解读：将生成并打开线性回归方程对象<img src="picture/object/Equation.png" />eq_main02
+<ul>
+<li><code>show</code>表示执行一个名为<code>show</code>（也即展示结果）的动作（action）</li>
+<li><code>eq_main02</code>表示对象名（object_name）</li>
+<li><code>.ls</code>表示对方程对象执行一个叫<code>ls</code>（也即线性回归分析）的程序（proc）</li>
+<li><code>gdp c investment pce government</code>表示执行<code>ls</code>（也即线性回归分析）程序（proc）需要调用的参数（此处为设定回归方程）</li>
+</ul></li>
+<li>命令行3解读：将生成线性回归方程对象<img src="picture/object/Equation.png" />eq_main03，并将回归报告保存为表格对象<img src="picture/object/Table.png" />tab_output
+<ul>
+<li><code>freeze(tab_output)</code>表示执行一个名为<code>freeze</code>（此处为保存表格）的动作（action）；括号内的<code>tab_output</code>为执行该动作的选项设置（action_opt），此处表示保存的表格命名为<code>tab_output</code></li>
+<li><code>eq_main03</code>表示对象名（object_name）</li>
+<li><code>.ls</code>表示对方程对象执行一个叫<code>ls</code>（也即线性回归分析）的程序（proc）</li>
+<li><code>gdp c investment pce government</code>表示执行<code>ls</code>（也即线性回归分析）程序（proc）需要调用的参数（此处为设定回归方程）</li>
+</ul></li>
+</ul>
+<p>总体而言，以上演示只是一种常用的典型语法结构，是基于对象（object）进行操作。实际上，EViews编程语法结构有多种多样，有的是标准化语法结构，有的是简化语法结构，还有更多的约定式语法结构，深入掌握的话需要进行大量记忆，或者查看EViews官方的命令参考书<span class="citation">[@IHS-command]</span>。无论如何，围绕对象（object）进行EViews编程是一条切实有效的学习途径，而EViews官方<a href="http://www.eviews.com/help/helpintro.html#page/content%2Fcobjpreface.html%23">在线帮助文档</a><a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>提供了全面的对象参考（object reference），并分类列出了全部的相关命令，对EViews编程很有帮助：</p>
+<ul>
+<li>对象的声明（Declaration）</li>
+<li>对象的方法（Methods）</li>
+<li>对象的视窗（Views）</li>
+<li>对象的可执行程序（Procs）</li>
+<li>对象的可返回数据（Data Members）</li>
+</ul>
+</div>
+<div class="section level3">
+<h3><span class="header-section-number">1.8.3</span> 常用命令及函数</h3>
+<p>本书后续章节相关部分还将涉及EViews编程的初级或中级技能。为了便于后续内容的学习，本书总结和梳理了常用的EViews函数命令（见表<a href="#tab:commands-show">1.11</a>），可以更好地配合EViews代码编写和运行，帮助完成计量经济学实证分析任务。</p>
+<table>
+<caption><span id="tab:commands-show">Table 1.11: </span>常用EViews函数命令</caption>
+<thead>
+<tr class="header">
+<th align="center">序号</th>
+<th align="left">分类</th>
+<th align="left">函数命令</th>
+<th align="left">作用</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="left">运算符</td>
+<td align="left"><code>+</code></td>
+<td align="left">加</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="left">运算符</td>
+<td align="left"><code>-</code></td>
+<td align="left">减</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td align="left">运算符</td>
+<td align="left"><code>*</code></td>
+<td align="left">乘</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td align="left">运算符</td>
+<td align="left"><code>/</code></td>
+<td align="left">除</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="center">5</td>
+<td align="left">运算符</td>
+<td align="left"><code>^</code></td>
+<td align="left">幂次</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="center">6</td>
+<td align="left">运算符</td>
+<td align="left"><code>=</code></td>
+<td align="left">等于</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="center">7</td>
+<td align="left">常数</td>
+<td align="left"><code>@pi</code></td>
+<td align="left">圆周率<span class="math inline">\(\pi\)</span></td>
+<td align="left"><span class="math inline">\(3.14159 \cdots\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">8</td>
+<td align="left">基础数学函数</td>
+<td align="left"><code>@abs(x)</code></td>
+<td align="left">绝对值</td>
+<td align="left"><span class="math inline">\(|x|\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">9</td>
+<td align="left">基础数学函数</td>
+<td align="left"><code>@exp(x)</code></td>
+<td align="left">自然数e的幂次</td>
+<td align="left"><span class="math inline">\(e^X\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">10</td>
+<td align="left">基础数学函数</td>
+<td align="left"><code>@inv(x)</code></td>
+<td align="left">倒数</td>
+<td align="left"><span class="math inline">\(1/X\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">11</td>
+<td align="left">基础数学函数</td>
+<td align="left"><code>@log(x)</code></td>
+<td align="left">自然对数</td>
+<td align="left"><span class="math inline">\(log_e(X)\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">12</td>
+<td align="left">基础数学函数</td>
+<td align="left"><code>@log10(x)</code></td>
+<td align="left">10为底的对数</td>
+<td align="left"><span class="math inline">\(log_{10}(X)\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">13</td>
+<td align="left">基础数学函数</td>
+<td align="left"><code>@recode()</code></td>
+<td align="left">重新编码</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="center">14</td>
+<td align="left">基础数学函数</td>
+<td align="left"><code>@round(x)</code></td>
+<td align="left">取整</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="center">15</td>
+<td align="left">基础数学函数</td>
+<td align="left"><code>@sqrt(x)</code></td>
+<td align="left">平方根</td>
+<td align="left"><span class="math inline">\(\sqrt{X}\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">16</td>
+<td align="left">时间序列函数</td>
+<td align="left"><code>@d(x)</code></td>
+<td align="left">一阶差分</td>
+<td align="left"><span class="math inline">\(\Delta\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">17</td>
+<td align="left">时间序列函数</td>
+<td align="left"><code>@lag(x,n)</code></td>
+<td align="left">n阶滞后</td>
+<td align="left"><span class="math inline">\(X_{t-n}\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">18</td>
+<td align="left">时间序列函数</td>
+<td align="left"><code>@trend()</code></td>
+<td align="left">构造趋势序列</td>
+<td align="left"><span class="math inline">\({0,1,2,\cdots}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">19</td>
+<td align="left">描述性统计函数</td>
+<td align="left"><code>@cor(x,y)</code></td>
+<td align="left">相关系数</td>
+<td align="left"><span class="math inline">\(r\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">20</td>
+<td align="left">描述性统计函数</td>
+<td align="left"><code>@cov(x,y)</code></td>
+<td align="left">协方差</td>
+<td align="left"><span class="math inline">\(Cov(X,Y)\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">21</td>
+<td align="left">描述性统计函数</td>
+<td align="left"><code>@gmean(x)</code></td>
+<td align="left">几何平均数</td>
+<td align="left"><span class="math inline">\(\bar{X}_G\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">22</td>
+<td align="left">描述性统计函数</td>
+<td align="left"><code>@hmean(x)</code></td>
+<td align="left">调和平均数</td>
+<td align="left"><span class="math inline">\(\bar{X}_H\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">23</td>
+<td align="left">描述性统计函数</td>
+<td align="left"><code>@max(x)</code></td>
+<td align="left">极大值</td>
+<td align="left">Max</td>
+</tr>
+<tr class="even">
+<td align="center">24</td>
+<td align="left">描述性统计函数</td>
+<td align="left"><code>@mean(x)</code></td>
+<td align="left">简单平均数</td>
+<td align="left"><span class="math inline">\(\bar{X}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">25</td>
+<td align="left">描述性统计函数</td>
+<td align="left"><code>@median(x)</code></td>
+<td align="left">中位数</td>
+<td align="left"><span class="math inline">\(M_e\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">26</td>
+<td align="left">描述性统计函数</td>
+<td align="left"><code>@min(x)</code></td>
+<td align="left">极小值</td>
+<td align="left">Min</td>
+</tr>
+<tr class="odd">
+<td align="center">27</td>
+<td align="left">描述性统计函数</td>
+<td align="left"><code>@obs(x)</code></td>
+<td align="left">样本数</td>
+<td align="left"><span class="math inline">\(n\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">28</td>
+<td align="left">描述性统计函数</td>
+<td align="left"><code>@quantile(x,q)</code></td>
+<td align="left">分位数</td>
+<td align="left"><span class="math inline">\(Q_1; Q_3\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">29</td>
+<td align="left">描述性统计函数</td>
+<td align="left"><code>@skew(x)</code></td>
+<td align="left">偏度</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="center">30</td>
+<td align="left">描述性统计函数</td>
+<td align="left"><code>@stdev(x)</code></td>
+<td align="left">标准差</td>
+<td align="left"><span class="math inline">\(S\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">31</td>
+<td align="left">描述性统计函数</td>
+<td align="left"><code>@sum(x)</code></td>
+<td align="left">求和</td>
+<td align="left"><span class="math inline">\(\sum{X_i}\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">32</td>
+<td align="left">描述性统计函数</td>
+<td align="left"><code>@sumsq(x)</code></td>
+<td align="left">平方和</td>
+<td align="left"><span class="math inline">\(\sum{X_i^2}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">33</td>
+<td align="left">描述性统计函数</td>
+<td align="left"><code>@var(x)</code></td>
+<td align="left">方差</td>
+<td align="left"><span class="math inline">\(S^2\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">34</td>
+<td align="left">密度</td>
+<td align="left"><code>@cchisq(x,f)</code></td>
+<td align="left">累积卡方分布函数</td>
+<td align="left"><span class="math inline">\(G_{\chi^2}(X,f)\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">35</td>
+<td align="left">密度</td>
+<td align="left"><code>@dchisq(x,f)</code></td>
+<td align="left">卡方分布的密度函数</td>
+<td align="left"><span class="math inline">\(g_{\chi^2}(X,f)\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">36</td>
+<td align="left">密度</td>
+<td align="left"><code>@qchisq(p,f)</code></td>
+<td align="left">卡方值</td>
+<td align="left">右侧大值<span class="math inline">\(\chi^2_{(1-\alpha)}(p,f)\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">37</td>
+<td align="left">密度</td>
+<td align="left"><code>@cfdist(x,f1,f2)</code></td>
+<td align="left">累积F分布函数</td>
+<td align="left"><span class="math inline">\(G_{F}(X,f1,f2)\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">38</td>
+<td align="left">密度</td>
+<td align="left"><code>@dfdist(x,f1,f2)</code></td>
+<td align="left">F分布的密度函数</td>
+<td align="left"><span class="math inline">\(g_{F}(X,f1,f2)\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">39</td>
+<td align="left">密度</td>
+<td align="left"><code>@qfdist(p,f1,f2)</code></td>
+<td align="left">F值</td>
+<td align="left">右侧大值<span class="math inline">\(F_{(1-\alpha)}(p,f1,f2)\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">40</td>
+<td align="left">密度</td>
+<td align="left"><code>@ctdist(x,f)</code></td>
+<td align="left">累积t分布函数</td>
+<td align="left"><span class="math inline">\(G_{t}(X,f)\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">41</td>
+<td align="left">密度</td>
+<td align="left"><code>@dtdist(x,f)</code></td>
+<td align="left">t分布的密度函数</td>
+<td align="left"><span class="math inline">\(g_{t}(X,f)\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">42</td>
+<td align="left">密度</td>
+<td align="left"><code>@qtdist(p,f)</code></td>
+<td align="left">t值</td>
+<td align="left">右侧正值<span class="math inline">\(t_{(1-\alpha/2)}(p,f)\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">43</td>
+<td align="left">密度</td>
+<td align="left"><code>@cnorm(x)</code></td>
+<td align="left">累积t分布函数</td>
+<td align="left"><span class="math inline">\(G_{N}(X)\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">44</td>
+<td align="left">密度</td>
+<td align="left"><code>@dnorm(x)</code></td>
+<td align="left">t分布的密度函数</td>
+<td align="left"><span class="math inline">\(g_{N}(X)\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">45</td>
+<td align="left">密度</td>
+<td align="left"><code>@qnorm(p)</code></td>
+<td align="left">t值</td>
+<td align="left">右侧正值<span class="math inline">\(N_{(1-\alpha/2)}(p)\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">46</td>
+<td align="left">特定表达式</td>
+<td align="left"><code>ar</code></td>
+<td align="left">自回归误差设置项</td>
+<td align="left">p阶自回归<span class="math inline">\(AR(p)\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">47</td>
+<td align="left">特定表达式</td>
+<td align="left"><code>ma</code></td>
+<td align="left">移动平均误差设置项</td>
+<td align="left">q阶移动平均<span class="math inline">\(MA(q)\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">48</td>
+<td align="left">特定表达式</td>
+<td align="left"><code>@expand</code></td>
+<td align="left">自动产生的虚拟变量</td>
+<td align="left"><span class="math inline">\(Edu_{D1};Edu_{D2};\cdots\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">49</td>
+<td align="left">矩阵函数</td>
+<td align="left"><code>@ones(n,k)</code></td>
+<td align="left">生成元素全为1的<span class="math inline">\(n*k\)</span>维矩阵</td>
+<td align="left"><span class="math inline">\(\mathbf{1}_{n,k}\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">50</td>
+<td align="left">矩阵函数</td>
+<td align="left"><code>@identity(n,n)</code></td>
+<td align="left">生成<span class="math inline">\(n*n\)</span>维单位矩阵</td>
+<td align="left"><span class="math inline">\(\mathbf{I}_{n,n}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">51</td>
+<td align="left">矩阵函数</td>
+<td align="left"><code>@transpose(X)</code></td>
+<td align="left">对矩阵<span class="math inline">\(\mathbf{X}\)</span>进行转置</td>
+<td align="left"><span class="math inline">\(\mathbf{X&#39;}\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">52</td>
+<td align="left">矩阵函数</td>
+<td align="left"><code>@det(X)</code></td>
+<td align="left">得到方阵<span class="math inline">\(\mathbf{X}\)</span>的行列式</td>
+<td align="left"><span class="math inline">\(\mathbf{|X|}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">53</td>
+<td align="left">矩阵函数</td>
+<td align="left"><code>@eigenvalues(X)</code></td>
+<td align="left">得到对称矩阵的特征值向量</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="center">54</td>
+<td align="left">矩阵函数</td>
+<td align="left"><code>@inverse(X)</code></td>
+<td align="left">对方阵<span class="math inline">\(\mathbf{X}\)</span>求逆</td>
+<td align="left"><span class="math inline">\(\mathbf{X}^{-1}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">55</td>
+<td align="left">矩阵函数</td>
+<td align="left"><code>@ediv(X,Y)</code></td>
+<td align="left">两个矩阵对应元素点除</td>
+<td align="left"><span class="math inline">\(X_{ij}/Y_{ij}\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">56</td>
+<td align="left">矩阵函数</td>
+<td align="left"><code>@getmaindiagonal(X)</code></td>
+<td align="left">得到矩阵<span class="math inline">\(\mathbf{X}\)</span>的主对角线元素(向量)</td>
+<td align="left">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>参阅IHS官方网站：<a href="http://www.eviews.com/general/about_us.html" class="uri">http://www.eviews.com/general/about_us.html</a><a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>需要注意的是，目前EViews1-6将不再兼容Windows 10操作系统<a href="#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn3"><p>可以参考在线帮助文档<strong>Object View And Procedure Reference</strong>，网址http://www.eviews.com/help/helpintro.html#page/content%2Fcobjects.html%23 <a href="#fnref3" class="footnote-back">↩</a></p></li>
+<li id="fn4"><p><a href="http://www.eviews.com/help/helpintro.html#page/content%2Fcobjpreface.html%23">http://www.eviews.com/help/helpintro.html#page/content%2Fcobjpreface.html%23</a><a href="#fnref4" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "Lab-01-introduction_files/mathjax-local/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
