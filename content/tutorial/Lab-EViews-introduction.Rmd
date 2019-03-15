@@ -8,13 +8,15 @@ menu:
 title: EViews实验指导
 toc: true
 type: docs
+math: true
 ---
 
 《计量经济学原理与方法：EViews软件实现》是对**计量经济学**课程的实验环节的详细说明书。共包括8次实验指导说明：
 
+
 请点击下面链接进入各个实验指导说明：
 
-- 实验1：[EViews软件入门与基本操作](/lab-demo/Lab-01-introduction.html)
+- 实验1：[EViews软件入门与基本操作(HTML网页形式)](/lab-demo/Lab-01-introduction.html)
 
 - 实验2：一元线性回归模型
 
