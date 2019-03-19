@@ -44,6 +44,14 @@
     
     <url>
     
+      <loc>/tutorial/chapter6-multi-reg-algebra-slide/</loc>
+      <lastmod>2019-03-12T00:00:00+08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
       <loc>/post/chating-and-teaching-in-econometrics-manner/</loc>
       <lastmod>2019-03-12T18:03:17+08:00</lastmod>
     </url>
@@ -117,7 +125,7 @@
     <url>
     
       <loc>/tutorial/lab-eviews-introduction/</loc>
-      <lastmod>2019-03-14T22:26:54+08:00</lastmod>
+      <lastmod>2019-03-15T11:41:38+08:00</lastmod>
     </url>
     
   
@@ -413,8 +421,8 @@
     
     <url>
     
-      <loc>/tags/econometrics/</loc>
-      <lastmod>2019-03-04T22:28:51+08:00</lastmod>
+      <loc>/categories/econometrics/</loc>
+      <lastmod>2019-03-12T18:03:17+08:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -422,8 +430,8 @@
     
     <url>
     
-      <loc>/categories/econometrics/</loc>
-      <lastmod>2019-03-12T18:03:17+08:00</lastmod>
+      <loc>/tags/econometrics/</loc>
+      <lastmod>2019-03-04T22:28:51+08:00</lastmod>
       <priority>0</priority>
     </url>
     
