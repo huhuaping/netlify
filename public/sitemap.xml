@@ -36,8 +36,16 @@
     
     <url>
     
+      <loc>/tutorial/chapter6-multi-reg-matrix-slide/</loc>
+      <lastmod>2019-03-22T00:00:00+08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
       <loc>/tutorial/chapter5-simple-reg-eq-forms-slide/</loc>
-      <lastmod>2019-03-14T22:26:54+08:00</lastmod>
+      <lastmod>2019-03-19T22:47:25+08:00</lastmod>
     </url>
     
   
@@ -45,7 +53,7 @@
     <url>
     
       <loc>/tutorial/chapter6-multi-reg-algebra-slide/</loc>
-      <lastmod>2019-03-12T00:00:00+08:00</lastmod>
+      <lastmod>2019-03-19T22:47:25+08:00</lastmod>
     </url>
     
   
@@ -53,7 +61,7 @@
     <url>
     
       <loc>/post/chating-and-teaching-in-econometrics-manner/</loc>
-      <lastmod>2019-03-12T18:03:17+08:00</lastmod>
+      <lastmod>2019-03-19T22:47:25+08:00</lastmod>
     </url>
     
   
@@ -61,7 +69,7 @@
     <url>
     
       <loc>/tutorial/chapter4-simple-reg-hypothesis-test-slide/</loc>
-      <lastmod>2019-03-14T22:26:54+08:00</lastmod>
+      <lastmod>2019-03-19T22:47:25+08:00</lastmod>
     </url>
     
   
@@ -69,7 +77,7 @@
     <url>
     
       <loc>/tutorial/chapter3-simple-regression-parameter-estimate-slide/</loc>
-      <lastmod>2019-03-14T22:26:54+08:00</lastmod>
+      <lastmod>2019-03-19T22:47:25+08:00</lastmod>
     </url>
     
   
@@ -133,7 +141,7 @@
     <url>
     
       <loc>/tutorial/chapter1-introduction/</loc>
-      <lastmod>2019-03-14T22:26:54+08:00</lastmod>
+      <lastmod>2019-03-19T22:47:25+08:00</lastmod>
     </url>
     
   
@@ -141,7 +149,7 @@
     <url>
     
       <loc>/tutorial/chapter2-simple-regression-basic-thought/</loc>
-      <lastmod>2019-03-14T22:26:54+08:00</lastmod>
+      <lastmod>2019-03-19T22:47:25+08:00</lastmod>
     </url>
     
   
@@ -282,7 +290,7 @@
     <url>
     
       <loc>/</loc>
-      <lastmod>2019-03-14T22:26:54+08:00</lastmod>
+      <lastmod>2019-03-22T00:00:00+08:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -421,8 +429,8 @@
     
     <url>
     
-      <loc>/categories/econometrics/</loc>
-      <lastmod>2019-03-12T18:03:17+08:00</lastmod>
+      <loc>/tags/econometrics/</loc>
+      <lastmod>2019-03-04T22:28:51+08:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -430,8 +438,8 @@
     
     <url>
     
-      <loc>/tags/econometrics/</loc>
-      <lastmod>2019-03-04T22:28:51+08:00</lastmod>
+      <loc>/categories/econometrics/</loc>
+      <lastmod>2019-03-19T22:47:25+08:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -467,7 +475,7 @@
     <url>
     
       <loc>/tags/simple-regress/</loc>
-      <lastmod>2019-03-12T18:03:17+08:00</lastmod>
+      <lastmod>2019-03-19T22:47:25+08:00</lastmod>
       <priority>0</priority>
     </url>
     
