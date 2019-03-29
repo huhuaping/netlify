@@ -36,8 +36,24 @@
     
     <url>
     
+      <loc>/tutorial/chapter7-multi-linearity-slide/</loc>
+      <lastmod>2019-03-28T00:00:00+08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tutorial/chapterx-appendix/</loc>
+      <lastmod>2019-03-28T00:00:00+08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
       <loc>/tutorial/chapter6-multi-reg-matrix-slide/</loc>
-      <lastmod>2019-03-22T00:00:00+08:00</lastmod>
+      <lastmod>2019-03-22T02:07:31+08:00</lastmod>
     </url>
     
   
@@ -290,7 +306,7 @@
     <url>
     
       <loc>/</loc>
-      <lastmod>2019-03-22T00:00:00+08:00</lastmod>
+      <lastmod>2019-03-28T00:00:00+08:00</lastmod>
       <priority>0</priority>
     </url>
     

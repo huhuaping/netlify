@@ -1,0 +1,28 @@
+---
+date: "2019-03-28T00:00:00+08:00"
+draft: false
+linktitle: 第7章(放宽基本假设：多重共线性)
+menu:
+  tutorial:
+    parent: 计量在线课程 (简介)
+    weight: 1
+title: Econometrics (计量经济学)
+toc: true
+type: docs
+---
+
+## 第7章 放宽基本假设：多重共线性
+
+操作提示：
+
+
+- 点击**课件区域**，按F键，可全屏观看
+
+- 按方向键，可以前进/后退
+
+- 敲击数字键，再按Enter可进入任意指定的页码。如，敲击数字10，观看第10页
+
+```{r, echo=FALSE}
+knitr::include_url("/slides-course/07-multi-linearity-slide.html")
+```
+

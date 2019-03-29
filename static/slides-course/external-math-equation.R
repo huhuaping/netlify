@@ -32,7 +32,7 @@ fun_lm_series<-function(lm.mod,lm.dt){
     Y.hat=lm_mod$fitted.values,
     residual=lm_mod$residuals,
     Y=Y.hat+residual) %>%
-    select(Y, Y.hat, residual)
+    dplyr::select(Y, Y.hat, residual)
   return(series_lm)
 }
 
@@ -72,7 +72,7 @@ fun_lm_vars<-function(lm.mod,lm.dt){
     separate(col=right,into=c("right_left", "right_right"),
              sep="_",fill="right",extra = "merge",remove =F) %>%
     add_column(sep_right="_",.before = "right_right") %>%
-    select(vars,left,right,                          # order the variabls
+    dplyr::select(vars,left,right,                          # order the variabls
            left_left,sep_left,left_right,
            sep_mid,
            right_left,sep_right,right_right) %>%
@@ -123,13 +123,13 @@ fun_lm_val<-function(lm.mod, lm.dt, lm.val){
   
   # get the model table and the give tabel 
   table_val<- fun_lm_initial(lm.mod, lm.dt, lm.val)  # the initial value table
-  table_val<- select(table_val,
-                     val_names,val_give)                # select needed column
+  table_val<- dplyr::select(table_val,
+                     val_names,val_give)                # dplyr::select needed column
   mat_vars<- fun_lm_vars(lm.mod, lm.dt) 
-  mat_val<- select(mat_vars,                        # the model table of variables
+  mat_val<- dplyr::select(mat_vars,                        # the model table of variables
                    vars,left,right,par_pop,par_sam)
   mat_coef<- fun_lm_coef(lm.mod, lm.dt)
-  mat_coef<- select(mat_coef,
+  mat_coef<- dplyr::select(mat_coef,
                     vars,coef,coef_sign,coef_d2)
   
   # check if the inital variabls is OK
@@ -176,7 +176,7 @@ fun_lm_val<-function(lm.mod, lm.dt, lm.val){
                       str_c(val_pop_sign,abs(val_pop),par_pop))))) %>% # use abs()!!
       add_column(val_align="&")    # add align
     
-    mat_val<-bind_cols(mat_val,select(mat_coef,coef,coef_sign,coef_d2))  # combine the coef table
+    mat_val<-bind_cols(mat_val,dplyr::select(mat_coef,coef,coef_sign,coef_d2))  # combine the coef table
     mat_val<- mat_val %>%
       mutate(val_sam=ifelse(is.na(val_pop),coef,          # compute the patter (coef_2)*(val_2), double
                             val_pop*coef)) %>%
@@ -418,7 +418,7 @@ fun_report_srm<-function(lm.mod,lm.dt,
         "\\end{equation}$$"
     )
   } else if ((k > lm.n)&(k <= 2*lm.n)){
-    cat("\\begin{equation}",
+    cat("$$\\begin{equation}",
         str_c('\\begin{alignedat}{',999,"}"),
         paste0("&",table_lm$name.y,'=',fun_line_math(1,lm.n),'\\\\'),
         paste0('&\\text{(cont.)}',fun_line_math(lm.n+1,k),'&&+e_i\\\\'),
@@ -429,7 +429,7 @@ fun_report_srm<-function(lm.mod,lm.dt,
         "\\end{equation}$$"
     )
   } else if ((k > 2*lm.n)&(k <= 3*lm.n)){
-    cat("\\begin{equation}",
+    cat("$$\\begin{equation}",
         str_c('\\begin{alignedat}{',999,"}"),
         paste0("&",table_lm$name.y,'=',fun_line_math(1,lm.n),'\\\\'),
         paste0('&\\text{(cont.)}',fun_line_math(lm.n+1,2*lm.n),'\\\\'),
