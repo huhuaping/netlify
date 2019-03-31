@@ -26,3 +26,4 @@ type: docs
 knitr::include_url("/slides-course/07-multi-linearity-slide.html")
 ```
 
+
