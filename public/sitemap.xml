@@ -36,6 +36,22 @@
     
     <url>
     
+      <loc>/post/r-learning-reference-for-newcomers/</loc>
+      <lastmod>2019-04-03T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tutorial/chapter8-heteroscedasticity-slide/</loc>
+      <lastmod>2019-04-02T00:00:00+08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
       <loc>/tutorial/chapter7-multi-linearity-slide/</loc>
       <lastmod>2019-03-29T17:39:05+08:00</lastmod>
     </url>
@@ -306,7 +322,7 @@
     <url>
     
       <loc>/</loc>
-      <lastmod>2019-03-29T17:39:05+08:00</lastmod>
+      <lastmod>2019-04-03T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -367,7 +383,7 @@
     <url>
     
       <loc>/categories/r/</loc>
-      <lastmod>2019-03-01T16:41:09+08:00</lastmod>
+      <lastmod>2019-04-03T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -384,7 +400,7 @@
     <url>
     
       <loc>/tags/rmarkdown/</loc>
-      <lastmod>2019-02-28T12:07:46+08:00</lastmod>
+      <lastmod>2019-04-03T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     

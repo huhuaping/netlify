@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>huhuaping@2019</copyright>
-    <lastBuildDate>Fri, 01 Mar 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 03 Apr 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/r/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>R Learning Reference for Newcomers</title>
+      <link>/post/r-learning-reference-for-newcomers/</link>
+      <pubDate>Wed, 03 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/r-learning-reference-for-newcomers/</guid>
+      <description>R语言及Rmarkdown语言快速上手参考资料。 说明： 本文档中提到的图书pdf文件可以通过百度云下载（下载地址：https://pan.ba</description>
+    </item>
     
     <item>
       <title>post Xaringan slide to website</title>
