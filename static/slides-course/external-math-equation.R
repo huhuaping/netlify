@@ -326,7 +326,7 @@ fun_report_eq<-function(lm.mod,lm.dt,
 
 
 fun_report_prm<-function(lm.mod,lm.dt,
-                         lm.n=NULL,lm.label = NULL){
+                         lm.n=NULL,lm.label = NULL, lm.t=FALSE){
   # call the function defined before
   mat_coef<-fun_lm_coef(lm.mod,lm.dt)
   table_lm<-fun_lm_output(lm.mod,lm.dt)
@@ -350,7 +350,8 @@ fun_report_prm<-function(lm.mod,lm.dt,
   if (k<=lm.n) {
     cat("$$\\begin{equation}",
         str_c('\\begin{alignedat}{',999,"}"),
-        paste0("&",table_lm$name.y,'=',fun_line_math(1,k),'&&+u_i\\\\'),
+        paste0("&",table_lm$name.y,'=',fun_line_math(1,k),
+               if (lm.t){'&&+u_t\\\\'} else {'&&+u_i\\\\'}),
         "\\end{alignedat}",
         # default no equation label
         if (!is.null(lm.label)) {
@@ -361,7 +362,8 @@ fun_report_prm<-function(lm.mod,lm.dt,
     cat("\\begin{equation}",
         str_c('\\begin{alignedat}{',999,"}"),
         paste0("&",table_lm$name.y,'=',fun_line_math(1,lm.n),'\\\\'),
-        paste0('&\\text{(cont.)}',fun_line_math(lm.n+1,k),'&&+u_i\\\\'),
+        paste0('&\\text{(cont.)}',fun_line_math(lm.n+1,k),
+               if (lm.t){'&&+u_t\\\\'} else {'&&+u_i\\\\'}),
         "\\end{alignedat}",
         # default no equation label
         if (!is.null(lm.label)) {
@@ -373,7 +375,8 @@ fun_report_prm<-function(lm.mod,lm.dt,
         str_c('\\begin{alignedat}{',999,"}"),
         paste0("&",table_lm$name.y,'=',fun_line_math(1,lm.n),'\\\\'),
         paste0('&\\text{(cont.)}',fun_line_math(lm.n+1,2*lm.n),'\\\\'),
-        paste0('&\\text{(cont.)}',fun_line_math(2*lm.n+1,k),'&&+u_i\\\\'),
+        paste0('&\\text{(cont.)}',fun_line_math(2*lm.n+1,k),
+               if (lm.t){'&&+u_t\\\\'} else {'&&+u_i\\\\'}),
         "\\end{alignedat}",
         # default no equation label
         if (!is.null(lm.label)) {
@@ -386,7 +389,7 @@ fun_report_prm<-function(lm.mod,lm.dt,
 }
 
 fun_report_srm<-function(lm.mod,lm.dt,
-                         lm.n=NULL,lm.label = NULL){
+                         lm.n=NULL,lm.label = NULL,lm.t=FALSE){
   # call the function defined before
   mat_coef<-fun_lm_coef(lm.mod,lm.dt)
   table_lm<-fun_lm_output(lm.mod,lm.dt)
@@ -402,7 +405,7 @@ fun_report_srm<-function(lm.mod,lm.dt,
   fun_line_math<-function(b,e){
     paste(mat_vars$align_eq[b:e],
           mat_vars$sign_par[b:e],
-          mat_vars$par_pop[b:e],
+          mat_vars$par_sam[b:e],
           mat_vars$vars_latex[b:e],
           collapse = "")
   }
@@ -410,7 +413,8 @@ fun_report_srm<-function(lm.mod,lm.dt,
   if (k<=lm.n) {
     cat("$$\\begin{equation}",
         str_c('\\begin{alignedat}{',999,"}"),
-        paste0("&",table_lm$name.y,'=',fun_line_math(1,k),'&&+e_i\\\\'),
+        paste0("&",table_lm$name.y,'=',fun_line_math(1,k),
+               if (lm.t){'&&+e_t\\\\'} else {'&&+e_i\\\\'}),
         "\\end{alignedat}",
         # default no equation label
         if (!is.null(lm.label)) {
@@ -421,7 +425,8 @@ fun_report_srm<-function(lm.mod,lm.dt,
     cat("$$\\begin{equation}",
         str_c('\\begin{alignedat}{',999,"}"),
         paste0("&",table_lm$name.y,'=',fun_line_math(1,lm.n),'\\\\'),
-        paste0('&\\text{(cont.)}',fun_line_math(lm.n+1,k),'&&+e_i\\\\'),
+        paste0('&\\text{(cont.)}',fun_line_math(lm.n+1,k),
+               if (lm.t){'&&+e_t\\\\'} else {'&&+e_i\\\\'}),
         "\\end{alignedat}",
         # default no equation label
         if (!is.null(lm.label)) {
@@ -433,7 +438,8 @@ fun_report_srm<-function(lm.mod,lm.dt,
         str_c('\\begin{alignedat}{',999,"}"),
         paste0("&",table_lm$name.y,'=',fun_line_math(1,lm.n),'\\\\'),
         paste0('&\\text{(cont.)}',fun_line_math(lm.n+1,2*lm.n),'\\\\'),
-        paste0('&\\text{(cont.)}',fun_line_math(2*lm.n+1,k),'&&+e_i\\\\'),
+        paste0('&\\text{(cont.)}',fun_line_math(2*lm.n+1,k),
+               if (lm.t){'&&+e_t\\\\'} else {'&&+e_i\\\\'}),
         "\\end{alignedat}",
         # default no equation label
         if (!is.null(lm.label)) {

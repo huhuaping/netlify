@@ -1,7 +1,7 @@
 ---
 date: "2019-04-02T00:00:00+08:00"
 draft: false
-linktitle: 第8章(放宽基本假设：异方差性)
+linktitle: 第9章(放宽基本假设：自相关性)
 menu:
   tutorial:
     parent: 计量在线课程 (简介)
@@ -11,9 +11,10 @@ toc: true
 type: docs
 ---
 
-## 第8章 放宽基本假设：异方差性
+## 第9章 放宽基本假设：自相关性
 
 操作提示：
+
 
 - 点击**课件区域**，按F键，可全屏观看
 
@@ -22,7 +23,7 @@ type: docs
 - 敲击数字键，再按Enter可进入任意指定的页码。如，敲击数字10，观看第10页
 
 ```{r, echo=FALSE}
-knitr::include_url("/slides-course/08-hetero-scadeciticity-slide.html")
+knitr::include_url("/slides-course/09-auto-correlation-slide.html")
 ```
 
 
