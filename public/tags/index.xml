@@ -31,6 +31,15 @@
     </item>
     
     <item>
+      <title>LaTex</title>
+      <link>/tags/latex/</link>
+      <pubDate>Thu, 11 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/latex/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>LaTex math</title>
       <link>/tags/latex-math/</link>
       <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
@@ -67,6 +76,15 @@
     </item>
     
     <item>
+      <title>bookdown</title>
+      <link>/tags/bookdown/</link>
+      <pubDate>Thu, 11 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/bookdown/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>econometrics</title>
       <link>/tags/econometrics/</link>
       <pubDate>Sun, 24 Feb 2019 00:00:00 +0000</pubDate>
@@ -78,7 +96,7 @@
     <item>
       <title>github</title>
       <link>/tags/github/</link>
-      <pubDate>Thu, 21 Feb 2019 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 10 Apr 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/github/</guid>
       <description></description>

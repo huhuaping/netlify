@@ -13,6 +13,24 @@
     
     
     <item>
+      <title>notes in LaTex output format for bookdown books</title>
+      <link>/post/notes-in-latex-output-format-for-bookdown-books/</link>
+      <pubDate>Thu, 11 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/notes-in-latex-output-format-for-bookdown-books/</guid>
+      <description>bookdown编写LaTex书籍中的注意事项。 HTML和LaTeX如何“和谐共存”？ LaTeX书籍编写的原则 只有index.Rmd具有设置</description>
+    </item>
+    
+    <item>
+      <title>note for git version control skills</title>
+      <link>/post/note-for-git-version-control-skills/</link>
+      <pubDate>Wed, 10 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/note-for-git-version-control-skills/</guid>
+      <description>git版本控制技巧集锦 配置git 配置默认文本编辑器（text editor）。windows党还是自觉使用Notepad吧，免费又熟悉 下载安装</description>
+    </item>
+    
+    <item>
       <title>R Learning Reference for Newcomers</title>
       <link>/post/r-learning-reference-for-newcomers/</link>
       <pubDate>Wed, 03 Apr 2019 00:00:00 +0000</pubDate>

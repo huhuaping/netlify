@@ -36,6 +36,30 @@
     
     <url>
     
+      <loc>/tutorial/chapter10-dummy-model-slide/</loc>
+      <lastmod>2019-04-14T00:00:00+08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/post/notes-in-latex-output-format-for-bookdown-books/</loc>
+      <lastmod>2019-04-11T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/post/note-for-git-version-control-skills/</loc>
+      <lastmod>2019-04-10T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
       <loc>/post/r-learning-reference-for-newcomers/</loc>
       <lastmod>2019-04-03T09:25:56+08:00</lastmod>
     </url>
@@ -44,15 +68,7 @@
     
     <url>
     
-      <loc>/tutorial/chapter8-heteroscedasticity-slide/</loc>
-      <lastmod>2019-04-03T09:25:56+08:00</lastmod>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/tutorial/chapter9-auto-correlation-slide/</loc>
+      <loc>/tutorial/chapter08-heteroscedasticity-slide/</loc>
       <lastmod>2019-04-02T00:00:00+08:00</lastmod>
     </url>
     
@@ -60,8 +76,16 @@
     
     <url>
     
-      <loc>/tutorial/chapter7-multi-linearity-slide/</loc>
-      <lastmod>2019-03-29T17:39:05+08:00</lastmod>
+      <loc>/tutorial/chapter09-auto-correlation-slide/</loc>
+      <lastmod>2019-04-02T00:00:00+08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tutorial/chapter07-multi-linearity-slide/</loc>
+      <lastmod>2019-03-28T00:00:00+08:00</lastmod>
     </url>
     
   
@@ -76,24 +100,24 @@
     
     <url>
     
-      <loc>/tutorial/chapter6-multi-reg-matrix-slide/</loc>
-      <lastmod>2019-03-22T02:07:31+08:00</lastmod>
+      <loc>/tutorial/chapter06-multi-reg-matrix-slide/</loc>
+      <lastmod>2019-03-22T00:00:00+08:00</lastmod>
     </url>
     
   
     
     <url>
     
-      <loc>/tutorial/chapter5-simple-reg-eq-forms-slide/</loc>
-      <lastmod>2019-03-19T22:47:25+08:00</lastmod>
+      <loc>/tutorial/chapter05-simple-reg-eq-forms-slide/</loc>
+      <lastmod>2019-03-12T00:00:00+08:00</lastmod>
     </url>
     
   
     
     <url>
     
-      <loc>/tutorial/chapter6-multi-reg-algebra-slide/</loc>
-      <lastmod>2019-03-19T22:47:25+08:00</lastmod>
+      <loc>/tutorial/chapter06-multi-reg-algebra-slide/</loc>
+      <lastmod>2019-03-12T00:00:00+08:00</lastmod>
     </url>
     
   
@@ -108,16 +132,16 @@
     
     <url>
     
-      <loc>/tutorial/chapter4-simple-reg-hypothesis-test-slide/</loc>
-      <lastmod>2019-03-19T22:47:25+08:00</lastmod>
+      <loc>/tutorial/chapter04-simple-reg-hypothesis-test-slide/</loc>
+      <lastmod>2019-03-10T00:00:00+08:00</lastmod>
     </url>
     
   
     
     <url>
     
-      <loc>/tutorial/chapter3-simple-regression-parameter-estimate-slide/</loc>
-      <lastmod>2019-03-19T22:47:25+08:00</lastmod>
+      <loc>/tutorial/chapter03-simple-regression-parameter-estimate-slide/</loc>
+      <lastmod>2019-03-05T00:00:00+08:00</lastmod>
     </url>
     
   
@@ -180,16 +204,16 @@
     
     <url>
     
-      <loc>/tutorial/chapter1-introduction/</loc>
-      <lastmod>2019-03-19T22:47:25+08:00</lastmod>
+      <loc>/tutorial/chapter01-introduction/</loc>
+      <lastmod>2018-09-09T00:00:00+08:00</lastmod>
     </url>
     
   
     
     <url>
     
-      <loc>/tutorial/chapter2-simple-regression-basic-thought/</loc>
-      <lastmod>2019-03-19T22:47:25+08:00</lastmod>
+      <loc>/tutorial/chapter02-simple-regression-basic-thought/</loc>
+      <lastmod>2018-09-09T00:00:00+08:00</lastmod>
     </url>
     
   
@@ -330,7 +354,16 @@
     <url>
     
       <loc>/</loc>
-      <lastmod>2019-04-03T09:25:56+08:00</lastmod>
+      <lastmod>2019-04-14T00:00:00+08:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/latex/</loc>
+      <lastmod>2019-04-11T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -469,8 +502,17 @@
     
     <url>
     
-      <loc>/categories/econometrics/</loc>
-      <lastmod>2019-03-19T22:47:25+08:00</lastmod>
+      <loc>/tags/bookdown/</loc>
+      <lastmod>2019-04-11T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/categories/bookdown/</loc>
+      <lastmod>2019-04-11T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -487,8 +529,26 @@
     
     <url>
     
+      <loc>/categories/econometrics/</loc>
+      <lastmod>2019-03-19T22:47:25+08:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/categories/git-skills/</loc>
+      <lastmod>2019-04-10T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
       <loc>/tags/github/</loc>
-      <lastmod>2019-02-28T12:13:00+08:00</lastmod>
+      <lastmod>2019-04-10T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     

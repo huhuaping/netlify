@@ -14,29 +14,38 @@
     
     <item>
       <title>Econometrics (计量经济学)</title>
-      <link>/tutorial/chapter8-heteroscedasticity-slide/</link>
-      <pubDate>Tue, 02 Apr 2019 00:00:00 +0800</pubDate>
+      <link>/tutorial/chapter10-dummy-model-slide/</link>
+      <pubDate>Sun, 14 Apr 2019 00:00:00 +0800</pubDate>
       
-      <guid>/tutorial/chapter8-heteroscedasticity-slide/</guid>
-      <description>true 第8章 放宽基本假设：异方差性 操作提示： 点击课件区域，按F键，可全屏观看 按方向键，可以前进/后退 敲击数字键，再按Enter可进入任意指定的页</description>
+      <guid>/tutorial/chapter10-dummy-model-slide/</guid>
+      <description>true 第10章 虚拟变量回归模型 操作提示： 点击课件区域，按F键，可全屏观看 按方向键，可以前进/后退 敲击数字键，再按Enter可进入任意指定的页码。</description>
     </item>
     
     <item>
       <title>Econometrics (计量经济学)</title>
-      <link>/tutorial/chapter9-auto-correlation-slide/</link>
+      <link>/tutorial/chapter08-heteroscedasticity-slide/</link>
       <pubDate>Tue, 02 Apr 2019 00:00:00 +0800</pubDate>
       
-      <guid>/tutorial/chapter9-auto-correlation-slide/</guid>
-      <description>true 第9章 放宽基本假设：自相关性 操作提示： 点击课件区域，按F键，可全屏观看 按方向键，可以前进/后退 敲击数字键，再按Enter可进入任意指定的页</description>
+      <guid>/tutorial/chapter08-heteroscedasticity-slide/</guid>
+      <description>true 第08章 放宽基本假设：异方差性 操作提示： 点击课件区域，按F键，可全屏观看 按方向键，可以前进/后退 敲击数字键，再按Enter可进入任意指定的</description>
     </item>
     
     <item>
       <title>Econometrics (计量经济学)</title>
-      <link>/tutorial/chapter7-multi-linearity-slide/</link>
+      <link>/tutorial/chapter09-auto-correlation-slide/</link>
+      <pubDate>Tue, 02 Apr 2019 00:00:00 +0800</pubDate>
+      
+      <guid>/tutorial/chapter09-auto-correlation-slide/</guid>
+      <description>true 第09章 放宽基本假设：自相关性 操作提示： 点击课件区域，按F键，可全屏观看 按方向键，可以前进/后退 敲击数字键，再按Enter可进入任意指定的</description>
+    </item>
+    
+    <item>
+      <title>Econometrics (计量经济学)</title>
+      <link>/tutorial/chapter07-multi-linearity-slide/</link>
       <pubDate>Thu, 28 Mar 2019 00:00:00 +0800</pubDate>
       
-      <guid>/tutorial/chapter7-multi-linearity-slide/</guid>
-      <description>true 第7章 放宽基本假设：多重共线性 操作提示： 点击课件区域，按F键，可全屏观看 按方向键，可以前进/后退 敲击数字键，再按Enter可进入任意指定的</description>
+      <guid>/tutorial/chapter07-multi-linearity-slide/</guid>
+      <description>true 第07章 放宽基本假设：多重共线性 操作提示： 点击课件区域，按F键，可全屏观看 按方向键，可以前进/后退 敲击数字键，再按Enter可进入任意指定</description>
     </item>
     
     <item>
@@ -50,47 +59,47 @@
     
     <item>
       <title>Econometrics (计量经济学)</title>
-      <link>/tutorial/chapter6-multi-reg-matrix-slide/</link>
+      <link>/tutorial/chapter06-multi-reg-matrix-slide/</link>
       <pubDate>Fri, 22 Mar 2019 00:00:00 +0800</pubDate>
       
-      <guid>/tutorial/chapter6-multi-reg-matrix-slide/</guid>
-      <description>true 第6章 多元回归2：矩阵部分 操作提示： 点击课件区域，按F键，可全屏观看 按方向键，可以前进/后退 敲击数字键，再按Enter可进入任意指定的页码</description>
+      <guid>/tutorial/chapter06-multi-reg-matrix-slide/</guid>
+      <description>true 第06章 多元回归2：矩阵部分 操作提示： 点击课件区域，按F键，可全屏观看 按方向键，可以前进/后退 敲击数字键，再按Enter可进入任意指定的页</description>
     </item>
     
     <item>
       <title>Econometrics (计量经济学)</title>
-      <link>/tutorial/chapter5-simple-reg-eq-forms-slide/</link>
+      <link>/tutorial/chapter05-simple-reg-eq-forms-slide/</link>
       <pubDate>Tue, 12 Mar 2019 00:00:00 +0800</pubDate>
       
-      <guid>/tutorial/chapter5-simple-reg-eq-forms-slide/</guid>
-      <description>true 第5章 一元回归：模型形式 操作提示： 点击课件区域，按F键，可全屏观看 按方向键，可以前进/后退 敲击数字键，再按Enter可进入任意指定的页码。</description>
+      <guid>/tutorial/chapter05-simple-reg-eq-forms-slide/</guid>
+      <description>true 第05章 一元回归：模型形式 操作提示： 点击课件区域，按F键，可全屏观看 按方向键，可以前进/后退 敲击数字键，再按Enter可进入任意指定的页码</description>
     </item>
     
     <item>
       <title>Econometrics (计量经济学)</title>
-      <link>/tutorial/chapter6-multi-reg-algebra-slide/</link>
+      <link>/tutorial/chapter06-multi-reg-algebra-slide/</link>
       <pubDate>Tue, 12 Mar 2019 00:00:00 +0800</pubDate>
       
-      <guid>/tutorial/chapter6-multi-reg-algebra-slide/</guid>
-      <description>true 第6章 多元回归1：代数部分 操作提示： 点击课件区域，按F键，可全屏观看 按方向键，可以前进/后退 敲击数字键，再按Enter可进入任意指定的页码</description>
+      <guid>/tutorial/chapter06-multi-reg-algebra-slide/</guid>
+      <description>true 第06章 多元回归1：代数部分 操作提示： 点击课件区域，按F键，可全屏观看 按方向键，可以前进/后退 敲击数字键，再按Enter可进入任意指定的页</description>
     </item>
     
     <item>
       <title>Econometrics (计量经济学)</title>
-      <link>/tutorial/chapter4-simple-reg-hypothesis-test-slide/</link>
+      <link>/tutorial/chapter04-simple-reg-hypothesis-test-slide/</link>
       <pubDate>Sun, 10 Mar 2019 00:00:00 +0800</pubDate>
       
-      <guid>/tutorial/chapter4-simple-reg-hypothesis-test-slide/</guid>
-      <description>true 第4章 一元回归：假设检验 操作提示： 点击课件区域，按F键，可全屏观看 按方向键，可以前进/后退 敲击数字键，再按Enter可进入任意指定的页码。</description>
+      <guid>/tutorial/chapter04-simple-reg-hypothesis-test-slide/</guid>
+      <description>true 第04章 一元回归：假设检验 操作提示： 点击课件区域，按F键，可全屏观看 按方向键，可以前进/后退 敲击数字键，再按Enter可进入任意指定的页码</description>
     </item>
     
     <item>
       <title>Econometrics (计量经济学)</title>
-      <link>/tutorial/chapter3-simple-regression-parameter-estimate-slide/</link>
+      <link>/tutorial/chapter03-simple-regression-parameter-estimate-slide/</link>
       <pubDate>Tue, 05 Mar 2019 00:00:00 +0800</pubDate>
       
-      <guid>/tutorial/chapter3-simple-regression-parameter-estimate-slide/</guid>
-      <description>true 第3章 一元回归：估计问题 操作提示： 点击课件区域，按F键，可全屏观看 按方向键，可以前进/后退 敲击数字键，再按Enter可进入任意指定的页码。</description>
+      <guid>/tutorial/chapter03-simple-regression-parameter-estimate-slide/</guid>
+      <description>true 第03章 一元回归：估计问题 操作提示： 点击课件区域，按F键，可全屏观看 按方向键，可以前进/后退 敲击数字键，再按Enter可进入任意指定的页码</description>
     </item>
     
     <item>
@@ -104,20 +113,20 @@
     
     <item>
       <title>Econometrics (计量经济学)</title>
-      <link>/tutorial/chapter1-introduction/</link>
+      <link>/tutorial/chapter01-introduction/</link>
       <pubDate>Sun, 09 Sep 2018 00:00:00 +0800</pubDate>
       
-      <guid>/tutorial/chapter1-introduction/</guid>
-      <description>true 第1章 绪论 操作提示： 点击课件区域，按F键，可全屏观看 按方向键，可以前进/后退 敲击数字键，再按Enter可进入任意指定的页码。如，敲击数字1</description>
+      <guid>/tutorial/chapter01-introduction/</guid>
+      <description>true 第01章 绪论 操作提示： 点击课件区域，按F键，可全屏观看 按方向键，可以前进/后退 敲击数字键，再按Enter可进入任意指定的页码。如，敲击数字</description>
     </item>
     
     <item>
       <title>Econometrics (计量经济学)</title>
-      <link>/tutorial/chapter2-simple-regression-basic-thought/</link>
+      <link>/tutorial/chapter02-simple-regression-basic-thought/</link>
       <pubDate>Sun, 09 Sep 2018 00:00:00 +0800</pubDate>
       
-      <guid>/tutorial/chapter2-simple-regression-basic-thought/</guid>
-      <description>true 第2章 一元回归：基本思想 操作提示： 点击课件区域，按F键，可全屏观看 按方向键，可以前进/后退 敲击数字键，再按Enter可进入任意指定的页码。</description>
+      <guid>/tutorial/chapter02-simple-regression-basic-thought/</guid>
+      <description>true 第02章 一元回归：基本思想 操作提示： 点击课件区域，按F键，可全屏观看 按方向键，可以前进/后退 敲击数字键，再按Enter可进入任意指定的页码</description>
     </item>
     
   </channel>

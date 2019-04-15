@@ -1,0 +1,153 @@
+---
+title: notes in LaTex output format for bookdown books
+author: huhuaping
+date: '2019-04-11'
+slug: notes-in-latex-output-format-for-bookdown-books
+categories:
+  - bookdown
+tags:
+  - bookdown
+  - LaTex
+image:
+  caption: ''
+  focal_point: ''
+---
+
+
+
+<p>bookdown编写LaTex书籍中的注意事项。</p>
+<div id="htmllatex" class="section level2">
+<h2>HTML和LaTeX如何“和谐共存”？</h2>
+</div>
+<div id="latex" class="section level2">
+<h2>LaTeX书籍编写的原则</h2>
+<ol style="list-style-type: decimal">
+<li>只有index.Rmd具有设置yaml信息的地位！</li>
+</ol>
+<blockquote>
+<p>index.Rmd: This is the only Rmd document to contain a YAML frontmatter as described within Chapter 2, and is the first book chapter.
+—<a href="https://bookdown.org/yihui/rmarkdown/bookdown-project.html">R Markdown: The Definitive Guide</a></p>
+</blockquote>
+<ol style="list-style-type: decimal">
+<li>不要在R code chunk的options中出现特殊字符。比如：<code>fig.cap=</code>中出现了特殊符号<code>&amp;</code>，则会报错。</li>
+</ol>
+<pre><code>fig.cap=&quot;绘制Line &amp; Symbol图&quot;</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>正文内容中列表（list）层级太多，则会报错：<code>LaTeX Error: Too deeply nested.</code>。如果非要那么多层级，就需要加载LaTex的<code>enumitem package</code>（让tinytex自动加载去吧），并在preamble.tex中调用它（<a href="https://github.com/jgm/pandoc/issues/2922">参看在线文达jgm的 解决方案</a>）：</li>
+</ol>
+<pre><code>\usepackage{enumitem}
+   \setlistdepth{9}
+
+   \setlist[itemize,1]{label=$\bullet$}
+   \setlist[itemize,2]{label=$\bullet$}
+   \setlist[itemize,3]{label=$\bullet$}
+   \setlist[itemize,4]{label=$\bullet$}
+   \setlist[itemize,5]{label=$\bullet$}
+   \setlist[itemize,6]{label=$\bullet$}
+   \setlist[itemize,7]{label=$\bullet$}
+   \setlist[itemize,8]{label=$\bullet$}
+   \setlist[itemize,9]{label=$\bullet$}
+   \renewlist{itemize}{itemize}{9}
+
+   \setlist[enumerate,1]{label=$\arabic*.$}
+   \setlist[enumerate,2]{label=$\alph*.$}
+   \setlist[enumerate,3]{label=$\roman*.$}
+   \setlist[enumerate,4]{label=$\arabic*.$}
+   \setlist[enumerate,5]{label=$\alpha*$}
+   \setlist[enumerate,6]{label=$\roman*.$}
+   \setlist[enumerate,7]{label=$\arabic*.$}
+   \setlist[enumerate,8]{label=$\alph*.$}
+   \setlist[enumerate,9]{label=$\roman*.$}
+   \renewlist{enumerate}{enumerate}{9}</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>图题中的数学公式符号，使用货币符号表达是需要注意LaTeX的规范写法（特定命令符需要加双斜杠<code>\\alpha</code>）。例如：<code>fig.cap="判定系数$R^2$和调整判定系数$\bar{R}^2$"</code>，则LaTex会报错<code>! Text line contains an invalid character.</code>。正确的写法应该是（<a href="https://stackoverflow.com/questions/52211695/how-to-add-a-latex-symbol-to-fig-cap-in-r-markdown">参看解决方案</a>）：</li>
+</ol>
+<pre><code>fig.cap=&quot;判定系数$R^2$和调整判定系数$\\bar{R}^2$&quot;</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>段落首行缩进。在<code>preamble.tex</code>中条用如下包[解决方案(<a href="https://stackoverflow.com/questions/29460112/first-line-paragraph-indenting-in-pdfs-using-r-markdown" class="uri">https://stackoverflow.com/questions/29460112/first-line-paragraph-indenting-in-pdfs-using-r-markdown</a>)]</li>
+</ol>
+<pre><code>% first-line paragraph indenting
+\usepackage{indentfirst}
+\setlength\parindent{24pt}</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>页边距调整。需要在<code>output.yaml</code>文件中进行设置（<a href="https://stackoverflow.com/questions/13515893/set-margin-size-when-converting-from-markdown-to-pdf-with-pandoc">参看解决方案</a>）</li>
+</ol>
+<pre><code>geometry: [a4paper, tmargin=2.5cm, bmargin=2.5cm, lmargin=2.5cm, rmargin=2.5cm]
+</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>正确设置章序号。如果修改了<code>documentclass:</code>，那么就需要告诉Pandoc你是按chapter来编码的，而不是section（默认）。在<code>output.yaml</code>文件下设置<code>pandoc_args: --top-level-division=chapter</code>。（<a href="https://community.rstudio.com/t/chapter-starts-with-0-1-not-1-0-in-pdf-book-format/12797/4">参看解决方案</a>）</li>
+</ol>
+<pre><code>documentclass: ctexbook
+
+bookdown::pdf_book:
+  includes:
+    in_header: latex/preamble.tex
+    before_body: latex/before_body.tex
+    after_body: latex/after_body.tex
+  keep_tex: yes
+  dev: &quot;cairo_pdf&quot;
+  latex_engine: xelatex
+  citation_package: natbib
+  template: latex/template.tex
+  pandoc_args: &quot;--top-level-division=chapter&quot;
+  toc_depth: 4
+  toc_unnumbered: no
+  toc_appendix: yes
+  quote_footer: [&quot;\\begin{flushright}&quot;, &quot;\\end{flushright}&quot;]</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>正确处理页码序号。其实<a href="https://bookdown.org/yihui/bookdown/publishers.html">bookdown电子书 6.3 Publishers</a>专门提到了这一点，只是我一直没有细看。另外也可以参看在线问答<a href="https://stackoverflow.com/questions/43711029/page-numbering-in-r-bookdown">Page Numbering in R Bookdown</a>。 总体意思就是要让Pandoc知道哪些部分属于<code>\frontmatter</code>,<code>\mainmatter</code>,<code>\backmatter</code>。所以需要做如下几件事情：</li>
+</ol>
+<blockquote>
+<p>在preamble.tex文件下加入代码行<code>\frontmatter</code></p>
+</blockquote>
+<blockquote>
+<p>在before_body.tex文件下加入代码行<code>\frontmatter</code></p>
+</blockquote>
+<blockquote>
+<p>在（序言）<code>index.Rmd</code>文件第一行加入代码行<code>\frontmatter</code></p>
+</blockquote>
+<blockquote>
+<p>在（第一章）<code>01-introduction.Rmd</code>文件第一行加入代码行<code>\mainmatter</code></p>
+</blockquote>
+<blockquote>
+<p>在after_body.tex文件下加入代码行<code>\backmatter</code></p>
+</blockquote>
+<blockquote>
+<p>总之，这些<strong>标记代码</strong>可以插入到相应的章节，合适的位置。跟word的分节符很像。</p>
+</blockquote>
+<ol start="2" style="list-style-type: decimal">
+<li>kable如何显示数学公式和图片。</li>
+</ol>
+<blockquote>
+<p>数学公式可以参看在线问答<a href="https://stackoverflow.com/questions/42598821/r-bookdown-math-in-table-header-not-working">math in table-header not working</a></p>
+</blockquote>
+<blockquote>
+<p>表格中显示图标，可以参看<a href="https://stackoverflow.com/questions/53549662/how-can-i-add-a-fontawesome-icon-to-a-table-in-rmarkdown">add a fontawesome icon to a table in Rmarkdown</a></p>
+</blockquote>
+</div>
+<div id="section" class="section level2">
+<h2>表格排版</h2>
+<ol style="list-style-type: decimal">
+<li>表格排版还是需要kable和kableExtra的结合。kableExtra的latex参数请参看Zhuhao的<a href="https://haozhu233.github.io/kableExtra/awesome_table_in_pdf.pdf">awesome_table_in_pdf</a>。</li>
+</ol>
+<blockquote>
+<p>需要注意的是<strong>环境参数</strong>设置的变化。一种情形是，在Rstudio中点击knitr（或biuld），都会自动识别<code>knitr.table.format =</code>是latex环境还是html环境。另一种情形就是在console中手动运行比如<code>render_</code>或<code>preview_chapter()</code>，这时就需要手动写入执行环境是latex或hetml。</p>
+</blockquote>
+<blockquote>
+<p>自动配置情形下下，可以全局设置<code>options(knitr.table.format = "latex")</code>。如果不想自动配置，则可以禁用它<code>options(kableExtra.auto_format = FALSE)</code>。</p>
+</blockquote>
+<blockquote>
+<p>手动配置情形下，则需要在code chunk里对<code>kable()</code>函数设定<code>format="latex"</code>。</p>
+</blockquote>
+<ol start="2" style="list-style-type: decimal">
+<li><p>函数<code>kable()</code>处理的数据类型应该是dataframe（或tibble）。不然<code>booktab=T</code>或<code>kable_styling(latex_options = c("striped"))</code>将会不起作用。请参看在线问答<a href="https://stackoverflow.com/questions/50340653/r-markdown-kableextra-latex-table-booktabs-not-working">R markdown KableExtra latex table booktabs not working</a></p></li>
+<li><p>调用latex包的先后顺序很有影响。例如涉及到颜色的使用，可能出现报错<code>Option clash for package xcolor</code>。这个时候latex包的先后顺序会带来各种问题。参看在线问答<a href="https://tex.stackexchange.com/questions/83101/option-clash-for-package-xcolor">Option clash for package xcolor</a></p></li>
+</ol>
+<p>(<a href="https://stackoverflow.com/questions/16507191/automatically-adjust-latex-table-width-to-fit-pdf-using-knitr-and-rstudio" class="uri">https://stackoverflow.com/questions/16507191/automatically-adjust-latex-table-width-to-fit-pdf-using-knitr-and-rstudio</a>)</p>
+</div>
+<div id="section-1" class="section level2">
+<h2>诡异现象</h2>
+<ol style="list-style-type: decimal">
+<li>Latex错误提示：<code>! File ended while scanning use of \@writefile.</code>。突然之间，Latex无法编译，反复查看yaml代码，感觉都没有问题，大半个下午解决不了（包括更新bookdown和Rstudio；多次重启。）。google搜索，最后采用了<a href="https://tex.stackexchange.com/questions/471345/error-file-ended-while-scanning-use-of-writefile">David Carlisle的建议</a>，把<code>.aux</code>等日志文件删除，重新Latex编译，最后消除了不能编译的错误。——最终还是没有明白原因。</li>
+</ol>
+</div>
