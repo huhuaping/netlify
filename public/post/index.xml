@@ -18,7 +18,7 @@
       <pubDate>Thu, 11 Apr 2019 00:00:00 +0000</pubDate>
       
       <guid>/post/notes-in-latex-output-format-for-bookdown-books/</guid>
-      <description>bookdown编写LaTex书籍中的注意事项。 HTML和LaTeX如何“和谐共存”？ LaTeX书籍编写的原则 只有index.Rmd具有设置</description>
+      <description>bookdown编写LaTex书籍中的注意事项。 HTML和LaTeX如何“和谐共存”？ zhuhao提到了kableExtra如何实现多形式输</description>
     </item>
     
     <item>
@@ -36,7 +36,7 @@
       <pubDate>Wed, 03 Apr 2019 00:00:00 +0000</pubDate>
       
       <guid>/post/r-learning-reference-for-newcomers/</guid>
-      <description>R语言及Rmarkdown语言快速上手参考资料。 说明： 本文档中提到的图书pdf文件可以通过百度云下载（下载地址：https://pan.ba</description>
+      <description>1 安装R软件和第三方编译软件Rstudio 2 用R进行编程统计分析 3 用R进行绘图（图形可视化）： 4 用R来写文章 5 project版本控制和团队协</description>
     </item>
     
     <item>

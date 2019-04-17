@@ -11,6 +11,11 @@ image:
   caption: ''
   focal_point: ''
 math: true
+output:
+  blogdown::html_page:
+      number_sections: true
+      toc: TRUE
+
 ---
 
 R语言及Rmarkdown语言快速上手参考资料。
@@ -23,7 +28,7 @@ R语言及Rmarkdown语言快速上手参考资料。
 
 材料仅供学习交流使用，请尊重原作者的版权！祝大家开心学习，学有所成！
 
-## 安装R软件和第三方编译软件Rstudio
+# 安装R软件和第三方编译软件Rstudio
 
 （开源软件，免费公开，自行安装）
 
@@ -31,7 +36,7 @@ R语言及Rmarkdown语言快速上手参考资料。
 
 - `Rstudio`主站下载安装Rstudio软件。[网址`https://www.rstudio.com/`](https://www.rstudio.com/)
  
-## 用R进行编程统计分析
+# 用R进行编程统计分析
     
 - Adler, J. R in a Nutshell (2ed) [M], Reilly, 2012.这是R语言学习的红宝书之一，手中常备，随时翻阅。建议要通览一遍，并对照实例运行代码。 
 
@@ -41,11 +46,11 @@ R语言及Rmarkdown语言快速上手参考资料。
 
 - Hadley, W. Advanced R  [M], CRC Press, 2015.（高级进阶学习，更深入地认识R语言的基本奥义。建议后续学习。简单说，要成为R高手，就应该参透R语言的内部逻辑和底层架构！）
 
-## 用R进行绘图（图形可视化）：
+# 用R进行绘图（图形可视化）：
 
-- Hadley, W. ggplot2: Elegant Graphics for Data Analysis  [M], Springer, 2016. 没错，这又是Hadley大神出品。R可视化绘图ggplot2的创造者。说实话，他的文笔简练精准，好不拖泥带水。真的把ggplot2绘图思想说得一清二楚！让你的R可视化技能瞬间提升N级。
+- Hadley, W. ggplot2: Elegant Graphics for Data Analysis  [M], Springer, 2016. 没错，这又是Hadley大神出品。R可视化绘图ggplot2的创造者。说实话，他的文笔简练精准，毫不拖泥带水。真的把ggplot2绘图思想说得一清二楚！让你的R可视化技能瞬间提升N级。
 
-## 用R来写文章
+# 用R来写文章
 
 Rmarkdown语言与谢益辉大神：
     
@@ -57,8 +62,23 @@ Rmarkdown语言与谢益辉大神：
 
 - yihui, X. R Markdown: The Definitive Guide  [M]2018. 谢大神的新作，你可以完全掌握Rmarkdown了。
 
+# project版本控制和团队协作
 
-## 几点忠告
+**版本控制系统**：[git知识学习](https://git-scm.com/book/zh/v2)
+
+- 什么是“版本控制”？我为什么要关心它呢？ 版本控制是一种记录一个或若干文件内容变化，以便将来查阅特定版本修订情况的系统。 
+
+- 我们对保存着软件源代码的文件作版本控制，但实际上，你可以对任何类型的文件进行版本控制。
+
+**代码托管和协作**：[github网站](https://pages.github.com/)
+
+- 注册github账号（请用你们西农邮箱注册，高校邮箱github有惊喜）。
+
+- 安装github桌面软件（如果熟练掌握了git命令操作，这一步骤可以跳过）。
+
+- 后github就是我们的交流平台了——你们可以管理文件、托管R代码和版本控制,并进行协作。
+
+# 几点忠告
 
 - 人在江湖走，该有的技能还得练到手！
 

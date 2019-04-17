@@ -18,6 +18,20 @@ image:
 <p>bookdown编写LaTex书籍中的注意事项。</p>
 <div id="htmllatex" class="section level2">
 <h2>HTML和LaTeX如何“和谐共存”？</h2>
+<p>zhuhao提到了kableExtra如何实现<a href="https://haozhu233.github.io/kableExtra/bookdown/cross-format-tables-in-bookdown.html">多形式输出的办法</a></p>
+<ul>
+<li>首先要采用“M-K”的图书渲染方式，也即先合并（merge）再编译（knit）。具体的实现是在文件<code>_bookdown.yml</code>设置<code>new_session: true</code>。</li>
+</ul>
+<pre><code># Example _bookdown.yml
+book_filename: &quot;bookdown_example&quot;
+delete_merged_file: true
+new_session: true
+language:
+  ui:
+    chapter_name: &quot;Chapter &quot;</code></pre>
+<ul>
+<li>采用“M-K”图书渲染方式后，图书每一章的<code>.Rmd</code>文件在代码运行时都会强制使用<code>new session</code>，也即意味着各章的<code>packages</code>和<code>data</code>都相互独立。所以每一章的<code>.Rmd</code>文件最开始，需要分别设置<code>options</code>及加载<code>packages</code></li>
+</ul>
 </div>
 <div id="latex" class="section level2">
 <h2>LaTeX书籍编写的原则</h2>
@@ -124,6 +138,7 @@ bookdown::pdf_book:
 <blockquote>
 <p>表格中显示图标，可以参看<a href="https://stackoverflow.com/questions/53549662/how-can-i-add-a-fontawesome-icon-to-a-table-in-rmarkdown">add a fontawesome icon to a table in Rmarkdown</a></p>
 </blockquote>
+<p>yihuixie提到了<a href="https://stackoverflow.com/questions/25106481/add-an-image-to-a-table-like-output-in-r">sprintf()函数</a></p>
 </div>
 <div id="section" class="section level2">
 <h2>表格排版</h2>

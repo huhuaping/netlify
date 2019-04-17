@@ -17,6 +17,22 @@ bookdown编写LaTex书籍中的注意事项。
 
 ## HTML和LaTeX如何“和谐共存”？
 
+zhuhao提到了kableExtra如何实现[多形式输出的办法](https://haozhu233.github.io/kableExtra/bookdown/cross-format-tables-in-bookdown.html)
+
+- 首先要采用“M-K”的图书渲染方式，也即先合并（merge）再编译（knit）。具体的实现是在文件`_bookdown.yml`设置`new_session: true`。
+
+```
+# Example _bookdown.yml
+book_filename: "bookdown_example"
+delete_merged_file: true
+new_session: true
+language:
+  ui:
+    chapter_name: "Chapter "
+```
+
+- 采用“M-K”图书渲染方式后，图书每一章的`.Rmd`文件在代码运行时都会强制使用`new session`，也即意味着各章的`packages`和`data`都相互独立。所以每一章的`.Rmd`文件最开始，需要分别设置`options`及加载`packages`
+
 
 ## LaTeX书籍编写的原则
 
@@ -120,6 +136,10 @@ bookdown::pdf_book:
 > 数学公式可以参看在线问答[math in table-header not working](https://stackoverflow.com/questions/42598821/r-bookdown-math-in-table-header-not-working)
 
 > 表格中显示图标，可以参看[add a fontawesome icon to a table in Rmarkdown](https://stackoverflow.com/questions/53549662/how-can-i-add-a-fontawesome-icon-to-a-table-in-rmarkdown)
+
+
+yihuixie提到了[sprintf()函数](https://stackoverflow.com/questions/25106481/add-an-image-to-a-table-like-output-in-r)
+
 
 ## 表格排版
 
