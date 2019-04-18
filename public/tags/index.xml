@@ -13,15 +13,6 @@
     
     
     <item>
-      <title>Deep Learning</title>
-      <link>/tags/deep-learning/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 +0800</pubDate>
-      
-      <guid>/tags/deep-learning/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Demo</title>
       <link>/tags/demo/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0800</pubDate>
@@ -45,6 +36,15 @@
       <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/latex-math/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>R language</title>
+      <link>/tags/r-language/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 +0800</pubDate>
+      
+      <guid>/tags/r-language/</guid>
       <description></description>
     </item>
     
