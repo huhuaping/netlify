@@ -7,13 +7,13 @@ filter:
   tag: R language
 - name: data science (数据科学)
   tag: data science
-filter_default: 0
+filter_default: 1
 flip_alt_rows: false
 folder: project
-subtitle: ""
+subtitle: "R学习"
 title: Projects
-view: 3
-weight: 50
+view: 1
+weight: 2
 widget: projects
 widget_layout: 0
 ---
