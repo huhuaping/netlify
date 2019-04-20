@@ -32,8 +32,16 @@ url_video: ""
 
 请点击下面链接进入各个**行动清单**：
 
+- （点击进入）[00-R配置及相关话题(HTML网页形式)](/R-learning/00-R-configuration.html)
+
 - （点击进入）[01-Rmarkdown语言入门(HTML网页形式)](/R-learning/01-Rmarkdown-intro.html)
 
+
+## 任务清单
+
+本项目的代码托管在我的Github仓库[**team-students**](https://github.com/huhuaping/team-students)（请点击进入）。请点击下面链接进入各个**任务清单**：
+
+- （点击进入）[task-01-统计分析教学工作经历(HTML网页形式)](/R-learning/task-01-CV-teaching.html)
 
 ## R行动箴言
 

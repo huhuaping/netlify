@@ -11,7 +11,7 @@
 
 <meta name="author" content="胡华平" />
 
-<meta name="date" content="2019-04-18" />
+<meta name="date" content="2019-04-20" />
 
 <title>Rmarkdown入门</title>
 
@@ -374,21 +374,19 @@ div.tocify {
 
 <h1 class="title toc-ignore">Rmarkdown入门</h1>
 <h4 class="author">胡华平</h4>
-<h4 class="date">2019-04-18</h4>
+<h4 class="date">2019-04-20</h4>
 
 </div>
 
 
-<div id="section" class="section level1">
-<h1><span class="header-section-number">1</span> 自学材料</h1>
+<p>自学材料：</p>
 <p><a href="https://bookdown.org/yihui/rmarkdown/">R Markdown: The Definitive Guide</a>（Yihui Xie, J. J. Allaire, Garrett Grolemund）</p>
 <ul>
 <li><p>第2章<a href="https://bookdown.org/yihui/rmarkdown/basics.html">Chapter 2 Basics</a></p></li>
 <li><p>第2章第1节<a href="https://bookdown.org/yihui/rmarkdown/html-document.html">3.1 HTML document</a></p></li>
 </ul>
-</div>
 <div id="markdown" class="section level1">
-<h1><span class="header-section-number">2</span> markdown语言基础</h1>
+<h1><span class="header-section-number">1</span> markdown语言基础</h1>
 <ol style="list-style-type: decimal">
 <li>正常段落（paragraph）。行顶头开始写文字（不要空格），结束直接按回车<code>Enter</code>（不要留空格）。段落与段落之间留一行空白行。例如，如下代码和效果分别是：</li>
 </ol>
@@ -439,8 +437,8 @@ div.tocify {
 </ul></li>
 </ol>
 </div>
-<div id="section-1" class="section level1">
-<h1><span class="header-section-number">3</span> 公式的编写技巧</h1>
+<div id="section" class="section level1">
+<h1><span class="header-section-number">2</span> 公式的编写技巧</h1>
 <ol style="list-style-type: decimal">
 <li><strong>行内公式</strong>（inline equation）。采用一对<strong>美元符号</strong>内写Latex的形式（<code>$LaTex$</code>），其代码和效果如下：</li>
 </ol>
@@ -465,7 +463,7 @@ u_i &amp;\sim N(0, \sigma^2)
 </blockquote>
 </div>
 <div id="r-" class="section level1">
-<h1><span class="header-section-number">4</span> 利用R 进行数据分析和制图</h1>
+<h1><span class="header-section-number">3</span> 利用R 进行数据分析和制图</h1>
 <p>简单的编码示例：</p>
 <pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">100</span>
 y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;hhp&quot;</span>, <span class="st">&quot;lisi&quot;</span>)
@@ -499,7 +497,7 @@ data_new <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">full_width =</span> T)</code></pre>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-2">表4.1: </span>这是一张傻傻的数据表
+<span id="tab:unnamed-chunk-2">表3.1: </span>这是一张傻傻的数据表
 </caption>
 <thead>
 <tr>
@@ -1111,10 +1109,10 @@ data_new <span class="op">%&gt;%</span><span class="st"> </span>
   )) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">formatRound</span>(<span class="kw">c</span>(<span class="dv">10</span><span class="op">:</span><span class="dv">11</span>), <span class="dt">digits=</span><span class="dv">2</span>)</code></pre>
 <div class="figure"><span id="fig:unnamed-chunk-3"></span>
-<div id="htmlwidget-c68d1cd93d82d42922cc" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-c68d1cd93d82d42922cc">{"x":{"filter":"none","caption":"<caption>这是一个比较有意思的交互表<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16"],[1947,1948,1949,1950,1951,1952,1953,1954,1955,1956,1957,1958,1959,1960,1961,null],[1947,1948,1949,1950,1951,1952,1953,1954,1955,1956,1957,1958,1959,1960,1961,1962],[60323,61122,60171,61187,63221,63639,64989,63761,66019,67857,68169,66513,68655,69564,69331,70551],[830,885,882,895,962,981,990,1000,1012,1046,1084,1108,1126,1142,1157,1169],[234289,259426,258054,284599,328975,346999,365385,363112,397469,419180,442769,444546,482704,502601,518173,554894],[2356,2325,3682,3351,2099,1932,1870,3578,2904,2822,2936,4681,3813,3931,4806,4007],[1590,1456,1616,1650,3099,3594,3547,3350,3048,2857,2798,2637,2552,2514,2572,2827],[107608,108632,109773,110929,112075,113270,115094,116219,117388,118734,120445,121950,123366,125368,127852,130081],[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],[11.0074687361931,11.0206271458181,11.0049457876542,11.0216900276358,11.0543918034237,11.0609817689405,11.0819733037874,11.0628969971554,11.0976978583673,11.1251578286961,11.1297451950399,11.1051526962603,11.1368492417559,11.1500024711277,11.1466474156029,11.1640911315249],[282.275903614458,293.136723163842,292.578231292517,317.987709497207,341.969854469854,353.719673802243,369.075757575758,363.112,392.755928853755,400.74569789675,408.458487084871,401.214801444043,428.689165186501,440.105954465849,447.85911840968,474.674080410607]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>obs<\/th>\n      <th>Year<\/th>\n      <th>Y<\/th>\n      <th>X2<\/th>\n      <th>X3<\/th>\n      <th>X4<\/th>\n      <th>X5<\/th>\n      <th>X6<\/th>\n      <th>X7<\/th>\n      <th>log.Y<\/th>\n      <th>real.GDP<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"dom":"tip","columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7,8,9,10,11]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100],"rowCallback":"function(row, data) {\nDTWidget.formatRound(this, row, data, 10, 2, 3, ',', '.');\nDTWidget.formatRound(this, row, data, 11, 2, 3, ',', '.');\n}"}},"evals":["options.rowCallback"],"jsHooks":[]}</script>
+<div id="htmlwidget-240a3da62813282f5397" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-240a3da62813282f5397">{"x":{"filter":"none","caption":"<caption>这是一个比较有意思的交互表<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16"],[1947,1948,1949,1950,1951,1952,1953,1954,1955,1956,1957,1958,1959,1960,1961,null],[1947,1948,1949,1950,1951,1952,1953,1954,1955,1956,1957,1958,1959,1960,1961,1962],[60323,61122,60171,61187,63221,63639,64989,63761,66019,67857,68169,66513,68655,69564,69331,70551],[830,885,882,895,962,981,990,1000,1012,1046,1084,1108,1126,1142,1157,1169],[234289,259426,258054,284599,328975,346999,365385,363112,397469,419180,442769,444546,482704,502601,518173,554894],[2356,2325,3682,3351,2099,1932,1870,3578,2904,2822,2936,4681,3813,3931,4806,4007],[1590,1456,1616,1650,3099,3594,3547,3350,3048,2857,2798,2637,2552,2514,2572,2827],[107608,108632,109773,110929,112075,113270,115094,116219,117388,118734,120445,121950,123366,125368,127852,130081],[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],[11.0074687361931,11.0206271458181,11.0049457876542,11.0216900276358,11.0543918034237,11.0609817689405,11.0819733037874,11.0628969971554,11.0976978583673,11.1251578286961,11.1297451950399,11.1051526962603,11.1368492417559,11.1500024711277,11.1466474156029,11.1640911315249],[282.275903614458,293.136723163842,292.578231292517,317.987709497207,341.969854469854,353.719673802243,369.075757575758,363.112,392.755928853755,400.74569789675,408.458487084871,401.214801444043,428.689165186501,440.105954465849,447.85911840968,474.674080410607]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>obs<\/th>\n      <th>Year<\/th>\n      <th>Y<\/th>\n      <th>X2<\/th>\n      <th>X3<\/th>\n      <th>X4<\/th>\n      <th>X5<\/th>\n      <th>X6<\/th>\n      <th>X7<\/th>\n      <th>log.Y<\/th>\n      <th>real.GDP<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"dom":"tip","columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7,8,9,10,11]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100],"rowCallback":"function(row, data) {\nDTWidget.formatRound(this, row, data, 10, 2, 3, ',', '.');\nDTWidget.formatRound(this, row, data, 11, 2, 3, ',', '.');\n}"}},"evals":["options.rowCallback"],"jsHooks":[]}</script>
 <p class="caption">
-图4.1: 这是一个比较有意思的交互表
+图3.1: 这是一个比较有意思的交互表
 </p>
 </div>
 <p>下面我们来制作一幅散点图：</p>
@@ -1128,7 +1126,7 @@ data_new <span class="op">%&gt;%</span><span class="st"> </span>
 <div class="figure"><span id="fig:unnamed-chunk-4"></span>
 <img src="01-Rmarkdown-intro_files/figure-html/unnamed-chunk-4-1.png" alt="这是一幅傻傻的散点图" width="672" />
 <p class="caption">
-图4.2: 这是一幅傻傻的散点图
+图3.2: 这是一幅傻傻的散点图
 </p>
 </div>
 </div>
