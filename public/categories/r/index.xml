@@ -22,6 +22,15 @@
     </item>
     
     <item>
+      <title>R新手快速指南</title>
+      <link>/project/r-learning-reference-for-newcomers/</link>
+      <pubDate>Wed, 03 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/project/r-learning-reference-for-newcomers/</guid>
+      <description>1 安装R软件和第三方编译软件Rstudio 2 用R进行编程统计分析 3 用R进行绘图（图形可视化）： 4 用R来写文章 5 project版本控制和团队协</description>
+    </item>
+    
+    <item>
       <title>post Xaringan slide to website</title>
       <link>/post/post-xaringan-slide-to-website/</link>
       <pubDate>Fri, 01 Mar 2019 00:00:00 +0000</pubDate>

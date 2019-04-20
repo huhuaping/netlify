@@ -1,0 +1,93 @@
+---
+title: R新手快速指南
+author: 胡华平
+date: '2019-04-03'
+slug: r-learning-reference-for-newcomers
+categories:
+  - R
+tags:
+  - R language
+image:
+  caption: ''
+  focal_point: ''
+math: true
+output:
+  blogdown::html_page:
+      number_sections: true
+      toc: TRUE
+
+---
+
+
+<div id="TOC">
+<ul>
+<li><a href="#rrstudio"><span class="toc-section-number">1</span> 安装R软件和第三方编译软件Rstudio</a></li>
+<li><a href="#r"><span class="toc-section-number">2</span> 用R进行编程统计分析</a></li>
+<li><a href="#r-1"><span class="toc-section-number">3</span> 用R进行绘图（图形可视化）：</a></li>
+<li><a href="#r-2"><span class="toc-section-number">4</span> 用R来写文章</a></li>
+<li><a href="#project"><span class="toc-section-number">5</span> project版本控制和团队协作</a></li>
+<li><a href="#section"><span class="toc-section-number">6</span> 几点忠告</a></li>
+</ul>
+</div>
+
+<p>R语言及Rmarkdown语言快速上手参考资料。</p>
+<p><strong>说明</strong>：</p>
+<p>本文档中提到的图书pdf文件可以通过百度云下载（<a href="https://pan.baidu.com/s/1ZRuVSf2Jv_u3C_XmAUingA">下载地址</a>：<code>https://pan.baidu.com/s/1ZRuVSf2Jv_u3C_XmAUingA</code>）。</p>
+<p>下载地址永久有效！如有问题请反馈<code>wsad2008@gmail.com</code>。</p>
+<p>材料仅供学习交流使用，请尊重原作者的版权！祝大家开心学习，学有所成！</p>
+<div id="rrstudio" class="section level1">
+<h1><span class="header-section-number">1</span> 安装R软件和第三方编译软件Rstudio</h1>
+<p>（开源软件，免费公开，自行安装）</p>
+<ul>
+<li><p><code>R CRAN</code>主站下载安装R程序(根据自己的电脑操作系统选择)。<a href="https://cran.r-project.org/">网址<code>https://cran.r-project.org/</code></a></p></li>
+<li><p><code>Rstudio</code>主站下载安装Rstudio软件。<a href="https://www.rstudio.com/">网址<code>https://www.rstudio.com/</code></a></p></li>
+</ul>
+</div>
+<div id="r" class="section level1">
+<h1><span class="header-section-number">2</span> 用R进行编程统计分析</h1>
+<ul>
+<li><p>Adler, J. R in a Nutshell (2ed) [M], Reilly, 2012.这是R语言学习的红宝书之一，手中常备，随时翻阅。建议要通览一遍，并对照实例运行代码。</p></li>
+<li><p>Crawley, M. J. The R Book (2nd) [M], Wiley, 2013. 这是R语言学习的红宝书之二。两本红宝书写作风格不同，自己挑一本就行。</p></li>
+<li><p>Wickham, H. and G. Grolemund. R for Data Science: Import, Tidy, Transform, Visualize, and Model Data [M], O’Reilly Media, 2017. 这是Hadley大神的一大力作。这是进入R语言统计功力快速升级的超级秘笈！它让你能很快找到指哪打哪的酣畅淋漓！你会因为它更加热爱R！建议在红宝书之后务必要好好学习这本秘籍！</p></li>
+<li><p>Hadley, W. Advanced R [M], CRC Press, 2015.（高级进阶学习，更深入地认识R语言的基本奥义。建议后续学习。简单说，要成为R高手，就应该参透R语言的内部逻辑和底层架构！）</p></li>
+</ul>
+</div>
+<div id="r-1" class="section level1">
+<h1><span class="header-section-number">3</span> 用R进行绘图（图形可视化）：</h1>
+<ul>
+<li>Hadley, W. ggplot2: Elegant Graphics for Data Analysis [M], Springer, 2016. 没错，这又是Hadley大神出品。R可视化绘图ggplot2的创造者。说实话，他的文笔简练精准，毫不拖泥带水。真的把ggplot2绘图思想说得一清二楚！让你的R可视化技能瞬间提升N级。</li>
+</ul>
+</div>
+<div id="r-2" class="section level1">
+<h1><span class="header-section-number">4</span> 用R来写文章</h1>
+<p>Rmarkdown语言与谢益辉大神：</p>
+<ul>
+<li><p>关注一个<a href="https://bookdown.org/">bookdown网站https://bookdown.org/</a>。里面都是用Rmarkdown写的书，免费下载，书籍内容作者还会不断更新！改变了出版行业！下面几本书都可以在线阅读和下载！！（神奇吧！）</p></li>
+<li><p>Xie, Y. Dynamic Documents with R and knitr [M], Chapman &amp; Hall/CRC, 2015. 谢大神的一本书，基本让你明白为什么可以抛弃word、ppt……</p></li>
+<li><p>Xie, Y. bookdown: Authoring Books and Technical Documents with R Markdown [M], Chapman &amp; Hall _ CRC 2016. 谢大神的又一本书，他开发的bookdown包，让你真正的可以抛弃word、ppt……</p></li>
+<li><p>yihui, X. R Markdown: The Definitive Guide [M]2018. 谢大神的新作，你可以完全掌握Rmarkdown了。</p></li>
+</ul>
+</div>
+<div id="project" class="section level1">
+<h1><span class="header-section-number">5</span> project版本控制和团队协作</h1>
+<p><strong>版本控制系统</strong>：<a href="https://git-scm.com/book/zh/v2">git知识学习</a></p>
+<ul>
+<li><p>什么是“版本控制”？我为什么要关心它呢？ 版本控制是一种记录一个或若干文件内容变化，以便将来查阅特定版本修订情况的系统。</p></li>
+<li><p>我们对保存着软件源代码的文件作版本控制，但实际上，你可以对任何类型的文件进行版本控制。</p></li>
+</ul>
+<p><strong>代码托管和协作</strong>：<a href="https://pages.github.com/">github网站</a></p>
+<ul>
+<li><p>注册github账号（请用你们西农邮箱注册，高校邮箱github有惊喜）。</p></li>
+<li><p>安装github桌面软件（如果熟练掌握了git命令操作，这一步骤可以跳过）。</p></li>
+<li><p>后github就是我们的交流平台了——你们可以管理文件、托管R代码和版本控制,并进行协作。</p></li>
+</ul>
+</div>
+<div id="section" class="section level1">
+<h1><span class="header-section-number">6</span> 几点忠告</h1>
+<ul>
+<li><p>人在江湖走，该有的技能还得练到手！</p></li>
+<li><p>技术手段是不断发展变化的，要有拥抱未来的情怀！R或Rmarkdown也只是选择之一，不是唯一。够你用和适合你就行！</p></li>
+<li><p>坚持并常用，才是熟练掌握一门语言的根本所在！R和Rmarkdown，就跟你学英语一样。相信我，半年不学不用，你的英语也就忘得差不多了！</p></li>
+<li><p>不要看翻译成中文的图书或“教程”！编程语言都是英语的世界！你坚持用英语，顶住了最开始的吃力、费解和艰难，后面必然就是你得胜凯旋的荣光时刻！</p></li>
+</ul>
+</div>

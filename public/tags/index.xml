@@ -7,19 +7,10 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>huhuaping@2019</copyright>
-    <lastBuildDate>Wed, 27 Apr 2016 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 11 Apr 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Demo</title>
-      <link>/tags/demo/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 +0800</pubDate>
-      
-      <guid>/tags/demo/</guid>
-      <description></description>
-    </item>
     
     <item>
       <title>LaTex</title>
@@ -42,7 +33,7 @@
     <item>
       <title>R language</title>
       <link>/tags/r-language/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 +0800</pubDate>
+      <pubDate>Wed, 03 Apr 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/r-language/</guid>
       <description></description>

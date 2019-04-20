@@ -21,15 +21,6 @@
     </item>
     
     <item>
-      <title>Projects</title>
-      <link>/home/projects/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/home/projects/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Academic</title>
       <link>/home/hero/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -119,6 +110,15 @@ Star</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/home/posts/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Projects</title>
+      <link>/home/projects/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/home/projects/</guid>
       <description></description>
     </item>
     

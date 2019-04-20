@@ -13,7 +13,7 @@ folder: project
 subtitle: "R学习"
 title: Projects
 view: 1
-weight: 2
+weight: 45
 widget: projects
 widget_layout: 0
 ---
