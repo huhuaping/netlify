@@ -11,13 +11,34 @@ tags:
 image:
   caption: ''
   focal_point: ''
+output:
+  blogdown::html_page:
+      number_sections: true
+      toc: TRUE
 ---
 
 bookdown编写LaTex书籍中的注意事项。
 
-## HTML和LaTeX如何“和谐共存”？
+
+# 配置及相关设置
+
+##  yaml信息的设置
+
+只有index.Rmd具有设置yaml信息的地位！
+
+> index.Rmd: This is the only Rmd document to contain a YAML frontmatter as described within Chapter 2, and is the first book chapter. 
+> ---[R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/bookdown-project.html)
+
+
+# 表格的HTML和LaTeX“和谐共存”
+
+
+## 注意bookdown的渲染方式
+
+表格排版还是需要kable和kableExtra的结合。kableExtra的latex参数请参看Zhuhao的[awesome_table_in_pdf](https://haozhu233.github.io/kableExtra/awesome_table_in_pdf.pdf)。
 
 zhuhao提到了kableExtra如何实现[多形式输出的办法](https://haozhu233.github.io/kableExtra/bookdown/cross-format-tables-in-bookdown.html)
+
 
 - 首先要采用“M-K”的图书渲染方式，也即先合并（merge）再编译（knit）。具体的实现是在文件`_bookdown.yml`设置`new_session: true`。
 
@@ -34,20 +55,118 @@ language:
 - 采用“M-K”图书渲染方式后，图书每一章的`.Rmd`文件在代码运行时都会强制使用`new session`，也即意味着各章的`packages`和`data`都相互独立。所以每一章的`.Rmd`文件最开始，需要分别设置`options`及加载`packages`
 
 
-## LaTeX书籍编写的原则
+## 环境参数的全局性影响
 
-1. 只有index.Rmd具有设置yaml信息的地位！
+需要注意的是**环境参数**设置的变化。一种情形是，在Rstudio中点击knitr（或biuld），都会自动识别`knitr.table.format = `是latex环境还是html环境。另一种情形就是在console中手动运行比如`render_`或`preview_chapter()`，这时就需要手动写入执行环境是latex或hetml。
 
-> index.Rmd: This is the only Rmd document to contain a YAML frontmatter as described within Chapter 2, and is the first book chapter. 
-> ---[R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/bookdown-project.html)
+- 自动配置情形下，可以全局设置`options(knitr.table.format = "latex")`。如果不想自动配置，则可以禁用它`options(kableExtra.auto_format = FALSE)`。
 
-1. 不要在R code chunk的options中出现特殊字符。比如：`fig.cap=`中出现了特殊符号`&`，则会报错。
+- 手动配置情形下，则需要在code chunk里对`kable()`函数设定`format="latex"`。
+
+
+函数`kable()`处理的数据类型应该是dataframe（或tibble）。不然`booktab=T`或`kable_styling(latex_options = c("striped"))`将会不起作用。请参看在线问答[R markdown KableExtra latex table booktabs not working](https://stackoverflow.com/questions/50340653/r-markdown-kableextra-latex-table-booktabs-not-working)
+
+
+调用latex包的先后顺序很有影响。例如涉及到颜色的使用，可能出现报错`Option clash for package xcolor`。这个时候latex包的先后顺序会带来各种问题。参看在线问答[Option clash for package xcolor](https://tex.stackexchange.com/questions/83101/option-clash-for-package-xcolor)
+
+(https://stackoverflow.com/questions/16507191/automatically-adjust-latex-table-width-to-fit-pdf-using-knitr-and-rstudio)
+
+
+
+## 表格中插入有图片
+
+有时候我们会独立地展示图片（.png之类），有时候我们还希望在表格中展示图片（.png之类）或图标（icon之类）。
+
+如下**R代码块**（R code chunk）情况下，是可以正确输出html，但是却无法正确输出Latex：
+
+- 动图是不行的。`knitr::include_graphics('local.gif')`
+
+- 在线图片是不行的。`knitr::include_graphics('https://commonmark.org/images/markdown-mark.png')`
+
+
+此外，在kable环境下，data.frame中出现如下value，也是可以正确输出html，但是却无法正确输出Latex：
+
+
+- Rmarkdown语言，`![](picture/object/Alpha,png)`
+
+- HTML语言，`<image source="picture/object/Alpha,png">`
+
+
+yihuixie指出了这种**混合表格**是[不能兼得两种输出](https://stackoverflow.com/questions/25106481/add-an-image-to-a-table-like-output-in-r)，同时也为latex输出指明了出路——使用`//includgraphics`。然而此`//includgraphics`并非彼`include_graphics()`。
+
+错误的`include_graphics()`。我开始一直认为是使用R code chunk下的`include_graphics()`函数。当然是无功而返，无论怎么做都无法实现正确的latex输出。
+
+正确的`//includgraphics`。进一步googlew问答[add and resize a local image to a .Rmd file in RStudio that will produce a pdf](https://stackoverflow.com/questions/28032846/add-and-resize-a-local-image-to-a-rmd-file-in-rstudio-that-will-produce-a-pdf)，终于明白了其中玄机。原来yihuixie所说的`//includgraphics`是一种**原生的latex语法**。——略加调整，问题果真迎刃而解！
+
+- 使用latex语法正确处理data.frame的单元格value（此处为字符串）：`"\\includegraphics{picture/object/Alpha.png}"`。如果需要调整图片属性（如大小），则可以处理data.frame的单元格value为：`"\\includegraphics[width=0.9\linewidth]{picture/object/Alpha.png}"`
+
+- 设置kable参数：`kable(dat, escape = FALSE,booktab=T)`。（假定环境配置为自动判别latex还是html输出，此处为latex输出）
+
+- if函数上场，实现latex和html并行输出。根据输出格式（output）来设定data.frame的value值。而且再knitr1.18版本开始，可以直接使用两个函数来自动判明输出格式：
+
+```
+knitr::is_html_output()
+
+knitr::is_latex_output()
+```
+### latex宏包longtable的使用
+
+如果latex表格很长，一般需要调用`longtable`参数，但是kableExtra()函数下自动缩放大小`latex_options = c( "scale_down")`就会失效。并提示：`Longtable cannot be resized`。但是可以利用kableextra的函数`column_sep()`来设定各列的宽度。
+
+```
+kable_styling(full_width = F,
+  latex_options = c( "scale_down","striped")) %>%
+  column_spec(5, width = "15em")
+```
+
+
+表格中显示图标（icon）。则可以参看[add a fontawesome icon to a table in Rmarkdown](https://stackoverflow.com/questions/53549662/how-can-i-add-a-fontawesome-icon-to-a-table-in-rmarkdown)
+
+
+## 表格中字符格式（如加粗）
+
+建议尽量对整个单元格进行latex参数操作。
+
+单元格部分字符加粗，则必须使用[latex语法](http://edpflager.com/2018/09/28/font-formatting-coloring-and-emphasis/)：
+
+```
+dat <- data.frame(
+  country = c('Canada', 'United Kindom'),
+  abbr = c("Alpha","Coef"),
+  var1 = c(1, 2),
+  var2 = rnorm(2),
+  var3 =c("\\textbf{加粗}","*斜体*")
+)
+```
+
+
+## 表格中显示数学公式
+
+kable如何显示数学公式。
+
+数学公式可以参看在线问答[math in table-header not working](https://stackoverflow.com/questions/42598821/r-bookdown-math-in-table-header-not-working)
+
+
+
+# Latex输出各种“梗”
+
+## fig.cap
+
+不要在R code chunk的options中出现特殊字符。比如：`fig.cap=`中出现了特殊符号`&`，则会报错。
 
 ```
 fig.cap="绘制Line & Symbol图"
 ```
 
-2. 正文内容中列表（list）层级太多，则会报错：`LaTeX Error: Too deeply nested.`。如果非要那么多层级，就需要加载LaTex的`enumitem package`（让tinytex自动加载去吧），并在preamble.tex中调用它（[参看在线文达jgm的 解决方案](https://github.com/jgm/pandoc/issues/2922)）：
+图题中的数学公式符号，使用货币符号表达是需要注意LaTeX的规范写法（特定命令符需要加双斜杠`\\alpha`）。例如：`fig.cap="判定系数$R^2$和调整判定系数$\bar{R}^2$"`，则LaTex会报错`! Text line contains an invalid character.`。正确的写法应该是（[参看解决方案](https://stackoverflow.com/questions/52211695/how-to-add-a-latex-symbol-to-fig-cap-in-r-markdown)）：
+
+```
+fig.cap="判定系数$R^2$和调整判定系数$\\bar{R}^2$"
+```
+
+## latex list
+
+正文内容中列表（list）层级太多，则会报错：`LaTeX Error: Too deeply nested.`。如果非要那么多层级，就需要加载LaTex的`enumitem package`（让tinytex自动加载去吧），并在preamble.tex中调用它（[参看在线文达jgm的 解决方案](https://github.com/jgm/pandoc/issues/2922)）：
 
 ```
 \usepackage{enumitem}
@@ -75,26 +194,30 @@ fig.cap="绘制Line & Symbol图"
    \setlist[enumerate,9]{label=$\roman*.$}
    \renewlist{enumerate}{enumerate}{9}
 ```
-2. 图题中的数学公式符号，使用货币符号表达是需要注意LaTeX的规范写法（特定命令符需要加双斜杠`\\alpha`）。例如：`fig.cap="判定系数$R^2$和调整判定系数$\bar{R}^2$"`，则LaTex会报错`! Text line contains an invalid character.`。正确的写法应该是（[参看解决方案](https://stackoverflow.com/questions/52211695/how-to-add-a-latex-symbol-to-fig-cap-in-r-markdown)）：
 
-```
-fig.cap="判定系数$R^2$和调整判定系数$\\bar{R}^2$"
-```
 
-2. 段落首行缩进。在`preamble.tex`中条用如下包[解决方案(https://stackoverflow.com/questions/29460112/first-line-paragraph-indenting-in-pdfs-using-r-markdown)]
+## 段落首行缩进
+
+段落首行缩进。在`preamble.tex`中条用如下包[解决方案(https://stackoverflow.com/questions/29460112/first-line-paragraph-indenting-in-pdfs-using-r-markdown)]
 
 ```
 % first-line paragraph indenting
 \usepackage{indentfirst}
 \setlength\parindent{24pt}
 ```
-2. 页边距调整。需要在`output.yaml`文件中进行设置（[参看解决方案](https://stackoverflow.com/questions/13515893/set-margin-size-when-converting-from-markdown-to-pdf-with-pandoc)）
+
+## 页边距调整
+
+页边距调整。需要在`output.yaml`文件中进行设置（[参看解决方案](https://stackoverflow.com/questions/13515893/set-margin-size-when-converting-from-markdown-to-pdf-with-pandoc)）
 
 ```
 geometry: [a4paper, tmargin=2.5cm, bmargin=2.5cm, lmargin=2.5cm, rmargin=2.5cm]
 
 ```
-2. 正确设置章序号。如果修改了`documentclass:`，那么就需要告诉Pandoc你是按chapter来编码的，而不是section（默认）。在`output.yaml`文件下设置`pandoc_args: --top-level-division=chapter`。（[参看解决方案](https://community.rstudio.com/t/chapter-starts-with-0-1-not-1-0-in-pdf-book-format/12797/4)）
+
+## 正确设置章序号
+
+正确设置章序号。如果修改了`documentclass:`，那么就需要告诉Pandoc你是按chapter来编码的，而不是section（默认）。在`output.yaml`文件下设置`pandoc_args: --top-level-division=chapter`。（[参看解决方案](https://community.rstudio.com/t/chapter-starts-with-0-1-not-1-0-in-pdf-book-format/12797/4)）
 
 ```
 documentclass: ctexbook
@@ -116,7 +239,9 @@ bookdown::pdf_book:
   quote_footer: ["\\begin{flushright}", "\\end{flushright}"]
 ```
 
-2. 正确处理页码序号。其实[bookdown电子书 6.3 Publishers](https://bookdown.org/yihui/bookdown/publishers.html)专门提到了这一点，只是我一直没有细看。另外也可以参看在线问答[Page Numbering in R Bookdown](https://stackoverflow.com/questions/43711029/page-numbering-in-r-bookdown)。 总体意思就是要让Pandoc知道哪些部分属于`\frontmatter`,`\mainmatter`,`\backmatter`。所以需要做如下几件事情：
+## 正确处理页码序号
+
+正确处理页码序号。其实[bookdown电子书 6.3 Publishers](https://bookdown.org/yihui/bookdown/publishers.html)专门提到了这一点，只是我一直没有细看。另外也可以参看在线问答[Page Numbering in R Bookdown](https://stackoverflow.com/questions/43711029/page-numbering-in-r-bookdown)。 总体意思就是要让Pandoc知道哪些部分属于`\frontmatter`,`\mainmatter`,`\backmatter`。所以需要做如下几件事情：
 
 
 > 在preamble.tex文件下加入代码行`\frontmatter`
@@ -131,34 +256,21 @@ bookdown::pdf_book:
 
 > 总之，这些**标记代码**可以插入到相应的章节，合适的位置。跟word的分节符很像。
 
-2. kable如何显示数学公式和图片。
 
-> 数学公式可以参看在线问答[math in table-header not working](https://stackoverflow.com/questions/42598821/r-bookdown-math-in-table-header-not-working)
+# 诡异现象
 
-> 表格中显示图标，可以参看[add a fontawesome icon to a table in Rmarkdown](https://stackoverflow.com/questions/53549662/how-can-i-add-a-fontawesome-icon-to-a-table-in-rmarkdown)
-
-
-yihuixie提到了[sprintf()函数](https://stackoverflow.com/questions/25106481/add-an-image-to-a-table-like-output-in-r)
-
-
-## 表格排版
-
-1. 表格排版还是需要kable和kableExtra的结合。kableExtra的latex参数请参看Zhuhao的[awesome_table_in_pdf](https://haozhu233.github.io/kableExtra/awesome_table_in_pdf.pdf)。
-
-> 需要注意的是**环境参数**设置的变化。一种情形是，在Rstudio中点击knitr（或biuld），都会自动识别`knitr.table.format = `是latex环境还是html环境。另一种情形就是在console中手动运行比如`render_`或`preview_chapter()`，这时就需要手动写入执行环境是latex或hetml。
-
-> 自动配置情形下下，可以全局设置`options(knitr.table.format = "latex")`。如果不想自动配置，则可以禁用它`options(kableExtra.auto_format = FALSE)`。
-
-> 手动配置情形下，则需要在code chunk里对`kable()`函数设定`format="latex"`。
-
-
-2. 函数`kable()`处理的数据类型应该是dataframe（或tibble）。不然`booktab=T`或`kable_styling(latex_options = c("striped"))`将会不起作用。请参看在线问答[R markdown KableExtra latex table booktabs not working](https://stackoverflow.com/questions/50340653/r-markdown-kableextra-latex-table-booktabs-not-working)
-
-
-2. 调用latex包的先后顺序很有影响。例如涉及到颜色的使用，可能出现报错`Option clash for package xcolor`。这个时候latex包的先后顺序会带来各种问题。参看在线问答[Option clash for package xcolor](https://tex.stackexchange.com/questions/83101/option-clash-for-package-xcolor)
-
-(https://stackoverflow.com/questions/16507191/automatically-adjust-latex-table-width-to-fit-pdf-using-knitr-and-rstudio)
-
-## 诡异现象
+## 编译报错但删除临时文件又好了
 
 1. Latex错误提示：`! File ended while scanning use of \@writefile.`。突然之间，Latex无法编译，反复查看yaml代码，感觉都没有问题，大半个下午解决不了（包括更新bookdown和Rstudio；多次重启。）。google搜索，最后采用了[David Carlisle的建议](https://tex.stackexchange.com/questions/471345/error-file-ended-while-scanning-use-of-writefile)，把`.aux`等日志文件删除，重新Latex编译，最后消除了不能编译的错误。——最终还是没有明白原因。
+
+# blogdown相关话题（hugo academic）
+
+
+## 通过静态页面的使用
+
+
+## 直接引用本地数据和图片文件
+
+既然blogdown下就能直接编写.Rmd文件，那就可以直接在里面进行数据分析、可视化等操作。问题的关键是如何引用本地数据（"data/"目录下）和图片文件（"pic/"目录下）。
+
+[Adding and reading local data files in R Markdown posts](https://blogdown-demo.rbind.io/2018/02/27/r-file-paths/)
