@@ -147,6 +147,69 @@ kable如何显示数学公式。
 数学公式可以参看在线问答[math in table-header not working](https://stackoverflow.com/questions/42598821/r-bookdown-math-in-table-header-not-working)
 
 
+# block的使用
+
+## 定理和证明block
+
+Bookdown说明书[2.2.2 Theorems and proofs](https://bookdown.org/yihui/bookdown/markdown-extensions-by-bookdown.html#theorems)
+
+定理环境（theorem environment）下的block类型有：
+
+- theorem
+
+- lemma
+
+- corollary
+
+- proposition
+
+- conjecture
+
+- definition
+
+- example
+
+- exercise
+
+证明环境（proof environments）下目前支持的block类型包括：
+
+- proof
+
+- remark
+
+- solution
+
+## 个性化blocks
+
+Bookdown说明书里指出了个性化blocks[2.7 Custom blocks](https://bookdown.org/yihui/bookdown/custom-blocks.html)
+
+如果是html输出，则需要去设置。bookdown内置的block类型包括：
+
+- rmdcomment
+
+- rmdlist
+
+- rmdnotes
+
+
+也可以参考yihuixie的案例[CSS](https://github.com/rstudio/bookdown/blob/master/inst/examples/css/style.css)
+
+## 注意事项
+
+- 注意block参数的设置
+
+```
+```{theorem,BLUE,name="高斯-马尔可夫定理(Gauss-Markov Theorem)",echo=TRUE}
+在正态经典线性回归模型假设（N-CLRM）下，采用普通最小二乘法（OLS），得到的估计量$\hat{\beta}$，是真实参数$\beta$最优的、线性的、无偏估计量（BLUE）。记为：
+\xrightarrow[\text{N-CLRM}]{\text{OLS}}\hat{\beta} \xrightarrow[\text{}]{\text{BLUE}} \beta
+```
+```
+
+- 所有类型的block都需要给出`echo=TRUE`的参数设置才能正常显示
+
+- html输出和latex输出的block类型支持是不一样的，前者应该更多
+
+
 
 # Latex输出各种“梗”
 
