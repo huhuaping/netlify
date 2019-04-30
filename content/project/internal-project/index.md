@@ -36,6 +36,9 @@ url_video: ""
 
 - （点击进入）[01-Rmarkdown语言入门(HTML网页形式)](/R-learning/01-Rmarkdown-intro.html)
 
+- （点击进入）[02-git基本操作学习(HTML网页形式)](/R-learning/02-git-team-intro.html)
+
+
 
 ## 任务清单
 
