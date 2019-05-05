@@ -501,15 +501,6 @@
     
     <url>
     
-      <loc>/tags/bookdown/</loc>
-      <lastmod>2019-04-28T23:47:34+08:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
       <loc>/categories/bookdown/</loc>
       <lastmod>2019-04-28T23:47:34+08:00</lastmod>
       <priority>0</priority>
@@ -519,8 +510,8 @@
     
     <url>
     
-      <loc>/tags/econometrics/</loc>
-      <lastmod>2019-03-04T22:28:51+08:00</lastmod>
+      <loc>/tags/bookdown/</loc>
+      <lastmod>2019-04-28T23:47:34+08:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -530,6 +521,15 @@
     
       <loc>/categories/econometrics/</loc>
       <lastmod>2019-03-19T22:47:25+08:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/econometrics/</loc>
+      <lastmod>2019-03-04T22:28:51+08:00</lastmod>
       <priority>0</priority>
     </url>
     
