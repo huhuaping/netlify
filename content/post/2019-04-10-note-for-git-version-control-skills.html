@@ -94,4 +94,32 @@ $ git commit -m &quot;add LFS directory data-process/&quot;
 $ git push origin master
 </code></pre>
 </div>
+<div id="section" class="section level2">
+<h2>忽略文件设置</h2>
+<p>工作思路是：</p>
+<ul>
+<li>在工作目录下新建<code>.gitigore</code>文件</li>
+</ul>
+<pre><code>$ touch .gitignore
+</code></pre>
+<ul>
+<li>git bash调用文本编辑工具（windows死粉的notepad++），编辑并设置.gitignore文件</li>
+</ul>
+<pre><code># 配置notepad（64bit system -windows）
+$ alias notepad=&quot;/c/Program\ Files\ \(x86\)/Notepad++/notepad++.exe&quot;
+
+# 打开编辑器，设置忽略规则
+$ notepad .gitignore</code></pre>
+<ul>
+<li>忽略规则的一个样例</li>
+</ul>
+<pre><code># ignore the whole file directory
+
+data-raw/
+
+# ignore Rproj user info file
+
+.Rproj.user
+</code></pre>
+</div>
 </div>
