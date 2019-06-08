@@ -13,21 +13,21 @@
     
     
     <item>
+      <title>note for git version control skills</title>
+      <link>/post/note-for-git-version-control-skills/</link>
+      <pubDate>Sat, 08 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/note-for-git-version-control-skills/</guid>
+      <description>git版本控制技巧集锦 配置git 配置默认文本编辑器（text editor）。windows党还是自觉使用Notepad吧，免费又熟悉 下载安装</description>
+    </item>
+    
+    <item>
       <title>notes in LaTex output format for bookdown books</title>
       <link>/post/notes-in-latex-output-format-for-bookdown-books/</link>
       <pubDate>Thu, 11 Apr 2019 00:00:00 +0000</pubDate>
       
       <guid>/post/notes-in-latex-output-format-for-bookdown-books/</guid>
       <description>1 配置及相关设置 1.1 yaml信息的设置 2 表格的HTML和LaTeX“和谐共存” 2.1 注意bookdown的渲染方式 2.2 环境参数的全局性影响 2.3 表格中插</description>
-    </item>
-    
-    <item>
-      <title>note for git version control skills</title>
-      <link>/post/note-for-git-version-control-skills/</link>
-      <pubDate>Wed, 10 Apr 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/post/note-for-git-version-control-skills/</guid>
-      <description>git版本控制技巧集锦 配置git 配置默认文本编辑器（text editor）。windows党还是自觉使用Notepad吧，免费又熟悉 下载安装</description>
     </item>
     
     <item>
