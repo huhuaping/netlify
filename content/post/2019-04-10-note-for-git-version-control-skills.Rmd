@@ -2,7 +2,7 @@
 title: note for git version control skills
 author: huhuaping
 draft: true
-date: '`r Sys.Date()`'
+date: '`r Sys.Date()-1`'
 slug: note-for-git-version-control-skills
 categories:
   - git skills
@@ -81,9 +81,9 @@ $ git log --oneline --decorate --graph --all
 
 **参考的解决办法**包括：
 
-    - [Working with large files and repositories](https://github.community/t5/Support-Protips/Working-with-large-files-and-repositories/ba-p/9343)
+- [Working with large files and repositories](https://github.community/t5/Support-Protips/Working-with-large-files-and-repositories/ba-p/9343)
     
-    - [Versioning large files](https://help.github.com/en/articles/versioning-large-files)
+- [Versioning large files](https://help.github.com/en/articles/versioning-large-files)
 
 
 
