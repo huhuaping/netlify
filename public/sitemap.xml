@@ -36,8 +36,16 @@
     
     <url>
     
+      <loc>/publication/education-research/</loc>
+      <lastmod>2019-06-27T00:00:00+08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
       <loc>/post/note-for-git-version-control-skills/</loc>
-      <lastmod>2019-06-08T23:32:54+08:00</lastmod>
+      <lastmod>2019-06-08T23:50:15+08:00</lastmod>
     </url>
     
   
@@ -268,14 +276,6 @@
     
     <url>
     
-      <loc>/publication/person-re-id/</loc>
-      <lastmod>2019-02-20T17:48:14+08:00</lastmod>
-    </url>
-    
-  
-    
-    <url>
-    
       <loc>/publication/clothing-search/</loc>
       <lastmod>2019-02-20T17:48:14+08:00</lastmod>
     </url>
@@ -302,7 +302,7 @@
     <url>
     
       <loc>/publication_types/2/</loc>
-      <lastmod>2019-02-20T17:48:14+08:00</lastmod>
+      <lastmod>2019-06-27T00:00:00+08:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -344,7 +344,7 @@
     <url>
     
       <loc>/</loc>
-      <lastmod>2019-06-08T23:32:54+08:00</lastmod>
+      <lastmod>2019-06-27T00:00:00+08:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -501,15 +501,6 @@
     
     <url>
     
-      <loc>/categories/bookdown/</loc>
-      <lastmod>2019-04-28T23:47:34+08:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
       <loc>/tags/bookdown/</loc>
       <lastmod>2019-04-28T23:47:34+08:00</lastmod>
       <priority>0</priority>
@@ -519,8 +510,8 @@
     
     <url>
     
-      <loc>/categories/econometrics/</loc>
-      <lastmod>2019-03-19T22:47:25+08:00</lastmod>
+      <loc>/categories/bookdown/</loc>
+      <lastmod>2019-04-28T23:47:34+08:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -537,8 +528,17 @@
     
     <url>
     
+      <loc>/categories/econometrics/</loc>
+      <lastmod>2019-03-19T22:47:25+08:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
       <loc>/categories/git-skills/</loc>
-      <lastmod>2019-06-08T23:32:54+08:00</lastmod>
+      <lastmod>2019-06-08T23:50:15+08:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -547,7 +547,7 @@
     <url>
     
       <loc>/tags/github/</loc>
-      <lastmod>2019-06-08T23:32:54+08:00</lastmod>
+      <lastmod>2019-06-08T23:50:15+08:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -602,6 +602,24 @@
     
       <loc>/tags/website/</loc>
       <lastmod>2019-03-01T16:41:09+08:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/authors/%E5%91%A8%E4%B8%B9/</loc>
+      <lastmod>2019-06-27T00:00:00+08:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/authors/%E8%83%A1%E5%8D%8E%E5%B9%B3/</loc>
+      <lastmod>2019-06-27T00:00:00+08:00</lastmod>
       <priority>0</priority>
     </url>
     
