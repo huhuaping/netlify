@@ -17,7 +17,7 @@ publication_types:
 - "2"
 slides: 
 summary: ""
-tags: []
+tags: [high education research]
 title: "基于学习型社区模式的在线课程学习行为投入、效果评价及优化路径研究"
 url_code: ""
 url_dataset: ""
