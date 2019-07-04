@@ -3,7 +3,7 @@ abstract: 本项目主要分析了学生课程形式选择、学习投入与学�
 authors:
 - 胡华平
 - 周丹
-date: "2019-06-27T00:00:00+08:00"
+date: "2019-07-03T00:00:00+08:00"
 doi: ""
 featured: false
 image:
@@ -15,13 +15,13 @@ publication: forthcoming.
 publication_short: In *SITIS*
 publication_types:
 - "2"
-slides: example-slides
+slides: 
 summary: ""
 tags: []
 title: "基于学习型社区模式的在线课程学习行为投入、效果评价及优化路径研究"
 url_code: ""
 url_dataset: ""
-url_pdf: http://arxiv.org/pdf/1512.04133v1
+url_pdf: "/research-education/article-01-CSPS-score-model.html"
 url_poster: ""
 url_preprint: ""
 url_project: ""
@@ -31,6 +31,11 @@ url_video: ""
 ---
 
 
-**文章全文**请点击查看[(HTML网页形式)](/research-education/article-01-CSPS-score-model.html)
+**研究报告**请点击查看[(HTML网页形式)](/research-education/article-01-CSPS-score-model.html)；[(pdf形式)](/research-education/report-01-CSPS-score-model.pdf)
 
-**研究报告**全文请点击查看[(HTML网页形式)](/research-education/report-01-CSPS-score-model.html)
+**汇报总结**请点击查看[(slide形式)](/research-education/slide-01-CSPS-score-model.html)
+
+>操作提示：
+- 点击**课件区域**，按F键，可全屏观看
+- 按方向键，可以前进/后退
+- 敲击数字键，再按Enter可进入任意指定的页码。如，敲击数字10，观看第10页
