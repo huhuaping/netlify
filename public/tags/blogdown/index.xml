@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>blogdown on Huhuaping</title>
+    <title>Blogdown on Huhuaping</title>
     <link>/tags/blogdown/</link>
-    <description>Recent content in blogdown on Huhuaping</description>
+    <description>Recent content in Blogdown on Huhuaping</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>huhuaping@2019</copyright>
@@ -13,7 +13,7 @@
     
     
     <item>
-      <title>three-sords (blogdown; github; netlify) to develole personal website</title>
+      <title>个人网站开发“三剑客” (blogdown; github; netlify)</title>
       <link>/post/three-sord/</link>
       <pubDate>Thu, 21 Feb 2019 00:00:00 +0000</pubDate>
       

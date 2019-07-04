@@ -13,7 +13,7 @@
     
     
     <item>
-      <title>chinese character in graph consistence with both latex and html</title>
+      <title>Latex pdf和html输出下ggplot绘图中文字体显示问题</title>
       <link>/post/chinese-character-in-graph-consistence-with-both-latex-and-html/</link>
       <pubDate>Thu, 04 Jul 2019 00:00:00 +0000</pubDate>
       
@@ -22,16 +22,16 @@
     </item>
     
     <item>
-      <title>note for git version control skills</title>
+      <title>git版本控制实操技巧汇总</title>
       <link>/post/note-for-git-version-control-skills/</link>
-      <pubDate>Fri, 07 Jun 2019 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 03 Jul 2019 00:00:00 +0000</pubDate>
       
       <guid>/post/note-for-git-version-control-skills/</guid>
       <description>git版本控制技巧集锦 配置git 配置默认文本编辑器（text editor）。windows党还是自觉使用Notepad吧，免费又熟悉 下载安装</description>
     </item>
     
     <item>
-      <title>notes in LaTex output format for bookdown books</title>
+      <title>bookdown下Latex pdf格式输出技巧清单</title>
       <link>/post/notes-in-latex-output-format-for-bookdown-books/</link>
       <pubDate>Thu, 11 Apr 2019 00:00:00 +0000</pubDate>
       
@@ -40,7 +40,7 @@
     </item>
     
     <item>
-      <title>R Learning Reference for Newcomers</title>
+      <title>一份给R新手的学习指南</title>
       <link>/post/r-learning-reference-for-newcomers/</link>
       <pubDate>Wed, 03 Apr 2019 00:00:00 +0000</pubDate>
       
@@ -49,7 +49,7 @@
     </item>
     
     <item>
-      <title>chating and teaching in econometrics manner</title>
+      <title>计量经济学的那点调性和套路</title>
       <link>/post/chating-and-teaching-in-econometrics-manner/</link>
       <pubDate>Sun, 10 Mar 2019 00:00:00 +0000</pubDate>
       
@@ -58,7 +58,7 @@
     </item>
     
     <item>
-      <title>post Xaringan slide to website</title>
+      <title>在blogdown网站中展示Xaringan slide</title>
       <link>/post/post-xaringan-slide-to-website/</link>
       <pubDate>Fri, 01 Mar 2019 00:00:00 +0000</pubDate>
       
@@ -67,7 +67,7 @@
     </item>
     
     <item>
-      <title>Improve Latex math with Rmarkdown chunk</title>
+      <title>Rmarkdown下自动化编译Latex公式输出</title>
       <link>/post/improve-latex-math-with-rmarkdown-chunk/</link>
       <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
       
@@ -76,7 +76,7 @@
     </item>
     
     <item>
-      <title>create course slide by using Xaringan</title>
+      <title>利用Xaringan创建课程slide</title>
       <link>/post/xaringan-for-course-slide/</link>
       <pubDate>Sun, 24 Feb 2019 00:00:00 +0000</pubDate>
       
@@ -85,7 +85,7 @@
     </item>
     
     <item>
-      <title>three-sords (blogdown; github; netlify) to develole personal website</title>
+      <title>个人网站开发“三剑客” (blogdown; github; netlify)</title>
       <link>/post/three-sord/</link>
       <pubDate>Thu, 21 Feb 2019 00:00:00 +0000</pubDate>
       

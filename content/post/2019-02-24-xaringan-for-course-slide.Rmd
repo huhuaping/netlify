@@ -1,12 +1,13 @@
 ---
-title: create course slide by using Xaringan
+title: 利用Xaringan创建课程slide
 author: huhuaping
 date: '2019-02-24'
 slug: xaringan-for-course-slide
 categories:
   - R
 tags:
-  - econometrics
+  - Econometrics
+  - Xaringan
 image:
   caption: ''
   focal_point: ''

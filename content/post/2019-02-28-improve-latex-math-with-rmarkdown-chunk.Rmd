@@ -1,14 +1,14 @@
 ---
-title: Improve Latex math with Rmarkdown chunk
+title: Rmarkdown下自动化编译Latex公式输出
 author: huhuaping
 date: '2019-02-28'
 slug: improve-latex-math-with-rmarkdown-chunk
 categories:
   - R
 tags:
-  - LaTex math
+  - LaTex
   - Rmarkdown
-  - knitr chunk
+  - Econometrics
 image:
   caption: ''
   focal_point: ''

@@ -7,10 +7,46 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>huhuaping@2019</copyright>
-    <lastBuildDate>Thu, 04 Jul 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 21 Feb 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Blogdown</title>
+      <link>/tags/blogdown/</link>
+      <pubDate>Thu, 21 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/blogdown/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Bookdown</title>
+      <link>/tags/bookdown/</link>
+      <pubDate>Thu, 11 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/bookdown/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Econometrics</title>
+      <link>/tags/econometrics/</link>
+      <pubDate>Sun, 10 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/econometrics/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Github</title>
+      <link>/tags/github/</link>
+      <pubDate>Wed, 03 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/github/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>LaTex</title>
@@ -22,11 +58,20 @@
     </item>
     
     <item>
-      <title>LaTex math</title>
-      <link>/tags/latex-math/</link>
-      <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
+      <title>Netlify</title>
+      <link>/tags/netlify/</link>
+      <pubDate>Thu, 21 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>/tags/latex-math/</guid>
+      <guid>/tags/netlify/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>R beginer</title>
+      <link>/tags/r-beginer/</link>
+      <pubDate>Wed, 03 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/r-beginer/</guid>
       <description></description>
     </item>
     
@@ -49,38 +94,56 @@
     </item>
     
     <item>
+      <title>Simple regress</title>
+      <link>/tags/simple-regress/</link>
+      <pubDate>Sun, 10 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/simple-regress/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Slide</title>
+      <link>/tags/slide/</link>
+      <pubDate>Fri, 01 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/slide/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Static website</title>
+      <link>/tags/static-website/</link>
+      <pubDate>Fri, 01 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/static-website/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Version control</title>
+      <link>/tags/version-control/</link>
+      <pubDate>Wed, 03 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/version-control/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Website</title>
+      <link>/tags/website/</link>
+      <pubDate>Fri, 01 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/website/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Xaringan</title>
       <link>/tags/xaringan/</link>
       <pubDate>Fri, 01 Mar 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/xaringan/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>blogdown</title>
-      <link>/tags/blogdown/</link>
-      <pubDate>Thu, 21 Feb 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/blogdown/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>bookdown</title>
-      <link>/tags/bookdown/</link>
-      <pubDate>Thu, 11 Apr 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/bookdown/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>econometrics</title>
-      <link>/tags/econometrics/</link>
-      <pubDate>Sun, 24 Feb 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/econometrics/</guid>
       <description></description>
     </item>
     
@@ -94,15 +157,6 @@
     </item>
     
     <item>
-      <title>github</title>
-      <link>/tags/github/</link>
-      <pubDate>Fri, 07 Jun 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/github/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>high education research</title>
       <link>/tags/high-education-research/</link>
       <pubDate>Wed, 03 Jul 2019 00:00:00 +0800</pubDate>
@@ -112,56 +166,11 @@
     </item>
     
     <item>
-      <title>knitr chunk</title>
-      <link>/tags/knitr-chunk/</link>
-      <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/knitr-chunk/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>netlify</title>
-      <link>/tags/netlify/</link>
-      <pubDate>Thu, 21 Feb 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/netlify/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>simple regress</title>
       <link>/tags/simple-regress/</link>
-      <pubDate>Sun, 10 Mar 2019 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 01 Mar 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/simple-regress/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>slide</title>
-      <link>/tags/slide/</link>
-      <pubDate>Fri, 01 Mar 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/slide/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>static website</title>
-      <link>/tags/static-website/</link>
-      <pubDate>Fri, 01 Mar 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/static-website/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>website</title>
-      <link>/tags/website/</link>
-      <pubDate>Fri, 01 Mar 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/website/</guid>
       <description></description>
     </item>
     

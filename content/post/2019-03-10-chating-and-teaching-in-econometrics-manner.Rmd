@@ -1,12 +1,14 @@
 ---
-title: 'chating and teaching in econometrics manner'
+title: '计量经济学的那点调性和套路'
 author: huhuaping
 date: '2019-03-10'
 slug: chating-and-teaching-in-econometrics-manner
 categories:
-  - econometrics
+  - Econometrics
 tags:
-  - simple regress
+  - Simple regress
+  - Econometrics
+  - R beginer
 math: true
 ---
 

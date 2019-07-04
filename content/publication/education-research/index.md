@@ -31,7 +31,7 @@ url_video: ""
 ---
 
 
-**研究报告**请点击查看[(HTML网页形式)](/research-education/article-01-CSPS-score-model.html)；[(pdf形式)](/research-education/report-01-CSPS-score-model.pdf)
+**研究报告**请点击查看[(HTML网页形式)](/research-education/report-01-CSPS-score-model.html)；[(pdf形式)](/research-education/report-01-CSPS-score-model.pdf)
 
 **汇报总结**请点击查看[(slide形式)](/research-education/slide-01-CSPS-score-model.html)
 

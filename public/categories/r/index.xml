@@ -13,15 +13,6 @@
     
     
     <item>
-      <title>R Learning Reference for Newcomers</title>
-      <link>/post/r-learning-reference-for-newcomers/</link>
-      <pubDate>Wed, 03 Apr 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/post/r-learning-reference-for-newcomers/</guid>
-      <description>1 安装R软件和第三方编译软件Rstudio 2 用R进行编程统计分析 3 用R进行绘图（图形可视化）： 4 用R来写文章 5 project版本控制和团队协</description>
-    </item>
-    
-    <item>
       <title>R新手快速指南</title>
       <link>/project/r-learning-reference-for-newcomers/</link>
       <pubDate>Wed, 03 Apr 2019 00:00:00 +0000</pubDate>
@@ -31,7 +22,16 @@
     </item>
     
     <item>
-      <title>post Xaringan slide to website</title>
+      <title>一份给R新手的学习指南</title>
+      <link>/post/r-learning-reference-for-newcomers/</link>
+      <pubDate>Wed, 03 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/r-learning-reference-for-newcomers/</guid>
+      <description>1 安装R软件和第三方编译软件Rstudio 2 用R进行编程统计分析 3 用R进行绘图（图形可视化）： 4 用R来写文章 5 project版本控制和团队协</description>
+    </item>
+    
+    <item>
+      <title>在blogdown网站中展示Xaringan slide</title>
       <link>/post/post-xaringan-slide-to-website/</link>
       <pubDate>Fri, 01 Mar 2019 00:00:00 +0000</pubDate>
       
@@ -40,7 +40,7 @@
     </item>
     
     <item>
-      <title>Improve Latex math with Rmarkdown chunk</title>
+      <title>Rmarkdown下自动化编译Latex公式输出</title>
       <link>/post/improve-latex-math-with-rmarkdown-chunk/</link>
       <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
       
@@ -49,7 +49,7 @@
     </item>
     
     <item>
-      <title>create course slide by using Xaringan</title>
+      <title>利用Xaringan创建课程slide</title>
       <link>/post/xaringan-for-course-slide/</link>
       <pubDate>Sun, 24 Feb 2019 00:00:00 +0000</pubDate>
       
@@ -58,7 +58,7 @@
     </item>
     
     <item>
-      <title>three-sords (blogdown; github; netlify) to develole personal website</title>
+      <title>个人网站开发“三剑客” (blogdown; github; netlify)</title>
       <link>/post/three-sord/</link>
       <pubDate>Thu, 21 Feb 2019 00:00:00 +0000</pubDate>
       

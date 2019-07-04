@@ -1,14 +1,14 @@
 ---
-title: Improve Latex math with Rmarkdown chunk
+title: Rmarkdown下自动化编译Latex公式输出
 author: huhuaping
 date: '2019-02-28'
 slug: improve-latex-math-with-rmarkdown-chunk
 categories:
   - R
 tags:
-  - LaTex math
+  - LaTex
   - Rmarkdown
-  - knitr chunk
+  - Econometrics
 image:
   caption: ''
   focal_point: ''
@@ -18,7 +18,7 @@ math: true
 
 
 
-<div class="section level1">
+<div id="section" class="section level1">
 <h1>“计量经济学”形式的数学公式</h1>
 <p>本科生课程《计量经济学》会大量使用各类公式。这些公式大概有两类：</p>
 <ul>
@@ -27,7 +27,7 @@ math: true
 </ul>
 <p>所以，如果一切顺利，“计量经济学”课程的大量报告公式，都可以自动地使用R函数调用实现，可谓一本万利，合算得很！</p>
 </div>
-<div class="section level1">
+<div id="section-1" class="section level1">
 <h1>代码实现过程中的各种“梗”</h1>
 <p>实现思路倒是很清晰，Rmarkdown下的操作也是可行的。下面就是需要撸起袖子加油干，找到“聪明”的实现办法，破除各种“梗”！</p>
 <div id="pdfhtmlword" class="section level2">
@@ -61,7 +61,7 @@ math: true
 &quot;\\end{equation}&quot;)</code></pre>
 <p><span class="math display">\[\begin{equation} \begin{alignedat}{999} &amp;\widehat{Y}=&amp;&amp;+17.81&amp;&amp;+0.62X\\ &amp;\text{(t)}&amp;&amp;(1.9238)&amp;&amp;(11.9968)\\ &amp;\text{(se)}&amp;&amp;(9.2556)&amp;&amp;(0.0516)\\ &amp;\text{(fitness)}&amp;&amp; n=10;&amp;&amp; R^2=0.9473;&amp;&amp; \bar{R^2}=0.9408\\ &amp; &amp;&amp; F^{\ast}=143.92;&amp;&amp; p=0.0000 \end{alignedat} \end{equation}\]</span></p>
 </div>
-<div class="section level2">
+<div id="section-2" class="section level2">
 <h2>公式分行显示</h2>
 <p>本质上，这还是公式排版问题。但是需要结果代码语句和公式环境来共同解决。</p>
 <pre><code>if (k&lt;=lm.n) {
@@ -117,7 +117,7 @@ cat(
 <p><span class="math display" id="eq:eq-SRF">\[\begin{equation} \begin{alignedat}{999} &amp;\widehat{Y}=&amp;&amp;+17.81&amp;&amp;+0.62X\\ &amp;\text{(t)}&amp;&amp;(1.9238)&amp;&amp;(11.9968)\\ &amp;\text{(se)}&amp;&amp;(9.2556)&amp;&amp;(0.0516)\\ &amp;\text{(fitness)}&amp;&amp; n=10;&amp;&amp; R^2=0.9473;&amp;&amp; \bar{R^2}=0.9408\\ &amp; &amp;&amp; F^{\ast}=143.92;&amp;&amp; p=0.0000 \\tag{1}t} (#eq:eq-SRF) \end{equation}\]</span></p>
 <p>问题是blog里不支持对label进行公式交叉引用；Xaringan里也不支持。只有bookdown或bookdown::render(out= html_document2)才支持。当然这个问题也不是很大：只要在Xanringan或blog里不输label就好了！如果写书，再加上label呗！</p>
 </div>
-<div class="section level2">
+<div id="section-3" class="section level2">
 <h2>“美元”焦虑！</h2>
 <p>Rmarkdown的公式世界里，比较喜欢铜臭味——美元符号。行内公式采用的是<span class="math inline">\(\$...\$\)</span>形式，独立公式采用<span class="math inline">\(\$\$...\$\$\)</span>形式。</p>
 <p>所以，记得要时刻保持“富有”！如下的美元符号：</p>
@@ -135,8 +135,8 @@ cat(
 </div>
 <div id="cat" class="section level2">
 <h2>小心猫（cat）！</h2>
-<p>理论上，<code>cat(, sep=&quot;\n&quot;)</code>函数里只要设置<code>sep=&quot;\n&quot;</code>就能保证换行，输出也很有层次和条理。</p>
-<p>但是你还是要保持美元“富有”，并小心猫（cat）的这个挠人小利爪（<code>sep=&quot;\n&quot;</code>）。</p>
+<p>理论上，<code>cat(, sep="\n")</code>函数里只要设置<code>sep="\n"</code>就能保证换行，输出也很有层次和条理。</p>
+<p>但是你还是要保持美元“富有”，并小心猫（cat）的这个挠人小利爪（<code>sep="\n"</code>）。</p>
 <p>换言之，下面的代码就可能会让你“很受伤”！</p>
 <pre class="r"><code>cat(
 &quot;\\begin{equation}&quot;,
@@ -150,7 +150,7 @@ cat(
 &quot;\\end{equation}&quot;,
 sep= &quot;\n&quot;)</code></pre>
 </div>
-<div class="section level2">
+<div id="section-4" class="section level2">
 <h2>外部文档关联</h2>
 <p>如果完事顺利，你只需要在Rmardown里直接调用公式文件.R</p>
 <pre><code>source(&quot;external-math-equation.R&quot;)

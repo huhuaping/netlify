@@ -1,5 +1,5 @@
 ---
-title: post Xaringan slide to website
+title: 在blogdown网站中展示Xaringan slide
 author: huhuaping
 date: '2019-03-01'
 slug: post-xaringan-slide-to-website
@@ -7,9 +7,9 @@ categories:
   - R
 tags:
   - Xaringan
-  - slide
-  - website
-  - static website
+  - Slide
+  - Website
+  - Static website
 image:
   caption: ''
   focal_point: ''

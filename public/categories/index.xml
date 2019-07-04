@@ -7,9 +7,37 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>huhuaping@2019</copyright>
+    <lastBuildDate>Thu, 04 Jul 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Bookdown</title>
+      <link>/categories/bookdown/</link>
+      <pubDate>Thu, 04 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/bookdown/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Econometrics</title>
+      <link>/categories/econometrics/</link>
+      <pubDate>Sun, 10 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/econometrics/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Git</title>
+      <link>/categories/git/</link>
+      <pubDate>Wed, 03 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/git/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>R</title>
@@ -21,29 +49,11 @@
     </item>
     
     <item>
-      <title>bookdown</title>
-      <link>/categories/bookdown/</link>
-      <pubDate>Thu, 04 Jul 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/categories/bookdown/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>econometrics</title>
       <link>/categories/econometrics/</link>
-      <pubDate>Sun, 10 Mar 2019 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 01 Mar 2019 00:00:00 +0000</pubDate>
       
       <guid>/categories/econometrics/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>git skills</title>
-      <link>/categories/git-skills/</link>
-      <pubDate>Fri, 07 Jun 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/categories/git-skills/</guid>
       <description></description>
     </item>
     
