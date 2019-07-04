@@ -37,7 +37,7 @@
     <url>
     
       <loc>/post/chinese-character-in-graph-consistence-with-both-latex-and-html/</loc>
-      <lastmod>2019-07-04T12:06:18+08:00</lastmod>
+      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
     </url>
     
   
@@ -45,7 +45,7 @@
     <url>
     
       <loc>/post/note-for-git-version-control-skills/</loc>
-      <lastmod>2019-06-08T23:50:15+08:00</lastmod>
+      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
     </url>
     
   
@@ -53,7 +53,15 @@
     <url>
     
       <loc>/publication/education-research/</loc>
-      <lastmod>2019-07-04T10:52:27+08:00</lastmod>
+      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/talk/example/</loc>
+      <lastmod>2019-02-20T17:48:14+08:00</lastmod>
     </url>
     
   
@@ -77,7 +85,7 @@
     <url>
     
       <loc>/post/notes-in-latex-output-format-for-bookdown-books/</loc>
-      <lastmod>2019-04-28T23:47:34+08:00</lastmod>
+      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
     </url>
     
   
@@ -93,7 +101,7 @@
     <url>
     
       <loc>/post/r-learning-reference-for-newcomers/</loc>
-      <lastmod>2019-04-17T14:18:54+08:00</lastmod>
+      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
     </url>
     
   
@@ -157,7 +165,7 @@
     <url>
     
       <loc>/post/chating-and-teaching-in-econometrics-manner/</loc>
-      <lastmod>2019-03-19T22:47:25+08:00</lastmod>
+      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
     </url>
     
   
@@ -189,7 +197,7 @@
     <url>
     
       <loc>/post/post-xaringan-slide-to-website/</loc>
-      <lastmod>2019-03-01T16:41:09+08:00</lastmod>
+      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
     </url>
     
   
@@ -205,7 +213,7 @@
     <url>
     
       <loc>/post/improve-latex-math-with-rmarkdown-chunk/</loc>
-      <lastmod>2019-02-28T12:07:46+08:00</lastmod>
+      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
     </url>
     
   
@@ -213,7 +221,7 @@
     <url>
     
       <loc>/post/xaringan-for-course-slide/</loc>
-      <lastmod>2019-03-04T22:28:51+08:00</lastmod>
+      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
     </url>
     
   
@@ -221,7 +229,7 @@
     <url>
     
       <loc>/post/three-sord/</loc>
-      <lastmod>2019-02-28T12:13:00+08:00</lastmod>
+      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
     </url>
     
   
@@ -254,14 +262,6 @@
     
       <loc>/privacy/</loc>
       <lastmod>2019-03-01T16:41:09+08:00</lastmod>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/talk/example/</loc>
-      <lastmod>2019-02-20T17:48:14+08:00</lastmod>
     </url>
     
   
@@ -310,7 +310,7 @@
     <url>
     
       <loc>/publication_types/2/</loc>
-      <lastmod>2019-07-04T10:52:27+08:00</lastmod>
+      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -335,7 +335,7 @@
     <url>
     
       <loc>/tags/blogdown/</loc>
-      <lastmod>2019-02-28T12:13:00+08:00</lastmod>
+      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -344,7 +344,7 @@
     <url>
     
       <loc>/tags/bookdown/</loc>
-      <lastmod>2019-04-28T23:47:34+08:00</lastmod>
+      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -353,7 +353,7 @@
     <url>
     
       <loc>/categories/bookdown/</loc>
-      <lastmod>2019-07-04T12:06:18+08:00</lastmod>
+      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -362,7 +362,7 @@
     <url>
     
       <loc>/categories/</loc>
-      <lastmod>2019-07-04T12:06:18+08:00</lastmod>
+      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -371,7 +371,7 @@
     <url>
     
       <loc>/tags/econometrics/</loc>
-      <lastmod>2019-03-19T22:47:25+08:00</lastmod>
+      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -380,7 +380,7 @@
     <url>
     
       <loc>/categories/econometrics/</loc>
-      <lastmod>2019-03-19T22:47:25+08:00</lastmod>
+      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -398,7 +398,7 @@
     <url>
     
       <loc>/categories/git/</loc>
-      <lastmod>2019-06-08T23:50:15+08:00</lastmod>
+      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -407,7 +407,7 @@
     <url>
     
       <loc>/tags/github/</loc>
-      <lastmod>2019-06-08T23:50:15+08:00</lastmod>
+      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -416,7 +416,7 @@
     <url>
     
       <loc>/</loc>
-      <lastmod>2019-07-04T12:06:18+08:00</lastmod>
+      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -425,7 +425,7 @@
     <url>
     
       <loc>/tags/latex/</loc>
-      <lastmod>2019-07-04T12:06:18+08:00</lastmod>
+      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -443,7 +443,16 @@
     <url>
     
       <loc>/tags/netlify/</loc>
-      <lastmod>2019-02-28T12:13:00+08:00</lastmod>
+      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/psa/</loc>
+      <lastmod>2019-02-20T17:48:14+08:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -495,7 +504,7 @@
     <url>
     
       <loc>/tags/r-beginer/</loc>
-      <lastmod>2019-04-17T14:18:54+08:00</lastmod>
+      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -521,7 +530,7 @@
     <url>
     
       <loc>/tags/rmarkdown/</loc>
-      <lastmod>2019-04-17T14:18:54+08:00</lastmod>
+      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -530,7 +539,7 @@
     <url>
     
       <loc>/tags/simple-regress/</loc>
-      <lastmod>2019-03-19T22:47:25+08:00</lastmod>
+      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -539,7 +548,7 @@
     <url>
     
       <loc>/tags/slide/</loc>
-      <lastmod>2019-03-01T16:41:09+08:00</lastmod>
+      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -565,7 +574,7 @@
     <url>
     
       <loc>/tags/static-website/</loc>
-      <lastmod>2019-03-01T16:41:09+08:00</lastmod>
+      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -574,7 +583,7 @@
     <url>
     
       <loc>/tags/</loc>
-      <lastmod>2019-02-28T12:13:00+08:00</lastmod>
+      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -583,7 +592,7 @@
     <url>
     
       <loc>/tags/version-control/</loc>
-      <lastmod>2019-06-08T23:50:15+08:00</lastmod>
+      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -592,7 +601,7 @@
     <url>
     
       <loc>/tags/website/</loc>
-      <lastmod>2019-03-01T16:41:09+08:00</lastmod>
+      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -601,7 +610,7 @@
     <url>
     
       <loc>/tags/xaringan/</loc>
-      <lastmod>2019-03-01T16:41:09+08:00</lastmod>
+      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -628,7 +637,7 @@
     <url>
     
       <loc>/tags/ggplot2/</loc>
-      <lastmod>2019-07-04T12:06:18+08:00</lastmod>
+      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -637,7 +646,7 @@
     <url>
     
       <loc>/tags/high-education-research/</loc>
-      <lastmod>2019-07-04T10:52:27+08:00</lastmod>
+      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -655,7 +664,7 @@
     <url>
     
       <loc>/authors/%E5%91%A8%E4%B8%B9/</loc>
-      <lastmod>2019-07-04T10:52:27+08:00</lastmod>
+      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -664,7 +673,7 @@
     <url>
     
       <loc>/authors/%E8%83%A1%E5%8D%8E%E5%B9%B3/</loc>
-      <lastmod>2019-07-04T10:52:27+08:00</lastmod>
+      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
       <priority>0</priority>
     </url>
     

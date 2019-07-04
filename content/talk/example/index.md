@@ -5,22 +5,22 @@ abstract: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere 
   sapien eu, pulvinar tempor diam.
 all_day: false
 authors: []
-date: "2017-01-01T00:00:00+08:00"
+date: "2019-07-01T00:00:00+08:00"
 event: Academic Theme Conference
 event_url: https://example.org
 featured: false
 image:
   caption: 'Image credit: [**Unsplash**](https://unsplash.com/photos/bzdhc5b3Bxs)'
   focal_point: Right
-location: London, United Kingdom
+location: Yangling, ShannXi province, China
 projects:
 - internal-project
 slides: example-slides
-summary: An example talk using Academic's Markdown slides feature.
-tags: []
-time_end: "2030-06-01T15:00:00+08:00"
-time_start: "2030-06-01T13:00:00+08:00"
-title: Example Talk
+summary: 对倾向得分分析方法PSA进行系统梳理.
+tags: [PSA]
+time_end: "2019-07-01T15:00:00+08:00"
+time_start: "2019-12-31T13:00:00+08:00"
+title: 倾向得分分析方法PSA
 url_code: ""
 url_pdf: ""
 url_slides: ""
