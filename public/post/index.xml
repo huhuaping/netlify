@@ -13,6 +13,15 @@
     
     
     <item>
+      <title>chinese character in graph consistence with both latex and html</title>
+      <link>/post/chinese-character-in-graph-consistence-with-both-latex-and-html/</link>
+      <pubDate>Thu, 04 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/chinese-character-in-graph-consistence-with-both-latex-and-html/</guid>
+      <description>中文字体问题总是会在时不时出来捣乱。今天就碰到了ggplot2绘图时，latex pdf输出和html网页输出显示不一致的问题（类似的 问题报告</description>
+    </item>
+    
+    <item>
       <title>note for git version control skills</title>
       <link>/post/note-for-git-version-control-skills/</link>
       <pubDate>Fri, 07 Jun 2019 00:00:00 +0000</pubDate>

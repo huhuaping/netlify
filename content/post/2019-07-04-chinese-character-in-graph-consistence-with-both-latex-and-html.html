@@ -1,0 +1,67 @@
+---
+title: chinese character in graph consistence with both latex and html
+author: huhuaping
+date: '2019-07-04'
+slug: chinese-character-in-graph-consistence-with-both-latex-and-html
+categories:
+  - bookdown
+tags:
+  - LaTex
+  - ggplot2
+image:
+  caption: ''
+  focal_point: ''
+---
+
+
+
+<p>中文字体问题总是会在时不时出来捣乱。今天就碰到了ggplot2绘图时，latex pdf输出和html网页输出显示不一致的问题（类似的 <a href="https://community.rstudio.com/t/chinese-characters-in-ggplot-on-macos/4429">问题报告</a>）。</p>
+<div id="section" class="section level2">
+<h2>问题描述</h2>
+<p>google神搜一遍，大家普遍把问题指向：</p>
+<ul>
+<li><p>操作系统OS问题。Linux/Mac OS普遍采用UTF-8编码格式，而Windows系统则坚持GBK编码格式。因此，如果Rstudio里Rmarkdown文件用UTF-8编码，自然就会导致Windowns粉出现悲催的混乱事件。Windowns系统下还可能存在本地字体库不全的问题。</p></li>
+<li><p>中文字体库问题。除了系统阵营的锅，中文字体本身也会给编码世界带来混乱。其实不单是中文字体，CJK字体库就是专门为了解救中文-日文-韩文字体等东亚语言字体问题的。另外就是，字体库有“真体”（TrueType Collection 字体文件 (.ttc)）等字体版本。因此，latex包<code>\usepackage{xeCJK}</code>渲染时，可能会提示错误（<a href="https://github.com/CTeX-org/ctex-kit/issues/316">类似报告1</a>；<a href="https://blog.csdn.net/RobertChenGuangzhi/article/details/48979285">报告2</a>）</p></li>
+<li><p>engine或dev问题。第三个锅就是软件的问题了。其一，bookdown下默认的Latex引擎<code>pdflatex</code>对<strong>Unicode characters</strong>支持不好，需要改用<code>xelatex</code>引擎（<a href="https://github.com/yihui/tinytex/issues/35">yihuixie留爪</a>）。其二，绘图装置dev也有小九九<a href="https://github.com/rstudio/rmarkdown/issues/213">类似报告</a>。最关键的是绘图装置可以自己根据需要设定，包括：dev=‘cairo_pdf’；dev=‘pdf’；dev=‘svg’（见<a href="https://github.com/rstudio/rmarkdown/issues/111">友情提示</a>）。</p></li>
+</ul>
+</div>
+<div id="section-1" class="section level2">
+<h2>解决办法</h2>
+<ol style="list-style-type: decimal">
+<li><p>（windowns系统）安装缺少的字体库。大概就先去看看“c:/windows/fonts”目录吧！。也可以在R中用package如 <code>"showtext"</code>来安装。——不说这个了，都是泪。</p></li>
+<li><p>latex中设定header.tex的包调用。最重要的<code>\usepackage{xeCJK}</code>，大抵如下：</p></li>
+</ol>
+<pre><code>\usepackage{xeCJK}
+%\setCJKmainfont{SimSun}
+\setCJKmainfont{宋体}  % 字体可以更换
+\setCJKmonofont{simsun.ttc} % for \textsf
+\setmainfont{宋体} % 設定英文字型
+\setromanfont{Georgia} % 字型
+\setmonofont{Courier New}</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Rmarkdown中设定engine和dev。这个地方倒是有一个逻辑性的问题我之前一直没有弄清楚。engine设好后（如前，最好用<code>xelatex</code>引擎），不同输出形式（pdf、html）对绘图转置dev需求是不一样的，因此需要考虑latex_engine和dev所处的<strong>环境</strong>。这个<strong>环境</strong>不一样，控制的范围自然就不同，但大概有三个级别：a. yaml区域的全局性<code>- output</code>环境； b. R代码块的文档级设置；c.特定R代码块的设置。</li>
+</ol>
+<pre><code>环境1：yaml区域的全局性设置
+output: 
+  bookdown::pdf_document2:
+    latex_engine: xelatex
+    dev: cairo_pdf
+    </code></pre>
+<pre><code>环境2：R代码块的文档级设置
+{r global_options,echo=FALSE, message=FALSE}
+knitr::opts_chunk$set(fig.align=&#39;center&#39;, dev=&quot;cairo_pdf&quot;,
+                      echo=FALSE, fig.pos = &#39;H&#39;) #
+</code></pre>
+<pre><code>环境3：特定绘图R代码块环境
+{r common-get-sum,echo=FALSE, dev=&quot;cairo_pdf&quot;, message=FALSE,error=FALSE,warning=F, fig.width=10,fig.height=7,fig.cap=&quot;学生累计获得通识课程学分情况&quot;}
+
+ggplot() +
+  theme(text=element_text(family=&quot;Batang&quot;, size=12))</code></pre>
+<p>总结起来，最后的问题解决就是：</p>
+<ul>
+<li><p>更改pdf<strong>全局性环境</strong>的引擎为latex_engine: xelatex。</p></li>
+<li><p>更改pdf<strong>全局性环境</strong>里绘图装置为：dev: cairo_pdf。设好后就不要画蛇添足再在环境2或环境3中做额外配置了。因为控制范围是不一样的！html输出默认绘图转置为dev: cairo_pdf</p></li>
+<li><p>因为字体库问题，还得在绘图R代码块里指定一个能够显示的字体。如<code>theme(text=element_text(family="Batang", size=12))</code>。</p></li>
+</ul>
+<p>最后，html和pdf显示都一致啦！！</p>
+</div>

@@ -36,8 +36,16 @@
     
     <url>
     
+      <loc>/post/chinese-character-in-graph-consistence-with-both-latex-and-html/</loc>
+      <lastmod>2019-07-04T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
       <loc>/publication/education-research/</loc>
-      <lastmod>2019-07-04T10:39:23+08:00</lastmod>
+      <lastmod>2019-07-04T10:52:27+08:00</lastmod>
     </url>
     
   
@@ -302,7 +310,7 @@
     <url>
     
       <loc>/publication_types/2/</loc>
-      <lastmod>2019-07-04T10:39:23+08:00</lastmod>
+      <lastmod>2019-07-04T10:52:27+08:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -344,7 +352,7 @@
     <url>
     
       <loc>/</loc>
-      <lastmod>2019-07-04T10:39:23+08:00</lastmod>
+      <lastmod>2019-07-04T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -353,7 +361,7 @@
     <url>
     
       <loc>/tags/latex/</loc>
-      <lastmod>2019-04-28T23:47:34+08:00</lastmod>
+      <lastmod>2019-07-04T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -466,7 +474,7 @@
     <url>
     
       <loc>/tags/</loc>
-      <lastmod>2019-04-28T23:47:34+08:00</lastmod>
+      <lastmod>2019-07-04T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -511,7 +519,7 @@
     <url>
     
       <loc>/categories/bookdown/</loc>
-      <lastmod>2019-04-28T23:47:34+08:00</lastmod>
+      <lastmod>2019-07-04T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -530,6 +538,15 @@
     
       <loc>/categories/econometrics/</loc>
       <lastmod>2019-03-19T22:47:25+08:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/ggplot2/</loc>
+      <lastmod>2019-07-04T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -556,7 +573,7 @@
     <url>
     
       <loc>/tags/high-education-research/</loc>
-      <lastmod>2019-07-04T10:39:23+08:00</lastmod>
+      <lastmod>2019-07-04T10:52:27+08:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -619,7 +636,7 @@
     <url>
     
       <loc>/authors/%E5%91%A8%E4%B8%B9/</loc>
-      <lastmod>2019-07-04T10:39:23+08:00</lastmod>
+      <lastmod>2019-07-04T10:52:27+08:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -628,7 +645,7 @@
     <url>
     
       <loc>/authors/%E8%83%A1%E5%8D%8E%E5%B9%B3/</loc>
-      <lastmod>2019-07-04T10:39:23+08:00</lastmod>
+      <lastmod>2019-07-04T10:52:27+08:00</lastmod>
       <priority>0</priority>
     </url>
     
