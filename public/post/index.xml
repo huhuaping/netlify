@@ -7,10 +7,27 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>huhuaping@2019</copyright>
-    <lastBuildDate>Wed, 20 Feb 2019 17:48:14 +0800</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>SSH key for github</title>
+      <link>/post/ssh-key-for-github/</link>
+      <pubDate>Thu, 25 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/ssh-key-for-github/</guid>
+      <description>许多 Git 服务器都使用 SSH 公钥进行认证。为了向Git服务器提供SSH公钥，如果某系统用户尚未拥有密钥，必须事先为其生成一份。简单说，如果本地电脑采</description>
+    </item>
+    
+    <item>
+      <title>LateX输出的相关设置</title>
+      <link>/post/work-around-latex-output/</link>
+      <pubDate>Tue, 16 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/work-around-latex-output/</guid>
+      <description>安装tinyTeX 参看谢益辉TinyTeX 安装tinytex install.packages(&amp;#39;tinytex&amp;#39;) tinytex::install_tinytex() 测试并调用tlmgr命令安装latex包 writeLines(c( &amp;#39;\\documentclass{article}&amp;#39;, &amp;#39;\\begin{document}&amp;#39;, &amp;#39;Hello world!&amp;#39;, &amp;#39;\\end{document}&amp;#39; ), &amp;#39;test.tex&amp;#39;) tinytex::pdflatex(&amp;#39;test.tex&amp;#39;)</description>
+    </item>
     
     <item>
       <title>Latex pdf和html输出下ggplot绘图中文字体显示问题</title>
