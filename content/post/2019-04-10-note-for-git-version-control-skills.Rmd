@@ -47,6 +47,15 @@ $ git config --global merge.tool p4merge
 $ git config --global mergetool.p4merge.path 'C:\Program Files\Perforce\p4merge.exe'
 ```
 
+# 常用操作
+
+## 合并分支branch
+
+```
+$ git checkout master
+$ git merge hotfix
+```
+
 # gitbash常用文件及文件夹命令
 
 1. `cd`: change directory的简写，改变目录的意思，就是切换到哪个目录下， 如 cd e:\fff  切换 E 盘下面的fff 目录。
