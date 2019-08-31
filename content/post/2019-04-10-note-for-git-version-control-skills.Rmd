@@ -234,8 +234,22 @@ $ git pull origin master
 # 如果显示冲突conflict，则利用合并工具处理
 $ git mergetool
 
-
 ```
 
+## 分支push找不到上游分支
 
+如果是本地新建分支，则需要设定上游分支，否则push就会报错：
+
+```
+# 报错信息。
+$ git push
+fatal: The current branch dev has no upstream branch.
+To push the current branch and set the remote as upstream, use
+```
+
+处理办法是：
+
+```
+$ git push --set-upstream origin dev
+```
 

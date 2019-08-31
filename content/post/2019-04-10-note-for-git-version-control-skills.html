@@ -33,6 +33,7 @@ output:
 <li><a href="#section-1"><span class="toc-section-number">5.2</span> 忽略文件设置</a></li>
 <li><a href="#section-2"><span class="toc-section-number">5.3</span> 忽略文件无效的处理办法</a></li>
 <li><a href="#reporepo"><span class="toc-section-number">5.4</span> 无法把本地repo推送到远程repo</a></li>
+<li><a href="#push"><span class="toc-section-number">5.5</span> 分支push找不到上游分支</a></li>
 </ul></li>
 </ul>
 </div>
@@ -199,7 +200,16 @@ $ git pull origin master
 
 # 如果显示冲突conflict，则利用合并工具处理
 $ git mergetool
-
 </code></pre>
+</div>
+<div id="push" class="section level2">
+<h2><span class="header-section-number">5.5</span> 分支push找不到上游分支</h2>
+<p>如果是本地新建分支，则需要设定上游分支，否则push就会报错：</p>
+<pre><code># 报错信息。
+$ git push
+fatal: The current branch dev has no upstream branch.
+To push the current branch and set the remote as upstream, use</code></pre>
+<p>处理办法是：</p>
+<pre><code>$ git push --set-upstream origin dev</code></pre>
 </div>
 </div>
