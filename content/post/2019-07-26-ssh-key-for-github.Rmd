@@ -1,5 +1,5 @@
 ---
-title: SSH key for github
+title: 给github帐号添加SSH key
 author: huhuaping
 date: '`r Sys.Date()-1`'
 slug: ssh-key-for-github
