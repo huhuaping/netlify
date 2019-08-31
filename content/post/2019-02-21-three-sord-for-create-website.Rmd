@@ -86,13 +86,15 @@ git版本控制工具，还是需要学会的。这里就列出一个很好的�
   post = "/:year/:month/:day/:slug/"
 ```
 
-## 版本控制（github repo）
+## 版本控制（github repo）下添加忽略文件
 
 记得在工作目录下的.gitignore里添加忽视文件（否则会影响netlify建站更新）。
 
 ```r
-public
+public/
 ```
+
+此外，还会引起master和dev分支的合并冲突！！
 
 ## 用addin插件更新内容
 

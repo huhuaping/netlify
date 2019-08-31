@@ -31,6 +31,8 @@ output:
 <li><a href="#git-"><span class="toc-section-number">5</span> git 新挑战</a><ul>
 <li><a href="#github50m"><span class="toc-section-number">5.1</span> 超越github文件容量限制（单个文件50M以上）</a></li>
 <li><a href="#section-1"><span class="toc-section-number">5.2</span> 忽略文件设置</a></li>
+<li><a href="#section-2"><span class="toc-section-number">5.3</span> 忽略文件无效的处理办法</a></li>
+<li><a href="#reporepo"><span class="toc-section-number">5.4</span> 无法把本地repo推送到远程repo</a></li>
 </ul></li>
 </ul>
 </div>
@@ -148,6 +150,56 @@ data-raw/
 # ignore Rproj user info file
 
 .Rproj.user
+</code></pre>
+</div>
+<div id="section-2" class="section level2">
+<h2><span class="header-section-number">5.3</span> 忽略文件无效的处理办法</h2>
+<p>有时候.gitignore里虽然进行了修改设定，但并不会马上生效。</p>
+<p>此时，问题可能就出在缓存上（cash）<a href="https://bytefreaks.net/programming-2/my-gitignore-file-is-ignored-by-git-and-it-does-not-work">参看My .gitignore file is ignored by git and it does not work</a>。</p>
+<p>解决办法是清理缓存-提交：</p>
+<pre><code>$ git rm -r --cached .
+$ git add .
+$ git commit -m &quot;Untracked files issue resolved to fix .gitignore&quot;</code></pre>
+</div>
+<div id="reporepo" class="section level2">
+<h2><span class="header-section-number">5.4</span> 无法把本地repo推送到远程repo</h2>
+<p>这种情形下，直接push会提示如下报错：</p>
+<pre><code>git error: failed to push some refs to &#39;https://github.com/</code></pre>
+<p>问题可能有多个：</p>
+<ul>
+<li>没有进行远程设置。可以通过如下代码查看是否进行了远程设置。</li>
+</ul>
+<pre><code># 正常情况下显示结果如下：
+$git remote -v
+myOrigin ssh://git@example.com:1234/myRepo.git (fetch)
+myOrigin ssh://git@example.com:1234/myRepo.git (push)
+
+
+# 否则就应该进行远程设置：
+$git remote add origin ssh://git@example.com:1234/myRepo.git
+</code></pre>
+<ul>
+<li>然后再进行推送：</li>
+</ul>
+<pre><code># origin是远端，master是本地分支
+$git push origin master</code></pre>
+<ul>
+<li>可能还会报错，比如提示远端在本地前面。因此需要pull-merge-mergetool，来实现更新步骤。下面给出处理办法（<a href="https://help.github.com/en/articles/dealing-with-non-fast-forward-errors">参看Dealing with non-fast-forward errors</a>）：</li>
+</ul>
+<pre><code># 报错信息
+ ! [rejected]        master -&gt; master (non-fast-forward)
+error: failed to push some refs to &#39;git@github.com:huhuaping/netlify.git&#39;
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. Integrate the remote changes (e.g.
+hint: &#39;git pull ...&#39;) before pushing again.
+hint: See the &#39;Note about fast-forwards&#39; in &#39;git push --help&#39; for details.
+</code></pre>
+<pre><code># 同步远端和本地
+$ git pull origin master
+
+# 如果显示冲突conflict，则利用合并工具处理
+$ git mergetool
+
 </code></pre>
 </div>
 </div>

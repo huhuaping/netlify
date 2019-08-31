@@ -26,7 +26,7 @@ output:
 <li><a href="#netlifygithub"><span class="toc-section-number">3</span> 在netlify上关联github仓库并建站</a></li>
 <li><a href="#section"><span class="toc-section-number">4</span> 额外的问题</a><ul>
 <li><a href="#config.toml"><span class="toc-section-number">4.1</span> config.toml配置</a></li>
-<li><a href="#github-repo"><span class="toc-section-number">4.2</span> 版本控制（github repo）</a></li>
+<li><a href="#github-repo"><span class="toc-section-number">4.2</span> 版本控制（github repo）下添加忽略文件</a></li>
 <li><a href="#addin"><span class="toc-section-number">4.3</span> 用addin插件更新内容</a></li>
 <li><a href="#post"><span class="toc-section-number">4.4</span> 让博客文章(post)有目录、节编号、脚注</a></li>
 </ul></li>
@@ -83,9 +83,10 @@ blogdown::hugo_version()</code></pre>
   post = &quot;/:year/:month/:day/:slug/&quot;</code></pre>
 </div>
 <div id="github-repo" class="section level2">
-<h2><span class="header-section-number">4.2</span> 版本控制（github repo）</h2>
+<h2><span class="header-section-number">4.2</span> 版本控制（github repo）下添加忽略文件</h2>
 <p>记得在工作目录下的.gitignore里添加忽视文件（否则会影响netlify建站更新）。</p>
-<pre class="r"><code>public</code></pre>
+<pre class="r"><code>public/</code></pre>
+<p>此外，还会引起master和dev分支的合并冲突！！</p>
 </div>
 <div id="addin" class="section level2">
 <h2><span class="header-section-number">4.3</span> 用addin插件更新内容</h2>
