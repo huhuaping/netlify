@@ -12,21 +12,57 @@
     
     
     <item>
+      <title>多工作设备下的git控制和使用</title>
+      <link>/post/git-with-multiple-devices/</link>
+      <pubDate>Sat, 31 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/git-with-multiple-devices/</guid>
+      <description>明确自己git使用的安全环境 github有多重安全条件，用户可以自行决定自己的安全等级。需要注意的是，在多台工作设备下，git需要确认不同设</description>
+    </item>
+    
+    <item>
+      <title>ggplot2绘图细节及美化技巧</title>
+      <link>/post/ggplot2-refined-adjustment-skills/</link>
+      <pubDate>Fri, 30 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/ggplot2-refined-adjustment-skills/</guid>
+      <description>1 调整轴题与轴标签之间的间距 2 geom_text()如何控制字体大小 3 如何给geom_hline()添加图例 4 保持读取csv编码正确 5 facet_grid() 实现</description>
+    </item>
+    
+    <item>
+      <title>git版本控制实操技巧汇总</title>
+      <link>/post/note-for-git-version-control-skills/</link>
+      <pubDate>Fri, 30 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/note-for-git-version-control-skills/</guid>
+      <description>1 配置git 2 常用操作 2.1 合并分支branch 3 gitbash常用文件及文件夹命令 4 常用git命令 5 git 新挑战 5.1 超越github文件容量限制（单</description>
+    </item>
+    
+    <item>
+      <title>给github帐号添加SSH key</title>
+      <link>/post/ssh-key-for-github/</link>
+      <pubDate>Thu, 25 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/ssh-key-for-github/</guid>
+      <description>许多 Git 服务器都使用 SSH 公钥进行认证。为了向Git服务器提供SSH公钥，如果某系统用户尚未拥有密钥，必须事先为其生成一份。简单说，如果本地电脑采</description>
+    </item>
+    
+    <item>
+      <title>LateX输出的相关设置</title>
+      <link>/post/work-around-latex-output/</link>
+      <pubDate>Tue, 16 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/work-around-latex-output/</guid>
+      <description>安装tinyTeX 参看谢益辉TinyTeX 安装tinytex install.packages(&amp;#39;tinytex&amp;#39;) tinytex::install_tinytex() 测试并调用tlmgr命令安装latex包 writeLines(c( &amp;#39;\\documentclass{article}&amp;#39;, &amp;#39;\\begin{document}&amp;#39;, &amp;#39;Hello world!&amp;#39;, &amp;#39;\\end{document}&amp;#39; ), &amp;#39;test.tex&amp;#39;) tinytex::pdflatex(&amp;#39;test.tex&amp;#39;)</description>
+    </item>
+    
+    <item>
       <title>Latex pdf和html输出下ggplot绘图中文字体显示问题</title>
       <link>/post/chinese-character-in-graph-consistence-with-both-latex-and-html/</link>
       <pubDate>Thu, 04 Jul 2019 00:00:00 +0000</pubDate>
       
       <guid>/post/chinese-character-in-graph-consistence-with-both-latex-and-html/</guid>
       <description>中文字体问题总是会在时不时出来捣乱。今天就碰到了ggplot2绘图时，latex pdf输出和html网页输出显示不一致的问题（类似的 问题报告</description>
-    </item>
-    
-    <item>
-      <title>git版本控制实操技巧汇总</title>
-      <link>/post/note-for-git-version-control-skills/</link>
-      <pubDate>Wed, 03 Jul 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/post/note-for-git-version-control-skills/</guid>
-      <description>git版本控制技巧集锦 配置git 配置默认文本编辑器（text editor）。windows党还是自觉使用Notepad吧，免费又熟悉 下载安装</description>
     </item>
     
     <item>
@@ -89,7 +125,7 @@
       <pubDate>Thu, 21 Feb 2019 00:00:00 +0000</pubDate>
       
       <guid>/post/three-sord/</guid>
-      <description>“三剑”合璧持续性打造个人网站(blogdown; github; netlify) 在Rstudio中创建blogdown site blogdown的设置比较简单，教程里基本也说</description>
+      <description>1 在Rstudio中创建blogdown site 2 利用git工具来管理github仓库 3 在netlify上关联github仓库并建站 4 额外的问题 4.1</description>
     </item>
     
   </channel>

@@ -1,0 +1,88 @@
+---
+title: 给github帐号添加SSH key
+author: huhuaping
+date: '`r Sys.Date()-1`'
+slug: ssh-key-for-github
+categories:
+  - Git
+tags:
+  - SSH
+image:
+  caption: ''
+  focal_point: ''
+---
+
+
+许多 Git 服务器都使用 SSH 公钥进行认证。为了向Git服务器提供SSH公钥，如果某系统用户尚未拥有密钥，必须事先为其生成一份。简单说，如果本地电脑采用SSH key来与服务器对话，就能省去繁复的账号密码输入过程。
+
+## 确认是否本地存有密钥
+
+首先，你需要确认自己是否已经拥有密钥。默认情况下，用户的SSH密钥存储在其~/.ssh目录下。进入该目录并列出其中内容，你便可以快速确认自己是否已拥有密钥：
+
+```
+$ cd ~/.ssh
+$ ls
+```
+
+##  生成SSH key
+
+打开gitbash，输入如下代码:
+
+```
+$ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+```
+
+- 用自己的github账号邮箱替换上面的邮箱
+
+- 如果提示文件夹，默认即可，直接按Enter
+
+- 如果提示密码，不设密码的话，也直接按Enter
+
+
+确保已经运行密钥：
+
+```
+$ eval $(ssh-agent -s)
+```
+
+把密钥添加到本地代理：
+
+```
+$ ssh-add ~/.ssh/id_rsa
+```
+
+
+## 查看并拷贝密钥
+
+默认生成路径下，可以输入如下代码查看密钥：
+
+```
+$ cat ~/.ssh/id_rsa.pub
+
+```
+
+拷贝到剪贴板：
+
+```
+$ clip < ~/.ssh/id_rsa.pub
+# Copies the contents of the id_rsa.pub file to your clipboard
+```
+
+## 把密钥添加到github账号
+
+- 账号登陆github
+
+- 点击头像，下拉点击setting
+
+- 点击SSH and GPG keys
+
+- 点击New SSH key 或者 Add SSH key
+
+- 粘贴密钥
+
+- title命名备注
+
+- 点击 Add SSH key
+
+
+

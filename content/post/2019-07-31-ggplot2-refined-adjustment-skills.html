@@ -1,0 +1,105 @@
+---
+title: ggplot2绘图细节及美化技巧
+author: huhuaping
+date: '2019-08-30'
+slug: ggplot2-refined-adjustment-skills
+categories:
+  - graph
+tags:
+  - ggplot2
+image:
+  caption: ''
+  focal_point: ''
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: true
+---
+
+
+<div id="TOC">
+<ul>
+<li><a href="#section"><span class="toc-section-number">1</span> 调整轴题与轴标签之间的间距</a></li>
+<li><a href="#geom_text"><span class="toc-section-number">2</span> geom_text()如何控制字体大小</a></li>
+<li><a href="#geom_hline"><span class="toc-section-number">3</span> 如何给geom_hline()添加图例</a></li>
+<li><a href="#csv"><span class="toc-section-number">4</span> 保持读取csv编码正确</a></li>
+<li><a href="#facet_grid-"><span class="toc-section-number">5</span> facet_grid() 实现多种图形并存</a></li>
+</ul>
+</div>
+
+<div id="section" class="section level1">
+<h1><span class="header-section-number">1</span> 调整轴题与轴标签之间的间距</h1>
+<p><a href="https://stackoverflow.com/questions/14487188/increase-distance-between-text-and-title-on-the-y-axis">Increase distance between text and title on the y-axis</a></p>
+<pre><code>ggplot(mpg, aes(cty, hwy)) + geom_point()+
+  theme(axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0)))</code></pre>
+</div>
+<div id="geom_text" class="section level1">
+<h1><span class="header-section-number">2</span> geom_text()如何控制字体大小</h1>
+<p>首先，geom_text()的size是按mm计量的。所以并不是跟font size一样的计量规则。所以不要混同二者的度量尺度。（参看<a href="https://github.com/tidyverse/ggplot2/issues/1828">The size in geom_text is not a font size</a>）</p>
+<p>其次，ggplot中字体控制的关系如下。简言之：geom_text()是单独控制字体的！！（参看：<a href="https://stackoverflow.com/questions/25061822/ggplot-geom-text-font-size-control">ggplot geom_text font size control</a>）</p>
+<pre><code>p &lt;- p + theme(axis.text = element_text(size = 15)) # changes axis labels
+
+p &lt;- p + theme(axis.title = element_text(size = 25)) # change axis titles
+
+p &lt;- p + theme(text = element_text(size = 10)) # this will change all text size 
+                                                             # (except geom_text)</code></pre>
+</div>
+<div id="geom_hline" class="section level1">
+<h1><span class="header-section-number">3</span> 如何给geom_hline()添加图例</h1>
+<p>给geom_hline<a href="https://stackoverflow.com/questions/39119917/how-to-add-a-legend-to-hline">添加图例</a></p>
+</div>
+<div id="csv" class="section level1">
+<h1><span class="header-section-number">4</span> 保持读取csv编码正确</h1>
+<p><a href="https://stackoverflow.com/questions/46996501/readrread-csv-issue-chinese-character-becomes-messy-codes">编码正确</a></p>
+</div>
+<div id="facet_grid-" class="section level1">
+<h1><span class="header-section-number">5</span> facet_grid() 实现多种图形并存</h1>
+<p>facet_grid()可以同时绘制多个子图，但是默认情况下每个子图都是同一种类型，如都是line，或都是point。</p>
+<p>下面是多个子图不同类型的实现思路<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> <a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>：</p>
+<ul>
+<li><p>保持数据为long format data格式</p></li>
+<li><p>设定一个factor作为子图分类。 factor levels 将决定子图的个数。</p></li>
+<li><p>绘制空白图p1。含有factor levels个数的子图，data为全数据集。</p></li>
+<li><p>通过subset()函数选定数据子集，并分别叠加绘制在p1上,直至所有空白子图都绘制完成。子图的geom_xxx()可以各不相同。</p></li>
+</ul>
+<p>一个样本案例可以参照：</p>
+<pre><code>got_vars &lt;- c(&quot;bigtractor&quot;,&quot;bigtractor1&quot;, &quot;smalltractor&quot;, &quot;smalltractor1&quot;, &quot;match_big&quot;, &quot;match_small&quot;)
+
+# gather for facet
+smry_tractor &lt;- smry %&gt;%
+  filter(region_pro == &quot;旱区&quot;) %&gt;%
+  select(one_of(c(&quot;year&quot;, &quot;region_pro&quot;, got_vars))) %&gt;%
+  gather(key=&quot;variables&quot;, value=&quot;value&quot;, bigtractor:match_small) %&gt;%
+  mutate(mark = as.factor(if_else(str_detect(variables, &quot;bigtractor.?&quot;), 
+                        &quot;bigtractor&quot;,
+                        if_else(str_detect(variables, &quot;^smalltractor&quot;),
+                                &quot;smalltractor&quot;,
+                                if_else(str_detect(variables, &quot;^match&quot;),
+                                        &quot;match&quot;,
+                                        &quot;NA&quot;))))) %&gt;%
+  mutate(mark= fct_relevel(mark,&quot;bigtractor&quot;, &quot;smalltractor&quot;, &quot;mathch&quot;))
+                       
+ 
+p1 &lt;-  ggplot(smry_tractor, aes(factor(year), value)) +
+   facet_grid(mark~., 
+              scales = &quot;free&quot;) +
+   labs(x =&quot;年份&quot;, y=&quot;农用拖拉机&quot;) 
+ 
+ p2 &lt;-  p1 +
+   geom_bar( subset(smry_tractor, variables %in% c(&quot;bigtractor&quot;, &quot;bigtractor1&quot;)),mapping = aes(fill = variables),
+                    stat = &quot;identity&quot;, position = &quot;stack&quot;)
+ 
+ p3 &lt;- p2 +
+  geom_bar( subset(smry_tractor, variables %in% c(&quot;smalltractor&quot;, &quot;smalltractor1&quot;)),mapping = aes(fill = variables),
+                    stat = &quot;identity&quot;, position = &quot;stack&quot;)
+ 
+ p4 &lt;- p3 +
+   geom_point( subset(smry_tractor, variables %in% c(&quot;match_big&quot;, &quot;match_small&quot;)),mapping = aes(color = variables))</code></pre>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p><a href="https://learnr.wordpress.com/2009/05/18/ggplot2-three-variable-time-series-panel-chart/">ggplot2: Three Variable Time Series Panel Chart</a><a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p><a href="https://statbandit.wordpress.com/2011/07/29/a-ggplot-trick-to-plot-different-plot-types-in-facets/">A GGPLOT TRICK TO PLOT DIFFERENT PLOT TYPES IN FACETS</a><a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>

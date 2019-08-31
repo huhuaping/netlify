@@ -35,8 +35,36 @@
     
     <url>
     
-      <loc>/categories/bookdown/</loc>
-      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+    </url>
+    
+  
+    
+    <url>
+    
+    </url>
+    
+  
+    
+    <url>
+    
+    </url>
+    
+  
+    
+    <url>
+    
+    </url>
+    
+  
+    
+    <url>
+    
       <priority>0</priority>
     </url>
     
@@ -44,50 +72,8 @@
     
     <url>
     
-      <loc>/categories/</loc>
-      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/</loc>
-      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/tags/latex/</loc>
-      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/post/chinese-character-in-graph-consistence-with-both-latex-and-html/</loc>
-      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/tags/</loc>
-      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
+      <loc>/post/git-with-multiple-devices/</loc>
+      <lastmod>2019-08-31T20:13:23+08:00</lastmod>
       <loc>/tags/ggplot2/</loc>
       <lastmod>2019-07-04T15:06:09+08:00</lastmod>
       <priority>0</priority>
@@ -97,6 +83,11 @@
     
     <url>
     
+      <loc>/post/r-learning-reference-for-newcomers/</loc>
+      <lastmod>2019-04-17T14:18:54+08:00</lastmod>
+      <loc>/tags/version-control/</loc>
+      <lastmod>2019-08-31T20:13:23+08:00</lastmod>
+      <priority>0</priority>
       <loc>/categories/git/</loc>
       <lastmod>2019-07-04T15:06:09+08:00</lastmod>
       <priority>0</priority>
@@ -106,6 +97,11 @@
     
     <url>
     
+      <loc>/tutorial/chapter08-heteroscedasticity-slide/</loc>
+      <lastmod>2019-04-16T00:34:00+08:00</lastmod>
+      <loc>/tags/ggplot2/</loc>
+      <lastmod>2019-08-31T20:13:23+08:00</lastmod>
+      <priority>0</priority>
       <loc>/tags/github/</loc>
       <lastmod>2019-07-04T15:06:09+08:00</lastmod>
       <priority>0</priority>
@@ -115,6 +111,10 @@
     
     <url>
     
+      <loc>/tutorial/chapter09-auto-correlation-slide/</loc>
+      <lastmod>2019-04-16T00:34:00+08:00</lastmod>
+      <loc>/post/ggplot2-refined-adjustment-skills/</loc>
+      <lastmod>2019-08-31T20:13:23+08:00</lastmod>
       <loc>/tags/version-control/</loc>
       <lastmod>2019-07-04T15:06:09+08:00</lastmod>
       <priority>0</priority>
@@ -124,7 +124,80 @@
     
     <url>
     
+      <loc>/tutorial/chapter07-multi-linearity-slide/</loc>
+      <lastmod>2019-04-16T00:34:00+08:00</lastmod>
       <loc>/post/note-for-git-version-control-skills/</loc>
+      <lastmod>2019-08-31T20:13:23+08:00</lastmod>
+      <loc>/post/note-for-git-version-control-skills/</loc>
+      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/categories/graph/</loc>
+      <lastmod>2019-08-31T20:13:23+08:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/ssh/</loc>
+      <lastmod>2019-08-31T11:59:42+08:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/post/ssh-key-for-github/</loc>
+      <lastmod>2019-08-31T11:59:42+08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/categories/bookdown/</loc>
+      <lastmod>2019-07-26T22:46:46+08:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/latex/</loc>
+      <lastmod>2019-07-26T22:46:46+08:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/post/work-around-latex-output/</loc>
+      <lastmod>2019-07-26T22:46:46+08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/tinytex/</loc>
+      <lastmod>2019-07-26T22:46:46+08:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/post/chinese-character-in-graph-consistence-with-both-latex-and-html/</loc>
       <lastmod>2019-07-04T15:06:09+08:00</lastmod>
     </url>
     
@@ -194,6 +267,9 @@
     
     <url>
     
+      <loc>/tags/psa/</loc>
+      <lastmod>2019-07-04T15:32:33+08:00</lastmod>
+      <priority>0</priority>
       <loc>/tutorial/chapter11-endogenous-variables-slide/</loc>
       <lastmod>2019-04-28T23:47:34+08:00</lastmod>
     </url>
@@ -238,6 +314,65 @@
     
       <loc>/categories/r/</loc>
       <lastmod>2019-07-04T15:06:09+08:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/talk/example/</loc>
+      <lastmod>2019-07-04T15:32:33+08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tutorial/chapter11-endogenous-variables-slide/</loc>
+      <lastmod>2019-04-28T23:47:34+08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tutorial/chapter10-dummy-model-slide/</loc>
+      <lastmod>2019-04-16T00:34:00+08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/bookdown/</loc>
+      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/post/notes-in-latex-output-format-for-bookdown-books/</loc>
+      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/project/</loc>
+      <lastmod>2019-04-30T23:08:16+08:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/categories/r/</loc>
+      <lastmod>2019-08-31T20:26:35+08:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -354,6 +489,39 @@
     <url>
     
       <loc>/categories/econometrics/</loc>
+      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tutorial/chapter05-simple-reg-eq-forms-slide/</loc>
+      <lastmod>2019-04-16T00:34:00+08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tutorial/chapter06-multi-reg-algebra-slide/</loc>
+      <lastmod>2019-04-16T00:34:00+08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/categories/econometrics/</loc>
+      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/econometrics/</loc>
       <lastmod>2019-07-04T15:06:09+08:00</lastmod>
       <priority>0</priority>
     </url>
@@ -482,7 +650,28 @@
     
       <loc>/tags/blogdown/</loc>
       <lastmod>2019-07-04T15:06:09+08:00</lastmod>
-      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/post/improve-latex-math-with-rmarkdown-chunk/</loc>
+      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
+      <loc>/post/xaringan-for-course-slide/</loc>
+      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
+      <loc>/tags/netlify/</loc>
+      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/blogdown/</loc>
+      <lastmod>2019-08-31T20:26:35+08:00</lastmod>
+      <loc>/post/three-sord/</loc>
+      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
     </url>
     
   
@@ -490,8 +679,7 @@
     <url>
     
       <loc>/tags/netlify/</loc>
-      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
-      <priority>0</priority>
+      <lastmod>2019-08-31T20:26:35+08:00</lastmod>
     </url>
     
   
@@ -499,7 +687,7 @@
     <url>
     
       <loc>/post/three-sord/</loc>
-      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
+      <lastmod>2019-08-31T20:26:35+08:00</lastmod>
     </url>
     
   
@@ -540,6 +728,7 @@
     
       <loc>/talk/example/</loc>
       <lastmod>2019-02-20T17:48:14+08:00</lastmod>
+      <lastmod>2019-03-01T16:41:09+08:00</lastmod>
     </url>
     
   
