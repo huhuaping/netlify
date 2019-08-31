@@ -35,8 +35,17 @@
     
     <url>
     
+      <loc>/tags/2-factor-authentication/</loc>
+      <lastmod>2019-08-31T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
       <loc>/categories/</loc>
-      <lastmod>2019-07-26T22:46:46+08:00</lastmod>
+      <lastmod>2019-08-31T11:59:42+08:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -45,7 +54,16 @@
     <url>
     
       <loc>/categories/git/</loc>
-      <lastmod>2019-07-26T22:46:46+08:00</lastmod>
+      <lastmod>2019-08-31T11:59:42+08:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/github/</loc>
+      <lastmod>2019-08-31T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -54,16 +72,7 @@
     <url>
     
       <loc>/</loc>
-      <lastmod>2019-07-26T22:46:46+08:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/tags/ssh/</loc>
-      <lastmod>2019-07-26T22:46:46+08:00</lastmod>
+      <lastmod>2019-08-31T11:59:42+08:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -72,7 +81,67 @@
     <url>
     
       <loc>/tags/</loc>
-      <lastmod>2019-07-26T22:46:46+08:00</lastmod>
+      <lastmod>2019-08-31T11:59:42+08:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/post/git-with-multiple-devices/</loc>
+      <lastmod>2019-08-31T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/version-control/</loc>
+      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/ggplot2/</loc>
+      <lastmod>2019-08-30T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/post/ggplot2-refined-adjustment-skills/</loc>
+      <lastmod>2019-08-30T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/post/note-for-git-version-control-skills/</loc>
+      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/categories/graph/</loc>
+      <lastmod>2019-08-30T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/ssh/</loc>
+      <lastmod>2019-08-31T11:59:42+08:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -81,7 +150,7 @@
     <url>
     
       <loc>/post/ssh-key-for-github/</loc>
-      <lastmod>2019-07-26T22:46:46+08:00</lastmod>
+      <lastmod>2019-08-31T11:59:42+08:00</lastmod>
     </url>
     
   
@@ -124,41 +193,6 @@
     <url>
     
       <loc>/post/chinese-character-in-graph-consistence-with-both-latex-and-html/</loc>
-      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/tags/ggplot2/</loc>
-      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/tags/github/</loc>
-      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/tags/version-control/</loc>
-      <lastmod>2019-07-04T15:06:09+08:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/post/note-for-git-version-control-skills/</loc>
       <lastmod>2019-07-04T15:06:09+08:00</lastmod>
     </url>
     
@@ -395,7 +429,7 @@
     
     <url>
     
-      <loc>/categories/econometrics/</loc>
+      <loc>/tags/econometrics/</loc>
       <lastmod>2019-07-04T15:06:09+08:00</lastmod>
       <priority>0</priority>
     </url>
@@ -404,7 +438,7 @@
     
     <url>
     
-      <loc>/tags/econometrics/</loc>
+      <loc>/categories/econometrics/</loc>
       <lastmod>2019-07-04T15:06:09+08:00</lastmod>
       <priority>0</priority>
     </url>

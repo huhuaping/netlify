@@ -10,9 +10,13 @@ tags:
 image:
   caption: ''
   focal_point: ''
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: true
 ---
 
-## 调整轴题与轴标签之间的间距
+# 调整轴题与轴标签之间的间距
 
 [Increase distance between text and title on the y-axis
 ](https://stackoverflow.com/questions/14487188/increase-distance-between-text-and-title-on-the-y-axis)
@@ -22,7 +26,7 @@ ggplot(mpg, aes(cty, hwy)) + geom_point()+
   theme(axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0)))
 ```
 
-## geom_text()如何控制字体大小
+# geom_text()如何控制字体大小
 
 首先，geom_text()的size是按mm计量的。所以并不是跟font size一样的计量规则。所以不要混同二者的度量尺度。（参看[The size in geom_text is not a font size](https://github.com/tidyverse/ggplot2/issues/1828)）
 
@@ -37,10 +41,67 @@ p <- p + theme(text = element_text(size = 10)) # this will change all text size
                                                              # (except geom_text)
 ```
 
-## 如何给geom_hline()添加图例
+# 如何给geom_hline()添加图例
 
 给geom_hline[添加图例](https://stackoverflow.com/questions/39119917/how-to-add-a-legend-to-hline)
 
-## 保持读取csv编码正确
+# 保持读取csv编码正确
 
 [编码正确](https://stackoverflow.com/questions/46996501/readrread-csv-issue-chinese-character-becomes-messy-codes)
+
+# facet_grid() 实现多种图形并存
+
+facet_grid()可以同时绘制多个子图，但是默认情况下每个子图都是同一种类型，如都是line，或都是point。
+
+下面是多个子图不同类型的实现思路[^1] [^2]：
+
+- 保持数据为long format data格式
+
+- 设定一个factor作为子图分类。 factor levels 将决定子图的个数。
+
+- 绘制空白图p1。含有factor levels个数的子图，data为全数据集。
+
+- 通过subset()函数选定数据子集，并分别叠加绘制在p1上,直至所有空白子图都绘制完成。子图的geom_xxx()可以各不相同。
+
+一个样本案例可以参照：
+
+
+```
+got_vars <- c("bigtractor","bigtractor1", "smalltractor", "smalltractor1", "match_big", "match_small")
+
+# gather for facet
+smry_tractor <- smry %>%
+  filter(region_pro == "旱区") %>%
+  select(one_of(c("year", "region_pro", got_vars))) %>%
+  gather(key="variables", value="value", bigtractor:match_small) %>%
+  mutate(mark = as.factor(if_else(str_detect(variables, "bigtractor.?"), 
+                        "bigtractor",
+                        if_else(str_detect(variables, "^smalltractor"),
+                                "smalltractor",
+                                if_else(str_detect(variables, "^match"),
+                                        "match",
+                                        "NA"))))) %>%
+  mutate(mark= fct_relevel(mark,"bigtractor", "smalltractor", "mathch"))
+                       
+ 
+p1 <-  ggplot(smry_tractor, aes(factor(year), value)) +
+   facet_grid(mark~., 
+              scales = "free") +
+   labs(x ="年份", y="农用拖拉机") 
+ 
+ p2 <-  p1 +
+   geom_bar( subset(smry_tractor, variables %in% c("bigtractor", "bigtractor1")),mapping = aes(fill = variables),
+                    stat = "identity", position = "stack")
+ 
+ p3 <- p2 +
+  geom_bar( subset(smry_tractor, variables %in% c("smalltractor", "smalltractor1")),mapping = aes(fill = variables),
+                    stat = "identity", position = "stack")
+ 
+ p4 <- p3 +
+   geom_point( subset(smry_tractor, variables %in% c("match_big", "match_small")),mapping = aes(color = variables))
+```
+
+
+[^1]: [ggplot2: Three Variable Time Series Panel Chart](https://learnr.wordpress.com/2009/05/18/ggplot2-three-variable-time-series-panel-chart/)
+
+[^2]: [A GGPLOT TRICK TO PLOT DIFFERENT PLOT TYPES IN FACETS](https://statbandit.wordpress.com/2011/07/29/a-ggplot-trick-to-plot-different-plot-types-in-facets/)

@@ -12,6 +12,33 @@
     
     
     <item>
+      <title>多工作设备下的git控制和使用</title>
+      <link>/post/git-with-multiple-devices/</link>
+      <pubDate>Sat, 31 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/git-with-multiple-devices/</guid>
+      <description>明确自己git使用的安全环境 github有多重安全条件，用户可以自行决定自己的安全等级。需要注意的是，在多台工作设备下，git需要确认不同设</description>
+    </item>
+    
+    <item>
+      <title>ggplot2绘图细节及美化技巧</title>
+      <link>/post/ggplot2-refined-adjustment-skills/</link>
+      <pubDate>Fri, 30 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/ggplot2-refined-adjustment-skills/</guid>
+      <description>1 调整轴题与轴标签之间的间距 2 geom_text()如何控制字体大小 3 如何给geom_hline()添加图例 4 保持读取csv编码正确 5 facet_grid() 实现</description>
+    </item>
+    
+    <item>
+      <title>git版本控制实操技巧汇总</title>
+      <link>/post/note-for-git-version-control-skills/</link>
+      <pubDate>Fri, 30 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/note-for-git-version-control-skills/</guid>
+      <description>1 配置git 2 gitbash常用文件及文件夹命令 3 常用git命令 4 git 新挑战 4.1 超越github文件容量限制（单个文件50M以上） 4.2 忽略文件设置</description>
+    </item>
+    
+    <item>
       <title>给github帐号添加SSH key</title>
       <link>/post/ssh-key-for-github/</link>
       <pubDate>Thu, 25 Jul 2019 00:00:00 +0000</pubDate>
@@ -36,15 +63,6 @@
       
       <guid>/post/chinese-character-in-graph-consistence-with-both-latex-and-html/</guid>
       <description>中文字体问题总是会在时不时出来捣乱。今天就碰到了ggplot2绘图时，latex pdf输出和html网页输出显示不一致的问题（类似的 问题报告</description>
-    </item>
-    
-    <item>
-      <title>git版本控制实操技巧汇总</title>
-      <link>/post/note-for-git-version-control-skills/</link>
-      <pubDate>Wed, 03 Jul 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/post/note-for-git-version-control-skills/</guid>
-      <description>git版本控制技巧集锦 配置git 配置默认文本编辑器（text editor）。windows党还是自觉使用Notepad吧，免费又熟悉 下载安装</description>
     </item>
     
     <item>
