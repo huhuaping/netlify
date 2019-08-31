@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Huhuaping on Huhuaping</title>
@@ -86,11 +85,11 @@
       <guid>/course/publications/</guid>
       <description>&lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    &lt;p&gt;Quickly discover relevant content by &lt;a href=&#34;/publication/&#34;&gt;filtering publications&lt;/a&gt;.&lt;/p&gt;
+    
+Quickly discover relevant content by [filtering publications](/publication/).
 
   &lt;/div&gt;
 &lt;/div&gt;
-
 </description>
     </item>
     
@@ -140,13 +139,13 @@
 
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    &lt;p&gt;This is an example of using the &lt;em&gt;custom&lt;/em&gt; widget to create your own homepage section.&lt;/p&gt;
+    
+This is an example of using the *custom* widget to create your own homepage section.
 
-&lt;p&gt;This section also demonstrates how to apply the &lt;em&gt;background&lt;/em&gt; option to create an &lt;em&gt;image parallax&lt;/em&gt; effect. Backgrounds can be applied to any section.&lt;/p&gt;
+This section also demonstrates how to apply the *background* option to create an *image parallax* effect. Backgrounds can be applied to any section.
 
   &lt;/div&gt;
 &lt;/div&gt;
-
 
 &lt;h2 id=&#34;example-content&#34;&gt;Example content&lt;/h2&gt;
 
