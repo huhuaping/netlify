@@ -23,6 +23,7 @@ github有多重安全条件，用户可以自行决定自己的安全等级。�
 
 ## 多设备git工作的基本流程
 
+
 - 条件准备。主力设备A；新设备B；需要异端工作的sharerepo。
 
 - 主力设备A：对sharerepo已完成工作进行push，上传到云端。add-commit-push三部曲。
