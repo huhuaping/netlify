@@ -12,6 +12,10 @@ tags:
 image:
   caption: ''
   focal_point: ''
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: true
 ---
 
 “三剑”合璧持续性打造个人网站(blogdown; github; netlify)
@@ -71,7 +75,7 @@ git版本控制工具，还是需要学会的。这里就列出一个很好的�
 
 # 额外的问题
 
-config.toml配置：
+## config.toml配置
 
 - baseurl存在的[斜杠问题](https://github.com/rstudio/blogdown/issues/114)，可能会影响netlify建站更新。
 
@@ -82,10 +86,35 @@ config.toml配置：
   post = "/:year/:month/:day/:slug/"
 ```
 
-版本控制（github repo）：记得在工作目录下的.gitignore里添加忽视文件（否则会影响netlify建站更新）。
+## 版本控制（github repo）
+
+记得在工作目录下的.gitignore里添加忽视文件（否则会影响netlify建站更新）。
 
 ```r
 public
 ```
 
+## 用addin插件更新内容
+
 提交新的博客文章(post)：最好使用Rstudio里Addin菜单中的New Post来写Rmd格式的博文。
+
+## 让博客文章(post)有目录、节编号、脚注
+
+目录（toc）和节编号（number_sections）可以在rmardown文件yaml头里设置[^1]：
+
+```
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: true
+```
+
+脚注的写法。正文里直接在脚注位置添加`[^1]`，并在rmarkdown最后进行对应的注释说明：
+
+
+```
+[^1]: [Headings with automatic numbering](https://github.com/rstudio/blogdown/issues/140)
+```
+
+
+[^1]: [Headings with automatic numbering](https://github.com/rstudio/blogdown/issues/140)
