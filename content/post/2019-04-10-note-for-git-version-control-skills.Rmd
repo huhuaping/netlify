@@ -173,7 +173,7 @@ data-raw/
 
 有时候.gitignore里虽然进行了修改设定，但并不会马上生效。
 
-此时，问题可能就出在缓存上（cash）[参看My .gitignore file is ignored by git and it does not work](https://bytefreaks.net/programming-2/my-gitignore-file-is-ignored-by-git-and-it-does-not-work)。
+此时，问题可能就出在缓存上（cash）（[参看My .gitignore file is ignored by git and it does not work](https://bytefreaks.net/programming-2/my-gitignore-file-is-ignored-by-git-and-it-does-not-work)，或者参看[Gitignore is not Working](https://appuals.com/fix-gitignore-is-not-working/)）。
 
 解决办法是清理缓存-提交：
 
