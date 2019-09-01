@@ -25,13 +25,15 @@ output:
 <li><a href="#git"><span class="toc-section-number">1</span> 配置git</a></li>
 <li><a href="#section"><span class="toc-section-number">2</span> 常用操作</a><ul>
 <li><a href="#branch"><span class="toc-section-number">2.1</span> 合并分支branch</a></li>
+<li><a href="#section-1"><span class="toc-section-number">2.2</span> 删除本地分支</a></li>
+<li><a href="#section-2"><span class="toc-section-number">2.3</span> 删除远程分支</a></li>
 </ul></li>
 <li><a href="#gitbash"><span class="toc-section-number">3</span> gitbash常用文件及文件夹命令</a></li>
 <li><a href="#git-1"><span class="toc-section-number">4</span> 常用git命令</a></li>
 <li><a href="#git-"><span class="toc-section-number">5</span> git 新挑战</a><ul>
 <li><a href="#github50m"><span class="toc-section-number">5.1</span> 超越github文件容量限制（单个文件50M以上）</a></li>
-<li><a href="#section-1"><span class="toc-section-number">5.2</span> 忽略文件设置</a></li>
-<li><a href="#section-2"><span class="toc-section-number">5.3</span> 忽略文件无效的处理办法</a></li>
+<li><a href="#section-3"><span class="toc-section-number">5.2</span> 忽略文件设置</a></li>
+<li><a href="#section-4"><span class="toc-section-number">5.3</span> 忽略文件无效的处理办法</a></li>
 <li><a href="#reporepo"><span class="toc-section-number">5.4</span> 无法把本地repo推送到远程repo</a></li>
 <li><a href="#push"><span class="toc-section-number">5.5</span> 分支push找不到上游分支</a></li>
 </ul></li>
@@ -64,6 +66,16 @@ $ git config --global mergetool.p4merge.path &#39;C:\Program Files\Perforce\p4me
 <h2><span class="header-section-number">2.1</span> 合并分支branch</h2>
 <pre><code>$ git checkout master
 $ git merge hotfix</code></pre>
+</div>
+<div id="section-1" class="section level2">
+<h2><span class="header-section-number">2.2</span> 删除本地分支</h2>
+<pre><code>$ git branch -d branch_name
+$ git branch -D branch_name</code></pre>
+</div>
+<div id="section-2" class="section level2">
+<h2><span class="header-section-number">2.3</span> 删除远程分支</h2>
+<pre><code>$ git push &lt;remote_name&gt; --delete &lt;branch_name&gt;
+$ git push &lt;remote_name&gt; :&lt;branch_name&gt;</code></pre>
 </div>
 </div>
 <div id="gitbash" class="section level1">
@@ -125,7 +137,7 @@ $ git commit -m &quot;add LFS directory data-process/&quot;
 $ git push origin master
 </code></pre>
 </div>
-<div id="section-1" class="section level2">
+<div id="section-3" class="section level2">
 <h2><span class="header-section-number">5.2</span> 忽略文件设置</h2>
 <p>工作思路是：</p>
 <ul>
@@ -153,7 +165,7 @@ data-raw/
 .Rproj.user
 </code></pre>
 </div>
-<div id="section-2" class="section level2">
+<div id="section-4" class="section level2">
 <h2><span class="header-section-number">5.3</span> 忽略文件无效的处理办法</h2>
 <p>有时候.gitignore里虽然进行了修改设定，但并不会马上生效。</p>
 <p>此时，问题可能就出在缓存上（cash）（<a href="https://bytefreaks.net/programming-2/my-gitignore-file-is-ignored-by-git-and-it-does-not-work">参看My .gitignore file is ignored by git and it does not work</a>，或者参看<a href="https://appuals.com/fix-gitignore-is-not-working/">Gitignore is not Working</a>）。</p>
