@@ -1,0 +1,122 @@
+---
+title: 个人网站开发“三剑客” (blogdown; github; netlify) 
+author: huhuaping
+date: '2019-02-21'
+slug: three-sord
+categories: 
+  - R
+tags: 
+  - Blogdown
+  - Github
+  - Netlify
+image:
+  caption: ''
+  focal_point: ''
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: true
+---
+
+“三剑”合璧持续性打造个人网站(blogdown; github; netlify)
+
+# 在Rstudio中创建blogdown site
+
+blogdown的设置比较简单，教程里基本也说得清楚。具体操作时，还是需要注意以下几个要点：
+
+- 选取中意的网站模板，比如学术型模板
+
+```r
+# for example, create a new site with the academic theme
+blogdown::new_site(theme = "gcushen/hugo-academic")
+```
+
+这个模板还内部支持[数学公式显示](https://github.com/rstudio/blogdown/issues/36)！需要在Rmarkdown文档的yaml区域里设置
+
+```
+math: true
+```
+
+- 设置全局选项（global options）。
+
+一个是设置默认的“作者”和“文件格式”。需要在工作目录下新建一个.Rprofile文件：
+
+```r
+file.edit('.Rprofile')
+```
+文件里面的内容配置为:
+
+```r
+options(blogdown.ext = ".Rmd", blogdown.author = "huhuaping")
+```
+
+另外就是要配置工作文件下的config.toml文件，主要就是修改网站的名字：
+
+```r
+# Title of your site
+title = "Huhuaping"
+```
+- 最后要记得装载hugo，最重要得是弄清楚hugo_version（后面netlify建站时需要配置环境变量hugo_version，否则会[报错255](https://gohugo.io/hosting-and-deployment/hosting-on-netlify/)，二者应该要一致，且有最低版本要求）。在Rstudio里判明版本号的办法是：
+
+```r
+# 安装hugo
+install_hugo()
+
+# 判明版本号
+blogdown::hugo_version()
+```
+# 利用git工具来管理github仓库
+
+git版本控制工具，还是需要学会的。这里就列出一个很好的参考学习资源吧——[git book(多国语言版)](https://git-scm.com/book/zh/v2)
+
+# 在netlify上关联github仓库并建站
+
+如前所述，这里很重要的一步就是要记得设置hugo_version的环境变量，版本号需要与blogdown里安装的版本号一致。
+
+# 额外的问题
+
+## config.toml配置
+
+- baseurl存在的[斜杠问题](https://github.com/rstudio/blogdown/issues/114)，可能会影响netlify建站更新。
+
+- 网页链接显示最好是稳定的。可以通过日期+slug的形式来固定，具体设置为：
+
+```r
+[permalinks]
+  post = "/:year/:month/:day/:slug/"
+```
+
+## 版本控制（github repo）下添加忽略文件
+
+记得在工作目录下的.gitignore里添加忽视文件（否则会影响netlify建站更新）。
+
+```r
+public/
+```
+
+此外，还会引起master和dev分支的合并冲突！！
+
+## 用addin插件更新内容
+
+提交新的博客文章(post)：最好使用Rstudio里Addin菜单中的New Post来写Rmd格式的博文。
+
+## 让博客文章(post)有目录、节编号、脚注
+
+目录（toc）和节编号（number_sections）可以在rmardown文件yaml头里设置[^1]：
+
+```
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: true
+```
+
+脚注的写法。正文里直接在脚注位置添加`[^1]`，并在rmarkdown最后进行对应的注释说明：
+
+
+```
+[^1]: [Headings with automatic numbering](https://github.com/rstudio/blogdown/issues/140)
+```
+
+
+[^1]: [Headings with automatic numbering](https://github.com/rstudio/blogdown/issues/140)
