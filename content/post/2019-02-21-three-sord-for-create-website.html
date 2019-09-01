@@ -29,6 +29,7 @@ output:
 <li><a href="#github-repo"><span class="toc-section-number">4.2</span> 版本控制（github repo）下添加忽略文件</a></li>
 <li><a href="#addin"><span class="toc-section-number">4.3</span> 用addin插件更新内容</a></li>
 <li><a href="#post"><span class="toc-section-number">4.4</span> 让博客文章(post)有目录、节编号、脚注</a></li>
+<li><a href="#post-1"><span class="toc-section-number">4.5</span> post文章里插入图片</a></li>
 </ul></li>
 </ul>
 </div>
@@ -101,6 +102,30 @@ blogdown::hugo_version()</code></pre>
     number_sections: true</code></pre>
 <p>脚注的写法。正文里直接在脚注位置添加<code>[^1]</code>，并在rmarkdown最后进行对应的注释说明：</p>
 <pre><code>[^1]: [Headings with automatic numbering](https://github.com/rstudio/blogdown/issues/140)</code></pre>
+</div>
+<div id="post-1" class="section level2">
+<h2><span class="header-section-number">4.5</span> post文章里插入图片</h2>
+<p>有两种插入图片的办法。不论如何，图片源文件默认都是放在<code>static/</code>文件夹下！</p>
+<ul>
+<li>采用markdown语言：</li>
+</ul>
+<pre><code># 源文件默认在`static/`文件夹下
+![](/img/facet-multiple-geom.png)</code></pre>
+<div class="figure">
+<img src="/img/facet-multiple-geom.png" alt="" />
+<p class="caption">markdown语言方法插入图片</p>
+</div>
+<ul>
+<li>或者采用函数 <code>knitr::include_graphics()</code></li>
+</ul>
+<pre><code># 源文件默认在`static/`文件夹下
+knitr::include_graphics(&quot;/img/facet-multiple-geom.png&quot;)</code></pre>
+<div class="figure"><span id="fig:unnamed-chunk-1"></span>
+<img src="/img/facet-multiple-geom.png" alt="include_graphics函数方法插入图片"  />
+<p class="caption">
+Figure 4.1: include_graphics函数方法插入图片
+</p>
+</div>
 </div>
 </div>
 <div class="footnotes">

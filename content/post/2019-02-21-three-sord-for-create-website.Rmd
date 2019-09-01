@@ -118,5 +118,29 @@ output:
 [^1]: [Headings with automatic numbering](https://github.com/rstudio/blogdown/issues/140)
 ```
 
+## post文章里插入图片
+
+有两种插入图片的办法。不论如何，图片源文件默认都是放在`static/`文件夹下！
+
+- 采用markdown语言：
+
+```
+# 源文件默认在`static/`文件夹下
+![](/img/facet-multiple-geom.png)
+```
+
+
+![markdown语言方法插入图片](/img/facet-multiple-geom.png)
+
+- 或者采用函数 `knitr::include_graphics()`
+
+```
+# 源文件默认在`static/`文件夹下
+knitr::include_graphics("/img/facet-multiple-geom.png")
+```
+
+```{r, echo =F, fig.cap = "include_graphics函数方法插入图片"}
+knitr::include_graphics("/img/facet-multiple-geom.png")
+```
 
 [^1]: [Headings with automatic numbering](https://github.com/rstudio/blogdown/issues/140)

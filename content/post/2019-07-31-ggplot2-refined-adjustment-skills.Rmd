@@ -67,6 +67,7 @@ facet_grid()可以同时绘制多个子图，但是默认情况下每个子图�
 
 
 ```
+# for column select
 got_vars <- c("bigtractor","bigtractor1", "smalltractor", "smalltractor1", "match_big", "match_small")
 
 # gather for facet
@@ -82,24 +83,67 @@ smry_tractor <- smry %>%
                                         "match",
                                         "NA"))))) %>%
   mutate(mark= fct_relevel(mark,"bigtractor", "smalltractor", "mathch"))
-                       
+
+# list for facet labels                       
+list_chn <- c(bigtractor="中大型及配套(万台)",
+              smalltractor="小型及配套(万台)", 
+              match="配套比(%)")
+
+# base plot
+p0 <-  ggplot(smry_tractor, aes(factor(year), value)) +
+  facet_grid(mark~., 
+              scales = "free",
+              labeller = labeller(mark = list_chn)) +
+  labs(x ="年份", y="") +
+  theme(axis.title.x = element_text(margin = margin(t = 10, r = 0, b = 0, l = 0)),
+        strip.text.y = element_text(size = 8)) # tune facet label font size
+
+# raw 1 plot 
+list_big <- c("bigtractor", "bigtractor1") # for subset
+list_text <- c("中大型", "中大型配套", "小型", "小型配套") # for legend text
+p1 <-  p0 +
+   geom_bar( subset(smry_tractor, variables %in% list_big),
+             mapping = aes(fill = variables),
+             stat = "identity", position = "stack") +
+  geom_text( subset(smry_tractor, variables %in% list_big),
+             mapping = aes(label = round(value,0)),
+             position = position_stack(vjust = 0.7), size =3) +
+  scale_fill_discrete(name = "", labels = list_text)
+
+# raw 2 plot 
+list_small <- c("smalltractor", "smalltractor1") # for subset
+p2 <- p1 +
+  geom_bar( subset(smry_tractor, variables %in% list_small),
+            mapping = aes(fill = variables),
+            stat = "identity", position = "stack") +
+  geom_text( subset(smry_tractor, variables %in% list_small),
+             mapping = aes(label = round(value,0)),
+             position = position_stack(vjust = 0.7), size =3) +
+  scale_fill_discrete(name = "", labels = list_text)
+
+# raw 3 plot  
+list_match <- c("match_big", "match_small") # for subset
+list_text <- c("中大型", "小型")  # for legend text
+p3 <- p2 +
+   geom_line( subset(smry_tractor, variables %in% list_match),
+              mapping = aes(linetype = variables, group = variables)) +
+   geom_point( subset(smry_tractor, variables %in% list_match),
+               mapping = aes(color = variables, group = variables)) +
+   geom_text_repel( subset(smry_tractor, variables %in% list_match),
+                    mapping = aes(label = formatC(value,1, format = "f")), 
+                    direction ="both", size =3) +
+  scale_linetype_discrete(name = "", labels = list_text) +
+  scale_color_discrete(name = "", labels = list_text) +
+  guides(fill = guide_legend(order = 1))  # tune legend order
  
-p1 <-  ggplot(smry_tractor, aes(factor(year), value)) +
-   facet_grid(mark~., 
-              scales = "free") +
-   labs(x ="年份", y="农用拖拉机") 
- 
- p2 <-  p1 +
-   geom_bar( subset(smry_tractor, variables %in% c("bigtractor", "bigtractor1")),mapping = aes(fill = variables),
-                    stat = "identity", position = "stack")
- 
- p3 <- p2 +
-  geom_bar( subset(smry_tractor, variables %in% c("smalltractor", "smalltractor1")),mapping = aes(fill = variables),
-                    stat = "identity", position = "stack")
- 
- p4 <- p3 +
-   geom_point( subset(smry_tractor, variables %in% c("match_big", "match_small")),mapping = aes(color = variables))
+ p3
 ```
+
+
+```{r, echo=F, fig.cap="include_graphics函数方法插入图片"}
+knitr::include_graphics("/img/facet-multiple-geom.png")
+```
+
 
 
 [^1]: [ggplot2: Three Variable Time Series Panel Chart](https://learnr.wordpress.com/2009/05/18/ggplot2-three-variable-time-series-panel-chart/)

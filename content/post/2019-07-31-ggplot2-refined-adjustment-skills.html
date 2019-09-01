@@ -1,7 +1,7 @@
 ---
 title: ggplot2绘图细节及美化技巧
 author: huhuaping
-date: '2019-08-30'
+date: '2019-08-31'
 slug: ggplot2-refined-adjustment-skills
 categories:
   - graph
@@ -63,7 +63,8 @@ p &lt;- p + theme(text = element_text(size = 10)) # this will change all text si
 <li><p>通过subset()函数选定数据子集，并分别叠加绘制在p1上,直至所有空白子图都绘制完成。子图的geom_xxx()可以各不相同。</p></li>
 </ul>
 <p>一个样本案例可以参照：</p>
-<pre><code>got_vars &lt;- c(&quot;bigtractor&quot;,&quot;bigtractor1&quot;, &quot;smalltractor&quot;, &quot;smalltractor1&quot;, &quot;match_big&quot;, &quot;match_small&quot;)
+<pre><code># for column select
+got_vars &lt;- c(&quot;bigtractor&quot;,&quot;bigtractor1&quot;, &quot;smalltractor&quot;, &quot;smalltractor1&quot;, &quot;match_big&quot;, &quot;match_small&quot;)
 
 # gather for facet
 smry_tractor &lt;- smry %&gt;%
@@ -78,23 +79,66 @@ smry_tractor &lt;- smry %&gt;%
                                         &quot;match&quot;,
                                         &quot;NA&quot;))))) %&gt;%
   mutate(mark= fct_relevel(mark,&quot;bigtractor&quot;, &quot;smalltractor&quot;, &quot;mathch&quot;))
-                       
+
+# list for facet labels                       
+list_chn &lt;- c(bigtractor=&quot;中大型及配套(万台)&quot;,
+              smalltractor=&quot;小型及配套(万台)&quot;, 
+              match=&quot;配套比(%)&quot;)
+
+# base plot
+p0 &lt;-  ggplot(smry_tractor, aes(factor(year), value)) +
+  facet_grid(mark~., 
+              scales = &quot;free&quot;,
+              labeller = labeller(mark = list_chn)) +
+  labs(x =&quot;年份&quot;, y=&quot;&quot;) +
+  theme(axis.title.x = element_text(margin = margin(t = 10, r = 0, b = 0, l = 0)),
+        strip.text.y = element_text(size = 8)) # tune facet label font size
+
+# raw 1 plot 
+list_big &lt;- c(&quot;bigtractor&quot;, &quot;bigtractor1&quot;) # for subset
+list_text &lt;- c(&quot;中大型&quot;, &quot;中大型配套&quot;, &quot;小型&quot;, &quot;小型配套&quot;) # for legend text
+p1 &lt;-  p0 +
+   geom_bar( subset(smry_tractor, variables %in% list_big),
+             mapping = aes(fill = variables),
+             stat = &quot;identity&quot;, position = &quot;stack&quot;) +
+  geom_text( subset(smry_tractor, variables %in% list_big),
+             mapping = aes(label = round(value,0)),
+             position = position_stack(vjust = 0.7), size =3) +
+  scale_fill_discrete(name = &quot;&quot;, labels = list_text)
+
+# raw 2 plot 
+list_small &lt;- c(&quot;smalltractor&quot;, &quot;smalltractor1&quot;) # for subset
+p2 &lt;- p1 +
+  geom_bar( subset(smry_tractor, variables %in% list_small),
+            mapping = aes(fill = variables),
+            stat = &quot;identity&quot;, position = &quot;stack&quot;) +
+  geom_text( subset(smry_tractor, variables %in% list_small),
+             mapping = aes(label = round(value,0)),
+             position = position_stack(vjust = 0.7), size =3) +
+  scale_fill_discrete(name = &quot;&quot;, labels = list_text)
+
+# raw 3 plot  
+list_match &lt;- c(&quot;match_big&quot;, &quot;match_small&quot;) # for subset
+list_text &lt;- c(&quot;中大型&quot;, &quot;小型&quot;)  # for legend text
+p3 &lt;- p2 +
+   geom_line( subset(smry_tractor, variables %in% list_match),
+              mapping = aes(linetype = variables, group = variables)) +
+   geom_point( subset(smry_tractor, variables %in% list_match),
+               mapping = aes(color = variables, group = variables)) +
+   geom_text_repel( subset(smry_tractor, variables %in% list_match),
+                    mapping = aes(label = formatC(value,1, format = &quot;f&quot;)), 
+                    direction =&quot;both&quot;, size =3) +
+  scale_linetype_discrete(name = &quot;&quot;, labels = list_text) +
+  scale_color_discrete(name = &quot;&quot;, labels = list_text) +
+  guides(fill = guide_legend(order = 1))  # tune legend order
  
-p1 &lt;-  ggplot(smry_tractor, aes(factor(year), value)) +
-   facet_grid(mark~., 
-              scales = &quot;free&quot;) +
-   labs(x =&quot;年份&quot;, y=&quot;农用拖拉机&quot;) 
- 
- p2 &lt;-  p1 +
-   geom_bar( subset(smry_tractor, variables %in% c(&quot;bigtractor&quot;, &quot;bigtractor1&quot;)),mapping = aes(fill = variables),
-                    stat = &quot;identity&quot;, position = &quot;stack&quot;)
- 
- p3 &lt;- p2 +
-  geom_bar( subset(smry_tractor, variables %in% c(&quot;smalltractor&quot;, &quot;smalltractor1&quot;)),mapping = aes(fill = variables),
-                    stat = &quot;identity&quot;, position = &quot;stack&quot;)
- 
- p4 &lt;- p3 +
-   geom_point( subset(smry_tractor, variables %in% c(&quot;match_big&quot;, &quot;match_small&quot;)),mapping = aes(color = variables))</code></pre>
+ p3</code></pre>
+<div class="figure"><span id="fig:unnamed-chunk-1"></span>
+<img src="/img/facet-multiple-geom.png" alt="include_graphics函数方法插入图片"  />
+<p class="caption">
+Figure 5.1: include_graphics函数方法插入图片
+</p>
+</div>
 </div>
 <div class="footnotes">
 <hr />
