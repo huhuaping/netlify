@@ -21,9 +21,15 @@
 
 [[main]]
   name = "Econometrics"
-  url = "/tutorial/"
+  url = "/course-econometrics/"
   parent = "Teaching"
   weight = 1
+
+[[main]]
+  name = "Statistics"
+  url = "/course-statistics/"
+  parent = "Teaching"
+  weight = 2
 
 [[main]]
   name = "Talk"
