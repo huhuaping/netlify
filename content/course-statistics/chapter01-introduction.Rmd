@@ -21,7 +21,13 @@ type: docs
 
 - 敲击数字键，再按Enter可进入任意指定的页码。如，敲击数字10，观看第10页
 
+
 ```{r, echo=FALSE}
 knitr::include_url("/course-statistics/01-introduction.html")
 ```
 
+**附录数据**：
+
+- 纽约JFK机场2013年[1月数据flights-jan.csv](/course-statistics/data/flights-jan.csv)
+
+- 纽约JFK机场2013年[全年数据flights-jfk.csv](/course-statistics/data/flights-jfk.csv)
