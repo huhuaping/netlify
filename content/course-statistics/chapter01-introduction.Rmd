@@ -26,6 +26,8 @@ type: docs
 knitr::include_url("/course-statistics/01-introduction.html")
 ```
 
+课件的pdf版本在此[01-introduction.pdf](/course-statistics/material/01-introduction-2019.9.18.pdf)
+
 **附录数据**：
 
 - 纽约JFK机场2013年[1月数据flights-jan.csv](/course-statistics/data/flights-jan.csv)
