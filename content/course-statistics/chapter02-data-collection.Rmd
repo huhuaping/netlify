@@ -1,0 +1,32 @@
+---
+date: "2019-09-09T00:00:00+08:00"
+draft: false
+linktitle: 第02章(数据收集、整理和清洗)
+menu:
+  course-statistics:
+    parent: 统计学在线课程 (简介)
+    weight: 1
+title: statistics (统计学)
+toc: true
+type: docs
+---
+
+## 第02章 数据收集、整理和清洗
+
+操作提示：
+
+- 点击**课件区域**，按F键，可全屏观看
+
+- 按方向键，可以前进/后退
+
+- 敲击数字键，再按Enter可进入任意指定的页码。如，敲击数字10，观看第10页
+
+
+```{r, echo=FALSE}
+knitr::include_url("/course-statistics/02-data-sourcing.html")
+```
+
+课件的pdf版本在此[02-data-collection.pdf](/course-statistics/material/02-02-data-sourcing-2019.9.22.pdf)
+
+**附录数据**：
+
