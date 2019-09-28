@@ -26,7 +26,8 @@ type: docs
 knitr::include_url("/course-statistics/02-data-sourcing.html")
 ```
 
-课件的pdf版本在此[02-data-collection.pdf](/course-statistics/material/02-02-data-sourcing-2019.9.22.pdf)
+课件的pdf版本在此[02-data-collection.pdf](/course-statistics/material/02-02-data-sourcing-2019.9.29.pdf)
 
-**附录数据**：
+**附录资料**：
 
+- [kish随机table.docx](/course-statistics/material/Kish-Tables.docx)
