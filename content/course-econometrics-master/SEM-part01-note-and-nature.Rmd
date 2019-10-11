@@ -1,0 +1,30 @@
+---
+date: "2019-09-09T00:00:00+08:00"
+draft: false
+linktitle: 第18章(SEM表达和本质)
+menu:
+  course-econometrics-master:
+    parent: 计量经济学(I)(简介)
+    weight: 2
+title: 结构方程模型的表达和本质
+toc: true
+type: docs
+---
+
+## 第18章：结构方程模型的表达和本质
+
+操作提示：
+
+- 点击**课件区域**，按F键，可全屏观看
+
+- 按方向键，可以前进/后退
+
+- 敲击数字键，再按Enter可进入任意指定的页码。如，敲击数字10，观看第10页
+
+
+```{r, echo=FALSE}
+knitr::include_url("/course-econometrics-master/SEM-slide-part1-why.html")
+```
+
+<!---课件的pdf版本在此[第18章SEM表达和本质.pdf](/course-econometrics-master/SEM-slide-part1-why-2019.10.11.pdf) --->
+

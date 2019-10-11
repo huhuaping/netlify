@@ -14,4 +14,4 @@ I am a teaching instructor for the following courses at Northwest A &F Universit
 
 - Econometrics（计量经济学） （本科生/ for undergraduate students）
 - Principle of statistics （统计学原理） （本科生/ for undergraduate students）
-- Econometrics (II)（中级计量经济学） （研究生/ for graduate student）
+- Econometrics (I)（中级计量经济学） （研究生/ for graduate student）

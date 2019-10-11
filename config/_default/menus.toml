@@ -20,16 +20,22 @@
   weight = 3
 
 [[main]]
-  name = "Econometrics"
+  name = "Econometrics(本科生)"
   url = "/course-econometrics/"
   parent = "Teaching"
   weight = 1
 
 [[main]]
-  name = "Statistics"
+  name = "Statistics(本科生)"
   url = "/course-statistics/"
   parent = "Teaching"
   weight = 2
+
+[[main]]
+  name = "Econometrics(研究生)"
+  url = "/course-econometrics-master/"
+  parent = "Teaching"
+  weight = 3
 
 [[main]]
   name = "Talk"
