@@ -31,3 +31,5 @@ knitr::include_url("/course-statistics/02-data-sourcing.html")
 **附录资料**：
 
 - [kish随机table.docx](/course-statistics/material/Kish-Tables.docx)
+
+- **CGSS2015**数据集（有兴趣的请找老师要！）
