@@ -28,3 +28,5 @@ knitr::include_url("/course-econometrics-master/SEM-slide-part1-why.html")
 
 <!---课件的pdf版本在此[第18章SEM表达和本质.pdf](/course-econometrics-master/SEM-slide-part1-why-2019.10.11.pdf) --->
 
+本模块的参考教材章节pdf版本[Gujarati, D. and D. Porter. Basic Econometrics (5ed） [M], McGraw-Hill Education, 2008. 第18章、19章、20章](/course-econometrics-master/material/Basic-Econometrics-5th-Gujarati.pdf)
+
