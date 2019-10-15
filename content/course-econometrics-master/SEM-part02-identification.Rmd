@@ -1,17 +1,17 @@
 ---
-date: "2019-09-09T00:00:00+08:00"
+date: "2019-10-14T00:00:00+08:00"
 draft: false
-linktitle: 第18章(SEM的本质)
+linktitle: 第19章(SEM的识别问题)
 menu:
   course-econometrics-master:
     parent: 计量经济学(I)(简介)
     weight: 2
-title: 联立方程模型的本质
+title: 结构方程模型的识别问题
 toc: true
 type: docs
 ---
 
-## 第18章：联立方程模型的表达和本质
+## 第19章：结构方程模型的识别问题
 
 操作提示：
 
@@ -23,10 +23,10 @@ type: docs
 
 
 ```{r, echo=FALSE}
-knitr::include_url("/course-econometrics-master/SEM-slide-part1-why.html")
+knitr::include_url("/course-econometrics-master/SEM-slide-part2-identification.html")
 ```
 
-课件的pdf版本在此[第18章联立方程模型的本质.pdf](/course-econometrics-master/material/SEM-slide-part1-why-2019.10.15.pdf) 
+课件的pdf版本在此[第19章联立方程模型的识别问题.pdf](/course-econometrics-master/material/SEM-slide-part2-identification-2019.10.15.pdf) 
 
 本模块的参考教材章节pdf版本[Gujarati, D. and D. Porter. Basic Econometrics (5ed） [M], McGraw-Hill Education, 2008. 第18章、19章、20章](/course-econometrics-master/material/Basic-Econometrics-5th-Gujarati.pdf)
 
