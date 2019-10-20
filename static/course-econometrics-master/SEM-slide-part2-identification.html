@@ -39,7 +39,7 @@ class: center,middle
 
 ### huhuaping01@hotmail.com
 
-### 2019-10-15
+### 2019-10-18
 
 
 
@@ -107,8 +107,8 @@ layout: true
 考虑如下的供需联立方程：
 
 `$$\begin{align}
-Q &amp;= \alpha_0+\alpha_1P_t+u_{1t}   &amp;(\alpha_1&lt;0)  &amp;&amp;\text{(需求函数)}\\
-Q &amp;= \beta_0+\beta_1P_t+u_{2t}  &amp;(\beta_1&gt;0) &amp;&amp;\text{(供给函数)}\\
+Q &amp;= \alpha_0+\alpha_1P_t+u_{t1}   &amp;(\alpha_1&lt;0)  &amp;&amp;\text{(需求函数)}\\
+Q &amp;= \beta_0+\beta_1P_t+u_{t2}  &amp;(\beta_1&gt;0) &amp;&amp;\text{(供给函数)}\\
 \end{align}$$`
 
 
@@ -167,8 +167,8 @@ Q &amp;= \beta_0+\beta_1P_t+u_{2t}  &amp;(\beta_1&gt;0) &amp;&amp;\text{(供给�
 
 `$$\begin{cases}
   \begin{align}
-  Q_t &amp;= \alpha_0+\alpha_1P_t+u_{1t}   &amp;(\alpha_1&lt;0)  &amp;&amp;\text{(需求函数)}\\
-  Q_t &amp;= \beta_0+\beta_1P_t+u_{2t}  &amp;(\beta_1&gt;0) &amp;&amp;\text{(供给函数)}\\
+  Q_t &amp;= \alpha_0+\alpha_1P_t+u_{t1}   &amp;(\alpha_1&lt;0)  &amp;&amp;\text{(需求函数)}\\
+  Q_t &amp;= \beta_0+\beta_1P_t+u_{t2}  &amp;(\beta_1&gt;0) &amp;&amp;\text{(供给函数)}\\
   \end{align}
 \end{cases}$$`
 
@@ -178,8 +178,8 @@ Q &amp;= \beta_0+\beta_1P_t+u_{2t}  &amp;(\beta_1&gt;0) &amp;&amp;\text{(供给�
 
 `$$\begin{cases}
   \begin{align}
-  P_t &amp;= \pi_{11}+v_{1t}  \\
-  Q_t &amp;= \pi_{21}+v_{2t}   
+  P_t &amp;= \pi_{11}+v_{t1}  \\
+  Q_t &amp;= \pi_{12}+v_{t2}   
   \end{align}
 \end{cases}$$`
 
@@ -197,8 +197,8 @@ Q &amp;= \beta_0+\beta_1P_t+u_{2t}  &amp;(\beta_1&gt;0) &amp;&amp;\text{(供给�
   \begin{align}
     \pi_{11} &amp; = -\frac{\alpha_0 - \beta_0}{\alpha_1-\beta_1}  \\
     \pi_{21} &amp; = \frac{\alpha_1\beta_0-\alpha_0\beta_1}{\alpha_1-\beta_1}  \\
-    v_{1t} &amp;= - \frac{u_{1t} - u_{2t}}{\alpha_1-\beta_1}  \\
-    v_{2t} &amp;= \frac{\alpha_1 u_{2t}- \alpha_0 u_{1t}}{\alpha_1-\beta_1}
+    v_{t1} &amp;= - \frac{u_{t1} - u_{t2}}{\alpha_1-\beta_1}  \\
+    v_{t2} &amp;= \frac{\alpha_1 u_{t2}- \alpha_0 u_{t1}}{\alpha_1-\beta_1}
   \end{align}
 \end{cases}$$`
 
@@ -213,15 +213,15 @@ Q &amp;= \beta_0+\beta_1P_t+u_{2t}  &amp;(\beta_1&gt;0) &amp;&amp;\text{(供给�
 
 `$$\begin{cases}
   \begin{align}
-  \lambda Q &amp;= \lambda\alpha_0+\lambda\alpha_1P_t+\lambda u_{1t}  &amp;(\alpha_1&lt;0)  &amp;&amp;\text{(需求函数变换)}\\
-  (1-\lambda)Q &amp;= (1-\lambda)\beta_0+(1-\lambda)\beta_1P_t+(1-\lambda)u_{2t}  &amp;(\beta_1&gt;0) &amp;&amp;\text{(供给函数变换)}
+  \lambda Q &amp;= \lambda\alpha_0+\lambda\alpha_1P_t+\lambda u_{t1}  &amp;(\alpha_1&lt;0)  &amp;&amp;\text{(需求函数变换)}\\
+  (1-\lambda)Q &amp;= (1-\lambda)\beta_0+(1-\lambda)\beta_1P_t+(1-\lambda)u_{t2}  &amp;(\beta_1&gt;0) &amp;&amp;\text{(供给函数变换)}
   \end{align}
 \end{cases}$$`
 
 进一步，我们可以构造一个如下的“混杂”方程：
 
 `$$\begin{align}
-Q_t &amp;= \lambda\alpha_0+(1-\lambda)\beta_0 +(\lambda\alpha_1+(1-\lambda)\beta_1 )P_t+ \lambda u_{1t}+(1-\lambda)u_{2t}  &amp; &amp;&amp; \text{(混杂方程)} \\
+Q_t &amp;= \lambda\alpha_0+(1-\lambda)\beta_0 +(\lambda\alpha_1+(1-\lambda)\beta_1 )P_t+ \lambda u_{1t}+(1-\lambda)u_{t2}  &amp; &amp;&amp; \text{(混杂方程)} \\
 \end{align}$$`
 
 .pull-left[
@@ -245,7 +245,7 @@ Q_t &amp;= \gamma_0 +\gamma_1P_t+w_t   \\
   \begin{align}
   \gamma_0 &amp; = \lambda\alpha_0+(1-\lambda)\beta_0 \\
    \gamma_1 &amp;= \lambda\alpha_1+(1-\lambda)\beta_1  \\
-   w_t &amp;= \lambda u_{1t}+(1-\lambda)u_{2t}  
+   w_t &amp;= \lambda u_{1t}+(1-\lambda)u_{t2}  
   \end{align}
 \end{cases}$$`
 
@@ -259,8 +259,8 @@ Q_t &amp;= \gamma_0 +\gamma_1P_t+w_t   \\
 
 `$$\begin{cases}
   \begin{align}
-  Q_t &amp;= \alpha_0+\alpha_1P_t+\alpha_2I_t+u_{1t}   &amp;(\alpha_1&lt;0,\alpha_2&gt;0)  &amp;&amp;\text{(需求函数)}\\
-  Q_t &amp;= \beta_0+\beta_1P_t+u_{2t}  &amp;(\beta_1&gt;0) &amp;&amp;\text{(供给函数)}
+  Q_t &amp;= \alpha_0+\alpha_1P_t+\alpha_2I_t+u_{t1}   &amp;(\alpha_1&lt;0,\alpha_2&gt;0)  &amp;&amp;\text{(需求函数)}\\
+  Q_t &amp;= \beta_0+\beta_1P_t+u_{t2}  &amp;(\beta_1&gt;0) &amp;&amp;\text{(供给函数)}
   \end{align}
 \end{cases}$$`
 
@@ -270,8 +270,8 @@ Q_t &amp;= \gamma_0 +\gamma_1P_t+w_t   \\
 
 `$$\begin{cases}
   \begin{align}
-  P_t &amp;= \pi_{11}+ \pi_{12}I_t+v_{1t} \\
-  Q_t &amp;= \pi_{21}+ \pi_{22}I_t+v_{2t}\\
+  P_t &amp;= \pi_{11}+ \pi_{21}I_t+v_{t1} \\
+  Q_t &amp;= \pi_{12}+ \pi_{22}I_t+v_{t2}\\
   \end{align}
 \end{cases}$$`
 
@@ -279,11 +279,11 @@ Q_t &amp;= \gamma_0 +\gamma_1P_t+w_t   \\
 
 `$$\begin{alignedat}{3}
 &amp; \pi_{11} = \frac{\beta_0-\alpha_0}{\alpha_1-\beta_1}; \quad
-&amp; \pi_{12} = - \frac{\alpha_2}{\alpha_1-\beta_1} ; \quad
-&amp; v_{1t} = \frac{u_{2t}-u_{1t}}{\alpha_1-\beta_1} \\
-&amp; \pi_{21} = \frac{\alpha_1\beta_0-\alpha_0\beta_1}{\alpha_1-\beta_1};\quad
+&amp; \pi_{21} = - \frac{\alpha_2}{\alpha_1-\beta_1} ; \quad
+&amp; v_{t1} = \frac{u_{t2}-u_{t1}}{\alpha_1-\beta_1} \\
+&amp; \pi_{12} = \frac{\alpha_1\beta_0-\alpha_0\beta_1}{\alpha_1-\beta_1};\quad
 &amp; \pi_{22} = - \frac{\alpha_2\beta_1}{\alpha_1-\beta_1} ;\quad
-&amp; v_{2t} = \frac{\alpha_1u_{2t}-\beta_1u_{1t}}{\alpha_1-\beta_1}
+&amp; v_{t2} = \frac{\alpha_1u_{t2}-\beta_1u_{t1}}{\alpha_1-\beta_1}
 \end{alignedat}$$`
 
 
@@ -309,7 +309,7 @@ Q_t &amp;= \gamma_0 +\gamma_1P_t+w_t   \\
 **答案**：
 
 - 只有4个约简参数：
-`\(\pi_0,\pi_1,\pi_2,\pi_3\)`
+`\(\pi_{11},\pi_{21},\pi_{12},\pi_{22}\)`
 - 但是有5个结构参数：
 `\(\alpha_0,\alpha_1,\alpha_2,\beta_0,\beta_1\)`
 - 因此不可能完全求解全部5个结构参数
@@ -321,8 +321,8 @@ Q_t &amp;= \gamma_0 +\gamma_1P_t+w_t   \\
 然而，**供给方程**的结构参数是**恰好识别**的，因为：
 
 `$$\begin{align}
-\beta_0 = \pi_{21}-\beta_1\pi_{11} ; \quad
-\beta_1 = \frac{\pi_{22}}{\pi_{12}}
+\beta_0 = \pi_{12}-\beta_1\pi_{11} ; \quad
+\beta_1 = \frac{\pi_{22}}{\pi_{21}}
 \end{align}$$`
 
 ---
@@ -333,8 +333,8 @@ Q_t &amp;= \gamma_0 +\gamma_1P_t+w_t   \\
 
 `$$\begin{cases}
   \begin{align}
-  Q_t &amp;= \alpha_0+\alpha_1P_t+\alpha_2I_t+\alpha_3R_t+u_{1t} &amp;(\alpha_1&lt;0,\alpha_2&gt;0)  &amp;&amp;\text{(需求函数)}\\
-  Q_t &amp;= \beta_0+\beta_1P_t+\beta_2P_{t-1}+u_{2t}   &amp;(\beta_1,\beta_2&gt;0) &amp;&amp;\text{(供给函数)}
+  Q_t &amp;= \alpha_0+\alpha_1P_t+\alpha_2I_t+\alpha_3R_t+u_{t1} &amp;(\alpha_1&lt;0,\alpha_2&gt;0)  &amp;&amp;\text{(需求函数)}\\
+  Q_t &amp;= \beta_0+\beta_1P_t+\beta_2P_{t-1}+u_{t2}   &amp;(\beta_1,\beta_2&gt;0) &amp;&amp;\text{(供给函数)}
   \end{align}
 \end{cases}$$`
 
@@ -351,8 +351,8 @@ Q_t &amp;= \gamma_0 +\gamma_1P_t+w_t   \\
 
 `$$\begin{cases}
   \begin{align}
-  P_t &amp;= \pi_{11}+ \pi_{12}I_t+\pi_{13}R_t+\pi_{14}P_{t-1}+v_{1t} \\
-  Q_t &amp;= \pi_{21}+\pi_{22}I_t+\pi_{23}R_t+\pi_{24}P_{t-1}+v_{2t}
+  P_t &amp;= \pi_{11}+ \pi_{21}I_t+\pi_{31}R_t+\pi_{41}P_{t-1}+v_{t1} \\
+  Q_t &amp;= \pi_{12}+\pi_{22}I_t+\pi_{32}R_t+\pi_{42}P_{t-1}+v_{t2}
   \end{align}
 \end{cases}$$`
 
@@ -362,10 +362,10 @@ Q_t &amp;= \gamma_0 +\gamma_1P_t+w_t   \\
 `$$\begin{cases}
   \begin{align}
   &amp; \pi_{11} = \frac{\beta_0-\alpha_0}{\alpha_1-\beta_1} \\
-  &amp; \pi_{12} = - \frac{\alpha_2}{\alpha_1-\beta_1} \\
-  &amp; \pi_{13} = - \frac{\alpha_3}{\alpha_1-\beta_1} \\
-  &amp; \pi_{14} = \frac{\beta_2}{\alpha_1-\beta_1} \\
-  &amp; v_{1t} = \frac{u_{2t}-u_{1t}}{\alpha_1-\beta_1}  
+  &amp; \pi_{21} = - \frac{\alpha_2}{\alpha_1-\beta_1} \\
+  &amp; \pi_{31} = - \frac{\alpha_3}{\alpha_1-\beta_1} \\
+  &amp; \pi_{41} = \frac{\beta_2}{\alpha_1-\beta_1} \\
+  &amp; v_{t1} = \frac{u_{t2}-u_{t1}}{\alpha_1-\beta_1}  
   \end{align}
 \end{cases}$$`
 
@@ -375,11 +375,11 @@ Q_t &amp;= \gamma_0 +\gamma_1P_t+w_t   \\
 
 `$$\begin{cases}
   \begin{align}
-  &amp; \pi_{21} = - \frac{\alpha_1\beta_0-\alpha_0\beta_1}{\alpha_1-\beta_1} \\
+  &amp; \pi_{12} = - \frac{\alpha_1\beta_0-\alpha_0\beta_1}{\alpha_1-\beta_1} \\
   &amp; \pi_{22} = - \frac{\alpha_2\beta_1}{\alpha_1-\beta_1} \\
-  &amp; \pi_{23} = - \frac{\alpha_3\beta_1}{\alpha_1-\beta_1} \\
-  &amp; \pi_{24} =   \frac{\alpha_1\beta_2}{\alpha_1-\beta_1} \\
-  &amp;v_{2t} = \frac{\alpha_1u_{2t}-\beta_1u_{1t}}{\alpha_1-\beta_1}
+  &amp; \pi_{32} = - \frac{\alpha_3\beta_1}{\alpha_1-\beta_1} \\
+  &amp; \pi_{42} =   \frac{\alpha_1\beta_2}{\alpha_1-\beta_1} \\
+  &amp;v_{t2} = \frac{\alpha_1u_{t2}-\beta_1u_{t1}}{\alpha_1-\beta_1}
   \end{align}
 \end{cases}$$`
 
@@ -490,8 +490,8 @@ layout: true
 
 `$$\begin{cases}
   \begin{align}
-  Q_t &amp;= \alpha_0+\alpha_1P_t+u_{1t}   &amp;(\alpha_1&lt;0)  &amp;&amp;\text{(需求函数)}\\
-  Q_t &amp;= \beta_0+\beta_1P_t+u_{2t}  &amp;(\beta_1&gt;0) &amp;&amp;\text{(供给函数)}\\
+  Q_t &amp;= \alpha_0+\alpha_1P_t+u_{t1}   &amp;(\alpha_1&lt;0)  &amp;&amp;\text{(需求函数)}\\
+  Q_t &amp;= \beta_0+\beta_1P_t+u_{t2}  &amp;(\beta_1&gt;0) &amp;&amp;\text{(供给函数)}\\
   \end{align}
 \end{cases}$$`
 
@@ -519,8 +519,8 @@ layout: true
 
 `$$\begin{cases}
   \begin{align}
-  Q_t &amp;= \alpha_0+\alpha_1P_t+\alpha_2I_t+u_{1t}   &amp;(\alpha_1&lt;0,\alpha_2&gt;0)  &amp;&amp;\text{(需求函数)}\\
-  Q_t &amp;= \beta_0+\beta_1P_t+u_{2t}  &amp;(\beta_1&gt;0) &amp;&amp;\text{(供给函数)}
+  Q_t &amp;= \alpha_0+\alpha_1P_t+\alpha_2I_t+u_{t1}   &amp;(\alpha_1&lt;0,\alpha_2&gt;0)  &amp;&amp;\text{(需求函数)}\\
+  Q_t &amp;= \beta_0+\beta_1P_t+u_{t2}  &amp;(\beta_1&gt;0) &amp;&amp;\text{(供给函数)}
   \end{align}
 \end{cases}$$`
 
@@ -549,8 +549,8 @@ layout: true
 
 `$$\begin{cases}
   \begin{align}
-  Q_t &amp;= \alpha_0+\alpha_1P_t+\alpha_2I_t+\alpha_3R_t+u_{1t} &amp;(\alpha_1&lt;0,\alpha_2&gt;0)  &amp;&amp;\text{(需求函数)}\\
-  Q_t &amp;= \beta_0+\beta_1P_t+\beta_2P_{t-1}+u_{2t}   &amp;(\beta_1,\beta_2&gt;0) &amp;&amp;\text{(供给函数)}
+  Q_t &amp;= \alpha_0+\alpha_1P_t+\alpha_2I_t+\alpha_3R_t+u_{t1} &amp;(\alpha_1&lt;0,\alpha_2&gt;0)  &amp;&amp;\text{(需求函数)}\\
+  Q_t &amp;= \beta_0+\beta_1P_t+\beta_2P_{t-1}+u_{t2}   &amp;(\beta_1,\beta_2&gt;0) &amp;&amp;\text{(供给函数)}
   \end{align}
 \end{cases}$$`
 
@@ -582,8 +582,8 @@ layout: true
 - 阶条件规则是识别的**必要而非充分条件**，即使它得到满足，方程也会出现不能识别的情形。例如：
 
 `$$\begin{align}
-Q &amp;= \alpha_0+\alpha_1P_t+\alpha_2I_t+u_{1t}   &amp;(\alpha_1&lt;0,\alpha_2&gt;0)  &amp;&amp;\text{(需求函数)}\\
-Q &amp;= \beta_0+\beta_1P_t+u_{2t}  &amp;(\beta_1&gt;0) &amp;&amp;\text{(供给函数)}
+Q &amp;= \alpha_0+\alpha_1P_t+\alpha_2I_t+u_{t1}   &amp;(\alpha_1&lt;0,\alpha_2&gt;0)  &amp;&amp;\text{(需求函数)}\\
+Q &amp;= \beta_0+\beta_1P_t+u_{t2}  &amp;(\beta_1&gt;0) &amp;&amp;\text{(供给函数)}
 \end{align}$$`
 
 根据阶条件规则，我们判断第二个方程（供给方程）是**恰好可识别的**。但实际上，我们还需要确保第一个方程中的收入
@@ -628,86 +628,93 @@ Q &amp;= \beta_0+\beta_1P_t+u_{2t}  &amp;(\beta_1&gt;0) &amp;&amp;\text{(供给�
 ### 可识别的秩条件：示例（写出代数式2；写出系数列表）
 
 `$$\begin{cases}
-  \begin{alignat}{6}
-  Y_{1t}-\beta_{10}&amp; &amp;-\beta_{12}Y_{2t}&amp;-\beta_{13}Y_{3t}&amp;-\gamma_{11}X_{1t} &amp;  &amp; &amp;=u_{1t} \\
-  Y_{2t}-\beta_{20}&amp; &amp; &amp;-\beta_{23}Y_{3t} &amp;-\gamma_{21}X_{1t} &amp;- \gamma_{22}X_{2t} &amp; &amp;=u_{2t}\\
-  Y_{3t}-\beta_{30} &amp;-\beta_{31}Y_{1t}&amp; &amp; &amp;-\gamma_{31}X_{1t} &amp;-\gamma_{32}X_{2t} &amp; &amp;=u_{3t} \\
-  Y_{4t}-\beta_{40} &amp;-\beta_{41}Y_{1t} &amp;-\beta_{42}Y_{2t} &amp; &amp; &amp; &amp;-\gamma_{43}X_{3t} &amp;=u_{4t} \end{alignat}
+  \begin{alignedat}{9}
+&amp;  Y_{t1} &amp;-\gamma_{21}Y_{t2}&amp;-\gamma_{31}Y_{t3} &amp; &amp;-\beta_{01}&amp;-\beta_{11}X_{t1} &amp;  &amp; &amp;= &amp;u_{t1} \\
+&amp; &amp; Y_{t2} &amp;-\gamma_{32} Y_{3t} &amp; &amp; -\beta_{02}&amp;-\beta_{12}X_{1t} &amp;- \beta_{22}X_{2t} &amp; &amp;= &amp;u_{t2}\\
+&amp;-\gamma_{13}Y_{t1} &amp;  &amp;+ Y_{t3} &amp; &amp; -\beta_{03}&amp;-\beta_{13}X_{1t} &amp;-\beta_{23}X_{2t} &amp; &amp;= &amp;u_{t3} \\
+&amp;-\gamma_{14}Y_{t1}&amp;-\gamma_{24}Y_{t2} &amp;  &amp;+Y_{t4}   &amp;-\beta_{04} &amp; &amp; &amp;-\beta_{34}X_{t3} &amp;= &amp;u_{t4} 
+  \end{alignedat}
 \end{cases}$$`
 
 
 可以将上述结构方程的参数写成如下的形式：
 
 `$$\begin{matrix}
--- &amp;  --  &amp; --  &amp; --  &amp; --  &amp; --  &amp; --  &amp; --  &amp; --  \\ 
-eq &amp;   1  &amp; Y_1 &amp; Y_2 &amp; Y_3 &amp; Y_4 &amp; X_1 &amp; X_2 &amp; X_3 \\
--- &amp;  --  &amp; --  &amp; --  &amp; --  &amp; --  &amp; --  &amp; --  &amp; --  \\ 
-1  &amp; -\beta_{10} &amp; 1 &amp; -\beta_{12} &amp; -\beta_{13} &amp; 0 &amp; -\gamma_{11} &amp; 0 &amp; 0 \\
-2  &amp; -\beta_{20} &amp; 0 &amp; 1 &amp; -\beta_{23} &amp; 0 &amp; -\gamma_{21} &amp; -\gamma_{22} &amp; 0 \\
-3  &amp; -\beta_{30} &amp; -\beta_{31} &amp; 0 &amp; 1 &amp; 0 &amp; -\gamma_{31} &amp; -\gamma_{32} &amp; 0 \\
-4  &amp; -\beta_{40} &amp; -\beta_{41} &amp; -\beta_{42} &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; -\gamma_{43} \\
+--   &amp; --  &amp; --  &amp; --  &amp; --  &amp;  --&amp; --  &amp; --  &amp; --  \\ 
+eq   &amp; Y_1 &amp; Y_2 &amp; Y_3 &amp; Y_4 &amp;   1&amp; X_1 &amp; X_2 &amp; X_3 \\
+--   &amp;  -- &amp; --  &amp; --  &amp; --  &amp; -- &amp; --  &amp; --  &amp; --  \\ 
+1   &amp; 1 &amp; -\gamma_{21} &amp; -\gamma_{31} &amp; 0 &amp; -\beta_{01}&amp; -\beta_{11} &amp; 0 &amp; 0 \\
+2   &amp; 0 &amp; 1 &amp; -\gamma_{32} &amp; 0 &amp; -\beta_{02}&amp; -\beta_{12} &amp; -\beta_{22} &amp; 0 \\
+3   &amp; -\gamma_{13} &amp; 0 &amp; 1 &amp; 0 &amp; -\beta_{03}&amp; -\beta_{13} &amp; -\beta_{23} &amp; 0 \\
+4   &amp; -\gamma_{14} &amp; -\gamma_{24} &amp; 0 &amp; 1 &amp; -\beta_{04}&amp; 0 &amp; 0 &amp; -\beta_{34} \\
 \end{matrix}$$`
 
 ---
 
 ### 可识别的秩条件：示例（分析第1个方程的变量数;找到缺失列）
 
-`$$\begin{alignat}{6}
-Y_{1t}-\beta_{10}&amp; &amp;-\beta_{12}Y_{2t}&amp;-\beta_{13}Y_{3t}&amp;-\gamma_{11}X_{1t} &amp;  &amp; &amp;=u_{1t} \\
-Y_{2t}-\beta_{20}&amp; &amp; &amp;-\beta_{23}Y_{3t} &amp;-\gamma_{21}X_{1t} &amp;- \gamma_{22}X_{2t} &amp; &amp;=u_{2t}\\
-Y_{3t}-\beta_{30} &amp;-\beta_{31}Y_{1t}&amp; &amp; &amp;-\gamma_{31}X_{1t} &amp;-\gamma_{32}X_{2t} &amp; &amp;=u_{3t} \\
-Y_{4t}-\beta_{40} &amp;-\beta_{41}Y_{1t} &amp;-\beta_{42}Y_{2t} &amp; &amp; &amp; &amp;-\gamma_{43}X_{3t} &amp;=u_{4t} \end{alignat}$$`
+`$$\begin{cases}
+  \begin{alignedat}{9}
+&amp;  Y_{t1} &amp;-\gamma_{21}Y_{t2}&amp;-\gamma_{31}Y_{t3} &amp; &amp;-\beta_{01}&amp;-\beta_{11}X_{t1} &amp;  &amp; &amp;= &amp;u_{t1} \\
+&amp; &amp; Y_{t2} &amp;-\gamma_{32} Y_{3t} &amp; &amp; -\beta_{02}&amp;-\beta_{12}X_{1t} &amp;- \beta_{22}X_{2t} &amp; &amp;= &amp;u_{t2}\\
+&amp;-\gamma_{13}Y_{t1} &amp;  &amp;+ Y_{t3} &amp; &amp; -\beta_{03}&amp;-\beta_{13}X_{1t} &amp;-\beta_{23}X_{2t} &amp; &amp;= &amp;u_{t3} \\
+&amp;-\gamma_{14}Y_{t1}&amp;-\gamma_{24}Y_{t2} &amp;  &amp;+Y_{t4}   &amp;-\beta_{04} &amp; &amp; &amp;-\beta_{34}X_{t3} &amp;= &amp;u_{t4} 
+  \end{alignedat}
+\end{cases}$$`
 
 - 第1个方程不包含的内生变量有：
-`\(Y_{4t}\)`；不包含的前定变量有：
-`\(X_{2t},X_{3t}\)`
+`\(Y_{t4}\)`；不包含的前定变量有：
+`\(X_{t2},X_{t3}\)`
 
 `$$\begin{matrix}
--- &amp;  --  &amp; --  &amp; --  &amp; --  &amp; --  &amp; --  &amp; --  &amp; --  \\ 
-eq &amp;   1  &amp; Y_1 &amp; Y_2 &amp; Y_3 &amp; [Y_4] &amp; X_1 &amp; [X_2] &amp; [X_3] \\
--- &amp;  --  &amp; --  &amp; --  &amp; --  &amp; --  &amp; --  &amp; --  &amp; --  \\ 
-1  &amp; -\beta_{10} &amp; 1 &amp; -\beta_{12} &amp; -\beta_{13} &amp; 0 &amp; -\gamma_{11} &amp; 0 &amp; 0 \\
-2  &amp; -\beta_{20} &amp; 0 &amp; 1 &amp; -\beta_{23} &amp; 0 &amp; -\gamma_{21} &amp; -\gamma_{22} &amp; 0 \\
-3  &amp; -\beta_{30} &amp; -\beta_{31} &amp; 0 &amp; 1 &amp; 0 &amp; -\gamma_{31} &amp; -\gamma_{32} &amp; 0 \\
-4  &amp; -\beta_{40} &amp; -\beta_{41} &amp; -\beta_{42} &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; -\gamma_{43} \\
+--   &amp; --  &amp; --  &amp; --  &amp; --  &amp;  --&amp; --  &amp; --  &amp; --  \\ 
+eq   &amp; Y_1 &amp; Y_2 &amp; Y_3 &amp; [Y_4] &amp;   1&amp; X_1 &amp; [X_2] &amp; [X_3] \\
+--   &amp;  -- &amp; --  &amp; --  &amp; --  &amp; -- &amp; --  &amp; --  &amp; --  \\ 
+1   &amp; 1 &amp; -\gamma_{21} &amp; -\gamma_{31} &amp; 0 &amp; -\beta_{01}&amp; -\beta_{11} &amp; 0 &amp; 0 \\
+2   &amp; 0 &amp; 1 &amp; -\gamma_{32} &amp; 0 &amp; -\beta_{02}&amp; -\beta_{12} &amp; -\beta_{22} &amp; 0 \\
+3   &amp; -\gamma_{13} &amp; 0 &amp; 1 &amp; 0 &amp; -\beta_{03}&amp; -\beta_{13} &amp; -\beta_{23} &amp; 0 \\
+4   &amp; -\gamma_{14} &amp; -\gamma_{24} &amp; 0 &amp; 1 &amp; -\beta_{04}&amp; 0 &amp; 0 &amp; -\beta_{34} \\
 \end{matrix}$$`
+
 
 ---
 
 ### 可识别的秩条件：示例（尝试找到1个目标矩阵；计算其行列式）
 
 `$$\begin{matrix}
--- &amp;  --  &amp; --  &amp; --  &amp; --  &amp; --  &amp; --  &amp; --  &amp; --  \\ 
-eq &amp;   1  &amp; Y_1 &amp; Y_2 &amp; Y_3 &amp; [Y_4] &amp; X_1 &amp; [X_2] &amp; [X_3] \\
--- &amp;  --  &amp; --  &amp; --  &amp; --  &amp; --  &amp; --  &amp; --  &amp; --  \\ 
-1  &amp; -\beta_{10} &amp; 1 &amp; -\beta_{12} &amp; -\beta_{13} &amp; 0 &amp; -\gamma_{11} &amp; 0 &amp; 0 \\
-2  &amp; -\beta_{20} &amp; 0 &amp; 1 &amp; -\beta_{23} &amp; 0 &amp; -\gamma_{21} &amp; -\gamma_{22} &amp; 0 \\
-3  &amp; -\beta_{30} &amp; -\beta_{31} &amp; 0 &amp; 1 &amp; 0 &amp; -\gamma_{31} &amp; -\gamma_{32} &amp; 0 \\
-4  &amp; -\beta_{40} &amp; -\beta_{41} &amp; -\beta_{42} &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; -\gamma_{43} \\
+--   &amp; --  &amp; --  &amp; --  &amp; --  &amp;  --&amp; --  &amp; --  &amp; --  \\ 
+eq   &amp; Y_1 &amp; Y_2 &amp; Y_3 &amp; [Y_4] &amp;   1&amp; X_1 &amp; [X_2] &amp; [X_3] \\
+--   &amp;  -- &amp; --  &amp; --  &amp; --  &amp; -- &amp; --  &amp; --  &amp; --  \\ 
+1   &amp; 1 &amp; -\gamma_{21} &amp; -\gamma_{31} &amp; 0 &amp; -\beta_{01}&amp; -\beta_{11} &amp; 0 &amp; 0 \\
+2   &amp; 0 &amp; 1 &amp; -\gamma_{32} &amp; 0 &amp; -\beta_{02}&amp; -\beta_{12} &amp; -\beta_{22} &amp; 0 \\
+3   &amp; -\gamma_{13} &amp; 0 &amp; 1 &amp; 0 &amp; -\beta_{03}&amp; -\beta_{13} &amp; -\beta_{23} &amp; 0 \\
+4   &amp; -\gamma_{14} &amp; -\gamma_{24} &amp; 0 &amp; 1 &amp; -\beta_{04}&amp; 0 &amp; 0 &amp; -\beta_{34} \\
 \end{matrix}$$`
 
 .pull-left[
 
-\begin{alignat}{3}
+`$$\begin{alignat}{3}
 A= 
-`\begin{bmatrix}
-0 &amp; -\gamma_{22} &amp;  0 \\
-0 &amp; -\gamma_{32} &amp; 0 \\
-1 &amp; 0 &amp;  -\gamma_{43} \\
-\end{bmatrix}`
-\end{alignat}]
+  \begin{bmatrix}
+  0 &amp; -\beta_{22} &amp;  0 \\
+  0 &amp; -\beta_{32} &amp; 0 \\
+  1 &amp; 0 &amp;  -\beta_{43} \\
+  \end{bmatrix}
+\end{alignat}$$`
+]
 
 .pull-right[
 
-\begin{alignat}{3}
+`$$\begin{alignat}{3}
 det(A)= 
-`\begin{vmatrix}
-0 &amp; -\gamma_{22} &amp;  0 \\
-0 &amp; -\gamma_{32} &amp; 0 \\
-1 &amp; 0 &amp;  -\gamma_{43} \\
-\end{vmatrix}`
+  \begin{vmatrix}
+  0 &amp; -\beta_{22} &amp;  0 \\
+  0 &amp; -\beta_{32} &amp; 0 \\
+  1 &amp; 0 &amp;  -\beta_{43} \\
+  \end{vmatrix}
 =0
-\end{alignat}]
+\end{alignat}$$`
+]
 
 这意味着，矩阵的秩
 `\(rank(A)=\mathbf{\rho}(A)&lt;3\)`。因此，**第一个方程**不满足秩条件，**不能识别**。
@@ -758,13 +765,13 @@ det(A)=
 ### 可识别的秩条件：示例（练习，其他3个方程是否可识别？）
 
 `$$\begin{matrix}
--- &amp;  --  &amp; --  &amp; --  &amp; --  &amp; --  &amp; --  &amp; --  &amp; --  \\ 
-eq &amp;   1  &amp; Y_1 &amp; Y_2 &amp; Y_3 &amp; Y_4 &amp; X_1 &amp; X_2 &amp; X_3 \\
--- &amp;  --  &amp; --  &amp; --  &amp; --  &amp; --  &amp; --  &amp; --  &amp; --  \\ 
-1  &amp; -\beta_{10} &amp; 1 &amp; -\beta_{12} &amp; -\beta_{13} &amp; 0 &amp; -\gamma_{11} &amp; 0 &amp; 0 \\
-2  &amp; -\beta_{20} &amp; 0 &amp; 1 &amp; -\beta_{23} &amp; 0 &amp; -\gamma_{21} &amp; -\gamma_{22} &amp; 0 \\
-3  &amp; -\beta_{30} &amp; -\beta_{31} &amp; 0 &amp; 1 &amp; 0 &amp; -\gamma_{31} &amp; -\gamma_{32} &amp; 0 \\
-4  &amp; -\beta_{40} &amp; -\beta_{41} &amp; -\beta_{42} &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; -\gamma_{43} \\
+--   &amp; --  &amp; --  &amp; --  &amp; --  &amp;  --&amp; --  &amp; --  &amp; --  \\ 
+eq   &amp; Y_1 &amp; Y_2 &amp; Y_3 &amp; Y_4 &amp;   1&amp; X_1 &amp; X_2 &amp; X_3 \\
+--   &amp;  -- &amp; --  &amp; --  &amp; --  &amp; -- &amp; --  &amp; --  &amp; --  \\ 
+1   &amp; 1 &amp; -\gamma_{21} &amp; -\gamma_{31} &amp; 0 &amp; -\beta_{01}&amp; -\beta_{11} &amp; 0 &amp; 0 \\
+2   &amp; 0 &amp; 1 &amp; -\gamma_{32} &amp; 0 &amp; -\beta_{02}&amp; -\beta_{12} &amp; -\beta_{22} &amp; 0 \\
+3   &amp; -\gamma_{13} &amp; 0 &amp; 1 &amp; 0 &amp; -\beta_{03}&amp; -\beta_{13} &amp; -\beta_{23} &amp; 0 \\
+4   &amp; -\gamma_{14} &amp; -\gamma_{24} &amp; 0 &amp; 1 &amp; -\beta_{04}&amp; 0 &amp; 0 &amp; -\beta_{34} \\
 \end{matrix}$$`
 
 **答案**：
@@ -784,16 +791,19 @@ eq &amp;   1  &amp; Y_1 &amp; Y_2 &amp; Y_3 &amp; Y_4 &amp; X_1 &amp; X_2 &amp; 
 
 ### 可识别的秩条件：与阶条件判断法进行比较
 
-`$$\begin{alignat}{6}
-Y_{1t}-\beta_{10}&amp; &amp;-\beta_{12}Y_{2t}&amp;-\beta_{13}Y_{3t}&amp;-\gamma_{11}X_{1t} &amp;  &amp; &amp;=u_{1t} \\
-Y_{2t}-\beta_{20}&amp; &amp; &amp;-\beta_{23}Y_{3t} &amp;-\gamma_{21}X_{1t} &amp;- \gamma_{22}X_{2t} &amp; &amp;=u_{2t}\\
-Y_{3t}-\beta_{30} &amp;-\beta_{31}Y_{1t}&amp; &amp; &amp;-\gamma_{31}X_{1t} &amp;-\gamma_{32}X_{2t} &amp; &amp;=u_{3t} \\
-Y_{4t}-\beta_{40} &amp;-\beta_{41}Y_{1t} &amp;-\beta_{42}Y_{2t} &amp; &amp; &amp; &amp;-\gamma_{43}X_{3t} &amp;=u_{4t} \end{alignat}$$`
+`$$\begin{cases}
+  \begin{alignedat}{9}
+&amp;  Y_{t1} &amp;-\gamma_{21}Y_{t2}&amp;-\gamma_{31}Y_{t3} &amp; &amp;-\beta_{01}&amp;-\beta_{11}X_{t1} &amp;  &amp; &amp;= &amp;u_{t1} \\
+&amp; &amp; Y_{t2} &amp;-\gamma_{32} Y_{3t} &amp; &amp; -\beta_{02}&amp;-\beta_{12}X_{1t} &amp;- \beta_{22}X_{2t} &amp; &amp;= &amp;u_{t2}\\
+&amp;-\gamma_{13}Y_{t1} &amp;  &amp;+ Y_{t3} &amp; &amp; -\beta_{03}&amp;-\beta_{13}X_{1t} &amp;-\beta_{23}X_{2t} &amp; &amp;= &amp;u_{t3} \\
+&amp;-\gamma_{14}Y_{t1}&amp;-\gamma_{24}Y_{t2} &amp;  &amp;+Y_{t4}   &amp;-\beta_{04} &amp; &amp; &amp;-\beta_{34}X_{t3} &amp;= &amp;u_{t4} 
+  \end{alignedat}
+\end{cases}$$`
 
 下面我们再运用**识别的阶条件**对所有方程进行判断，可以得到下面结果：
 
-<div id="htmlwidget-0e0e176d9e6f1c4b321b" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-0e0e176d9e6f1c4b321b">{"x":{"filter":"none","data":[["1","2","3","4"],[1,2,3,4],[3,2,2,3],[1,2,2,1],[4,4,4,4],[3,3,3,3],[2,1,1,2],[2,1,1,2],["恰好识别","恰好识别","恰好识别","恰好识别"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>eq<\/th>\n      <th>m<\/th>\n      <th>k<\/th>\n      <th>M<\/th>\n      <th>K<\/th>\n      <th>K-k<\/th>\n      <th>m-1<\/th>\n      <th>结论<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":6,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[6,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-a39ac0cf67f6ea51f619" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a39ac0cf67f6ea51f619">{"x":{"filter":"none","data":[["1","2","3","4"],[1,2,3,4],[3,2,2,3],[1,2,2,1],[4,4,4,4],[3,3,3,3],[2,1,1,2],[2,1,1,2],["恰好识别","恰好识别","恰好识别","恰好识别"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>eq<\/th>\n      <th>m<\/th>\n      <th>k<\/th>\n      <th>M<\/th>\n      <th>K<\/th>\n      <th>K-k<\/th>\n      <th>m-1<\/th>\n      <th>结论<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":6,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[6,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 
 
 ---
@@ -852,8 +862,8 @@ layout: true
 给定联立方程：
 
 `$$\begin{align}
-Q &amp;= \alpha_0+\alpha_1P_t+\alpha_2I_t+\alpha_3R_t+u_{1t}   &amp;(\alpha_1&lt;0,\alpha_2&gt;0)  &amp;&amp;\text{(需求函数)}\\
-Q &amp;= \beta_0+\beta_1P_t+u_{2t}  &amp;(\beta_1&gt;0) &amp;&amp;\text{(供给函数)}
+Q &amp;= \alpha_0+\alpha_1P_t+\alpha_2I_t+\alpha_3R_t+u_{t1}   &amp;(\alpha_1&lt;0,\alpha_2&gt;0)  &amp;&amp;\text{(需求函数)}\\
+Q &amp;= \beta_0+\beta_1P_t+u_{t2}  &amp;(\beta_1&gt;0) &amp;&amp;\text{(供给函数)}
 \end{align}$$`
 
 其中： P=价格；I=收入；R=财富
@@ -861,8 +871,8 @@ Q &amp;= \beta_0+\beta_1P_t+u_{2t}  &amp;(\beta_1&gt;0) &amp;&amp;\text{(供给�
 很容易得到约简方程：
 
 `$$\begin{align}
-P_t &amp;= \pi_{11}+ \pi_{12}I_t + \pi_{13} R_t + v_{1t} &amp;&amp;\text{(约简方程1)}\\
-Q_t &amp;= \pi_{21}+ \pi_{22}I_t + \pi_{23} R_t + v_{2t} &amp;&amp;\text{(约简方程2)} 
+P_t &amp;= \pi_{11}+ \pi_{21}I_t + \pi_{31} R_t + v_{t1} &amp;&amp;\text{(约简方程1)}\\
+Q_t &amp;= \pi_{12}+ \pi_{22}I_t + \pi_{33} R_t + v_{t2} &amp;&amp;\text{(约简方程2)} 
 \end{align}$$`
 
 ---
@@ -872,15 +882,15 @@ Q_t &amp;= \pi_{21}+ \pi_{22}I_t + \pi_{23} R_t + v_{2t} &amp;&amp;\text{(约简
 我们可以直接用OLS方法估计约简方程1（价格方程），得到：
 
 `$$\begin{align}
-P_t &amp;= \hat{\pi}_{11}+ \hat{\pi}_{12}I_t + \hat{\pi}_{13} R_t + \hat{v}_{1t} &amp;&amp;\text{(价格方程的OLS估计)} \\
-    &amp;= \hat{P_t} +\hat{v}_{1t}
+P_t &amp;= \hat{\pi}_{11}+ \hat{\pi}_{21}I_t + \hat{\pi}_{31} R_t + \hat{v}_{t1} &amp;&amp;\text{(价格方程的OLS估计)} \\
+    &amp;= \hat{P_t} +\hat{v}_{t1}
 \end{align}$$`
 
 进而可以将价格方程的OLS估计结果带入如下**检验方程**，并做如下的OLS估计：
 
 `$$\begin{align}
-Q_t &amp;= \beta_0+\beta_1\hat{P_t} + \beta_1 \hat{v}_{1t} +u_{2t} &amp; &amp;&amp; \text{(豪斯曼检验方程)}\\
-Q_t &amp;= \beta_0+\beta_1 {P_t} + \beta_1\hat{v}_{1t} +u_{2t} &amp; &amp;&amp;\text{(平狄克检验方程)} \\
+Q_t &amp;= \beta_0+\beta_1\hat{P_t} + \beta_1 \hat{v}_{t1} +u_{t2} &amp; &amp;&amp; \text{(豪斯曼检验方程)}\\
+Q_t &amp;= \beta_0+\beta_1 {P_t} + \beta_1\hat{v}_{t1} +u_{t2} &amp; &amp;&amp;\text{(平狄克检验方程)} \\
 \end{align}$$`
 
 .pull-left[
@@ -889,16 +899,16 @@ Q_t &amp;= \beta_0+\beta_1 {P_t} + \beta_1\hat{v}_{1t} +u_{2t} &amp; &amp;&amp;\
 - 原假设
 `\(H_0\)`
 ：无联立性问题，要求
-`\(\hat{v}_{1t}\)`
+`\(\hat{v}_{t1}\)`
 和
-`\(u_{2t}\)`
+`\(u_{t2}\)`
 不相关；
 - 备择假设
 `\(H_1\)`
 ：有联立性问题，要求
-`\(\hat{v}_{1t}\)`
+`\(\hat{v}_{t1}\)`
 和
-`\(u_{2t}\)`
+`\(u_{t2}\)`
 相关；
 
 ]
@@ -931,16 +941,16 @@ Q_t &amp;= \beta_0+\beta_1 {P_t} + \beta_1\hat{v}_{1t} +u_{2t} &amp; &amp;&amp;\
 因此，豪斯曼检验的步骤包括：
 
 - step 1：利用OLS方法，做
-`\(P_t = \hat{\pi}_{11}+ \hat{\pi}_{12}I_t + \hat{\pi}_{13} R_t + \hat{v}_{1t}\)`
+`\(P_t = \hat{\pi}_{11}+ \hat{\pi}_{21}I_t + \hat{\pi}_{31} R_t + \hat{v}_{t1}\)`
 的回归，得到
 `\(\hat{v_t}\)`
 
 - step 2：利用OLS方法，做
-`\(Q_t = \beta_0+\beta_1 \hat{P_t} + \beta_1\hat{v}_{1t} +u_{2t}\)`
+`\(Q_t = \beta_0+\beta_1 \hat{P_t} + \beta_1\hat{v}_{t1} +u_{t2}\)`
 的回归，并对
 `\(\hat{v}_{1t}\)`
 的系数进行t检验，并作出联立性问题的判断。 需要注意的是，为了更有效地估计，平狄克 (Pindyck) 和鲁宾费尔德 (Rubinfeld) 建议对
-`\(Q_t = \beta_0+\beta_1 P_t + \beta_1\hat{v}_{1t} +u_{2t}\)`
+`\(Q_t = \beta_0+\beta_1 P_t + \beta_1\hat{v}_{t1} +u_{t2}\)`
 的回归。
 
 ---
@@ -950,15 +960,15 @@ Q_t &amp;= \beta_0+\beta_1 {P_t} + \beta_1\hat{v}_{1t} +u_{2t} &amp; &amp;&amp;\
 我们仍旧以松露案例模型为例，给定如下联立方程：
 
 `$$\begin{align}
-Q_i &amp;= \alpha_0+\alpha_1P_i+\alpha_2PS_i+\alpha_3DI_i+u_{1i}  &amp;&amp;\text{(需求函数)}\\
-Q_i &amp;= \beta_0+\beta_1P_i+\beta_2PF_i+u_{2i}    &amp;&amp;\text{(供给函数)}
+Q_i &amp;= \alpha_0+\alpha_1P_i+\alpha_2PS_i+\alpha_3DI_i+u_{i1}  &amp;&amp;\text{(需求函数)}\\
+Q_i &amp;= \beta_0+\beta_1P_i+\beta_2PF_i+u_{i2}    &amp;&amp;\text{(供给函数)}
 \end{align}$$`
 
 很快可以得到约简方程：
 
 `$$\begin{align}
-P_i &amp;= \pi_{11}+ \pi_{12}PS_i+\pi_{13}DI_i+\pi_{14}PF_i+v_{1i} \\
-Q_i &amp;= \pi_{21}+\pi_{22}PS_t+\pi_{23}DI_t+\pi_{24}PF_i+v_{2i} 
+P_i &amp;= \pi_{11}+ \pi_{21}PS_i+\pi_{31}DI_i+\pi_{41}PF_i+v_{i1} \\
+Q_i &amp;= \pi_{12}+\pi_{22}PS_t+\pi_{32}DI_t+\pi_{42}PF_i+v_{i2} 
 \end{align}$$`
 
 ---
@@ -971,10 +981,10 @@ Q_i &amp;= \pi_{21}+\pi_{22}PS_t+\pi_{23}DI_t+\pi_{24}PF_i+v_{2i}
 `$$\begin{cases}
   \begin{align}
   &amp; \pi_{11} = \frac{\beta_0-\alpha_0}{\alpha_1-\beta_1}\\
-  &amp; \pi_{12} = - \frac{\alpha_2}{\alpha_1-\beta_1}\\
-  &amp; \pi_{13} = - \frac{\alpha_3}{\alpha_1-\beta_1}\\
-  &amp; \pi_{14} = \frac{\beta_2}{\alpha_1-\beta_1}\\
-  &amp; v_{1i} = \frac{u_{2i}-u_{1i}}{\alpha_1-\beta_1}  
+  &amp; \pi_{21} = - \frac{\alpha_2}{\alpha_1-\beta_1}\\
+  &amp; \pi_{31} = - \frac{\alpha_3}{\alpha_1-\beta_1}\\
+  &amp; \pi_{41} = \frac{\beta_2}{\alpha_1-\beta_1}\\
+  &amp; v_{i1} = \frac{u_{i2}-u_{i1}}{\alpha_1-\beta_1}  
   \end{align}
 \end{cases}$$`
 
@@ -984,11 +994,11 @@ Q_i &amp;= \pi_{21}+\pi_{22}PS_t+\pi_{23}DI_t+\pi_{24}PF_i+v_{2i}
 
 `$$\begin{cases}
   \begin{align}
-  &amp; \pi_{21} = - \frac{\alpha_1\beta_0-\alpha_0\beta_1}{\alpha_1-\beta_1}  \\
+  &amp; \pi_{12} = - \frac{\alpha_1\beta_0-\alpha_0\beta_1}{\alpha_1-\beta_1}  \\
   &amp; \pi_{22} = - \frac{\alpha_2\beta_1}{\alpha_1-\beta_1} \\
-  &amp; \pi_{23} = - \frac{\alpha_3\beta_1}{\alpha_1-\beta_1} \\
-  &amp; \pi_{24} =   \frac{\alpha_1\beta_2}{\alpha_1-\beta_1} \\
-  &amp; v_{2i} = \frac{\alpha_1u_{2i}-\beta_1u_{1i}}{\alpha_1-\beta_1} 
+  &amp; \pi_{32} = - \frac{\alpha_3\beta_1}{\alpha_1-\beta_1} \\
+  &amp; \pi_{42} =   \frac{\alpha_1\beta_2}{\alpha_1-\beta_1} \\
+  &amp; v_{i2} = \frac{\alpha_1u_{i2}-\beta_1u_{i1}}{\alpha_1-\beta_1} 
   \end{align}
 \end{cases}$$`
 
@@ -999,11 +1009,11 @@ Q_i &amp;= \pi_{21}+\pi_{22}PS_t+\pi_{23}DI_t+\pi_{24}PF_i+v_{2i}
 ### 联立性检验：松露案例（OLS估计价格方程）
 
 按照豪斯曼联立性检验的**第一个步骤**，利用OLS方法回归如下价格**约简方程**，并得到
-`\(\hat{P_i},\hat{v}_{1i}\)`
+`\(\hat{P_i},\hat{v}_{i1}\)`
 
 `$$\begin{align}
-P_i &amp; = \hat{\pi}_{11}+ \hat{\pi}_{12} PS_i + \hat{\pi}_{13} DI_i + \hat{\pi}_{14} PF_i + \hat{v}_{1i} \\
-    &amp; = \hat{P_i} + \hat{v}_{1i}
+P_i &amp; = \hat{\pi}_{11}+ \hat{\pi}_{21} PS_i + \hat{\pi}_{31} DI_i + \hat{\pi}_{41} PF_i + \hat{v}_{i1} \\
+    &amp; = \hat{P_i} + \hat{v}_{i1}
 \end{align}$$`
 
 ---
@@ -1060,10 +1070,10 @@ F-statistic: 69.2 on 3 and 26 DF,  p-value: 1.6e-12
 ### 联立性检验：松露案例（OLS估计价格方程；估计得到的变量）
 
 进而可以分别估计得到
-`\(\hat{P_i},\hat{v}_{1i}\)`
+`\(\hat{P_i},\hat{v}_{i1}\)`
 
-<div id="htmlwidget-7dd49426022b7e6fdf3b" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-7dd49426022b7e6fdf3b">{"x":{"filter":"none","caption":"<caption>估计价格方程并得到hat.Pi和hat.v1i<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30"],[29.64,40.23,34.71,41.43,53.37,38.52,54.33,40.56,67.35,49.65,58.17,66.87,49.95,64.95,52.68,61.2,80.55,89.94,70.77,57.33,46.23,77.43,83.01,70.71,66.75,76.8,83.7,81,88.44,105.45],[19.89,13.04,19.61,17.13,22.55,6.37,15.02,10.22,23.64,16.12,24.55,18.92,11.94,18.93,12.6,20.49,22.94,21.08,16.68,17.61,16.62,20.99,24.53,19.67,23.29,16.64,20.81,14.95,26.27,20.65],[19.97,18.04,22.36,20.87,19.79,15.98,17.94,17.09,22.72,15.74,24.64,23.7,15.93,23.34,15.21,26.04,22.95,27.1,23.65,20.06,26.38,24.28,26.64,22.65,19.68,23.82,28.98,18.52,28.16,28.43],[2.103,2.043,1.87,1.525,2.709,2.489,2.294,2.196,3.885,3.169,2.623,3.007,3.367,3.29,3.746,3.518,4.381,4.121,3.82,4.398,3.764,4.524,4.815,3.67,4.392,4.603,4.632,4.894,5.125,4.836],[10.52,19.67,13.74,17.95,13.71,24.95,24.17,23.61,19.52,20.03,15.38,22.98,25.76,25.17,25.82,19.31,26.02,29.65,27.45,18,18.87,24.58,25.25,24.24,22.63,27.35,27.8,30.34,24.12,34.01],[31.8304,40.4658,38.5011,39.033,40.449,47.4863,48.2958,45.3406,62.2606,45.5848,50.3407,61.9441,55.1726,66.4457,56.9053,64.8572,75.2247,85.2515,74.0915,59.5591,66.7125,76.6341,83.7847,66.8969,65.1329,80.1992,89.843,77.4066,87.208,98.8622],[-2.1904,-0.2358,-3.7911,2.397,12.921,-8.9663,6.0342,-4.7806,5.0894,4.0652,7.8293,4.9259,-5.2226,-1.4957,-4.2253,-3.6572,5.3253,4.6885,-3.3215,-2.2291,-20.4825,0.7959,-0.7747,3.8131,1.6171,-3.3992,-6.143,3.5934,1.232,6.5878]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>P<\/th>\n      <th>Q<\/th>\n      <th>PS<\/th>\n      <th>DI<\/th>\n      <th>PF<\/th>\n      <th>hat.Pi<\/th>\n      <th>hat.vi<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":6,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[6,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-0bf2a478b2ce59ae86b3" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-0bf2a478b2ce59ae86b3">{"x":{"filter":"none","caption":"<caption>估计价格方程并得到hat.Pi和hat.v1i<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30"],[29.64,40.23,34.71,41.43,53.37,38.52,54.33,40.56,67.35,49.65,58.17,66.87,49.95,64.95,52.68,61.2,80.55,89.94,70.77,57.33,46.23,77.43,83.01,70.71,66.75,76.8,83.7,81,88.44,105.45],[19.89,13.04,19.61,17.13,22.55,6.37,15.02,10.22,23.64,16.12,24.55,18.92,11.94,18.93,12.6,20.49,22.94,21.08,16.68,17.61,16.62,20.99,24.53,19.67,23.29,16.64,20.81,14.95,26.27,20.65],[19.97,18.04,22.36,20.87,19.79,15.98,17.94,17.09,22.72,15.74,24.64,23.7,15.93,23.34,15.21,26.04,22.95,27.1,23.65,20.06,26.38,24.28,26.64,22.65,19.68,23.82,28.98,18.52,28.16,28.43],[2.103,2.043,1.87,1.525,2.709,2.489,2.294,2.196,3.885,3.169,2.623,3.007,3.367,3.29,3.746,3.518,4.381,4.121,3.82,4.398,3.764,4.524,4.815,3.67,4.392,4.603,4.632,4.894,5.125,4.836],[10.52,19.67,13.74,17.95,13.71,24.95,24.17,23.61,19.52,20.03,15.38,22.98,25.76,25.17,25.82,19.31,26.02,29.65,27.45,18,18.87,24.58,25.25,24.24,22.63,27.35,27.8,30.34,24.12,34.01],[31.8304,40.4658,38.5011,39.033,40.449,47.4863,48.2958,45.3406,62.2606,45.5848,50.3407,61.9441,55.1726,66.4457,56.9053,64.8572,75.2247,85.2515,74.0915,59.5591,66.7125,76.6341,83.7847,66.8969,65.1329,80.1992,89.843,77.4066,87.208,98.8622],[-2.1904,-0.2358,-3.7911,2.397,12.921,-8.9663,6.0342,-4.7806,5.0894,4.0652,7.8293,4.9259,-5.2226,-1.4957,-4.2253,-3.6572,5.3253,4.6885,-3.3215,-2.2291,-20.4825,0.7959,-0.7747,3.8131,1.6171,-3.3992,-6.143,3.5934,1.232,6.5878]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>P<\/th>\n      <th>Q<\/th>\n      <th>PS<\/th>\n      <th>DI<\/th>\n      <th>PF<\/th>\n      <th>hat.Pi<\/th>\n      <th>hat.vi<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":6,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[6,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 
 
 ---
@@ -1073,8 +1083,8 @@ F-statistic: 69.2 on 3 and 26 DF,  p-value: 1.6e-12
 下面，我们继续进行豪斯曼联立性检验的**第二个步骤**（采用平狄克和鲁宾费尔德的建议），采用OLS方法估计如下**豪斯曼检验方程**和**平狄克检验方程**：
 
 `$$\begin{align}
-Q_i &amp;= \beta_0+\beta_1 \hat{P_i} +\beta_1 \hat{v}_{1i} +u_{2i} &amp;&amp;\text{(豪斯曼检验方程)} \\
-Q_i &amp;= \beta_0+\beta_1P_i +\beta_1 \hat{v}_{1i} +u_{2i} &amp;&amp;\text{(平狄克检验方程)} 
+Q_i &amp;= \beta_0+\beta_1 \hat{P_i} +\beta_1 \hat{v}_{i1} +u_{i2} &amp;&amp;\text{(豪斯曼检验方程)} \\
+Q_i &amp;= \beta_0+\beta_1P_i +\beta_1 \hat{v}_{i1} +u_{i2} &amp;&amp;\text{(平狄克检验方程)} 
 \end{align}$$`
 
 因此，我们马上可以得到**第二个步骤的检验结果**。
@@ -1116,7 +1126,7 @@ F-statistic: 7.84 on 2 and 27 DF,  p-value: 0.00207
 如果采用**豪斯曼检验方程**，上述精简报告结果如下：
 
 `$$\begin{alignedat}{999}
-&amp;\widehat{Q}=&amp;&amp;+11.95&amp;&amp;+0.10hat.Pi&amp;&amp;+0.34hat.vi\\
+&amp;\widehat{Q}=&amp;&amp;+11.95&amp;&amp;+0.10\hat{P}&amp;&amp;+0.34\hat{v}_{1}\\
 &amp;\text{(t)}&amp;&amp;(4.5880)&amp;&amp;(2.5952)&amp;&amp;(2.9901)\\
 &amp;\text{(se)}&amp;&amp;(2.6037)&amp;&amp;(0.0400)&amp;&amp;(0.1130)\\
 &amp;\text{(fitness)}&amp;&amp; n=30;&amp;&amp; R^2=0.3673;&amp;&amp; \bar{R^2}=0.3205\\
@@ -1133,7 +1143,7 @@ F-statistic: 7.84 on 2 and 27 DF,  p-value: 0.00207
     )
     
     - 因此，
-    `\(\hat{v}_{1i}\)`前系数的t检验是**极显著的**(给定
+    `\(\hat{v}_{i1}\)`前系数的t检验是**极显著的**(给定
     `\(\alpha=0.01\)`
     水平下)，从而**拒绝原假设**
     `\(H_0\)`
@@ -1183,7 +1193,7 @@ fun_report_eq(Hausman_models$mod.Q.Pindyck,lm.dt =truffles_Hausman)
 ---&gt;
 
 `$$\begin{alignedat}{999}
-&amp;\widehat{Q}=&amp;&amp;+11.95&amp;&amp;+0.10P&amp;&amp;+0.23\hat{v}_{1i}\\
+&amp;\widehat{Q}=&amp;&amp;+11.95&amp;&amp;+0.10P&amp;&amp;+0.23\hat{v}_{1}\\
 &amp;\text{(t)}&amp;&amp;(4.5880)&amp;&amp;(2.5952)&amp;&amp;(1.9529)\\
 &amp;\text{(se)}&amp;&amp;(2.6037)&amp;&amp;(0.0400)&amp;&amp;(0.1199)\\
 &amp;\text{(fitness)}&amp;&amp; n=30;&amp;&amp; R^2=0.3673;&amp;&amp; \bar{R^2}=0.3205\\
@@ -1193,7 +1203,7 @@ fun_report_eq(Hausman_models$mod.Q.Pindyck,lm.dt =truffles_Hausman)
 - 联立性问题检验结论：
 
     - 
-    `\(\hat{v}_{1i}\)`前的系数等于0.23，
+    `\(\hat{v}_{i1}\)`前的系数等于0.23，
     `\(t^{\ast}=1.9529&gt;t{(\alpha/2,n-3)}=\)`
     1.7。(给定
     `\(\alpha=0.1\)`
