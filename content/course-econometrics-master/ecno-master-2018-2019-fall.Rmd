@@ -22,6 +22,8 @@ type: docs
 
 大礼包3（点击进入）：[**2018年秋学期**的试题参考答案（网页版）](/course-econometrics-master/ecno-master-2018-2019-fall.html) 
 
+大礼包4（点击进入）：[**2019年秋学期**的复习提要（网页版）](/course-econometrics-master/ecno-master-2019-fall--note.html) 
+
 说明：
 
 - 以上资料不作为最新课程考试的最终依据，仅供参考！
