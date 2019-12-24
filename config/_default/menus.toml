@@ -36,6 +36,12 @@
   url = "/course-econometrics-master/"
   parent = "Teaching"
   weight = 3
+  
+[[main]]
+  name = "高级统计学(博士)"
+  url = "/course-advanced-statistics/"
+  parent = "Teaching"
+  weight = 4
 
 [[main]]
   name = "Talk"
