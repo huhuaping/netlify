@@ -2,10 +2,10 @@
 date: "2019-03-01"
 draft: false
 menu:
-  course-statistics:
-    name: 高级统计学 (简介)
+  course-advanced-statistics:
+    name: 高级统计学(简介)
     weight: 1
-title: 高级统计学 (简介)
+title: 高级统计学(简介)
 toc: true
 type: docs
 ---

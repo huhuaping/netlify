@@ -20,28 +20,34 @@
   weight = 3
 
 [[main]]
-  name = "Econometrics(本科生)"
+  name = "计量经济学(本科生)"
   url = "/course-econometrics/"
   parent = "Teaching"
   weight = 1
 
 [[main]]
-  name = "Statistics(本科生)"
-  url = "/course-statistics/"
-  parent = "Teaching"
-  weight = 2
-
-[[main]]
-  name = "Econometrics(研究生)"
+  name = "中级计量经济学(研究生)"
   url = "/course-econometrics-master/"
   parent = "Teaching"
-  weight = 3
+  weight = 2
   
+[[main]]
+  name = "统计学原理(本科生)"
+  url = "/course-statistics/"
+  parent = "Teaching"
+  weight = 3
+
 [[main]]
   name = "高级统计学(博士)"
   url = "/course-advanced-statistics/"
   parent = "Teaching"
   weight = 4
+
+[[main]]
+  name = "数据模型与决策(MBA)"
+  url = "/course-or/"
+  parent = "Teaching"
+  weight = 5
 
 [[main]]
   name = "Talk"
