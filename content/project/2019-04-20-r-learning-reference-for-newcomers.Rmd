@@ -11,6 +11,7 @@ image:
   caption: ''
   focal_point: ''
 math: true
+summary: R语言及Rmarkdown语言快速上手参考资料。
 output:
   blogdown::html_page:
       number_sections: true
@@ -18,7 +19,7 @@ output:
 
 ---
 
-R语言及Rmarkdown语言快速上手参考资料。
+R语言及Rmarkdown语言快速上手参考资料 。
 
 **说明**：
 

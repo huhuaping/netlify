@@ -1,0 +1,235 @@
+---
+title: "R+docker进行动态网页数据抓取"
+author: huhuaping
+date: '2020-02-09'
+slug: dynamic-web-scraping
+categories:
+  - Research
+tags:
+  - webscrape
+image:
+  caption: ''
+  focal_point: ''
+---
+
+
+
+<div id="工具和准备" class="section level1">
+<h1>工具和准备</h1>
+<div id="安装工具软件" class="section level2">
+<h2>安装工具软件</h2>
+<ul>
+<li><p>下载安装docker <a href="https://www.docker.com/">官网</a></p>
+<ul>
+<li>一个教程供学习：<a href="https://docker-curriculum.com/">A Docker Tutorial for Beginners</a></li>
+</ul></li>
+<li><p>Rstudio中安装RSelenium包 <a href="https://github.com/ropensci/RSelenium">官网</a></p></li>
+</ul>
+<pre class="r"><code># install.packages(&quot;devtools&quot;)
+devtools::install_github(&quot;ropensci/RSelenium&quot;)</code></pre>
+<ul>
+<li><p>下载安装TightVNC用于查看实时交互。<a href="https://www.tightvnc.com/">官网</a></p>
+<ul>
+<li>一份说明供学习：<a href="https://cran.r-project.org/web/packages/RSelenium/vignettes/docker.html#debugging-using-vnc">Debugging Using VNC</a></li>
+</ul></li>
+</ul>
+</div>
+<div id="docker配置准备" class="section level2">
+<h2>docker配置准备</h2>
+<ul>
+<li><p>注册docker hub账号（非必须）</p></li>
+<li><p>配置国内镜像站点（强烈建议）。速度将明显改观！具体参看<a href="https://yeasy.gitbooks.io/docker_practice/install/mirror.html">材料</a></p></li>
+<li><p>使用docker命令拉取selenium -chrome镜像（请根据自己的浏览器选择，chrome或者firefox）</p></li>
+</ul>
+<p>在Rstudio的Terminal窗口中执行如下命令！</p>
+<ul>
+<li>启动docker服务：</li>
+</ul>
+<pre class="bash"><code>$ docker run -d -p 4445:4444 selenium/standalone-chrome</code></pre>
+</div>
+<div id="rselenium相关操作" class="section level2">
+<h2>RSelenium相关操作</h2>
+<p>使用RSelenium包控制浏览器主要依靠remoteDriver系列函数。简单操作命令如下。可参考<a href="https://blog.csdn.net/weixin_40628687/article/details/79008995">网络材料</a></p>
+<pre class="r"><code>library(RSelenium)
+remDr &lt;- remoteDriver(browserName =&quot;chrome&quot;)</code></pre>
+<pre class="r"><code># 打开浏览器
+remDr$open()
+# 关闭浏览器
+remDr$quit()  # 直接退出
+remDr$close()  # close用于关闭当前会话，也可以用作关闭浏览器</code></pre>
+<pre class="r"><code># 打开网页
+url &lt;- &#39;http://www.baidu.com&#39;
+remDr$navigate(url)
+# 关闭网页
+remDr$closeWindow()</code></pre>
+<pre class="r"><code># 打开网页
+url &lt;- &#39;http://www.baidu.com&#39;
+remDr$navigate(url)
+# 定位
+xpath &lt;- &#39;//*[@id=&quot;su&quot;]&#39;
+btn &lt;- remDr$findElement(using = &#39;xpath&#39;, value = xpath)
+# 单击
+btn$clickElement()</code></pre>
+</div>
+</div>
+<div id="一个实例抓取并下载智慧教学云平台资料" class="section level1">
+<h1>一个实例：抓取并下载智慧教学云平台资料</h1>
+<div id="案例数据抓取的目标" class="section level2">
+<h2>案例数据抓取的目标</h2>
+<ul>
+<li><p>目标是获得全部视频（83x3= 249）的下载地址。</p></li>
+<li><p>整理各个视频的基本信息，用于下载视频后期的准确重命名（下载地址url是一串字符而已）。</p></li>
+</ul>
+<p>登录后的<strong>目标页面</strong>：</p>
+<p><img src="pic/web-scrape-AI-room-vedio-list.png" width="613" style="display: block; margin: auto;" /></p>
+</div>
+<div id="案例数据抓取的特点" class="section level2">
+<h2>案例数据抓取的特点</h2>
+<ul>
+<li><p>需要账号/密码登陆</p></li>
+<li><p>动态网页：可能会碰到JavaScript、下拉选择等操作</p></li>
+<li><p>网站可能随时调整：例如视频材料定期清除</p></li>
+</ul>
+</div>
+<div id="r代码实现" class="section level2">
+<h2>R代码实现</h2>
+<pre class="r"><code># useful packages
+library(RSelenium)
+library(wdman)
+library(&quot;XML&quot;)
+library(&quot;tidyverse&quot;)
+library(xml2)
+library(rvest)
+
+# remote driver
+remDr &lt;- RSelenium::remoteDriver(remoteServerAddr = &quot;localhost&quot;,
+                                 port = 4445L,
+                                 browserName = &quot;chrome&quot;)
+remDr$open()
+
+# navigate to the website of interest
+remDr$navigate(&quot;http://172.26.3.11:8080/&quot;)
+
+# check on there
+remDr$screenshot(display = TRUE)
+
+# login info
+remDr$findElement(&quot;id&quot;, &quot;username&quot;)$sendKeysToElement(list(&quot;your-id&quot;))
+remDr$findElement(&quot;id&quot;, &quot;password&quot;)$sendKeysToElement(list(&quot;your-password&quot;))
+remDr$findElement(&quot;css&quot;, &quot;.login-aside input[type=&#39;submit&#39;]&quot;)$clickElement()
+
+# check again
+remDr$screenshot(display = TRUE)
+
+# click my video
+remDr$navigate(&quot;https://ylb.nwafu.edu.cn/ICloudRecordPlay/teacherVideoManagement&quot;)
+
+# click one year (avoid random jump)
+remDr$findElement(using = &quot;css&quot;, &quot;#body &gt; div.mod-filter &gt; dl:nth-child(1) &gt; dd &gt; a:nth-child(1)&quot;)$clickElement()
+
+# click page 2
+remDr$findElement(using = &quot;css&quot;, &quot;#body &gt; div.bootstrap-table &gt; div.fixed-table-container &gt; div.fixed-table-pagination &gt; div.pull-right.pagination &gt; ul &gt; li:nth-child(3) &gt; a&quot;)$clickElement()
+remDr$screenshot(display = TRUE)
+
+# set page number css (number 1 begin with par 2)
+page_total &lt;- 6
+page_css &lt;- paste0(&quot;#body &gt; div.bootstrap-table &gt; div.fixed-table-container &gt; div.fixed-table-pagination &gt; div.pull-right.pagination &gt; ul &gt; li:nth-child(&quot;, 1:page_total+1, &quot;) &gt; a&quot;)
+
+
+# set download page (click &quot;下载&quot;)
+item_total &lt;- 15
+pos &lt;- paste(&quot;#courseTable &gt; tbody &gt; tr:nth-child(&quot;, 1:item_total,&quot;) &gt; td:nth-child(6) &gt; a:nth-child(2)&quot;, sep =&quot;&quot;)
+
+
+pageinfo &lt;- NULL
+ 
+#----- page loop --------
+
+for (i in 1:5){
+  # click one year (avoid random jump)
+  #remDr$findElement(using = &quot;css&quot;, &quot;#body &gt; div.mod-filter &gt; dl:nth-child(1) &gt; dd &gt; a:nth-child(1)&quot;)$clickElement()
+  
+  # set chromeDriver window size (very important! for page number &gt;3)
+  remDr$setWindowSize(1600, 900)
+  
+  # click the page number(number 1 begin with par 2)
+  remDr$findElement(using = &quot;css&quot;, page_css[6] )$clickElement()
+  
+  # wait load page
+  Sys.sleep(2)
+  remDr$screenshot(display = TRUE)
+ 
+   # look for table element
+  tableElem &lt;- remDr$findElement(using = &quot;id&quot;, &quot;courseTable&quot;)
+  
+  # Html output
+  txt &lt;- tableElem$getElementAttribute(&quot;outerHTML&quot;)[[1]]
+  
+  # scrape the date and room 
+  v_date &lt;- txt %&gt;% read_html() %&gt;%  xml_nodes(&quot;tbody&quot;) %&gt;% xml_nodes(&quot;td:nth-child(2)&quot;) %&gt;% xml_text()
+  v_room &lt;- txt %&gt;% read_html() %&gt;%  xml_nodes(&quot;tbody&quot;) %&gt;% xml_nodes(&quot;td:nth-child(4)&quot;) %&gt;% xml_text()
+  
+  # tidy data.frame
+  info_tem &lt;- data.frame(date=v_date, room =v_room) 
+  
+  
+  #----- loop for download url-------
+  url &lt;- NULL
+  for (i in  1:8 ){
+    # click and open window
+    remDr$findElement(using = &quot;css&quot;, pos[i])$clickElement()
+    
+    Sys.sleep(1)
+    #remDr$setImplicitWaitTimeout(milliseconds = 10000)
+    
+    remDr$screenshot(display = TRUE)
+    
+    # look for download element
+    downElem &lt;- remDr$findElement(using = &quot;css&quot;, &quot;#downloadVideo-modal &gt; div &gt; div&quot;)
+    
+    txt_down &lt;- downElem$getElementAttribute(&quot;outerHTML&quot;)[[1]]
+    
+    # get attributes
+    
+    url_down &lt;- txt_down %&gt;% read_html() %&gt;%  xml_nodes(&quot;div &gt;div &gt; a&quot;) %&gt;% xml_attr(&quot;href&quot;)
+    
+    # close the float window
+    remDr$findElement(using = &quot;css&quot;, &quot;#closePicResourceDetail-modal &gt; span&quot;)$clickElement()
+    
+    url_tem &lt;- t(data.frame(url_down)) %&gt;% as_tibble() 
+    url &lt;- rbind(url, url_tem)
+    
+  }
+
+pageinfo_tem &lt;- bind_cols(info_tem, url) 
+
+pageinfo &lt;- bind_rows(pageinfo, pageinfo_tem)
+}
+
+# close drivers
+remDr$getStatus()
+remDr$closeWindow()
+
+# tidy data 
+
+pageinfo_ok  &lt;- pageinfo %&gt;%
+  gather(key = &quot;VideoAngle&quot;, value = &quot;url&quot;, V1:V3) %&gt;%
+  separate(col = &quot;date&quot; , into = c(&quot;date&quot;,&quot;week&quot;, &quot;weekday&quot;, &quot;slot&quot;), sep = &quot; &quot;) %&gt;%
+  arrange(date, week, weekday, slot,room) %&gt;%
+  mutate(VideoRole= recode(VideoAngle,&quot;V1&quot;=&quot;teacher&quot;,&quot;V2&quot;=&quot;student&quot;, &quot;V3&quot;=&quot;slide&quot;)) %&gt;%
+  mutate(exist= if_else(url==&quot;javascript:void(0)&quot;, &quot;NO&quot;, &quot;YES&quot;)) %&gt;%
+  mutate(week.en = str_c(&quot;week&quot;,str_extract(week, &#39;[:digit:]&#39;)),
+         slot.en = str_c(&quot;slot&quot;,str_extract(slot, &quot;[:digit:]&quot;))) %&gt;%
+  #mutate( weekday.en =weekday) %&gt;%
+  mutate(weekday.en =recode(weekday, &quot;星期一&quot;=&quot;1&quot;, &quot;星期二&quot;=&quot;2&quot;,&quot;星期三&quot;=&quot;3&quot;,
+                             &quot;星期四&quot;=&quot;4&quot;,&quot;星期五&quot;=&quot;5&quot;)) %&gt;%
+  mutate(weekday.en =str_c(&quot;weekday&quot;,weekday.en)) %&gt;%
+  mutate(dir= str_c(
+    str_c(date, week.en, weekday.en, slot.en, VideoRole, sep=&quot;-&quot;),
+    &quot;.mp4&quot;)
+    ) 
+
+# export file
+xlsx::write.xlsx2(pageinfo_ok, &quot;page-info-ok.xlsx&quot;)</code></pre>
+</div>
+</div>

@@ -1,0 +1,265 @@
+---
+title: "R+docker进行动态网页数据抓取"
+author: huhuaping
+date: '2020-02-09'
+slug: dynamic-web-scraping
+categories:
+  - Research
+tags:
+  - webscrape
+image:
+  caption: ''
+  focal_point: ''
+---
+
+```{r, echo=FALSE}
+# global options for knitr
+knitr::opts_chunk$set(fig.align='center',message = FALSE,eval = FALSE)
+```
+
+
+# 工具和准备
+
+## 安装工具软件
+
+- 下载安装docker [官网](https://www.docker.com/)
+
+    - 一个教程供学习：[A Docker Tutorial for Beginners](https://docker-curriculum.com/)
+
+- Rstudio中安装RSelenium包 [官网](https://github.com/ropensci/RSelenium)
+
+```{r}
+# install.packages("devtools")
+devtools::install_github("ropensci/RSelenium")
+```
+
+
+- 下载安装TightVNC用于查看实时交互。[官网](https://www.tightvnc.com/)
+
+    - 一份说明供学习：[Debugging Using VNC](https://cran.r-project.org/web/packages/RSelenium/vignettes/docker.html#debugging-using-vnc)
+
+
+## docker配置准备
+
+- 注册docker hub账号（非必须） 
+
+- 配置国内镜像站点（强烈建议）。速度将明显改观！具体参看[材料](https://yeasy.gitbooks.io/docker_practice/install/mirror.html)
+
+- 使用docker命令拉取selenium -chrome镜像（请根据自己的浏览器选择，chrome或者firefox）
+
+在Rstudio的Terminal窗口中执行如下命令！
+
+- 启动docker服务：
+
+```{bash}
+$ docker run -d -p 4445:4444 selenium/standalone-chrome
+```
+
+
+## RSelenium相关操作
+
+使用RSelenium包控制浏览器主要依靠remoteDriver系列函数。简单操作命令如下。可参考[网络材料](https://blog.csdn.net/weixin_40628687/article/details/79008995)
+
+```{r}
+library(RSelenium)
+remDr <- remoteDriver(browserName ="chrome")
+```
+
+
+```{r}
+# 打开浏览器
+remDr$open()
+# 关闭浏览器
+remDr$quit()  # 直接退出
+remDr$close()  # close用于关闭当前会话，也可以用作关闭浏览器
+```
+
+
+```{r}
+# 打开网页
+url <- 'http://www.baidu.com'
+remDr$navigate(url)
+# 关闭网页
+remDr$closeWindow()
+```
+
+```{r}
+# 打开网页
+url <- 'http://www.baidu.com'
+remDr$navigate(url)
+# 定位
+xpath <- '//*[@id="su"]'
+btn <- remDr$findElement(using = 'xpath', value = xpath)
+# 单击
+btn$clickElement()
+
+```
+
+# 一个实例：抓取并下载智慧教学云平台资料
+
+## 案例数据抓取的目标
+
+- 目标是获得全部视频（83x3= `r 83*3`）的下载地址。
+
+- 整理各个视频的基本信息，用于下载视频后期的准确重命名（下载地址url是一串字符而已）。
+
+登录后的**目标页面**：
+
+```{r, echo=FALSE,eval=TRUE}
+knitr::include_graphics("pic/web-scrape-AI-room-vedio-list.png")
+```
+
+
+## 案例数据抓取的特点
+
+- 需要账号/密码登陆
+
+- 动态网页：可能会碰到JavaScript、下拉选择等操作
+
+- 网站可能随时调整：例如视频材料定期清除
+
+
+## R代码实现
+
+
+```{r}
+# useful packages
+library(RSelenium)
+library(wdman)
+library("XML")
+library("tidyverse")
+library(xml2)
+library(rvest)
+
+# remote driver
+remDr <- RSelenium::remoteDriver(remoteServerAddr = "localhost",
+                                 port = 4445L,
+                                 browserName = "chrome")
+remDr$open()
+
+# navigate to the website of interest
+remDr$navigate("http://172.26.3.11:8080/")
+
+# check on there
+remDr$screenshot(display = TRUE)
+
+# login info
+remDr$findElement("id", "username")$sendKeysToElement(list("your-id"))
+remDr$findElement("id", "password")$sendKeysToElement(list("your-password"))
+remDr$findElement("css", ".login-aside input[type='submit']")$clickElement()
+
+# check again
+remDr$screenshot(display = TRUE)
+
+# click my video
+remDr$navigate("https://ylb.nwafu.edu.cn/ICloudRecordPlay/teacherVideoManagement")
+
+# click one year (avoid random jump)
+remDr$findElement(using = "css", "#body > div.mod-filter > dl:nth-child(1) > dd > a:nth-child(1)")$clickElement()
+
+# click page 2
+remDr$findElement(using = "css", "#body > div.bootstrap-table > div.fixed-table-container > div.fixed-table-pagination > div.pull-right.pagination > ul > li:nth-child(3) > a")$clickElement()
+remDr$screenshot(display = TRUE)
+
+# set page number css (number 1 begin with par 2)
+page_total <- 6
+page_css <- paste0("#body > div.bootstrap-table > div.fixed-table-container > div.fixed-table-pagination > div.pull-right.pagination > ul > li:nth-child(", 1:page_total+1, ") > a")
+
+
+# set download page (click "下载")
+item_total <- 15
+pos <- paste("#courseTable > tbody > tr:nth-child(", 1:item_total,") > td:nth-child(6) > a:nth-child(2)", sep ="")
+
+
+pageinfo <- NULL
+ 
+#----- page loop --------
+
+for (i in 1:5){
+  # click one year (avoid random jump)
+  #remDr$findElement(using = "css", "#body > div.mod-filter > dl:nth-child(1) > dd > a:nth-child(1)")$clickElement()
+  
+  # set chromeDriver window size (very important! for page number >3)
+  remDr$setWindowSize(1600, 900)
+  
+  # click the page number(number 1 begin with par 2)
+  remDr$findElement(using = "css", page_css[6] )$clickElement()
+  
+  # wait load page
+  Sys.sleep(2)
+  remDr$screenshot(display = TRUE)
+ 
+   # look for table element
+  tableElem <- remDr$findElement(using = "id", "courseTable")
+  
+  # Html output
+  txt <- tableElem$getElementAttribute("outerHTML")[[1]]
+  
+  # scrape the date and room 
+  v_date <- txt %>% read_html() %>%  xml_nodes("tbody") %>% xml_nodes("td:nth-child(2)") %>% xml_text()
+  v_room <- txt %>% read_html() %>%  xml_nodes("tbody") %>% xml_nodes("td:nth-child(4)") %>% xml_text()
+  
+  # tidy data.frame
+  info_tem <- data.frame(date=v_date, room =v_room) 
+  
+  
+  #----- loop for download url-------
+  url <- NULL
+  for (i in  1:8 ){
+    # click and open window
+    remDr$findElement(using = "css", pos[i])$clickElement()
+    
+    Sys.sleep(1)
+    #remDr$setImplicitWaitTimeout(milliseconds = 10000)
+    
+    remDr$screenshot(display = TRUE)
+    
+    # look for download element
+    downElem <- remDr$findElement(using = "css", "#downloadVideo-modal > div > div")
+    
+    txt_down <- downElem$getElementAttribute("outerHTML")[[1]]
+    
+    # get attributes
+    
+    url_down <- txt_down %>% read_html() %>%  xml_nodes("div >div > a") %>% xml_attr("href")
+    
+    # close the float window
+    remDr$findElement(using = "css", "#closePicResourceDetail-modal > span")$clickElement()
+    
+    url_tem <- t(data.frame(url_down)) %>% as_tibble() 
+    url <- rbind(url, url_tem)
+    
+  }
+
+pageinfo_tem <- bind_cols(info_tem, url) 
+
+pageinfo <- bind_rows(pageinfo, pageinfo_tem)
+}
+
+# close drivers
+remDr$getStatus()
+remDr$closeWindow()
+
+# tidy data 
+
+pageinfo_ok  <- pageinfo %>%
+  gather(key = "VideoAngle", value = "url", V1:V3) %>%
+  separate(col = "date" , into = c("date","week", "weekday", "slot"), sep = " ") %>%
+  arrange(date, week, weekday, slot,room) %>%
+  mutate(VideoRole= recode(VideoAngle,"V1"="teacher","V2"="student", "V3"="slide")) %>%
+  mutate(exist= if_else(url=="javascript:void(0)", "NO", "YES")) %>%
+  mutate(week.en = str_c("week",str_extract(week, '[:digit:]')),
+         slot.en = str_c("slot",str_extract(slot, "[:digit:]"))) %>%
+  #mutate( weekday.en =weekday) %>%
+  mutate(weekday.en =recode(weekday, "星期一"="1", "星期二"="2","星期三"="3",
+                             "星期四"="4","星期五"="5")) %>%
+  mutate(weekday.en =str_c("weekday",weekday.en)) %>%
+  mutate(dir= str_c(
+    str_c(date, week.en, weekday.en, slot.en, VideoRole, sep="-"),
+    ".mp4")
+    ) 
+
+# export file
+xlsx::write.xlsx2(pageinfo_ok, "page-info-ok.xlsx")
+```
+
