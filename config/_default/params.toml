@@ -90,7 +90,7 @@ address = {street = "3 Taicheng Road", city = "Yangling", region = "Shannxi", po
 
 # Geographic coordinates
 # To get your coordinates, right-click on Google Maps and choose "What's here?". The coords will show up at the bottom.
-coordinates = {latitude = "34.1504974", longitude = "108.427815"}
+coordinates = {latitude = "34.260976", longitude = "108.072224"}
 
 # Directions for visitors to locate you.
 directions = "Building of Economics and Management, Room 116 on Floor 1"
