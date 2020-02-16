@@ -11,6 +11,9 @@ tags:
 image:
   caption: ''
   focal_point: ''
+output:
+  blogdown::html_page:
+    toc: true
 ---
 
 ## 明确自己git使用的安全环境

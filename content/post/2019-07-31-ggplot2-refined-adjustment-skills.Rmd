@@ -13,7 +13,6 @@ image:
 output:
   blogdown::html_page:
     toc: true
-    number_sections: true
 ---
 
 # 调整轴题与轴标签之间的间距

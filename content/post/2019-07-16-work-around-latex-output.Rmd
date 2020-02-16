@@ -11,6 +11,7 @@ tags:
 image:
   caption: ''
   focal_point: ''
+
 ---
 
 # 安装tinyTeX
