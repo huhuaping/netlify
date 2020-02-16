@@ -1,7 +1,7 @@
 ---
 authors:
 - admin
-bio: My research interests include Data Science, Statistics, Agricultural Economics and Management.
+bio: My research interests include Data Science, Statistics, Agricultural Economics and Management. 
 education:
   courses:
   - course: PhD in Agricultural Economics and Management
