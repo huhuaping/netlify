@@ -61,7 +61,14 @@ knitr::kable(syllabus, align = "l",escape = F) %>%
   kableExtra::kable_styling(full_width = T)
 ```
 
+```{r, eval=FALSE}
+blogdown::shortcode("relref", "exercise/")
+```
 
 
+[博客文章提到](`r blogdown::shortcode("relref", "../post/2019-02-24-xaringan-for-course-slide.html")`)
+
+[第一章](`r blogdown::shortcode("relref", "chapter01-introduction.html")`)
 
 
+[作业](`r blogdown::shortcode("relref", "exercise/ex-1.1.html")`)
