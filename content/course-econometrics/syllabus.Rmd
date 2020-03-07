@@ -1,0 +1,67 @@
+---
+date: "2019-04-27T00:00:00+08:00"
+draft: false
+linktitle: 教学安排
+menu:
+  course-econometrics:
+    parent: 计量在线课程 (简介)
+    weight: 1
+title: Econometrics (计量经济学)
+toc: true
+type: docs
+---
+
+## 教学安排
+
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+# devtools::install_github("rstudio/fontawesome")
+pkg <- c("tidyverse","kableExtra", "bookdown", "blogdown", "fontawesome")
+
+load.pkg <- lapply(pkg, require, character.only = TRUE)
+
+list_chpt <- c("第01章(绪论)",
+  "第02章(一元回归：基本思想)",
+  "第03章(一元回归：估计问题)",
+  "第04章(一元回归：假设检验)",
+  "第05章(一元回归：模型形式)",
+  "第06章(多元回归1：代数部分)",
+  "第06章(多元回归2：矩阵部分)",
+  "第07章(放宽基本假设：多重共线性)",
+    "第08章(放宽基本假设：异方差性)",
+  "第09章(放宽基本假设：自相关性)",
+  "第10章 虚拟变量回归模型",
+  "第11章 内生解释变量问题")
+
+# get the slide files
+list_slide <- list.files("../../static/course-econometrics/", pattern = "^[0-9].*\\.html$")
+
+# get slide dir
+url_slide <- stringr::str_c("/course-econometrics/", list_slide, sep = "")
+
+# combine with icons
+addLink <- function(link, icon) {
+  paste0("<a href=\"", link, "\">", as.character(fa(icon)), "</a>")
+}
+
+# "file-pdf"
+names_chn <- c("章节内容", "阅读材料", "在线课件", "pdf课件", "实验上机","随堂作业")
+
+syllabus <- data.frame(chapter = list_chpt,
+           #section = list_sec,
+           slide = addLink(link = url_slide, icon = "file-powerpoint")) %>%
+  mutate(pdf= addLink(link = "", icon = "file-pdf"),
+         reading = addLink(link = "", icon = "newspaper"),
+         lab = addLink(link = "", icon = "laptop-code"),
+         exercise = addLink(link = "", icon = "edit")) %>%
+  select(chapter, reading, slide, pdf, lab, exercise) %>%
+  rename_at(vars(names(.)), ~names_chn)
+
+knitr::kable(syllabus, align = "l",escape = F) %>%
+  kableExtra::kable_styling(full_width = T)
+```
+
+
+
+
+
