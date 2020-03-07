@@ -140,7 +140,7 @@ p3 <- p2 +
 
 
 ```{r, echo=F, fig.cap="include_graphics函数方法插入图片"}
-knitr::include_graphics("/img/facet-multiple-geom.png")
+knitr::include_graphics("pic/facet-multiple-geom.png")
 ```
 
 

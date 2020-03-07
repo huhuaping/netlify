@@ -11,11 +11,22 @@ tags:
 image:
   caption: ''
   focal_point: ''
+output:
+  blogdown::html_page:
+    toc: true
 ---
 
 
+<div id="TOC">
+<ul>
+<li><a href="#明确自己git使用的安全环境">明确自己git使用的安全环境</a></li>
+<li><a href="#多设备git工作的基本流程">多设备git工作的基本流程</a></li>
+<li><a href="#两步验证下如何正确地clone远程repo">两步验证下如何正确地clone远程repo</a></li>
+<li><a href="#最后的忠告">最后的忠告</a></li>
+</ul>
+</div>
 
-<div id="git" class="section level2">
+<div id="明确自己git使用的安全环境" class="section level2">
 <h2>明确自己git使用的安全环境</h2>
 <p>github有多重安全条件，用户可以自行决定自己的安全等级。需要注意的是，在多台工作设备下，git需要确认不同设备的使用权限。因此，明确自己的安全环境是多设备工作的第一步：</p>
 <ul>
@@ -23,7 +34,7 @@ image:
 <li><p>是否设定加密SSH。简单说，如果本地电脑采用SSH key来与服务器对话，就能省去繁复的账号密码输入过程。</p></li>
 </ul>
 </div>
-<div id="git-1" class="section level2">
+<div id="多设备git工作的基本流程" class="section level2">
 <h2>多设备git工作的基本流程</h2>
 <ul>
 <li><p>条件准备。主力设备A；新设备B；需要异端工作的sharerepo。</p></li>
@@ -42,7 +53,7 @@ $ cd ./sharerepo</code></pre>
 <li>工作设备下：pull-edit-add-commit-push 四部曲。</li>
 </ul>
 </div>
-<div id="clonerepo" class="section level2">
+<div id="两步验证下如何正确地clone远程repo" class="section level2">
 <h2>两步验证下如何正确地clone远程repo</h2>
 <ul>
 <li>对于私有仓库，上述方法clone会提示错误。</li>
@@ -55,7 +66,7 @@ $ cd ./sharerepo</code></pre>
 <pre><code># tokens 也就是上述复制备用的授权码。既不是github账户登录密码，也不是两步验证动态码！
 $ git clone https://username:tokens@github.com/username/repo.git</code></pre>
 </div>
-<div id="section" class="section level2">
+<div id="最后的忠告" class="section level2">
 <h2>最后的忠告</h2>
 <ul>
 <li><p>在任何终端设备上工作，最后都要记得对修改进行add-commit-push三部曲操作</p></li>
