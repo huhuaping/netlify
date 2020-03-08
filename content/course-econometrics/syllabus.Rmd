@@ -1,17 +1,17 @@
 ---
 date: "2019-04-27T00:00:00+08:00"
 draft: false
-linktitle: 教学安排
+linktitle: 理论教学安排
 menu:
   course-econometrics:
     parent: 计量在线课程 (简介)
-    weight: 1
+    weight: 10
 title: Econometrics (计量经济学)
-toc: true
+#toc: true
 type: docs
 ---
 
-## 教学安排
+## 理论课教学安排（48学时）
 
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
@@ -60,15 +60,3 @@ syllabus <- data.frame(chapter = list_chpt,
 knitr::kable(syllabus, align = "l",escape = F) %>%
   kableExtra::kable_styling(full_width = T)
 ```
-
-```{r, eval=FALSE}
-blogdown::shortcode("relref", "exercise/")
-```
-
-
-[博客文章提到](`r blogdown::shortcode("relref", "../post/2019-02-24-xaringan-for-course-slide.html")`)
-
-[第一章](`r blogdown::shortcode("relref", "chapter01-introduction.html")`)
-
-
-[作业](`r blogdown::shortcode("relref", "exercise/ex-1.1.html")`)
