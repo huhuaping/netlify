@@ -11,10 +11,11 @@ menu:
 output:
   blogdown::html_page:
     toc: true
+    number_sections: true
 
 ---
 
-## 理论课教学安排（48学时）
+# 理论课教学安排（48学时）
 
 下表列出了教学内容和相关材料，大家可以观看或下载，并完成相关学习要求。
 
@@ -63,11 +64,11 @@ syllabus <- data.frame(chapter = list_chpt,
   select(chapter, reading, slide, pdf, lab, exercise) %>%
   rename_at(vars(names(.)), ~names_chn)
 
-knitr::kable(syllabus, align = "l",escape = F) %>%
+knitr::kable(syllabus, align = "c",escape = F) %>%
   kableExtra::kable_styling(full_width = T)
 ```
 
-
+# 教学环节
 
 ## （课前）预习材料
 
