@@ -19,54 +19,67 @@ output:
 
 下表列出了教学内容和相关材料，大家可以观看或下载，并完成相关学习要求。
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE}
+```{r,echo=FALSE, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(echo = FALSE,message=FALSE, warning=FALSE)
+
 # devtools::install_github("rstudio/fontawesome")
-pkg <- c("tidyverse","kableExtra", "bookdown", "blogdown", "fontawesome")
+pkg <- c("xlsx","tidyverse","kableExtra", "bookdown", "blogdown", "fontawesome",
+         "ggplot2")
 
 load.pkg <- lapply(pkg, require, character.only = TRUE)
 
-list_chpt <- c("第01章(绪论)",
-  "第02章(一元回归：基本思想)",
-  "第03章(一元回归：估计问题)",
-  "第04章(一元回归：假设检验)",
-  "第05章(一元回归：模型形式)",
-  "第06章(多元回归1：代数部分)",
-  "第06章(多元回归2：矩阵部分)",
-  "第07章(放宽基本假设：多重共线性)",
-    "第08章(放宽基本假设：异方差性)",
-  "第09章(放宽基本假设：自相关性)",
-  "第10章 虚拟变量回归模型",
-  "第11章 内生解释变量问题")
+```
 
-# get the slide files
-list_slide <- list.files("../../static/course-econometrics/", pattern = "^[0-9].*\\.html$")
 
-# get slide dir
-url_slide <- stringr::str_c("/course-econometrics/", list_slide, sep = "")
+```{r}
+
+tab <- xlsx::read.xlsx2("data/syllabus.xlsx", sheetIndex = 1) 
 
 # combine with icons
-addLink <- function(link, icon) {
-  paste0("<a href=\"", link, "\">", as.character(fa(icon)), "</a>")
+add_iconLink <- function(folder, file_name,icon) {
+  paste0("<a href=\"", 
+         stringr::str_c("/", folder, "/", file_name, sep = ""), 
+         "\">", 
+         as.character(fa(icon, fill= "blue", height=15 )), 
+         "</a>") 
 }
 
-# "file-pdf"
-names_chn <- c("章节内容", "阅读材料", "幻灯片", "pdf课件", 
-               "配套数据",
-               "随堂作业")
 
-syllabus <- data.frame(chapter = list_chpt,
-           #section = list_sec,
-           slide = addLink(link = url_slide, icon = "file-powerpoint")) %>%
-  mutate(pdf= addLink(link = "", icon = "file-pdf"),
-         reading = addLink(link = "", icon = "newspaper"),
-         lab = addLink(link = "", icon = "laptop-code"),
-         exercise = addLink(link = "", icon = "edit")) %>%
-  select(chapter, reading, slide, pdf, lab, exercise) %>%
-  rename_at(vars(names(.)), ~names_chn)
+tab_out <- tab %>%
+  as_tibble() %>%
+  mutate(chpt_chn = str_c("第", 
+                          sprintf("%02d",id_chpt),
+                          "章 ",chpt, sep= "")
+         ) %>%
+  mutate(show_reading = if_else(file_reading=="no", "",
+                                add_iconLink(folder = "course-econometrics",
+                                             file_name = file_reading, 
+                                             icon = "newspaper"))) %>%
+  mutate(show_slide = if_else(file_slide=="no", "",
+                                add_iconLink(folder = "course-econometrics",
+                                             file_name = file_slide, 
+                                             icon = "file-powerpoint"))) %>%
+  mutate(show_pdf = if_else(file_pdf=="no", "",
+                                add_iconLink(folder = "course-econometrics",
+                                             file_name = file_pdf, 
+                                             icon = "file-pdf"))) %>%
+  mutate(show_exercise = if_else(file_exercise =="no", "", 
+                                add_iconLink(folder = "course-econometrics",
+                                             file_name = file_exercise, 
+                                             icon = "edit"))) 
 
-knitr::kable(syllabus, align = "c",escape = F) %>%
-  kableExtra::kable_styling(full_width = T)
+
+names_eng <- c("chpt_chn", "show_reading", "show_slide", "show_pdf", "show_exercise")
+names_chn <- c("章内容", "阅读材料", "幻灯片", "pdf课件",    "随堂作业")
+
+tab_out %>% 
+  select(one_of(names_eng)) %>%
+  rename_at(vars(names_eng), ~names_chn) %>%
+  kable(align = "l",escape = F) %>%
+  kable_styling(full_width = T)
+
 ```
+
 
 # 教学环节
 
