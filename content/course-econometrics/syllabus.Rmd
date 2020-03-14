@@ -3,27 +3,25 @@ title: Econometrics (计量经济学)
 date: "2019-04-27T00:00:00+08:00"
 draft: false
 type: docs
-linktitle: 理论教学安排
+linktitle: 教学大纲
 menu:
   course-econometrics:
-    parent: 计量在线课程 (简介)
+    parent: 计量课程简介
     weight: 10
 output:
   blogdown::html_page:
     toc: true
     number_sections: true
-
+math: true
 ---
-
-# 理论课教学安排（48学时）
-
-下表列出了教学内容和相关材料，大家可以观看或下载，并完成相关学习要求。
 
 ```{r,echo=FALSE, message=FALSE, warning=FALSE}
 knitr::opts_chunk$set(echo = FALSE,message=FALSE, warning=FALSE)
 
 # devtools::install_github("rstudio/fontawesome")
-pkg <- c("xlsx","tidyverse","kableExtra", "bookdown", "blogdown", "fontawesome",
+pkg <- c("xlsx","tidyverse","kableExtra", 
+         "magick", "cowplot",
+         "bookdown", "blogdown","knitr", #"fontawesome",
          "ggplot2")
 
 load.pkg <- lapply(pkg, require, character.only = TRUE)
@@ -31,76 +29,367 @@ load.pkg <- lapply(pkg, require, character.only = TRUE)
 ```
 
 
+# 课程平台
+
+## 个人课程网站
+
+- 使用浏览器（chrome或360极速浏览器）登陆个人网站网址[huhuaping.com](huhuaping.com)
+
+- 点击首页导航栏**Teaching**，然后点击**计量经济学（本科）**。
+
 ```{r}
+knitr::include_graphics("/pic/chpt00-course-netlify.png")
+```
 
-tab <- xlsx::read.xlsx2("data/syllabus.xlsx", sheetIndex = 1) 
+>**说明**：
+1.个人开发的独立网站，应用R编程语言和Rmarkdown语言开发建设；
+2.只要设备能联网，就等浏览课程资源（建议使用chrome浏览器）；
+3.连接速度根据你的电信供应商而定。
 
-# combine with icons
-add_iconLink <- function(folder, file_name,icon) {
-  paste0("<a href=\"", 
-         stringr::str_c("/", folder, "/", file_name, sep = ""), 
-         "\">", 
-         as.character(fa(icon, fill= "blue", height=15 )), 
-         "</a>") 
-}
+手机视图界面下，需要点击网站导航**三道杠**。
 
+```{r}
+knitr::include_graphics("/pic/chpt00-mobile2.png")
+```
 
-tab_out <- tab %>%
-  as_tibble() %>%
-  mutate(chpt_chn = str_c("第", 
-                          sprintf("%02d",id_chpt),
-                          "章 ",chpt, sep= "")
-         ) %>%
-  mutate(show_reading = if_else(file_reading=="no", "",
-                                add_iconLink(folder = "course-econometrics",
-                                             file_name = file_reading, 
-                                             icon = "newspaper"))) %>%
-  mutate(show_slide = if_else(file_slide=="no", "",
-                                add_iconLink(folder = "course-econometrics",
-                                             file_name = file_slide, 
-                                             icon = "file-powerpoint"))) %>%
-  mutate(show_pdf = if_else(file_pdf=="no", "",
-                                add_iconLink(folder = "course-econometrics",
-                                             file_name = file_pdf, 
-                                             icon = "file-pdf"))) %>%
-  mutate(show_exercise = if_else(file_exercise =="no", "", 
-                                add_iconLink(folder = "course-econometrics",
-                                             file_name = file_exercise, 
-                                             icon = "edit"))) 
+```{r}
+knitr::include_graphics("/pic/chpt00-mobile1.png")
+```
+
+## 学校平台课程
+
+西北农林科技大学**在线教育综合平台**，我的课程在平台上运行多年。**《计量经济学》（胡华平）**课程网址：[http://eol.nwsuaf.edu.cn/meol/jpk/course/layout/newpage/index.jsp?courseId=35257](http://eol.nwsuaf.edu.cn/meol/jpk/course/layout/newpage/index.jsp?courseId=35257)
 
 
-names_eng <- c("chpt_chn", "show_reading", "show_slide", "show_pdf", "show_exercise")
-names_chn <- c("章内容", "阅读材料", "幻灯片", "pdf课件",    "随堂作业")
 
-tab_out %>% 
-  select(one_of(names_eng)) %>%
-  rename_at(vars(names_eng), ~names_chn) %>%
-  kable(align = "l",escape = F) %>%
-  kable_styling(full_width = T)
+```{r}
+include_graphics("/pic/chpt00-course-university.png")
+```
 
+>**说明**：
+1.外网可以访问；
+2.手机端暂时不支持
+
+
+西北农林科技大学**在线教育综合平台**，登陆方式：
+
+- 门户登陆（**建议**）：西农首页—>（登陆）信息综合服务平台—>（点击进入）网络综合教学平台—>（选择课程）《计量经济学》（胡华平）
+
+
+```{r}
+knitr::include_graphics("/pic/chpt00-login.png")
 ```
 
 
-# 教学环节
+# 在线资源
 
-## （课前）预习材料
+**课程资源**：
 
-上课之前必须阅读提供的相关预习资料。
+- 教学课件（课堂ppt、实验指导书...）
 
-## （课中）教学讲稿
+- 统计软件（EVieWs、mathtype、office...）
 
-你可以用浏览器**在线观看**讲稿幻灯片。强烈建议360极速浏览器、chrome浏览器、Safari浏览器中任何之一。
+- 参考图书
 
-- 通过电脑pc在线观看。主要操作技巧有：
-    - 全屏观看：先鼠标点击幻灯片，再按键盘F键；
-    - 前进后退：点击键盘方向键上/下；或左/右
-    - 观看指定页码：按键盘数字键输入数字如“56”，再按键盘Enter则会播放第56页幻灯片
+**教学活动**：
 
-- 手机可以观看。
-    - 建议横屏观看。
-    - 前进后退：点击幻灯片的左/右区域
+- 实验上机作业
+
+- 实验指导视频...
+
+- 教学答疑
 
 
-## （课后）随堂作业
+# 使用教材
 
-随堂作业应该在课堂内完成，师生讨论并点评。
+
+- [李子奈和潘文卿：《计量经济学》第4版，高等教育出版社，2015](https://item.jd.com/12276682.html)
+
+```{r}
+knitr::include_graphics("/pic/book-li-4th.jpg")
+```
+
+
+
+# 参考教材
+
+```{r}
+knitr::include_graphics("/pic/book-Wooldridge-5th_.jpg")
+```
+
+[伍德里奇：《计量经济学导论：现代观点》第5版，中国人民大学出版社，2015.4](https://item.jd.com/11690382.html)
+
+
+```{r}
+include_graphics("/pic/book-Gujarati-5th.png")
+```
+
+[古扎拉蒂：《计量经济学基础》（上下册）第5版，北京：中国人民大学出版社，2013](https://item.jd.com/10780359.html)    
+
+
+# 软件材料
+
+熟练掌握一门计量软件。
+
+**EViews软件**（课程指定软件）：
+
+- 实验室版本：EViews 10.0
+
+- 软件参考使用书：[高铁梅，计量经济分析方法与建模:EViews应用及实例(第3版)，清华大学出版社，2016.12](https://www.amazon.cn/dp/B071XNMXYM/ref=sr_1_4?s=books&ie=UTF8&qid=1550820189&sr=1-4&keywords=EViews)
+]
+
+**R软件**（选用，自学）
+
+- Adler, J. R in a Nutshell (2ed)  [M], Reilly, 2012.
+
+- Crawley, M. J. The R Book (2nd) [M], Wiley, 2013.
+
+**stata软件**（选用，自学）：
+
+- [陈强：《计量经济学及Stata应用》，高等教育出版社，2015.7](https://item.jd.com/12245551.html)
+
+
+
+# 考核方式
+
+- 期末成绩（60%）：闭卷考试（务必带上**科学计算器**）
+
+- 平时成绩（10%）：考勤+随堂提问
+
+- 上机实验（30%）：7次实验作业
+
+
+
+# 理论课内容
+
+
+- 第1章 导论（2学时）
+
+    - 1.1 科学哲学简介*
+    
+    - 1.2 计量经济学的方法论基础*
+    
+    - 1.3 计量经济学的内容体系
+    
+    - 1.4 计量经济学建模步骤和要点
+
+- 第2章 一元回归分析：基本思想(4学时)
+
+    - 2.1 一个假设的例子
+    
+    - 2.2 总体回归函数的概念
+    
+    - 2.3 "线性"一词的含义 
+    
+    - 2.4 总体回归函数
+    
+    - 2.5 随机平扰顶的含义 
+    
+    - 2.6 样本回归函数
+    
+    - 2.7 说明性例子
+
+- 第3章 一元回归分析：估计问题（4学时）
+
+    - 3.1 普通最小二乘法
+    
+    - 3.2 经典线性回归模型: 最小二乘法的基本假定
+    
+    - 3.3 最小二乘估计的精度就标准误
+    
+    - 3.4 最小二乘估计量的性质:高斯-马尔可夫定理 
+    
+    - 3.5 判定系数:"似合优度"的一个度量 
+    
+    - 3.6 说明性例子
+
+
+- 第4章 一元回归分析：正态假设（2学时）
+
+    - 4.1 随机干扰项的概率分布
+    
+    - 4.2 随机干扰项的正态性假设
+    
+    - 4.3 在正态性假设下OLS估计量的性质
+    
+    - 4.4 极大似然法
+
+- 第5章 一元回归分析：推断与预测（4学时）
+
+    - 5.1 区间估计: 一些基本思想
+    
+    - 5.2 回归系数的置信区间 
+    
+    - 5.3 回归误差方差的置信区间 
+    
+    - 5.4 假设检验: 置信区间方法
+    
+    - 5.5 假设检验: 显著性检验方法
+    
+    - 5.6 假设检验:一些实际操作问题
+    
+    - 5.7 回归分析与方差分析
+    
+    - 5.8 回归分析的应用:预测问题
+    
+    - 5.9 报告回归分析的结果
+    
+    - 5.10 评价回归分析的结果
+
+- 第6章 一元回归分析：模型选择（2学时）
+    
+    - 6.1 过原点回归
+    
+    - 6.2 尺度与测量单位
+    
+    - 6.3 标准化变量的回归
+    
+    - 6.4 对数模型 
+    
+    - 6.5 倒数模型
+    
+    - 6.6 函数形式的选择
+
+
+
+- 第7章 多元回归分析：估计问题（4学时）
+    
+    - 7.1 三变量模型:符号与假定
+    
+    - 7.2 对多元回归方程的解释
+    
+    - 7.3 偏回归系数的含义 
+    
+    - 7.4 偏回归系数的OLS与ML估计
+    
+    - 7.5 多元判定系$R2$与多元相关系数^R^
+    
+    - 7.6 $R^2$及调整$R^2$
+
+- 第8章 多元回归分析：推断与预测（4学时）
+    
+    - 8.1 多元回归中的假设检验
+    
+    - 8.2 检验关于个别偏回归系数的假设
+    
+    - 8.3 检验样本回归的总显著性
+    
+    - 8.4 检验两个回归系数是否相等
+    
+    - 8.5 受约束的最小二乘法:检验线性等式约束条件
+    
+    - 8.6 检验回归模型的结构或稳定性:邹至庄检验 
+    
+    - 8.7 用多元回归做预测
+    
+    - 8.8 假设检验: 似然比、瓦尔德与拉格朗日乘数检验
+
+- 第9章 虚拟变量回归模型（4学时）
+
+    - 9.1 虚拟变量的性质
+    
+    - 9.2 ANOVA 模型
+    
+    - 9.3 含有两个定性变量的ANOVA模型 
+    
+    - 9.4 同时含有定性和定量回归元的回归: ANOVA模型 
+    
+    - 9.5 邹至庄检验的虚拟变量方法 
+    
+    - 9.6 使用虚拟变量的交互效应 
+    
+    - 9.7 季节分析中虚拟变量的使用
+    
+    - 9.8 分段线性回归
+
+- 第10章 放宽经典假设：多重共线性（6学时）
+
+    - 10.1 多重共线性的性质
+    
+    - 10.2 出现完全多重共线性 时的估计问题
+    
+    - 10.3 出现"高度"但"不完全"多重共线性的估计问题
+    
+    - 10.4多重共线性的理论后果 
+    
+    - 10.5 多重共线性的实际后果
+    
+    - 10.6 说明性的例子
+    
+    - 10.7 多重共线性的侦察
+    
+    - 10.8 补救措施
+    
+    - 10.9 多重共线性一定是坏事吗?
+
+- 第11章 放宽经典假设：异方差性（6学时）
+
+    
+    - 11.1 异方差的性质
+    
+    - 11.2 出现异方差性时的OLS 估计
+    
+    - 11.3 广义最小二乘法
+    
+    - 11.4 出现异方差性时使用OLS的后果
+    
+    - 11.5 异方差性的侦察
+    
+    - 11.6 补救措施
+    
+    - 11.7 总结性的例子
+    
+    - 11.8 谨防对异方差性反应过度
+
+- 第12章 放宽经典假设：自相关性（6学时）
+    
+    - 12.1 自相关的性质
+    
+    - 12.2 出现自相关时的OLS估计量
+    
+    - 12.3 自相关出现时的BLUE
+    
+    - 12.4 出现自相关时使用OLS的后果
+    
+    - 12.5 说明案例：工资与生产率
+    
+    - 12.6 侦察自相关
+    
+    - 12.7 补救措施
+    
+    - 12.8 模型误设与纯粹自相关
+    
+    - 12.9 OLS与FGLS和HAC
+
+
+# 实验课安排
+
+
+```{r lab-arrange}
+lab <- tribble(~"实验主题",
+"EViews软件入门与基本操作",
+"一元线性回归及参数估计",
+"模型函数形式与模型选择",
+"多元线性回归及矩阵运算",
+"虚拟变量模型的设置和处理",
+"多重共线性的检验与处理",
+"异方差模型的检验和处理",
+"自相关模型的检验和处理")
+lab <- lab %>% 
+  add_column("序号"=paste("Lab",1:8),
+             .before = "实验主题")  %>%
+  add_column("学时"=rep(4,8))
+  
+#kable(lab, caption = "实验课（32学时）内容安排")
+
+```
+
+```{r}
+kable(lab, align= "c") %>%
+  kable_styling(full_width = T)
+```
+
+
+
+
+

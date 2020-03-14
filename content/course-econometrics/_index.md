@@ -3,31 +3,14 @@ date: "2019-03-01"
 draft: false
 menu:
   course-econometrics:
-    name: 计量在线课程 (简介)
+    name: 计量课程简介
     weight: 1
-title: 计量在线课程 (简介)
+title: 计量课程简介
 #toc: true
 type: docs
 ---
 
 此处放置了三个在线资料，完全用于教学目的。
-
-
-# 1. 参考教材电子版（部分章节下载）
-
-> 友情提示：因新冠疫情，为方便师生教学，以下材料仅供延迟开学期间学生学习使用，后期将会择机删除。任何个人和机构不得用于商业目的，如产生法律纠纷，后果一律使用者承担。支持著者，保护版权！
-
-**李子奈,潘文卿. 计量经济学(第四版)[M].高等教育出版社,北京:2015,9**
-
-- 第一章 绪论 (pdf格式，文件大小14.4 MB)  [点击观看或下载](/course-econometrics/resource/book-v4-chpt1-intro.pdf)
-
-- 第二章 经典单方程计量经济学模型：一元线性回归模型 (pdf格式，文件大小13.4 MB) [点击观看或下载](/course-econometrics/resource/book-v4-chpt2-simple-reg.pdf)
-
-- 第三章 经典单方程计量经济学模型：多元线性回归模型 (pdf格式，文件大小19.6 MB) [点击观看或下载](/course-econometrics/resource/book-v4-chpt3-multiple-reg.pdf)
-
-- 第四章 经典单方程计量经济学模型：放宽基本假定的模型 (pdf格式，文件大小17.8 MB) [点击观看或下载](/course-econometrics/resource/book-v4-chpt4-relax-reg.pdf)
-
-- 第五章 时间序列计量经济学模型 (pdf格式，文件大小22.1 MB) [点击观看或下载](/course-econometrics/resource/book-v4-chpt5-time-series.pdf)
 
 
 

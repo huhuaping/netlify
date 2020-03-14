@@ -1,12 +1,12 @@
 ---
+title: EViews实验操作指导
 date: "2018-09-09T00:00:00+08:00"
 draft: false
 linktitle: 实验教学安排
 menu:
   course-econometrics:
-    parent: 计量在线课程 (简介)
-    weight: 20
-title: EViews实验操作指导
+    parent: 计量课程简介
+    weight: 30
 #toc: true
 type: docs
 math: true

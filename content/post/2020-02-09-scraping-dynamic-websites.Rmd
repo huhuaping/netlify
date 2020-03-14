@@ -109,7 +109,7 @@ btn$clickElement()
 登录后的**目标页面**：
 
 ```{r, echo=FALSE,eval=TRUE}
-knitr::include_graphics("pic/web-scrape-AI-room-vedio-list.png")
+knitr::include_graphics("/pic/web-scrape-AI-room-vedio-list.png")
 ```
 
 
