@@ -1,24 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
   <head>
     <title>06-multiple-reg-matrix-slide.utf8.md</title>
-    <meta charset="utf-8">
-    <link href="libs/remark-css/default.css" rel="stylesheet" />
-    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
-    <link href="libs/remark-css/duke-blue.css" rel="stylesheet" />
-    <link href="libs/remark-css/hygge-duke.css" rel="stylesheet" />
-    <script src="libs/htmlwidgets/htmlwidgets.js"></script>
-    <script src="libs/jquery/jquery.min.js"></script>
-    <link href="libs/datatables-css/datatables-crosstalk.css" rel="stylesheet" />
-    <script src="libs/datatables-binding/datatables.js"></script>
-    <link href="libs/dt-core/css/jquery.dataTables.min.css" rel="stylesheet" />
-    <link href="libs/dt-core/css/jquery.dataTables.extra.css" rel="stylesheet" />
-    <script src="libs/dt-core/js/jquery.dataTables.min.js"></script>
-    <link href="libs/crosstalk/css/crosstalk.css" rel="stylesheet" />
-    <script src="libs/crosstalk/js/crosstalk.min.js"></script>
+    <meta charset="utf-8" />
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/duke-blue.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/hygge-duke.css" rel="stylesheet" />
+    <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+    <script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+    <script src="libs/jquery-1.12.4/jquery.min.js"></script>
+    <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+    <script src="libs/datatables-binding-0.8/datatables.js"></script>
+    <link href="libs/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="libs/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet" />
+    <script src="libs/dt-core-1.10.16/js/jquery.dataTables.min.js"></script>
+    <link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+    <script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
     <link rel="stylesheet" href="libs\cc-fonts.css" type="text/css" />
     <link rel="stylesheet" href="libs\figure-captions.css" type="text/css" />
     <link rel="stylesheet" href="libs\animate.css" type="text/css" />
+    <link rel="stylesheet" href="libs\mycss\my-custom.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -36,44 +38,54 @@ class: center,middle
 
 ### huhuaping01@hotmail.com
 
-### 2019-03-22
+### 2020-03-13
 
 
 
 
 
-&lt;style type="text/css"&gt;
-.remark-slide-content {
-    font-size: 22px;
-    padding: 1em 4em 1em 4em;
-}
-&lt;/style&gt;
+
+
+
+
 
 ---
 class: center, middle,inverse
 # 第6章：多元回归：矩阵部分
 
-k变量线性回归模型
+.red[
+6.1 k变量模型的矩阵表达
 
-经典线性回归模型假定的矩阵表述
+6.2 模型假设的矩阵表达
 
-OLS 估计
+6.3 OLS估计的矩阵表达
 
-用矩阵表示的判定系数R2
+6.4 假设检验的矩阵表达
 
-相关矩阵
+6.5 模型预测的矩阵表达
 
-对单个回归系数进行假设检验的矩阵表述
+6.6 矩阵方法总结（示例）
+]
 
-检验回归的总显著性：方差分析的矩阵表述
-
-检验线性约束：用矩阵表示的一般F检验法
-
-用多元回归做预测：矩阵表述
-
-矩阵方法总结：一个说明性例子
 
 ---
+layout: false
+class: inverse, center, middle, duke-softblue
+
+# 6.1 k变量模型的矩阵表达
+
+---
+layout: true
+  
+&lt;div class="my-header"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   第06章 多元回归II：矩阵部分   
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+6.1 6.1 k变量模型的矩阵表达 &lt;/span&gt;&lt;/div&gt; 
+
+---
+
 ## k变量线性回归模型
 
 k变量总体回归模型(PRM)
@@ -93,6 +105,7 @@ Y_{n} &amp;=\beta_{1}+\beta_{2} X_{2 n}+\beta_{3} X_{3 n}+\cdots+\beta_{k} X_{k 
 \end {align}$$`
 
 ---
+
 ## k变量线性回归模型
 
 如果样本数为n，则可以将上述PRM模型表达为矩阵形式：
@@ -123,6 +136,7 @@ Y_{n} &amp;=\beta_{1}+\beta_{2} X_{2 n}+\beta_{3} X_{3 n}+\cdots+\beta_{k} X_{k 
 \end{alignat}$$`
 
 ---
+
 ## k变量线性回归模型
 
 或者进一步紧凑表达为：
@@ -137,6 +151,23 @@ Y_{n} &amp;=\beta_{1}+\beta_{2} X_{2 n}+\beta_{3} X_{3 n}+\cdots+\beta_{k} X_{k 
 * 矩阵或向量的**维度**需要注意标明
 
 ---
+layout: false
+class: inverse, center, middle, duke-softblue
+
+# 6.2 模型假设的矩阵表达
+
+---
+layout: true
+  
+&lt;div class="my-header"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   第06章 多元回归II：矩阵部分   
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+6.2 模型假设的矩阵表达 &lt;/span&gt;&lt;/div&gt; 
+
+---
+
 ## 经典线性回归模型假设(N-CLRM)的矩阵表达
 
 进一步地，我们可以用矩阵方法表达正态经典线性回归模型假设（N-CLRM）：
@@ -162,6 +193,7 @@ Y_{n} &amp;=\beta_{1}+\beta_{2} X_{2 n}+\beta_{3} X_{3 n}+\cdots+\beta_{k} X_{k 
 `\(X_{ki}\)` 变量之间无完全的线性关系即无**完全共线性**
 
 ---
+
 ## 经典线性回归模型假设(N-CLRM)的矩阵表达
 
 **N-CLRM假设3-1**：随机干扰项期望为0。可记为
@@ -193,6 +225,7 @@ E \left[
 `\(\boldsymbol{u} \sim N(\boldsymbol{0},\sigma^2\boldsymbol{I})\)`
 
 ---
+
 ## 随机干扰项的方差协方差矩阵
 
 随机干扰项的方差协方差矩阵为：
@@ -204,8 +237,8 @@ var-cov(\boldsymbol{u})&amp;=E(\boldsymbol{uu'})\\
   \end{bmatrix}
   \begin{bmatrix}
   u_1 &amp;  u_2&amp; \cdots &amp; u_n
-  \end{bmatrix}
- =E
+  \end{bmatrix} 
+  =E
   \begin{bmatrix}
   u_1^2 &amp; u_1u_2  &amp;\cdots &amp;u_1u_n\\
   u_2u_1 &amp; u_2^2  &amp;\cdots &amp;u_2u_n\\
@@ -222,6 +255,7 @@ var-cov(\boldsymbol{u})&amp;=E(\boldsymbol{uu'})\\
 \end{align}$$`
 
 ---
+
 ## 随机干扰项的方差协方差矩阵
 
 如果满足N-CLRM假设，则随机干扰项的方差协方差矩阵进一步可以写成：
@@ -255,6 +289,23 @@ var-cov(\boldsymbol{u})&amp;=E(\boldsymbol{uu'})
 \end{align}$$`
 
 ---
+layout: false
+class: inverse, center, middle, duke-softblue
+
+# 6.3 OLS估计的矩阵表达 
+
+---
+layout: true
+  
+&lt;div class="my-header"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   第06章 多元回归II：矩阵部分   
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+6.3 OLS估计的矩阵表达 &lt;/span&gt;&lt;/div&gt; 
+
+---
+
 ## OLS估计的矩阵表达：代数过程
 
 给定如下的样本回归模型（SRM）：
@@ -291,6 +342,7 @@ Y_i&amp;=\hat{\beta}_1+\hat{\beta}_2X_{2i}+\hat{\beta}_3X_{3i}+\cdots+\hat{\beta
 \end{alignat}$$`
 
 ---
+
 ## OLS估计的矩阵表达：代数过程
 
 
@@ -308,6 +360,7 @@ Y_i&amp;=\hat{\beta}_1+\hat{\beta}_2X_{2i}+\hat{\beta}_3X_{3i}+\cdots+\hat{\beta
 \end {alignedat}$$`
 
 ---
+
 ## OLS估计的矩阵表达：代数过程
 
 正规方程组如下：
@@ -321,6 +374,7 @@ Y_i&amp;=\hat{\beta}_1+\hat{\beta}_2X_{2i}+\hat{\beta}_3X_{3i}+\cdots+\hat{\beta
 \end {alignedat}$$`
 
 ---
+
 ## OLS估计的矩阵表达：代数过程
 
 写成矩阵形式：
@@ -353,6 +407,7 @@ Y_i&amp;=\hat{\beta}_1+\hat{\beta}_2X_{2i}+\hat{\beta}_3X_{3i}+\cdots+\hat{\beta
 \end{align}$$`
 
 ---
+
 ## OLS估计的矩阵表达：纯矩阵过程
 
 最小二乘方法将求解最小化过程：
@@ -374,6 +429,7 @@ Q&amp;=\sum{e_i^2}\\
 &gt; 提示：标量的转置还是自身！
 
 ---
+
 ## OLS估计的矩阵表达：纯矩阵过程
 
 .pull-left[
@@ -397,6 +453,8 @@ Q&amp;=\sum{e_i^2}\\
 
 .pull-right[
 
+&gt;提示：
+
 `$$\begin{align}
 F &amp;=AZ, &amp;&amp; \frac{\partial {F}} {\partial{Z}} = A' \\
 F &amp;=ZA, &amp;&amp; \frac{\partial {F}} {\partial{Z}} = A \\
@@ -409,6 +467,7 @@ F &amp;=Z'AZ, &amp;&amp; \frac{\partial {F}} {\partial{Z}} = AZ+A'Z \\
 ]
 
 ---
+
 ## OLS估计的矩阵表达：纯矩阵过程(u的方差)
 
 此外，很用以证明OLS方法下，利用样本回归模型得到的估计量
@@ -433,6 +492,9 @@ F &amp;=Z'AZ, &amp;&amp; \frac{\partial {F}} {\partial{Z}} = AZ+A'Z \\
 ]
 
 .pull-right[
+
+
+
 `$$\begin {align} 
 \mathbf{y} &amp;=\mathbf{X} \hat{\boldsymbol{\beta}}+\mathbf{e} \\
 \mathbf{y}' &amp;=\hat{\boldsymbol{\beta}}' \mathbf{X}'+\mathbf{e}' \\ \mathbf{y}'&amp;-\hat{\boldsymbol{\beta}}' \mathbf{X}' =\mathbf{e}'
@@ -449,6 +511,7 @@ F &amp;=Z'AZ, &amp;&amp; \frac{\partial {F}} {\partial{Z}} = AZ+A'Z \\
 ]
 
 ---
+
 ### 回归系数的方差协方差矩阵
 
 对于回归系数的OLS估计量
@@ -468,6 +531,7 @@ var-cov(\boldsymbol{\hat{\beta}})
 \end{align}$$`
 
 ---
+
 ### 回归系数的方差协方差矩阵
 
 如果满足N-CLRM假设，则回归系数的OLS估计量
@@ -506,6 +570,7 @@ var-cov(\boldsymbol{\hat{\beta}})
 ]
 
 ---
+
 ### 回归系数的方差协方差矩阵
 
 那么，可以很快得到回归系数的OLS估计量
@@ -520,6 +585,7 @@ S^2_{ij}(\boldsymbol{\hat{\beta}})
 \end{align}$$`
 
 ---
+
 ## OLS估计的性质：BLUE
 
 下面我们将证明高斯-马尔可夫定理(Gauss-Markov Theorem)：在正态经典线性回归模型假设（N-CLRM）下，采用普通最小二乘法（OLS），得到的估计量
@@ -542,6 +608,7 @@ S^2_{ij}(\boldsymbol{\hat{\beta}})
 `\(\boldsymbol{y}\)`是线性的。
 
 ---
+
 ## OLS估计的性质：BLUE
 
 
@@ -568,6 +635,7 @@ E(\boldsymbol{\hat{\beta}})
 
 
 ---
+
 ## OLS估计的性质：BLUE
 
 假设存在用其他方法估计的线性无偏估计量
@@ -596,6 +664,7 @@ E(\boldsymbol{\hat{\beta}})
 \end{align}$$`
 
 ---
+
 ## OLS估计的性质：BLUE
 
 根据方差定义，有：
@@ -620,6 +689,23 @@ var-cov(\boldsymbol{\beta^{\ast}}) &amp; \geq var-cov(\boldsymbol{\hat{\beta}})
 `\(\boldsymbol{\hat{\beta}}\)`，方差最小。
 
 ---
+layout: false
+class: inverse, center, middle, duke-softblue
+
+# 6.4 假设检验的矩阵表达
+
+---
+layout: true
+  
+&lt;div class="my-header"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   第06章 多元回归II：矩阵部分   
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+6.4 假设检验的矩阵表达 &lt;/span&gt;&lt;/div&gt; 
+
+---
+
 ## 平方和分解的矩阵表达
 
 对于多元回归模型：
@@ -633,6 +719,7 @@ Y_i&amp;=\hat{\beta}_1+\hat{\beta}_2X_{2i}+\hat{\beta}_3X_{3i}+\cdots+\hat{\beta
 \end{align}$$`
 
 ---
+
 ## 平方和分解的矩阵表达
 
 通过对
@@ -654,6 +741,7 @@ ESS&amp;=\boldsymbol{\hat{\beta}'X'y}-n\bar{Y}^2
 \end{align}$$`
 
 ---
+
 ## 平方和分解的矩阵表达（ANOVA）
 
 进一步地，可以得到方差分析表（ANOVA）：
@@ -661,10 +749,47 @@ ESS&amp;=\boldsymbol{\hat{\beta}'X'y}-n\bar{Y}^2
 
 
 
-<div id="htmlwidget-6055830f31d8307c98aa" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-6055830f31d8307c98aa">{"x":{"filter":"none","data":[["1","2","3"],["回归平方和","残差平方和","总平方和"],["ESS","RSS","TSS"],["\\( \\sum{\\hat{y}_i^2} \\)","\\( \\sum{e_i^2} \\)","\\( \\sum{y_i^2}\\)"],["k-1","n-k","n-1"],["\\(MSS_{ESS}\\)","\\(MSS_{RSS}\\)","\\(MSS_{TSS}\\)"],["\\(  =\\boldsymbol{\\hat{\\beta}'X'y}-n\\bar{Y}^2 \\)","\\( =\\boldsymbol{yy'-\\hat{\\beta}'X'y} \\)","\\( =\\boldsymbol{y'y}-n\\bar{Y}^2 \\)"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>变异来源<\/th>\n      <th>平方和符号SS<\/th>\n      <th>平方和计算公式<\/th>\n      <th>自由度df<\/th>\n      <th>均方和符号MSS<\/th>\n      <th>均方和计算公式<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":4,"dom":"tip","order":[],"autoWidth":false,"orderClasses":false,"columnDefs":[{"orderable":false,"targets":0}],"lengthMenu":[4,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; 变异来源 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 平方和符号SS &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 平方和计算公式 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 自由度df &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 均方和符号MSS &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 均方和计算公式 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 回归平方和 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; ESS &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \( \sum{\hat{y}_i^2} \) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; k-1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(MSS_{ESS}\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(  =\boldsymbol{\hat{\beta}'X'y}-n\bar{Y}^2 \) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 残差平方和 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; RSS &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \( \sum{e_i^2} \) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; n-k &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(MSS_{RSS}\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \( =\boldsymbol{yy'-\hat{\beta}'X'y} \) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 总平方和 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; TSS &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \( \sum{y_i^2}\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; n-1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(MSS_{TSS}\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \( =\boldsymbol{y'y}-n\bar{Y}^2 \) &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 
 ---
+
 ## 拟合优度的矩阵表达
 
 根据拟合优度的定义，判定系数
@@ -681,6 +806,7 @@ R^2&amp;=\frac{ESS}{TSS}
 \end{align}$$`
 
 ---
+
 ## 回归系数显著性检验（t检验）的矩阵方法实现
 
 根据回归系数显著性检验的定义，利用矩阵方法实现t检验的过程如下：
@@ -693,6 +819,7 @@ Y_i&amp;=\beta_1+\beta_2X_{2i}+\beta_3X_{3i}+\cdots+\beta_kX_{ki}+u_i \\
 \end{align}$$`
 
 ---
+
 ## 回归系数显著性检验（t检验）的矩阵方法实现
 
 .pull-left[
@@ -714,8 +841,9 @@ T_{\hat{\beta}}&amp; =\frac{\hat{\beta}_{j}-\beta_{j}}{\sqrt{c_{i j} \frac{\math
 
 其中
 `\(c_{ij}\)`表示矩阵
-`\(\mathbf{(X'X)^{-1}}\)`主对角线上的第
-`\(j\)`个元素。
+`\(\mathbf{(X'X)^{-1}}\)`主对角线第
+`\(j\)`个元素
+
 ]
 
 .pull-right[
@@ -741,6 +869,7 @@ S^2_{ij}(\boldsymbol{\hat{\beta}})
 
 
 ---
+
 ## 回归系数显著性检验（t检验）的矩阵方法实现
 
 对于总体回归模型的任一参数
@@ -767,6 +896,7 @@ S^2_{ij}(\boldsymbol{\hat{\beta}})
 `$$S^2_{ij}(\hat{\beta}_{kk})=[s^2_{\hat{\beta}_1},s^2_{\hat{\beta}_2},\cdots,s^2_{\hat{\beta}_k}]^{T}$$`
 
 ---
+
 ## 回归系数显著性检验（t检验）的矩阵方法实现
 
 若给定显著性水平
@@ -798,6 +928,7 @@ S^2_{ij}(\boldsymbol{\hat{\beta}})
 `\(H_0:\beta_k=0\)`。
 
 ---
+
 ## 模型整体显著性检验（F检验）的矩阵方法实现
 
 对于多元回归模型
@@ -819,6 +950,7 @@ Y_i&amp;=\hat{\beta}_1+\hat{\beta}_2X_{2i}+\hat{\beta_3}X_{3i}+\cdots+\hat{\beta
 \end{align}$$`
 
 ---
+
 ## 模型整体显著性检验（F检验）的矩阵方法实现
 
 在原假设
@@ -849,6 +981,7 @@ Y_i&amp;=\hat{\beta}_1+e_i &amp;&amp; \text{(R-SRM)}
 `\(j \in (2,\cdots,k)\)`\}下，回归模型的形式有很多种，但对于这里所要说明的F检验而言，这些不同的模型形式已经不再重要
 
 ---
+
 ## 模型整体显著性检验（F检验）的矩阵方法实现
 
 根据回归系数显著性检验的定义，利用矩阵方法实现F检验的过程如下：
@@ -873,6 +1006,7 @@ RSS_R&amp;=\sum{(Y_i-\hat{Y_i})^2} \sim \chi^2(n-1)
 
 
 ---
+
 ## 模型整体显著性检验（F检验）的矩阵方法实现
 
 进一步地可以构造得到随机变量
@@ -886,14 +1020,52 @@ RSS_R&amp;=\sum{(Y_i-\hat{Y_i})^2} \sim \chi^2(n-1)
 
 
 ---
+
 ## 模型整体显著性检验（F检验）的矩阵方法实现
 
 
-<div id="htmlwidget-ad63f9f7b816edd59da2" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-ad63f9f7b816edd59da2">{"x":{"filter":"none","data":[["1","2","3"],["回归平方和","残差平方和","总平方和"],["ESS","RSS","TSS"],["\\( \\sum{\\hat{y}_i^2} \\)","\\( \\sum{e_i^2} \\)","\\( \\sum{y_i^2}\\)"],["k-1","n-k","n-1"],["\\(MSS_{ESS}\\)","\\(MSS_{RSS}\\)","\\(MSS_{TSS}\\)"],["\\(  =\\boldsymbol{\\hat{\\beta}'X'y}-n\\bar{Y}^2 \\)","\\( =\\boldsymbol{yy'-\\hat{\\beta}'X'y} \\)","\\( =\\boldsymbol{y'y}-n\\bar{Y}^2 \\)"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>变异来源<\/th>\n      <th>平方和符号SS<\/th>\n      <th>平方和计算公式<\/th>\n      <th>自由度df<\/th>\n      <th>均方和符号MSS<\/th>\n      <th>均方和计算公式<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":4,"dom":"tip","order":[],"autoWidth":false,"orderClasses":false,"columnDefs":[{"orderable":false,"targets":0}],"lengthMenu":[4,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; 变异来源 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 平方和符号SS &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 平方和计算公式 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 自由度df &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 均方和符号MSS &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 均方和计算公式 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 回归平方和 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; ESS &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \( \sum{\hat{y}_i^2} \) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; k-1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(MSS_{ESS}\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(  =\boldsymbol{\hat{\beta}'X'y}-n\bar{Y}^2 \) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 残差平方和 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; RSS &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \( \sum{e_i^2} \) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; n-k &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(MSS_{RSS}\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \( =\boldsymbol{yy'-\hat{\beta}'X'y} \) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 总平方和 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; TSS &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \( \sum{y_i^2}\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; n-1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(MSS_{TSS}\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \( =\boldsymbol{y'y}-n\bar{Y}^2 \) &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 
 
 ---
+
 ## 模型整体显著性检验（F检验）的矩阵方法实现
 
 基于原假设
@@ -916,6 +1088,7 @@ F^{\ast}&amp;=\frac{ESS_U/df_{ESS_U}}{RSS_U/df_{RSS_U}}
 \end{align}$$`
 
 ---
+
 ## 模型整体显著性检验（F检验）的矩阵方法实现
 
 若给定显著性水平
@@ -939,7 +1112,27 @@ F^{\ast}&amp;=\frac{ESS_U/df_{ESS_U}}{RSS_U/df_{RSS_U}}
 `\(H_0:\beta_2=\beta_3=\cdots=\beta_k=0\)`，从而只能暂时接受
 `\(H_0:\beta_2=0\)`，认为模型整体在统计上是无意义的！
 
+
 ---
+
+layout: false
+class: inverse, center, middle, duke-softblue
+
+# 6.5 模型预测的矩阵表达
+
+---
+
+layout: true
+  
+&lt;div class="my-header"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   第06章 多元回归II：矩阵部分   
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+6.5 模型预测的矩阵表达 &lt;/span&gt;&lt;/div&gt; 
+
+---
+
 ## 样本外预测的矩阵方法实现
 
 根据一元线性回归样本外预测的知识内容，下面将用矩阵方法实现：
@@ -965,6 +1158,7 @@ Y_i&amp;=\hat{\beta}_1+\hat{\beta}_2X_{2i}+\hat{\beta_3}X_{3i}+\cdots+\hat{\beta
 \end{align}$$`
 
 ---
+
 ## 样本外预测的矩阵方法实现：均值预测
 
 对于样本外均值预测
@@ -991,6 +1185,7 @@ S^2_{\hat{Y}_0}&amp;=\hat{\sigma}^2\boldsymbol{X_0(X'X)^{-1}X_0'}
 \end{align}$$`
 
 ---
+
 ## 样本外预测的矩阵方法实现：均值预测
 
 因此
@@ -1016,6 +1211,7 @@ t_{\hat{Y}_0}&amp; =\frac{\hat{Y}_0-E(Y|X_0)}{S_{\hat{Y}_0}}
 \end{align}$$`
 
 ---
+
 ## 样本外预测的矩阵方法实现：均值预测
 
 给定显著性水平
@@ -1035,6 +1231,7 @@ t_{\hat{Y}_0}&amp; =\frac{\hat{Y}_0-E(Y|X_0)}{S_{\hat{Y}_0}}
 \end{align}$$`
 
 ---
+
 ## 样本外预测的矩阵方法实现：个值预测
 
 对于多元线性回归模型，样本外个值预测
@@ -1060,6 +1257,7 @@ E(e_0)&amp;=E(Y_0-\hat{Y}_0)\\
 .pull-right[
 
 &gt;提示：
+
 `$$\begin {align} 
 \hat{\boldsymbol{\beta}} &amp;=\left(\boldsymbol{X}' \boldsymbol{X}\right)^{-1} \boldsymbol{X}' \boldsymbol{y} \\
 &amp;=\left(\boldsymbol{X}' \boldsymbol{X}\right)^{-1} \boldsymbol{X}'(\boldsymbol{X} \boldsymbol{\beta}+\boldsymbol{u}) \\
@@ -1070,6 +1268,7 @@ E(e_0)&amp;=E(Y_0-\hat{Y}_0)\\
 ]
 
 ---
+
 ## 样本外预测的矩阵方法实现：个值预测
 
 同时，
@@ -1099,6 +1298,7 @@ S^2_{Y_0-\hat{Y}_0} \equiv S^2_{e_0}
 \end{align}$$`
 
 ---
+
 ## 样本外预测的矩阵方法实现：个值预测
 
 因此可以构造t统计量：
@@ -1126,12 +1326,30 @@ S_{Y_0-\hat{Y}_0}
 \end{align}$$`
 
 ---
+
+layout: false
+class: inverse, center, middle, duke-softblue
+
+# 6.6 矩阵方法总结（示例） 
+
+---
+layout: true
+  
+&lt;div class="my-header"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   第06章 多元回归II：矩阵部分   
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+6.6 矩阵方法总结（示例）  &lt;/span&gt;&lt;/div&gt; 
+
+---
+
 ## 矩阵方法总结：消费支出案例（数据）
 
 
 
-<div id="htmlwidget-f4dc05f09f36eb3e36a7" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-f4dc05f09f36eb3e36a7">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"],[1956,1957,1958,1959,1960,1961,1962,1963,1964,1965,1966,1967,1968,1969,1970],[1673,1688,1666,1735,1749,1756,1815,1867,1948,2048,2128,2165,2257,2316,2324],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1839,1844,1831,1881,1883,1910,1969,2016,2126,2239,2336,2404,2487,2535,2595],[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Year<\/th>\n      <th>Y<\/th>\n      <th>one<\/th>\n      <th>X2<\/th>\n      <th>X3<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"dom":"tip","columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-bfd73a3a66c97b536b2d" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-bfd73a3a66c97b536b2d">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"],[1956,1957,1958,1959,1960,1961,1962,1963,1964,1965,1966,1967,1968,1969,1970],[1673,1688,1666,1735,1749,1756,1815,1867,1948,2048,2128,2165,2257,2316,2324],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1839,1844,1831,1881,1883,1910,1969,2016,2126,2239,2336,2404,2487,2535,2595],[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Year<\/th>\n      <th>Y<\/th>\n      <th>one<\/th>\n      <th>X2<\/th>\n      <th>X3<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":5,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 
 `$$\begin {align} 
 Y_{i} &amp;=\hat{\beta}_{1}+\hat{\beta}_{2} X_{2 i}+\hat{\beta}_{3} X_{3 i}+e_{i} 
@@ -1141,21 +1359,23 @@ Y_{i} &amp;=\hat{\beta}_{1}+\hat{\beta}_{2} X_{2 i}+\hat{\beta}_{3} X_{3 i}+e_{i
 
 - `\(X_{2i}\)`表示人均可支配收入
 
-- `\(X_{2i}\)`表示时间
+- `\(X_{3i}\)`表示时间
 `\(t \in 1,2,\cdots n\)`
 
 ---
+
 ## 矩阵方法总结：消费支出案例（软件报告）
 
 我们可以构建如下的回归模型：
 
-`$$\begin{equation} \begin{alignedat}{999} &amp;Y=&amp;&amp; + \beta_{1} &amp;&amp; + \beta_{2} X2&amp;&amp; + \beta_{3} X3&amp;&amp;+e_i\\ \end{alignedat} \end{equation}$$`
+`$$\begin{equation} \begin{alignedat}{999} &amp;Y=&amp;&amp; + \hat{\beta}_{1} &amp;&amp; + \hat{\beta}_{2} X2&amp;&amp; + \hat{\beta}_{3} X3&amp;&amp;+e_i\\ \end{alignedat} \end{equation}$$`
 
 统计软件自动计算结果整理如下（便于后续手动计算的比较）：
 
 `$$\begin{equation} \begin{alignedat}{999} &amp;\widehat{Y}=&amp;&amp;+300.29&amp;&amp;+0.74X2&amp;&amp;+8.04X3\\ &amp;\text{(t)}&amp;&amp;(3.8342)&amp;&amp;(15.6096)&amp;&amp;(2.6960)\\&amp;\text{(se)}&amp;&amp;(78.3176)&amp;&amp;(0.0475)&amp;&amp;(2.9835)\\&amp;\text{(fitness)}&amp;&amp; R^2=0.9976;&amp;&amp; \bar{R^2}=0.9972\\&amp; &amp;&amp; F^{\ast}=2513.52;&amp;&amp; p=0.0000 \end{alignedat} \end{equation}$$`
 
 ---
+
 ## 矩阵方法总结：消费支出案例（软件报告）
 
 利用`R`软件给出更为详细的分析报告如下（便于后续手动计算的比较）：
@@ -1167,24 +1387,24 @@ Call:
 lm(formula = mod_mat, data = data_PCE)
 
 Residuals:
-   Min     1Q Median     3Q    Max 
--22.38  -6.14   3.41   6.69  22.18 
+    Min      1Q  Median      3Q     Max 
+-22.380  -6.141   3.414   6.686  22.183 
 
 Coefficients:
-            Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept) 300.2863    78.3176    3.83   0.0024 ** 
-X2            0.7420     0.0475   15.61  2.5e-09 ***
-X3            8.0436     2.9835    2.70   0.0195 *  
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 300.28626   78.31763   3.834  0.00238 ** 
+X2            0.74198    0.04753  15.610 2.46e-09 ***
+X3            8.04356    2.98355   2.696  0.01945 *  
 ---
-Signif. codes:  
-0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 12.8 on 12 degrees of freedom
-Multiple R-squared:  0.998,	Adjusted R-squared:  0.997 
-F-statistic: 2.51e+03 on 2 and 12 DF,  p-value: &lt;2e-16
+Residual standard error: 12.84 on 12 degrees of freedom
+Multiple R-squared:  0.9976,	Adjusted R-squared:  0.9972 
+F-statistic:  2514 on 2 and 12 DF,  p-value: &lt; 2.2e-16
 ```
 
 ---
+
 ## 矩阵方法总结：消费支出案例（回归系数）
 
 
@@ -1233,8 +1453,8 @@ $$
 \boldsymbol{(X'X)^{-1}}=
 `\begin{bmatrix}
 37.2328&amp;-0.0225&amp;1.3367 \\
--0.0225&amp;0&amp;-0.0008 \\
-1.3367&amp;-0.0008&amp;0.054 \\
+-0.0225&amp;0&amp;-8e-04 \\
+1.3367&amp;-8e-04&amp;0.054 \\
 \end{bmatrix}`
 $$
 
@@ -1260,6 +1480,7 @@ $$
 ]
 
 ---
+
 ## 求出回归标准误差方差
 
 
@@ -1305,6 +1526,7 @@ $$
 
 
 ---
+
 ## 求出回归标准误差方差
 
 因此有：
@@ -1323,6 +1545,7 @@ RSS=\sum{e_i^2}= \boldsymbol{e'e}
 
 
 ---
+
 ## 求出方差-协方差矩阵
 
 
@@ -1348,6 +1571,7 @@ S^2_{ij}(\boldsymbol{\hat{\beta}})=\hat{\sigma}^2\boldsymbol{(X'X)^{-1}}=
 $$
 
 ---
+
 ## 平方和分解和ANOVA分析表
 
 
@@ -1370,10 +1594,47 @@ TSS=\boldsymbol{y'y}-n\bar{Y}^2
 
 
 
-<div id="htmlwidget-986a8c5363892eebb06d" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-986a8c5363892eebb06d">{"x":{"filter":"none","data":[["1","2","3"],["回归平方和","残差平方和","总平方和"],["ESS","RSS","TSS"],["\\( \\sum{\\hat{y}_i^2} \\)","\\( \\sum{e_i^2} \\)","\\( \\sum{y_i^2}\\)"],[2,12,14],["\\(MSS_{ESS}\\)","\\(MSS_{RSS}\\)","\\(MSS_{TSS}\\)"],["\\(  \\boldsymbol{\\hat{\\beta}'X'y}-n\\bar{Y}^2= \\)828144.4779","\\( \\boldsymbol{yy'-\\hat{\\beta}'X'y} \\)=1976.8554","\\( \\boldsymbol{y'y}-n\\bar{Y}^2 \\)=830121.3333"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>变异来源<\/th>\n      <th>平方和符号SS<\/th>\n      <th>平方和计算公式<\/th>\n      <th>自由度df<\/th>\n      <th>均方和符号MSS<\/th>\n      <th>均方和计算公式<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":4,"dom":"tip","columnDefs":[{"className":"dt-right","targets":4},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[4,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+&lt;table class="table" style="font-size: 20px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; 变异来源 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 平方和符号SS &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 平方和计算公式 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 自由度df &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 均方和符号MSS &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 均方和计算公式 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 回归平方和 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; ESS &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \( \sum{\hat{y}_i^2} \) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(MSS_{ESS}\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(  \boldsymbol{\hat{\beta}'X'y}-n\bar{Y}^2= \)828144.4779 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 残差平方和 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; RSS &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \( \sum{e_i^2} \) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 12 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(MSS_{RSS}\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \( \boldsymbol{yy'-\hat{\beta}'X'y} \)=1976.8554 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 总平方和 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; TSS &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \( \sum{y_i^2}\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 14 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(MSS_{TSS}\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \( \boldsymbol{y'y}-n\bar{Y}^2 \)=830121.3333 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 
 ---
+
 ## 判定系数和调整判定系数
 
 
@@ -1395,16 +1656,54 @@ R^2&amp;=\frac{ESS}{TSS}
 \end{align}$$`
 
 ---
+
 ## 进行F检验
 
 
 
 首先计算得到方差分析表（ANOVA）：
 
-<div id="htmlwidget-bbca3196dc2a173d148b" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-bbca3196dc2a173d148b">{"x":{"filter":"none","data":[["1","2","3"],["回归平方和","残差平方和","总平方和"],["ESS","RSS","TSS"],["\\( \\sum{\\hat{y}_i^2} \\)","\\( \\sum{e_i^2} \\)","\\( \\sum{y_i^2}\\)"],[2,12,14],["\\(MSS_{ESS}\\)","\\(MSS_{RSS}\\)","\\(MSS_{TSS}\\)"],["\\(  \\boldsymbol{\\hat{\\beta}'X'y}-n\\bar{Y}^2= \\)828144.4779","\\( \\boldsymbol{yy'-\\hat{\\beta}'X'y} \\)=1976.8554","\\( \\boldsymbol{y'y}-n\\bar{Y}^2 \\)=830121.3333"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>变异来源<\/th>\n      <th>平方和符号SS<\/th>\n      <th>平方和计算公式<\/th>\n      <th>自由度df<\/th>\n      <th>均方和符号MSS<\/th>\n      <th>均方和计算公式<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":4,"dom":"tip","columnDefs":[{"className":"dt-right","targets":4},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[4,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+&lt;table class="table" style="font-size: 20px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; 变异来源 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 平方和符号SS &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 平方和计算公式 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 自由度df &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 均方和符号MSS &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 均方和计算公式 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 回归平方和 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; ESS &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \( \sum{\hat{y}_i^2} \) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(MSS_{ESS}\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(  \boldsymbol{\hat{\beta}'X'y}-n\bar{Y}^2= \)828144.4779 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 残差平方和 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; RSS &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \( \sum{e_i^2} \) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 12 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(MSS_{RSS}\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \( \boldsymbol{yy'-\hat{\beta}'X'y} \)=1976.8554 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 总平方和 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; TSS &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \( \sum{y_i^2}\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 14 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(MSS_{TSS}\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \( \boldsymbol{y'y}-n\bar{Y}^2 \)=830121.3333 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 
 ---
+
 ## 进行F检验
 
 根据方差分析表ANOVA和样本F统计量计算公式，可以得到：
@@ -1418,6 +1717,7 @@ F^{\ast}=\frac{ESS_U/df_{ESS_U}}{RSS_U/df_{RSS_U}}=\frac{\left(\boldsymbol{\hat{
 `\(F^{\ast}=\)` 2513.5207 .red[**大于**] `\(F_{1-\alpha}(k-1,n-k)=F_{0.95}\)`(2,12)=3.8853，所以模型整体显著性的F检验结果**显著**。
 
 ---
+
 ## 进行样本外预测
 
 
@@ -1447,11 +1747,12 @@ $$
 
 `$$\begin{align}
 \hat{Y}_0 &amp;= \boldsymbol{X_0}\boldsymbol{\hat{\beta}}=
-2366
+2365.553
 \end{align}$$`
 
 
 ---
+
 ## 进行样本外预测（均值预测）
 
 
@@ -1462,8 +1763,8 @@ $$
 \boldsymbol{(X'X)^{-1}}=
 `\begin{bmatrix}
 37.2328&amp;-0.0225&amp;1.3367 \\
--0.0225&amp;0&amp;-0.0008 \\
-1.3367&amp;-0.0008&amp;0.054 \\
+-0.0225&amp;0&amp;-8e-04 \\
+1.3367&amp;-8e-04&amp;0.054 \\
 \end{bmatrix}`
 $$
 
@@ -1471,7 +1772,7 @@ $$
 
 `$$\begin{align}
 \boldsymbol{X_0(X'X)^{-1}X_0'}=
-0.295
+0.2953
 \end{align}$$`
 
 因此进一步得到：
@@ -1483,6 +1784,7 @@ $$
 \end{align}$$`
 
 ---
+
 ## 进行样本外预测（均值预测）
 
 又因为给定
@@ -1498,6 +1800,7 @@ $$
 \end{align}$$`
 
 ---
+
 ## 进行样本外预测（个值预测）
 
 
@@ -1508,8 +1811,8 @@ $$
 \boldsymbol{(X'X)^{-1}}=
 `\begin{bmatrix}
 37.2328&amp;-0.0225&amp;1.3367 \\
--0.0225&amp;0&amp;-0.0008 \\
-1.3367&amp;-0.0008&amp;0.054 \\
+-0.0225&amp;0&amp;-8e-04 \\
+1.3367&amp;-8e-04&amp;0.054 \\
 \end{bmatrix}`
 $$
 
@@ -1517,7 +1820,7 @@ $$
 
 `$$\begin{align}
 \boldsymbol{X_0(X'X)^{-1}X_0'}=
-0.295
+0.2953
 \end{align}$$`
 
 因此进一步得到：
@@ -1529,6 +1832,7 @@ $$
 \end{align}$$`
 
 ---
+
 ## 进行样本外预测（个值预测）
 
 又因为给定
@@ -1544,6 +1848,7 @@ $$
 \end{align}$$`
 
 ---
+layout:false
 background-image: url("pic/thank-you-gif-funny-little-yellow.gif")
 class: inverse,center
 # 本章结束
@@ -1594,7 +1899,24 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     deleted = true;
   });
-})();</script>
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
 
 <script>
 (function() {

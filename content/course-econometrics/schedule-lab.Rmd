@@ -2,7 +2,7 @@
 title: EViews实验操作指导
 date: "2018-09-09T00:00:00+08:00"
 draft: false
-linktitle: 实验教学安排
+linktitle: 实验教学
 menu:
   course-econometrics:
     parent: 计量课程简介

@@ -3,7 +3,7 @@ title: 计量经济学理论课教学安排
 date: "2019-04-27T00:00:00+08:00"
 draft: false
 type: docs
-linktitle: 理论教学安排
+linktitle: 理论教学
 menu:
   course-econometrics:
     parent: 计量课程简介
@@ -17,7 +17,7 @@ output:
 
 # 内容安排（48学时）
 
-下表列出了教学内容和相关材料，大家可以观看或下载，并完成相关学习要求。
+下表列出了教学内容和相关材料，大家可以**点击观看**或**下载**，并完成相关学习要求。
 
 ```{r,echo=FALSE, message=FALSE, warning=FALSE}
 knitr::opts_chunk$set(echo = FALSE,message=FALSE, warning=FALSE)
@@ -31,8 +31,8 @@ load.pkg <- lapply(pkg, require, character.only = TRUE)
 ```
 
 
-```{r}
 
+```{r}
 tab <- xlsx::read.xlsx2("data/syllabus.xlsx", sheetIndex = 1) 
 
 # combine with icons
@@ -40,18 +40,22 @@ add_iconLink <- function(folder, file_name,icon) {
   paste0("<a href=\"", 
          stringr::str_c("/", folder, "/", file_name, sep = ""), 
          "\">", 
-         as.character(fa(icon, fill= "blue", height=15 )), 
+         as.character(fa(icon, fill= "blue", height=17 )), 
+         "</a>") 
+}
+
+add_urlLink <- function(url, icon) {
+  paste0("<a href=\"", 
+         url, 
+         "\">", 
+         as.character(fa(icon, fill= "blue", height=17 )), 
          "</a>") 
 }
 
 
 tab_out <- tab %>%
-  as_tibble() %>%
-  mutate(chpt_chn = str_c("第", 
-                          sprintf("%02d",id_chpt),
-                          "章 ",chpt, sep= "")
-         ) %>%
-  mutate(show_reading = if_else(file_reading=="no", "",
+as_tibble() %>%
+ mutate(show_reading = if_else(file_reading=="no", "",
                                 add_iconLink(folder = "course-econometrics",
                                              file_name = file_reading, 
                                              icon = "newspaper"))) %>%
@@ -60,8 +64,7 @@ tab_out <- tab %>%
                                              file_name = file_slide, 
                                              icon = "file-powerpoint"))) %>%
   mutate(show_pdf = if_else(file_pdf=="no", "",
-                                add_iconLink(folder = "course-econometrics",
-                                             file_name = file_pdf, 
+                                add_urlLink(url = file_pdf, 
                                              icon = "file-pdf"))) %>%
   mutate(show_exercise = if_else(file_exercise =="no", "", 
                                 add_iconLink(folder = "course-econometrics",
@@ -76,7 +79,11 @@ tab_out %>%
   select(one_of(names_eng)) %>%
   rename_at(vars(names_eng), ~names_chn) %>%
   kable(align = "l",escape = F) %>%
-  kable_styling(full_width = T)
+  kable_styling(full_width = T)  %>%
+  pack_rows("Part I 经典假设", 2, 8) %>%
+  pack_rows("Part II 放宽假设", 9, 11) %>%
+  pack_rows("Part III 模型扩展", 12, 13)
+  
 
 ```
 
@@ -93,12 +100,14 @@ tab_out %>%
 
 - 通过电脑pc在线观看。主要操作技巧有：
     - 全屏观看：先鼠标点击幻灯片，再按键盘F键；
-    - 前进后退：点击键盘方向键上/下；或左/右
-    - 观看指定页码：按键盘数字键输入数字如“56”，再按键盘Enter则会播放第56页幻灯片
+    - 退出全屏观看：按键盘Esc键；
+    - 前进后退：点击键盘方向键上/下；或左/右；
+    - 观看指定页码：按键盘数字键输入数字如“56”，再按键盘Enter则会播放第56页幻灯片。
+    
 
 - 手机可以观看。
-    - 建议横屏观看。
-    - 前进后退：点击幻灯片的左/右区域
+    - 建议横屏观看；
+    - 前进后退：点击幻灯片的左/右区域。
 
 
 ## （课后）随堂作业

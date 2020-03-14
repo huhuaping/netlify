@@ -1,15 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
   <head>
     <title>04-simple-reg-hypothesis-test-slide.utf8.md</title>
-    <meta charset="utf-8">
-    <link href="libs/remark-css/default.css" rel="stylesheet" />
-    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
-    <link href="libs/remark-css/duke-blue.css" rel="stylesheet" />
-    <link href="libs/remark-css/hygge-duke.css" rel="stylesheet" />
+    <meta charset="utf-8" />
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/duke-blue.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/hygge-duke.css" rel="stylesheet" />
+    <script src="libs/kePrint-0.0.1/kePrint.js"></script>
     <link rel="stylesheet" href="libs\cc-fonts.css" type="text/css" />
     <link rel="stylesheet" href="libs\figure-captions.css" type="text/css" />
     <link rel="stylesheet" href="libs\animate.css" type="text/css" />
+    <link rel="stylesheet" href="libs\mycss\my-custom.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -27,59 +29,55 @@ class: center,middle
 
 ### huhuaping01@hotmail.com
 
-### 2019-03-10
+### 2020-03-13
 
 
 
 
 
-&lt;style type="text/css"&gt;
-.remark-slide-content {
-    font-size: 22px;
-    padding: 1em 4em 1em 4em;
-}
-&lt;/style&gt;
+
+
+
 
 ---
 class: center, middle,inverse
 # 第4章：一元回归：假设检验
 
-## 内容目录
 
-.pull-left[
-统计学的预备知识
+.red[
+4.0 统计学的预备知识
 
-区间估计：一些基本思想
+4.1 回归系数的置信区间
 
-回归系数𝑖的置信区间
+4.2 假设检验
 
-回归误差方差的置信区间(*不要求掌握)
-]
+4.3 方差分析
 
-.pull-right[
-假设检验：概述
+4.4 回归分析应用：预测问题
 
-假设检验：置信区间的方法
+4.5 报告回归分析结果
 
-假设检验：显著性检验法
-
-假设检验：实际操作
-
-回归分析与方差分析
-
-回归分析应用：预测问题
-
-报告回归分析结果
 ]
 
 ---
-class: inverse, middle, center
-# 统计学的相关知识
+layout: false
+class: inverse, center, middle, duke-softblue
 
+# 4.0 统计学的相关知识(回顾)
+
+---
+layout: true
+  
+&lt;div class="my-header"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   第04章 一元回归：假设检验   
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+4.0 统计学的相关知识(回顾) &lt;/span&gt;&lt;/div&gt; 
 
 ---
 
-# 重要概念
+## 重要概念1
 
 - 显著性水平
 `\(\alpha\)`
@@ -98,7 +96,7 @@ class: inverse, middle, center
 
 ---
 
-## 重要概念
+## 重要概念2
 
 
 - 区间估计
@@ -173,10 +171,23 @@ class: inverse, middle, center
     - 长度的随机性
 
 ---
-class: inverse, middle, center
-# 回归系数的置信区间
+layout: false
+class: inverse, center, middle, duke-softblue
+
+# 4.1 回归系数的置信区间
 
 ---
+layout: true
+  
+&lt;div class="my-header"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   第04章 一元回归：假设检验   
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+4.1 回归系数的置信区间 &lt;/span&gt;&lt;/div&gt; 
+
+---
+
 ## 斜率系数的置信区间
 
 `$$\begin{align}
@@ -212,6 +223,7 @@ S^2_{\hat{\beta}_2} =\frac{\hat{\sigma}^{2}}{\sum x_{i}^{2}}
  
 
 ---
+
 ## 斜率系数的置信区间
 
 
@@ -236,6 +248,7 @@ S^2_{\hat{\beta}_2} =\frac{\hat{\sigma}^{2}}{\sum x_{i}^{2}}
 
 
 ---
+
 ## 截距系数的置信区间
 
 `$$\begin{align}
@@ -270,6 +283,7 @@ S^2_{\hat{\beta}_1} =\frac{\sum{X_i^2}}{n} \cdot \frac{\hat{\sigma}^{2}}{\sum x_
  
 
 ---
+
 ## 截距系数的置信区间
 
 
@@ -293,6 +307,7 @@ S^2_{\hat{\beta}_1} =\frac{\sum{X_i^2}}{n} \cdot \frac{\hat{\sigma}^{2}}{\sum x_
 `$$\left[ \hat{\beta}_{1} - t_{\alpha / 2} \cdot S_{\hat{\beta}_{1}}, \quad \hat{\beta}_{1} + t_{\alpha / 2} \cdot S_{\hat{\beta}_{1}} \right]$$`
 
 ---
+
 ### 示例：教育程度与时均工资回归
 
 
@@ -320,6 +335,7 @@ S^2_{\hat{\beta}_1} =\frac{\sum{X_i^2}}{n} \cdot \frac{\hat{\sigma}^{2}}{\sum x_
 `\(S_{\hat{\beta}_2} =\)` 0.0696。
 
 ---
+
 ### 示例：教育程度与时均工资回归
 
 那么，截距参数
@@ -341,6 +357,7 @@ S^2_{\hat{\beta}_1} =\frac{\sum{X_i^2}}{n} \cdot \frac{\hat{\sigma}^{2}}{\sum x_
 \end{align}$$`
 
 ---
+
 ## 随机干扰项的方差的置信区间
 
 `$$\begin {align} 
@@ -393,12 +410,24 @@ S^2_{\hat{\beta}_1} =\frac{\sum{X_i^2}}{n} \cdot \frac{\hat{\sigma}^{2}}{\sum x_
 0.4422\leq \sigma^2 \leq2.5403\\
 \end {align}$$`
 
+---
+layout: false
+class: inverse, center, middle, duke-softblue
+
+# 4.2 假设检验
 
 ---
-class: inverse, middle, center
-# 假设检验
+layout: true
+  
+&lt;div class="my-header"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   第04章 一元回归：假设检验   
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+4.2 假设检验 &lt;/span&gt;&lt;/div&gt; 
 
 ---
+
 ## 假设检验的基本原理和思路
 
 **假设检验**（Hypothesis Testing）：某一给定的观测或发现与某声称的假设是否相符？进行统计假设检验，就是要制定一套步骤和规则，以使决定接受或拒绝一个虚拟假设（原假设）。
@@ -437,6 +466,7 @@ class: inverse, middle, center
 讨论1：参数的区间估计和假设检验有什么区别和联系？
 
 ---
+
 ## 置信区间检验法——双侧检验
 
 **双侧或双尾检验**（Two-sided or Two-Tail Test）
@@ -460,6 +490,7 @@ class: inverse, middle, center
     `\(H_0\)`。
 
 ---
+
 ### 示例：教育程度与时均工资回归
 
 对于斜率参数
@@ -487,10 +518,11 @@ class: inverse, middle, center
 
     - 拒绝原假设
     `\(H_0\)`，接受
-    `\(H_1\)`。认为，长期来看很多个区间.red[[0.5709,0.8772] ]有95%的可能性不包含0.5（
+    `\(H_1\)`。认为，长期来看很多个区间 [0.5709,0.8772] 有95%的可能性不包含0.5（
     `\(\beta_2 \neq 0.5\)`）。
 
 ---
+
 ### 示例：教育程度与时均工资回归
 
 对于截距参数
@@ -518,10 +550,11 @@ class: inverse, middle, center
 
     - 不能拒绝原假设
     `\(H_0\)`，暂时接受
-    `\(H_0\)`。认为，长期来看很多个区间.red[[-1.9395,1.9106] ]有95%的可能性包含0（
+    `\(H_0\)`。认为，长期来看很多个区间[-1.9395,1.9106] 有95%的可能性包含0（
     `\(\beta_1=0\)`）。
 
 ---
+
 ## 显著性检验法
 
 **显著性检验方法**( test-of-significance approach)：是一种用样本结果来证实$H_0$真伪的检验程序。
@@ -551,6 +584,7 @@ class: inverse, middle, center
 `\(H_0\)`的判断。
 
 ---
+
 ## 回归系数的显著性检验：截距参数的t检验
 
 
@@ -566,13 +600,12 @@ class: inverse, middle, center
 - **步骤2**：构造合适的检验统计量
 
 `$$\begin{align} 
-T&amp;=\frac{\left(\hat{\beta}_{1}-\beta_{1}\right)}{S^2_{\hat{\beta}_1}}
-=\frac{\hat{\beta}_{1}-\beta_{1}}{\sqrt{S_{\beta_{1}}^{2}}}
-=\frac{\hat{\beta}_{1}-\beta_{1}}{S_{\hat{\beta}_{1}}}
+T&amp;=\frac{\hat{\beta}_{1}-\beta_{1}}{S_{\hat{\beta}_{1}}}
 &amp;&amp; \leftarrow T \sim t(n-2)
  \end{align}$$`
 
 ---
+
 ## 回归系数的显著性检验：截距参数的t检验
 
 - **步骤3**：基于原假设
@@ -591,6 +624,7 @@ t^{\ast}_{\hat{\beta}_1}&amp;= \frac{-0.0145}{0.8746}=-0.0165
 2.2010
 
 ---
+
 ## 回归系数的显著性检验：截距参数的t检验
 
 - **步骤5**：得到显著性检验的判断结论。
@@ -625,6 +659,7 @@ t^{\ast}_{\hat{\beta}_1}&amp;= \frac{-0.0145}{0.8746}=-0.0165
 `\(\beta_1 = 0\)`。
 
 ---
+
 ## 回归系数的显著性检验：斜率参数的t检验
 
 
@@ -647,6 +682,7 @@ T&amp;=\frac{\left(\hat{\beta}_{2}-\beta_{2}\right)}{S^2_{\hat{\beta}_2}}
  \end{align}$$`
 
 ---
+
 ## 回归系数的显著性检验：斜率参数的t检验
 
 - **步骤3**：基于原假设
@@ -661,10 +697,12 @@ t^{\ast}_{\hat{\beta}_2}&amp;= \frac{0.7241}{0.0696}=10.4064
 
 - **步骤4**：给定显著性水平
 `\(\alpha=0.05\)`下，查出统计量的**理论分布值**。
+
 `\(t_{1-\alpha/2}(n-2)=t_{1-0.05/2}(13-2)=t_{0.975}(11)=\)`
 2.2010
 
 ---
+
 ## 回归系数的显著性检验：斜率参数的t检验
 
 - **步骤5**：得到显著性检验的判断结论。
@@ -674,7 +712,7 @@ t^{\ast}_{\hat{\beta}_2}&amp;= \frac{0.7241}{0.0696}=10.4064
     `\(\beta_2\)`的t检验结果**显著**。换言之，在显著性水平
     `\(\alpha=0.05\)`下，应**显著**地拒绝原假设
     `\(H_0\)`，接受备择假设
-    `\(H_1\)`，认为截距参数
+    `\(H_1\)`，认为斜率参数
     `\(\beta_2 \neq 0\)`。
     
     - 若
@@ -682,7 +720,7 @@ t^{\ast}_{\hat{\beta}_2}&amp;= \frac{0.7241}{0.0696}=10.4064
     `\(\beta_2\)`的t检验结果**不显著**。换言之，在显著性水平
     `\(\alpha=0.05\)`下，不能**显著**地拒绝原假设
     `\(H_0\)`，只能暂时接受原假设
-    `\(H_0\)`，认为截距参数
+    `\(H_0\)`，认为斜率参数
     `\(\beta_2 = 0\)`。
 
 本例中，
@@ -699,6 +737,7 @@ t^{\ast}_{\hat{\beta}_2}&amp;= \frac{0.7241}{0.0696}=10.4064
 `\(\beta_2 \neq 0\)`。
 
 ---
+
 ## 假设检验：实际操作中的若干问题
 
 关于**显著性水平**
@@ -725,6 +764,7 @@ t^{\ast}_{\hat{\beta}_2}&amp;= \frac{0.7241}{0.0696}=10.4064
     - 如何改变？？
 
 ---
+
 ## 假设检验：实际操作中的若干问题
 
 关于**显著性水平**
@@ -767,10 +807,23 @@ t^{\ast}_{\hat{\beta}_2}&amp;= \frac{0.7241}{0.0696}=10.4064
 `\(H_0: \beta_2 =0\)`显然荒谬的！
 
 ---
-class: inverse, middle, center
-# 方差分析（analysis of variance，ANOVA）
+layout: false
+class: inverse, center, middle, duke-softblue
+
+# 4.3 方差分析（ANOVA）和F检验
 
 ---
+layout: true
+  
+&lt;div class="my-header"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   第04章 一元回归：假设检验   
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+4.3 方差分析（ANOVA）和F检验&lt;/span&gt;&lt;/div&gt; 
+
+---
+
 ## 平方和分解
 
 `$$\begin{alignedat}{2}
@@ -786,52 +839,53 @@ class: inverse, middle, center
 `\(RSS\)`表示**残差差平方和**
 
 ---
+
 ## 双变量方差分析表
 
 
 
-&lt;table&gt;
+&lt;table class="table" style="font-size: 20px; margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
   &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; 变异来源 &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; 平方和符号SS &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; 平方和计算公式 &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; 自由度df &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; 均方和符号MSS &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; 均方和计算公式 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 变异来源 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 平方和符号SS &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 平方和计算公式 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 自由度df &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 均方和符号MSS &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 均方和计算公式 &lt;/th&gt;
   &lt;/tr&gt;
  &lt;/thead&gt;
 &lt;tbody&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 回归平方和 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; ESS &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; `\(\sum{\hat{y}_i^2}=\hat{\beta}_2^2\sum{x_i^2}\)` &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; `\(MSS_{ESS}\)` &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; `\(TSS/df_{ESS}=\hat{\beta}_2^2\sum{x_i^2}\)` &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 回归平方和 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; ESS &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(\sum{(\hat{Y}_i-\bar{Y}_i)^2}=\sum{\hat{y}_i^2}\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(MSS_{ESS}\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(ESS/df_{ESS}=\hat{\beta}_2^2\sum{x_i^2}\) &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 残差平方和 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; RSS &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; `\(\sum{(Y_i-\hat{Y_i})^2}=\sum{e_i^2}\)` &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; n-2 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; `\(MSS_{RSS}\)` &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; `\(RSS/df_{RSS}=\frac{\sum{e_i^2}}{n-2}\)` &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 残差平方和 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; RSS &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(\sum{(Y_i-\hat{Y}_i)^2}=\sum{e_i^2}\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; n-2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(MSS_{RSS}\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(RSS/df_{RSS}=\frac{\sum{e_i^2}}{n-2}\) &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 总平方和 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; TSS &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; `\(\sum{(Y_i-\bar{Y_i})^2}=\sum{y_i^2}\)` &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; n-1 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; `\(MSS_{TSS}\)` &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; `\(TSS/df_{TSS}=\frac{\sum{y_i^2}}{n-1}\)` &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 总平方和 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; TSS &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(\sum{(Y_i-\bar{Y}_i)^2}=\sum{y_i^2}\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; n-1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(MSS_{TSS}\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(TSS/df_{TSS}=\frac{\sum{y_i^2}}{n-1}\) &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 
 ---
 class: inverse, center, middle
-# 模型整体显著性检验：F检验
+## 模型整体显著性检验：F检验
 
 ---
 
@@ -849,7 +903,7 @@ class: inverse, center, middle
 
 `$$Y_i = \beta_1 + \beta_2X_{2i} + \beta_3X_{3i}+ \cdots + \beta_kX_{ki}+ u_i$$`
 
-`$$H_0: \beta_2 = \beta_2 =\cdots= \beta_k= 0; \quad H_1: \text{not all} \quad \beta_j = 0, \quad j \in 2, 3, \cdots, k$$`
+`$$H_0: \beta_2 = \beta_3 =\cdots= \beta_k= 0; \quad H_1: \text{not all} \quad \beta_j = 0, \quad j \in 2, 3, \cdots, k$$`
 
 ---
 
@@ -904,7 +958,7 @@ F^{\ast} &amp;= \frac{\left(\hat{\beta}_{2}-\beta_{2}\right)^{2} \sum x_{i}^{2}}
     模型整体显著性的F检验结果**显著**。换言之，在显著性水平
     `\(\alpha=0.05\)`下，应**显著**地拒绝原假设
     `\(H_0\)`，接受备择假设
-    `\(H_1\)`，认为截距参数
+    `\(H_1\)`，认为斜率参数
     `\(\beta_2 \neq 0\)`。
     
     - 若
@@ -912,10 +966,11 @@ F^{\ast} &amp;= \frac{\left(\hat{\beta}_{2}-\beta_{2}\right)^{2} \sum x_{i}^{2}}
     模型整体显著性的F检验结果**不显著**。换言之，在显著性水平
     `\(\alpha=0.05\)`下，不能**显著**地拒绝原假设
     `\(H_0\)`，只能暂时接受原假设
-    `\(H_0\)`，认为截距参数
+    `\(H_0\)`，认为斜率参数
     `\(\beta_2 = 0\)`。
 
 ---
+
 ## F检验和t检验的异同及联系
 
 F检验与t检验的**联系**：
@@ -943,46 +998,48 @@ F检验与t检验的**不同**：
 
 ---
 class: inverse, center, middle
-# 方差分析（ANOVA）和F检验的案例应用
+## 方差分析（ANOVA）和F检验的案例应用
 
-## 教育程度与时均工资案例
+### 教育程度与时均工资案例
 
 ---
+
 ## 计算方差分析（ANOVA）表
 
 &lt;table&gt;
 &lt;caption&gt;教育程度与时均工资案例的ANOVA分析表&lt;/caption&gt;
  &lt;thead&gt;
   &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; 变异来源 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; 平方和SS &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; 自由度df &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; 均方和MSS &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 变异来源 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 平方和SS &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 自由度df &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 均方和MSS &lt;/th&gt;
   &lt;/tr&gt;
  &lt;/thead&gt;
 &lt;tbody&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 回归平方和ESS &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 95.42 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 95.425 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 回归平方和ESS &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 95.425 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 95.425 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 残差平方和RSS &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 9.69 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 11 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.881 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 残差平方和RSS &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 9.693 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 11 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.881 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 总平方和TSS &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 105.12 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 12 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 7.086 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 总平方和TSS &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 105.118 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 12 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7.086 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 
 ---
+
 ## 模型整体显著性检验
 
 - **步骤1**：给出模型
@@ -1006,23 +1063,36 @@ F^{\ast} = \frac{\hat{\beta}_{2}^{2} \sum x_{i}^{2}}{\sum e_{i}^{2} /(n-2)}
 =\frac{95.4253}{0.8812}=108.2924
 \end {align}$$`
 
-- **步骤4**：给定显著性水平
-`\(\alpha=0.05\)`下，查出F分布的**理论值**
+- **步骤4**：给定
+`\(\alpha=0.05\)`下，查出F**理论值**
 `\(F_{1-\alpha}(1,n-2)=F_{0.95}(1,11)=\)` 4.8443
 
 - **步骤5**：得到显著性检验的判断结论。因为
 `\(F^{\ast}=\)` 108.2924 .red[**大于**] `\(F_{0.95}(1,11)=\)` 4.8443，所以模型整体显著性的F检验结果**显著**。换言之，在显著性水平
 `\(\alpha=0.05\)`下，应**显著**地拒绝原假设
 `\(H_0\)`，接受备择假设
-`\(H_1\)`，认为截距参数
+`\(H_1\)`，认为斜率参数
 `\(\beta_2 \neq 0\)`。
 
 ---
-class: inverse, center, middle
+layout: false
+class: inverse, center, middle, duke-softblue
 
-# 回归预测
+# 4.4 回归预测
 
 ---
+layout: true
+  
+&lt;div class="my-header"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   第04章 一元回归：假设检验   
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+4.4 回归预测 &lt;/span&gt;&lt;/div&gt; 
+
+
+---
+
 ## 预测未来事件的一些惯常说法
 
 - 算命术士：
@@ -1046,6 +1116,7 @@ class: inverse, center, middle
     - 预测如何令人信服？
 
 ---
+
 
 ## 两类预测
 
@@ -1071,28 +1142,28 @@ class: inverse, center, middle
 
 ---
 
-## 两类预测——图示（样本内）
+### 两类预测——图示（样本内）
 
-&lt;img src="pic/chpt4-forecast-demo-01-insample.png" width="859" style="display: block; margin: auto;" /&gt;
-
----
-
-## 两类预测——图示（样本外）
-
-&lt;img src="pic/chpt4-forecast-demo-02-outsample.png" width="860" style="display: block; margin: auto;" /&gt;
-
+&lt;img src="pic/chpt4-forecast-demo-01-insample.png" width="781" style="display: block; margin: auto;" /&gt;
 
 ---
 
-## 两类预测——图示（均值预测）
+### 两类预测——图示（样本外）
 
-&lt;img src="pic/chpt4-forecast-demo-03-exp.png" width="856" style="display: block; margin: auto;" /&gt;
+&lt;img src="pic/chpt4-forecast-demo-02-outsample.png" width="782" style="display: block; margin: auto;" /&gt;
+
 
 ---
 
-## 两类预测——图示（个值预测）
+### 两类预测——图示（均值预测）
 
-&lt;img src="pic/chpt4-forecast-demo-04-ind.png" width="861" style="display: block; margin: auto;" /&gt;
+&lt;img src="pic/chpt4-forecast-demo-03-exp.png" width="778" style="display: block; margin: auto;" /&gt;
+
+---
+
+### 两类预测——图示（个值预测）
+
+&lt;img src="pic/chpt4-forecast-demo-04-ind.png" width="783" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -1125,9 +1196,10 @@ class: inverse, center, middle
 
 ## 预测分析的关键
 
-&lt;img src="pic/chpt4-forecast-demo-05-fitted.png" width="854" style="display: block; margin: auto;" /&gt;
+&lt;img src="pic/chpt4-forecast-demo-05-fitted.png" width="777" style="display: block; margin: auto;" /&gt;
 
 ---
+
 ## 均值预测
 
 在**N-CLRM**假设和**OLS**方法下，可以证明（证明过程略）给定
@@ -1151,6 +1223,7 @@ class: inverse, center, middle
 \end {align}$$`
 
 ---
+
 ## 均值预测
 
 对
@@ -1173,7 +1246,8 @@ T &amp;=\frac{\hat{Y}_{0}-\mathrm{E}(\mathrm{Y} | \mathrm{X}_{0})}{S_{\hat{Y}_{0
 \end {align}$$`
 
 ---
-## （均值预测）示例:教育程度和时均工资案例
+
+### （均值预测）示例:教育程度和时均工资案例
 
 给定
 `\(X_0=\)` 20时，根据早前计算结果：
@@ -1206,11 +1280,13 @@ S_{\hat{Y}_{0}} = \sqrt{S^2_{\hat{Y}_{0}}}=0.6145
 \end{align}`
 
 ---
-## （均值预测）示例:教育程度和时均工资案例
 
-&lt;img src="pic/chpt4-forecast-demo-06-interval-exp.png" width="856" style="display: block; margin: auto;" /&gt;
+### （均值预测）示例:教育程度和时均工资案例
+
+&lt;img src="pic/chpt4-forecast-demo-06-interval-exp.png" width="778" style="display: block; margin: auto;" /&gt;
 
 ---
+
 ## 个值预测
 
 在**N-CLRM**假设和**OLS**方法下，可以证明（证明过程略）给定
@@ -1229,6 +1305,7 @@ Y_{0} \sim N\left(\beta_{1}+\beta_{2} X_{0}, \sigma^{2} \right)
 \end {align}$$`
 
 ---
+
 ## 个值预测
 
 进一步可以构造新的随机变量
@@ -1246,6 +1323,7 @@ Y_{0} - \hat{Y}_{0} &amp; \sim N\left( 0, \sigma^{2}_{Y_{0} - \hat{Y}_{0}} \righ
 
 
 ---
+
 ## 个值预测
 
 对
@@ -1273,7 +1351,7 @@ T &amp;=\frac{(Y_{0} - \hat{Y}_{0})}{S_{(Y_{0} - \hat{Y}_{0})}} \sim t(n-2)
 
 ---
 
-## （个值预测）示例:教育程度和时均工资案例
+### （个值预测）示例:教育程度和时均工资案例
 
 给定
 `\(X_0=\)` 20时，根据早前计算结果：
@@ -1307,11 +1385,13 @@ S_{\hat{Y}_{0}} &amp;= \sqrt{S^2_{\hat{Y}_{0}}}=1.122
 \end{align}`
 
 ---
-## （个值预测）示例:教育程度和时均工资案例
 
-&lt;img src="pic/chpt4-forecast-demo-09-interval-ind.png" width="859" style="display: block; margin: auto;" /&gt;
+### （个值预测）示例:教育程度和时均工资案例
+
+&lt;img src="pic/chpt4-forecast-demo-09-interval-ind.png" width="781" style="display: block; margin: auto;" /&gt;
 
 ---
+
 ## 置信带
 
 **置信带**(confidence interval)：对所有的X值，分别进行**均值**和**个值**分别进行预测，就能得到：
@@ -1335,13 +1415,13 @@ S_{\hat{Y}_{0}} &amp;= \sqrt{S^2_{\hat{Y}_{0}}}=1.122
 
 ## 置信带
 
-&lt;img src="pic/chpt4-forecast-demo-08-band-exp.png" width="858" style="display: block; margin: auto;" /&gt;
+&lt;img src="pic/chpt4-forecast-demo-08-band-exp.png" width="780" style="display: block; margin: auto;" /&gt;
 
 ---
 
 ## 置信带
 
-&lt;img src="pic/chpt4-forecast-demo-10-band-ind.png" width="864" style="display: block; margin: auto;" /&gt;
+&lt;img src="pic/chpt4-forecast-demo-10-band-ind.png" width="785" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -1355,6 +1435,7 @@ S_{\hat{Y}_{0}} &amp;= \sqrt{S^2_{\hat{Y}_{0}}}=1.122
 `\((\bar{X}, \bar{Y})=\)` (12,8.67)是历史信息的集中代表。
 
 ---
+
 ## 回归预测
 
 **内容总结**：
@@ -1381,10 +1462,23 @@ S_{\hat{Y}_{0}} &amp;= \sqrt{S^2_{\hat{Y}_{0}}}=1.122
 - 99%更值得可信么？
 
 ---
-class: inverse, center, middle
-# 报告回归分析结果
+layout: false
+class: inverse, center, middle, duke-softblue
+
+# 4.5 报告回归分析结果
 
 ---
+layout: true
+  
+&lt;div class="my-header"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   第04章 一元回归：假设检验   
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+4.5 报告回归分析结果 &lt;/span&gt;&lt;/div&gt; 
+
+---
+
 ## 回归分析的形式
 
 **课程要求**：会熟练、正确阅读统计软件给出的各类分析报告，理解其中的关键信息和内涵。这些分析报告包括：传统的多元回归分析报告；以及各种计量检验的辅助分析报告（如异方差white检验报告）等。
@@ -1396,11 +1490,12 @@ class: inverse, center, middle
 `$$Y_i = \beta_1 + \beta_2X_i +u_i$$`
 
 ---
+
 ## 回归分析的形式（多行方程表达法）
 
 **形式1：多行方程表达法**（整理好的**精炼报告**）：根据统计软件的原始报告，往往是选取最关键的信息，经过整理并以多行**样本回归方程**（SRF）的形式呈现，**精炼报告**的形式一般为：
 
-`$$\begin{equation} \begin{alignedat}{999} &amp;\widehat{Y}=&amp;&amp;-0.01&amp;&amp;+0.72X\\ &amp;\text{(t)}&amp;&amp;(-0.0165)&amp;&amp;(10.4065)\\&amp;\text{(se)}&amp;&amp;(0.8746)&amp;&amp;(0.0696)\\&amp;\text{(fitness)}&amp;&amp; n=13;&amp;&amp; R^2=0.9078;&amp;&amp; \bar{R^2}=0.8994\\&amp; &amp;&amp; F^{\ast}=108.29;&amp;&amp; p=0.0000 \end{alignedat} \end{equation}$$`
+`$$\begin{equation} \begin{alignedat}{999} &amp;\widehat{Y}=&amp;&amp;-0.01&amp;&amp;+0.72X\\ &amp;\text{(t)}&amp;&amp;(-0.0165)&amp;&amp;(10.4065)\\&amp;\text{(se)}&amp;&amp;(0.8746)&amp;&amp;(0.0696)\\&amp;\text{(fitness)}&amp;&amp; R^2=0.9078;&amp;&amp; \bar{R^2}=0.8994\\&amp; &amp;&amp; F^{\ast}=108.29;&amp;&amp; p=0.0000 \end{alignedat} \end{equation}$$`
 
 --
 
@@ -1418,6 +1513,7 @@ class: inverse, center, middle
 `\(F^{\ast}\)`）,p表示样本F统计量值对应的概率值。
 
 ---
+
 ## 回归分析的形式（表格列示法）
 
 **形式2：表格列示法**（整理好的**精炼报告**）：根据统计软件的原始报告，往往是选取最关键的信息，经过整理以表格形式呈现，**表格列示法**的形式呈现为：
@@ -1435,17 +1531,17 @@ class: inverse, center, middle
 &lt;tbody&gt;
   &lt;tr&gt;
    &lt;td style="text-align:center;"&gt; (Intercept) &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; -0.014 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.875 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; -0.017 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.987 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -0.0144527 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.8746239 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -0.0165245 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.9871118 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:center;"&gt; X &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.724 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.070 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 10.406 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.7240967 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.0695813 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 10.4064779 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.0000005 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -1464,10 +1560,11 @@ class: inverse, center, middle
 - **第4列**：`statistic`表示回归系数对应的**样本t统计量**，也即
 `\(t^{\ast}_{\hat{\beta}_i},i \in 1,2,\cdots, k\)`
 
-- **第5列**：`statistic`表示回归系数**样本t统计量**对应的概率值，也即
+- **第5列**：`p.value`表示回归系数**样本t统计量**对应的概率值，也即
 `\(Pr(t = t^{\ast}_{\hat{\beta}_i})=p\)`
 
 ---
+
 ### 回归分析的形式（EViews软件原始报告）
 
 **形式3：原始报告**：分析软件如`EViews`、`R`、`STATA`等直接自动生成的多元回归分析报告。`EViews`软件原始分析报告形式如下：**抬头区域**
@@ -1493,6 +1590,7 @@ class: inverse, center, middle
 ]
 
 ---
+
 ### 回归分析的形式（EViews软件原始报告）
 
 **形式3：原始报告**：分析软件如`EViews`、`R`、`STATA`等直接自动生成的多元回归分析报告。`EViews`软件原始分析报告形式如下：**三线表区域**
@@ -1505,7 +1603,7 @@ class: inverse, center, middle
 
 .pull-right[
 
-- **第1列**：`Variable`表示回归模型中包含的变量，也即
+- **第1列**：`Variable`表示模型包含的变量，
 `\(X_{2i},X_{3i},\cdots,X_{ki}\)`，其中**截距项**默认为`C`。
 
 - **第2列**：`Coefficient`回归系数，也即
@@ -1523,6 +1621,7 @@ class: inverse, center, middle
 ]
 
 ---
+
 ### 回归分析的形式（EViews软件原始报告）
 
 **形式3：原始报告**：分析软件如`EViews`、`R`、`STATA`等直接自动生成的多元回归分析报告。`EViews`软件原始分析报告形式如下：**指标值区域（左）**
@@ -1557,6 +1656,7 @@ class: inverse, center, middle
 ]
 
 ---
+
 ### 回归分析的形式（EViews软件原始报告）
 
 **形式3：原始报告**：分析软件如`EViews`、`R`、`STATA`等直接自动生成的多元回归分析报告。`EViews`软件原始分析报告形式如下：**指标值区域（右）**
@@ -1569,10 +1669,10 @@ class: inverse, center, middle
 
 .pull-right[
 
-- `Mean dependent var`：因变量Y的**均值**
+- `Mean dependent var`：Y的**均值**
 `\(\bar{Y}\)`。
 
-- `S.D. dependent var`：因变量Y的**样本标准差**
+- `S.D. dependent var`：Y的**样本标准差**
 `\(S_{Y}\)`。
 
 - `Akaike info criterion`：回归模型的**AIC信息准则**。
@@ -1586,6 +1686,7 @@ class: inverse, center, middle
 ]
 
 ---
+
 ## 回归分析的形式（R软件原始报告）
 
 **形式4：原始报告**：分析软件如`EViews`、`R`、`STATA`等直接自动生成的多元回归分析报告。`R`软件原始分析报告形式如下：
@@ -1597,24 +1698,24 @@ Call:
 lm(formula = mod_wage, data = data_wage)
 
 Residuals:
-   Min     1Q Median     3Q    Max 
--1.564 -0.735  0.127  0.716  1.320 
+    Min      1Q  Median      3Q     Max 
+-1.5637 -0.7350  0.1266  0.7158  1.3198 
 
 Coefficients:
-            Estimate Std. Error t value  Pr(&gt;|t|)    
-(Intercept)  -0.0145     0.8746   -0.02      0.99    
-X             0.7241     0.0696   10.41 0.0000005 ***
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -0.01445    0.87462  -0.017    0.987    
+X            0.72410    0.06958  10.406 4.96e-07 ***
 ---
-Signif. codes:  
-0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 0.939 on 11 degrees of freedom
-Multiple R-squared:  0.908,	Adjusted R-squared:  0.899 
-F-statistic:  108 on 1 and 11 DF,  p-value: 0.000000496
+Residual standard error: 0.9387 on 11 degrees of freedom
+Multiple R-squared:  0.9078,	Adjusted R-squared:  0.8994 
+F-statistic: 108.3 on 1 and 11 DF,  p-value: 4.958e-07
 ```
 
 
 ---
+layout: false
 background-image: url("pic/thank-you-gif-funny-little-yellow.gif")
 class: inverse,center
 # 本章结束
@@ -1665,7 +1766,24 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     deleted = true;
   });
-})();</script>
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
 
 <script>
 (function() {
