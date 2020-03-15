@@ -15,10 +15,10 @@ output:
 
 ---
 
-> 友情提示：
-- 因新冠疫情，为方便师生教学，以下材料仅供延迟开学期间学生学习使用，后期将会择机删除。
-- 任何个人和机构不得用于商业目的，如产生法律纠纷，后果一律使用者承担。
-- 支持著者，保护版权！
+>友情提示：
+    - 因新冠疫情，为方便师生教学，以下材料仅供延迟开学期间学生学习使用，后期将会择机删除。
+    - 任何个人和机构不得用于商业目的，如产生法律纠纷，后果一律使用者承担。
+    - 支持著者，保护版权！
 
 
 # 参考教材1：古扎拉蒂-计量经济学基础
@@ -36,15 +36,15 @@ output:
 
 **李子奈,潘文卿. 计量经济学(第四版)[M].高等教育出版社,北京:2015,9**
 
-- 第一章 绪论 (pdf格式，文件大小14.4 MB)  [下载1](https://d.seit2019.xyz/wp-content/uploads/2020/03/book-v4-chpt1-intro.pdf)；[下载2](/course-econometrics/resource/book-v4-chpt1-intro.pdf);
+- 第一章 绪论 (pdf格式，文件大小14.4 MB)  [下载站点1](https://d.seit2019.xyz/wp-content/uploads/2020/03/book-v4-chpt1-intro.pdf)；[下载站点2](/course-econometrics/resource/book-v4-chpt1-intro.pdf);
 
-- 第二章 经典单方程计量经济学模型：一元线性回归模型 (pdf格式，文件大小13.4 MB) [下载1](https://d.seit2019.xyz/wp-content/uploads/2020/03/book-v4-chpt2-simple-reg.pdf)；[下载2](/course-econometrics/resource/book-v4-chpt2-simple-reg.pdf)
+- 第二章 经典单方程计量经济学模型：一元线性回归模型 (pdf格式，文件大小13.4 MB) [下载站点1](https://d.seit2019.xyz/wp-content/uploads/2020/03/book-v4-chpt2-simple-reg.pdf)；[下载站点2](/course-econometrics/resource/book-v4-chpt2-simple-reg.pdf)
 
-- 第三章 经典单方程计量经济学模型：多元线性回归模型 (pdf格式，文件大小19.6 MB) [下载1](https://d.seit2019.xyz/wp-content/uploads/2020/03/book-v4-chpt3-multiple-reg.pdf)；[下载2](/course-econometrics/resource/book-v4-chpt3-multiple-reg.pdf)
+- 第三章 经典单方程计量经济学模型：多元线性回归模型 (pdf格式，文件大小19.6 MB) [下载站点1](https://d.seit2019.xyz/wp-content/uploads/2020/03/book-v4-chpt3-multiple-reg.pdf)；[下载站点2](/course-econometrics/resource/book-v4-chpt3-multiple-reg.pdf)
 
-- 第四章 经典单方程计量经济学模型：放宽基本假定的模型 (pdf格式，文件大小17.8 MB) [下载1](https://d.seit2019.xyz/wp-content/uploads/2020/03/book-v4-chpt4-relax-reg.pdf)；[下载2](/course-econometrics/resource/book-v4-chpt4-relax-reg.pdf)
+- 第四章 经典单方程计量经济学模型：放宽基本假定的模型 (pdf格式，文件大小17.8 MB) [下载站点1](https://d.seit2019.xyz/wp-content/uploads/2020/03/book-v4-chpt4-relax-reg.pdf)；[下载站点2](/course-econometrics/resource/book-v4-chpt4-relax-reg.pdf)
 
-- 第五章 时间序列计量经济学模型 (pdf格式，文件大小22.1 MB) [下载1](https://d.seit2019.xyz/wp-content/uploads/2020/03/book-v4-chpt5-time-series.pdf)；[下载2](/course-econometrics/resource/book-v4-chpt5-time-series.pdf)
+- 第五章 时间序列计量经济学模型 (pdf格式，文件大小22.1 MB) [下载站点1](https://d.seit2019.xyz/wp-content/uploads/2020/03/book-v4-chpt5-time-series.pdf)；[下载站点2](/course-econometrics/resource/book-v4-chpt5-time-series.pdf)
 
 
 

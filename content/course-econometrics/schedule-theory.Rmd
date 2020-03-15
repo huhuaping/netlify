@@ -76,10 +76,13 @@ names_eng <- c("chpt_chn", "show_reading", "show_slide", "show_pdf", "show_exerc
 names_chn <- c("章内容", "阅读材料", "幻灯片", "pdf课件",    "随堂作业")
 
 tab_out %>% 
+  mutate(chpt_chn = cell_spec(chpt_chn, "html", align = "l")) %>%
   select(one_of(names_eng)) %>%
   rename_at(vars(names_eng), ~names_chn) %>%
-  kable(align = "l",escape = F) %>%
-  kable_styling(full_width = T)  %>%
+  kable(format = "html", align = "c",escape = F,booktabs = T,) %>%
+  kable_styling("striped", full_width = F, fixed_thead = T)  %>%
+  column_spec(1, width = "20em",bold = T) %>%
+  column_spec(c(2:5), width = "8em") %>%
   pack_rows("Part I 经典假设", 2, 8) %>%
   pack_rows("Part II 放宽假设", 9, 11) %>%
   pack_rows("Part III 模型扩展", 12, 13)

@@ -1,5 +1,5 @@
 ---
-title: Econometrics (计量经济学)
+title: 教学大纲
 date: "2019-04-27T00:00:00+08:00"
 draft: false
 type: docs
@@ -33,6 +33,13 @@ load.pkg <- lapply(pkg, require, character.only = TRUE)
 
 ## 个人课程网站
 
+>**说明**：
+1. 个人开发的独立网站，应用R编程语言和Rmarkdown语言开发建设；
+2. 只要设备能联网，就等浏览课程资源（建议使用chrome浏览器）；
+3. 连接速度根据你的电信供应商而定。
+
+**PC电脑**访问网站：
+
 - 使用浏览器（chrome或360极速浏览器）登陆个人网站网址[huhuaping.com](huhuaping.com)
 
 - 点击首页导航栏**Teaching**，然后点击**计量经济学（本科）**。
@@ -41,22 +48,27 @@ load.pkg <- lapply(pkg, require, character.only = TRUE)
 knitr::include_graphics("/pic/chpt00-course-netlify.png")
 ```
 
->**说明**：
-1.个人开发的独立网站，应用R编程语言和Rmarkdown语言开发建设；
-2.只要设备能联网，就等浏览课程资源（建议使用chrome浏览器）；
-3.连接速度根据你的电信供应商而定。
 
-手机视图界面下，需要点击网站导航**三道杠**。
 
-```{r}
+**手机设备**访问课程网站：
+
+- 使用浏览器（chrome、Safari或360极速浏览器）登陆个人网站网址[huhuaping.com](huhuaping.com)
+
+- 手机界面下，需要点击网站导航**三道杠**。
+
+```{r,eval = FALSE}
 knitr::include_graphics("/pic/chpt00-mobile2.png")
 ```
 
-```{r}
-knitr::include_graphics("/pic/chpt00-mobile1.png")
+```{r, fig.width= 5}
+knitr::include_graphics("/pic/chpt00-mobile3.png")
 ```
 
 ## 学校平台课程
+
+>**说明**：
+1. 外网可以访问；
+2. 手机端暂时不支持
 
 西北农林科技大学**在线教育综合平台**，我的课程在平台上运行多年。**《计量经济学》（胡华平）**课程网址：[http://eol.nwsuaf.edu.cn/meol/jpk/course/layout/newpage/index.jsp?courseId=35257](http://eol.nwsuaf.edu.cn/meol/jpk/course/layout/newpage/index.jsp?courseId=35257)
 
@@ -65,10 +77,6 @@ knitr::include_graphics("/pic/chpt00-mobile1.png")
 ```{r}
 include_graphics("/pic/chpt00-course-university.png")
 ```
-
->**说明**：
-1.外网可以访问；
-2.手机端暂时不支持
 
 
 西北农林科技大学**在线教育综合平台**，登陆方式：
