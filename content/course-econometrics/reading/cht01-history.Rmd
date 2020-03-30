@@ -19,14 +19,18 @@ math: true
 
 ## 计量经济学的前世今生（上篇）
 
+> 免责声明：本资料来源网络，转载请标注原文来源。如有侵权，请联系删除。
+
 ```{r, echo=F}
-knitr::include_graphics("/pic/chpt1-history-before.png")
+knitr::include_graphics("/course-econometrics/pic/chpt1-history-before.png")
 ```
 
 
 ## 计量经济学的前世今生（下篇）
 
+> 免责声明：本资料来源网络，转载请标注原文来源。如有侵权，请联系删除。
+
 ```{r, echo=F}
-knitr::include_graphics("/pic/chpt1-history-after.png")
+knitr::include_graphics("/course-econometrics/pic/chpt1-history-after.png")
 ```
 
