@@ -2,12 +2,6 @@
 title: "计量经济学的前世今生"
 draft: no
 date: '2019-03-28T00:00:00+08:00'
-type: docs
-linktitle: history
-menu:
-  course-econometrics:
-    parent: 计量课程简介
-    weight: 80
 output:
   blogdown::html_page:
     toc: true
@@ -15,12 +9,24 @@ output:
 math: true
 ---
 
-```{r}
-knitr::include_graphics("../../../static/pic/chpt1-history-before.png")
+# 教材资料
+
+古扎拉蒂：《计量经济学基础》（上）第5版，北京：中国人民大学出版社，2013
+
+- 第一章
+
+# 补充资料
+
+## 计量经济学的前世今生（上篇）
+
+```{r, echo=F}
+knitr::include_graphics("/pic/chpt1-history-before.png")
 ```
 
 
-```{r}
-knitr::include_graphics("../../../static/pic/chpt1-history-after.png")
+## 计量经济学的前世今生（下篇）
+
+```{r, echo=F}
+knitr::include_graphics("/pic/chpt1-history-after.png")
 ```
 

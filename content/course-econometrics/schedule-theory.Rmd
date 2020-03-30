@@ -58,7 +58,7 @@ as_tibble() %>%
  mutate(show_reading = if_else(file_reading=="no", "",
                                 add_iconLink(folder = "course-econometrics",
                                              file_name = file_reading, 
-                                             icon = "newspaper"))) %>%
+                                             icon = "book-open"))) %>%
   mutate(show_slide = if_else(file_slide=="no", "",
                                 add_iconLink(folder = "course-econometrics",
                                              file_name = file_slide, 
@@ -91,6 +91,7 @@ tab_out %>%
 ```
 
 
+
 # 教学环节
 
 ## （课前）预习材料
@@ -116,3 +117,5 @@ tab_out %>%
 ## （课后）随堂作业
 
 随堂作业应该在课堂内完成，师生讨论并点评。
+
+<!---参考[阅读资料](/course-econometrics/reading/cht01-history/) --->
