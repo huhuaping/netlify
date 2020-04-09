@@ -7,7 +7,7 @@ menu:
     parent: 统计学在线课程 (简介)
     weight: 1
 title: statistics (统计学)
-toc: true
+#toc: true
 type: docs
 ---
 
