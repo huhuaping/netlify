@@ -7,7 +7,7 @@ menu:
     parent: 计量经济学(I)(简介)
     weight: 1
 title: 课程模块介绍
-toc: true
+#toc: true
 type: docs
 ---
 

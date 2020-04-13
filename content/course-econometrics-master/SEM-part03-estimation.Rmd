@@ -7,7 +7,7 @@ menu:
     parent: 计量经济学(I)(简介)
     weight: 2
 title: 结构方程模型的估计方法
-toc: true
+#toc: true
 type: docs
 ---
 

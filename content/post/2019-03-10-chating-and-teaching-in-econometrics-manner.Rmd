@@ -10,6 +10,9 @@ tags:
   - Econometrics
   - R beginer
 math: true
+output:
+  blogdown::html_page:
+    toc: true
 ---
 
 计量经济学的聊天方式和说教腔调。
