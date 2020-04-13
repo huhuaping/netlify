@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
   <head>
-    <title>03-simple-reg-parameter-estimate-slide.utf8.md</title>
+    <title>03-simple-reg-parameter-estimate-slide.utf8</title>
     <meta charset="utf-8" />
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
@@ -10,12 +10,12 @@
     <script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
     <script src="libs/jquery-1.12.4/jquery.min.js"></script>
     <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-    <script src="libs/datatables-binding-0.8/datatables.js"></script>
-    <link href="libs/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
-    <link href="libs/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet" />
-    <script src="libs/dt-core-1.10.16/js/jquery.dataTables.min.js"></script>
-    <link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
-    <script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+    <script src="libs/datatables-binding-0.13/datatables.js"></script>
+    <link href="libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
+    <script src="libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
+    <link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+    <script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
     <script src="libs/kePrint-0.0.1/kePrint.js"></script>
     <link rel="stylesheet" href="libs\cc-fonts.css" type="text/css" />
     <link rel="stylesheet" href="libs\figure-captions.css" type="text/css" />
@@ -38,7 +38,7 @@ class: center,middle
 
 ### huhuaping01@hotmail.com
 
-### 2020-03-13
+### 2020-04-13
 
 
 
@@ -54,9 +54,9 @@ class: center, middle,inverse
 .red[
 3.1 普通最小二乘法（OLS）
 
-3.2 经典线性回归模型(CLRM)
+3.2 最小二乘估计的精度
 
-3.3 最小二乘估计的精度
+3.3 经典线性回归模型(CLRM)
 
 3.4 最小二乘估计的性质：BLUE
 ]
@@ -64,7 +64,7 @@ class: center, middle,inverse
 
 .pull-right[
 .red[
-3.5 拟合优度
+3.5 变异分解与拟合优度
 
 3.6 一个数值例子
 
@@ -87,16 +87,42 @@ layout: true
 
 &lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   第03章 一元回归：参数估计   
 &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
-&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
 3.1 普通最小二乘法(OLS) &lt;/span&gt;&lt;/div&gt; 
 
 ---
 
-## 如何估计回归函数中的系数？
+### 引子：如何估计回归函数中的系数？
 
-估计回归函数中的系数，有多种方法
+我们已经知道如何科学表达总体回归和样本回归的关系：
 
-- 图解法
+.pull-left[
+
+&gt; 总体回归：
+`$$\begin{cases}
+  \begin{align}
+  E(Y|X_i) &amp;= \beta_1 +\beta_2X_i &amp;&amp; \text{(PRF)} \\
+  Y_i &amp;=  \beta_1 +\beta_2X_i + u_i &amp;&amp; \text{(PRM)}
+  \end{align}
+\end{cases}$$`
+
+]
+
+.pull-right[
+&gt; 样本回归：
+`$$\begin{cases}
+  \begin{align}
+  \hat{Y}_i &amp; =\hat{\beta}_1 + \hat{\beta}_2X_i &amp;&amp; \text{(SRF)} \\
+  Y_i &amp;= \hat{\beta}_1 + \hat{\beta}_2X_i +e_i &amp;&amp; \text{(SRM)}
+  \end{align}
+\end{cases}$$`
+
+]
+
+
+首先需要回答的问题是，我们该如何估计得出样本回归函数中的系数？事实上，方法有多种多样：
+
+- 图解法：比较粗糙，但提供了基本的视觉认知
 
 - 最小二乘法(order lease squares, OLS)：最常用的方法
 
@@ -639,11 +665,34 @@ y_i &amp;= Y_i - \bar{Y} \\
  e_i =y_i - \hat{\beta_2}x_i \  &amp;&amp;\text{(residual-dev)}
 \end{align}$$`
 
+
+---
+
+### 小结与讨论
+
+本节**内容小结**：
+
+- 普通最小二乘方法（OLS）采用“铅垂线距离平方和最小化”的思想，来拟合一条样本回归线，进而求解出模型参数估计量。
+
+- 拟合样本回归线，并求解出模型参数估计量的方法有很多，还有**极大似让估计法**（MLE）、**据估计方法**（MM）等等。不同估计方法代表不同的思想理念，当然各种方法的优劣势差异都需要考虑到“模型环境”（或模型假设）。
+
+- 大家需要很熟练地记住OLS参数估计量公式，以及它们的几大重要特征！
+
+**思考与讨论**：
+
+- OLS采用的“铅垂线距离平方和最小化”这一方案，凭什么它被奉为计量分析的经典方法？你觉得还有其他可行替代方案么？可以是“垂线距离平方和最小化”么？如果是距离的3次方或4次方之和，又会怎样？距离的绝对值之和可以么？对于这些方案，你有什么想法？
+
+- 回归标准误差
+`\(se\)`的现实含义是什么？回归参数估计与随机干扰项的方差估计有什么内在联系么？
+
+- OLS方法的几个特征，是不是使它“天生丽质”、“娘胎里生下来就含着金钥匙”？为什么能这么说？
+
+
 ---
 layout: false
 class: inverse, center, middle, duke-softblue
 
-# 3.2 经典线性回归模型假设(CLRM)
+# 3.2 OLS估计量的精度
 
 ---
 layout: true
@@ -652,88 +701,409 @@ layout: true
 
 &lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   第03章 一元回归：参数估计   
 &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+3.2 OLS估计量的精度 &lt;/span&gt;&lt;/div&gt; 
+
+
+---
+
+### 引子：如何知道OLS方法点估计量是否可靠？
+
+`$$\begin{align}
+Y_i &amp;=  \beta_1 +\beta_2X_i + u_i 
+\end{align}$$`
+
+我们已经使用OLS方法分别得到总体回归模型(PRM)的3个重要参数（实际不止3个）的点估计量：
+
+`$$\begin{align}
+\left \{
+  \begin{split}
+  \hat{\beta}_2 &amp;=\frac{\sum{x_iy_i}}{\sum{x_i^2}}\\
+  \hat{\beta}_1 &amp;=\bar{Y}_i-\hat{\beta}_2\bar{X}_i \\
+  \hat{\sigma}^2 &amp;=\frac{\sum{e_i^2}}{n-2}
+  \end{split} 
+  \right.  
+\end{align}$$`
+
+&gt;问题是：
+&gt; - OLS方法的点估计量是否稳定？ OLS方法的点估计量是否可信？
+
+因此，我们需要找到一种表达OLS方法估计稳定性或估计精度的指标！
+
+&gt; 点估计量的**方差**（variance）和**标准差**（standard deviation）就是衡量估计稳定性或估计精度的一类重要指标！
+
+---
+
+## 斜率系数的方差和样本方差
+
+.pull-left[
+斜率系数（
+`\(\hat{\beta}_2\)`）的**总体方差**（
+`\(\sigma^2_{\hat{\beta}_2}\)`）和**总体标准差**（
+`\(\sigma_{\hat{\beta}_2}\)`）：
+
+`$$\begin{align}
+Var(\hat{\beta}_2) \equiv \sigma_{\hat{\beta}_2}^2  &amp; =\frac{\sigma^2}{\sum{x_i^2}} \\
+\sigma_{\hat{\beta}_2} &amp;=\sqrt{\frac{\sigma^2}{\sum{x_i^2}}} 
+\end{align}$$`
+
+- 其中，
+`\(Var(u_i) \equiv \sigma^2\)`表示随机干扰项
+`\(u_i\)`的总体方差。
+
+]
+
+.pull-right[
+斜率系数（
+`\(\hat{\beta}_2\)`）的**样本方差**（
+`\(S^2_{\hat{\beta}_2}\)`）和**样本标准差**（
+`\(S_{\hat{\beta}_2}\)`）：
+
+`$$\begin{align}
+S_{\hat{\beta}_2}^2 &amp;=\frac{\hat{\sigma}^2}{\sum{x_i^2}} \\
+S_{\hat{\beta}_2} &amp;=\sqrt{\frac{\hat{\sigma}^2}{\sum{x_i^2}}}
+\end{align}$$`
+
+- 其中，
+`\(E(\sigma^2) = \hat{\sigma}^2 = \frac{\sum{e_i^2}}{n-2}\)`表示对随机干扰项（
+`\(u_i\)`）的总体方差的**无偏估计量**。
+]
+
+---
+
+### 证明过程1
+
+**步骤1**
+`\(\hat{\beta}_2\)`的变形：
+
+`$$\begin{align}
+\hat{\beta}_2 &amp;=\frac{\sum{x_iy_i}}{\sum{x_i^2}}= \frac{\sum{\left[ x_i (Y_i -\bar{Y}) \right]} }{\sum{x_i^2}}  \\
+&amp; = \frac{\sum{ x_iY_i}- \sum{ x_i \bar{Y} } }{\sum{x_i^2}}    \\
+&amp; = \frac{\sum{x_iY_i}- \bar{Y}\sum{x_i} }{\sum{x_i^2}}  &amp;&amp; \leftarrow \left[ \sum{x_i}=\sum{(X_i -\bar{X})} = 0 \right]  \\
+&amp; = \sum{ \left(\frac{\sum{x_i}}{\sum{x_i^2}} \cdot Y_i \right) }   &amp;&amp; \leftarrow  \left[ k_i \equiv \frac{x_i}{\sum{x_i^2}} \right]\\
+&amp; = \sum{k_iY_i}
+\end{align}$$`
+
+&gt; - 其中，
+`\(k_i \equiv \frac{x_i}{\sum{x_i^2}}\)`。
+
+---
+
+### 证明过程2
+
+**步骤2**：计算
+`\(\hat{\beta}_2\)`的**总体方差**（
+`\(\sigma^2_{\hat{\beta}_2}\)`）：
+
+`$$\begin{align}
+\sigma^2_{\hat{\beta}_2} &amp; \equiv Var(\hat{\beta}_2) 
+ = Var(\sum{k_iY_i} ) \\
+&amp; = \sum{\left( k_i^2Var(Y_i) \right)} \\
+&amp; = \sum{\left( k_i^2Var(\beta_1 +\beta_2X_i +u_i) \right)} \\
+&amp; = \sum{ \left( k_i^2Var(u_i) \right)}  &amp;&amp; \leftarrow \left[ k_i  \equiv \frac{x_i}{\sum{x_i^2}} \right]\\
+&amp; = \sum{ \left( \left(\frac{x_i}{\sum{x_i^2}} 
+                 \right)^2 \cdot \sigma^2 
+          \right)} \\
+&amp; = \frac{\sigma^2}{\sum{x_i^2}}
+\end{align}$$`
+
+&gt; 其中，
+`\(Var(u_i) \equiv \sigma^2\)`表示随机干扰项
+`\(u_i\)`的总体方差。
+
+---
+
+## 截距系数的方差和样本方差
+
+.pull-left[
+截距系数（
+`\(\hat{\beta}_1\)`）的**总体方差**（
+`\(\sigma^2_{\hat{\beta}_1}\)`）和**总体标准差**（
+`\(\sigma_{\hat{\beta}_1}\)`）：
+
+
+`$$\begin{align}
+Var(\hat{\beta}_1) \equiv \sigma_{\hat{\beta}_1}^2  &amp;=\frac{\sum{X_i^2}}{n} \cdot \frac{\sigma^2}{\sum{x_i^2}} \\
+\sigma_{\hat{\beta}_1} &amp; =\sqrt{\frac{\sum{X_i^2}}{n} \cdot \frac{\sigma^2}{\sum{x_i^2}}}
+\end{align}$$`
+
+
+&gt; - 其中，
+`\(Var(u_i) \equiv \sigma^2\)`表示随机干扰项
+`\(u_i\)`的总体方差。
+
+]
+
+.pull-right[
+截距系数（
+`\(\hat{\beta}_1\)`）的**样本方差**（
+`\(S^2_{\hat{\beta}_1}\)`）和**样本标准差**（
+`\(S_{\hat{\beta}_1}\)`）：
+
+`$$\begin{align}
+S_{\hat{\beta}_1}^2 &amp;=\frac{\sum{X^2_i}}{n} \cdot \frac{\hat{\sigma}^2}{\sum{x_i^2}} \\
+S_{\hat{\beta}_1} &amp;=\sqrt{\frac{\sum{X^2_i}}{n} \cdot \frac{\hat{\sigma}^2}{\sum{x_i^2}}}
+\end{align}$$`
+
+&gt; - 其中，
+`\(E(\sigma^2) = \hat{\sigma}^2 = \frac{\sum{e_i^2}}{n-2}\)`表示对随机干扰项（
+`\(u_i\)`）的总体方差的**无偏估计量**。
+
+]
+
+---
+
+## 证明过程1
+
+**步骤1**
+`\(\hat{\beta}_1\)`的变形：
+
+`$$\begin{align}
+\hat{\beta_1} &amp; = \bar{Y}_i-\hat{\beta}_2\bar{X}_i &amp;&amp; \leftarrow \left[ \hat{\beta}_2= \sum{k_iY_i} \right] \\
+&amp; = \frac{1}{n} \sum{Y_i} - \sum{\left( k_iY_i \cdot \bar{X} \right)} \\
+&amp; = \sum{\left( (\frac{1}{n} - k_i\bar{X}) \cdot Y_i  \right)}   &amp;&amp; \leftarrow \left[ w_i \equiv \frac{1}{n} - k_i\bar{X} \right]\\     
+&amp; = \sum{w_iY_i}
+\end{align}$$`
+
+&gt; - 其中：令
+`\(w_i \equiv \frac{1}{n} - k_i\bar{X}\)`
+
+---
+
+### 证明过程2
+
+**步骤2**计算
+`\(\hat{\beta}_1\)`的**总体方差**（
+`\(\sigma^2_{\hat{\beta}_1}\)`）：
+
+`$$\begin{align}
+\sigma^2_{\hat{\beta}_1} &amp; \equiv  Var(\hat{\beta_1})  = Var(\sum{w_iY_i}) \\
+&amp; = \sum{\left( w_i^2Var(\beta_1 +\beta_2X_i + u_i) \right)} &amp;&amp; \leftarrow \left[w_i \equiv \frac{1}{n} - k_i\bar{X} \right]\\
+&amp; = \sum{\left( 
+            \left( \frac{1}{n} - k_i\bar{X} \right)^2Var(u_i) 
+         \right)} \\
+&amp; = \sigma^2 \cdot \sum{ \left( \frac{1}{n^2} - \frac{2 \bar{X} k_i}{n} + k_i^2 \bar{X}^2 \right) }  &amp;&amp; \leftarrow \left[ \sum{k_i} = \sum{\left( \frac{x_i}{\sum{x_i^2}} \right)= \frac{\sum{x_i}} {\sum{x_i^2}}}=0 \right] \\
+&amp; = \sigma^2 \cdot \left( \frac{1}{n} + \bar{X}^2\sum{k_i^2} \right)  &amp;&amp; \leftarrow \left[ k_i \equiv \frac{x_i}{\sum{x_i^2}} \right]\\
+&amp; = \sigma^2 \cdot \left( \frac{1}{n} + \bar{X}^2\sum{ \left( \frac{x_i}{\sum{x_i^2}} \right) ^2} \right) 
+\end{align}$$`
+
+---
+
+### 证明过程2
+
+
+**步骤2**计算
+`\(\hat{\beta}_1\)`的**总体方差**（
+`\(\sigma^2_{\hat{\beta}_1}\)`）（续前）：
+
+`$$\begin{align}
+&amp; = \sigma^2 \cdot \left( \frac{1}{n} + \bar{X}^2  \frac{\sum{x_i^2}}{\left( \sum{x_i^2} \right)^2}  \right) \\
+&amp; = \sigma^2 \cdot \left( \frac{1}{n} +   \frac{ \bar{X}^2 } { \sum{x_i^2} }  \right) \\
+&amp; =  \frac{\sum{x_i^2} + n\bar{X}^2} {n\sum{x_i^2}} \cdot \sigma^2 &amp;&amp; \leftarrow  \left[ \sum{x_i^2} + n\bar{X}^2 = \sum{(X_i-\bar{X})^2} + n\bar{X}^2 = \sum{X_i^2}\right]\\
+&amp; = \frac{\sum{X_i^2}}{n} \cdot \frac{\sigma^2}{\sum{x_i^2}}
+\end{align}$$`
+
+---
+
+### 小结与思考
+
+现在做一个**内容小结**：
+
+- 为了衡量OLS方法的点估计量是否稳定或是否可信，我们一般采用方差和标准差指标来表达。
+
+- 大家应熟记**斜率**和**截距**估计量的**总体方差**和**样本方差**最终公式。
+
+请大家**思考**如下问题：
+
+
+- 总体方差和样本方差都是确定的数么？
+
+- 二者分别受那些因素的影响？二者又有什么联系？
+
+- 证明过程中，约定的ki和wi，有什么特征？
+
+--
+
+.pull-left[
+
+`$$\begin{cases}
+  \begin{align}
+  \sum{k_i}  &amp; =0 \\
+   \sum{k_iX_i} &amp; = 1
+  \end{align}
+\end{cases}$$`
+
+]
+
+.pull-right[
+
+`$$\begin{cases}
+  \begin{align}
+  \sum{w_i}  &amp; =1 \\
+   \sum{w_iX_i} &amp; = 0
+  \end{align}
+\end{cases}$$`
+
+]
+
+
+---
+layout: false
+class: inverse, center, middle, duke-softblue
+
+# 3.3 经典线性回归模型假设(CLRM)
+
+---
+layout: true
+  
+&lt;div class="my-header"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   第03章 一元回归：参数估计   
 &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
-3.2 经典线性回归模型假设(CLRM) &lt;/span&gt;&lt;/div&gt; 
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+3.3 经典线性回归模型假设(CLRM) &lt;/span&gt;&lt;/div&gt; 
+
+---
+
+### 引子：仅仅利用OLS估计方法就足够了么？
+
+我们已经知道OLS方法的原理和基本特征。
+
+**问题**是：
+
+- OLS方法凭什么能在其他众多拟合估计方法中“脱颖而出”？
+
+- 要跨越“从样本推断总体”的巨大“鸿沟”，仅仅使用OLS方法就足够了么？
+
+
+**答案**是：
+
+**OLS估计方法**，还需要**经典线性回归模型（CLRM）假设**的加持，二者“双剑合璧”才能真正完成“从样本推断总体”的逻辑证明过程。
 
 ---
 
 ## 经典线性回归模型(CLRM)假设
 
-经典线性回归模型(classical linear regression model, CLRM)：
+**经典线性回归模型**(classical linear regression model, CLRM)：
 
 - 又称为高斯或标准线性回归模型
 
-- 成为大部分计量经济学理论的基石，有7个基本假设
+- 成为计量经济学理论的基石，主要包括7个基本假设
 
-- 本章以双变量回归模型为讨论基础：
+- 本章以双变量回归模型为讨论基础。
+
+
 
 ---
 
 ## 关于模型的假设
 
-**CLRM假设1**：模型是正确设置的。（这里大有学问，也是一切计量分析问题的根本来源）
+**CLRM假设1（模型是正确设置的）**：这里大有学问，也是一切计量分析问题的根本来源。
 
+&gt; 思考：
+&gt; - 我们怎么知道自己设置的模型是“正确的”？
+&gt; - 我们有可能知道“正确的”模型么？
 
-**CLRM假设2**：模型应该是参数线性的。也即模型中**参数**必须线性，变量可以不是线性
+&lt;/br&gt;
+
+**CLRM假设2（模型是参数线性的）**：模型应该是参数线性的，具体而言模型中**参数**和**随机干扰项**必须线性，变量可以不是线性。
 
 `$$\begin{align}
 Y_i  = \beta_1 + \beta_2X_i + u_i 
+\end{align}$$`
+
+&gt; 思考：为什么需要模型是“线性的”？
+
+---
+
+### 课堂讨论
+
+以下模型都是**线性的**：
+
+`$$\begin{align}
+Y_i &amp;= \beta_1 + \beta_2 X_i + \beta_3 X_i^2 +u_i &amp;&amp; \text{(quadratic polynomial)}
+\end{align}$$`
+
+`$$\begin{align}
+Y_i &amp;= \beta_1 + \beta_2 X_i + \beta_3 X_i^2 + \beta_4 X_i^3 +u_i &amp;&amp; \text{(cubic polynomial)}
+\end{align}$$`
+
+--
+
+`$$\begin{align}
+Y_i &amp;= \beta_1 + \beta_2 ln(X_i) +u_i &amp;&amp; \text{(linear-log)} \\
+\end{align}$$`
+
+
+`$$\begin{align}
+ln(Y_i) &amp;= \beta_1 + \beta_2 X_i +u_i &amp;&amp; \text{(log-linear)}
+\end{align}$$`
+
+--
+
+`$$\begin{align}
+Y_i &amp;= \beta_1 + \beta_2 \frac{1}{X_i} +u_i &amp;&amp; \text{(reciprocal)}
+\end{align}$$`
+
+`$$\begin{align}
+Q_t &amp;= AK_t^{\alpha}L_t^{\beta}u_t &amp;&amp; \text{(Cobb-douglas)}
 \end{align}$$`
 
 ---
 
 ## 关于自变量X的假设
 
-**CLRM假设3**：X是固定的（给定的）或独立于误差项。也即自变量X**不是**随机变量。
+**CLRM假设3（自变量X是外生的）**：X是固定的（给定的）或**独立于**误差项。也即自变量X**不是**随机变量。
 
 `$$\begin{align}
 Cov(X_i, u_i)= 0\\ 
 E(X_i, u_i)= 0
 \end{align}$$`
 
-X是固定的（给定的）是什么含义：
+自变量
+`\(X\)`是固定的（给定的）是什么含义？
 
 - 其方差
-`\(Var(X)\)`是有限的正数。例如X取值不能全部相同（此时
-`\(Var(X)=0\)`）；又例如回归系数估计值公式中分母为0，无法求解！
+`\(Var(X)\)`是有限的正数。
+    - 如X取值不能全部相同。如果全部X取值都一样，也即
+`\(Var(X)=0\)`，则会形成什么样的散点图？
+
+    - 又例如回归系数估计值公式中分母为0，无法求解！
 
 - X变量没有异常值(outlier)，即没有一个X值对于其他值过大或过小。
 
 --
 
-课堂思考：
-
-- X值固定不变现实么？
-
-- 为什么要假设这种情形？
-
+&gt; **课堂思考**：
+- X值固定不变现实么？为什么要假设这种情形？
 - 如果X是随机变量，仍旧坚持用OLS方法，得到的结果还是不变么？
 
 ---
 
-## 关于自变量X的假设
+### 样本数据示例
 
 
 
 扁数据形态：“非标准”数据形态（但很直观）
 
-<div id="htmlwidget-ad0d7253eddc2940d114" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-ad0d7253eddc2940d114">{"x":{"filter":"none","caption":"<caption>60个家庭的收入和支出情况：假设的总体<\/caption>","data":[["1","2","3","4","5","6","7","8"],["X","Y1","Y2","Y3","Y4","Y5","Y6","Y7"],[80,55,60,65,70,75,null,null],[100,65,70,74,80,85,88,null],[120,79,84,90,94,98,null,null],[140,80,93,95,103,108,113,115],[160,102,107,110,116,118,125,null],[180,110,115,120,130,135,140,null],[200,120,136,140,144,145,null,null],[220,135,137,140,152,157,160,162],[240,137,145,155,165,175,189,null],[260,150,152,175,178,180,185,191]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Mark<\/th>\n      <th>G1<\/th>\n      <th>G2<\/th>\n      <th>G3<\/th>\n      <th>G4<\/th>\n      <th>G5<\/th>\n      <th>G6<\/th>\n      <th>G7<\/th>\n      <th>G8<\/th>\n      <th>G9<\/th>\n      <th>G10<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":9,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[9,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-3b8390adcbe639cb0290" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3b8390adcbe639cb0290">{"x":{"filter":"none","caption":"<caption>60个家庭的收入和支出情况：假设的总体<\/caption>","data":[["1","2","3","4","5","6","7","8"],["X","Y1","Y2","Y3","Y4","Y5","Y6","Y7"],[80,55,60,65,70,75,null,null],[100,65,70,74,80,85,88,null],[120,79,84,90,94,98,null,null],[140,80,93,95,103,108,113,115],[160,102,107,110,116,118,125,null],[180,110,115,120,130,135,140,null],[200,120,136,140,144,145,null,null],[220,135,137,140,152,157,160,162],[240,137,145,155,165,175,189,null],[260,150,152,175,178,180,185,191]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Mark<\/th>\n      <th>G1<\/th>\n      <th>G2<\/th>\n      <th>G3<\/th>\n      <th>G4<\/th>\n      <th>G5<\/th>\n      <th>G6<\/th>\n      <th>G7<\/th>\n      <th>G8<\/th>\n      <th>G9<\/th>\n      <th>G10<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":9,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[9,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 
 ---
 
-## 关于自变量X的假设
+### 样本数据示例
 
 长数据形态：标准数据形态（但不直观）
 
-<div id="htmlwidget-a02f446502f0966254c1" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-a02f446502f0966254c1">{"x":{"filter":"none","caption":"<caption>60个家庭的收入和支出情况：假设的总体<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60"],[1,1,1,1,1,2,2,2,2,2,2,3,3,3,3,3,4,4,4,4,4,4,4,5,5,5,5,5,5,6,6,6,6,6,6,7,7,7,7,7,8,8,8,8,8,8,8,9,9,9,9,9,9,10,10,10,10,10,10,10],[80,80,80,80,80,100,100,100,100,100,100,120,120,120,120,120,140,140,140,140,140,140,140,160,160,160,160,160,160,180,180,180,180,180,180,200,200,200,200,200,220,220,220,220,220,220,220,240,240,240,240,240,240,260,260,260,260,260,260,260],[55,60,65,70,75,65,70,74,80,85,88,79,84,90,94,98,80,93,95,103,108,113,115,102,107,110,116,118,125,110,115,120,130,135,140,120,136,140,144,145,135,137,140,152,157,160,162,137,145,155,165,175,189,150,152,175,178,178,185,191]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>group<\/th>\n      <th>X<\/th>\n      <th>Y<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":7,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[7,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-882e69997907136fd088" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-882e69997907136fd088">{"x":{"filter":"none","caption":"<caption>60个家庭的收入和支出情况：假设的总体<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60"],[1,1,1,1,1,2,2,2,2,2,2,3,3,3,3,3,4,4,4,4,4,4,4,5,5,5,5,5,5,6,6,6,6,6,6,7,7,7,7,7,8,8,8,8,8,8,8,9,9,9,9,9,9,10,10,10,10,10,10,10],[80,80,80,80,80,100,100,100,100,100,100,120,120,120,120,120,140,140,140,140,140,140,140,160,160,160,160,160,160,180,180,180,180,180,180,200,200,200,200,200,220,220,220,220,220,220,220,240,240,240,240,240,240,260,260,260,260,260,260,260],[55,60,65,70,75,65,70,74,80,85,88,79,84,90,94,98,80,93,95,103,108,113,115,102,107,110,116,118,125,110,115,120,130,135,140,120,136,140,144,145,135,137,140,152,157,160,162,137,145,155,165,175,189,150,152,175,178,178,185,191]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>group<\/th>\n      <th>X<\/th>\n      <th>Y<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":7,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[7,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 
 
 
 
 ---
-## 关于自变量X的假设
+
+### 样本数据示例
 
 - X为**固定值**情形下，两份随机样本：
 
@@ -812,7 +1182,8 @@ X是固定的（给定的）是什么含义：
 &lt;/table&gt;
 
 ---
-## 关于自变量X的假设
+
+### 样本数据示例
 
 - X为**随机变量**时，两份随机样本：
 
@@ -892,11 +1263,10 @@ X是固定的（给定的）是什么含义：
 
 ---
 
-## 关于随机干扰项的假设1
+## 关于随机干扰项的假设
 
-随机干扰项均值为零:
 
-**CLRM假设4**：假设随机干扰项均值为零。也即给定
+**CLRM假设4（随机干扰项条件期望值为零）**：假设随机干扰项条件期望值为零。也即给定
 `\(X_i\)`的情形下，假定随机干扰项
 `\(u_i\)`的**条件期望**为零。
 
@@ -911,14 +1281,34 @@ E(u|X_i)= 0
 
 ### 课堂讨论：
 
+**条件期望**
+`\(E(u|X_i)= 0\)` 比**无条件期望**
+`\(E(u)\)`的假设要更严格：
+
+&lt;img src="pic/chpt03-hypothesis-disturbance-1.png" width="633" style="display: block; margin: auto;" /&gt;
+
+
+&gt; - 此时，在
+`\(X\)`的特定范围内
+`\(E(u|X_i) \neq 0\)`；但是对于全部的
+`\(X\)`则有
+`\(E(u)=0\)`。
+&gt; - 实际的数据是由如下生成机制（DGP）模拟得到：
+`\(Y_i=25 +5X_i(1+2X_i)+u_i\)`。
+
+---
+
+### 课堂讨论：
+
 - 讨论1：这条假设是多余的么？——因为前面已经假定
 `\(X_i\)`与
 `\(u_i\)`不相关（也即，
 `\(E(X_i, u_i)=0\)`见**CLRM假设3**），是不是就必然
 `\(E(u|X_i)= 0\)`？
 
-&gt;&gt;
-答案：如果
+--
+
+&gt; 答案：如果
 `\(X_i\)`与
 `\(u_i\)`**相关**（也即
 `\(E(X_i, u_i) \neq 0\)`），则随机干扰项的条件期望往往不等于零（也即
@@ -928,6 +1318,7 @@ E(u|X_i)= 0
 `\(E(X_i, u_i) = 0\)`），则随机干扰项的条件期望也可能等于零（也即
 `\(E(u|X_i) = 0\)`）。因此这一条假设是必须的。
 
+--
 
 - 讨论2：若自变量
 `\(X_i\)`为**随机变量**，我们还应当假定随机干扰项
@@ -936,11 +1327,9 @@ E(u|X_i)= 0
 
 ---
 
-## 关于随机干扰项的假设2
+## 关于随机干扰项的假设
 
-随机干扰项的方差为同方差：
-
-**CLRM假设5**：随机干扰项的方差为同方差。也即给定
+**CLRM假设5（随机干扰项的方差为同方差）**：随机干扰项的方差为同方差。也即给定
 `\(X_i\)`的情形下，随机干扰项
 `\(u_i\)`的方差，处处都是相等的。记为：
 
@@ -979,31 +1368,31 @@ Var(u_i|X_i) &amp; = E \left[ \left( u_i -E(u_i) \right)^2|X_i \right] \\
 - 异方差性(heteroscedasticity) ：
 `\(Var(u_i|X_i) \equiv \sigma_i^2\)`
 
+&lt;/br&gt;
 
-课堂讨论：
-
+&gt; **课堂讨论**：
+&gt;
 - 讨论1: 如果
 `\(Var(u_i|X_1) &lt; Var(u_2|X_2)\)`，是否意味着来自
 `\(X=X_1\)`的总体，相比来自
 `\(X=X_2\)`的总体，更靠近总体回归线PRL?
 
-- 讨论2：如何看待**随机样本**的质量？或者，那些离均值较近的Y总体的随机样本，与远为分散的Y总体的随机样本，前者是不是质量更好?
+&gt; - 讨论2：如何看待**随机样本**的质量？或者，那些离均值较近的Y总体的随机样本，与远为分散的Y总体的随机样本，前者是不是质量更好?
 
-- 讨论3：此时，
+&gt; - 讨论3：此时，
 `\(Y_i\)`的条件方差
 `\(Var(Y_i|X_i)\)`是多少？
 `\(Y_i\)`的无条件方差
 `\(Var(Y_i)\)`又是多少？
 
-- 讨论4：如果出现异方差，会对OLS估计产生什么后果？
+&gt; - 讨论4：如果出现异方差，会对OLS估计产生什么后果？
 
 ---
 
 ## 关于随机干扰项的假设3
 
-随机干扰项之间无自相关：
 
-**CLRM假设6**：各个随机干扰之间无自相关。也即给定两个不同的自变量取值（
+**CLRM假设6（随机干扰项之间无自相关）**：各个随机干扰之间无自相关。也即给定两个不同的自变量取值（
 `\(X_i,X_j;i \neq j\)`）情形下，随机干扰项
 `\(u_i,u_j\)`的相关系数为0。或者说
 `\(u_i,u_j\)`最好是相互独立的。记为：
@@ -1021,18 +1410,18 @@ Cov(u_i, u_j|X_i,X_j) &amp; = E \left[ \left( u_i -E(u_i) \right)\left( u_i -E(u
 
 重要概念区别：
 
-- 无**序列相关**(no serial correlatìon)：时间序列数据问题
+- 无**序列相关**(no serial correlatìon)：
 
-- 无**自相关**(no autocorrelation)：截面数据（问题不大）
+- 无**自相关**(no autocorrelation)：
 
 `$$\begin{align}
-Y_i &amp;= \beta_1 + \beta_2X_i + u_i \\
+Y_t &amp;= \beta_1 + \beta_2X_t + u_t \\
 Y_t &amp; = \beta_1 + \beta_2X_{2t} + \beta_2X_{3t} + u_t 
 \end{align}$$`
 
 ---
 
-### 课堂讨论
+### 课堂讨论:
 
 .pull-left[
 &lt;div class="figure" style="text-align: center"&gt;
@@ -1055,228 +1444,66 @@ Y_t &amp; = \beta_1 + \beta_2X_{2t} + \beta_2X_{3t} + u_t
 
 ## 关于样本数的要求
 
-**CLRM假设7**：观测次数n，要大于待估计参数个数。否则方程无法解出，参数不能估计出来。
+**CLRM假设7（观测样本数假设）**：观测次数n，要大于待估计参数个数。否则方程无法解出，参数不能估计出来。
 
 ---
 
-## CLRM假设的大讨论
+### 小结与讨论
 
---
+下面我们对本小节内容做一个总结和讨论：
 
 - 所有这些假设有多真实?
 
-&gt;
-“假定无关紧要论”——弗里德曼
+&gt; “假定无关紧要论”——弗里德曼
 
-
---
 
 - 上述说有假设都是针对PRF，而不是SRF！
 
-&gt;
-例如：PRF中随机干扰项有无自相关的假设
+&gt; 例如：PRF中随机干扰项有无自相关的假设
 `\(Cov(u_i, u_j)=0\)`；但是在SRF中，可能就会出现
 `\(Cov(e_i, e_j) \neq 0\)`
 
---
-
 - 前面提到的OLS方法正是试图“复制”CLRM的假设！
 
-&gt;
-OLS方法中，
+&gt; OLS方法中，
 `\(\sum{e_iX_i}=0\)`，就类似于自变量X与随机干扰项不相关的假设（也即
 `\(Cov(u_i,X_i)=0\)`）。
 
-&gt;
-OLS方法中，
+&gt; OLS方法中，
 `\(\sum{e_i}=0,(\bar{e_i}=0)\)`，就类似于随机干扰项期望值为0的假设（也即
 `\(E(u|X_i)=0\)`）
 
----
-layout: false
-class: inverse, center, middle, duke-softblue
-
-# 3.3 OLS估计量的精度
-
----
-layout: true
-  
-&lt;div class="my-header"&gt;&lt;/div&gt;
-
-&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   第03章 一元回归：参数估计   
-&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
-&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
-3.3 OLS估计量的精度 &lt;/span&gt;&lt;/div&gt; 
-
 
 ---
 
-## 斜率系数的方差和样本方差
+### 小结与讨论
 
-.pull-left[
-斜率系数（
-`\(\hat{\beta}_2\)`）的**总体方差**（
-`\(\sigma^2_{\hat{\beta}_2}\)`）和**总体标准差**（
-`\(\sigma_{\hat{\beta}_2}\)`）：
+**思考1**：CLRM假设本质上是在讨论什么？
 
-`$$\begin{align}
-Var(\hat{\beta}_2) \equiv \sigma_{\hat{\beta}_2}^2  &amp; =\frac{\sigma^2}{\sum{x_i^2}} \\
-\sigma_{\hat{\beta}_2} &amp;=\sqrt{\frac{\sigma^2}{\sum{x_i^2}}} 
-\end{align}$$`
+--
 
-- 其中，
-`\(Var(u_i) \equiv \sigma^2\)`表示随机干扰项
-`\(u_i\)`的总体方差。
+&gt; **回答**：数据是依据什么机制产生的？(data-generating process, DGP)
+- 我们手头只有
+`\(n\)`个
+样本数据对
+`\((Y_i,X_i)\)`。
+- 但是我们希望能得到对总体**参数集**
+`\(\Phi\)`的合理推断。
+- 因此，如果不对总体回归模型（PRM）作任何假设的话，我们就没有更多的信息，来对总体参数集进行任何有价值的推断。
 
-]
+&lt;/br&gt;
 
-.pull-right[
-斜率系数（
-`\(\hat{\beta}_2\)`）的**样本方差**（
-`\(S^2_{\hat{\beta}_2}\)`）和**样本标准差**（
-`\(S_{\hat{\beta}_2}\)`）：
+--
 
-`$$\begin{align}
-S_{\hat{\beta}_2}^2 &amp;=\frac{\hat{\sigma}^2}{\sum{x_i^2}} \\
-S_{\hat{\beta}_2} &amp;=\sqrt{\frac{\hat{\sigma}^2}{\sum{x_i^2}}}
-\end{align}$$`
+**思考2**：CLRM假设既然有很多地方明显不符合现实，那么我们可以**放宽**这些假设么？如果现实根本就是**违背**了CLRM假设，OLS方法又将何去何从？对于参数估计量的性质会造成致命性的打击么？
 
-- 其中，
-`\(E(\sigma^2) = \hat{\sigma}^2 = \frac{\sum{e_i^2}}{n-2}\)`表示对随机干扰项（
-`\(u_i\)`）的总体方差的**无偏估计量**。
-]
+--
 
----
-
-## 斜率系数的方差和样本方差
-
-证明过程：（**步骤1**）
-`\(\hat{\beta}_2\)`的变形：
-
-`$$\begin{align}
-\hat{\beta}_2 &amp;=\frac{\sum{x_iy_i}}{\sum{x_i^2}}= \frac{\sum{\left[ x_i (Y_i -\bar{Y}) \right]} }{\sum{x_i^2}}  \\
-&amp; = \frac{\sum{ x_iY_i}- \sum{ x_i \bar{Y} } }{\sum{x_i^2}}    \\
-&amp; = \frac{\sum{x_iY_i}- \bar{Y}\sum{x_i} }{\sum{x_i^2}}  &amp;&amp; \leftarrow \left[ \sum{x_i}=\sum{(X_i -\bar{X})} = 0 \right]  \\
-&amp; = \sum{ \left(\frac{\sum{x_i}}{\sum{x_i^2}} \cdot Y_i \right) }   &amp;&amp; \leftarrow  \left[ k_i =\frac{x_i}{\sum{x_i^2}} \right]\\
-&amp; = \sum{k_iY_i}
-\end{align}$$`
-
-- 其中，
-`\(k_i =\frac{x_i}{\sum{x_i^2}}\)`。
-
----
-
-## 斜率系数的方差和样本方差：推导过程
-
-证明过程（续）：（**步骤2**）：计算
-`\(\hat{\beta}_2\)`的**总体方差**（
-`\(\sigma^2_{\hat{\beta}_2}\)`）：
-
-`$$\begin{align}
-\sigma^2_{\hat{\beta}_2} &amp; \equiv Var(\hat{\beta}_2) 
- = Var(\sum{k_iY_i} ) \\
-&amp; = \sum{\left( k_i^2Var(Y_i) \right)} \\
-&amp; = \sum{\left( k_i^2Var(\beta_1 +\beta_2X_i +u_i) \right)} \\
-&amp; = \sum{ \left( k_i^2Var(u_i) \right)}  &amp;&amp; \leftarrow \left[ k_i =\frac{x_i}{\sum{x_i^2}} \right]\\
-&amp; = \sum{ \left( \left(\frac{x_i}{\sum{x_i^2}} 
-                 \right)^2 \cdot \sigma^2 
-          \right)} \\
-&amp; = \frac{\sigma^2}{\sum{x_i^2}}
-\end{align}$$`
-
-其中，
-`\(Var(u_i) \equiv \sigma^2\)`表示随机干扰项
-`\(u_i\)`的总体方差。
-
----
-
-## 截距系数的方差和样本方差
-
-.pull-left[
-截距系数（
-`\(\hat{\beta}_1\)`）的**总体方差**（
-`\(\sigma^2_{\hat{\beta}_1}\)`）和**总体标准差**（
-`\(\sigma_{\hat{\beta}_1}\)`）：
+&gt; **回答**：**放宽**CLRM假设和**违背**CLRM假设的后果是不同的。
+- 如果只是**放宽**CLRM假设，则不会影响OLS方法的参数估计量的BLUE性质。
+- 但是如果是**违背**了CLRM假设，则OLS方法的参数估计量的BLUE性质很可能无法保持！
 
 
-`$$\begin{align}
-Var(\hat{\beta}_1) \equiv \sigma_{\hat{\beta}_1}^2  &amp;=\frac{\sum{X_i^2}}{n} \cdot \frac{\sigma^2}{\sum{x_i^2}} \\
-\sigma_{\hat{\beta}_1} &amp; =\sqrt{\frac{\sum{X_i^2}}{n} \cdot \frac{\sigma^2}{\sum{x_i^2}}}
-\end{align}$$`
-
-
-- 其中，
-`\(Var(u_i) \equiv \sigma^2\)`表示随机干扰项
-`\(u_i\)`的总体方差。
-]
-
-.pull-right[
-截距系数（
-`\(\hat{\beta}_1\)`）的**样本方差**（
-`\(S^2_{\hat{\beta}_1}\)`）和**样本标准差**（
-`\(S_{\hat{\beta}_1}\)`）：
-
-`$$\begin{align}
-S_{\hat{\beta}_1}^2 &amp;=\frac{\sum{X^2_i}}{n} \cdot \frac{\hat{\sigma}^2}{\sum{x_i^2}} \\
-S_{\hat{\beta}_1} &amp;=\sqrt{\frac{\sum{X^2_i}}{n} \cdot \frac{\hat{\sigma}^2}{\sum{x_i^2}}}
-\end{align}$$`
-
-- 其中，
-`\(E(\sigma^2) = \hat{\sigma}^2 = \frac{\sum{e_i^2}}{n-2}\)`表示对随机干扰项（
-`\(u_i\)`）的总体方差的**无偏估计量**。
-]
-
----
-
-## 截距系数的方差和样本方差
-
-证明过程：（**步骤1**）
-`\(\hat{\beta}_2\)`的变形：
-
-`$$\begin{align}
-\hat{\beta_1} &amp; = \bar{Y}_i-\hat{\beta}_2\bar{X}_i &amp;&amp; \leftarrow \left[ \hat{\beta}_2= \sum{k_iY_i} \right] \\
-&amp; = \frac{1}{n} \sum{Y_i} - \sum{\left( k_iY_i \cdot \bar{X} \right)} \\
-&amp; = \sum{\left( (\frac{1}{n} - k_i\bar{X}) \cdot Y_i  \right)}   &amp;&amp; \leftarrow \left[ w_i = \frac{1}{n} - k_i\bar{X} \right]\\     
-&amp; = \sum{w_iY_i}
-\end{align}$$`
-
-- 其中：令
-`\(w_i = \frac{1}{n} - k_i\bar{X}\)`
-
----
-## 截距系数的方差和样本方差
-
-证明过程：（**步骤2**）计算
-`\(\hat{\beta}_1\)`的**总体方差**（
-`\(\sigma^2_{\hat{\beta}_1}\)`）：
-
-`$$\begin{align}
-\sigma^2_{\hat{\beta}_1} &amp; \equiv  Var(\hat{\beta_1})  = Var(\sum{w_iY_i}) \\
-&amp; = \sum{\left( w_i^2Var(\beta_1 +\beta_2X_i + u_i) \right)} &amp;&amp; \leftarrow \left[w_i = \frac{1}{n} - k_i\bar{X} \right]\\
-&amp; = \sum{\left( 
-            \left( \frac{1}{n} - k_i\bar{X} \right)^2Var(u_i) 
-         \right)} \\
-&amp; = \sigma^2 \cdot \sum{ \left( \frac{1}{n^2} - \frac{2 \bar{X} k_i}{n} + k_i^2 \bar{X}^2 \right) }  &amp;&amp; \leftarrow \left[ \sum{k_i} = \sum{\left( \frac{x_i}{\sum{x_i^2}} \right)= \frac{\sum{x_i}} {\sum{x_i^2}}}=0 \right] \\
-&amp; = \sigma^2 \cdot \left( \frac{1}{n} + \bar{X}^2\sum{k_i^2} \right)  &amp;&amp; \leftarrow \left[ k_i =\frac{x_i}{\sum{x_i^2}} \right]\\
-&amp; = \sigma^2 \cdot \left( \frac{1}{n} + \bar{X}^2\sum{ \left( \frac{x_i}{\sum{x_i^2}} \right) ^2} \right) 
-\end{align}$$`
-
----
-## 截距系数的方差和样本方差
-
-
-
-
-证明过程：（**步骤2**）计算
-`\(\hat{\beta}_1\)`的**总体方差**（
-`\(\sigma^2_{\hat{\beta}_1}\)`）：
-
-`$$\begin{align}
-&amp; = \sigma^2 \cdot \left( \frac{1}{n} + \bar{X}^2  \frac{\sum{x_i^2}}{\left( \sum{x_i^2} \right)^2}  \right) \\
-&amp; = \sigma^2 \cdot \left( \frac{1}{n} +   \frac{ \bar{X}^2 } { \sum{x_i^2} }  \right) \\
-&amp; =  \frac{\sum{x_i^2} + n\bar{X}^2} {n\sum{x_i^2}} \cdot \sigma^2 &amp;&amp; \leftarrow  \left[ \sum{x_i^2} + n\bar{X}^2 = \sum{(X_i-\bar{X})^2} + n\bar{X}^2 = \sum{X_i^2}\right]\\
-&amp; = \frac{\sum{X_i^2}}{n} \cdot \frac{\sigma^2}{\sum{x_i^2}}
-\end{align}$$`
 
 ---
 layout: false
@@ -1291,23 +1518,42 @@ layout: true
 
 &lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   第03章 一元回归：参数估计   
 &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
-&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
 3.4 最小二乘估计量的性质 &lt;/span&gt;&lt;/div&gt; 
 
 ---
 
-## 估计量好坏的评价指标
+### 引子：OLS方法怎么就“天生丽质”了？
 
-如何评价估计量的好坏？一个图形说明：
+我们已经知道了，OLS方法和CLRM假设“双剑合璧”下，参数估计量是最优线性无偏估计量（BLUE）。
+
+.pull-left[
+
+问题是：
+
+- OLS拟合估计方法很有“特点”，是不是意味着它就很“优秀”呢？
+
+- 我们怎么知道，OLS方法和CLRM假设“双剑合璧”就是所向披靡呢？
+
+- 同样在CLRM假设下，有没有一种不同于OLS的其他估计方法，也是同样那么优秀，甚至更好呢？
+
+]
+
+.pull-right[
+
+&gt; 参数估计量的可能行为：
 
 &lt;div class="figure" style="text-align: center"&gt;
-&lt;img src="pic/chpt3-BLUE-demo-manu.png" alt="估计量的性质的一个图形说明" width="555" /&gt;
+&lt;img src="pic/chpt3-BLUE-demo-manu.png" alt="估计量的性质的一个图形说明" width="463" /&gt;
 &lt;p class="caption"&gt;估计量的性质的一个图形说明&lt;/p&gt;
 &lt;/div&gt;
 
+]
+
+
 ---
 
-## 估计量好坏的评价指标
+### 引子：OLS方法怎么就“天生丽质”了？
 
 某种参数**估计方法**（如OLS方法），得到的**估计量**（如
 `\(\hat{\beta}_2,\hat{\beta}_1, \hat{\sigma}^2\)`）是总体**参数**（如
@@ -1321,6 +1567,16 @@ layout: true
 `\(\beta_i\)`）。
 
 - 方差最小的（Best）：也即估计量是最有效的(Efficient)，是所有线性无偏估计量中有最小方差的那个估计量。
+
+我们下面将证明：OLS方法在给定条件下就是那么“天生丽质”！
+
+&gt; - 用记号表达为：
+`\(\hat{\Phi} \text{ of} \overset{OLS}{\underset{CLRM}{\Longrightarrow}} \Phi  \text{ is BLUE}\)`
+
+&gt; - 以上表达读作：在经典详细回归模型假设下（CLRM），采用普通最小二乘法（OLS），得到参数
+`\(\Phi\)`的估计量
+`\(\hat{\Phi}\)`，是最优线性无偏估计量（BLUE）。
+
 
 ---
 
@@ -1498,7 +1754,7 @@ layout: true
 
 ## 性质2：无偏性
 
-其中：
+&gt; （续前）因为有：
 
 `$$\begin{align}
 \sum{k_i}  &amp;= \sum{\frac{x_i}{\sum{x_i^2}}=\frac{\sum{x_i}}{\sum{x_i^2}} }=0 \\
@@ -1511,7 +1767,7 @@ layout: true
 = 1
 \end{align}$$`
 
-所以有：
+&gt; 所以有：
 
 `$$\begin{align}
 \hat{\beta}_2 &amp; =  \beta_2 +\sum{k_iu_i} \\
@@ -1521,8 +1777,8 @@ E(\hat{\beta}_2) &amp; =  E(\beta_2 +\sum{k_iu_i})
  =  \beta_2
 \end{align}$$`
 
-???
 
+???
 **[证明完毕]**！
 
 ---
@@ -1533,7 +1789,7 @@ E(\hat{\beta}_2) &amp; =  E(\beta_2 +\sum{k_iu_i})
 `\(\hat{\beta}_1\)`是无偏的，也即
 `\(E(\hat{\beta}_1)= \beta_1\)`。
 
-容易有：
+&gt; 容易有：
 
 `$$\begin{align}
 \hat{\beta_1} &amp; = \sum{w_iY_i} &amp;&amp; \leftarrow \left[ w_i = \frac{1}{n} - k_i\bar{X} \right] \\
@@ -1546,7 +1802,7 @@ E(\hat{\beta}_2) &amp; =  E(\beta_2 +\sum{k_iu_i})
 
 ## 性质2：无偏性
 
-其中：
+&gt; （续前）因为有：
 
 `$$\begin{align}
 &amp;\sum{w_i}  = \sum{ \left[ \frac{1}{n} - k_i\bar{X} \right]}
@@ -1559,7 +1815,7 @@ E(\hat{\beta}_2) &amp; =  E(\beta_2 +\sum{k_iu_i})
 = 0
 \end{align}$$`
 
-所以有：
+&gt; 所以有：
 
 `$$\begin{align}
 \hat{\beta}_1 &amp; =  \beta_2 +\sum{w_iu_i} \\
@@ -1577,7 +1833,7 @@ E(\hat{\beta}_1) &amp; =  E(\beta_1 +\sum{k_iu_i}) \\
 
 **方差最小性**（Best）：也即估计量是最有效的(Efficient)，是所有线性无偏估计量中，方差为最小的那个估计量。
 
-证明：
+&gt; 证明：
 
 - 已知估计量
 `\(\hat{\beta}_2\)`和
@@ -1613,10 +1869,32 @@ Var(\hat{\beta}_1^{\ast}) \geq  Var(\hat{\beta}_1)
 因此，方差最小性得以证明！
 
 ---
+
+### 小结与讨论
+
+**小结**：
+
+- 评价不同估计方法的**参数估计量性质**，一般是从线性的(Linear)、无偏性(Unbiased)和有效性（方差最小性，Best）三个维度来共同测量。
+
+- OLS估计方法，在CLRM假设下，其参数估计量很好地满足如上三个性质，因此我们称OLS方法估计的参数估计量是最优线性无偏估计量（BLUE）。
+
+**思考**：
+
+- 关于OLS估计量**有效性**（方差最小性，best）的证明过程你满意么？你能不能自己查阅资料证明一下？找到自己满意的证明过程！
+&gt; 参考答案：建议参阅Greene的《计量经济分析》，他采用的矩阵方法做了完美的证明！
+
+- 还有没有**其他维度**来评价不同估计方法的**参数估计量性质**？
+&gt; 参考答案：还可以从“一致性”（consistency）维度来评价，主要考察参数估计量的**渐进性质**，也即在样本不断接近总体时估计量的表现。
+
+- 使得参数估计量具备BLUE性质，仅有OLS方法么（独孤求败）？你能说出一个么？
+
+
+
+---
 layout: false
 class: inverse, center, middle, duke-softblue
 
-# 3.5 拟合优度
+# 3.5 变异分解与拟合优度
 
 ---
 layout: true
@@ -1625,8 +1903,22 @@ layout: true
 
 &lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   第03章 一元回归：参数估计   
 &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
-&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
-3.5 拟合优度 &lt;/span&gt;&lt;/div&gt; 
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+3.5 变异分解拟合优度 &lt;/span&gt;&lt;/div&gt; 
+
+---
+
+### 引子：怎么来判定OLS方法对特定样本数据拟合的好坏？
+
+请大家思考如下几个**问题**：
+
+- 样本数据不完全落在拟合的直线（或曲线）上，是经常发生的么？
+
+- 怎么来表达或测量这种对样本数据拟合的不完全性？
+
+- 在OLS方法和CLRM假设“双剑合璧”下，对特定样本数据的拟合不是已经证明最好的么（BLUE）？为什么还要说“拟合”有“好坏之分”？
+
+
 
 ---
 
@@ -1784,6 +2076,27 @@ r &amp;=\frac{S_{XY}^2}{S_X\ast S_Y}
 - 在多元回归中，这种区别会更加凸显！因为那时的相关系数r出现了偏相关的情形(交互关联)！
 
 ---
+
+### 小结与思考
+
+本节**内容小结**：
+
+- 即使采用OLS方法，它对样本数据的拟合也是不完全的。意味着实际数据点在样本回归线附近，而不是在样本回归线上。我们可以把样本点行为的“变异”，划分为“回归”能解释的部分和“随机”的部分。并进一步获得变异平方和的分解。
+
+- 判定系数
+`\(R^2\)`是对OLS拟合程度的测量，它使用了变异平方和分解的思想。在一元线性回归（含截距）中，判定系数与相关系数存在如下关系
+`\(R^2 = r^2_{(X_i,Y_i)}\)`。注意，在多元回归中则不存在这种关系。
+
+**问题与思考**：
+
+- OLS方法的参数估计量，在CLRM假设满足情况下，就是最优线性无偏估计量（BLUE），为什么还要用**判定系数**来判断“拟合好还是不好？”。对此，你的回答是什么？
+
+- 还有没有其他指标，来反映估计方法对样本数据的拟合好坏程度？请说出一两个。
+
+&gt; 参考答案：还可以有**均方误差和**（MSE）
+`\(MSE=RSS/n= 1/n\sum{(Y_i - \hat{Y}_i})^2\)`，以及**均方误差根**（RMSE）等。
+
+---
 layout: false
 class: inverse, center, middle, duke-softblue
 
@@ -1802,8 +2115,25 @@ layout: true
 
 &lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   第03章 一元回归：参数估计   
 &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
-&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
 3.6 一个数值例子 &lt;/span&gt;&lt;/div&gt; 
+
+---
+
+### 引子：如何把计量分析思想的进行软件验证？
+
+**说一千道一万**，重要的是我们自己能不能动手，利用统计软件对前述的计量分析理论进行计算和验证！
+
+下面，我们利用样本数据对**教育和工资案例**进行一次完整的计算和验证吧！
+
+&gt; **教育和工资案例**的总体回归模型（PRM）如下：
+
+`$$\begin{align}
+Wage_i &amp; = \beta_1 + \beta_2 Edu_i +u_i \\
+Y_i &amp; = \beta_1 + \beta_2 X_i +u_i \\
+\end{align}$$`
+
+
 
 ---
 
@@ -2063,13 +2393,14 @@ layout: true
 
 ## 样本回归线SRL
 
-&lt;img src="03-simple-reg-parameter-estimate-slide_files/figure-html/unnamed-chunk-27-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="03-simple-reg-parameter-estimate-slide_files/figure-html/unnamed-chunk-28-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
 
 ## 样本回归线SRL
 
-&lt;img src="03-simple-reg-parameter-estimate-slide_files/figure-html/unnamed-chunk-28-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="03-simple-reg-parameter-estimate-slide_files/figure-html/unnamed-chunk-29-1.png" style="display: block; margin: auto;" /&gt;
+
 
 ---
 
@@ -2291,6 +2622,27 @@ r^2 &amp;= 1- \frac{RSS}{TSS}=1-\frac{9.693}{105.1183} =0.9078\\
 二者关系
 
 ---
+
+### 小结与思考
+
+下面对本节内容做一个**小结**：
+
+- 通过样本数值例子，我们可以全部自己“手工计算”OLS方法参数估计、估计的精度（估计量样本方差）、变异的平方和分解，以及判定系数等过程环节。
+
+- 实际上任何一款统计软件都会很快**帮我们**完成这些计算过程，实证分析中我们不需要亲自去计算它们。
+
+- 送上一句忠告，统计软件就像一个“技术黑箱”，如果你不理解“黑箱”里面的运作原理，那么你就永远只是被它“牵着鼻子走”！所以，大家起码要自己手工计算**一遍**！
+
+- 而且，随着开源软件（如`R`或`Python`等）的普遍流行，**“你”**的介入和作用可能越来越重要！因为你可以更加灵活、更加自由地进行改造、重塑和创新！
+
+**问题与思考**：
+
+- 请大家自己使用任何熟悉的统计软件，完成本节的所有环节的计算！
+
+- 如果你和其他同学的随机样本数据，都来自同一个总体，你们的计算结果会是一样的么？全班同学全部计算结果，会给“从样本推断总体”带来什么启示？
+
+
+---
 layout: false
 class: inverse, center, middle, duke-softblue
 
@@ -2303,8 +2655,28 @@ layout: true
 
 &lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   第03章 一元回归：参数估计   
 &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
-&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
 3.7 经典正态线性回归模型（N-CLRM） &lt;/span&gt;&lt;/div&gt; 
+
+
+---
+
+### 引子：我们对总体参数的认识已经足够了么？
+
+我们已经证明了在经典详细回归模型假设下（CLRM），采用普通最小二乘法（OLS），得到参数
+`\(\Phi\)`的估计量
+`\(\hat{\Phi}\)`，是最优线性无偏估计量（BLUE）。
+
+而且也知道了，在随机抽样下，OLS的参数估计量是“随机变量”，其期望和方差分别是（以斜率参数的估计量为例）：
+
+`$$\begin{cases}
+  \begin{align}
+  E(\hat{\beta}_2) &amp; =\beta_2 \\
+  var(\hat{\beta}_2) &amp;= \frac{\sigma^2}{\sum{x_i^2}}
+  \end{align}
+\end{cases}$$`
+
+我们马上想要提出的问题就是：既然这个参数估计量是**随机变量**，那么它服从什么分布呢？
 
 
 ---
@@ -2469,6 +2841,29 @@ X &amp; \sim \chi^2(n-2)
 - 性质8：估计量
 `\((\hat{\beta}_2, \hat{\beta}_1)\)`在所有无偏估计中，无论是线性还是非线性，都有最小的方差。也即，它们是最有无偏估计量（**B**est **U**nbiased **E**stimators, **BUE**）。
 
+
+---
+
+### 小结与讨论
+
+本节**内容小结**：
+
+- 除了关心参数估计量的性质（是否BLUE），我们还需要关注：参数估计量作为一个**随机变量**，会服从什么概率分布？这样才会为后面的**假设检验**提供基础！它将成为完成“由样本推断总体”逻辑分析的最后一个台阶，也是最重要的一个环节之一！
+
+- N-CLRM假设体系，是在CLRM假设基础之上，额外再增加了一条关于随机干扰项服从**正态分布**的假设。基于此，我们可以推断得到回归系数估计量也将服从正态分布，从而进一步可以构造出很多有用的**样本统计量**，例如后面要学的**t统计量**、**F统计量**等。
+
+**思考与讨论**：
+
+- 你能说出现实中，随机干扰项
+`\(u_i\)`服从其他概率分布的情形？
+
+&gt; 参考答案：显然，现实社会现象中有很多不服从正态分布的情形，比如t分布、二项分布等。
+
+- 如果随机干扰项确实**不服从**正态分布，OLS方法+CLRM假设还能那么“天生丽质”、那么“无往不利”么？
+
+&gt; 参考答案：事实上，我们并不需要随机干扰项服从正态分布这条**强假设**。即时不服从正态分布，**中心极限定理**和**大数定理**也照样能保证OLS方法的有效性！
+
+
 ---
 layout: false
 class: inverse, center, middle, duke-softblue
@@ -2482,7 +2877,7 @@ layout: true
 
 &lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   第03章 一元回归：参数估计   
 &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
-&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
 3.8 极大似然估计法(ML) &lt;/span&gt;&lt;/div&gt; 
 
 ---
@@ -2587,6 +2982,32 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
 // adds .remark-code-has-line-highlighted class to <pre> parent elements
 // of code chunks containing highlighted lines with class .remark-code-line-highlighted
 (function(d) {
@@ -2604,17 +3025,6 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   }
   preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
 })(document);</script>
-
-<script>
-(function() {
-  var links = document.getElementsByTagName('a');
-  for (var i = 0; i < links.length; i++) {
-    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
-      links[i].target = '_blank';
-    }
-  }
-})();
-</script>
 
 <script>
 slideshow._releaseMath = function(el) {
