@@ -32,6 +32,7 @@ load.pkg <- lapply(pkg, require, character.only = TRUE)
 
 
 
+
 ```{r}
 tab <- xlsx::read.xlsx2("data/syllabus.xlsx", sheetIndex = 1) 
 
