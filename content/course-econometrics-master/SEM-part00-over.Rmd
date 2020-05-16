@@ -1,7 +1,7 @@
 ---
 date: "2019-09-09T00:00:00+08:00"
 draft: false
-linktitle: 课程模块介绍
+linktitle: 课程说明
 menu:
   course-econometrics-master:
     parent: 计量经济学(I)(简介)
@@ -11,7 +11,7 @@ title: 课程模块介绍
 type: docs
 ---
 
-## SEM part00：课程模块介绍
+## 课程模块介绍
 
 操作提示：
 
