@@ -38,7 +38,7 @@ class: center,middle
 
 ### huhuaping01@hotmail.com
 
-### 2020-04-17
+### 2020-05-19
 
 
 
@@ -51,32 +51,33 @@ class: center, middle,inverse
 # 第3章：一元回归：参数估计
 
 .pull-left[
-.red[
-3.1 普通最小二乘法（OLS）
 
-3.2 最小二乘估计的精度
+[3.1 普通最小二乘法（OLS）](#OLS)
 
-3.3 经典线性回归模型(CLRM)
+[3.2 最小二乘估计的精度](#variance)
 
-3.4 最小二乘估计的性质：BLUE
-]
+[3.3 经典线性回归模型(CLRM)](#CLRM)
+
+[3.4 最小二乘估计的性质：BLUE](#BLUE)
+
 ]
 
 .pull-right[
-.red[
-3.5 变异分解与拟合优度
 
-3.6 一个数值例子
+[3.5 变异分解与拟合优度](#ANOVA)
 
-3.7 经典正态线性回归模型（N-CLRM）
+[3.6 一个数值例子](#numerical-case)
 
-3.8 极大似然估计法(ML)
-]
+[3.7 经典正态线性回归模型（N-CLRM）](#N-CLRM)
+
+[3.8 极大似然估计法(ML)](#ML)
+
 ]
 
 ---
 layout: false
 class: inverse, center, middle, duke-softblue
+name: OLS
 
 # 3.1 普通最小二乘法(OLS)
 
@@ -691,6 +692,7 @@ y_i &amp;= Y_i - \bar{Y} \\
 ---
 layout: false
 class: inverse, center, middle, duke-softblue
+name: variance
 
 # 3.2 OLS估计量的精度
 
@@ -950,6 +952,7 @@ S_{\hat{\beta}_1} &amp;=\sqrt{\frac{\sum{X^2_i}}{n} \cdot \frac{\hat{\sigma}^2}{
 ---
 layout: false
 class: inverse, center, middle, duke-softblue
+name: CLRM
 
 # 3.3 经典线性回归模型假设(CLRM)
 
@@ -1086,8 +1089,8 @@ E(u_i|X_i)= 0
 
 扁数据形态：“非标准”数据形态（但很直观）
 
-<div id="htmlwidget-757c858d180c4219f361" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-757c858d180c4219f361">{"x":{"filter":"none","caption":"<caption>60个家庭的收入和支出情况：假设的总体<\/caption>","data":[["1","2","3","4","5","6","7","8"],["X","Y1","Y2","Y3","Y4","Y5","Y6","Y7"],[80,55,60,65,70,75,null,null],[100,65,70,74,80,85,88,null],[120,79,84,90,94,98,null,null],[140,80,93,95,103,108,113,115],[160,102,107,110,116,118,125,null],[180,110,115,120,130,135,140,null],[200,120,136,140,144,145,null,null],[220,135,137,140,152,157,160,162],[240,137,145,155,165,175,189,null],[260,150,152,175,178,180,185,191]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Mark<\/th>\n      <th>G1<\/th>\n      <th>G2<\/th>\n      <th>G3<\/th>\n      <th>G4<\/th>\n      <th>G5<\/th>\n      <th>G6<\/th>\n      <th>G7<\/th>\n      <th>G8<\/th>\n      <th>G9<\/th>\n      <th>G10<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":9,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[9,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-2cb5d2cf276a46f04f27" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2cb5d2cf276a46f04f27">{"x":{"filter":"none","caption":"<caption>60个家庭的收入和支出情况：假设的总体<\/caption>","data":[["1","2","3","4","5","6","7","8"],["X","Y1","Y2","Y3","Y4","Y5","Y6","Y7"],[80,55,60,65,70,75,null,null],[100,65,70,74,80,85,88,null],[120,79,84,90,94,98,null,null],[140,80,93,95,103,108,113,115],[160,102,107,110,116,118,125,null],[180,110,115,120,130,135,140,null],[200,120,136,140,144,145,null,null],[220,135,137,140,152,157,160,162],[240,137,145,155,165,175,189,null],[260,150,152,175,178,180,185,191]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Mark<\/th>\n      <th>G1<\/th>\n      <th>G2<\/th>\n      <th>G3<\/th>\n      <th>G4<\/th>\n      <th>G5<\/th>\n      <th>G6<\/th>\n      <th>G7<\/th>\n      <th>G8<\/th>\n      <th>G9<\/th>\n      <th>G10<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":9,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[9,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 
 ---
 
@@ -1095,8 +1098,8 @@ E(u_i|X_i)= 0
 
 长数据形态：标准数据形态（但不直观）
 
-<div id="htmlwidget-86943bc94f92f85d4c83" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-86943bc94f92f85d4c83">{"x":{"filter":"none","caption":"<caption>60个家庭的收入和支出情况：假设的总体<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60"],[1,1,1,1,1,2,2,2,2,2,2,3,3,3,3,3,4,4,4,4,4,4,4,5,5,5,5,5,5,6,6,6,6,6,6,7,7,7,7,7,8,8,8,8,8,8,8,9,9,9,9,9,9,10,10,10,10,10,10,10],[80,80,80,80,80,100,100,100,100,100,100,120,120,120,120,120,140,140,140,140,140,140,140,160,160,160,160,160,160,180,180,180,180,180,180,200,200,200,200,200,220,220,220,220,220,220,220,240,240,240,240,240,240,260,260,260,260,260,260,260],[55,60,65,70,75,65,70,74,80,85,88,79,84,90,94,98,80,93,95,103,108,113,115,102,107,110,116,118,125,110,115,120,130,135,140,120,136,140,144,145,135,137,140,152,157,160,162,137,145,155,165,175,189,150,152,175,178,180,185,191]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>group<\/th>\n      <th>X<\/th>\n      <th>Y<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":7,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[7,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-1371c7d95c00e86f1af1" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1371c7d95c00e86f1af1">{"x":{"filter":"none","caption":"<caption>60个家庭的收入和支出情况：假设的总体<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60"],[1,1,1,1,1,2,2,2,2,2,2,3,3,3,3,3,4,4,4,4,4,4,4,5,5,5,5,5,5,6,6,6,6,6,6,7,7,7,7,7,8,8,8,8,8,8,8,9,9,9,9,9,9,10,10,10,10,10,10,10],[80,80,80,80,80,100,100,100,100,100,100,120,120,120,120,120,140,140,140,140,140,140,140,160,160,160,160,160,160,180,180,180,180,180,180,200,200,200,200,200,220,220,220,220,220,220,220,240,240,240,240,240,240,260,260,260,260,260,260,260],[55,60,65,70,75,65,70,74,80,85,88,79,84,90,94,98,80,93,95,103,108,113,115,102,107,110,116,118,125,110,115,120,130,135,140,120,136,140,144,145,135,137,140,152,157,160,162,137,145,155,165,175,189,150,152,175,178,180,185,191]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>group<\/th>\n      <th>X<\/th>\n      <th>Y<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":7,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[7,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 
 
 
@@ -1508,6 +1511,7 @@ Y_t &amp; = \beta_1 + \beta_2X_{2t} + \beta_2X_{3t} + u_t
 ---
 layout: false
 class: inverse, center, middle, duke-softblue
+name: BLUE
 
 # 3.4 最小二乘估计量的性质
 
@@ -1893,6 +1897,7 @@ Var(\hat{\beta}_1^{\ast}) \geq  Var(\hat{\beta}_1)
 ---
 layout: false
 class: inverse, center, middle, duke-softblue
+name: ANOVA
 
 # 3.5 变异分解与拟合优度
 
@@ -2099,6 +2104,7 @@ r &amp;=\frac{S_{XY}^2}{S_X\ast S_Y}
 ---
 layout: false
 class: inverse, center, middle, duke-softblue
+name: numerical-case
 
 # 3.6 一个数值例子
 
@@ -2570,7 +2576,7 @@ e_i &amp;= Y_i - \hat{Y}_i
 
 `$$\begin{align}
 \hat{\sigma}=\sqrt{\frac{\sum{e_i^2}}{(n-2)}}
-=\sqrt{0.8812}=0.8812
+=\sqrt{0.8812}=0.9387
 \end{align}$$`
 
 ---
@@ -2645,6 +2651,7 @@ r^2 &amp;= 1- \frac{RSS}{TSS}=1-\frac{9.693}{105.1183} =0.9078\\
 ---
 layout: false
 class: inverse, center, middle, duke-softblue
+name: N-CLRM
 
 # 3.7 经典正态线性回归模型（N-CLRM）
 
@@ -2722,11 +2729,11 @@ Y_i &amp;= \hat{\beta}_1 + \hat{\beta}_2X_i +e_i
 `\(\rightarrow\)`推断PRF的重要性：
 
 `$$\begin{align}
-\hat{\beta}_2 &amp; = \sum{ \left( \frac{x_i}{\sum{x_i^2}} \cdot Y_i \right)} = \sum{k_iY_i}  = \sum{ \left( k_i(\beta_1 +\beta_2X_i +u_i) \right) } 
+\hat{\beta}_2 &amp; = \sum{ \left( \frac{x_i}{\sum{x_i^2}} \cdot Y_i \right)} = \sum{k_iY_i}  = \sum{ \left[ k_i(\beta_1 +\beta_2X_i +u_i) \right] } 
 \end{align}$$`
 
 `$$\begin{align}
-\hat{\beta_1} &amp; = \sum{\left( \left( \frac{1}{n} - k_i\bar{X} \right) \cdot Y_i \right)} = \sum{w_iY_i} = \sum{ \left() w_i(\beta_1 +\beta_2X_i +u_i) \right) } 
+\hat{\beta_1} &amp; = \sum{\left( \left( \frac{1}{n} - k_i\bar{X} \right) \cdot Y_i \right)} = \sum{w_iY_i} = \sum{ \left[ w_i(\beta_1 +\beta_2X_i +u_i) \right] } 
 \end{align}$$`
 
 `$$\begin{align}
@@ -2745,10 +2752,10 @@ Y_i &amp;= \hat{\beta}_1 + \hat{\beta}_2X_i +e_i
 `\(E(u|X_i)=0\)`
 
 - 同方差：
-`\(Var(u_i) \equiv \sigma^2\)`
+`\(Var(u_i|X_i) \equiv \sigma^2\)`
 
 - 无自相关：
-`\(E(u_i,u_j)=0\)`
+`\(E(u_i,u_j|X_i)=0\)`
 
 - 正态性分布：
 `\(u_i \sim N(0, \sigma^2)\)`
@@ -2867,6 +2874,7 @@ X &amp; \sim \chi^2(n-2)
 ---
 layout: false
 class: inverse, center, middle, duke-softblue
+name: ML
 
 # 3.8 极大似然估计法(ML)
 

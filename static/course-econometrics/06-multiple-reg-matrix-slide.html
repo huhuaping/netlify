@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
   <head>
-    <title>06-multiple-reg-matrix-slide.utf8.md</title>
+    <title>06-multiple-reg-matrix-slide.utf8</title>
     <meta charset="utf-8" />
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
@@ -11,12 +11,12 @@
     <script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
     <script src="libs/jquery-1.12.4/jquery.min.js"></script>
     <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-    <script src="libs/datatables-binding-0.8/datatables.js"></script>
-    <link href="libs/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
-    <link href="libs/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet" />
-    <script src="libs/dt-core-1.10.16/js/jquery.dataTables.min.js"></script>
-    <link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
-    <script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+    <script src="libs/datatables-binding-0.13/datatables.js"></script>
+    <link href="libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
+    <script src="libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
+    <link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+    <script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
     <link rel="stylesheet" href="libs\cc-fonts.css" type="text/css" />
     <link rel="stylesheet" href="libs\figure-captions.css" type="text/css" />
     <link rel="stylesheet" href="libs\animate.css" type="text/css" />
@@ -38,7 +38,7 @@ class: center,middle
 
 ### huhuaping01@hotmail.com
 
-### 2020-03-13
+### 2020-05-19
 
 
 
@@ -53,24 +53,25 @@ class: center,middle
 class: center, middle,inverse
 # 第6章：多元回归：矩阵部分
 
-.red[
-6.1 k变量模型的矩阵表达
 
-6.2 模型假设的矩阵表达
+[6.1 k变量模型的矩阵表达](#expression)
 
-6.3 OLS估计的矩阵表达
+[6.2 模型假设的矩阵表达](#assumption)
 
-6.4 假设检验的矩阵表达
+[6.3 OLS估计的矩阵表达](#OLS)
 
-6.5 模型预测的矩阵表达
+[6.4 假设检验的矩阵表达](#hypothesis)
 
-6.6 矩阵方法总结（示例）
-]
+[6.5 模型预测的矩阵表达](#forecast)
+
+[6.6 矩阵方法总结（示例）](#case)
+
 
 
 ---
 layout: false
 class: inverse, center, middle, duke-softblue
+name: expression
 
 # 6.1 k变量模型的矩阵表达
 
@@ -153,6 +154,7 @@ Y_{n} &amp;=\beta_{1}+\beta_{2} X_{2 n}+\beta_{3} X_{3 n}+\cdots+\beta_{k} X_{k 
 ---
 layout: false
 class: inverse, center, middle, duke-softblue
+name: assumption
 
 # 6.2 模型假设的矩阵表达
 
@@ -291,6 +293,7 @@ var-cov(\boldsymbol{u})&amp;=E(\boldsymbol{uu'})
 ---
 layout: false
 class: inverse, center, middle, duke-softblue
+name: OLS
 
 # 6.3 OLS估计的矩阵表达 
 
@@ -352,12 +355,14 @@ Y_i&amp;=\hat{\beta}_1+\hat{\beta}_2X_{2i}+\hat{\beta}_3X_{3i}+\cdots+\hat{\beta
 =\left[e_{1} e_{2} \cdots e_{n}\right] \left[ \begin{array}{c}{e_{1}} \\ {e_{2}} \\ {\vdots} \\ {e_{n}}\end{array}\right] 
 \end {align}$$`
 
-`$$\begin {alignedat}{6} 
-\frac{\partial \sum{e_i^2}} {\partial \hat{\beta}_{1}} &amp; =2 \sum\left(Y_{i}-\hat{\beta}_{1}-\hat{\beta}_{2} X_{2 i}- \cdots-\hat{\beta}_{k} X_{k i}\right)(-1)  &amp;&amp;=0 \\ 
-\frac{\partial \sum{e_i^2}} {\partial \hat{\beta}_{2}} &amp; =2 \sum\left(Y_{i}-\hat{\beta}_{1}-\hat{\beta}_{2} X_{2 i}- \cdots -\hat{\beta}_{k} X_{k i}\right)\left(-X_{2 i}\right)  &amp;&amp;=0 \\
-&amp;\cdots &amp;&amp;\cdots\\
-\frac{\partial \sum e_i^2} {\partial \hat{\beta}_{k}} &amp; =2 \sum\left(Y_{i}-\hat{\beta}_{1}-\hat{\beta}_{2} X_{2 i}- \cdots-\hat{\beta}_{k} X_{k i}\right)\left(-X_{k i}\right)  &amp;&amp;=0
-\end {alignedat}$$`
+`$$\begin{cases}
+  \begin {alignedat}{6} 
+  \frac{\partial \sum{e_i^2}} {\partial \hat{\beta}_{1}} &amp; =2 \sum\left(Y_{i}-\hat{\beta}_{1}-\hat{\beta}_{2} X_{2 i}- \cdots-\hat{\beta}_{k} X_{k i}\right)(-1)  &amp;&amp;=0 \\ 
+  \frac{\partial \sum{e_i^2}} {\partial \hat{\beta}_{2}} &amp; =2 \sum\left(Y_{i}-\hat{\beta}_{1}-\hat{\beta}_{2} X_{2 i}- \cdots -\hat{\beta}_{k} X_{k i}\right)\left(-X_{2 i}\right)  &amp;&amp;=0 \\
+  &amp;\cdots &amp;&amp;\cdots\\
+  \frac{\partial \sum e_i^2} {\partial \hat{\beta}_{k}} &amp; =2 \sum\left(Y_{i}-\hat{\beta}_{1}-\hat{\beta}_{2} X_{2 i}- \cdots-\hat{\beta}_{k} X_{k i}\right)\left(-X_{k i}\right)  &amp;&amp;=0
+  \end {alignedat}
+\end{cases}$$`
 
 ---
 
@@ -365,13 +370,15 @@ Y_i&amp;=\hat{\beta}_1+\hat{\beta}_2X_{2i}+\hat{\beta}_3X_{3i}+\cdots+\hat{\beta
 
 正规方程组如下：
 
-`$$\begin {alignedat} {6}
-&amp; n \hat{\beta}_{1} &amp;&amp;+\hat{\beta}_{2} \sum X_{2 i} &amp;&amp;+\hat{\beta}_{3} \sum X_{3 i} &amp;&amp;+\cdots &amp;&amp; +\hat{\beta}_{k} \sum X_{k i} &amp;&amp;=\sum Y_{i} \\ 
-&amp;\hat{\beta}_{1} \sum X_{2 i} &amp;&amp; +\hat{\beta}_{2} \sum X_{2 i}^{2} &amp;&amp;+\hat{\beta}_{3} \sum X_{2 i} X_{3 i} &amp;&amp;+\cdots &amp;&amp; +\hat{\beta}_{k} \sum X_{2 i} X_{k i} &amp;&amp;=\sum X_{2 i} Y_{i} \\ 
-&amp;\hat{\beta}_{1} \sum X_{3 i} &amp;&amp;+\hat{\beta}_{2} \sum X_{3 i} X_{2 i} &amp;&amp;+\hat{\beta}_{3} \sum X_{3 i}^{2} &amp;&amp;+\cdots &amp;&amp;+\hat{\beta}_{k} \sum X_{3 i} X_{k i} &amp;&amp;=\sum X_{3 i} Y_{i} \\
-&amp; \cdots &amp;&amp; \cdots &amp;&amp; \cdots &amp;&amp; \cdots &amp;&amp; \cdots &amp;&amp; \cdots\\
-&amp;\hat{\beta}_{1} \sum X_{k i} &amp;&amp;+\hat{\beta}_{2} \sum X_{k i} X_{2 i}  &amp;&amp;+\hat{\beta}_{3} \sum X_{k i} X_{3 i} &amp;&amp;+\cdots &amp;&amp;+\hat{\beta}_{k} \sum X_{k i}^{2} &amp;&amp;=\sum X_{k i} Y_{i} 
-\end {alignedat}$$`
+`$$\begin{cases}
+  \begin {alignedat} {6}
+  &amp; n \hat{\beta}_{1} &amp;&amp;+\hat{\beta}_{2} \sum X_{2 i} &amp;&amp;+\hat{\beta}_{3} \sum X_{3 i} &amp;&amp;+\cdots &amp;&amp; +\hat{\beta}_{k} \sum X_{k i} &amp;&amp;=\sum Y_{i} \\ 
+  &amp;\hat{\beta}_{1} \sum X_{2 i} &amp;&amp; +\hat{\beta}_{2} \sum X_{2 i}^{2} &amp;&amp;+\hat{\beta}_{3} \sum X_{2 i} X_{3 i} &amp;&amp;+\cdots &amp;&amp; +\hat{\beta}_{k} \sum X_{2 i} X_{k i} &amp;&amp;=\sum X_{2 i} Y_{i} \\ 
+  &amp;\hat{\beta}_{1} \sum X_{3 i} &amp;&amp;+\hat{\beta}_{2} \sum X_{3 i} X_{2 i} &amp;&amp;+\hat{\beta}_{3} \sum X_{3 i}^{2} &amp;&amp;+\cdots &amp;&amp;+\hat{\beta}_{k} \sum X_{3 i} X_{k i} &amp;&amp;=\sum X_{3 i} Y_{i} \\
+  &amp; \cdots &amp;&amp; \cdots &amp;&amp; \cdots &amp;&amp; \cdots &amp;&amp; \cdots &amp;&amp; \cdots\\
+  &amp;\hat{\beta}_{1} \sum X_{k i} &amp;&amp;+\hat{\beta}_{2} \sum X_{k i} X_{2 i}  &amp;&amp;+\hat{\beta}_{3} \sum X_{k i} X_{3 i} &amp;&amp;+\cdots &amp;&amp;+\hat{\beta}_{k} \sum X_{k i}^{2} &amp;&amp;=\sum X_{k i} Y_{i} 
+  \end {alignedat}
+\end{cases}$$`
 
 ---
 
@@ -691,6 +698,7 @@ var-cov(\boldsymbol{\beta^{\ast}}) &amp; \geq var-cov(\boldsymbol{\hat{\beta}})
 ---
 layout: false
 class: inverse, center, middle, duke-softblue
+name: hypothesis
 
 # 6.4 假设检验的矩阵表达
 
@@ -767,7 +775,7 @@ ESS&amp;=\boldsymbol{\hat{\beta}'X'y}-n\bar{Y}^2
    &lt;td style="text-align:center;"&gt; \( \sum{\hat{y}_i^2} \) &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; k-1 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; \(MSS_{ESS}\) &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; \(  =\boldsymbol{\hat{\beta}'X'y}-n\bar{Y}^2 \) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(  =(\boldsymbol{\hat{\beta}'X'y}-n\bar{Y}^2)/(k-1) \) &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:center;"&gt; 残差平方和 &lt;/td&gt;
@@ -775,7 +783,7 @@ ESS&amp;=\boldsymbol{\hat{\beta}'X'y}-n\bar{Y}^2
    &lt;td style="text-align:center;"&gt; \( \sum{e_i^2} \) &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; n-k &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; \(MSS_{RSS}\) &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; \( =\boldsymbol{yy'-\hat{\beta}'X'y} \) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \( =(\boldsymbol{yy'-\hat{\beta}'X'y})/(n-k) \) &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:center;"&gt; 总平方和 &lt;/td&gt;
@@ -783,7 +791,7 @@ ESS&amp;=\boldsymbol{\hat{\beta}'X'y}-n\bar{Y}^2
    &lt;td style="text-align:center;"&gt; \( \sum{y_i^2}\) &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; n-1 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; \(MSS_{TSS}\) &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; \( =\boldsymbol{y'y}-n\bar{Y}^2 \) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \( =(\boldsymbol{y'y}-n\bar{Y}^2)/(n-1) \) &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -1042,7 +1050,7 @@ RSS_R&amp;=\sum{(Y_i-\hat{Y_i})^2} \sim \chi^2(n-1)
    &lt;td style="text-align:center;"&gt; \( \sum{\hat{y}_i^2} \) &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; k-1 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; \(MSS_{ESS}\) &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; \(  =\boldsymbol{\hat{\beta}'X'y}-n\bar{Y}^2 \) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(  =(\boldsymbol{\hat{\beta}'X'y}-n\bar{Y}^2)/(k-1) \) &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:center;"&gt; 残差平方和 &lt;/td&gt;
@@ -1050,7 +1058,7 @@ RSS_R&amp;=\sum{(Y_i-\hat{Y_i})^2} \sim \chi^2(n-1)
    &lt;td style="text-align:center;"&gt; \( \sum{e_i^2} \) &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; n-k &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; \(MSS_{RSS}\) &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; \( =\boldsymbol{yy'-\hat{\beta}'X'y} \) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \( =(\boldsymbol{yy'-\hat{\beta}'X'y})/(n-k) \) &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:center;"&gt; 总平方和 &lt;/td&gt;
@@ -1058,7 +1066,7 @@ RSS_R&amp;=\sum{(Y_i-\hat{Y_i})^2} \sim \chi^2(n-1)
    &lt;td style="text-align:center;"&gt; \( \sum{y_i^2}\) &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; n-1 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; \(MSS_{TSS}\) &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; \( =\boldsymbol{y'y}-n\bar{Y}^2 \) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \( =(\boldsymbol{y'y}-n\bar{Y}^2)/(n-1) \) &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -1117,6 +1125,7 @@ F^{\ast}&amp;=\frac{ESS_U/df_{ESS_U}}{RSS_U/df_{RSS_U}}
 
 layout: false
 class: inverse, center, middle, duke-softblue
+name: forecast
 
 # 6.5 模型预测的矩阵表达
 
@@ -1321,7 +1330,7 @@ T&amp; =\frac{\hat{Y}_0-Y_0}{S_{e_0}}
 
 `$$\begin{align}
 S_{Y_0-\hat{Y}_0} 
-&amp; =\sqrt{\hat{\sigma}^2 \left( 1+X_0(X'X)^{-1}X_0' \right) } &amp;&amp; \leftarrow \hat{\sigma}^2 =\frac{\boldsymbol{ee'}}{(n-k)} \\
+&amp; =\sqrt{\hat{\sigma}^2 \left( 1+\boldsymbol(X_0(X'X)^{-1}X_0') \right) } &amp;&amp; \leftarrow \hat{\sigma}^2 =\frac{\boldsymbol{ee'}}{(n-k)} \\
 \hat{Y}_0 &amp;= \boldsymbol{X_0}\boldsymbol{\hat{\beta}}
 \end{align}$$`
 
@@ -1329,6 +1338,7 @@ S_{Y_0-\hat{Y}_0}
 
 layout: false
 class: inverse, center, middle, duke-softblue
+name: case
 
 # 6.6 矩阵方法总结（示例） 
 
@@ -1348,8 +1358,8 @@ layout: true
 
 
 
-<div id="htmlwidget-bfd73a3a66c97b536b2d" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-bfd73a3a66c97b536b2d">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"],[1956,1957,1958,1959,1960,1961,1962,1963,1964,1965,1966,1967,1968,1969,1970],[1673,1688,1666,1735,1749,1756,1815,1867,1948,2048,2128,2165,2257,2316,2324],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1839,1844,1831,1881,1883,1910,1969,2016,2126,2239,2336,2404,2487,2535,2595],[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Year<\/th>\n      <th>Y<\/th>\n      <th>one<\/th>\n      <th>X2<\/th>\n      <th>X3<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":5,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-d78e27e8e8cdca960c3f" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d78e27e8e8cdca960c3f">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"],[1956,1957,1958,1959,1960,1961,1962,1963,1964,1965,1966,1967,1968,1969,1970],[1673,1688,1666,1735,1749,1756,1815,1867,1948,2048,2128,2165,2257,2316,2324],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1839,1844,1831,1881,1883,1910,1969,2016,2126,2239,2336,2404,2487,2535,2595],[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Year<\/th>\n      <th>Y<\/th>\n      <th>one<\/th>\n      <th>X2<\/th>\n      <th>X3<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":5,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 
 `$$\begin {align} 
 Y_{i} &amp;=\hat{\beta}_{1}+\hat{\beta}_{2} X_{2 i}+\hat{\beta}_{3} X_{3 i}+e_{i} 
@@ -1546,7 +1556,7 @@ RSS=\sum{e_i^2}= \boldsymbol{e'e}
 
 ---
 
-## 求出方差-协方差矩阵
+## 求出回归系数的样本方差-协方差矩阵
 
 
 
@@ -1569,6 +1579,87 @@ S^2_{ij}(\boldsymbol{\hat{\beta}})=\hat{\sigma}^2\boldsymbol{(X'X)^{-1}}=
 220.2063&amp;-0.1371&amp;8.9015 \\
 \end{bmatrix}`
 $$
+
+---
+
+## 回归系数的显著性检验（t检验）
+
+
+```r
+SS_b &lt;- matrix(diag(mat_cov_b), byrow = F)
+S_b &lt;- sqrt(SS_b)
+```
+
+回归系数的方差协方差矩阵中:
+
+.pull-left[
+
+对角线元素即为回归系数的样本方差
+`\(S^2_{\boldsymbol{\hat{\beta}}}\)`:
+
+
+$$
+S^2_{\boldsymbol{\hat{\beta}}}=
+`\begin{bmatrix}
+6133.6505 \\
+0.0023 \\
+8.9015 \\
+\end{bmatrix}`
+$$
+]
+
+.pull-right[
+
+则回归系数的样本标准差
+`\(S_{\boldsymbol{\hat{\beta}}}\)`为:
+
+
+$$
+S_{\boldsymbol{\hat{\beta}}}=
+`\begin{bmatrix}
+78.3176 \\
+0.0475 \\
+2.9835 \\
+\end{bmatrix}`
+$$
+]
+
+---
+
+## 回归系数的显著性检验（t检验）
+
+.pull-left[
+
+根据原假设
+`\(H_0\)`，可以得到：
+
+`$$\begin{align}
+\boldsymbol{t_{\hat{\beta}}^{\ast}}=\frac{\boldsymbol{\hat{\beta}}}{\boldsymbol{\sqrt{S^2_{ij}(\hat{\beta}_{kk})}}} 
+=\frac{\boldsymbol{\hat{\beta}}}{S_\boldsymbol{\hat{\beta}}}
+\end{align}$$`
+
+]
+
+.pull-right[
+
+计算结果为：
+
+$$
+\boldsymbol{t_{\hat{\beta}}^{\ast}}=
+`\begin{bmatrix}
+3.8342 \\
+15.6096 \\
+2.696 \\
+\end{bmatrix}`
+$$
+
+]
+
+给定
+`\(\alpha=0.05, k=3,n=15\)`，我们可以查表得
+`\(t_{1-\alpha/2}(n-k)=t_{0.975}(13)=\)` 2.1788。
+
+因此表明全部回归系数的t检验的都是显著的。
 
 ---
 
@@ -1796,7 +1887,7 @@ $$
 
 `$$\begin{align}
 \hat{Y}_0-t_{1-\alpha/2}(n-k) \cdot S_{\hat{Y}_0} \leq &amp; E(Y|X_0) \leq \hat{Y}_0+t_{1-\alpha/2}(n-k) \cdot S_{\hat{Y}_0} \\
-2365.5532-2.1788*6.9744\leq &amp; E(Y|X_0) \leq2365.5532+2.1788*6.9744\\2350.3573\leq &amp; E(Y|X_0) \leq2350.3573
+2365.5532-2.1788*6.9744\leq &amp; E(Y|X_0) \leq2365.5532+2.1788*6.9744\\2350.3573\leq &amp; E(Y|X_0) \leq2380.7492
 \end{align}$$`
 
 ---
@@ -1844,7 +1935,7 @@ $$
 
 `$$\begin{align}
 \hat{Y}_0-t_{1-\alpha/2}(n-k) \cdot S_{e0} \leq &amp; (Y_0|X_0) \leq \hat{Y}_0+t_{1-\alpha/2}(n-k) \cdot S_{e0} \\
-2365.5532-2.1788*7.0458\leq &amp; (Y_0|X_0) \leq2365.5532+2.1788*7.0458\\2350.3573\leq &amp; (Y_0|X_0) \leq2350.3573
+2365.5532-2.1788*7.0458\leq &amp; (Y_0|X_0) \leq2365.5532+2.1788*7.0458\\2350.2019\leq &amp; (Y_0|X_0) \leq2380.9046
 \end{align}$$`
 
 ---
@@ -1900,6 +1991,32 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
 // adds .remark-code-has-line-highlighted class to <pre> parent elements
 // of code chunks containing highlighted lines with class .remark-code-line-highlighted
 (function(d) {
@@ -1917,17 +2034,6 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   }
   preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
 })(document);</script>
-
-<script>
-(function() {
-  var links = document.getElementsByTagName('a');
-  for (var i = 0; i < links.length; i++) {
-    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
-      links[i].target = '_blank';
-    }
-  }
-})();
-</script>
 
 <script>
 slideshow._releaseMath = function(el) {
