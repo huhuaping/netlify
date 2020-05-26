@@ -21,6 +21,10 @@ math: true
 
 - 实验2：[一元线性回归模型](https://www.bk.huhuaping.com/simple-regression.html)
 
+
+> - 实验2的结果演示：[一元回归OLS方法的蒙特卡洛模拟实验](/course-econometrics/lab/lab2-monte.html)
+
+
 - 实验3：[模型函数形式与模型选择](https://www.bk.huhuaping.com/introduction.html)
 
 - 实验4：[多元线性回归及矩阵运算](https://www.bk.huhuaping.com/matrix-regression.html)
