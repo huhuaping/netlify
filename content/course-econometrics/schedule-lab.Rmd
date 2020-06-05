@@ -17,24 +17,24 @@ math: true
 
 请点击下面链接进入各个实验指导说明：
 
-- 实验1：[EViews软件入门与基本操作](https://www.bk.huhuaping.com/introduction.html)
+- 实验1：[EViews软件入门与基本操作](https://hhp.seit2019.xyz/introduction.html)
 
-- 实验2：[一元线性回归模型](https://www.bk.huhuaping.com/simple-regression.html)
+- 实验2：[一元线性回归模型](https://hhp.seit2019.xyz/simple-regression.html)
 
 
 > - 实验2的结果演示：[一元回归OLS方法的蒙特卡洛模拟实验](/course-econometrics/lab/lab2-monte.html)
 
 
-- 实验3：[模型函数形式与模型选择](https://www.bk.huhuaping.com/introduction.html)
+- 实验3：[模型函数形式与模型选择](https://hhp.seit2019.xyz/introduction.html)
 
-- 实验4：[多元线性回归及矩阵运算](https://www.bk.huhuaping.com/matrix-regression.html)
+- 实验4：[多元线性回归及矩阵运算](https://hhp.seit2019.xyz/matrix-regression.html)
 
-- 实验5：[多重共线性的诊断和矫正](https://www.bk.huhuaping.com/multilinearity.html)
+- 实验5：[多重共线性的诊断和矫正](https://hhp.seit2019.xyz/multilinearity.html)
 
-- 实验6：[异方差的诊断和矫正](https://www.bk.huhuaping.com/heteroskedasticity.html)
+- 实验6：[异方差的诊断和矫正](https://hhp.seit2019.xyz/heteroskedasticity.html)
 
-- 实验7：[自相关的诊断和矫](https://www.bk.huhuaping.com/auto-correlation.html)
+- 实验7：[自相关的诊断和矫](https://hhp.seit2019.xyz/auto-correlation.html)
 
-- 实验8：[虚拟变量回归模型](https://www.bk.huhuaping.com/dummy-variable.html)
+- 实验8：[虚拟变量回归模型](https://hhp.seit2019.xyz/dummy-variable.html)
 
 
