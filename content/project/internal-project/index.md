@@ -13,7 +13,7 @@ slides: example-slides
 summary: An example of using the in-built project page.
 tags:
 - R language
-title: R行动小分队
+title: 项目开放协作
 url_code: ""
 url_pdf: ""
 url_slides: ""
@@ -26,7 +26,22 @@ url_video: ""
 > 身怀一技，浪迹江湖！
 
 
-## 行动清单
+
+## 项目1：农业贸易大数据
+
+本项目的代码托管在我的Github仓库[**agri-trade-open**](https://github.com/huhuaping/agri-trade-open)（请点击进入）。下面列出了相关**项目材料**：
+
+- 材料1：“一带一路”农产品贸易研讨1[（幻灯片slide](/agri-trade-open/slide-discuss-01.html)
+
+
+## 项目2：R统计分析
+
+本项目的代码托管在我的Github仓库[**team-students**](https://github.com/huhuaping/team-students)（请点击进入）。请点击下面链接进入各个**任务清单**：
+
+- （点击进入）[task-01-统计分析教学工作经历(HTML网页形式)](/R-learning/task-01-CV-teaching.html)
+
+
+## 技巧学习
 
 为了学习方便，本项目的代码托管在我的Github仓库[**team-students**](https://github.com/huhuaping/team-students)（请点击进入）。大家可以自由下载，并配合如下的行动清单进行配套学习。
 
@@ -38,13 +53,6 @@ url_video: ""
 
 - （点击进入）[02-git基本操作学习(HTML网页形式)](/R-learning/02-git-team-intro.html)
 
-
-
-## 任务清单
-
-本项目的代码托管在我的Github仓库[**team-students**](https://github.com/huhuaping/team-students)（请点击进入）。请点击下面链接进入各个**任务清单**：
-
-- （点击进入）[task-01-统计分析教学工作经历(HTML网页形式)](/R-learning/task-01-CV-teaching.html)
 
 ## R行动箴言
 
