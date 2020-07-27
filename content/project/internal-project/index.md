@@ -9,8 +9,8 @@ links:
   icon_pack: fab
   name: Follow
   url: ""
-slides: example-slides
-summary: An example of using the in-built project page.
+slides: 
+summary: R语言及相关学习总结，并列出了github仓库项目信息和材料。
 tags:
 - R language
 title: 项目开放协作
@@ -20,19 +20,23 @@ url_slides: ""
 url_video: ""
 ---
 
-
 > 行动是学习知识的最好老师！
-
 > 身怀一技，浪迹江湖！
 
-
+<br/>
 
 ## 项目1：农业贸易大数据
 
 本项目的代码托管在我的Github仓库[**agri-trade-open**](https://github.com/huhuaping/agri-trade-open)（请点击进入）。下面列出了相关**项目材料**：
 
-- 材料1：“一带一路”农产品贸易研讨1[（幻灯片slide](/agri-trade-open/slide-discuss-01.html)
+- 材料1：“一带一路”农产品贸易研讨1 [点击打开 幻灯片](/agri-trade-open/slide/slide-discuss-01.html)
 
+> 操作提示：
+- 点击**幻灯片区域**，按F键，可全屏观看；按Esc退出全屏。
+- 按方向键，可以前进/后退
+- 敲击数字键，再按Enter可进入任意指定的页码。如，敲击数字10，观看第10页
+
+<br/>
 
 ## 项目2：R统计分析
 
@@ -40,6 +44,7 @@ url_video: ""
 
 - （点击进入）[task-01-统计分析教学工作经历(HTML网页形式)](/R-learning/task-01-CV-teaching.html)
 
+<br/>
 
 ## 技巧学习
 
@@ -53,6 +58,7 @@ url_video: ""
 
 - （点击进入）[02-git基本操作学习(HTML网页形式)](/R-learning/02-git-team-intro.html)
 
+<br/>
 
 ## R行动箴言
 
