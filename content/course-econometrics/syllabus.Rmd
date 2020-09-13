@@ -45,7 +45,7 @@ load.pkg <- lapply(pkg, require, character.only = TRUE)
 - 点击首页导航栏**Teaching**，然后点击**计量经济学（本科）**。
 
 ```{r}
-knitr::include_graphics("/pic/chpt00-course-netlify.png")
+knitr::include_graphics("/pic/chpt00-course-netlify.png", error = FALSE)
 ```
 
 
@@ -57,11 +57,11 @@ knitr::include_graphics("/pic/chpt00-course-netlify.png")
 - 手机界面下，需要点击网站导航**三道杠**。
 
 ```{r,eval = FALSE}
-knitr::include_graphics("/pic/chpt00-mobile2.png")
+knitr::include_graphics("/pic/chpt00-mobile2.png", error = FALSE)
 ```
 
 ```{r, fig.width= 5}
-knitr::include_graphics("/pic/chpt00-mobile3.png")
+knitr::include_graphics("/pic/chpt00-mobile3.png", error = FALSE)
 ```
 
 ## 学校平台课程
@@ -75,7 +75,7 @@ knitr::include_graphics("/pic/chpt00-mobile3.png")
 
 
 ```{r}
-include_graphics("/pic/chpt00-course-university.png")
+include_graphics("/pic/chpt00-course-university.png", error = FALSE)
 ```
 
 
@@ -85,7 +85,7 @@ include_graphics("/pic/chpt00-course-university.png")
 
 
 ```{r}
-knitr::include_graphics("/pic/chpt00-login.png")
+knitr::include_graphics("/pic/chpt00-login.png", error = FALSE)
 ```
 
 
@@ -114,7 +114,7 @@ knitr::include_graphics("/pic/chpt00-login.png")
 - [李子奈和潘文卿：《计量经济学》第4版，高等教育出版社，2015](https://item.jd.com/12276682.html)
 
 ```{r}
-knitr::include_graphics("/pic/book-li-4th.jpg")
+knitr::include_graphics("/pic/book-li-4th.jpg", error = FALSE)
 ```
 
 
@@ -122,14 +122,14 @@ knitr::include_graphics("/pic/book-li-4th.jpg")
 # 参考教材
 
 ```{r}
-knitr::include_graphics("/pic/book-Wooldridge-5th_.jpg")
+knitr::include_graphics("/pic/book-Wooldridge-5th_.jpg", error = FALSE)
 ```
 
 [伍德里奇：《计量经济学导论：现代观点》第5版，中国人民大学出版社，2015.4](https://item.jd.com/11690382.html)
 
 
 ```{r}
-include_graphics("/pic/book-Gujarati-5th.png")
+include_graphics("/pic/book-Gujarati-5th.png", error = FALSE)
 ```
 
 [古扎拉蒂：《计量经济学基础》（上下册）第5版，北京：中国人民大学出版社，2013](https://item.jd.com/10780359.html)    
@@ -138,6 +138,7 @@ include_graphics("/pic/book-Gujarati-5th.png")
 # 软件材料
 
 熟练掌握一门计量软件。
+
 
 **EViews软件**（课程指定软件）：
 

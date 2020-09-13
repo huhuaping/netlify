@@ -38,6 +38,9 @@ url_video: ""
 
 <br/>
 
+
+- 材料2：“html异常表格提取技术——各地区一般公共支出数据为例”[点击打开](/R-learning/teaching-01-scrape-html-new-table.html)
+
 ## 项目2：R统计分析
 
 本项目的代码托管在我的Github仓库[**team-students**](https://github.com/huhuaping/team-students)（请点击进入）。请点击下面链接进入各个**任务清单**：
