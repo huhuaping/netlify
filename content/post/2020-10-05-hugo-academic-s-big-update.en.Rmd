@@ -1,0 +1,127 @@
+---
+title: 建站平台hugo-academic大升级
+author: huhuaping
+date: '2020-10-05'
+slug: hugo-academic-s-big-update
+categories:
+  - R
+tags:
+  - Website
+  - hugo
+subtitle: ''
+summary: '对于搭建个人网站，曾经有一句经典的忠告摆在我的面前：永远不要使用复杂的模板，否则总有一天会掉入网站迁移漩涡，甚至万劫不复的境地。这种事，难免大家都会赶上那么一遭。'
+authors: []
+lastmod: '2020-10-05T21:08:20+08:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+> 对于搭建个人网站，曾经有一句经典的忠告摆在我的面前：
+永远不要使用复杂的模板，否则总有一天会掉入网站迁移漩涡，甚至万劫不复的境地。 ————无名氏
+
+这种事，总算是被我赶上了一遭。
+
+采用hugo-academic模板搭建个人网站，2020年9月3日以后，面临一次建站流程的全新大换代升级。
+
+> Convert an old Academic Kickstarter site If you have an existing site based on the Academic Kickstarter Template that was created before 3rd September 2020, it may need converting to use Hugo’s new modular system.
+
+在学习测试两天后，总算是跌跌撞撞地完成了网站的升级更新。截至写这篇博文，针对哪些blogdown用户，网络上还并没有足够完整和清晰的升级操作攻略。这里先记录一二，或许对于急迫升级的人有些许帮助。
+
+事先说明一下我的环境：
+
+- Win 10操作系统
+
+- R环境 `version.string R version 4.0.2 (2020-06-22)`
+
+
+- 升级后hugo version: `Hugo Static Site Generator v0.75.1/extended windows/amd64 BuildDate: unknown`
+
+
+
+# hugo academic的大换血，变革了什么？
+
+后面复杂的flow、原理之类东东我也没有完全明白。不过基本按照官方的提示，是可以完成网站升级的，完全可以忽略下面这些什么go module之类的工具或概念。
+
+对于windowns党，你大概需要本地安装一些工具：[Edit your site on your PC](https://wowchemy.com/docs/install-locally/)
+
+- [Hugo Extended](https://gohugo.io/getting-started/installing/)
+
+- [Go installed](https://golang.org/dl/) 用于执行hugo modules命令
+
+- git bash 这个不用多说了
+
+
+不过按照官方的说法，此次最大的变革是实现了“模块化”建站流程。
+
+就我个人后面的感受而言，比前一代思路确实更加间接，最关键的是建站速度贼快。
+
+倒是让我收获了一个很深刻的领悟：
+
+> 平时我可能只关心hugo的建站工具性，从来不想了解背后的最基本的指导思想和运行原理（尽管可能还是会一知半解，技术细节确实可以完全忽视）。现在看来，既然把身家大计（网站）都托付给了它，起码不能完全对其漠然无知。工具性导向很容易误人误事！
+
+# 一条思路填平若干个坑
+
+现在简单说一下blogdown用户，如何从早前一代的"hugo-academic"升级到新一代的"Wowchemy Hugo Module"流程。
+
+先说**一条思路**——实际上我们完全可以用两种方法来实现academic模板的建站。如果按官方说明正确安装软件、工具和环境，则可以：
+
+b. blogdown+hugo建站。如果默认安装，hugo执行程序应该在`C:\Users\yourname\AppData\Roaming\Hugo\hugo.exe`。
+
+a. Scoop+hugo建站。如果默认安装，hugo执行程序应该在`C:\Users\yourname\scoop\shims\hugo.exe`
+
+> 两种方式应该可以同时建站。如果报错，则建议把其中之一的hugo.exe修改为不可识别的（如hugo.exex）。
+
+
+我相信对于大部分blogdown用户而言，应该不太关心后一种。不过在目前的跨代升级中，这一条却是非常重要。因为前者的一些流程，需要后者来援助！
+
+下面列几个要点，跳开这几个坑应该就可以完成`blogdown+hugo`建站升级过程：
+
+1. 一定记得提前备份网站！（git用户表示窃喜中）
+
+2. 首先下载`starter-academica`模板到本地，解压缩**备用**。[Download Academic Template](https://github.com/wowchemy/starter-academic/archive/master.zip)
+
+3. 处理旧版网站的项目文件。如下操作删除旧模板。
+
+```
+git submodule deinit themes/hugo-academic    
+git rm themes -r
+```
+> 同时记得手动删除旧网站项目文件下的`public/`文件夹。    
+
+
+4. 把新模板`starter-academic`中的如下文件，拷贝或替换旧版网站项目文件：
+
+    a. 模板文件，整个`exampleSite`文件夹
+    b. 配置文件，整个`config`文件夹
+    b. 两个go文件，`go.sum`和`go.mod`文件
+    b. 其他`starter-academic`有，而旧项目文件里没有的文件。
+
+5. 在win power shell命令窗口中执行go操作
+
+    a. cd 命令进入到旧项目根文件夹下（此步骤自行脑补吧）
+    b. go 命令执行建站：`hugo server`（如果顺利，可以直接预览渲染的网站）；或者`hugo`（如果顺利，可以得到渲染后的public/文件夹）
+    c. 如果不能顺利进行go建站渲染，则按提示修改其中的升级跃迁断点问题（break issues）。我碰到的断点问题主要是：
+    
+> 
+- `callout`问题。按报错依次找到文件，替换参数即可。
+- jpg图片问题。按照toml里参数的提示，把文件夹路径更换即可。
+
+6. 网站内容的维护和调整。具体包括：
+
+    a. `config.toml`参数的更新调整（地址等）
+    b. `content/`文件夹各个.md的核查
+
+7. 如果在go建站预览下如果基本没有问题，则可以如常使用blogdown的`blogdown::serve_site()`进行独立的建站渲染。
+
+最后，blogdown可能还是会报出提示：
+
+```
+WARN 2020/10/05 21:08:20 Module "github.com/wowchemy/wowchemy-hugo-modules/wowchemy" is not compatible with this Hugo version; run "hugo mod graph" for more information.
+```
+
+不过，好在网站总算是升级正常啦！
+
