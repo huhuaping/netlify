@@ -7,7 +7,7 @@ education:
   - course: PhD in Agricultural Economics and Management
     institution: Huazhong Agricultrual University, Wuhan, China
     year: 2011
-  - course: MEng in Agricultural Economics and Management
+  - course: MEcon in Agricultural Economics and Management
     institution: Huazhong Agricultrual University, Wuhan, China
     year: 2007
   - course: BSc in Management

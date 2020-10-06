@@ -1,0 +1,76 @@
+---
+title: 参考文献及正文引用问题
+author: huhuaping
+date: '2020-10-03'
+slug: bib-and-cite-on-research-article
+categories:
+  - Research
+tags:
+  - article
+  - bibTeX
+subtitle: ''
+summary: '因为多年使用EndNote软件管理文献，在使用Rmarkdown写文章时，自然免不了遭遇传统与尝新的大碰撞。这篇博文记录了二者协调使用中的困难，以及基本的协作流程和注意事项。不得不承认，在软件工具使用上，我们不得不在坚守传统的“稳固性”以及拥抱创新的“生命力”之间，不断做出权衡、抉择、隐忍，直至最后的突破和归宿。对我而言，目前无疑还处在这隐忍和彻底破除的过渡时期。'
+authors: []
+lastmod: '2020-10-03T16:32:55+08:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+
+
+<p>使用Rmarkdown写科学论文，自然避免不了管理和使用参考文献，以及文献输出样式。</p>
+<div id="endnote和流程" class="section level1">
+<h1>EndNote和流程</h1>
+<p>目前为止，我的唯一文献工具是<strong>EndNote</strong>（版本X9）。掐指一算，差不多已经坚持使用了近13年了。多年来攒下的一个文献库.enl里，文献条目多达3500条（多半是存而不读的啦）。</p>
+<p>在使用Rmarkdown写文章后，工作流程总是免不了受这个多年的工具牵连。可行的办法如下：</p>
+<ol style="list-style-type: decimal">
+<li><p>查找学术文献。利用谷歌学术查找文献，导入EndNote。（google学术设置里拉选一下默认导入工具）</p></li>
+<li><p>修改定制EndNote软件。Endnote里一番神设置（具体见后），获得文献条目的BibTex格式。</p></li>
+<li><p>集中注意力写文章的地方。Rmarkdown文档<code>.Rmd</code>里写文章，同时新建一个<code>.bib</code>的附带文件。</p></li>
+<li><p>管理BibTex文献的地方。把BibTex格式的文献条目，复制到<code>.bib</code>文件里面去。</p></li>
+<li><p>管理正文里文献引用显示和以及<code>参考文献</code>的输出样式。与<code>.Rmd</code>并行配置一个<code>.csl</code>文档。关于引用样式语言——Citation Style Language (CSL) ，后面再说。</p></li>
+</ol>
+<p>目前的流程是没有可行的，但是几个问题仍旧存在：</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>EndNote重度使用的后遗症。一是要手动把EndNote文献条目的BibTeX内容复制到<code>.bib</code>里面去，太费手啦！二是，EndNote文献条目的BibTeX内容中，引用ID需要手动调整，这个也是很费手！</p></li>
+<li><p>文献管理存档的主副之争。EndNote文献条目，跟<code>.bib</code>里的文献条目是无法关联的。意味着，要同时管理两个家伙！</p></li>
+<li><p>引用样式语言Citation Style Language (CSL) 文档，可能需要定制化修改！</p></li>
+</ol>
+<p>先不说这些血泪控诉的坑吧，下面把基本过程里的小九九暂时给记录下来。</p>
+</div>
+<div id="配置endnote软件windows系统" class="section level1">
+<h1>配置EndNote软件（Windows系统）</h1>
+<p>修改定制EndNote软件。具体可以参考<a href="https://www.rhizobia.co.nz/latex/convert">攻略</a>。</p>
+<blockquote>
+<p>基本步骤大概是：
+- 下载style模板，导入并保存模板；然后选用此模板
+- 修改Preferences ： “modify reference types”
+- 修改display fields： “Custom1”</p>
+</blockquote>
+</div>
+<div id="endnote里编辑条目" class="section level1">
+<h1>EndNote里编辑条目</h1>
+<p>编辑文献条目。独立设置ID ：BibTeX里编辑。</p>
+</div>
+<div id="定制输出和显示样式" class="section level1">
+<h1>定制输出和显示样式</h1>
+<ol style="list-style-type: decimal">
+<li><p>准备好输出显示样式。cls样式可以参看<a href="https://github.com/citation-style-language/styles">样式库</a></p></li>
+<li><p>设置<code>.Rmd</code>文档的yaml参数，示例如下：</p></li>
+</ol>
+<pre><code># 一级yaml参数
+
+biblio-style: &quot;nnsfc.csl&quot;
+csl: &quot;nnsfc.csl&quot;
+</code></pre>
+</div>
+<div id="文献引用" class="section level1">
+<h1>文献引用</h1>
+<p>直接使用条目的唯一标识。例如：</p>
+<pre><code>研究发现，balabalabala[@Birthal2011]。
+</code></pre>
+</div>
