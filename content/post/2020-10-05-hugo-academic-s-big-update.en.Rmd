@@ -57,7 +57,7 @@ projects: []
 
 不过按照官方的说法，此次最大的变革是实现了“模块化”建站流程。
 
-就我个人后面的感受而言，比前一代思路确实更加间接，最关键的是建站速度贼快。
+就我个人后面的感受而言，比前一代思路确实更加简洁，最关键的是建站速度贼快。
 
 倒是让我收获了一个很深刻的领悟：
 
@@ -147,7 +147,7 @@ netlify新开发流程，官方说是采用了CMS管理平台——里面的原�
 
 3. **修改新旧网站的链接关系**。此时，我们有两个netlify网站（website-B和website-A）以及对应的两个github repo（repo-B和repo-A）。新流程下的website-B网站是完全可以云端正常自动开发的，但是旧流程下的website-A网站则是无法自动激发云端开发的。关键步骤就是“嫁接替换法”：
 
-> a. 将website-B关联的github仓库，修改为repo-A。netlify操作过程：settings --》build & deployment --》build settings --》 edit setting --》reopsitory --》Link a different repository
+> a. 将website-B关联的github仓库，修改为repo-A。netlify操作过程：`https://app.netlify.com/sites/huhuaping-kick/settings/deploys#continuous-deployment` --》build settings --》 edit setting --》reopsitory --》Link a different repository
 b. 将website-B的域名修改为原来website-A的域名。netlify操作过程：`https://app.netlify.com/sites/huhuaping/settings/general` --》sitede tails --》site information --》 change site name
 c. “嫁接替换”完成后，netlify就在CMS新流程下，开发了原来的repo-A的网站代码内容。
 
