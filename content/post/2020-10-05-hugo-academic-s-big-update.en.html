@@ -37,6 +37,7 @@ projects: []
 <li><p>Win 10操作系统</p></li>
 <li><p>R环境 <code>version.string R version 4.0.2 (2020-06-22)</code></p></li>
 <li><p>升级后hugo version: <code>Hugo Static Site Generator v0.75.1/extended windows/amd64 BuildDate: unknown</code></p></li>
+<li><p>netlify 关联 github的仓库，自动激活建站开发</p></li>
 </ul>
 <div id="hugo-academic的大换血变革了什么" class="section level1">
 <h1>hugo academic的大换血，变革了什么？</h1>
@@ -48,14 +49,14 @@ projects: []
 <li><p>git bash 这个不用多说了</p></li>
 </ul>
 <p>不过按照官方的说法，此次最大的变革是实现了“模块化”建站流程。</p>
-<p>就我个人后面的感受而言，比前一代思路确实更加间接，最关键的是建站速度贼快。</p>
+<p>就我个人后面的感受而言，比前一代思路确实更加简洁，最关键的是建站速度贼快。</p>
 <p>倒是让我收获了一个很深刻的领悟：</p>
 <blockquote>
 <p>平时我可能只关心hugo的建站工具性，从来不想了解背后的最基本的指导思想和运行原理（尽管可能还是会一知半解，技术细节确实可以完全忽视）。现在看来，既然把身家大计（网站）都托付给了它，起码不能完全对其漠然无知。工具性导向很容易误人误事！</p>
 </blockquote>
 </div>
-<div id="一条思路填平若干个坑" class="section level1">
-<h1>一条思路填平若干个坑</h1>
+<div id="本地开发预览一条思路填平若干个坑" class="section level1">
+<h1>本地开发预览：一条思路填平若干个坑</h1>
 <p>现在简单说一下blogdown用户，如何从早前一代的“hugo-academic”升级到新一代的“Wowchemy Hugo Module”流程。</p>
 <p>先说<strong>一条思路</strong>——实际上我们完全可以用两种方法来实现academic模板的建站。如果按官方说明正确安装软件、工具和环境，则可以：</p>
 <ol start="2" style="list-style-type: lower-alpha">
@@ -108,5 +109,32 @@ git rm themes -r</code></pre>
 </ol>
 <p>最后，blogdown可能还是会报出提示：</p>
 <pre><code>WARN 2020/10/05 21:08:20 Module &quot;github.com/wowchemy/wowchemy-hugo-modules/wowchemy&quot; is not compatible with this Hugo version; run &quot;hugo mod graph&quot; for more information.</code></pre>
-<p>不过，好在网站总算是升级正常啦！</p>
+<p>不过，好在网站本地开发预览，总算是升级正常啦！</p>
+</div>
+<div id="云端开发预览netlify的断点" class="section level1">
+<h1>云端开发预览：netlify的断点</h1>
+<p>尽管前面的网站本地开发预览已经OK，但是云端自动开发流程我们还没有进行配置。——我几乎又花费了一个早上来查找问题，直到最后成功。</p>
+<p><strong>核心提示</strong>：</p>
+<blockquote>
+<p>如果仍旧采用旧版网站的netlify开发流程，则云端开发会一直提示fail。所以需要采用新的netlify开发流程。</p>
+</blockquote>
+<p>netlify新开发流程，官方说是采用了CMS管理平台——里面的原理暂时没有深究。如果注意比较新旧流程开发同样的网站代码，会发现主要的区别是：</p>
+<ul>
+<li><p>开放工具链（tool chain）中，部分工具的版本新旧，如ruby、go等的调用</p></li>
+<li><p>开发速度上，新流程明显完成得更快</p></li>
+</ul>
+<p>为了解决这个新旧流程得断点（break point）问题，暂时摸索出来的办法如下：</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>新建一个netlify开发网站</strong>。根据starter-academic的官方说明，利用github账号接入netlify的api，创建一个基于starter-academic模板的github repo（称之为repo-B）。netlify预览网站（称之为website-B）应该是正常的。——这里纯粹是为了获得新流程的CMS平台。后面的话，这个repo可以直接不用。</p></li>
+<li><p><strong>准备好本地开发成功的网站项目</strong>。首先，准备工作。把本地开发预览正常的网站项目（称之为repo-A），推送到github远端（remote）。当然，关联给netlify云端的开发预览网站（称之为website-A）是不会成功更新的。</p></li>
+<li><p><strong>修改新旧网站的链接关系</strong>。此时，我们有两个netlify网站（website-B和website-A）以及对应的两个github repo（repo-B和repo-A）。新流程下的website-B网站是完全可以云端正常自动开发的，但是旧流程下的website-A网站则是无法自动激发云端开发的。关键步骤就是“嫁接替换法”：</p></li>
+</ol>
+<blockquote>
+<ol style="list-style-type: lower-alpha">
+<li>将website-B关联的github仓库，修改为repo-A。netlify操作过程：<code>https://app.netlify.com/sites/huhuaping-kick/settings/deploys#continuous-deployment</code> –》build settings –》 edit setting –》reopsitory –》Link a different repository</li>
+<li>将website-B的域名修改为原来website-A的域名。netlify操作过程：<code>https://app.netlify.com/sites/huhuaping/settings/general</code> –》sitede tails –》site information –》 change site name</li>
+<li>“嫁接替换”完成后，netlify就在CMS新流程下，开发了原来的repo-A的网站代码内容。</li>
+</ol>
+</blockquote>
+<p>至此，我们只需要继续维护本地更新升级后的repo-A，并持续推送给github，那么每次commit提交就会自动激活netlify使用新流程开发渲染网站内容啦！</p>
 </div>

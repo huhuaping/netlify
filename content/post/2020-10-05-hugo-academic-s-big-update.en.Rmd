@@ -40,7 +40,7 @@ projects: []
 
 - 升级后hugo version: `Hugo Static Site Generator v0.75.1/extended windows/amd64 BuildDate: unknown`
 
-
+- netlify 关联 github的仓库，自动激活建站开发
 
 # hugo academic的大换血，变革了什么？
 
