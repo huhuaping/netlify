@@ -1,17 +1,17 @@
 ---
 date: "2019-12-01T00:00:00+08:00"
 draft: false
-linktitle: 计量经济学I复习资料
+linktitle: 计量经济学II复习资料
 menu:
   course-econometrics-master:
-    parent: 计量经济学(I)(简介)
-    weight: 2
-title: 计量经济学I复习资料(要点、试题和答案)
+    parent: 计量经济学(II)(简介)
+    weight: 6
+title: 计量经济学II复习资料(要点、试题和答案)
 toc: true
 type: docs
 ---
 
-## 计量经济学I：复习资料(要点、试题和答案)
+## 计量经济学II：复习资料(要点、试题和答案)
 
 
 大礼包1（右键下载）：[**2018年秋学期**的考试真题.pdf](/course-econometrics-master/material/ecno-master-2018-2019-fall-out-2019.1.8.pdf) 
