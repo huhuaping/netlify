@@ -1,0 +1,104 @@
+---
+title: '使用Zotero实现文献引用的自动化Rmarkdown写作'
+author: huhuaping
+date: '2020-10-09'
+slug: rmarkdown-zotero-rbbt
+categories:
+  - Research
+tags:
+  - bibTeX
+  - Zotero
+  - rbbt
+subtitle: ''
+summary: 'Rmarkdown写作环境下，Zotero + rbbt的方式，基本上实现了比较满意的文献管理和引用流程。Zotero具有免费和相对开放性。Zotero对bibTeX和中文情景比较友好。此外，R包rbbt函数实现了对Zotero的实时联系，引用流程更加自动化。使用者需要正确理解Rmd渲染输出、.bib文件状态和Zotero条目库的关系。'
+authors: []
+lastmod: '2020-10-09T11:52:18+08:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+
+
+<blockquote>
+<p>Rmarkdown写作环境下，Zotero + rbbt的方式，基本上实现了比较满意的文献管理和引用流程。Zotero具有免费和相对开放性。Zotero对bibTeX和中文情景比较友好。此外，R包rbbt函数实现了对Zotero的实时联系，引用流程更加自动化。使用者需要正确理解Rmd渲染输出、.bib文件状态和Zotero条目库的关系。</p>
+</blockquote>
+<div id="zotero环境准备" class="section level1">
+<h1>zotero环境准备</h1>
+<div id="安装zotero和扩展插件zotero-better-bibtex" class="section level2">
+<h2>安装zotero和扩展插件zotero-better-bibtex。</h2>
+<p>安装文献管理软件zotero和浏览器插件 。<a href="https://www.zotero.org/">官网</a></p>
+<ul>
+<li><p>软件本体Zotero 5.0 for Windows <a href="https://www.zotero.org/download/client/dl?channel=release&amp;platform=win32&amp;version=5.0.89">下载</a>。</p></li>
+<li><p>浏览器插件Zotero Connector <a href="https://chrome.google.com/webstore/detail/ekhagklcjbdpajgpjgmbionohlpdbjgc">chrome 浏览器插件下载</a>。</p></li>
+<li><p>安装Zotero扩展插件zotero-better-bibtex <a href="https://retorque.re/zotero-better-bibtex/">开发者网站</a>。zotero-better-bibtex-5.2.78.xpi <a href="https://github.com/retorquere/zotero-better-bibtex/releases">下载安装</a>。</p></li>
+</ul>
+</div>
+<div id="设定citekey的形式默认形式太冗长" class="section level2">
+<h2>设定Citekey的形式（默认形式太冗长）。</h2>
+<p>具体修改<a href="https://retorque.re/zotero-better-bibtex/citing/">方法</a>：</p>
+<ul>
+<li><p>设定citekey形式：打开Zotero<span class="math inline">\(\Rightarrow\)</span> 编辑<span class="math inline">\(\Rightarrow\)</span> 首选项<span class="math inline">\(\Rightarrow\)</span> Better Bibtex（插件菜单<span class="math inline">\(\Rightarrow\)</span> Citation keys。</p></li>
+<li><p>更新citekey值：Zotero<span class="math inline">\(\Rightarrow\)</span> 选中文献条目<span class="math inline">\(\Rightarrow\)</span>鼠标右键 <span class="math inline">\(\Rightarrow\)</span> Better Bibtex<span class="math inline">\(\Rightarrow\)</span> refresh Bibtex key。</p></li>
+</ul>
+</div>
+</div>
+<div id="r环境准备" class="section level1">
+<h1>R环境准备</h1>
+<div id="zotero导出.bib文件" class="section level2">
+<h2>zotero导出.bib文件</h2>
+<ul>
+<li><p>选定需要的Zotero的文献组(group)，直接导出为.bib文件</p></li>
+<li><p>将.bib文件保存在写作文件.Rmd路径中</p></li>
+<li><p>写作文件.Rmd的yaml区域指明对.bib的关联关系</p></li>
+</ul>
+<pre><code>bibliography: 
+  - bib-west.bib
+  - west-agri.bib</code></pre>
+<ul>
+<li>写作文件.Rmd的yaml区域设定文献列出样式（csl style）及关联关系</li>
+</ul>
+<pre><code>biblio-style: &quot;nnsfc.csl&quot;
+csl: &quot;nnsfc.csl&quot;</code></pre>
+</div>
+<div id="安装rbbt包并进行文献搜索和引用" class="section level2">
+<h2>安装<code>rbbt</code>包，并进行文献搜索和引用</h2>
+<pre class="r"><code># remotes::install_github(&quot;paleolimbot/rbbt&quot;)
+#require(&quot;rbbt&quot;)</code></pre>
+<p>R包<code>rbbt</code>的主要作用<a href="https://github.com/paleolimbot/rbbt">见github</a>：</p>
+<ul>
+<li><p>与Zotero文献库直接关联，方便引用。</p></li>
+<li><p>与.Rmd文件头yaml区域指定的.bib文件关联，实现“参考文献”列出。</p></li>
+</ul>
+<p>主要过程：</p>
+<ul>
+<li>安装<code>rbbt</code>包。</li>
+</ul>
+<pre><code># remotes::install_github(&quot;paleolimbot/rbbt&quot;)
+require(&quot;rbbt&quot;)</code></pre>
+<ul>
+<li>Rstudio<span class="math inline">\(\Rightarrow\)</span> 点击Addins<span class="math inline">\(\Rightarrow\)</span> Insert Zotero Citation。</li>
+</ul>
+</div>
+</div>
+<div id="总结及注意事项" class="section level1">
+<h1>总结及注意事项</h1>
+<p>Rmarkdown写作环境下，Zotero + <code>rbbt</code>的方式，基本上实现了比较满意的文献管理和引用流程，<strong>优点</strong>如下：</p>
+<ul>
+<li><p>Zotero的免费和相对开放性。免费+插件扩展。对很多网站的文章citation能够快速识别并导入到Zotero库里去，而且还能自动下载关联pdf！</p></li>
+<li><p>Zotero对bibTeX的友好性。因为Rmarkdown对bibTeX的要求，而Zotero的相关操作极为便捷简单。此外，Zotero对中文文献情景也比较友好。</p></li>
+<li><p>R包<code>rbbt</code>函数实现了对Zotero的实时联系，引用流程更加自动化。</p></li>
+</ul>
+<p><strong>重要提示</strong>：</p>
+<ol style="list-style-type: decimal">
+<li><p>正确理解Rmd渲染输出、.bib文件状态和Zotero条目库的关系。简单说：a) Rmd的输出最终只会引用.bib文件里的文献条目。b)R引用包（<code>rbbt</code>）与Zotero可以实时联系（通过zotero-better-bibtex扩展插件），但是这<strong>并不</strong>意味着Rmd渲染输出也是与Zotero实时联系的。c).因此，在写作草稿阶段，可以暂时不用关心.bib，只需要保持与Zotero实时联系即可（完成实时搜索和插入条目）。但是在最后完稿之前，务必需要及时更新调整.bib文件（从Zotero 中导出文献为.bib文件，替换更新原来的.bib旧文件即可）。</p></li>
+<li><p>Zotero中Citekey的设置是一个关键步骤，我们需要做出合理的权衡。这是因为一方面<code>@nameYear</code>的引用便捷性，要求每条文献的citekey必须要简单易用；但是另一方面，Zotero往往会管理海量的文献条目，从而又要求文献的citekey不能重复——不然就没办法精确引用文献了。不过Zotero考虑并提供了选择，可以用动态key（dynamic key），也可以用锁定key（pined key）。</p></li>
+<li><p>因为文献条目中可能包含了abstract等长文本域，为了避免Zotero导出.bib后，R包citr识别报错的问题。最好把Zotero 软件的Better Bibtex（插件菜单）做出如下导出设定。</p>
+<ul>
+<li>设定导出规则：打开Zotero<span class="math inline">\(\Rightarrow\)</span> 编辑<span class="math inline">\(\Rightarrow\)</span> 首选项<span class="math inline">\(\Rightarrow\)</span> Better Bibtex（插件菜单）<span class="math inline">\(\Rightarrow\)</span> Export<span class="math inline">\(\Rightarrow\)</span> Fields<span class="math inline">\(\Rightarrow\)</span> Fields to omit frome export<span class="math inline">\(\Rightarrow\)</span> 输入abstract等（逗号分隔）</li>
+</ul></li>
+</ol>
+</div>
