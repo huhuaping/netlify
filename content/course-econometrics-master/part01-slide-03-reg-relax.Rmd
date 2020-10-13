@@ -1,0 +1,38 @@
+---
+date: "2019-09-09T00:00:00+08:00"
+draft: false
+linktitle: 第03章:放宽假设
+menu:
+  course-econometrics-master:
+    parent: 计量经济学(II)(简介)
+    weight: 13
+title: 模块1：计量经济学基础
+#toc: true
+type: docs
+---
+
+## 第03章：放宽假设
+
+操作提示：
+
+- 点击**课件区域**，按F键，可全屏观看
+
+- 按方向键，可以前进/后退
+
+- 敲击数字键，再按Enter可进入任意指定的页码。如，敲击数字10，观看第10页
+
+
+```{r, echo=FALSE}
+knitr::include_url("/course-econometrics-master/part01-slide-03-reg-relax.html")
+```
+
+**配套案例数据**：
+
+- （多重共线性）朗利数据:[下载xlsx](/course-econometrics-master/attach-file/xlsx/file-01-multi-Table-10-8-longley.xlsx) 
+
+- （异方差）吸烟数据:[下载xlsx](/course-econometrics-master/attach-file/xlsx/file-02-hetero-Table-8-smoke.xlsx) 
+
+- （自相关）薪水数据:[下载xlsx](/course-econometrics-master/attach-file/xlsx/file-03-auto-Table-12-4-US-salary.xlsx)
+
+
+
