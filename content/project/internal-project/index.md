@@ -29,27 +29,22 @@ url_video: ""
 
 本项目的代码托管在我的Github仓库[**agri-trade-open**](https://github.com/huhuaping/agri-trade-open)（请点击进入）。下面列出了相关**项目材料**：
 
-- 材料1：“一带一路”农产品贸易研讨1 [点击打开 幻灯片](/agri-trade-open/slide/slide-discuss-01.html)
-
-> 操作提示：
-- 点击**幻灯片区域**，按F键，可全屏观看；按Esc退出全屏。
-- 按方向键，可以前进/后退
-- 敲击数字键，再按Enter可进入任意指定的页码。如，敲击数字10，观看第10页
-
-<br/>
+- **材料1**：“一带一路”农产品贸易研讨1 [点击打开 幻灯片](/agri-trade-open/slide/slide-discuss-01.html)
 
 
-- 材料2：“html异常表格提取技术——各地区一般公共支出数据为例”[点击打开](/R-learning/teaching-01-scrape-html-new-table.html)
+- **材料2**：“html异常表格提取技术——各地区一般公共支出数据为例”[点击打开](/R-learning/teaching-01-scrape-html-new-table.html)
 
 ## 项目2：R统计分析
 
 本项目的代码托管在我的Github仓库[**team-students**](https://github.com/huhuaping/team-students)（请点击进入）。请点击下面链接进入各个**任务清单**：
 
-- （点击进入）[task-01-统计分析教学工作经历(HTML网页形式)](/R-learning/task-01-CV-teaching.html)
+- **Task 01**（点击进入）[统计分析教学工作经历](/R-learning/task-01-CV-teaching.html)
+
+- **Task 02**（点击进入）[爬虫技术1：RSelenium + Firefox](/R-learning/webscrape-01-hack-institution-code.html)
 
 <br/>
 
-## 技巧学习
+## 项目3：R相关技巧
 
 为了学习方便，本项目的代码托管在我的Github仓库[**team-students**](https://github.com/huhuaping/team-students)（请点击进入）。大家可以自由下载，并配合如下的行动清单进行配套学习。
 
