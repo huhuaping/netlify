@@ -1,17 +1,17 @@
 ---
 date: "2019-09-09T00:00:00+08:00"
 draft: false
-linktitle: 第01章:经典模型
+linktitle: 第02章:矩阵分析
 menu:
   course-econometrics-master:
     parent: 计量经济学(II)(简介)
-    weight: 10
+    weight: 11
 title: 模块1：计量经济学基础
 #toc: true
 type: docs
 ---
 
-## 第01章：经典模型
+## 第02章：矩阵分析
 
 操作提示：
 
@@ -23,10 +23,10 @@ type: docs
 
 
 ```{r, echo=FALSE}
-knitr::include_url("/course-econometrics-master/part01-slide-01-reg-basic.html")
+knitr::include_url("/course-econometrics-master/part01-slide-02-reg-matrix.html")
 ```
 
 
 **配套案例数据**：
 
-- 家庭收入和支出数据:[下载xlsx](/course-econometrics-master/attach-file/xlsx/file-basic-Table-3-2-edu-wage.xlsx) 
+- 私人消费支出数据:[下载xlsx](/course-econometrics-master/attach-file/xlsx/file-matrix-Table-C-6-matrix.xlsx) 

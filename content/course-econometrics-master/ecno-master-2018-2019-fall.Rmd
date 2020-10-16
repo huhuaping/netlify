@@ -5,7 +5,7 @@ linktitle: 计量经济学II复习资料
 menu:
   course-econometrics-master:
     parent: 计量经济学(II)(简介)
-    weight: 6
+    weight: 99
 title: 计量经济学II复习资料(要点、试题和答案)
 toc: true
 type: docs

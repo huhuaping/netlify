@@ -1,11 +1,11 @@
 ---
 date: "2019-10-14T00:00:00+08:00"
 draft: false
-linktitle: 第19章(SEM的识别问题)
+linktitle: 第19章:SEM的识别
 menu:
   course-econometrics-master:
     parent: 计量经济学(II)(简介)
-    weight: 4
+    weight: 22
 title: 模块2：联立方程模型SEM
 #toc: true
 type: docs
