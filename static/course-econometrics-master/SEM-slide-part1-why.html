@@ -23,7 +23,7 @@
   <body>
     <textarea id="source">
 
-background-image: url("pic/slide-front-page.jpg")
+background-image: url("slide/pic/backup/summer.jpg")
 class: center,middle
 
 # 计量经济学II（研究生）
@@ -39,7 +39,7 @@ class: center,middle
 
 ### huhuaping01@hotmail.com
 
-### 2020-10-08
+### 2020-10-27
 
 
 
@@ -52,6 +52,8 @@ class: center,middle
 class: inverse, middle, center
 
 # 模块2：结构方程模型（SEM）
+
+## Chapter 17. 内生自变量问题
 
 ## .red[Chapter 18. 为什么要关心联立方程模型？]
 
@@ -231,14 +233,41 @@ layout: true
 
 - 直接使用OLS方法估计参数将会不可靠
 
+---
+
+### 松露案例：案例背景
+
+
+松露是美味的食材。它们是生长在地下的食用菌。我们考虑如下的松露供求模型:
+
+`$$\begin{cases}
+  \begin{align}
+    \text { Demand: } &amp; Q_{di}=\alpha_{1}+\alpha_{2} P_{i}+\alpha_{3} P S_{i}+\alpha_{4} D I_{i}+e_{d i} \\ 
+    \text { Supply: } &amp; Q_{si}=\beta_{1}+\beta_{2} P_{i}+\beta_{3} P F_{i}+e_{s i}\\
+    \text { Equity: } &amp; Q_{di}= Q_{si}
+  \end{align}
+\end{cases}$$`
+
+&gt;其中：
+- 
+`\(Q_i=\)`某一特定市场上松露的交易量;
+- 
+`\(P_i=\)`松露的市场价格;
+- 
+`\(PS_i=\)`松露替代物的市场价格;
+- 
+`\(DI_i=\)`当地居民每月人均可支配收入;
+- 
+`\(PF_i=\)`生产要素的价格，在本例中是搜索松露过程中租用小猪的每小时租金。
+
 
 ---
 
 ### 松露案例：变量说明
 
 
-<div id="htmlwidget-bec3467aed9a8246bd5f" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-bec3467aed9a8246bd5f">{"x":{"filter":"none","data":[["1","2","3","4","5"],["P","Q","PS","DI","PF"],["松露市场价格","松露产量或需求量","松露替代品的市场价格","当地居民可支配收入","生产成本(小猪的租金)"],["美元/盎司","盎司","美元/盎司","美元/人","美元/小时"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>变量<\/th>\n      <th>含义<\/th>\n      <th>单位<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":6,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[6,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-216ce3eae0ac5c34c27f" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-216ce3eae0ac5c34c27f">{"x":{"filter":"none","data":[["1","2","3","4","5"],["P","Q","PS","DI","PF"],["松露市场价格","松露产量或需求量","松露替代品的市场价格","当地居民可支配收入","生产成本(小猪的租金)"],["美元/盎司","盎司","美元/盎司","美元/人","美元/小时"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>变量<\/th>\n      <th>含义<\/th>\n      <th>单位<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":6,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[6,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 
 
 ???
@@ -249,8 +278,8 @@ layout: true
 
 ### 松露案例：数据表
 
-<div id="htmlwidget-8aaf118ba25d60c41cd4" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-8aaf118ba25d60c41cd4">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30"],[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30],[29.64,40.23,34.71,41.43,53.37,38.52,54.33,40.56,67.35,49.65,58.17,66.87,49.95,64.95,52.68,61.2,80.55,89.94,70.77,57.33,46.23,77.43,83.01,70.71,66.75,76.8,83.7,81,88.44,105.45],[19.89,13.04,19.61,17.13,22.55,6.37,15.02,10.22,23.64,16.12,24.55,18.92,11.94,18.93,12.6,20.49,22.94,21.08,16.68,17.61,16.62,20.99,24.53,19.67,23.29,16.64,20.81,14.95,26.27,20.65],[19.97,18.04,22.36,20.87,19.79,15.98,17.94,17.09,22.72,15.74,24.64,23.7,15.93,23.34,15.21,26.04,22.95,27.1,23.65,20.06,26.38,24.28,26.64,22.65,19.68,23.82,28.98,18.52,28.16,28.43],[2.103,2.043,1.87,1.525,2.709,2.489,2.294,2.196,3.885,3.169,2.623,3.007,3.367,3.29,3.746,3.518,4.381,4.121,3.82,4.398,3.764,4.524,4.815,3.67,4.392,4.603,4.632,4.894,5.125,4.836],[10.52,19.67,13.74,17.95,13.71,24.95,24.17,23.61,19.52,20.03,15.38,22.98,25.76,25.17,25.82,19.31,26.02,29.65,27.45,18,18.87,24.58,25.25,24.24,22.63,27.35,27.8,30.34,24.12,34.01]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>id<\/th>\n      <th>P<\/th>\n      <th>Q<\/th>\n      <th>PS<\/th>\n      <th>DI<\/th>\n      <th>PF<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":8,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[8,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-b7a9be5945342c2e487b" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b7a9be5945342c2e487b">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30"],[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30],[29.64,40.23,34.71,41.43,53.37,38.52,54.33,40.56,67.35,49.65,58.17,66.87,49.95,64.95,52.68,61.2,80.55,89.94,70.77,57.33,46.23,77.43,83.01,70.71,66.75,76.8,83.7,81,88.44,105.45],[19.89,13.04,19.61,17.13,22.55,6.37,15.02,10.22,23.64,16.12,24.55,18.92,11.94,18.93,12.6,20.49,22.94,21.08,16.68,17.61,16.62,20.99,24.53,19.67,23.29,16.64,20.81,14.95,26.27,20.65],[19.97,18.04,22.36,20.87,19.79,15.98,17.94,17.09,22.72,15.74,24.64,23.7,15.93,23.34,15.21,26.04,22.95,27.1,23.65,20.06,26.38,24.28,26.64,22.65,19.68,23.82,28.98,18.52,28.16,28.43],[2.103,2.043,1.87,1.525,2.709,2.489,2.294,2.196,3.885,3.169,2.623,3.007,3.367,3.29,3.746,3.518,4.381,4.121,3.82,4.398,3.764,4.524,4.815,3.67,4.392,4.603,4.632,4.894,5.125,4.836],[10.52,19.67,13.74,17.95,13.71,24.95,24.17,23.61,19.52,20.03,15.38,22.98,25.76,25.17,25.82,19.31,26.02,29.65,27.45,18,18.87,24.58,25.25,24.24,22.63,27.35,27.8,30.34,24.12,34.01]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>id<\/th>\n      <th>P<\/th>\n      <th>Q<\/th>\n      <th>PS<\/th>\n      <th>DI<\/th>\n      <th>PF<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":8,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[8,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 
 ---
 
@@ -302,17 +331,18 @@ Q &amp; = \hat{\beta}_1+\hat{\beta}_2P +e_2  &amp;&amp; \text{(simple Q model)}
 
 ---
 
-### 松露案例：样本回归线1
+### 松露案例：样本回归线
 
-
+.pull-left[
 &lt;img src="SEM-slide-part1-why_files/figure-html/scatter-truffles-left-1.png" style="display: block; margin: auto;" /&gt;
 
----
+]
 
-### 松露案例：样本回归线2
+.pull-right[
 
 &lt;img src="SEM-slide-part1-why_files/figure-html/scatter-truffles-right-1.png" style="display: block; margin: auto;" /&gt;
 
+]
 
 ---
 
@@ -360,16 +390,20 @@ layout: true
 
 ---
 
-### 联立方程模型的一般表达：代数式1
+### 结构化SEM (1)：代数表达式A
 
-联立方程模型形态1：
+**结构化的SEM**(Structural SEM system)：是直接描述经济结构或行为的方程组。
 
-`$$\begin{alignat}{5}
-Y_{t1}&amp;= &amp; &amp;+\gamma_{21}Y_{t2}+&amp;\cdots  &amp;+\gamma_{m1}Y_{tm} &amp; +\beta_{11}X_{1t}+\beta_{21}X_{t2} &amp;+\cdots+\beta_{k1}X_{tk} &amp;+\varepsilon_{t1} \\
-Y_{t2}&amp;=&amp;\gamma_{12}Y_{t1} &amp;+  &amp; \cdots &amp;+\gamma_{m2}Y_{tm}&amp;+\beta_{12}X_{t1}+\beta_{22}X_{t2} &amp;+\cdots+\beta_{k2}X_{tk} &amp;+\varepsilon_{t2}\\
-&amp; \vdots &amp;\vdots &amp;&amp;\vdots &amp;&amp;\vdots  \\
-Y_{tm}&amp;=&amp;\gamma_{1m}Y_{t1}&amp;+\gamma_{2m}Y_{t2}+&amp; \cdots  &amp; &amp;+\beta_{1m}X_{t1} +\beta_{2m}X_{t2} &amp;+\cdots+\beta_{km}X_{tk} &amp;+\varepsilon_{tm} 
-\end{alignat}$$`
+**结构化的SEM**代数表达式（形式A）可以表达为:
+
+`$$\begin{cases}
+  \begin{alignat}{5}
+  Y_{t1}&amp;= &amp; &amp;+\gamma_{21}Y_{t2}+&amp;\cdots  &amp;+\gamma_{m1}Y_{tm} &amp; +\beta_{11}X_{1t}+\beta_{21}X_{t2} &amp;+\cdots+\beta_{k1}X_{tk} &amp;+\varepsilon_{t1} \\
+  Y_{t2}&amp;=&amp;\gamma_{12}Y_{t1} &amp;+  &amp; \cdots &amp;+\gamma_{m2}Y_{tm}&amp;+\beta_{12}X_{t1}+\beta_{22}X_{t2} &amp;+\cdots+\beta_{k2}X_{tk} &amp;+\varepsilon_{t2}\\
+  &amp; \vdots &amp;\vdots &amp;&amp;\vdots &amp;&amp;\vdots  \\
+  Y_{tm}&amp;=&amp;\gamma_{1m}Y_{t1}&amp;+\gamma_{2m}Y_{t2}+&amp; \cdots  &amp; &amp;+\beta_{1m}X_{t1} +\beta_{2m}X_{t2} &amp;+\cdots+\beta_{km}X_{tk} &amp;+\varepsilon_{tm} 
+  \end{alignat}
+\end{cases}$$`
 
 .pull-left[
 - **内生变量**或联合应变量(m个)：
@@ -392,73 +426,191 @@ Y_{tm}&amp;=&amp;\gamma_{1m}Y_{t1}&amp;+\gamma_{2m}Y_{t2}+&amp; \cdots  &amp; &a
 
 ---
 
-### 联立方程模型的定义：内生变量和前定变量
+### 结构化SEM (1)：结构系数
 
-**内生变量**（endogenous vaviables）：由模型决定的变量。
+`$$\begin{cases}
+  \begin{alignat}{5}
+  Y_{t1}&amp;= &amp; &amp;+\gamma_{21}Y_{t2}+&amp;\cdots  &amp;+\gamma_{m1}Y_{tm} &amp; +\beta_{11}X_{1t}+\beta_{21}X_{t2} &amp;+\cdots+\beta_{k1}X_{tk} &amp;+\varepsilon_{t1} \\
+  Y_{t2}&amp;=&amp;\gamma_{12}Y_{t1} &amp;+  &amp; \cdots &amp;+\gamma_{m2}Y_{tm}&amp;+\beta_{12}X_{t1}+\beta_{22}X_{t2} &amp;+\cdots+\beta_{k2}X_{tk} &amp;+\varepsilon_{t2}\\
+  &amp; \vdots &amp;\vdots &amp;&amp;\vdots &amp;&amp;\vdots  \\
+  Y_{tm}&amp;=&amp;\gamma_{1m}Y_{t1}&amp;+\gamma_{2m}Y_{t2}+&amp; \cdots  &amp; &amp;+\beta_{1m}X_{t1} +\beta_{2m}X_{t2} &amp;+\cdots+\beta_{km}X_{tk} &amp;+\varepsilon_{tm} 
+  \end{alignat}
+\end{cases}$$`
 
-- 如
-`\(Y_{t1};Y_{t2}; \cdots; Y_{tm}\)`
+**结构系数**(Structural coefficients)：是结构化SEM中的参数 ，它们反映了经济结果或行为的关系。包括：
 
---
 
-**前定变量**（predetermined variables）：是**外生变量**和**滞后内生变量**的合称。
-
-- **外生变量**（exdogenous vaviables）：不由模型决定的变量，包括**当前期的**和**滞后期的**
-
-    - 当前期的外生变量
-    `\(X_{t1}, X_{t2},\cdots, X_{tk}\)`。
-    - 滞后期的外生变量，如
-     `\(X_{t1}\)`的外生滞后变量：
-     `\(X_{t-1,1}, X_{t-2,1},\cdots, X_{t-(T-1),1}\)`；以及
-     `\(X_{tk}\)`的外生滞后变量：
-     `\(X_{t-1,k}, X_{t-2,k},\cdots, X_{t-(T-1),k}\)`等。
-
---
-
-- **滞后内生变量**（lagged endogenous vaviables）：当前时期下内生变量的滞后变量。
-
-  - 如
-  `\(Y_{t1}\)`的滞后内生变量：
-  `\(Y_{t-1,1}, Y_{t-2,1}, \cdots, Y_{t-(T-1),1}\)`；以及
-  `\(Y_{tm}\)`的滞后内生变量：
-  `\(Y_{t-1,m}, Y_{t-2,m}, \cdots, Y_{t-(T-1),m}\)`等
-
----
-
-### 联立方程模型的定义：结构方程和结构参数
-
-**结构方程**（structural equations）：直接刻画经济结构或行为关系的方程系统。
-
-- 见前述**代数式1**
-
-**结构参数**（structural parameters）：结构方程中代表经济结果或行为关系的参数。具体又包括**内生结构系数**和**外生结构系数**
-
-- **内生结构系数**：如上述结构方程中的
+&gt;- **.red[内生] 结构系数**:
 `\(\gamma_{11}, \gamma_{21},\cdots, \gamma_{m1}; \cdots; \gamma_{1m}, \gamma_{2m},\cdots, \gamma_{mm}\)`
 
-- **外生结构系数**：如上述结构方程中的
+&gt;- **.red[外生]结构系数**:
 `\(\beta_{11}, \beta_{21},\cdots, \beta_{m1}; \cdots; \beta_{1m}, \beta_{2m},\cdots, \beta_{mm};\)`
 
+---
+
+### 结构化SEM (1)：结构变量
+
+`$$\begin{cases}
+  \begin{alignat}{5}
+    Y_{t1}&amp;= &amp; &amp;+\gamma_{21}Y_{t2}+&amp;\cdots  &amp;+\gamma_{m1}Y_{tm} &amp; +\beta_{11}X_{1t}+\beta_{21}X_{t2} &amp;+\cdots+\beta_{k1}X_{tk} &amp;+\varepsilon_{t1} \\
+    Y_{t2}&amp;=&amp;\gamma_{12}Y_{t1} &amp;+  &amp; \cdots &amp;+\gamma_{m2}Y_{tm}&amp;+\beta_{12}X_{t1}+\beta_{22}X_{t2} &amp;+\cdots+\beta_{k2}X_{tk} &amp;+\varepsilon_{t2}\\
+    &amp; \vdots &amp;\vdots &amp;&amp;\vdots &amp;&amp;\vdots  \\
+    Y_{tm}&amp;=&amp;\gamma_{1m}Y_{t1}&amp;+\gamma_{2m}Y_{t2}+&amp; \cdots  &amp; &amp;+\beta_{1m}X_{t1} +\beta_{2m}X_{t2} &amp;+\cdots+\beta_{km}X_{tk} &amp;+\varepsilon_{tm} 
+  \end{alignat}
+\end{cases}$$`
+
+- **内生变量**(Endogenous variables)： 由SEM决定的那些变量。
+
+- **前定变量**(Predetermined variables)：那些不由SEM本身在当期（**current time period**）决定的变量。
+
+
+
+.pull-left[
+&gt; **内生变量**，例如:
+`\(Y_{t1};Y_{t2}; \cdots; Y_{tm}\)`
+
+]
+
+.pull-right[
+
+&gt; **前定变量**，例如:
+`\(X_{..}\)`
+
+]
+
+- **结构随机干扰项**(Structural disturbance)：也即结构化SEM系统中的**随机干扰项**。例如：
+`\(\varepsilon_{t1};\varepsilon_{t2}; \cdots; \varepsilon_{tm}\)`
 
 ---
 
-### 联立方程模型的一般表达：代数式2
+### 结构化SEM (1)：前定变量
 
-联立方程模型形态2：我们也可以将前述**代数式1**整理成如下**代数式2**：
+**前定变量**(Predetermined variables)：那些不由SEM本身在当期（**current time period**）决定的变量。具体又包括：
 
-`$$\begin{alignat}{5}
-\gamma_{11}Y_{t1} &amp;+ \gamma_{21}Y_{t2}&amp;+\cdots &amp;+\gamma_{m-1,1}Y_{t,m-1} &amp;+\gamma_{m1}Y_{tm} &amp; +\beta_{11}X_{t1}+\beta_{21}X_{t2} &amp;+\cdots+\beta_{k1}X_{tk} &amp;=\varepsilon_{t1} \\
-\gamma_{12}Y_{t1} &amp;+\gamma_{22}Y_{t2} &amp;+   \cdots&amp;+\gamma_{m-1,2}Y_{t,m-1} &amp;+\gamma_{m2}Y_{tm}&amp;+\beta_{12}X_{t1}+\beta_{22}X_{t2} &amp;+\cdots+\beta_{k2}X_{tk} &amp;= \varepsilon_{t2}\\
-&amp; \vdots &amp;\vdots &amp;&amp;\vdots &amp;&amp;\vdots  \\
-\gamma_{1m}Y_{t1}&amp;+\gamma_{2m}Y_{t2}&amp;+ \cdots &amp;+\gamma_{m-1,m}Y_{t,m-1} &amp; +\gamma_{mm}Y_{tm}  &amp;+\beta_{1m}X_{t1} +\beta_{2m}X_{t2} &amp;+\cdots+\beta_{km}X_{tk} &amp;=\varepsilon_{tm} 
-\end{alignat}$$`
+- **外生变量**(exogenous variables) 
+
+- **滞后内生变量**(lagged endogenous variables)
+
+`$$\begin{cases}
+  \begin{alignat}{5}
+    Y_{t1}&amp;= &amp; &amp;+\gamma_{21}Y_{t2}+&amp;\cdots  &amp;+\gamma_{m1}Y_{tm} &amp; +\beta_{11}X_{1t}+\beta_{21}X_{t2} &amp;+\cdots+\beta_{k1}X_{tk} &amp;+\varepsilon_{t1} \\
+    Y_{t2}&amp;=&amp;\gamma_{12}Y_{t1} &amp;+  &amp; \cdots &amp;+\gamma_{m2}Y_{tm}&amp;+\beta_{12}X_{t1}+\beta_{22}X_{t2} &amp;+\cdots+\beta_{k2}X_{tk} &amp;+\varepsilon_{t2}\\
+    &amp; \vdots &amp;\vdots &amp;&amp;\vdots &amp;&amp;\vdots  \\
+    Y_{tm}&amp;=&amp;\gamma_{1m}Y_{t1}&amp;+\gamma_{2m}Y_{t2}+&amp; \cdots  &amp; &amp;+\beta_{1m}X_{t1} +\beta_{2m}X_{t2} &amp;+\cdots+\beta_{km}X_{tk} &amp;+\varepsilon_{tm} 
+  \end{alignat}
+\end{cases}$$`
+
+
+???
+
+You should remind that the predetermined variables  consist of both the exogenous variables and thelagged endogenous variables.
 
 ---
 
-### 联立方程模型的一般表达：矩阵式
+### 结构化SEM (1)：前定变量
 
-联立方程模型形态3：**矩阵表达**。将上述**代数式2**的m个方程进一步表达为矩阵形式
 
+- **.red[外生变量]**: 那些不被SEM本身决定的变量，它们既不会在**当期**（current period)被SEM决定，也不是在**滞后期**(lagged period)被SEM说决定。
+
+- **.red[滞后内生变量]**(Lagged en]dogenous variables)：是当期内生变量的滞后变量。
+
+.pull-left[
+
+&gt; **当期外生变量**:
+- 
+`\(X_{t1}, X_{t2},\cdots, X_{tk}\)`.
+
+
+&gt; **滞后外生变量**: 
+- 变量
+`\(X_{t1}\)`的滞后期变量:
+`\(X_{t-1,1}; X_{t-2,1};\cdots; X_{t-(T-1),1}\)`
+- 变量
+`\(X_{tk}\)`的滞后期变量:
+`\(X_{t-1,k}; X_{t-2,k};\cdots; X_{t-(T-1),k}\)`
+- 
+`\(\cdots\)`
+
+]
+
+.pull-right[
+&gt; **滞后内生变量**:
+- 变量
+`\(Y_{t1}\)`的滞后变量:
+`\(Y_{t-1,1}; Y_{t-2,1}; \cdots, Y_{t-(T-1),1}\)`
+- 变量
+`\(Y_{tm}\)`的滞后变量：
+`\(Y_{t-1,m}; Y_{t-2,m}; \cdots;Y_{t-(T-1),m}\)`
+- 
+`\(\cdots\)`
+]
+
+???
+
+&gt; So, you may get two types Exogenous variables, which are current period exogenous, such as all X_ts, and Lagged .red[en]dogenous variables, such as all X_t-s.
+
+
+
+---
+
+### 结构化SEM (1)：前定系数
+
+`$$\begin{cases}
+  \begin{alignat}{5}
+    Y_{t1}&amp;= &amp; &amp;+\gamma_{21}Y_{t2}+&amp;\cdots  &amp;+\gamma_{m1}Y_{tm} &amp; +\beta_{11}X_{1t}+\beta_{21}X_{t2} &amp;+\cdots+\beta_{k1}X_{tk} &amp;+\varepsilon_{t1} \\
+    Y_{t2}&amp;=&amp;\gamma_{12}Y_{t1} &amp;+  &amp; \cdots &amp;+\gamma_{m2}Y_{tm}&amp;+\beta_{12}X_{t1}+\beta_{22}X_{t2} &amp;+\cdots+\beta_{k2}X_{tk} &amp;+\varepsilon_{t2}\\
+    &amp; \vdots &amp;\vdots &amp;&amp;\vdots &amp;&amp;\vdots  \\
+    Y_{tm}&amp;=&amp;\gamma_{1m}Y_{t1}&amp;+\gamma_{2m}Y_{t2}+&amp; \cdots  &amp; &amp;+\beta_{1m}X_{t1} +\beta_{2m}X_{t2} &amp;+\cdots+\beta_{km}X_{tk} &amp;+\varepsilon_{tm} 
+  \end{alignat}
+\end{cases}$$`
+
+**前定系数**(Predetermined coefficients): 是指前定变量前的系数.
+
+&gt;例如:
+- 所有的
+`\(\beta_{..}\)`
+
+???
+
+Of course, we may denote coefficients before predetermined variables as **Predetermined coefficients**.
+
+---
+
+### 结构化SEM (1)：代数表达式B
+
+通过简单的变形，结构化SEM的**代数表达式A**，可以转换为如下的**代数表达式B** :
+
+
+`$$A: \begin{cases}
+  \begin{alignat}{5}
+    Y_{t1}&amp;= &amp; &amp;+\gamma_{21}Y_{t2}+&amp;\cdots  &amp;+\gamma_{m1}Y_{tm} &amp; +\beta_{11}X_{1t}+\beta_{21}X_{t2} &amp;+\cdots+\beta_{k1}X_{tk} &amp;+\varepsilon_{t1} \\
+    Y_{t2}&amp;=&amp;\gamma_{12}Y_{t1} &amp;+  &amp; \cdots &amp;+\gamma_{m2}Y_{tm}&amp;+\beta_{12}X_{t1}+\beta_{22}X_{t2} &amp;+\cdots+\beta_{k2}X_{tk} &amp;+\varepsilon_{t2}\\
+    &amp; \vdots &amp;\vdots &amp;&amp;\vdots &amp;&amp;\vdots  \\
+    Y_{tm}&amp;=&amp;\gamma_{1m}Y_{t1}&amp;+\gamma_{2m}Y_{t2}+&amp; \cdots  &amp; &amp;+\beta_{1m}X_{t1} +\beta_{2m}X_{t2} &amp;+\cdots+\beta_{km}X_{tk} &amp;+\varepsilon_{tm} 
+  \end{alignat}
+\end{cases}$$`
+
+.small[
+
+`$$\Rightarrow B: \begin{cases}
+  \begin{alignat}{5}
+  \gamma_{11}Y_{t1} &amp;+ \gamma_{21}Y_{t2}&amp;+\cdots &amp;+\gamma_{m-1,1}Y_{t,m-1} &amp;+\gamma_{m1}Y_{tm} &amp; +\beta_{11}X_{t1}+\beta_{21}X_{t2} &amp;+\cdots+\beta_{k1}X_{tk} &amp;=\varepsilon_{t1} \\
+  \gamma_{12}Y_{t1} &amp;+\gamma_{22}Y_{t2} &amp;+   \cdots&amp;+\gamma_{m-1,2}Y_{t,m-1} &amp;+\gamma_{m2}Y_{tm}&amp;+\beta_{12}X_{t1}+\beta_{22}X_{t2} &amp;+\cdots+\beta_{k2}X_{tk} &amp;= \varepsilon_{t2}\\
+  &amp; \vdots &amp;\vdots &amp;&amp;\vdots &amp;&amp;\vdots  \\
+  \gamma_{1m}Y_{t1}&amp;+\gamma_{2m}Y_{t2}&amp;+ \cdots &amp;+\gamma_{m-1,m}Y_{t,m-1} &amp; +\gamma_{mm}Y_{tm}  &amp;+\beta_{1m}X_{t1} +\beta_{2m}X_{t2} &amp;+\cdots+\beta_{km}X_{tk} &amp;=\varepsilon_{tm} 
+  \end{alignat}
+\end{cases}$$`
+
+]
+
+
+
+
+---
+
+### 结构化SEM (2)：矩阵表达式
+
+采用矩阵语言(Matrix language)，前述结构化SEM还可以进一步表达为 **矩阵形式**(matrix expression):
 
 `$$\begin{equation}
     \begin{bmatrix}
@@ -484,88 +636,200 @@ Y_{tm}&amp;=&amp;\gamma_{1m}Y_{t1}&amp;+\gamma_{2m}Y_{t2}+&amp; \cdots  &amp; &a
   \end{bmatrix} _t
 \end{equation}$$`
 
+???
+
+Here, we arranged the matrix expression of SEM based on former algebraic expression B. 
 
 ---
 
-### 联立方程模型的一般表达：矩阵式
+### 结构化SEM (2)：矩阵表达式
 
-进一步可以表达为：
+简单起见，我们可以将结构化SEM的**矩阵形式**一般化记为：
 
 `$$\begin{aligned}
 &amp; \boldsymbol{y^{\prime}_t} \boldsymbol{\Gamma} &amp;+ &amp; \boldsymbol{x^{\prime}_t} \boldsymbol{B} &amp;= &amp; \boldsymbol{{\varepsilon^{\prime}_t}} \\
 &amp;(1 \ast m)(m \ast m) &amp; &amp; (1 \ast k)(k \ast m) &amp; &amp; (1 \ast m)
 \end{aligned}$$`
 
-&lt;br&gt;
 
-**复习本科知识**：加粗大写表示**矩阵**（matrix），加粗小写表示**向量**（vector）。其中**向量**默认情形下都是**列向量**（column vector）。对其**转置**（transpose）即为**行向量**（row vector）。
+&gt; **其中**：
+- 粗体大写英文字母和希腊字母表示 **矩阵**(matrix)
+&gt;
+- 粗体小写英文字母和希腊字母表示**列向量**(column vector)
 
-&gt; **思考提问**：矩阵式与代数式是等价的么？
+
+
+
+???
+
+For Simplicity, we can generized the **matrix expression** of SEM as follow.
+
+&gt; we should remind that：
+- the dimension of the vector and matrix is important;
+- and matrix compatibility  /kəmˌpætəˈbɪləti/ is needed in matrix calculation.
 
 ---
 
-### 联立方程模型的一般表达：矩阵式
+### 结构化SEM (2)：内生系数矩阵
 
-对于**内生结构参数矩阵**
+对于 **.red[内生系数矩阵]**
 `\(\boldsymbol{\Gamma}\)`：
 
-- 为确保每个方程中有一个**因变量**，则矩阵
-`\(\boldsymbol{\Gamma}\)`每列中至少有一个元素为1
-
+- 为了确保每一个方程起码有1个 **因变量**，则矩阵
+`\(\boldsymbol{\Gamma}\)` 的每1列起码要有1个元素含有常数1
 - 如果矩阵
-`\(\boldsymbol{\Gamma}\)`表现为**上三角矩阵**（upper triangular matrix），那么联立方程模型就表现为**递归模型**（recursive model）。
+`\(\boldsymbol{\Gamma}\)` 是一个**上三角矩阵**(upper triangular matrix)，那么SEM将会是一个**递归模型**(recursive model)系统。
+- 同时，为了保证SEM的参数估计解存在，矩阵
+`\(\boldsymbol{\Gamma}\)` 必须是**非奇异矩阵**(nonsingular matrix).
 
-`$$\begin{aligned}
-y_{1t} &amp;=&amp; f_{1}\left(\mathbf{x}_{t}\right)+\varepsilon_{t1} \\ 
-y_{2t} &amp;=&amp; f_{2}\left(y_{t1}, \mathbf{x}_{t}\right)+\varepsilon_{t2} \\ 
-&amp; \vdots &amp; \vdots \\ 
-y_{mt} &amp;=&amp; f_{m}\left(y_{t1}, y_{t2}, \ldots, y_{t,m-1}, \mathbf{x}_{t}\right)+\varepsilon_{mt} 
-\end{aligned}$$`
 
-对于**外生结构参数矩阵**
+.pull-left[
+
+`$$\begin{equation}
+\boldsymbol{\Gamma} =
+  \begin{bmatrix}
+      \gamma_{11} &amp; \gamma_{12} &amp; \cdots &amp; \gamma_{1m} \\
+      \gamma_{21} &amp; \gamma_{22} &amp; \cdots &amp; \gamma_{2m} \\
+      \cdots &amp; \cdots &amp; \cdots  &amp; \cdots \\
+      \gamma_{m1} &amp; \gamma_{m2} &amp; \cdots &amp; \gamma_{mm} \\ 
+  \end{bmatrix} \\
+  \text{if }\Rightarrow 
+  \begin{bmatrix}
+      \gamma_{11} &amp; \gamma_{12} &amp; \cdots &amp; \gamma_{1m} \\
+      0 &amp; \gamma_{22} &amp; \cdots &amp; \gamma_{2m} \\
+      \cdots &amp; \cdots &amp; \cdots  &amp; \cdots \\
+      0 &amp; 0 &amp; \cdots &amp; \gamma_{mm} \\ 
+  \end{bmatrix}
+\end{equation}$$`
+
+]
+
+.pull-right[
+
+`$$\begin{cases}
+  \begin{aligned}
+  y_{1t} &amp;=&amp; f_{1}\left(\mathbf{x}_{t}\right)+\varepsilon_{t1} \\ 
+  y_{2t} &amp;=&amp; f_{2}\left(y_{t1}, \mathbf{x}_{t}\right)+\varepsilon_{t2} \\ 
+  &amp; \vdots &amp; \vdots \\ 
+  y_{mt} &amp;=&amp; f_{m}\left(y_{t1}, y_{t2}, \ldots, \mathbf{x}_{t}\right)+\varepsilon_{mt} 
+  \end{aligned}
+\end{cases}$$`
+
+]
+
+???
+
+Now, let's focus the **.red[En]dogenous parameter matrix** firstly.
+
+---
+
+### 结构化SEM (2)：内生系数矩阵
+
+**.red[外生]系数矩阵**
 `\(\boldsymbol{B}\)`：
 
+`$$\begin{equation}
+\boldsymbol{B} =
+  \begin{bmatrix}
+    \beta_{11} &amp; \beta_{12} &amp; \cdots &amp; \beta_{1m} \\
+    \beta_{21} &amp; \beta_{22} &amp; \cdots &amp; \beta_{2m} \\
+    \cdots &amp; \cdots &amp; \cdots &amp; \cdots\\
+    \beta_{k1} &amp; \beta_{k2} &amp; \cdots &amp; \beta_{km} \\
+  \end{bmatrix}
+\end{equation}$$`
+
+
+&gt; 需要注意的是：SEM系统是有截距的，因此我们要记住外生系数矩阵的**第1列**都是截距系数。
+
+
 ---
 
-### 联立方程模型的定义：约简方程和约简系数（代数表达）
+### 约简化SEM (1):代数表达式
 
-**约简型方程**（reduced equations）：仅用**前定变量**和**随机干扰项**来表达一个内生变量的方程。
+**约简方程**(Reduced equations):  将1个**内生变量**(endogenous variable)，表达成只包含**前定变量**(predetermined variables)和**随机干扰项**的方程。
 
-`$$\begin{alignat}{5}
-Y_{t1}&amp;= &amp; &amp;+\gamma_{21}Y_{t2}+&amp;\cdots  &amp;+\gamma_{m1}Y_{tm} &amp; +\beta_{11}X_{1t}+\beta_{21}X_{t2} &amp;+\cdots+\beta_{k1}X_{tk} &amp;+\varepsilon_{t1} \\
-Y_{t2}&amp;=&amp;\gamma_{12}Y_{t1} &amp;+  &amp; \cdots &amp;+\gamma_{m2}Y_{tm}&amp;+\beta_{12}X_{t1}+\beta_{22}X_{t2} &amp;+\cdots+\beta_{k2}X_{tk} &amp;+\varepsilon_{t2}\\
-&amp; \vdots &amp;\vdots &amp;&amp;\vdots &amp;&amp;\vdots  \\
-Y_{tm}&amp;=&amp;\gamma_{1m}Y_{t1}&amp;+\gamma_{2m}Y_{t2}+&amp; \cdots  &amp; &amp;+\beta_{1m}X_{t1} +\beta_{2m}X_{t2} &amp;+\cdots+\beta_{km}X_{tk} &amp;+\varepsilon_{tm} 
-\end{alignat}$$`
+`$$\begin{cases}
+  \begin{alignat}{5}
+  Y_{t1}&amp;=  &amp; +\pi_{11}X_{t1}+\pi_{21}X_{t2} &amp;+\cdots+\pi_{k1}X_{tk} &amp; + v_{t1} \\
+  Y_{t2}&amp;=&amp;+\pi_{12}X_{t1}+\pi_{22}X_{t2} &amp;+\cdots+\pi_{k2}X_{tk} &amp; + v_{t2}\\
+  &amp; \vdots &amp;\vdots &amp;&amp;\vdots &amp;  \\
+  Y_{tm}&amp;=&amp;+\pi_{1m}X_{t1} +\pi_{2m}X_{t2} &amp;+\cdots+\pi_{km}X_{tk} &amp; + v_{tm}
+  \end{alignat}
+\end{cases}$$`
 
-以上**结构方程**（代数式1）可以转化为如下**约简方程**：
 
-`$$\begin{alignat}{5}
-Y_{t1}&amp;=  &amp; +\pi_{11}X_{t1}+\pi_{21}X_{t2} &amp;+\cdots+\pi_{k1}X_{tk} &amp; + v_{t1} \\
-Y_{t2}&amp;=&amp;+\pi_{12}X_{t1}+\pi_{22}X_{t2} &amp;+\cdots+\pi_{k2}X_{tk} &amp; + v_{t2}\\
-&amp; \vdots &amp;\vdots &amp;&amp;\vdots &amp;  \\
-Y_{tm}&amp;=&amp;+\pi_{1m}X_{t1} +\pi_{2m}X_{t2} &amp;+\cdots+\pi_{km}X_{tk} &amp; + v_{tm}
-\end{alignat}$$`
+上面，我们把结构化方程里的每1个内生变量，都表达为了约简方程，这样的方程系统被称为**约简化SEM**系统。
 
-**约简系数** （reduced coefficients）：约简方程中对应的系数。如
-`\(\pi_{11},\pi_{21},\cdots, \pi_{k1}\)`和
-`\(\pi_{1m},\pi_{2m},\cdots, \pi_{km}\)`等。**约简随机干扰项**：指约简方程中的
+???
+
+As you see, we know well with the structural SEMs because we have learned thess models in the economic textbooks.
+
+Now, we will go ahead to  the important concept of reduced SEM.
+
+___
+
+So, a reduced equation is one that expresses an **endogenous variable** solely in terms of the **predetermined variables** and the **stochastic disturbances**.
+
+We denoted the reduced SEM as follows.
+
+---
+
+### 约简化SEM (1): 约简系数和随机干扰项
+
+- **约简系数**(Reduced coefficients): 也即约简化SEM系统里的所有**参数**.
+
+- **约简随机干扰项**(Reduced disturbance): 也即约简化SEM系统里**随机干扰项**
+
+`$$\begin{cases}
+  \begin{alignat}{5}
+  Y_{t1}&amp;=  &amp; +\pi_{11}X_{t1}+\pi_{21}X_{t2} &amp;+\cdots+\pi_{k1}X_{tk} &amp; + v_{t1} \\
+  Y_{t2}&amp;=&amp;+\pi_{12}X_{t1}+\pi_{22}X_{t2} &amp;+\cdots+\pi_{k2}X_{tk} &amp; + v_{t2}\\
+  &amp; \vdots &amp;\vdots &amp;&amp;\vdots &amp;  \\
+  Y_{tm}&amp;=&amp;+\pi_{1m}X_{t1} +\pi_{2m}X_{t2} &amp;+\cdots+\pi_{km}X_{tk} &amp; + v_{tm}
+  \end{alignat}
+\end{cases}$$`
+
+
+.pull-left[
+
+&gt; 约简系数:
+- 
+`\(\pi_{11},\pi_{21},\cdots, \pi_{k1}\)`
+- 
+`\(\pi_{1m},\pi_{2m},\cdots, \pi_{km}\)`. 
+
+]
+
+.pull-right[
+
+&gt; 约简随机干扰项
+- 
 `\(v_{1},v_2,\cdots, v_m\)`。
 
+]
+
+???
+
+Hence, we induce the concepts of Reduced coefficients and Reduced disturbance.
+
+- Reduced coefficients are parameters in the reduced SEM, such as all `\(\pi_{km}\)`s.
+
+- Reduced disturbance: stochastic disturbance terms in the reduced SEM, such as all `\(v_{m}\)`s.
 
 ---
 
-### 联立方程模型的定义：约简方程和约简系数（矩阵表达）
+### 约简化SEM (2):矩阵表达式
 
-`$$\begin{alignat}{5}
-Y_{t1}&amp;=  &amp; +\pi_{11}X_{t1}+\pi_{21}X_{t2} &amp;+\cdots+\pi_{k1}X_{tk} &amp; + v_{t1} \\
-Y_{t2}&amp;=&amp;+\pi_{12}X_{t1}+\pi_{22}X_{t2} &amp;+\cdots+\pi_{k2}X_{tk} &amp; + v_{t2}\\
-&amp; \vdots &amp;\vdots &amp;&amp;\vdots &amp;  \\
-Y_{tm}&amp;=&amp;+\pi_{1m}X_{t1} +\pi_{2m}X_{t2} &amp;+\cdots+\pi_{km}X_{tk} &amp; + v_{tm}
-\end{alignat}$$`
+`$$\begin{cases}
+  \begin{alignat}{5}
+  Y_{t1}&amp;=  &amp; +\pi_{11}X_{t1}+\pi_{21}X_{t2} &amp;+\cdots+\pi_{k1}X_{tk} &amp; + v_{t1} \\
+  Y_{t2}&amp;=&amp;+\pi_{12}X_{t1}+\pi_{22}X_{t2} &amp;+\cdots+\pi_{k2}X_{tk} &amp; + v_{t2}\\
+  &amp; \vdots &amp;\vdots &amp;&amp;\vdots &amp;  \\
+  Y_{tm}&amp;=&amp;+\pi_{1m}X_{t1} +\pi_{2m}X_{t2} &amp;+\cdots+\pi_{km}X_{tk} &amp; + v_{tm}
+  \end{alignat}
+\end{cases}$$`
 
-上述约简方程的代数形式，可以表达为如下矩阵形式：
-
+对于上述.red[代数]形式的**约简SEM**，我们也可以表达为如下.red[矩阵]形式的**约简SEM**: 
 
 `$$\begin{equation}
     \begin{bmatrix}
@@ -585,110 +849,225 @@ Y_{tm}&amp;=&amp;+\pi_{1m}X_{t1} +\pi_{2m}X_{t2} &amp;+\cdots+\pi_{km}X_{tk} &am
   \end{bmatrix} _t
 \end{equation}$$`
 
+???
+
+Also, we can denote the matrix form of the reduced SEM as below.
 
 ---
 
-### 联立方程模型的定义：约简方程和约简系数（矩阵表达）
+### 约简化SEM (2):矩阵表达式
 
-上述矩阵可以进一步表达为：
+简单起见，我们可以把.red[矩阵]形式的**约简SEM**，进一步记为：
 
 `$$\begin{aligned}
-&amp; \boldsymbol{y^{\prime}_t} &amp; =  &amp;-\boldsymbol{x^{\prime}_t} \boldsymbol{\Pi}  &amp; + &amp; \boldsymbol{{v^{\prime}_t}}  \\
+&amp; \boldsymbol{y^{\prime}_t} &amp; =  &amp;\boldsymbol{x^{\prime}_t} \boldsymbol{\Pi}  &amp; + &amp; \boldsymbol{{v^{\prime}_t}}  \\
 &amp;(1 \ast m) &amp; &amp; (1 \ast k)(k \ast m) &amp; &amp;  (1 \ast m) 
 \end{aligned}$$`
 
-并进一步记为：
+
+.pull-left[
+
+- **约简系数矩阵**记为:
+
+`$$\begin{equation}
+\boldsymbol{\Pi} = 
+  \begin{bmatrix}
+    \pi_{11} &amp; \pi_{12} &amp; \cdots &amp; \pi_{1m} \\
+    \pi_{21} &amp; \pi_{22} &amp; \cdots &amp; \pi_{2m} \\
+    \cdots &amp; \cdots &amp; \cdots  &amp; \cdots \\
+    \pi_{m1} &amp; \pi_{m2} &amp; \cdots &amp; \pi_{mm} \\ 
+  \end{bmatrix}
+\end{equation}$$`
+
+]
+
+.pull-right[
+
+- **约简随机干扰项**记为:
+
+`$$\begin{equation}
+\boldsymbol{{v^{\prime}_t}}=
+  \begin{bmatrix}
+  v_1 &amp; v_2 &amp; \cdots &amp; v_m \\
+  \end{bmatrix}_t
+\end{equation}$$`
+
+]
+
+---
+
+### 结构化SEM与约简化SEM的关系: 方程系统
+
+显然，我们可以从**结构化SEM**推导得到**约简化SEM**:
+
+`$$\begin{cases}
+  \begin{alignat}{5}
+  Y_{t1}&amp;= &amp; &amp;+\gamma_{21}Y_{t2}+&amp;\cdots  &amp;+\gamma_{m1}Y_{tm} &amp; +\beta_{11}X_{1t}+\beta_{21}X_{t2} &amp;+\cdots+\beta_{k1}X_{tk} &amp;+\varepsilon_{t1} \\
+  Y_{t2}&amp;=&amp;\gamma_{12}Y_{t1} &amp;+  &amp; \cdots &amp;+\gamma_{m2}Y_{tm}&amp;+\beta_{12}X_{t1}+\beta_{22}X_{t2} &amp;+\cdots+\beta_{k2}X_{tk} &amp;+\varepsilon_{t2}\\
+  &amp; \vdots &amp;\vdots &amp;&amp;\vdots &amp;&amp;\vdots  \\
+  Y_{tm}&amp;=&amp;\gamma_{1m}Y_{t1}&amp;+\gamma_{2m}Y_{t2}+&amp; \cdots  &amp; &amp;+\beta_{1m}X_{t1} +\beta_{2m}X_{t2} &amp;+\cdots+\beta_{km}X_{tk} &amp;+\varepsilon_{tm} 
+  \end{alignat}
+\end{cases}$$`
+
+
+`$$\Rightarrow\begin{cases}
+  \begin{alignat}{5}
+  Y_{t1}&amp;=  &amp; +\pi_{11}X_{t1}+\pi_{21}X_{t2} &amp;+\cdots+\pi_{k1}X_{tk} &amp; + v_{t1} \\
+  Y_{t2}&amp;=&amp;+\pi_{12}X_{t1}+\pi_{22}X_{t2} &amp;+\cdots+\pi_{k2}X_{tk} &amp; + v_{t2}\\
+  &amp; \vdots &amp;\vdots &amp;&amp;\vdots &amp;  \\
+  Y_{tm}&amp;=&amp;+\pi_{1m}X_{t1} +\pi_{2m}X_{t2} &amp;+\cdots+\pi_{km}X_{tk} &amp; + v_{tm}
+  \end{alignat}
+\end{cases}$$`
+
+???
+
+Untill now, we have two notation systems. one is the structural SEM, and the other is the reduced SEM.
+
+So, Why we need these two notation systems ?
+
+And what is the relationship between these two notation systems ?
+
+A short answer is that we can deduce the structural parameters with the reduced coefficients.
+
+---
+
+### 结构化SEM与约简化SEM的关系:  系数关系
+
+对于结构化SEM的矩阵形式：
+
+`$$\begin{aligned}
+ \boldsymbol{y^{\prime}_t} \boldsymbol{\Gamma} +  \boldsymbol{x^{\prime}_t} \boldsymbol{B} =  \boldsymbol{{\varepsilon^{\prime}_t}} 
+\end{aligned}$$`
+
+以及约简化SEM的矩阵形式：
+
+`$$\begin{aligned}
+ \boldsymbol{y^{\prime}_t}  =  \boldsymbol{x^{\prime}_t} \boldsymbol{\Pi}   +  \boldsymbol{{v^{\prime}_t}}  
+\end{aligned}$$`
+
+.pull-left[
+
+- 不难发现二者系数矩阵存在如下关系:
+
+`$$\begin{align}
+\boldsymbol{\Pi} &amp;= - \boldsymbol{B} \boldsymbol{\Gamma^{-1}}\\
+\boldsymbol{{v^{\prime}_t}} &amp;= \boldsymbol{{\varepsilon^{\prime}_t}} \boldsymbol{\Gamma}^{-1} 
+\end{align}$$`
+
+]
+
+.pull-right[
+
+- 其中:
+
+`$$\begin{equation}
+\boldsymbol{\Gamma} =
+  \begin{bmatrix}
+      \gamma_{11} &amp; \gamma_{12} &amp; \cdots &amp; \gamma_{1m} \\
+      \gamma_{21} &amp; \gamma_{22} &amp; \cdots &amp; \gamma_{2m} \\
+      \cdots &amp; \cdots &amp; \cdots  &amp; \cdots \\
+      \gamma_{m1} &amp; \gamma_{m2} &amp; \cdots &amp; \gamma_{mm} \\ 
+  \end{bmatrix} 
+\end{equation}$$`
+
+]
+
+???
+
+This slide shows the relationship between the structural SEM and the reduced SEM.
+
+And the reduced coefficients equals negetive B times the inverse matrix of structural pars. 
+
+___
 
 `$$\begin{aligned}
  &amp; \boldsymbol{y^{\prime}_t} &amp; =  &amp;-\boldsymbol{x^{\prime}_t} \boldsymbol{B} \boldsymbol{\Gamma^{-1}} &amp; + &amp; \boldsymbol{{\varepsilon^{\prime}_t}} \boldsymbol{\Gamma}^{-1}  \\
 &amp;(1 \ast m) &amp; &amp; (1 \ast k)(k \ast m)(m \ast m) &amp; &amp;  (1 \ast m)(m \ast m) 
 \end{aligned}$$`
 
-从而结构方程系数（/随机干扰项）和约简方程系数（/随机干扰项）有如下对应关系：
-
-`$$\begin{align}
-\boldsymbol{\Pi} &amp;= \boldsymbol{B} \boldsymbol{\Gamma^{-1}} \\
-\boldsymbol{{v^{\prime}_t}}  &amp;= \boldsymbol{{\varepsilon^{\prime}_t}} \boldsymbol{\Gamma}^{-1}
-\end{align}$$`
-
-&gt; **思考提问**：怎样把一个结构模型，表达为约简模型？
 
 ---
 
-### 联立方程模型的定义：随机干扰项的方差协方差矩阵
+### 结构化SEM与约简化SEM的关系: 矩关系(Moments)
 
-结构方程随机干扰项
-`\(\boldsymbol{{\varepsilon^{\prime}_t}}\)`：
+下面，我们来关注一下二者**随机干扰项**的**一阶矩**和**二阶矩**，以及它们之间的关系：
 
-`$$\begin{aligned}
- \boldsymbol{y^{\prime}_t} \boldsymbol{\Gamma} +  \boldsymbol{x^{\prime}_t} \boldsymbol{B} =  \boldsymbol{{\varepsilon^{\prime}_t}} 
-\end{aligned}$$`
+- 首先, 我们假定**结构随机干扰项**满足如下条件：
 
-约简方程随机干扰项
-`\(\boldsymbol{{v^{\prime}_t}}\)`：
+`$$\begin{align}
+\mathbf{E[\varepsilon_t | x_t]} &amp;= \mathbf{0} \\
+\mathbf{E[\varepsilon_t \varepsilon^{\prime}_t |x_t]} &amp;= \mathbf{\Sigma} \\
+E\left[\boldsymbol{\varepsilon}_{t} \boldsymbol{\varepsilon}_{s}^{\prime} | \mathbf{x}_{t}, \mathbf{x}_{s}\right] &amp;=\mathbf{0}, \quad \forall t, s
+\end{align}$$`
 
-`$$\begin{aligned}
- \boldsymbol{y^{\prime}_t}  =  -\boldsymbol{x^{\prime}_t} \boldsymbol{\Pi}   +  \boldsymbol{{v^{\prime}_t}}  
- &amp;=  -\boldsymbol{x^{\prime}_t} \boldsymbol{B} \boldsymbol{\Gamma^{-1}}  +  \boldsymbol{{\varepsilon^{\prime}_t}} \boldsymbol{\Gamma}^{-1} \\
- \boldsymbol{y^{\prime}_t}    +\boldsymbol{x^{\prime}_t} \boldsymbol{\Pi}   &amp;=  \boldsymbol{{v^{\prime}_t}}  
-\end{aligned}$$`
-
-假设**结构随机干扰项**期望为0，方差为常数。也即：
-`\(\mathbf{E[\varepsilon_t | x_t] = 0}; \mathbf{E[\varepsilon_t \varepsilon^{\prime}_t |x_t] = \Sigma }\)`
-
-则容易证明**约简随机干扰项**的期望和方差分别为：
+- 随后，我们将能够证明**约简随机干扰项**将满足:
 
 `$$\begin{align}
 E\left[\mathbf{v}_{t} | \mathbf{x}_{t}\right] &amp;=\left(\mathbf{\Gamma}^{-1}\right)^{\prime} \mathbf{0}=\mathbf{0} \\ E\left[\mathbf{v}_{t} \mathbf{v}_{t}^{\prime} | \mathbf{x}_{t}\right] &amp;=\left(\mathbf{\Gamma}^{-1}\right)^{\prime} \mathbf{\Sigma} \mathbf{\Gamma}^{-1}=\mathbf{\Omega} \\
-\mathbf{\Sigma} &amp;=\mathbf{\Gamma}^{\prime} \mathbf{\Omega} \mathbf{\Gamma}
+\text{where: }\mathbf{\Sigma} &amp;=\mathbf{\Gamma}^{\prime} \mathbf{\Omega} \mathbf{\Gamma}
 \end{align}$$`
+
+???
+
+This slide shows the first and second moments of the disturbance on both structural and reduced SEM.
+
+First , let us assumed the moments of structural disturbances satisfy following moment conditions. which means that the structural disturbances are drawn from an M-variate distribution with zero conditional expectation and zero covariance. 
+
+Then, we can prove that the reduced disturbances will also be zero conditional expectation and its variance-covariance matrix equals omega.
+
+Finaly, we know the relationship between these two variance-covariance matrix. 
+
+We denote the relationship as Sigma equals transpose Gamma times Omega times Gamma.
 
 ---
 
-### 联立方程模型的定义：常用样本统计量
+### 结构化SEM与约简化SEM的关系: 给定样本数据*
 
-
-
-给定全部
-`\(T\)`个样本数据集：
+在给定的样本数据下，我们可以按行来得到数据矩阵(假设总共有
+`\(T\)`个样本观测数):
 
 `$$\begin{align}
 \left[\begin{array}{lll}{\mathbf{Y}} &amp; {\mathbf{X}} &amp; {\mathbf{E}}\end{array}\right]=\left[\begin{array}{ccc}{\mathbf{y}_{1}^{\prime}} &amp; {\mathbf{x}_{1}^{\prime}} &amp; {\boldsymbol{\varepsilon}_{1}^{\prime}} \\ {\mathbf{y}_{2}^{\prime}} &amp; {\mathbf{x}_{2}^{\prime}} &amp; {\boldsymbol{\varepsilon}_{2}^{\prime}} \\ {\vdots} &amp; {} \\ {\mathbf{y}_{T}^{\prime}} &amp; {\mathbf{x}_{T}^{\prime}} &amp; {\boldsymbol{\varepsilon}_{T}^{\prime}}\end{array}\right]
 \end{align}$$`
 
-则联立方程可以记为：
+那么，**结构化SEM**可以表达为：
 
 `$$\begin{align}
 \mathbf{Y} \mathbf{\Gamma}+\mathbf{X} \mathbf{B}=\mathbf{E}
 \end{align}$$`
 
-结构随机干扰项期望和方差可以记为：
+**结构随机干扰项**的1阶矩和2阶矩可以表达为:
 
 `$$\begin{align}
 E[\mathbf{E} | \mathbf{X}] &amp;=\mathbf{0} \\ 
 E\left[(1 / T) \mathbf{E}^{\prime} \mathbf{E} | \mathbf{X}\right] &amp;=\mathbf{\Sigma}
 \end{align}$$`
 
+???
+
+The next two slides will show us some useful relationships under sample data set.
+
+I will not discuss them here, and you should try to learn this content by yourself.
 
 ---
 
-### 联立方程模型的定义：常用样本统计量
+### 结构化SEM与约简化SEM的关系: 给定样本数据*
 
 
-假设如下条件成立：
+假定:
 
 `$$\begin{align}
-(1 / T) \mathbf{X}^{\prime} \mathbf{X} &amp; \rightarrow \mathbf{Q} \\
+(1 / T) \mathbf{X}^{\prime} \mathbf{X} &amp; \rightarrow \mathbf{Q}  \text{ ( a  finite positive definite matrix)} \\
 (1 / T) \mathbf{X}^{\prime} \mathbf{E} &amp; \rightarrow \mathbf{0}
 \end{align}$$`
 
-则约简方程可以记为：
+那么**约简化SEM**可以表达为:
 
 `$$\begin{align}
 \mathbf{Y} &amp; =\mathbf{X} \boldsymbol{\Pi}+\mathbf{V} &amp;&amp; \leftarrow  \mathbf{V}=\mathbf{E} \mathbf{\Gamma}^{-1}
 \end{align}$$`
 
-从而可以得到如下常用统计量：
+此外，我们还可以得到如下一些有用的样本统计量：
 
 `$$\begin{align}
 \frac{1}{T}
@@ -706,6 +1085,11 @@ E\left[(1 / T) \mathbf{E}^{\prime} \mathbf{E} | \mathbf{X}\right] &amp;=\mathbf{
     {\mathbf{Q} \mathbf{I}} &amp; {\mathbf{Q}} &amp; {\mathbf{0}^{\prime}} \\ {\mathbf{\Omega}} &amp; {\mathbf{0}} &amp; {\mathbf{\Omega}}
   \end{bmatrix}
 \end{align}$$`
+???
+
+The next two slides will show us some useful relationships under sample data set.
+
+I will not discuss them here, and you should try to learn this content by yourself.
 
 
 
@@ -1165,8 +1549,8 @@ Y_t &amp;= C_t+I_t  &amp; &amp;&amp;\text{(收入恒等式)}
 
 给定条件下的模拟数据为：
 
-<div id="htmlwidget-29fc2650ee733143a446" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-29fc2650ee733143a446">{"x":{"filter":"none","caption":"<caption><\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"],[18.15697,19.5998,21.93468,21.55145,21.88427,22.42648,25.4094,22.69523,24.36465,24.39334,24.09215,24.8745,25.3158,26.30465,25.78235,26.08018,27.2444,28.00963,30.89301,28.98706],[16.15697,17.5998,19.73468,19.35145,19.48427,20.02648,22.8094,20.09523,21.56465,21.59334,21.09215,21.8745,22.1158,23.10465,22.38235,22.68018,23.6444,24.40963,27.09301,25.18706],[2,2,2.2,2.2,2.4,2.4,2.6,2.6,2.8,2.8,3,3,3.2,3.2,3.4,3.4,3.6,3.6,3.8,3.8],[-0.368606,-0.0800400000000003,0.186935999999999,0.110289999999999,-0.0231460000000041,0.085295999999996,0.481879999999997,-0.0609539999999988,0.0729299999999995,0.0786680000000004,-0.181570000000001,-0.0251000000000019,-0.136839999999999,0.060929999999999,-0.243530000000003,-0.183964,-0.151119999999999,0.00192599999999743,0.378601999999997,-0.00258800000000292]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Y<\/th>\n      <th>C<\/th>\n      <th>I<\/th>\n      <th>u<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"targets":1,"render":"function(data, type, row, meta) { return DTWidget.formatRound(data, 4, 3, \",\", \".\"); }"},{"targets":2,"render":"function(data, type, row, meta) { return DTWidget.formatRound(data, 4, 3, \",\", \".\"); }"},{"targets":4,"render":"function(data, type, row, meta) { return DTWidget.formatRound(data, 4, 3, \",\", \".\"); }"},{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":8,"digits":4,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[8,10,25,50,100]}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render"],"jsHooks":[]}</script>
+<div id="htmlwidget-569d52048c5f886f28b8" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-569d52048c5f886f28b8">{"x":{"filter":"none","caption":"<caption><\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"],[18.15697,19.5998,21.93468,21.55145,21.88427,22.42648,25.4094,22.69523,24.36465,24.39334,24.09215,24.8745,25.3158,26.30465,25.78235,26.08018,27.2444,28.00963,30.89301,28.98706],[16.15697,17.5998,19.73468,19.35145,19.48427,20.02648,22.8094,20.09523,21.56465,21.59334,21.09215,21.8745,22.1158,23.10465,22.38235,22.68018,23.6444,24.40963,27.09301,25.18706],[2,2,2.2,2.2,2.4,2.4,2.6,2.6,2.8,2.8,3,3,3.2,3.2,3.4,3.4,3.6,3.6,3.8,3.8],[-0.368606,-0.0800400000000003,0.186935999999999,0.110289999999999,-0.0231460000000041,0.085295999999996,0.481879999999997,-0.0609539999999988,0.0729299999999995,0.0786680000000004,-0.181570000000001,-0.0251000000000019,-0.136839999999999,0.060929999999999,-0.243530000000003,-0.183964,-0.151119999999999,0.00192599999999743,0.378601999999997,-0.00258800000000292]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Y<\/th>\n      <th>C<\/th>\n      <th>I<\/th>\n      <th>u<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"targets":1,"render":"function(data, type, row, meta) { return DTWidget.formatRound(data, 4, 3, \",\", \".\"); }"},{"targets":2,"render":"function(data, type, row, meta) { return DTWidget.formatRound(data, 4, 3, \",\", \".\"); }"},{"targets":4,"render":"function(data, type, row, meta) { return DTWidget.formatRound(data, 4, 3, \",\", \".\"); }"},{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":8,"digits":4,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[8,10,25,50,100]}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render"],"jsHooks":[]}</script>
 
 ---
 
@@ -1282,7 +1666,7 @@ class: inverse,center
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
-"highlightStyle": "github",
+"highlightStyle": "tomorrow-night-bright",
 "highlightLines": true,
 "countIncrementalSlides": false,
 "ratio": "16:9"
