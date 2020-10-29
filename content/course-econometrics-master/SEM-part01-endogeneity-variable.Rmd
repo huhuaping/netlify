@@ -27,3 +27,6 @@ knitr::include_url("/course-econometrics-master/SEM-slide-part0-endogeneity-vari
 ```
 
 
+课件[pdf下载](https://d.seit2019.xyz/wp-content/uploads/2020/10/SEM-slide-part0-endogeneity-variable.pdf)
+
+本模块的参考教材章节pdf版本[Gujarati, D. and D. Porter. Basic Econometrics (5ed） [M], McGraw-Hill Education, 2008. 第18章、19章、20章](/course-econometrics-master/material/Basic-Econometrics-5th-Gujarati.pdf)
