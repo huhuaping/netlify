@@ -27,6 +27,8 @@ knitr::include_url("/course-econometrics-master/part01-slide-01-reg-basic.html")
 ```
 
 
+**课件**[pdf下载](https://d.seit2019.xyz/wp-content/uploads/2020/10/part01-slide-01-reg-basic.pdf)
+
 **配套案例数据**：
 
 - 家庭收入和支出数据:[下载xlsx](/course-econometrics-master/attach-file/xlsx/file-basic-Table-3-2-edu-wage.xlsx) 
