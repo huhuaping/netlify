@@ -1,0 +1,83 @@
+---
+title: 高效使用xaringan slide幻灯片
+author: huhuaping
+date: '2020-11-28'
+slug: xaringan-slide-efficiency
+categories:
+  - R
+tags:
+  - Xaringan
+subtitle: ''
+summary: '一般而言，保持project下的文件夹结构稳定和简洁，能够大大避免工作的低效率性。Xaringan包用于制作多个系列slide幻灯片，也会难免带来文件数量和类型的逐渐增加和膨胀。那么在Xaringan框架下，如何管理和组织文件夹结构，以提升工作效率和代码稳定性？'
+authors: []
+lastmod: '2020-11-28T11:50:58+08:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+draft: false 
+---
+
+
+## Xaringan slide的渲染方式
+
+Xaringan slide的渲染方式主要有两类
+
+1. 静态渲染方式：Rstudio菜单knit
+
+2. 实时渲染有两种方式（live preview）
+    - Rstudio里插件 "Infinite Moon Reader"
+    - console里调用xaringan::xaringan::inf_mr()
+
+## 共用文件夹的情形
+
+mycss：假定课程里全部slide都使用同样的css风格。
+
+pic：假定课程slide里的本地图片都放在pic文件夹下。
+
+若干可能的文件体系结构及面临的主要问题
+
+1. 体系1“全部一起堆放”：随着Rmd文件数的增加，一级目录下会有很多文件！`chn-chpt01.Rmd; chn-chpt02.Rmd；……；eng-chpt01.Rmd; eng-chpt02.Rmd；……`
+
+2. 体系2“分模块堆放”：比较合理。但是在实时渲染时，将面临如何管理css和pic等问题。子文件夹1：`Slide-chn：chn-chpt01.Rmd; chn-chpt02.Rmd；……`;子文件夹2：`Slide-eng：eng-chpt01.Rmd; eng-chpt02.Rmd；……`
+
+
+## 测试和发现
+
+测试：比较合理的体系2“分模块对方”下，进行实时渲染
+
+css问题：xaringan包已经解决此问题。只要确保css文件和Rmd文件在同一个work directory下即可。
+
+pic问题：假定pic文件夹与模块文件夹(slide-chn; slide-eng)并列
+
+- 静态渲染方式下，图片引用可以使用“相对路径”`("../pic/a.png")`或“绝对路径”（`here::here("pic", "a.png")`）引用的任何一种来实现正常显示。
+
+- 实时渲染方式下，图片引用只能使用“相对路径”("../pic/a.png")来实现正常显示。
+
+## 结论
+
+xaringan实时渲染方式，会调用servr package来搭建本地网页服务[参看官方文档]  (https://bookdown.org/yihui/rmarkdown/xaringan-preview.html)
+
+因此实时渲染下：本地服务会寻找一个根目录（root directory），从而会引发上述的图片渲染问题。libs文件夹总是会和.Rmd文件并列
+
+总之，使用相对路径引用图片是比较保险的方式。具体的地方包括
+
+- remark.js背景图：`background-image: url("../pic/a.png")`
+
+- R函数正文图：`include_graphics("../pic/a.png")`
+
+- markdown行内图：`![]("../pic/a.png")`
+
+
+其次，css的yaml设置
+
+```			
+css: 
+      - default
+      - default-fonts
+      - duke-blue
+      - hygge-duke
+      - ../mycss/my-custom.css
+```
