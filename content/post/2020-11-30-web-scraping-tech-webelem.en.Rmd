@@ -1,0 +1,84 @@
+---
+title: 自动化数据抓取技术(III)：网页元素处理
+author: huhuaping
+date: '2020-11-30'
+slug: web-scraping-tech-webelem
+categories:
+  - R
+tags:
+  - webscrape
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2020-11-30T16:30:46+08:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+```{r, echo=FALSE, eval=TRUE, message= FALSE}
+library("here")
+source(here("static", "Rscript", "set-chunk-option.R"))
+```
+
+## 常见问题场景及处理方法
+
+### 中文乱码
+
+中文乱码问题再次出现，见各种乱码问题。编码问题详解可以参看[What Every Programmer Absolutely, Positively Needs To Know About Encodings And Character Sets To Work With Text](https://kunststube.net/encoding/)。
+
+1.快捷办法，直接抓取网页表格，无论如何都显示乱码。只能放弃。
+
+
+```{r}
+# look for table element
+tableElem <- remDr$findElement(using = "id", "courseTable")
+
+txt <- tableElem$getElementAttribute("outerHTML")[[1]]
+
+table <- XML::readHTMLTable(txt, header=F, as.data.frame=TRUE)[[1]]
+```
+
+
+2. 暴力抓取网页元素总，虽然颇为费劲，但总是可行。
+
+```{r}
+# scrape the date and room 
+v_date <- txt %>% read_html() %>%  xml_nodes("tbody") %>% xml_nodes("td:nth-child(2)") %>% xml_text()
+
+v_room <- txt %>% read_html() %>%  xml_nodes("tbody") %>% xml_nodes("td:nth-child(4)") %>% xml_text()
+
+# tidy data.frame
+info <- data.frame(date=v_date, room =v_room) %>%
+  separate(col = "date" , into = c("date","week", "weekday", "slot"), sep = " ")
+```
+
+
+### nodes节点选择
+		
+如何选择和提取网页多个节点tr下第n个元素td下的文本text。参看[网络解答](https://stackoverflow.com/questions/56782998/how-to-extract-text-in-second-p-element-inside-div)
+
+```{r}
+	txt %>% 
+  read_html() %>%  
+  xml_nodes("tbody") %>% 
+  xml_nodes("td:nth-child(2)") %>% 
+  xml_text()
+```
+
+	
+			
+### 利用chrome浏览器查看json数据
+
+具体参看[资料](https://stackoverflow.com/questions/31775176/scraping-javascript-in-r-with-rselenium)
+
+```
+Using Chrome: Right-click > Inspect; navigate to Network tab > type in .json > Search > Refresh Site (to catch calls made prior) 
+```
+	
+
+	
+

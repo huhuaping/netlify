@@ -1,0 +1,78 @@
+---
+title: 自动化数据抓取技术(I)：基础准备
+author: huhuaping
+date: '2020-11-30'
+slug: web-scraping-tech-basic
+categories:
+  - R
+tags:
+  - webscrape
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2020-11-30T15:27:19+08:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+<link href="/rmarkdown-libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/anchor-sections/anchor-sections.js"></script>
+
+
+<div id="环境和安装" class="section level2">
+<h2>环境和安装</h2>
+<p>1.下载安装docker desk<a href="https://www.docker.com/products/docker-desktop">官网</a></p>
+<p>win10用户需要注意一个操作系统的坑。</p>
+<ul>
+<li><p>Win10的<strong>专业版用户</strong>(professional version)，可以直接安装docker desk。但是也需要需要启用hyper-V 虚拟服务。可以ctrl+shift+delete查看cpu性能，能看到是否已经启用。具体启用办法：进bios –&gt; system security，记得按F10确认启用。（ps. 2020版win10开始有了性的服务支持，主要是liniux模块的加入，可以进一步提升docker的运行性能。）</p></li>
+<li><p>Win10<strong>家庭版用户</strong>(home version)不支持docker desk，只能使用安装Install Docker Toolbox<a href="https://docs.docker.com/toolbox/toolbox_install_windows/">官网下载</a></p></li>
+</ul>
+<p>2.下载安装TightVNC用于查看实时交互。</p>
+<p>3.Rstudio安装RSelenium包。</p>
+</div>
+<div id="一些必要设置" class="section level2">
+<h2>一些必要设置</h2>
+<div id="docker设置" class="section level3">
+<h3>docker设置</h3>
+<p>1.注册docker hub账号。（此步骤可忽略）。</p>
+<p>2.配置国内镜像站点。速度明显改观！docker desk软件里设置修改：</p>
+<pre><code>&quot;RegistryMirror&quot;: [
+                &quot;https://hub-mirror.c.163.com&quot;,
+                &quot;https://mirror.baidubce.com&quot;
+                ]</code></pre>
+<p>如果是Docker toolbox则需要修改配置文件<code>C:\Users\&lt;user&gt;\.docker\machine\machines\default\config.json</code></p>
+</div>
+<div id="tightvnc配置" class="section level3">
+<h3>TightVNC配置</h3>
+<p>参看<a href="https://gist.github.com/HanjoStudy/aeb331b7a277be9639f3cfb3bf875ba2">资料1</a>，或Youtube视频<a href="https://www.youtube.com/watch?v=OxbvFiYxEzI">资料2</a> 。</p>
+<p>第一步，docker命令行，拉取chrome。</p>
+<pre><code>$ docker run --name chrome -v /dev/shm:/dev/shm -d -p 4445:4444 -p 5901:5900 selenium/standalone-chrome-debug:latest</code></pre>
+<p>以上命令主要内容是，创建chrome实例，并分别打开两类端口。其中第一类端口<code>4445:4444</code>是分配给chrome通信；第二类端口<code>5901:5900</code>是分配给下面的TightVNC通信。</p>
+<p>第二步，配置TightVNC Viewer【注意：不是server】。</p>
+<pre><code>端口：127.0.0.1:5901   【option 里面要设置port为5901】
+密码：secret</code></pre>
+</div>
+</div>
+<div id="docker常用操作" class="section level2">
+<h2>docker常用操作</h2>
+<p>1.docker命令拉取selenium -chrome镜像。</p>
+<p>标准模式：</p>
+<pre><code>$ docker run -d -p 4445:4444 selenium/standalone-chrome
+</code></pre>
+<p>诊断模式：</p>
+<pre><code>$ docker run -d -p 4445:4444 selenium/standalone-chrome-debug
+$ docker run -d -p 5901:5900 -p 192.168.31.135:4445:4444 --link http-server selenium/standalone-chrome-debug
+  </code></pre>
+<p>2.docker常见操作<a href="https://stackoverflow.com/questions/45395849/cant-execute-rsdriver-connection-refused">参看资料</a></p>
+<p>3.Docker与jave version的匹配</p>
+<p>查看java 版本。<a href="https://stackoverflow.com/questions/49189913/how-to-check-java-version-of-the-docker-container">参考</a>。</p>
+<pre><code>$ docker exec 【containerId】 java -version
+</code></pre>
+<p>Docker 设置jave_home环境变量。<a href="https://stackoverflow.com/questions/46277631/change-java-home-in-docker/56035653">参考</a></p>
+<pre><code>$ docker  ENV JAVA_HOME /path/to/java
+</code></pre>
+</div>

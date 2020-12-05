@@ -1,0 +1,89 @@
+---
+title: 自动化数据抓取技术(II)： RSelenium
+author: huhuaping
+date: '2020-11-30'
+slug: web-scraping-tech-rselenium
+categories:
+  - R
+tags:
+  - webscrape
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2020-11-30T16:20:18+08:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+<link href="/rmarkdown-libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/anchor-sections/anchor-sections.js"></script>
+
+
+<div id="学习材料" class="section level2">
+<h2>学习材料</h2>
+<p>RSelenium包在CRAN的官方<a href="https://cran.r-project.org/web/packages/RSelenium/vignettes/basics.html#introduction">文档</a></p>
+<p>常用的操作，可以参考中文<a href="https://blog.csdn.net/weixin_40628687/article/details/79008995">教程</a>。</p>
+</div>
+<div id="经常碰到的爬虫场景和处理方法" class="section level2">
+<h2>经常碰到的爬虫场景和处理方法</h2>
+<p>下面列出一些常碰到的爬虫场景和处理办法。</p>
+<div id="正确关闭rselenium-server" class="section level3">
+<h3>正确关闭Rselenium server</h3>
+<pre class="r"><code>remDr$closeServer()
+remDr$close()
+rm(remDr)
+rm(driver)
+gc()</code></pre>
+</div>
+<div id="在浏览器窗口之间进行自由切换" class="section level3">
+<h3>在浏览器窗口之间进行自由切换</h3>
+<p>具体见github issue社区互动 <a href="https://github.com/ropensci/RSelenium/issues/143">参考</a></p>
+<pre class="r"><code>myswitch &lt;- function (remDr, windowId) 
+{
+  qpath &lt;- sprintf(&quot;%s/session/%s/window&quot;, remDr$serverURL, 
+                   remDr$sessionInfo[[&quot;id&quot;]])
+  remDr$queryRD(qpath, &quot;POST&quot;, qdata = list(handle = windowId))
+}
+
+Sys.sleep(1)
+windows_handles &lt;- remDr$getWindowHandles()
+Sys.sleep(1)
+#remDr$switchToWindow(windows_handles[[2]])
+
+myswitch(remDr = remDr, windowId = windows_handles[[2]])</code></pre>
+</div>
+<div id="鼠标相关操作" class="section level3">
+<h3>鼠标相关操作</h3>
+<ol style="list-style-type: decimal">
+<li>移动鼠标到指定位置 并点击</li>
+</ol>
+<pre class="r"><code>xpath_submit &lt;- &quot;//*[@id=&#39;loginform-1&#39;]/div[4]/input&quot;
+webelm &lt;- remDr$findElement(using = &quot;xpath&quot;, value = xpath_submit)
+loc &lt;- remDr$mouseMoveToLocation(webElement = webelm)
+remDr$click(1)</code></pre>
+</div>
+<div id="选择不可见的勾选框" class="section level3">
+<h3>选择不可见的勾选框</h3>
+<blockquote>
+<p>参考<a href="https://stackoverflow.com/questions/46253566/selenium-cant-click-specific-checkbox">网络问答</a></p>
+</blockquote>
+<p>对于一些网站，有时候存在肉眼不可见的网页元素。</p>
+<p><img src="D:/github/netlify/static/pic/check-box-invisible.png" width="1360" style="display: block; margin: auto;" /></p>
+<p>这时，我们需要使用<code>remDr$executeScript()</code>函数来执行<code>java</code>操作。</p>
+<pre class="r"><code>webelem &lt;- remDr$findElement(using = &quot;xpath&quot;, &quot;//*[@id=&#39;ztcountryCode_273_check&#39;]&quot;)
+
+remDr$executeScript(&quot;arguments[0].click()&quot;, args = list(webelem))</code></pre>
+</div>
+<div id="日历和下拉菜单操作" class="section level3">
+<h3>日历和下拉菜单操作</h3>
+<p>一个比较全的<a href="https://towardsdatascience.com/climbing-mt-whitney-with-web-browser-automation-and-r-b11dcf9353b2">示例</a>。</p>
+</div>
+<div id="悬置鼠标唤出下级菜单" class="section level3">
+<h3>悬置鼠标唤出下级菜单</h3>
+<p><a href="https://stackoverflow.com/questions/37307379/how-to-click-a-link-in-a-hover-menu-with-selenium-webdriver">见示例</a>。</p>
+</div>
+</div>
