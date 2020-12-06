@@ -17,11 +17,24 @@ image:
   focal_point: ''
   preview_only: no
 projects: []
+output:
+  blogdown::html_page:
+    toc: true
 ---
 
 <link href="/rmarkdown-libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
 <script src="/rmarkdown-libs/anchor-sections/anchor-sections.js"></script>
 
+<div id="TOC">
+<ul>
+<li><a href="#环境和安装">环境和安装</a></li>
+<li><a href="#一些必要设置">一些必要设置</a><ul>
+<li><a href="#docker设置">docker设置</a></li>
+<li><a href="#tightvnc配置">TightVNC配置</a></li>
+</ul></li>
+<li><a href="#docker常用操作">docker常用操作</a></li>
+</ul>
+</div>
 
 <div id="环境和安装" class="section level2">
 <h2>环境和安装</h2>
@@ -32,6 +45,7 @@ projects: []
 <li><p>Win10<strong>家庭版用户</strong>(home version)不支持docker desk，只能使用安装Install Docker Toolbox<a href="https://docs.docker.com/toolbox/toolbox_install_windows/">官网下载</a></p></li>
 </ul>
 <p>2.下载安装TightVNC用于查看实时交互。</p>
+<p>下载安装TightVNC用于查看实时交互。<a href="https://www.tightvnc.com/">官网</a>。一份说明供学习：<a href="https://cran.r-project.org/web/packages/RSelenium/vignettes/docker.html#debugging-using-vnc">Debugging Using VNC</a></p>
 <p>3.Rstudio安装RSelenium包。</p>
 </div>
 <div id="一些必要设置" class="section level2">

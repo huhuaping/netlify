@@ -17,11 +17,27 @@ image:
   focal_point: ''
   preview_only: no
 projects: []
+output:
+  blogdown::html_page:
+    toc: true
 ---
 
 <link href="/rmarkdown-libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
 <script src="/rmarkdown-libs/anchor-sections/anchor-sections.js"></script>
 
+<div id="TOC">
+<ul>
+<li><a href="#学习材料">学习材料</a></li>
+<li><a href="#经常碰到的爬虫场景和处理方法">经常碰到的爬虫场景和处理方法</a><ul>
+<li><a href="#正确关闭rselenium-server">正确关闭Rselenium server</a></li>
+<li><a href="#在浏览器窗口之间进行自由切换">在浏览器窗口之间进行自由切换</a></li>
+<li><a href="#鼠标相关操作">鼠标相关操作</a></li>
+<li><a href="#选择不可见的勾选框">选择不可见的勾选框</a></li>
+<li><a href="#日历和下拉菜单操作">日历和下拉菜单操作</a></li>
+<li><a href="#悬置鼠标唤出下级菜单">悬置鼠标唤出下级菜单</a></li>
+</ul></li>
+</ul>
+</div>
 
 <div id="学习材料" class="section level2">
 <h2>学习材料</h2>
@@ -71,8 +87,13 @@ remDr$click(1)</code></pre>
 <blockquote>
 <p>参考<a href="https://stackoverflow.com/questions/46253566/selenium-cant-click-specific-checkbox">网络问答</a></p>
 </blockquote>
-<p>对于一些网站，有时候存在肉眼不可见的网页元素。</p>
-<p><img src="../../static/img/check-box-invisible.png" width="1360" style="display: block; margin: auto;" /></p>
+<p>对于一些网站，有时候存在肉眼不可见的网页元素。具体图示如下：</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-5"></span>
+<img src="/pic/check-box-invisible.png" alt="一个示例"  />
+<p class="caption">
+Figure 1: 一个示例
+</p>
+</div>
 <p>这时，我们需要使用<code>remDr$executeScript()</code>函数来执行<code>java</code>操作。</p>
 <pre class="r"><code>webelem &lt;- remDr$findElement(using = &quot;xpath&quot;, &quot;//*[@id=&#39;ztcountryCode_273_check&#39;]&quot;)
 

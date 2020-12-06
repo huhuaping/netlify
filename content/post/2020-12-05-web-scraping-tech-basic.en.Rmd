@@ -17,6 +17,9 @@ image:
   focal_point: ''
   preview_only: no
 projects: []
+output:
+  blogdown::html_page:
+    toc: true
 ---
 
 ```{r, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
@@ -35,6 +38,9 @@ win10用户需要注意一个操作系统的坑。
 - Win10**家庭版用户**(home version)不支持docker desk，只能使用安装Install Docker Toolbox[官网下载](https://docs.docker.com/toolbox/toolbox_install_windows/)
 
 2.下载安装TightVNC用于查看实时交互。
+
+下载安装TightVNC用于查看实时交互。[官网](https://www.tightvnc.com/)。一份说明供学习：[Debugging Using VNC](https://cran.r-project.org/web/packages/RSelenium/vignettes/docker.html#debugging-using-vnc)
+
 
 3.Rstudio安装RSelenium包。
 

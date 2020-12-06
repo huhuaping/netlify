@@ -1,8 +1,8 @@
 ---
-title: 自动化数据抓取技术(III)：网页元素处理
+title: 自动化数据抓取技术(V)：APACHA的视觉识别
 author: huhuaping
-date: '2020-11-30'
-slug: web-scraping-tech-webelem
+date: '2020-12-05'
+slug: web-scraping-tech-vision-volidation
 categories:
   - R
 tags:
@@ -10,18 +10,30 @@ tags:
 subtitle: ''
 summary: ''
 authors: []
-lastmod: '2020-11-30T16:30:46+08:00'
+lastmod: '2020-12-05T16:30:46+08:00'
 featured: no
 image:
   caption: ''
   focal_point: ''
   preview_only: no
 projects: []
+output:
+  blogdown::html_page:
+    toc: true
 ---
 
 <link href="/rmarkdown-libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
 <script src="/rmarkdown-libs/anchor-sections/anchor-sections.js"></script>
 
+<div id="TOC">
+<ul>
+<li><a href="#常见问题场景及处理方法">常见问题场景及处理方法</a><ul>
+<li><a href="#中文乱码">中文乱码</a></li>
+<li><a href="#nodes节点选择">nodes节点选择</a></li>
+<li><a href="#利用chrome浏览器查看json数据">利用chrome浏览器查看json数据</a></li>
+</ul></li>
+</ul>
+</div>
 
 <div id="常见问题场景及处理方法" class="section level2">
 <h2>常见问题场景及处理方法</h2>

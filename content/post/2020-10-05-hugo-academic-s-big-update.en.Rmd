@@ -196,3 +196,5 @@ blogdown::build_site(local=TRUE)
 #knitr::include_graphics("../../static/img/check-box-invisible.png")
 knitr::include_graphics("/pic/check-box-invisible.png", error = FALSE)
 ```
+
+- 使用RStudio插件(addins)中blogdown下的`New post`，按照hugo的新流程，每个blog都会建立自己的对应的文件夹（参看[网页](https://ropensci.org/technotes/2020/04/23/rmd-learnings/)）。但是目前的问题是，它不能自动生成`.Rmd`文件，而是一个`.md`文件。
