@@ -85,14 +85,16 @@ remDr$click(1)
 
 > 参考[网络问答](https://stackoverflow.com/questions/46253566/selenium-cant-click-specific-checkbox)
 
-对于一些网站，有时候存在肉眼不可见的网页元素。
+对于一些网站，有时候存在肉眼不可见的网页元素。具体图示如下：
 
-```{r, eval=T, echo=FALSE}
+
+```{r, eval=T, echo=FALSE, fig.cap="一个示例"}
 #knitr::include_graphics(here::here("static","pic","check-box-invisible.png"))
 
-knitr::include_graphics("../../static/pic/check-box-invisible.png")
-#knitr::include_graphics("/pic/check-box-invisible.png")
+#knitr::include_graphics("../../static/img/check-box-invisible.png")
+knitr::include_graphics("/pic/check-box-invisible.png", error = FALSE)
 ```
+
 
 
 这时，我们需要使用`remDr$executeScript()`函数来执行`java`操作。

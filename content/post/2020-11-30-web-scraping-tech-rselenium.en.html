@@ -72,7 +72,7 @@ remDr$click(1)</code></pre>
 <p>参考<a href="https://stackoverflow.com/questions/46253566/selenium-cant-click-specific-checkbox">网络问答</a></p>
 </blockquote>
 <p>对于一些网站，有时候存在肉眼不可见的网页元素。</p>
-<p><img src="../../static/pic/check-box-invisible.png" width="1360" style="display: block; margin: auto;" /></p>
+<p><img src="../../static/img/check-box-invisible.png" width="1360" style="display: block; margin: auto;" /></p>
 <p>这时，我们需要使用<code>remDr$executeScript()</code>函数来执行<code>java</code>操作。</p>
 <pre class="r"><code>webelem &lt;- remDr$findElement(using = &quot;xpath&quot;, &quot;//*[@id=&#39;ztcountryCode_273_check&#39;]&quot;)
 

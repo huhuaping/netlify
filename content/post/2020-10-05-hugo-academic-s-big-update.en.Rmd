@@ -20,6 +20,11 @@ image:
 projects: []
 ---
 
+```{r, echo=FALSE, message=FALSE}
+# global options for knitr
+knitr::opts_chunk$set(fig.align='center',message = FALSE,eval = FALSE, echo = T)
+```
+
 > 对于搭建个人网站，曾经有一句经典的忠告摆在我的面前：
 永远不要使用复杂的模板，否则总有一天会掉入网站迁移漩涡，甚至万劫不复的境地。 ————无名氏
 
@@ -153,3 +158,41 @@ c. “嫁接替换”完成后，netlify就在CMS新流程下，开发了原来�
 
 至此，我们只需要继续维护本地更新升级后的repo-A，并持续推送给github，那么每次commit提交就会自动激活netlify使用新流程开发渲染网站内容啦！
 
+# 后续故事
+
+后期可能还会面临hugo academic升级的问题。相关升级问题记录如下：
+
+1.更新hugo version。在windows 命令行里进行hugo升级（见[官方说明](https://wowchemy.com/docs/update/)）。
+
+Update to get the very latest developments:
+
+```
+hugo mod get -u ./...
+```
+
+Alternatively, update to the latest official release:
+
+```
+hugo mod get -u
+
+```
+
+2.更新hugo academic模板。如前所述，基本过程就是github下载官方模板。然后与你的现有repo进行比对和替换。
+
+3.更新blogdown包。照常使用Rstudio addins `serv site`。需要注意的是新的hugo流程默认是在缓存里渲染网站，也就意味着`public/`文件夹默认不会随着渲染而自动更新。那么需要执行的是**本地渲染**（参看 [网络问答](https://stackoverflow.com/questions/64500959/problem-with-rendering-hugo-blogdown-site)）。
+
+```{r}
+blogdown::build_site(local=TRUE)
+```
+
+4.一些升级带来的的副效应。
+
+- 使用`knitr::include_graphics`函数调用图片，需要额外设定参数`error = FALSE`。（参看[网络问答](https://stackoverflow.com/questions/60292022/knitr-cannot-find-img-files-in-static-folder)）
+
+
+```{r}
+#knitr::include_graphics(here::here("static","pic","check-box-invisible.png"))
+
+#knitr::include_graphics("../../static/img/check-box-invisible.png")
+knitr::include_graphics("/pic/check-box-invisible.png", error = FALSE)
+```

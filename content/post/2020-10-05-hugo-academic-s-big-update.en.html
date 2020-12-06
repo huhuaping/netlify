@@ -20,6 +20,8 @@ image:
 projects: []
 ---
 
+<link href="/rmarkdown-libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/anchor-sections/anchor-sections.js"></script>
 
 
 <blockquote>
@@ -137,4 +139,25 @@ git rm themes -r</code></pre>
 </ol>
 </blockquote>
 <p>至此，我们只需要继续维护本地更新升级后的repo-A，并持续推送给github，那么每次commit提交就会自动激活netlify使用新流程开发渲染网站内容啦！</p>
+</div>
+<div id="后续故事" class="section level1">
+<h1>后续故事</h1>
+<p>后期可能还会面临hugo academic升级的问题。相关升级问题记录如下：</p>
+<p>1.更新hugo version。在windows 命令行里进行hugo升级（见<a href="https://wowchemy.com/docs/update/">官方说明</a>）。</p>
+<p>Update to get the very latest developments:</p>
+<pre><code>hugo mod get -u ./...</code></pre>
+<p>Alternatively, update to the latest official release:</p>
+<pre><code>hugo mod get -u
+</code></pre>
+<p>2.更新hugo academic模板。如前所述，基本过程就是github下载官方模板。然后与你的现有repo进行比对和替换。</p>
+<p>3.更新blogdown包。照常使用Rstudio addins <code>serv site</code>。需要注意的是新的hugo流程默认是在缓存里渲染网站，也就意味着<code>public/</code>文件夹默认不会随着渲染而自动更新。那么需要执行的是<strong>本地渲染</strong>（参看 <a href="https://stackoverflow.com/questions/64500959/problem-with-rendering-hugo-blogdown-site">网络问答</a>）。</p>
+<pre class="r"><code>blogdown::build_site(local=TRUE)</code></pre>
+<p>4.一些升级带来的的副效应。</p>
+<ul>
+<li>使用<code>knitr::include_graphics</code>函数调用图片，需要额外设定参数<code>error = FALSE</code>。（参看<a href="https://stackoverflow.com/questions/60292022/knitr-cannot-find-img-files-in-static-folder">网络问答</a>）</li>
+</ul>
+<pre class="r"><code>#knitr::include_graphics(here::here(&quot;static&quot;,&quot;pic&quot;,&quot;check-box-invisible.png&quot;))
+
+#knitr::include_graphics(&quot;../../static/img/check-box-invisible.png&quot;)
+knitr::include_graphics(&quot;/pic/check-box-invisible.png&quot;, error = FALSE)</code></pre>
 </div>
