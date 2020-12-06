@@ -50,3 +50,6 @@ options(error = function() {beep(9)})
 beep_on_error(expr, sound = 1)
 ```
 
+## blogdown 的文件位置和关系
+
+具体参看 [Adding and reading local data files in R Markdown posts](https://blogdown-demo.rbind.io/2018/02/27/r-file-paths/#place-file-in-your-post-folder)

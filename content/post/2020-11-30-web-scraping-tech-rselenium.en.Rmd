@@ -88,9 +88,10 @@ remDr$click(1)
 对于一些网站，有时候存在肉眼不可见的网页元素。
 
 ```{r, eval=T, echo=FALSE}
-knitr::include_graphics(here("static","pic","check-box-invisible.png"))
+#knitr::include_graphics(here::here("static","pic","check-box-invisible.png"))
 
-#knitr::include_graphics("../../static/pic/check-box-invisible.png")
+knitr::include_graphics("../../static/pic/check-box-invisible.png")
+#knitr::include_graphics("/pic/check-box-invisible.png")
 ```
 
 
