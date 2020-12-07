@@ -1,5 +1,5 @@
 ---
-title: 自动化数据抓取技术(V)：APACHA的视觉识别
+title: 自动化数据抓取技术(V)：APACHA人机验证机制
 author: huhuaping
 date: '2020-12-05'
 slug: web-scraping-tech-vision-volidation
@@ -27,61 +27,78 @@ library("here")
 source(here("static", "Rscript", "set-chunk-option.R"))
 ```
 
-## 常见问题场景及处理方法
+# APACHA人机验证的类型
 
-### 中文乱码
-
-中文乱码问题再次出现，见各种乱码问题。编码问题详解可以参看[What Every Programmer Absolutely, Positively Needs To Know About Encodings And Character Sets To Work With Text](https://kunststube.net/encoding/)。
-
-1.快捷办法，直接抓取网页表格，无论如何都显示乱码。只能放弃。
+APACHA是一种人机验证机制，对于网络爬虫而言，大家更熟悉的是网站采用APACHA机制来设置“防爬虫”门槛，也即各类验证码、滑块验证。
 
 
-```{r}
-# look for table element
-tableElem <- remDr$findElement(using = "id", "courseTable")
+# 视觉识别OCR技术
 
-txt <- tableElem$getElementAttribute("outerHTML")[[1]]
+实际上视觉识别已经发展到多个领域，包括图片标记、面孔和地标检测、光学字符识别 (OCR)等。
 
-table <- XML::readHTMLTable(txt, header=F, as.data.frame=TRUE)[[1]]
-```
+## 传统的tesseract识别包
 
+`tesseract`包专门用于从图片中提取文本[github repo](https://github.com/ropensci/tesseract)。
 
-2. 暴力抓取网页元素总，虽然颇为费劲，但总是可行。
+- 优点：独立算法，简单快速，本地即可运行，无需联网。
+
+- 缺点：算法比较老旧，识别准确率不太高。
+
+具体代码示例如下：
 
 ```{r}
-# scrape the date and room 
-v_date <- txt %>% read_html() %>%  xml_nodes("tbody") %>% xml_nodes("td:nth-child(2)") %>% xml_text()
-
-v_room <- txt %>% read_html() %>%  xml_nodes("tbody") %>% xml_nodes("td:nth-child(4)") %>% xml_text()
-
-# tidy data.frame
-info <- data.frame(date=v_date, room =v_room) %>%
-  separate(col = "date" , into = c("date","week", "weekday", "slot"), sep = " ")
+#install.packages("tesseract")
+library("tesseract")
+dir_gray <- here::here("pic", "zhuyun", "valid-img-gray.png")
+eng <- tesseract("eng")
+txt <- tesseract::ocr(image = dir_gray, engine = eng) %>% str_extract("\\d{4}")
+    
 ```
 
 
-### nodes节点选择
-		
-如何选择和提取网页多个节点tr下第n个元素td下的文本text。参看[网络解答](https://stackoverflow.com/questions/56782998/how-to-extract-text-in-second-p-element-inside-div)
+## google vision 云平台API
+
+google cloud platform 提供了Vision API，可以完成各类视觉识别任务。
+
+- **优点**：识别技术强大，识别准确率高。
+
+- **缺点**：（国内）需要网络和网速支持。另外就是有使用量的限制，需要支付结算进行扩容使用量。
+
+R用户的具体实现：
+
+1.申请google vision API接入授权。具体：
+
+- 登陆google开发者控制台（[Google's developer console](https://console.cloud.google.com/)）进行申请和授权。
+
+- 创建project，并申请开通Vision的API服务。
+
+- 设置`OAuth 2.0`客户端和OAuth同意屏幕。
+
+2.下载安装`RoogleVision`包（[github repo](https://github.com/cloudyr/RoogleVision)）。
+
+具体代码示例如下：
 
 ```{r}
-	txt %>% 
-  read_html() %>%  
-  xml_nodes("tbody") %>% 
-  xml_nodes("td:nth-child(2)") %>% 
-  xml_text()
+#install.packages("RoogleVision", repos = c(getOption("repos"), "http://cloudyr.github.io/drat"))
+if (!require("devtools")) {
+    install.packages("ghit")
+}
+devtools::install_github("cloudyr/RoogleVision")
+
+library("RoogleVision")
+
+### plugin your credentials
+options("googleAuthR.client_id" = keyring::key_get("id", keyring = "gg-vision2"))
+options("googleAuthR.client_secret" = keyring::key_get("secret", keyring = "gg-vision2"))
+
+## use the fantastic Google Auth R package
+### define scope!
+options("googleAuthR.scopes.selected" = c("https://www.googleapis.com/auth/cloud-platform"))
+
+googleAuthR::gar_auth()
+
+
+#Basic: you can provide both, local as well as online images:
+txt <- getGoogleVisionResponse(imagePath="pic/zhuyun/valid-img-gray.png", feature="TEXT_DETECTION",numResults = 1)
+
 ```
-
-	
-			
-### 利用chrome浏览器查看json数据
-
-具体参看[资料](https://stackoverflow.com/questions/31775176/scraping-javascript-in-r-with-rselenium)
-
-```
-Using Chrome: Right-click > Inspect; navigate to Network tab > type in .json > Search > Refresh Site (to catch calls made prior) 
-```
-	
-
-	
-
