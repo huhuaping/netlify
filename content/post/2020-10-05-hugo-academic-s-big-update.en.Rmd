@@ -160,30 +160,64 @@ c. “嫁接替换”完成后，netlify就在CMS新流程下，开发了原来�
 
 # 后续故事
 
-后期可能还会面临hugo academic升级的问题。相关升级问题记录如下：
+考虑到后期可能还会面临hugo academic升级的问题。相关升级问题记录如下：
 
-1.更新hugo version。在windows 命令行里进行hugo升级（见[官方说明](https://wowchemy.com/docs/update/)）。
+0.我的特殊“双服务器”建站需求。简单说，首先我会使用blogdown+hugo+github+netlify工作流建立一个服务器在netlify的网站（A服务器网站），同时会得到该网站的一个`public`文件夹。以为netlify服务器在国外，国际友人访问自然没有问题，但是国内访问速度明显就不行了。因此，我必须为国内访问用户搭建一个服务器在国内的同步“复刻网站”（B服务器网站），这时我只需要将前面的`public/`文件夹同步上去即可。因此，“双服务器”建站需求，并不是我个人有什么极客级别的建站癖好，纯粹只是出于“简单性”和“可用性”原则。以上双服务器网站的差异性和联系：
 
-Update to get the very latest developments:
+- 二者是几乎是“完全复制”的。下面说原因！
 
+- netlify网站（A服务器网站）是基于自动化工作流的（automate workflow），只需要github提交（commit）即可后台自动更新整个网站。因此是时效性最强的。而且可以基于git分支进行测试（如feature 分支），即兴写博客post或测试新功能，简直是指哪打哪，顺服得不要不要的。
+
+- 国内网站（B服务器网站）采用的是goodsync的FTP自动上传同步功能。尽管也可以完全设定自动同步（例如，可以设定goodsync规则为：一旦`public、`有文件修改就自动上传），但是因为不具备git那样的分枝提交功能，会导致同步正在测试阶段的网站，从而导致用户访问失败或页面错乱。最要命的是goodsync的FTP上传速度很慢，对于我这个相对庞杂的网站，要完成一次完整的网站同步，大概需要4-6个小时才能完成（家里稳定网速下）。简单说，我不能让B服务器网站“实时同步”，而且只能在网站版本稳定后才“手动”进行goodsync同步（一般在晚上进行这个同步动作）。
+
+
+1.更新hugo extend。注意hugo extend与hugo存在一定差异性，简单说hugo extend似乎功能性要更多一点（参看[社区问答](https://github.com/gohugoio/hugoDocs/issues/1152#issuecomment-646284959)）。建议windows用户下载使用hugo extend。原因很简单：因为hugo extend能够让我顺利生成网站的本地`public/`文件夹，而hugo则会报错无法生成`public/`文件夹！更新hugo extend基本上有两种方法：
+
+- **方法一（已测试）**：手动下载hugo extend版本进行升级更新。具体做法进入官方版本[下载界面](https://github.com/gohugoio/hugo/releases)，下载后解压缩并放到指定本地电脑路径下！还是要注意blogdown和scoop两种渲染网站的hugo路径是不同的。（见前面说过的这两种渲染方式。）
+
+```r
+# hugo extended
+hugo_extended_0.80.0_Windows-64bit.zip
+
+# target directory path for blogdown
+C:\Users\huhua\AppData\Roaming\Hugo\0.80.0\hugo.exe
+
+# target directory path for scoop
+C:\Users\huhua\scoop\shims\hugo.exe
 ```
+
+
+- **方法二（未测试过）**：在windows 命令行里进行hugo升级（见[官方说明](https://wowchemy.com/docs/update/)）。
+
+```r
+# Update to get the very latest developments:
 hugo mod get -u ./...
-```
 
-Alternatively, update to the latest official release:
-
-```
+# Alternatively, update to the latest official release:
 hugo mod get -u
 
 ```
 
-2.更新hugo academic模板。如前所述，基本过程就是github下载官方模板。然后与你的现有repo进行比对和替换。
+2.如何获得`public/`文件夹。更新blogdown包。照常使用Rstudio addins `serv site`。需要注意的是新的hugo流程默认是在缓存里渲染网站，也就意味着`public/`文件夹默认不会随着渲染而自动更新。
 
-3.更新blogdown包。照常使用Rstudio addins `serv site`。需要注意的是新的hugo流程默认是在缓存里渲染网站，也就意味着`public/`文件夹默认不会随着渲染而自动更新。那么需要执行的是**本地渲染**（参看 [网络问答](https://stackoverflow.com/questions/64500959/problem-with-rendering-hugo-blogdown-site)）。
+- 解决方案1（已测试）：那么需要blogdown执行的是**本地渲染**（参看 [网络问答](https://stackoverflow.com/questions/64500959/problem-with-rendering-hugo-blogdown-site)）。（尽管如此，blogdown本地预览会优先使用`public/`文件夹，所以好像必须要删除`public/`才能获得实时修改更新，这似乎是一个bug啊！目前对这个问题也是纠结中。因为它带来了goodsync的一个同步问题，每次获得blogdown方法下的`public/`文件夹里的每一个文件都是全新的、不同于原同步文件（生成时间或内容改变了），这将意味着goodsync每次同步都必须上传`public/`的所有文件！——而实际上我只是小步调更改了网站的部分内容！）
 
-```{r}
+
+```r
 blogdown::build_site(local=TRUE)
+
 ```
+
+- 解决方案2（未测试）：直接在windows命令视窗里指定hugo生成`public/`文件夹。具体参看blogdown社区[讨论](https://github.com/rstudio/blogdown/issues/495)
+
+```r
+hugo -d ./public
+
+```
+
+3.更新hugo academic模板。如前所述，基本过程就是github下载官方模板。然后与你的现有repo进行比对和替换。
+
+
 
 4.一些升级带来的的副效应。
 

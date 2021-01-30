@@ -29,7 +29,7 @@ source(here("static", "Rscript", "set-chunk-option.R"))
 
 ## 常见问题场景及处理方法
 
-### 中文乱码
+### 中文乱码问题
 
 中文乱码问题再次出现，见各种乱码问题。编码问题详解可以参看[What Every Programmer Absolutely, Positively Needs To Know About Encodings And Character Sets To Work With Text](https://kunststube.net/encoding/)。
 
