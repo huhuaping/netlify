@@ -1,0 +1,55 @@
+---
+title: 问题集和方法荟萃
+author: huhuaping
+date: '2020-11-30'
+slug: issue-collection-tem
+categories:
+  - R
+tags:
+  - R language
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2020-11-30T17:05:48+08:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+```{r, echo=FALSE, eval=TRUE, message=FALSE}
+library("here")
+source(here("static", "Rscript", "set-chunk-option.R"))
+```
+
+## R提醒程序執行完成
+
+R提醒程序執行完成 [参看](http://lc-research.blogspot.com/2015/02/r.html)
+
+一是beepr這個package，執行後電腦會發出聲音提醒你程式已經跑完。
+
+
+
+```{r}
+library(beepr)
+beep(sound=8)
+```
+
+
+You just have to wrap it into a function like this: 
+
+```
+options(error = function() {beep(9)})
+```
+
+最终方案：
+
+```
+beep_on_error(expr, sound = 1)
+```
+
+## blogdown 的文件位置和关系
+
+具体参看 [Adding and reading local data files in R Markdown posts](https://blogdown-demo.rbind.io/2018/02/27/r-file-paths/#place-file-in-your-post-folder)

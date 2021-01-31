@@ -17,7 +17,7 @@ output:
 
 ```{r, echo=FALSE}
 # global options for knitr
-knitr::opts_chunk$set(fig.align='center',message = FALSE,eval = FALSE)
+knitr::opts_chunk$set(fig.align='center',message = FALSE,eval = FALSE, echo = T)
 ```
 
 
@@ -109,7 +109,7 @@ btn$clickElement()
 登录后的**目标页面**：
 
 ```{r, echo=FALSE,eval=TRUE}
-knitr::include_graphics("/pic/web-scrape-AI-room-vedio-list.png")
+knitr::include_graphics("/pic/web-scrape-AI-room-vedio-list.png", error = FALSE)
 ```
 
 

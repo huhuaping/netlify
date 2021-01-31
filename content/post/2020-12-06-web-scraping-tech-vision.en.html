@@ -1,0 +1,97 @@
+---
+title: 自动化数据抓取技术(V)：APACHA人机验证机制
+author: huhuaping
+date: '2020-12-05'
+slug: web-scraping-tech-vision-volidation
+categories:
+  - R
+tags:
+  - webscrape
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2020-12-05T16:30:46+08:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+output:
+  blogdown::html_page:
+    toc: true
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+<div id="TOC">
+<ul>
+<li><a href="#apacha人机验证的类型">APACHA人机验证的类型</a></li>
+<li><a href="#视觉识别ocr技术">视觉识别OCR技术</a>
+<ul>
+<li><a href="#传统的tesseract识别包">传统的tesseract识别包</a></li>
+<li><a href="#google-vision-云平台api">google vision 云平台API</a></li>
+</ul></li>
+</ul>
+</div>
+
+<div id="apacha人机验证的类型" class="section level1">
+<h1>APACHA人机验证的类型</h1>
+<p>APACHA是一种人机验证机制，对于网络爬虫而言，大家更熟悉的是网站采用APACHA机制来设置“防爬虫”门槛，也即各类验证码、滑块验证。这种验证机制比较成熟和严谨，应用场景十分广泛。如何有效识别和破解成为现实一大难题。</p>
+</div>
+<div id="视觉识别ocr技术" class="section level1">
+<h1>视觉识别OCR技术</h1>
+<p>实际上视觉识别已经发展到多个领域，包括图片标记、面孔和地标检测、光学字符识别 (OCR)等。</p>
+<div id="传统的tesseract识别包" class="section level2">
+<h2>传统的tesseract识别包</h2>
+<p><code>tesseract</code>包专门用于从图片中提取文本<a href="https://github.com/ropensci/tesseract">github repo</a>。</p>
+<ul>
+<li><p>优点：独立算法，简单快速，本地即可运行，无需联网。</p></li>
+<li><p>缺点：算法比较老旧，识别准确率不太高。</p></li>
+</ul>
+<p>具体代码示例如下：</p>
+<pre class="r"><code>#install.packages(&quot;tesseract&quot;)
+library(&quot;tesseract&quot;)
+dir_gray &lt;- here::here(&quot;pic&quot;, &quot;zhuyun&quot;, &quot;valid-img-gray.png&quot;)
+eng &lt;- tesseract(&quot;eng&quot;)
+txt &lt;- tesseract::ocr(image = dir_gray, engine = eng) %&gt;% str_extract(&quot;\\d{4}&quot;)</code></pre>
+</div>
+<div id="google-vision-云平台api" class="section level2">
+<h2>google vision 云平台API</h2>
+<p>google cloud platform 提供了Vision API，可以完成各类视觉识别任务。</p>
+<ul>
+<li><p><strong>优点</strong>：识别技术强大，识别准确率高。</p></li>
+<li><p><strong>缺点</strong>：（国内）需要网络和网速支持。另外就是有使用量的限制，需要支付结算进行扩容使用量。</p></li>
+</ul>
+<p>R用户的具体实现：</p>
+<p>1.申请google vision API接入授权。具体：</p>
+<ul>
+<li><p>登陆google开发者控制台（<a href="https://console.cloud.google.com/">Google’s developer console</a>）进行申请和授权。</p></li>
+<li><p>创建project，并申请开通Vision的API服务。</p></li>
+<li><p>设置<code>OAuth 2.0</code>客户端和OAuth同意屏幕。</p></li>
+</ul>
+<p>2.下载安装<code>RoogleVision</code>包（<a href="https://github.com/cloudyr/RoogleVision">github repo</a>）。</p>
+<p>具体代码示例如下：</p>
+<pre class="r"><code>#install.packages(&quot;RoogleVision&quot;, repos = c(getOption(&quot;repos&quot;), &quot;http://cloudyr.github.io/drat&quot;))
+if (!require(&quot;devtools&quot;)) {
+    install.packages(&quot;ghit&quot;)
+}
+devtools::install_github(&quot;cloudyr/RoogleVision&quot;)
+
+library(&quot;RoogleVision&quot;)
+
+### plugin your credentials
+options(&quot;googleAuthR.client_id&quot; = keyring::key_get(&quot;id&quot;, keyring = &quot;gg-vision2&quot;))
+options(&quot;googleAuthR.client_secret&quot; = keyring::key_get(&quot;secret&quot;, keyring = &quot;gg-vision2&quot;))
+
+## use the fantastic Google Auth R package
+### define scope!
+options(&quot;googleAuthR.scopes.selected&quot; = c(&quot;https://www.googleapis.com/auth/cloud-platform&quot;))
+
+googleAuthR::gar_auth()
+
+
+#Basic: you can provide both, local as well as online images:
+txt &lt;- getGoogleVisionResponse(imagePath=&quot;pic/zhuyun/valid-img-gray.png&quot;, feature=&quot;TEXT_DETECTION&quot;,numResults = 1)</code></pre>
+</div>
+</div>

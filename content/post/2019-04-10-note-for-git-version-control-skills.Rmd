@@ -197,6 +197,24 @@ $ git add .
 $ git commit -m "Untracked files issue resolved to fix .gitignore"
 ```
 
+场景实例：（两台设备上）git操作时反复出现`.Rproj.user/shared/notebooks/paths`
+
+处理办法（[参考](https://stackoverflow.com/questions/36185456/gitignored-files-still-shown-in-rstudio)）：
+
+```
+# Once you add files to git, it will keep tracking them,  
+# so we have to delete them and commit your deletion
+git rm -r --cached .Rproj.user/**
+
+# Commit the deleted files
+git commit -m "Removed files...."
+
+# now add it to the `.gitignore` and the files will be ignored
+echo '.Rproj.user/**' > .gitignore
+```
+
+> 要点：`**`表示文件夹。
+
 ## 无法把本地repo推送到远程repo
 
 这种情形下，直接push会提示如下报错：

@@ -1,0 +1,285 @@
+---
+title: netlify网站与静态static资料的正确衔接
+author: huhuaping
+date: '2021-01-31'
+slug: file-structure-witin-blog
+categories:
+  - R
+tags:
+  - Blogdown
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2021-01-31T11:24:46+08:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: true
+---
+
+# netlify文件夹体系
+
+使用blogdown进行netlify建站，下述三个文件夹及作用需要区分清楚：
+
+- `content`文件夹，主要进行写作或者接口配置（链接等），对接包括：post、publication、course、project等
+
+- `static`文件夹，主要存放来自其他仓库的静态资料。例如，xaringan slide课件制作往往在我的另一个课程仓库（如`course-econometrics`），相关文件资料（`html`）需要提前拷贝到这个文件夹对应位置。
+
+- `public`文件夹，是建站结果的最终目录树文件系统。netlify服务器网站可以方便国际用户访问，但国内访问速度较慢。`public/`后期还要更新到本地另外一个域名服务器网站（方便国内访问）。（见之前的[博客文章](/2020/10/05/hugo-big-update/#double-site)）
+
+## netlify content文件系统
+
+```{r, comment="", echo=FALSE}
+library(data.tree)
+
+netlify <- Node$new("netlify")
+  static <- netlify$AddChild("static")
+  content <- netlify$AddChild("content")
+    statistics <- content$AddChild("course-advanced-statistics")
+    econometrics <- content$AddChild("course-econometrics")
+      data <- econometrics$AddChild("data")
+      rmd <- econometrics$AddChild("schedule-theory.Rmd")
+      html <- econometrics$AddChild("schedule-theory.html")
+  public <- netlify$AddChild("public")
+  config <- netlify$AddChild("config")
+  proj <- netlify$AddChild("netlify.Rproj")
+  
+
+print(netlify)
+
+```
+
+## netlify static文件夹系统
+
+```{r, comment="", echo=FALSE}
+library(data.tree)
+
+netlify <- Node$new("netlify")
+  static <- netlify$AddChild("static")
+    statistics <- static$AddChild("course-advanced-statistics")
+    econometrics <- static$AddChild("course-econometrics")
+      data <- econometrics$AddChild("data")
+      pic <- econometrics$AddChild("pic")
+        pic1 <- pic$AddChild("chpt1-log.png")
+        pic2 <- pic$AddChild("chpt2-reg.png")
+      intro <- econometrics$AddChild("01-introduction-slide.html")
+      reg <- econometrics$AddChild("02-simple-reg-basic-slide.html")
+  content <- netlify$AddChild("content")
+  public <- netlify$AddChild("public")
+  config <- netlify$AddChild("config")
+  proj <- netlify$AddChild("netlify.Rproj")
+  
+
+print(netlify)
+
+```
+
+
+
+## netlify public文件系统
+
+```{r, comment="", echo=FALSE}
+library(data.tree)
+
+netlify <- Node$new("netlify")
+  static <- netlify$AddChild("static")
+  content <- netlify$AddChild("content")
+  public <- netlify$AddChild("public")
+    statistics <- public$AddChild("course-advanced-statistics")
+    econometrics <- public$AddChild("course-econometrics")
+      schedule <- econometrics$AddChild("schedule-theory")  
+      data <- econometrics$AddChild("data")
+      pic <- econometrics$AddChild("pic")
+        pic1 <- pic$AddChild("chpt1-log.png")
+        pic2 <- pic$AddChild("chpt2-reg.png")
+      intro <- econometrics$AddChild("01-introduction-slide.html")
+      reg <- econometrics$AddChild("02-simple-reg-basic-slide.html")
+  config <- netlify$AddChild("config")
+  proj <- netlify$AddChild("netlify.Rproj")
+  
+
+print(netlify)
+
+```
+
+# netlify相关联的Github仓库
+
+目前而言，neglify主站相关联的主要github仓库有：
+
+- 主站仓库：`netlify`仓库，基于hugo-academic网站模板，集合了众多的其他仓库的展示材料
+
+- 教学课程仓库：主要包括本科课程《计量经济学》`course-econometrics`;本科课程《统计学原理》`course-statistics`;研究生课程《中级计量经济学》`master-SEM`等。主要关联材料包括：课件Xaringan slide；补充材料html；pdf等。
+
+- 研究项目仓库：包括各类开源的研究类仓库，如[agri-trade-open](https://github.com/huhuaping/agri-trade-open)；[team-students](https://github.com/huhuaping/team-students)等。
+
+- 其他仓库
+
+## Xaringan slide的正确操作
+
+使用Xaringan制作教学slide。需要注意到Xaringan制作的slide是不能独立封装的（self-contained），也即它需要依赖各种必要组件或资源。
+
+### xaringan slide的典型文件结构
+
+课程仓库下xaringan slide制作的典型文件结构：
+
+```{r, comment="", echo=FALSE}
+library(data.tree)
+
+econometrics <- Node$new("course-econometrics")
+  data <- econometrics$AddChild("data")
+  pic <- econometrics$AddChild("pic")
+      pic1 <- pic$AddChild("chpt1-log.png")
+      pic2 <- pic$AddChild("chpt1-curve-points.png")
+  cat1 <- econometrics$AddChild("01-class-instruction")
+  cat2 <- econometrics$AddChild("02-lab-exercise")
+  slide <- econometrics$AddChild("03-slide-class")
+    libs <- slide$AddChild("libs")
+      crosstalk <- libs$AddChild("crosstalk-1.1.1")
+      htmlwidgets <- libs$AddChild("htmlwidgets-1.5.3")
+        js <- htmlwidgets$AddChild("htmlwidgets.js")
+      remark <- libs$AddChild("remark-latest.min.js")
+    files <- slide$AddChild("01-introduction-slide_files")
+      figure <- files$AddChild("figure-html")
+        fig1 <- figure$AddChild("unnamed-chunk-14-1.png")
+        fig2 <- figure$AddChild("unnamed-chunk-15-1.png")
+    intro <- slide$AddChild("01-introduction-slide.html")
+    rmd <- slide$AddChild("01-introduction-slide.Rmd")
+  template <- econometrics$AddChild("template")  
+  eViews <- econometrics$AddChild("EViews")    
+  mycss <- econometrics$AddChild("mycss")    
+  public <- econometrics$AddChild("public")
+  proj <- econometrics$AddChild("course-econometrics.Rproj")
+  
+
+print(econometrics)
+
+```
+
+### Xaringan Rmd调用**本地**图片文件
+
+值得注意的是Xaringan Rmd使用**本地**图片文件（存放在`pic/`文件夹下），应该使用相对路径，而不是绝对路径（参看[the full path approach doesn't work](https://github.com/yihui/xaringan/issues/145> )）。也即意味着：
+
+- 不能使用绝对路径`D:/github/course-econometrics/pic/chpt1-log.png`
+
+- 同时也不能使用`here::here("pic","chpt1-log.png")`，因为它也会给出绝对路径`"D:/github/course-econometrics/pic/chpt1-log.png"`
+
+
+那么Rmd文件`01-introduction-slide.Rmd`对上述本地图片的函数化引用应该设为相对路径形式，如：
+
+- `markdown`语法：`![]("../pic/chpt1-log.png")`
+
+- 或者`knitr`语法：`include_graphics("../pic/chpt1-log.png")`
+
+总结起来，图片绝对路径和相对路径的差异比较如下：
+
+- 绝对路径直接无法渲染出图形
+
+- 相对路径可以渲染出图形，而且可以使用chrome浏览器开发工具看到html元素
+							
+```html
+# html develop tool view
+
+<div class="figure" style="text-align: center">
+  <img src="../pic/chpt1-log.png" alt="一份样本数据" width="693">
+  <p class="caption">一份样本数据</p>
+</div>
+```
+
+### Xaringan Rmd代码块生成的graph
+
+Rmd使用代码块生成的图片这会自动存放在同名文件夹下的一个文件夹内。如`01-introduction-slide.Rmd`，则代码块`chunk-14`制图将存放在自动生成的文件夹`01-introduction-slide_files/figure-html/unnamed-chunk-14-1.png`。
+
+例如，R代码块14如下：
+
+```r
+# r code chunk 14
+
+include_graphics("../pic/chpt1-curve-points.png", dpi=200)
+```
+
+可以使用chrome浏览器开发工具看到其对应的html元素：
+
+```html
+<!--- html develop tool view--->
+
+<div class="figure" style="text-align: center">
+<img src="01-introduction-slide_files/figure-html/unnamed-chunk-14-1.png" alt="正态分布(n=500)">
+<p class="caption">正态分布(n=500)</p>
+</div>
+
+```
+
+
+
+# 若干netlify对接技巧
+
+## netlify内部相互链接
+
+如果要直接在`/content/course-econometrics`下用Rmd文件生成.html，然后再别处来调用这个内部的html文件？
+
+1.基于主站的相对链接引用（已测试）。参看"队长"问答[Linking to another post in blogdown](https://stackoverflow.com/questions/55930617/linking-to-another-post-in-blogdown)
+
+- 设置基准地址，修改`config.toml`参数：
+
+```
+# config.toml
+
+baseurl = "https://yourdomain.netlify.app/"
+```
+
+- 设定内部引用规则，修改`config.toml`参数：
+
+```toml
+# config.toml
+
+[permalinks]
+  # If only creating events which are talks, we can optimize event URLs for talks.
+  event = "/talk/:slug/"
+  # Workaround Hugo publishing taxonomy URLs as plurals - consistently use singular across Academic.
+  tags = "/tag/:slug/"
+  categories = "/category/:slug/"
+  publication_types = "/publication-type/:slug/"
+  post = "/:year/:month/:day/:slug/"
+
+```
+
+- Rmd进行引用内部链接。以博文post为例：见之前的[博客文章](/2020/10/05/hugo-big-update/#double-site)。值得说明的是：a.务必要按前述各个模块的链接地址规则进行url设定。b.不要画蛇添足`/2020/10/05/hugo-big-update/index.en.html`（哪怕文件夹下有这个html文件）；c.只要设定了refer ID（如`{#your-section-refer}`）,就可以进行更进一步的链接。具体代码如下：
+
+```
+# note your can refer the section ID as your have set
+
+见之前的[博客文章](/2020/10/05/hugo-big-update/#double-site)
+```
+
+
+2.利用hugo的shortcode特性（未测试）。参看yihui提到的[Shortcode方法](https://bookdown.org/yihui/blogdown/content.html-shortcode)。正文行内引用方式：
+
+```
+[第一章](r blogdown::shortcodex("relref", "chapter01-introduction.html"))
+```
+需要注意的是不能直接引用`chapter01-introduction.Rmd`；但是可以直接引用`chapter01-introduction.md`或者`chapter01-introduction.html`。此外还要注意引用路径是相对的。例如：
+
+```
+[博客文章提到](r blogdown::shortcodex("relref", "../post/2019-02-24-xaringan-for-course-slide.html"))
+
+```
+
+## netlify指定Rmd输出格式{#output}
+
+用.Rmd生成的文档能不能有其他的输出格式呢？还能做些别的么？
+			
+```yaml
+# add this in yaml area
+
+output:
+  blogdown::html_page:
+    toc: true
+```
+			
+			
