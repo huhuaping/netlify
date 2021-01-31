@@ -2,13 +2,18 @@
 title: git版本控制实操技巧汇总
 author: huhuaping
 draft: false
-date: '`r Sys.Date()-1`'
+date: '2021-01-31'
 slug: note-for-git-version-control-skills
 categories:
   - Git
 tags:
   - Github
   - Version control
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2021-01-31T11:24:46+08:00'
+featured: no
 image:
   caption: ''
   focal_point: ''
@@ -283,5 +288,59 @@ To push the current branch and set the remote as upstream, use
 
 ```
 $ git push --set-upstream origin dev
+```
+## 回到远端状态
+
+回到远端状态（例如，本地已提交，但是push提示合并冲突时，想把本地pull为远端状态）。参看[队长问答](https://stackoverflow.com/questions/5097456/throw-away-local-commits-in-git)
+
+```
+git reset --hard origin/<your branch>
+```
+
+## 放弃本地的修改（未提交）
+
+参看[队长问答](https://stackoverflow.com/questions/52704/how-do-i-discard-unstaged-changes-in-git).
+
+```
+#删除remove所有untracked files
+git clean -df
+
+#清除clear 所有untracked files
+git checkout -- .
+
+#保存痕迹
+git stash save --keep-index --include-untracked
+
+# 不保存痕迹
+git stash save --keep-index
+
+```
+
+## git 查看commit历史
+
+查看历史commit:
+
+```
+git log --pretty=oneline
+git log --oneline --decorate --graph --all
+```
+
+## 删除已提交记录中的文件并添加到ignore列表
+
+参看[队长问答](https://stackoverflow.com/questions/36185456/gitignored-files-still-shown-in-rstudio)
+
+> First of all your files are already committed so you have to remove it from the repo:
+
+```
+# Once you add files to git, it will keep tracking them,  
+# so we have to delete them and commit your deletion
+git rm -r --cached .Rproj.user/**
+
+# Commit the deleted files
+git commit -m "Removed files...."
+
+# now add it to the `.gitignore` and the files will be ignored
+echo '.Rproj.user/**' > .gitignore
+
 ```
 

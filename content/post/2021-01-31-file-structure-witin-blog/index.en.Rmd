@@ -200,7 +200,15 @@ Rmd使用代码块生成的图片这会自动存放在同名文件夹下的一�
 ```r
 # r code chunk 14
 
-include_graphics("../pic/chpt1-curve-points.png", dpi=200)
+
+ggplot(data.frame(x = seq(from = -5, to=5,length =500 )), aes(x = x)) +
+  stat_function(fun = dnorm, args = list(0,1),
+                aes(color = "mean=0, sd=1")) +
+  stat_function(fun = dnorm, args = list(0.5,2),
+                aes(color = "mean=0.5, sd=2")) +
+  scale_colour_manual("期望和标准差", values = c("red", "blue"))+
+  scale_y_continuous(name = "概率值(probability)") +
+  theme(legend.text = element_text(size=16), legend.title = element_text(size=16))
 ```
 
 可以使用chrome浏览器开发工具看到其对应的html元素：

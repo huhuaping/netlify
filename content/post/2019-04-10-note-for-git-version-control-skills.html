@@ -2,13 +2,18 @@
 title: git版本控制实操技巧汇总
 author: huhuaping
 draft: false
-date: '2021-01-30'
+date: '2021-01-31'
 slug: note-for-git-version-control-skills
 categories:
   - Git
 tags:
   - Github
   - Version control
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2021-01-31T11:24:46+08:00'
+featured: no
 image:
   caption: ''
   focal_point: ''
@@ -39,6 +44,10 @@ output:
 <li><a href="#忽略文件无效的处理办法"><span class="toc-section-number">5.3</span> 忽略文件无效的处理办法</a></li>
 <li><a href="#无法把本地repo推送到远程repo"><span class="toc-section-number">5.4</span> 无法把本地repo推送到远程repo</a></li>
 <li><a href="#分支push找不到上游分支"><span class="toc-section-number">5.5</span> 分支push找不到上游分支</a></li>
+<li><a href="#回到远端状态"><span class="toc-section-number">5.6</span> 回到远端状态</a></li>
+<li><a href="#放弃本地的修改未提交"><span class="toc-section-number">5.7</span> 放弃本地的修改（未提交）</a></li>
+<li><a href="#git-查看commit历史"><span class="toc-section-number">5.8</span> git 查看commit历史</a></li>
+<li><a href="#删除已提交记录中的文件并添加到ignore列表"><span class="toc-section-number">5.9</span> 删除已提交记录中的文件并添加到ignore列表</a></li>
 </ul></li>
 </ul>
 </div>
@@ -240,5 +249,49 @@ fatal: The current branch dev has no upstream branch.
 To push the current branch and set the remote as upstream, use</code></pre>
 <p>处理办法是：</p>
 <pre><code>$ git push --set-upstream origin dev</code></pre>
+</div>
+<div id="回到远端状态" class="section level2" number="5.6">
+<h2><span class="header-section-number">5.6</span> 回到远端状态</h2>
+<p>回到远端状态（例如，本地已提交，但是push提示合并冲突时，想把本地pull为远端状态）。参看<a href="https://stackoverflow.com/questions/5097456/throw-away-local-commits-in-git">队长问答</a></p>
+<pre><code>git reset --hard origin/&lt;your branch&gt;</code></pre>
+</div>
+<div id="放弃本地的修改未提交" class="section level2" number="5.7">
+<h2><span class="header-section-number">5.7</span> 放弃本地的修改（未提交）</h2>
+<p>参看<a href="https://stackoverflow.com/questions/52704/how-do-i-discard-unstaged-changes-in-git">队长问答</a>.</p>
+<pre><code>#删除remove所有untracked files
+git clean -df
+
+#清除clear 所有untracked files
+git checkout -- .
+
+#保存痕迹
+git stash save --keep-index --include-untracked
+
+# 不保存痕迹
+git stash save --keep-index
+</code></pre>
+</div>
+<div id="git-查看commit历史" class="section level2" number="5.8">
+<h2><span class="header-section-number">5.8</span> git 查看commit历史</h2>
+<p>查看历史commit:</p>
+<pre><code>git log --pretty=oneline
+git log --oneline --decorate --graph --all</code></pre>
+</div>
+<div id="删除已提交记录中的文件并添加到ignore列表" class="section level2" number="5.9">
+<h2><span class="header-section-number">5.9</span> 删除已提交记录中的文件并添加到ignore列表</h2>
+<p>参看<a href="https://stackoverflow.com/questions/36185456/gitignored-files-still-shown-in-rstudio">队长问答</a></p>
+<blockquote>
+<p>First of all your files are already committed so you have to remove it from the repo:</p>
+</blockquote>
+<pre><code># Once you add files to git, it will keep tracking them,  
+# so we have to delete them and commit your deletion
+git rm -r --cached .Rproj.user/**
+
+# Commit the deleted files
+git commit -m &quot;Removed files....&quot;
+
+# now add it to the `.gitignore` and the files will be ignored
+echo &#39;.Rproj.user/**&#39; &gt; .gitignore
+</code></pre>
 </div>
 </div>

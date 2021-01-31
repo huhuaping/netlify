@@ -182,7 +182,15 @@ output:
 <p>例如，R代码块14如下：</p>
 <pre class="r"><code># r code chunk 14
 
-include_graphics(&quot;../pic/chpt1-curve-points.png&quot;, dpi=200)</code></pre>
+
+ggplot(data.frame(x = seq(from = -5, to=5,length =500 )), aes(x = x)) +
+  stat_function(fun = dnorm, args = list(0,1),
+                aes(color = &quot;mean=0, sd=1&quot;)) +
+  stat_function(fun = dnorm, args = list(0.5,2),
+                aes(color = &quot;mean=0.5, sd=2&quot;)) +
+  scale_colour_manual(&quot;期望和标准差&quot;, values = c(&quot;red&quot;, &quot;blue&quot;))+
+  scale_y_continuous(name = &quot;概率值(probability)&quot;) +
+  theme(legend.text = element_text(size=16), legend.title = element_text(size=16))</code></pre>
 <p>可以使用chrome浏览器开发工具看到其对应的html元素：</p>
 <pre class="html"><code>&lt;!--- html develop tool view---&gt;
 
