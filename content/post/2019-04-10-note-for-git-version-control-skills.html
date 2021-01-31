@@ -2,7 +2,7 @@
 title: git版本控制实操技巧汇总
 author: huhuaping
 draft: false
-date: '2019-08-31'
+date: '2021-01-30'
 slug: note-for-git-version-control-skills
 categories:
   - Git
@@ -19,29 +19,32 @@ output:
 
 ---
 
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
 <div id="TOC">
 <ul>
-<li><a href="#git"><span class="toc-section-number">1</span> 配置git</a></li>
-<li><a href="#section"><span class="toc-section-number">2</span> 常用操作</a><ul>
-<li><a href="#branch"><span class="toc-section-number">2.1</span> 合并分支branch</a></li>
-<li><a href="#section-1"><span class="toc-section-number">2.2</span> 删除本地分支</a></li>
-<li><a href="#section-2"><span class="toc-section-number">2.3</span> 删除远程分支</a></li>
+<li><a href="#配置git"><span class="toc-section-number">1</span> 配置git</a></li>
+<li><a href="#常用操作"><span class="toc-section-number">2</span> 常用操作</a>
+<ul>
+<li><a href="#合并分支branch"><span class="toc-section-number">2.1</span> 合并分支branch</a></li>
+<li><a href="#删除本地分支"><span class="toc-section-number">2.2</span> 删除本地分支</a></li>
+<li><a href="#删除远程分支"><span class="toc-section-number">2.3</span> 删除远程分支</a></li>
 </ul></li>
-<li><a href="#gitbash"><span class="toc-section-number">3</span> gitbash常用文件及文件夹命令</a></li>
-<li><a href="#git-1"><span class="toc-section-number">4</span> 常用git命令</a></li>
-<li><a href="#git-"><span class="toc-section-number">5</span> git 新挑战</a><ul>
-<li><a href="#github50m"><span class="toc-section-number">5.1</span> 超越github文件容量限制（单个文件50M以上）</a></li>
-<li><a href="#section-3"><span class="toc-section-number">5.2</span> 忽略文件设置</a></li>
-<li><a href="#section-4"><span class="toc-section-number">5.3</span> 忽略文件无效的处理办法</a></li>
-<li><a href="#reporepo"><span class="toc-section-number">5.4</span> 无法把本地repo推送到远程repo</a></li>
-<li><a href="#push"><span class="toc-section-number">5.5</span> 分支push找不到上游分支</a></li>
+<li><a href="#gitbash常用文件及文件夹命令"><span class="toc-section-number">3</span> gitbash常用文件及文件夹命令</a></li>
+<li><a href="#常用git命令"><span class="toc-section-number">4</span> 常用git命令</a></li>
+<li><a href="#git-新挑战"><span class="toc-section-number">5</span> git 新挑战</a>
+<ul>
+<li><a href="#超越github文件容量限制单个文件50m以上"><span class="toc-section-number">5.1</span> 超越github文件容量限制（单个文件50M以上）</a></li>
+<li><a href="#忽略文件设置"><span class="toc-section-number">5.2</span> 忽略文件设置</a></li>
+<li><a href="#忽略文件无效的处理办法"><span class="toc-section-number">5.3</span> 忽略文件无效的处理办法</a></li>
+<li><a href="#无法把本地repo推送到远程repo"><span class="toc-section-number">5.4</span> 无法把本地repo推送到远程repo</a></li>
+<li><a href="#分支push找不到上游分支"><span class="toc-section-number">5.5</span> 分支push找不到上游分支</a></li>
 </ul></li>
 </ul>
 </div>
 
 <p>git版本控制技巧集锦</p>
-<div id="git" class="section level1">
+<div id="配置git" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> 配置git</h1>
 <p>配置默认文本编辑器（text editor）。windows党还是自觉使用Notepad吧，免费又熟悉</p>
 <ul>
@@ -60,25 +63,25 @@ $ git config --global difftool.p4merge.path &#39;C:\Program Files\Perforce\p4mer
 $ git config --global merge.tool p4merge
 $ git config --global mergetool.p4merge.path &#39;C:\Program Files\Perforce\p4merge.exe&#39;</code></pre>
 </div>
-<div id="section" class="section level1">
+<div id="常用操作" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> 常用操作</h1>
-<div id="branch" class="section level2">
+<div id="合并分支branch" class="section level2" number="2.1">
 <h2><span class="header-section-number">2.1</span> 合并分支branch</h2>
 <pre><code>$ git checkout master
 $ git merge hotfix</code></pre>
 </div>
-<div id="section-1" class="section level2">
+<div id="删除本地分支" class="section level2" number="2.2">
 <h2><span class="header-section-number">2.2</span> 删除本地分支</h2>
 <pre><code>$ git branch -d branch_name
 $ git branch -D branch_name</code></pre>
 </div>
-<div id="section-2" class="section level2">
+<div id="删除远程分支" class="section level2" number="2.3">
 <h2><span class="header-section-number">2.3</span> 删除远程分支</h2>
 <pre><code>$ git push &lt;remote_name&gt; --delete &lt;branch_name&gt;
 $ git push &lt;remote_name&gt; :&lt;branch_name&gt;</code></pre>
 </div>
 </div>
-<div id="gitbash" class="section level1">
+<div id="gitbash常用文件及文件夹命令" class="section level1" number="3">
 <h1><span class="header-section-number">3</span> gitbash常用文件及文件夹命令</h1>
 <ol style="list-style-type: decimal">
 <li><p><code>cd</code>: change directory的简写，改变目录的意思，就是切换到哪个目录下， 如 cd e:切换 E 盘下面的fff 目录。</p></li>
@@ -94,16 +97,16 @@ $ git push &lt;remote_name&gt; :&lt;branch_name&gt;</code></pre>
 <li><p><code>exit</code> 可以直接退出窗口，</p></li>
 </ol>
 </div>
-<div id="git-1" class="section level1">
+<div id="常用git命令" class="section level1" number="4">
 <h1><span class="header-section-number">4</span> 常用git命令</h1>
 <ol style="list-style-type: decimal">
 <li>视图化查看提交历史、各个分支的指向以及项目的分支分叉情况</li>
 </ol>
 <pre><code>$ git log --oneline --decorate --graph --all</code></pre>
 </div>
-<div id="git-" class="section level1">
+<div id="git-新挑战" class="section level1" number="5">
 <h1><span class="header-section-number">5</span> git 新挑战</h1>
-<div id="github50m" class="section level2">
+<div id="超越github文件容量限制单个文件50m以上" class="section level2" number="5.1">
 <h2><span class="header-section-number">5.1</span> 超越github文件容量限制（单个文件50M以上）</h2>
 <p><strong>挑战的问题</strong>：git bash 命令push时，如果单个文件大于50M以上，则会提示推送失败。</p>
 <p><strong>参考的解决办法</strong>包括：</p>
@@ -137,7 +140,7 @@ $ git commit -m &quot;add LFS directory data-process/&quot;
 $ git push origin master
 </code></pre>
 </div>
-<div id="section-3" class="section level2">
+<div id="忽略文件设置" class="section level2" number="5.2">
 <h2><span class="header-section-number">5.2</span> 忽略文件设置</h2>
 <p>工作思路是：</p>
 <ul>
@@ -165,7 +168,7 @@ data-raw/
 .Rproj.user
 </code></pre>
 </div>
-<div id="section-4" class="section level2">
+<div id="忽略文件无效的处理办法" class="section level2" number="5.3">
 <h2><span class="header-section-number">5.3</span> 忽略文件无效的处理办法</h2>
 <p>有时候.gitignore里虽然进行了修改设定，但并不会马上生效。</p>
 <p>此时，问题可能就出在缓存上（cash）（<a href="https://bytefreaks.net/programming-2/my-gitignore-file-is-ignored-by-git-and-it-does-not-work">参看My .gitignore file is ignored by git and it does not work</a>，或者参看<a href="https://appuals.com/fix-gitignore-is-not-working/">Gitignore is not Working</a>）。</p>
@@ -173,8 +176,22 @@ data-raw/
 <pre><code>$ git rm -r --cached .
 $ git add .
 $ git commit -m &quot;Untracked files issue resolved to fix .gitignore&quot;</code></pre>
+<p>场景实例：（两台设备上）git操作时反复出现<code>.Rproj.user/shared/notebooks/paths</code></p>
+<p>处理办法（<a href="https://stackoverflow.com/questions/36185456/gitignored-files-still-shown-in-rstudio">参考</a>）：</p>
+<pre><code># Once you add files to git, it will keep tracking them,  
+# so we have to delete them and commit your deletion
+git rm -r --cached .Rproj.user/**
+
+# Commit the deleted files
+git commit -m &quot;Removed files....&quot;
+
+# now add it to the `.gitignore` and the files will be ignored
+echo &#39;.Rproj.user/**&#39; &gt; .gitignore</code></pre>
+<blockquote>
+<p>要点：<code>**</code>表示文件夹。</p>
+</blockquote>
 </div>
-<div id="reporepo" class="section level2">
+<div id="无法把本地repo推送到远程repo" class="section level2" number="5.4">
 <h2><span class="header-section-number">5.4</span> 无法把本地repo推送到远程repo</h2>
 <p>这种情形下，直接push会提示如下报错：</p>
 <pre><code>git error: failed to push some refs to &#39;https://github.com/</code></pre>
@@ -214,7 +231,7 @@ $ git pull origin master
 $ git mergetool
 </code></pre>
 </div>
-<div id="push" class="section level2">
+<div id="分支push找不到上游分支" class="section level2" number="5.5">
 <h2><span class="header-section-number">5.5</span> 分支push找不到上游分支</h2>
 <p>如果是本地新建分支，则需要设定上游分支，否则push就会报错：</p>
 <pre><code># 报错信息。
