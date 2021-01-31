@@ -2,30 +2,48 @@
 title: 建站平台hugo-academic大升级
 author: huhuaping
 date: '2020-10-05'
-slug: hugo-academic-s-big-update
+slug: hugo-big-update
 categories:
   - R
 tags:
   - Website
   - hugo
 subtitle: ''
-summary: '对于搭建个人网站，曾经有一句经典的忠告摆在我的面前：永远不要使用复杂的模板，否则总有一天会掉入网站迁移漩涡，甚至万劫不复的境地。这种事，难免大家都会赶上那么一遭。这篇博文给出了一些使用经验和若干建议。'
+summary: '对于搭建个人网站，曾经有一句经典的忠告摆在我的面前：永远不要使用复杂的模板，否则总有一天会掉入网站迁移漩涡，甚至万劫不复的境地。这种事，难免大家都会赶上那么一遭。这篇博文给出了一些使用经验和若干建议。本博文会随时更新。'
 authors: []
-lastmod: '2020-10-05T21:08:20+08:00'
+lastmod: '2020-10-05T21:08:21+08:00'
 featured: no
 image:
   caption: ''
   focal_point: ''
   preview_only: no
 projects: []
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: true
 ---
 
-<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+<script src="{{< blogdown/postref >}}index.en_files/header-attrs/header-attrs.js"></script>
 
+<div id="TOC">
+<ul>
+<li><a href="#hugo的大变革"><span class="toc-section-number">1</span> hugo的大变革</a></li>
+<li><a href="#本地开发预览一条思路填平若干个坑"><span class="toc-section-number">2</span> 本地开发预览：一条思路填平若干个坑</a></li>
+<li><a href="#云端开发预览netlify的断点"><span class="toc-section-number">3</span> 云端开发预览：netlify的断点</a></li>
+<li><a href="#后续故事"><span class="toc-section-number">4</span> 后续故事</a>
+<ul>
+<li><a href="#double-site"><span class="toc-section-number">4.1</span> 双服务器建站需求</a></li>
+<li><a href="#更新hugo-extend"><span class="toc-section-number">4.2</span> 更新hugo extend。</a></li>
+<li><a href="#获得public文件夹"><span class="toc-section-number">4.3</span> 获得<code>public/</code>文件夹。</a></li>
+<li><a href="#升级的副效应"><span class="toc-section-number">4.4</span> 升级的副效应</a></li>
+</ul></li>
+</ul>
+</div>
 
 <blockquote>
 <p>对于搭建个人网站，曾经有一句经典的忠告摆在我的面前：
-永远不要使用复杂的模板，否则总有一天会掉入网站迁移漩涡，甚至万劫不复的境地。 ————无名氏</p>
+永远不要使用复杂的模板，否则总有一天会掉入网站迁移漩涡，甚至万劫不复的境地。 ————nobody</p>
 </blockquote>
 <p>这种事，总算是被我赶上了一遭。</p>
 <p>采用hugo-academic模板搭建个人网站，2020年9月3日以后，面临一次建站流程的全新大换代升级。</p>
@@ -36,13 +54,13 @@ projects: []
 <p>事先说明一下我的环境：</p>
 <ul>
 <li><p>Win 10操作系统</p></li>
-<li><p>R环境 <code>version.string R version 4.0.2 (2020-06-22)</code></p></li>
-<li><p>升级后hugo version: <code>Hugo Static Site Generator v0.75.1/extended windows/amd64 BuildDate: unknown</code></p></li>
-<li><p>netlify 关联 github的仓库，自动激活建站开发</p></li>
+<li><p>R环境 R version 4.0.3 (2020-10-10)。</p></li>
+<li><p>升级后hugo version: <code>Hugo Static Site Generator v0.75.1/extended windows/amd64 BuildDate: unknown</code>。</p></li>
+<li><p>netlify 关联 github的仓库，自动激活建站开发。</p></li>
 </ul>
-<div id="hugo-academic的大换血变革了什么" class="section level1">
-<h1>hugo academic的大换血，变革了什么？</h1>
-<p>后面复杂的flow、原理之类东东我也没有完全明白。不过基本按照官方的提示，是可以完成网站升级的，完全可以忽略下面这些什么go module之类的工具或概念。</p>
+<div id="hugo的大变革" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> hugo的大变革</h1>
+<p>hugo academic的大换血，变革了什么？后面复杂的flow、原理之类东东我也没有完全明白。不过基本按照官方的提示，是可以完成网站升级的，完全可以忽略下面这些什么go module之类的工具或概念。</p>
 <p>对于windowns党，你大概需要本地安装一些工具：<a href="https://wowchemy.com/docs/install-locally/">Edit your site on your PC</a></p>
 <ul>
 <li><p><a href="https://gohugo.io/getting-started/installing/">Hugo Extended</a></p></li>
@@ -56,8 +74,8 @@ projects: []
 <p>平时我可能只关心hugo的建站工具性，从来不想了解背后的最基本的指导思想和运行原理（尽管可能还是会一知半解，技术细节确实可以完全忽视）。现在看来，既然把身家大计（网站）都托付给了它，起码不能完全对其漠然无知。工具性导向很容易误人误事！</p>
 </blockquote>
 </div>
-<div id="本地开发预览一条思路填平若干个坑" class="section level1">
-<h1>本地开发预览：一条思路填平若干个坑</h1>
+<div id="本地开发预览一条思路填平若干个坑" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> 本地开发预览：一条思路填平若干个坑</h1>
 <p>现在简单说一下blogdown用户，如何从早前一代的“hugo-academic”升级到新一代的“Wowchemy Hugo Module”流程。</p>
 <p>先说<strong>一条思路</strong>——实际上我们完全可以用两种方法来实现academic模板的建站。如果按官方说明正确安装软件、工具和环境，则可以：</p>
 <ol start="2" style="list-style-type: lower-alpha">
@@ -112,8 +130,8 @@ git rm themes -r</code></pre>
 <pre><code>WARN 2020/10/05 21:08:20 Module &quot;github.com/wowchemy/wowchemy-hugo-modules/wowchemy&quot; is not compatible with this Hugo version; run &quot;hugo mod graph&quot; for more information.</code></pre>
 <p>不过，好在网站本地开发预览，总算是升级正常啦！</p>
 </div>
-<div id="云端开发预览netlify的断点" class="section level1">
-<h1>云端开发预览：netlify的断点</h1>
+<div id="云端开发预览netlify的断点" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> 云端开发预览：netlify的断点</h1>
 <p>尽管前面的网站本地开发预览已经OK，但是云端自动开发流程我们还没有进行配置。——我几乎又花费了一个早上来查找问题，直到最后成功。</p>
 <p><strong>核心提示</strong>：</p>
 <blockquote>
@@ -139,16 +157,21 @@ git rm themes -r</code></pre>
 </blockquote>
 <p>至此，我们只需要继续维护本地更新升级后的repo-A，并持续推送给github，那么每次commit提交就会自动激活netlify使用新流程开发渲染网站内容啦！</p>
 </div>
-<div id="后续故事" class="section level1">
-<h1>后续故事</h1>
+<div id="后续故事" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> 后续故事</h1>
 <p>考虑到后期可能还会面临hugo academic升级的问题。相关升级问题记录如下：</p>
-<p>0.我的特殊“双服务器”建站需求。简单说，首先我会使用blogdown+hugo+github+netlify工作流建立一个服务器在netlify的网站（A服务器网站），同时会得到该网站的一个<code>public</code>文件夹。以为netlify服务器在国外，国际友人访问自然没有问题，但是国内访问速度明显就不行了。因此，我必须为国内访问用户搭建一个服务器在国内的同步“复刻网站”（B服务器网站），这时我只需要将前面的<code>public/</code>文件夹同步上去即可。因此，“双服务器”建站需求，并不是我个人有什么极客级别的建站癖好，纯粹只是出于“简单性”和“可用性”原则。以上双服务器网站的差异性和联系：</p>
+<div id="double-site" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> 双服务器建站需求</h2>
+<p>我的特殊“双服务器”建站需求。简单说，首先我会使用blogdown+hugo+github+netlify工作流建立一个服务器在netlify的网站（A服务器网站），同时会得到该网站的一个<code>public</code>文件夹。因为netlify服务器在国外，国际友人访问自然没有问题，但是国内访问速度明显就不行了。因此，我必须为国内访问用户搭建一个服务器在国内的同步“复刻网站”（B服务器网站），这时我只需要将前面的<code>public/</code>文件夹同步上去即可。因此，“双服务器”建站需求，并不是我个人有什么极客级别的建站癖好，纯粹只是出于“简单性”和“可用性”原则。以上双服务器网站的差异性和联系：</p>
 <ul>
-<li><p>二者是几乎是“完全复制”的。下面说原因！</p></li>
+<li><p>二者是几乎是“完全复制”的。但就网站更新频率和时间先后而言，后者更新频率更低而且会滞后于前者。下面说原因！</p></li>
 <li><p>netlify网站（A服务器网站）是基于自动化工作流的（automate workflow），只需要github提交（commit）即可后台自动更新整个网站。因此是时效性最强的。而且可以基于git分支进行测试（如feature 分支），即兴写博客post或测试新功能，简直是指哪打哪，顺服得不要不要的。</p></li>
 <li><p>国内网站（B服务器网站）采用的是goodsync的FTP自动上传同步功能。尽管也可以完全设定自动同步（例如，可以设定goodsync规则为：一旦<code>public、</code>有文件修改就自动上传），但是因为不具备git那样的分枝提交功能，会导致同步正在测试阶段的网站，从而导致用户访问失败或页面错乱。最要命的是goodsync的FTP上传速度很慢，对于我这个相对庞杂的网站，要完成一次完整的网站同步，大概需要4-6个小时才能完成（家里稳定网速下）。简单说，我不能让B服务器网站“实时同步”，而且只能在网站版本稳定后才“手动”进行goodsync同步（一般在晚上进行这个同步动作）。</p></li>
 </ul>
-<p>1.更新hugo extend。注意hugo extend与hugo存在一定差异性，简单说hugo extend似乎功能性要更多一点（参看<a href="https://github.com/gohugoio/hugoDocs/issues/1152#issuecomment-646284959">社区问答</a>）。建议windows用户下载使用hugo extend。原因很简单：因为hugo extend能够让我顺利生成网站的本地<code>public/</code>文件夹，而hugo则会报错无法生成<code>public/</code>文件夹！更新hugo extend基本上有两种方法：</p>
+</div>
+<div id="更新hugo-extend" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> 更新hugo extend。</h2>
+<p>注意hugo extend与hugo存在一定差异性，简单说hugo extend似乎功能性要更多一点（参看<a href="https://github.com/gohugoio/hugoDocs/issues/1152#issuecomment-646284959">社区问答</a>）。建议windows用户下载使用hugo extend。原因很简单：因为hugo extend能够让我顺利生成网站的本地<code>public/</code>文件夹，而hugo则会报错无法生成<code>public/</code>文件夹！更新hugo extend基本上有两种方法：</p>
 <ul>
 <li><strong>方法一（已测试）</strong>：手动下载hugo extend版本进行升级更新。具体做法进入官方版本<a href="https://github.com/gohugoio/hugo/releases">下载界面</a>，下载后解压缩并放到指定本地电脑路径下！还是要注意blogdown和scoop两种渲染网站的hugo路径是不同的。（见前面说过的这两种渲染方式。）</li>
 </ul>
@@ -169,27 +192,59 @@ hugo mod get -u ./...
 # Alternatively, update to the latest official release:
 hugo mod get -u
 </code></pre>
-<p>2.如何获得<code>public/</code>文件夹。更新blogdown包。照常使用Rstudio addins <code>serv site</code>。需要注意的是新的hugo流程默认是在缓存里渲染网站，也就意味着<code>public/</code>文件夹默认不会随着渲染而自动更新。</p>
+</div>
+<div id="获得public文件夹" class="section level2" number="4.3">
+<h2><span class="header-section-number">4.3</span> 获得<code>public/</code>文件夹。</h2>
+<p>更新blogdown包。照常使用Rstudio addins <code>serv site</code>。需要注意的是新的hugo流程默认是在缓存里渲染网站，也就意味着<code>public/</code>文件夹默认不会随着渲染而自动更新。</p>
 <ul>
 <li>解决方案1（已测试）：那么需要blogdown执行的是<strong>本地渲染</strong>（参看 <a href="https://stackoverflow.com/questions/64500959/problem-with-rendering-hugo-blogdown-site">网络问答</a>）。（尽管如此，blogdown本地预览会优先使用<code>public/</code>文件夹，所以好像必须要删除<code>public/</code>才能获得实时修改更新，这似乎是一个bug啊！目前对这个问题也是纠结中。因为它带来了goodsync的一个同步问题，每次获得blogdown方法下的<code>public/</code>文件夹里的每一个文件都是全新的、不同于原同步文件（生成时间或内容改变了），这将意味着goodsync每次同步都必须上传<code>public/</code>的所有文件！——而实际上我只是小步调更改了网站的部分内容！）</li>
 </ul>
 <pre class="r"><code>blogdown::build_site(local=TRUE)
 </code></pre>
 <ul>
-<li>解决方案2（未测试）：直接在windows命令视窗里指定hugo生成<code>public/</code>文件夹。具体参看blogdown社区<a href="https://github.com/rstudio/blogdown/issues/495">讨论</a></li>
+<li>解决方案2（已测试）：直接在windows命令视窗里指定hugo生成<code>public/</code>文件夹。具体参看blogdown社区<a href="https://github.com/rstudio/blogdown/issues/495">讨论</a>。</li>
 </ul>
 <pre class="r"><code>hugo -d ./public
 </code></pre>
-<p>3.更新hugo academic模板。如前所述，基本过程就是github下载官方模板。然后与你的现有repo进行比对和替换。</p>
-<p>4.一些升级带来的的副效应。</p>
+</div>
+<div id="升级的副效应" class="section level2" number="4.4">
+<h2><span class="header-section-number">4.4</span> 升级的副效应</h2>
+<p>1.使用RStudio插件(addins)中blogdown下的<code>New post</code>暂时还会带来困扰（参看<a href="https://stackoverflow.com/questions/64688201/blogdown-new-post-addin-creates-but-not-loads-new-file">“stackoverflow队长”问答</a>）。按照hugo的新流程，每个blog都会建立自己的对应的文件夹（参看<a href="https://ropensci.org/technotes/2020/04/23/rmd-learnings/">网页</a>）。具体文件夹结构如下：</p>
+<pre><code>                                          levelName
+1  post                                            
+2   |--data                                        
+3   |   |--fultonfish.rda                          
+4   |   |--fultonfish.xlsx                         
+5   |   °--other-data-file.dat                     
+6   |--pic                                         
+7   |   |--check-box-invisible.png                 
+8   |   °--other-image-file.jpeg                   
+9   |--2020-12-05-web-scraping-tech-webelem.en.Rmd 
+10  |--2020-12-05-web-scraping-tech-webelem.en.html
+11  °--2021-01-31-new-post                         
+12      |--index.en_file                           
+13      |--index.en.Rmd                            
+14      °--index.en.html                           </code></pre>
+<p>blogdown这样的new-post文件夹系统变化带来的一个影响效应是：</p>
 <ul>
-<li>使用<code>knitr::include_graphics</code>函数调用图片，需要额外设定参数<code>error = FALSE</code>。（参看<a href="https://stackoverflow.com/questions/60292022/knitr-cannot-find-img-files-in-static-folder">网络问答</a>）</li>
+<li><p>新旧文件夹体系的不一致性（见上面树形结构图）。虽然只是视觉上的差异，但是还是不够“一致”！</p></li>
+<li><p>致命的影响是Rmarkdown引以为傲的直接R代码块功能。新体系下，可以丝滑般得到正常的R代码块运行效果（已测试。这得益于新文件系统下的self-contained理念）；旧体系下则无法运行。而且经测试，新文件夹体系下，不会影响图片<code>/pic/.png</code>和数据文件<code>/data/.rds</code>的调用。</p></li>
 </ul>
+<!---
+
+- 困扰2：默认情况下，yaml区域不会自动指定输出样式，从而导致报错。因此需要在yaml区域手动添加如下参数：
+
+```r
+output:
+  blogdown::html_page:
+    toc: true
+```
+--->
+<p>2.使用<code>knitr::include_graphics</code>函数调用图片，需要额外设定参数<code>error = FALSE</code>。（参看<a href="https://stackoverflow.com/questions/60292022/knitr-cannot-find-img-files-in-static-folder">网络问答</a>）</p>
 <pre class="r"><code>#knitr::include_graphics(here::here(&quot;static&quot;,&quot;pic&quot;,&quot;check-box-invisible.png&quot;))
 
 #knitr::include_graphics(&quot;../../static/img/check-box-invisible.png&quot;)
 knitr::include_graphics(&quot;/pic/check-box-invisible.png&quot;, error = FALSE)</code></pre>
-<ul>
-<li>使用RStudio插件(addins)中blogdown下的<code>New post</code>，按照hugo的新流程，每个blog都会建立自己的对应的文件夹（参看<a href="https://ropensci.org/technotes/2020/04/23/rmd-learnings/">网页</a>）。但是目前的问题是，它不能自动生成<code>.Rmd</code>文件，而是一个<code>.md</code>文件。</li>
-</ul>
+<p><img src="/pic/check-box-invisible.png" /><!-- --></p>
+</div>
 </div>

@@ -1,7 +1,7 @@
 ---
 title: 自动化数据抓取技术(III)：网页元素处理
 author: huhuaping
-date: '2020-11-30'
+date: '2020-12-03'
 slug: web-scraping-tech-webelem
 categories:
   - R
@@ -10,7 +10,7 @@ tags:
 subtitle: ''
 summary: ''
 authors: []
-lastmod: '2020-11-30T16:30:46+08:00'
+lastmod: '2020-12-03T15:30:46+08:00'
 featured: no
 image:
   caption: ''

@@ -1,0 +1,244 @@
+---
+title: netlify网站与静态static资料的正确衔接
+author: huhuaping
+date: '2021-01-31'
+slug: file-structure-witin-blog
+categories:
+  - R
+tags:
+  - Blogdown
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2021-01-31T11:24:46+08:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: true
+---
+
+<script src="{{< blogdown/postref >}}index.en_files/header-attrs/header-attrs.js"></script>
+
+<div id="TOC">
+<ul>
+<li><a href="#netlify文件夹体系"><span class="toc-section-number">1</span> netlify文件夹体系</a>
+<ul>
+<li><a href="#netlify-content文件系统"><span class="toc-section-number">1.1</span> netlify content文件系统</a></li>
+<li><a href="#netlify-static文件夹系统"><span class="toc-section-number">1.2</span> netlify static文件夹系统</a></li>
+<li><a href="#netlify-public文件系统"><span class="toc-section-number">1.3</span> netlify public文件系统</a></li>
+</ul></li>
+<li><a href="#netlify相关联的github仓库"><span class="toc-section-number">2</span> netlify相关联的Github仓库</a>
+<ul>
+<li><a href="#xaringan-slide的正确操作"><span class="toc-section-number">2.1</span> Xaringan slide的正确操作</a>
+<ul>
+<li><a href="#xaringan-slide的典型文件结构"><span class="toc-section-number">2.1.1</span> xaringan slide的典型文件结构</a></li>
+<li><a href="#xaringan-rmd调用本地图片文件"><span class="toc-section-number">2.1.2</span> Xaringan Rmd调用<strong>本地</strong>图片文件</a></li>
+<li><a href="#xaringan-rmd代码块生成的graph"><span class="toc-section-number">2.1.3</span> Xaringan Rmd代码块生成的graph</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#若干netlify对接技巧"><span class="toc-section-number">3</span> 若干netlify对接技巧</a>
+<ul>
+<li><a href="#netlify内部相互链接"><span class="toc-section-number">3.1</span> netlify内部相互链接</a></li>
+<li><a href="#output"><span class="toc-section-number">3.2</span> netlify指定Rmd输出格式</a></li>
+</ul></li>
+</ul>
+</div>
+
+<div id="netlify文件夹体系" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> netlify文件夹体系</h1>
+<p>使用blogdown进行netlify建站，下述三个文件夹及作用需要区分清楚：</p>
+<ul>
+<li><p><code>content</code>文件夹，主要进行写作或者接口配置（链接等），对接包括：post、publication、course、project等</p></li>
+<li><p><code>static</code>文件夹，主要存放来自其他仓库的静态资料。例如，xaringan slide课件制作往往在我的另一个课程仓库（如<code>course-econometrics</code>），相关文件资料（<code>html</code>）需要提前拷贝到这个文件夹对应位置。</p></li>
+<li><p><code>public</code>文件夹，是建站结果的最终目录树文件系统。netlify服务器网站可以方便国际用户访问，但国内访问速度较慢。<code>public/</code>后期还要更新到本地另外一个域名服务器网站（方便国内访问）。（见之前的<a href="/2020/10/05/hugo-big-update/#double-site">博客文章</a>）</p></li>
+</ul>
+<div id="netlify-content文件系统" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> netlify content文件系统</h2>
+<pre><code>                            levelName
+1  netlify                           
+2   |--static                        
+3   |--content                       
+4   |   |--course-advanced-statistics
+5   |   °--course-econometrics       
+6   |       |--data                  
+7   |       |--schedule-theory.Rmd   
+8   |       °--schedule-theory.html  
+9   |--public                        
+10  |--config                        
+11  °--netlify.Rproj                 </code></pre>
+</div>
+<div id="netlify-static文件夹系统" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> netlify static文件夹系统</h2>
+<pre><code>                                    levelName
+1  netlify                                   
+2   |--static                                
+3   |   |--course-advanced-statistics        
+4   |   °--course-econometrics               
+5   |       |--data                          
+6   |       |--pic                           
+7   |       |   |--chpt1-log.png             
+8   |       |   °--chpt2-reg.png             
+9   |       |--01-introduction-slide.html    
+10  |       °--02-simple-reg-basic-slide.html
+11  |--content                               
+12  |--public                                
+13  |--config                                
+14  °--netlify.Rproj                         </code></pre>
+</div>
+<div id="netlify-public文件系统" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> netlify public文件系统</h2>
+<pre><code>                                    levelName
+1  netlify                                   
+2   |--static                                
+3   |--content                               
+4   |--public                                
+5   |   |--course-advanced-statistics        
+6   |   °--course-econometrics               
+7   |       |--schedule-theory               
+8   |       |--data                          
+9   |       |--pic                           
+10  |       |   |--chpt1-log.png             
+11  |       |   °--chpt2-reg.png             
+12  |       |--01-introduction-slide.html    
+13  |       °--02-simple-reg-basic-slide.html
+14  |--config                                
+15  °--netlify.Rproj                         </code></pre>
+</div>
+</div>
+<div id="netlify相关联的github仓库" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> netlify相关联的Github仓库</h1>
+<p>目前而言，neglify主站相关联的主要github仓库有：</p>
+<ul>
+<li><p>主站仓库：<code>netlify</code>仓库，基于hugo-academic网站模板，集合了众多的其他仓库的展示材料</p></li>
+<li><p>教学课程仓库：主要包括本科课程《计量经济学》<code>course-econometrics</code>;本科课程《统计学原理》<code>course-statistics</code>;研究生课程《中级计量经济学》<code>master-SEM</code>等。主要关联材料包括：课件Xaringan slide；补充材料html；pdf等。</p></li>
+<li><p>研究项目仓库：包括各类开源的研究类仓库，如<a href="https://github.com/huhuaping/agri-trade-open">agri-trade-open</a>；<a href="https://github.com/huhuaping/team-students">team-students</a>等。</p></li>
+<li><p>其他仓库</p></li>
+</ul>
+<div id="xaringan-slide的正确操作" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Xaringan slide的正确操作</h2>
+<p>使用Xaringan制作教学slide。需要注意到Xaringan制作的slide是不能独立封装的（self-contained），也即它需要依赖各种必要组件或资源。</p>
+<div id="xaringan-slide的典型文件结构" class="section level3" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> xaringan slide的典型文件结构</h3>
+<p>课程仓库下xaringan slide制作的典型文件结构：</p>
+<pre><code>                                levelName
+1  course-econometrics                   
+2   |--data                              
+3   |--pic                               
+4   |   |--chpt1-log.png                 
+5   |   °--chpt1-curve-points.png        
+6   |--01-class-instruction              
+7   |--02-lab-exercise                   
+8   |--03-slide-class                    
+9   |   |--libs                          
+10  |   |   |--crosstalk-1.1.1           
+11  |   |   |--htmlwidgets-1.5.3         
+12  |   |   |   °--htmlwidgets.js        
+13  |   |   °--remark-latest.min.js      
+14  |   |--01-introduction-slide_files   
+15  |   |   °--figure-html               
+16  |   |       |--unnamed-chunk-14-1.png
+17  |   |       °--unnamed-chunk-15-1.png
+18  |   |--01-introduction-slide.html    
+19  |   °--01-introduction-slide.Rmd     
+20  |--template                          
+21  |--EViews                            
+22  |--mycss                             
+23  |--public                            
+24  °--course-econometrics.Rproj         </code></pre>
+</div>
+<div id="xaringan-rmd调用本地图片文件" class="section level3" number="2.1.2">
+<h3><span class="header-section-number">2.1.2</span> Xaringan Rmd调用<strong>本地</strong>图片文件</h3>
+<p>值得注意的是Xaringan Rmd使用<strong>本地</strong>图片文件（存放在<code>pic/</code>文件夹下），应该使用相对路径，而不是绝对路径（参看<a href="https://github.com/yihui/xaringan/issues/145%3E">the full path approach doesn’t work</a>）。也即意味着：</p>
+<ul>
+<li><p>不能使用绝对路径<code>D:/github/course-econometrics/pic/chpt1-log.png</code></p></li>
+<li><p>同时也不能使用<code>here::here("pic","chpt1-log.png")</code>，因为它也会给出绝对路径<code>"D:/github/course-econometrics/pic/chpt1-log.png"</code></p></li>
+</ul>
+<p>那么Rmd文件<code>01-introduction-slide.Rmd</code>对上述本地图片的函数化引用应该设为相对路径形式，如：</p>
+<ul>
+<li><p><code>markdown</code>语法：<code>![]("../pic/chpt1-log.png")</code></p></li>
+<li><p>或者<code>knitr</code>语法：<code>include_graphics("../pic/chpt1-log.png")</code></p></li>
+</ul>
+<p>总结起来，图片绝对路径和相对路径的差异比较如下：</p>
+<ul>
+<li><p>绝对路径直接无法渲染出图形</p></li>
+<li><p>相对路径可以渲染出图形，而且可以使用chrome浏览器开发工具看到html元素</p></li>
+</ul>
+<pre class="html"><code># html develop tool view
+
+&lt;div class=&quot;figure&quot; style=&quot;text-align: center&quot;&gt;
+  &lt;img src=&quot;../pic/chpt1-log.png&quot; alt=&quot;一份样本数据&quot; width=&quot;693&quot;&gt;
+  &lt;p class=&quot;caption&quot;&gt;一份样本数据&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+</div>
+<div id="xaringan-rmd代码块生成的graph" class="section level3" number="2.1.3">
+<h3><span class="header-section-number">2.1.3</span> Xaringan Rmd代码块生成的graph</h3>
+<p>Rmd使用代码块生成的图片这会自动存放在同名文件夹下的一个文件夹内。如<code>01-introduction-slide.Rmd</code>，则代码块<code>chunk-14</code>制图将存放在自动生成的文件夹<code>01-introduction-slide_files/figure-html/unnamed-chunk-14-1.png</code>。</p>
+<p>例如，R代码块14如下：</p>
+<pre class="r"><code># r code chunk 14
+
+include_graphics(&quot;../pic/chpt1-curve-points.png&quot;, dpi=200)</code></pre>
+<p>可以使用chrome浏览器开发工具看到其对应的html元素：</p>
+<pre class="html"><code>&lt;!--- html develop tool view---&gt;
+
+&lt;div class=&quot;figure&quot; style=&quot;text-align: center&quot;&gt;
+&lt;img src=&quot;01-introduction-slide_files/figure-html/unnamed-chunk-14-1.png&quot; alt=&quot;正态分布(n=500)&quot;&gt;
+&lt;p class=&quot;caption&quot;&gt;正态分布(n=500)&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+</div>
+</div>
+</div>
+<div id="若干netlify对接技巧" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> 若干netlify对接技巧</h1>
+<div id="netlify内部相互链接" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> netlify内部相互链接</h2>
+<p>如果要直接在<code>/content/course-econometrics</code>下用Rmd文件生成.html，然后再别处来调用这个内部的html文件？</p>
+<p>1.基于主站的相对链接引用（已测试）。参看“队长”问答<a href="https://stackoverflow.com/questions/55930617/linking-to-another-post-in-blogdown">Linking to another post in blogdown</a></p>
+<ul>
+<li>设置基准地址，修改<code>config.toml</code>参数：</li>
+</ul>
+<pre><code># config.toml
+
+baseurl = &quot;https://yourdomain.netlify.app/&quot;</code></pre>
+<ul>
+<li>设定内部引用规则，修改<code>config.toml</code>参数：</li>
+</ul>
+<pre class="toml"><code># config.toml
+
+[permalinks]
+  # If only creating events which are talks, we can optimize event URLs for talks.
+  event = &quot;/talk/:slug/&quot;
+  # Workaround Hugo publishing taxonomy URLs as plurals - consistently use singular across Academic.
+  tags = &quot;/tag/:slug/&quot;
+  categories = &quot;/category/:slug/&quot;
+  publication_types = &quot;/publication-type/:slug/&quot;
+  post = &quot;/:year/:month/:day/:slug/&quot;
+</code></pre>
+<ul>
+<li>Rmd进行引用内部链接。以博文post为例：见之前的<a href="/2020/10/05/hugo-big-update/#double-site">博客文章</a>。值得说明的是：a.务必要按前述各个模块的链接地址规则进行url设定。b.不要画蛇添足<code>/2020/10/05/hugo-big-update/index.en.html</code>（哪怕文件夹下有这个html文件）；c.只要设定了refer ID（如<code>{#your-section-refer}</code>）,就可以进行更进一步的链接。具体代码如下：</li>
+</ul>
+<pre><code># note your can refer the section ID as your have set
+
+见之前的[博客文章](/2020/10/05/hugo-big-update/#double-site)</code></pre>
+<p>2.利用hugo的shortcode特性（未测试）。参看yihui提到的<a href="https://bookdown.org/yihui/blogdown/content.html-shortcode">Shortcode方法</a>。正文行内引用方式：</p>
+<pre><code>[第一章](r blogdown::shortcodex(&quot;relref&quot;, &quot;chapter01-introduction.html&quot;))</code></pre>
+<p>需要注意的是不能直接引用<code>chapter01-introduction.Rmd</code>；但是可以直接引用<code>chapter01-introduction.md</code>或者<code>chapter01-introduction.html</code>。此外还要注意引用路径是相对的。例如：</p>
+<pre><code>[博客文章提到](r blogdown::shortcodex(&quot;relref&quot;, &quot;../post/2019-02-24-xaringan-for-course-slide.html&quot;))
+</code></pre>
+</div>
+<div id="output" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> netlify指定Rmd输出格式</h2>
+<p>用.Rmd生成的文档能不能有其他的输出格式呢？还能做些别的么？</p>
+<pre class="yaml"><code># add this in yaml area
+
+output:
+  blogdown::html_page:
+    toc: true</code></pre>
+</div>
+</div>

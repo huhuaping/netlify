@@ -1,7 +1,7 @@
 ---
 title: 自动化数据抓取技术(IV)：正则表达Regex
 author: huhuaping
-date: '2020-11-30'
+date: '2020-12-04'
 slug: web-scraping-tech-regex
 categories:
   - R
@@ -10,7 +10,7 @@ tags:
 subtitle: ''
 summary: ''
 authors: []
-lastmod: '2020-11-30T16:48:02+08:00'
+lastmod: '2020-12-04T16:48:02+08:00'
 featured: no
 image:
   caption: ''
@@ -38,7 +38,7 @@ source(here("static", "Rscript", "set-chunk-option.R"))
 
 ## 常见问题场景
 
-### 任意中文
+### 任意中文字符
 
 具体请[参看](https://stackoverflow.com/questions/56723142/regex-to-match-any-chinese-character-in-r)
 

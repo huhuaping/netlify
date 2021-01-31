@@ -1,7 +1,7 @@
 ---
 title: 自动化数据抓取技术(II)： RSelenium
 author: huhuaping
-date: '2020-11-30'
+date: '2020-12-02'
 slug: web-scraping-tech-rselenium
 categories:
   - R
@@ -10,7 +10,7 @@ tags:
 subtitle: ''
 summary: ''
 authors: []
-lastmod: '2020-11-30T16:20:18+08:00'
+lastmod: '2020-12-02T15:20:18+08:00'
 featured: no
 image:
   caption: ''
