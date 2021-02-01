@@ -1,0 +1,80 @@
+---
+title: R包开发：xmerit
+author: huhuaping
+date: '2021-02-01'
+slug: pkg-xmerit
+categories:
+  - Econometrics
+  - R
+tags:
+  - package
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2021-02-01T21:12:57+08:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: true
+---
+
+<script src="{{< blogdown/postref >}}index.en_files/header-attrs/header-attrs.js"></script>
+
+<div id="TOC">
+<ul>
+<li><a href="#缘由"><span class="toc-section-number">1</span> 缘由</a></li>
+<li><a href="#开发思路"><span class="toc-section-number">2</span> 开发思路</a></li>
+<li><a href="#一些工具函数"><span class="toc-section-number">3</span> 一些工具函数</a>
+<ul>
+<li><a href="#将xls文件高保真地转换为xlsx文件"><span class="toc-section-number">3.1</span> 将xls文件高保真地转换为xlsx文件</a></li>
+<li><a href="#df数据列元素进行快速粘合输出"><span class="toc-section-number">3.2</span> df数据列元素进行快速粘合输出</a></li>
+</ul></li>
+</ul>
+</div>
+
+<div id="缘由" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> 缘由</h1>
+<blockquote>
+<p>R包<code>xmetrics</code>定位于辅助计量经济学和统计学课程进行高效的、可重现的（reproducable）教学内容准备和演示。</p>
+</blockquote>
+<p>R包命名的原则应该坚持：a.词形或发音与表意一致性，也即与开发R包核心功能定位的一致；b.不能太范化或通用，避免后期用户搜索的混淆，或推广传播的混乱。</p>
+<p>拟定开发的R包命名<code>xmetrics</code>，音近于计量经济学英文<strong>Econometrics</strong>，<code>X</code>也有多种用途或神通广大的含义，而且metrics本身就是测量或度量的含义。通过google搜索关键词“xmetrics”的重合度或范化度，仅发现一款游泳穿戴设备名为“Xmetrics”（见<a href="https://swimswam.com/xmetrics-the-worlds-first-activity-tracker-for-swimmers/">网页</a>）。继续google搜索关键词“R xmetrics”，发现一个定位为机器学习（Machine Learning）的R包命名为“Metrics”（见<a href="https://cran.r-project.org/web/packages/Metrics/index.html">CRAN</a>）。</p>
+<p>功能类似R包主要有：</p>
+<ul>
+<li><code>equatiomatic</code>（见github仓库<a href="https://github.com/datalorax/equatiomatic">datalorax/equatiomatic</a>）</li>
+</ul>
+<blockquote>
+<p>The goal of <code>equatiomatic</code> is to reduce the pain associated with writing LaTeX code from a fitted model. In the future, the package aims to support any model supported by <code>broom</code>.</p>
+</blockquote>
+</div>
+<div id="开发思路" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> 开发思路</h1>
+<p>math equation输出需要考虑的几个方面：</p>
+<ul>
+<li><p>支持纯latex符号公式（symbol equation）、模型结果数值化（value equation）以及二者的混合；</p></li>
+<li><p>支持计量经济学数学公式（math equation）的各类理论表达，如总体回归模型PRM、总体回归函数PRF、样本回归模型（SRM）、样本回归函数（SRF）等；</p></li>
+<li><p>支持多种latex美化效果，包括<code>align</code>、<code>alignedat</code>等排列对齐环境；</p></li>
+<li><p>支持灵活个性化的参数符号（如<span class="math inline">\(\alpha,\beta,\gamma,\cdots\)</span>）和下标符号（如<span class="math inline">\(X_i, u_i, u_t\)</span>）选择等；</p></li>
+<li><p>支持多种模型估计方法，包括OLS回归、虚拟变量回归（ANOVA）等；</p></li>
+<li><p>与通用R包保持接口一致，如包<code>broom</code>等；</p></li>
+</ul>
+</div>
+<div id="一些工具函数" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> 一些工具函数</h1>
+<div id="将xls文件高保真地转换为xlsx文件" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> 将xls文件高保真地转换为xlsx文件</h2>
+<ul>
+<li><p>R函数名称：convert_xls_as_xlsx(input_dir, export_dir)</p></li>
+<li><p>R代码位置：“D:/github/article-west/R/xls2xlsx.R”</p></li>
+</ul>
+</div>
+<div id="df数据列元素进行快速粘合输出" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> df数据列元素进行快速粘合输出</h2>
+</div>
+</div>
