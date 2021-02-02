@@ -1,0 +1,66 @@
+---
+title: R包开发：构架及基础
+author: huhuaping
+date: '2021-02-02'
+slug: pkg-develop
+categories:
+  - R
+tags:
+  - package
+subtitle: ''
+summary: ''
+authors: [胡华平]
+lastmod: '2021-02-02T20:45:53+08:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+math: TRUE
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: true
+---
+
+# 学习资源
+
+- "R packages" by [Hadley Wickham](https://r-pkgs.org/index.html)。R包开发的常备红宝书之一。
+
+- "rOpenSci Packages: Development, Maintenance, and Peer Review" by [rOpenSci team](https://devguide.ropensci.org/index.html)。rOpenSci团队R包开发的规范和指南。
+
+# 包结构和状态（Package structure and state）
+
+开发主要在前面三个阶段，后面两个阶段主要是包的使用：
+
+- **源状态（source）**：包开发的最初文件和结构，开发中最频繁使用的阶段。
+
+- **打包状态（bundled）**：将包压缩成了单个文件（`.tar.gz`，但并不是简单压缩文件而已），仅是一种`源状态`到`装载状态`的过渡而已，也没有其他太大实际作用。
+
+- **二进制状态（binary）**：根据不同操作系统平台的压缩包文件，如windows系统使用`.zip`包文件，macOS系统使用`.tgz`包文件。可使用`devtools::build(binary = TRUE)`构建二进制状态包文件。
+
+- **装载状态（installed）**：二进制包已经被解压缩到包目录下（package library）。
+
+- *缓存状态（in-memory）**：包的所有功能函数（functions）都已经在内存中，随时可供用户使用。
+
+
+下面图\@ref(fig:pkg-files)比较直观地呈现了它们之间的关联与差异：
+
+```{r pkg-files,echo=FALSE, fig.cap="三种包开发状态的联系和差异"}
+knitr::include_graphics("/pic/xmetrics/package-files.png", error = FALSE)
+```
+
+
+概念要点：
+
+- 注意区分`.Rbuildignore`和`.gitignore`两个文件的目的和作用。简单说，`.Rbuildignore`是为了协调**包开发实践**与**`CRAN`包发布要求**之间的不同；而`.gitignore`是为了满足**版本控制**工具（如git）的特定需求。
+
+> 建议使用`usethis::use_build_ignore()`来添加`.Rbuildignore`忽略文件清单。
+
+
+而下面图\@ref(fig:pkg-installation)比较直观地呈现了不同方法调用不同包状态的差异：
+
+```{r pkg-installation,echo=FALSE, fig.cap="不同方法调用不同包状态的差异"}
+knitr::include_graphics("/pic/xmetrics/package-installation.png", error = FALSE)
+```

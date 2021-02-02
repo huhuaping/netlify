@@ -1,5 +1,5 @@
 ---
-title: R包开发：xmerit
+title: R包开发：xmetrics
 author: huhuaping
 date: '2021-02-01'
 slug: pkg-xmerit
@@ -10,7 +10,7 @@ tags:
   - package
 subtitle: ''
 summary: ''
-authors: []
+authors: [胡华平]
 lastmod: '2021-02-01T21:12:57+08:00'
 featured: no
 image:
@@ -18,6 +18,7 @@ image:
   focal_point: ''
   preview_only: no
 projects: []
+math: TRUE
 output:
   blogdown::html_page:
     toc: true
@@ -34,27 +35,35 @@ R包命名的原则应该坚持：a.词形或发音与表意一致性，也即�
 
 
 
-```{r, echo=FALSE, comment="", eval=FALSE}
+```{r, echo=FALSE, comment="", message=FALSE}
 require("xmerit")
+require("tidyverse")
 
-lx.est
+# global options for knitr
+knitr::opts_chunk$set(comment = "",fig.align='center',echo = FALSE,message = FALSE,
+                      fig.width=11, fig.height=6)
 ```
 
 
-功能类似R包主要有：
-
-- `equatiomatic`（见github仓库[datalorax/equatiomatic](https://github.com/datalorax/equatiomatic)）
+功能类似R包主要有： `equatiomatic`（见github仓库[datalorax/equatiomatic](https://github.com/datalorax/equatiomatic)）
 
 > The goal of `equatiomatic` is to reduce the pain associated with writing LaTeX code from a fitted model. In the future, the package aims to support any model supported by `broom`.
 
+- 优点：简单、容易上手；支持较多的几类计量模型。
+
+- 不足：功能相对较少（见下面）
 
 # 开发思路
+
+## 主要功能
 
 math equation输出需要考虑的几个方面：
 
 - 支持纯latex符号公式（symbol equation）、模型结果数值化（value equation）以及二者的混合；
 
 - 支持计量经济学数学公式（math equation）的各类理论表达，如总体回归模型PRM、总体回归函数PRF、样本回归模型（SRM）、样本回归函数（SRF）等；
+
+- 支持多种数值结果形式输出，例如经典三行式（系数、标准误、t值），或者经典一行式（系数）。
 
 - 支持多种latex美化效果，包括`align`、`alignedat`等排列对齐环境；
 
@@ -64,8 +73,89 @@ math equation输出需要考虑的几个方面：
 
 - 与通用R包保持接口一致，如包`broom`等；
 
+## 主要挑战
+
+计量经济学的语言符号体系
+
+- 符号体系的标准化和一致性问题【低难度】
+
+- 数学证明和逻辑推导问题【工作强度大】。
+
+### 理论公式输出
 
 
+```{r, echo = TRUE}
+X <- c(paste0(rep(c("X","Z"),each=4),1:4), "fathedu", "mothedu")
+Y <- "lwage"
+Greek.g <- c("alpha","beta","lambda")
+Greek.n <- c(4,4,2)
+#type <- "srm"
+Obs <- "i"
+N.row <- 4
+Cst <- F
+```
+
+
+
+总体回归模型PRM：
+
+```{r, results= "asis"}
+prm_test1 <- lx.psm(x =X, y = Y,greek.g = Greek.g, greek.n = Greek.n,
+       type = "prm", intercept = Cst , lm.label = "prm",
+       obs = Obs, n.row = N.row )
+
+```
+
+样本回归模型SRM：
+
+```{r, results= "asis", echo = TRUE}
+srm_test <- lx.psm(x =X, y = Y, greek.g = Greek.g, greek.n = Greek.n,
+       type = "srm", intercept = Cst, lm.label = "srm", 
+       obs = Obs, n.row = N.row)
+```
+
+样本回归函数SRF：
+
+```{r, results= "asis", echo = TRUE}
+srf_test <- lx.psm(x =X, y = Y,greek.g = Greek.g, greek.n = Greek.n,
+       type = "srf", intercept = Cst, lm.label = "srf",
+       obs = Obs, n.row = N.row )
+```
+
+
+### 数值公式输出
+
+```{r, echo=TRUE, message=FALSE}
+require("wooldridge")
+mroz <- wooldridge::mroz %>%
+  as_tibble() %>%
+  select(lwage, educ,exper, 
+         fatheduc,motheduc,everything()) %>%
+  filter(!is.na(wage))
+
+mod_origin <- formula(lwage ~ educ + nwifeinc +exper+I(exper^2) + I(exper^2*city)  )
+
+ols_origin <- lm(formula = mod_origin, data = mroz)
+```
+
+
+默认形式：
+
+```{r, results="asis", echo=TRUE}
+lx_out<- lx.est(lm.mod = mod_origin, lm.dt = mroz)
+```
+
+srm形式：
+
+```{r, results="asis", echo=TRUE}
+lx_out<- lx.est(lm.mod = mod_origin, lm.dt = mroz, style = "srm")
+```
+
+一行形式：
+
+```{r, results="asis", echo=TRUE}
+lx_out<- lx.est(lm.mod = mod_origin, lm.dt = mroz, style = "srm", opt = c("p"))
+```
 
 
 # 一些工具函数

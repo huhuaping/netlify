@@ -1,0 +1,74 @@
+---
+title: R包开发：构架及基础
+author: huhuaping
+date: '2021-02-02'
+slug: pkg-develop
+categories:
+  - R
+tags:
+  - package
+subtitle: ''
+summary: ''
+authors: [胡华平]
+lastmod: '2021-02-02T20:45:53+08:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+math: TRUE
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: true
+---
+
+<script src="{{< blogdown/postref >}}index.en_files/header-attrs/header-attrs.js"></script>
+
+<div id="TOC">
+<ul>
+<li><a href="#学习资源"><span class="toc-section-number">1</span> 学习资源</a></li>
+<li><a href="#包结构和状态package-structure-and-state"><span class="toc-section-number">2</span> 包结构和状态（Package structure and state）</a></li>
+</ul>
+</div>
+
+<div id="学习资源" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> 学习资源</h1>
+<ul>
+<li><p>“R packages” by <a href="https://r-pkgs.org/index.html">Hadley Wickham</a>。R包开发的常备红宝书之一。</p></li>
+<li><p>“rOpenSci Packages: Development, Maintenance, and Peer Review” by <a href="https://devguide.ropensci.org/index.html">rOpenSci team</a>。rOpenSci团队R包开发的规范和指南。</p></li>
+</ul>
+</div>
+<div id="包结构和状态package-structure-and-state" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> 包结构和状态（Package structure and state）</h1>
+<p>开发主要在前面三个阶段，后面两个阶段主要是包的使用：</p>
+<ul>
+<li><p><strong>源状态（source）</strong>：包开发的最初文件和结构，开发中最频繁使用的阶段。</p></li>
+<li><p><strong>打包状态（bundled）</strong>：将包压缩成了单个文件（<code>.tar.gz</code>，但并不是简单压缩文件而已），仅是一种<code>源状态</code>到<code>装载状态</code>的过渡而已，也没有其他太大实际作用。</p></li>
+<li><p><strong>二进制状态（binary）</strong>：根据不同操作系统平台的压缩包文件，如windows系统使用<code>.zip</code>包文件，macOS系统使用<code>.tgz</code>包文件。可使用<code>devtools::build(binary = TRUE)</code>构建二进制状态包文件。</p></li>
+<li><p><strong>装载状态（installed）</strong>：二进制包已经被解压缩到包目录下（package library）。</p></li>
+<li><p>*缓存状态（in-memory）**：包的所有功能函数（functions）都已经在内存中，随时可供用户使用。</p></li>
+</ul>
+<p>下面图<a href="#fig:pkg-files">2.1</a>比较直观地呈现了它们之间的关联与差异：</p>
+<div class="figure"><span id="fig:pkg-files"></span>
+<img src="/pic/xmetrics/package-files.png" alt="三种包开发状态的联系和差异"  />
+<p class="caption">
+Figure 2.1: 三种包开发状态的联系和差异
+</p>
+</div>
+<p>概念要点：</p>
+<ul>
+<li>注意区分<code>.Rbuildignore</code>和<code>.gitignore</code>两个文件的目的和作用。简单说，<code>.Rbuildignore</code>是为了协调<strong>包开发实践</strong>与<strong><code>CRAN</code>包发布要求</strong>之间的不同；而<code>.gitignore</code>是为了满足<strong>版本控制</strong>工具（如git）的特定需求。</li>
+</ul>
+<blockquote>
+<p>建议使用<code>usethis::use_build_ignore()</code>来添加<code>.Rbuildignore</code>忽略文件清单。</p>
+</blockquote>
+<p>而下面图<a href="#fig:pkg-installation">2.2</a>比较直观地呈现了不同方法调用不同包状态的差异：</p>
+<div class="figure"><span id="fig:pkg-installation"></span>
+<img src="/pic/xmetrics/package-installation.png" alt="不同方法调用不同包状态的差异"  />
+<p class="caption">
+Figure 2.2: 不同方法调用不同包状态的差异
+</p>
+</div>
+</div>

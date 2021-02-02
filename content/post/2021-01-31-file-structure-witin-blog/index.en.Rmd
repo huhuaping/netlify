@@ -1,5 +1,5 @@
 ---
-title: Netlify系列2：主站与静态static资料的正确衔接
+title: Netlify建站：主站与静态static资料的正确衔接
 author: huhuaping
 date: '2021-01-31'
 slug: file-structure-witin-blog
@@ -9,7 +9,7 @@ tags:
   - Blogdown
 subtitle: ''
 summary: ''
-authors: []
+authors: [胡华平]
 lastmod: '2021-01-31T11:24:46+08:00'
 featured: no
 image:
