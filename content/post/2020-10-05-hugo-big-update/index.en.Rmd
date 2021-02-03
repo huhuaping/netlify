@@ -10,7 +10,7 @@ tags:
   - hugo
 subtitle: ''
 summary: '对于搭建个人网站，曾经有一句经典的忠告摆在我的面前：永远不要使用复杂的模板，否则总有一天会掉入网站迁移漩涡，甚至万劫不复的境地。这种事，难免大家都会赶上那么一遭。这篇博文给出了一些使用经验和若干建议。本博文会随时更新。'
-authors: []
+authors: [胡华平]
 lastmod: '2020-10-05T21:08:21+08:00'
 featured: no
 image:
@@ -172,7 +172,7 @@ c. “嫁接替换”完成后，netlify就在CMS新流程下，开发了原来�
 - 国内网站（B服务器网站）采用的是goodsync的FTP自动上传同步功能。尽管也可以完全设定自动同步（例如，可以设定goodsync规则为：一旦`public、`有文件修改就自动上传），但是因为不具备git那样的分枝提交功能，会导致同步正在测试阶段的网站，从而导致用户访问失败或页面错乱。最要命的是goodsync的FTP上传速度很慢，对于我这个相对庞杂的网站，要完成一次完整的网站同步，大概需要4-6个小时才能完成（家里稳定网速下）。简单说，我不能让B服务器网站“实时同步”，而且只能在网站版本稳定后才“手动”进行goodsync同步（一般在晚上进行这个同步动作）。
 
 
-## 更新hugo extend。
+## 更新hugo extend
 
 注意hugo extend与hugo存在一定差异性，简单说hugo extend似乎功能性要更多一点（参看[社区问答](https://github.com/gohugoio/hugoDocs/issues/1152#issuecomment-646284959)）。建议windows用户下载使用hugo extend。原因很简单：因为hugo extend能够让我顺利生成网站的本地`public/`文件夹，而hugo则会报错无法生成`public/`文件夹！更新hugo extend基本上有两种方法：
 
@@ -201,7 +201,7 @@ hugo mod get -u
 
 ```
 
-## 获得`public/`文件夹。
+## 获得`public/`文件夹
 
 更新blogdown包。照常使用Rstudio addins `serv site`。需要注意的是新的hugo流程默认是在缓存里渲染网站，也就意味着`public/`文件夹默认不会随着渲染而自动更新。
 
@@ -403,4 +403,30 @@ Hugo version not set in .Rprofile.
   To update a file, re-knit or use blogdown::build_site(build_rmd = 'timestamp')
 
 ```
+
+# hugo模板微调
+
+> 劝君更进一杯酒，模板莫要闲折腾。——somebody
+
+## 基本原理
+
+考虑到`hugo-academic`模板会不断升级，如果用户想要对模板进行个性化调整，因此`hugo`开发了一套**模板查找顺位机制**（[template lookup](https://gohugo.io/templates/lookup-order/)）。用户可以在不直接修改`hugo-academic`官方模板文件下，独立地进行个性化修改和微调。当然用户的任何个性化修改，都需要在约定文件路径下，且使用`go`[语法](https://gohugo.io/hugo-modules/)。
+
+- 优点：官方模板文件和用户个性化修改文件互相分离和独立，保证了二者并行不悖。
+
+- 缺点：用户需要熟悉`go`语法。此外，因为官方模板会不断迭代变化，用户个性化修改可能会失效，因而需要不断去配合官方的迭代步骤！
+
+## 给post博文添加floating toc
+
+官方模板下，默认的`post`是基于`widget: pages`样式。其视觉效果特点是：
+
+- 在pc端，`chrome`浏览器下post博文正文宽度为720px，如果显示器分辨率为`1920*1080`，那么正文的宽度占比为`r scales::percent(720/1920, accuracy = 0.1)`。按照时兴的说法就是“屏占比”太低！
+
+- 在移动手机端，post博文正文宽度显示不错。
+
+- 默认情况下，是没有目录导航的（toc）。当然也可以通过添加yaml参数`toc: true`来添加目录导航，但是toc显示在正文之前（而且没有“目录”字样）。对于分节较多的长篇博文，非常不利于读者阅读定位和前后对照。
+
+因此，对于分节较多的长篇博文，自然就有了"侧边浮动目录"（sidebar floating toc）的个性化页面样式修订念头。yihui[建议](https://github.com/rstudio/blogdown/issues/375#issuecomment-476332000)可以通过JavaScript或CSS进行设定。Xiaoou WANG也提供了一个hugo语法下的[实现方法](https://xiaoouwang.github.io/post/add_a_float_toc_to_academic_theme/)，但是有不少bug。
+
+
 
