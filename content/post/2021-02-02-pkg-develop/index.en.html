@@ -29,7 +29,16 @@ output:
 <div id="TOC">
 <ul>
 <li><a href="#学习资源"><span class="toc-section-number">1</span> 学习资源</a></li>
-<li><a href="#包结构和状态package-structure-and-state"><span class="toc-section-number">2</span> 包结构和状态（Package structure and state）</a></li>
+<li><a href="#知识体系"><span class="toc-section-number">2</span> 知识体系</a>
+<ul>
+<li><a href="#包结构和状态package-structure-and-state"><span class="toc-section-number">2.1</span> 包结构和状态（Package structure and state）</a></li>
+</ul></li>
+<li><a href="#概念要点"><span class="toc-section-number">3</span> 概念要点</a>
+<ul>
+<li><a href="#区分.rbuildignore和.gitignore"><span class="toc-section-number">3.1</span> 区分<code>.Rbuildignore</code>和<code>.gitignore</code></a></li>
+<li><a href="#区分rstudio-project和active-usethis-project"><span class="toc-section-number">3.2</span> 区分<code>RStudio Project</code>和<code>active usethis project</code></a></li>
+<li><a href="#load_all的使用"><span class="toc-section-number">3.3</span> <code>load_all()</code>的使用</a></li>
+</ul></li>
 </ul>
 </div>
 
@@ -40,15 +49,17 @@ output:
 <li><p>“rOpenSci Packages: Development, Maintenance, and Peer Review” by <a href="https://devguide.ropensci.org/index.html">rOpenSci team</a>。rOpenSci团队R包开发的规范和指南。</p></li>
 </ul>
 </div>
-<div id="包结构和状态package-structure-and-state" class="section level1" number="2">
-<h1><span class="header-section-number">2</span> 包结构和状态（Package structure and state）</h1>
+<div id="知识体系" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> 知识体系</h1>
+<div id="包结构和状态package-structure-and-state" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> 包结构和状态（Package structure and state）</h2>
 <p>开发主要在前面三个阶段，后面两个阶段主要是包的使用：</p>
 <ul>
 <li><p><strong>源状态（source）</strong>：包开发的最初文件和结构，开发中最频繁使用的阶段。</p></li>
 <li><p><strong>打包状态（bundled）</strong>：将包压缩成了单个文件（<code>.tar.gz</code>，但并不是简单压缩文件而已），仅是一种<code>源状态</code>到<code>装载状态</code>的过渡而已，也没有其他太大实际作用。</p></li>
 <li><p><strong>二进制状态（binary）</strong>：根据不同操作系统平台的压缩包文件，如windows系统使用<code>.zip</code>包文件，macOS系统使用<code>.tgz</code>包文件。可使用<code>devtools::build(binary = TRUE)</code>构建二进制状态包文件。</p></li>
 <li><p><strong>装载状态（installed）</strong>：二进制包已经被解压缩到包目录下（package library）。</p></li>
-<li><p>*缓存状态（in-memory）**：包的所有功能函数（functions）都已经在内存中，随时可供用户使用。</p></li>
+<li><p><strong>缓存状态（in-memory）</strong>：包的所有功能函数（functions）都已经在内存中，随时可供用户使用。</p></li>
 </ul>
 <p>下面图<a href="#fig:pkg-files">2.1</a>比较直观地呈现了它们之间的关联与差异：</p>
 <div class="figure"><span id="fig:pkg-files"></span>
@@ -57,18 +68,48 @@ output:
 Figure 2.1: 三种包开发状态的联系和差异
 </p>
 </div>
-<p>概念要点：</p>
-<ul>
-<li>注意区分<code>.Rbuildignore</code>和<code>.gitignore</code>两个文件的目的和作用。简单说，<code>.Rbuildignore</code>是为了协调<strong>包开发实践</strong>与<strong><code>CRAN</code>包发布要求</strong>之间的不同；而<code>.gitignore</code>是为了满足<strong>版本控制</strong>工具（如git）的特定需求。</li>
-</ul>
-<blockquote>
-<p>建议使用<code>usethis::use_build_ignore()</code>来添加<code>.Rbuildignore</code>忽略文件清单。</p>
-</blockquote>
 <p>而下面图<a href="#fig:pkg-installation">2.2</a>比较直观地呈现了不同方法调用不同包状态的差异：</p>
 <div class="figure"><span id="fig:pkg-installation"></span>
 <img src="/pic/xmetrics/package-installation.png" alt="不同方法调用不同包状态的差异"  />
 <p class="caption">
 Figure 2.2: 不同方法调用不同包状态的差异
 </p>
+</div>
+</div>
+</div>
+<div id="概念要点" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> 概念要点</h1>
+<div id="区分.rbuildignore和.gitignore" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> 区分<code>.Rbuildignore</code>和<code>.gitignore</code></h2>
+<p>需要注意区分<code>.Rbuildignore</code>和<code>.gitignore</code>两个文件的目的和作用。简单说，<code>.Rbuildignore</code>是为了协调<strong>包开发实践</strong>与<strong><code>CRAN</code>包发布要求</strong>之间的不同；而<code>.gitignore</code>是为了满足<strong>版本控制</strong>工具（如git）的特定需求。</p>
+<blockquote>
+<p>建议使用<code>usethis::use_build_ignore()</code>来添加<code>.Rbuildignore</code>忽略文件清单。</p>
+</blockquote>
+</div>
+<div id="区分rstudio-project和active-usethis-project" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> 区分<code>RStudio Project</code>和<code>active usethis project</code></h2>
+<p>需要注意的是<code>usethis</code>包的函数不会明确知名路径，而是<strong>默认</strong>在<code>active usethis project</code>下，因此它也意味着默认它是与<code>RStudio Project</code>同路径的。</p>
+<blockquote>
+<p>建议使用<code>usethis::proj_sitrep()</code>查看二者路径状态是否一致。</p>
+</blockquote>
+<pre class="r"><code>usethis::proj_sitrep()
+
+#   working_directory: &#39;D:/github/xmerit&#39;
+# active_usethis_proj: &#39;D:/github/xmerit&#39;
+# active_rstudio_proj: &#39;D:/github/xmerit&#39;</code></pre>
+</div>
+<div id="load_all的使用" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> <code>load_all()</code>的使用</h2>
+<p>开发或测试期间，如何转载或缓存一个开发包？</p>
+<blockquote>
+<p>建议使用<code>pkgload::load_all()</code>，Rstudio快捷键：<code>Ctrl + Shift + L</code>。</p>
+</blockquote>
+<p>当然，其他的方法还包括<code>devtools::load_all()</code>等，具体差异可以见下面图<a href="#fig:load-all">3.1</a>：</p>
+<div class="figure"><span id="fig:load-all"></span>
+<img src="/pic/xmetrics/load-all.png" alt="R包开发阶段的若干调用方法"  />
+<p class="caption">
+Figure 3.1: R包开发阶段的若干调用方法
+</p>
+</div>
 </div>
 </div>

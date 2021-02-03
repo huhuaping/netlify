@@ -30,7 +30,9 @@ output:
 
 - "rOpenSci Packages: Development, Maintenance, and Peer Review" by [rOpenSci team](https://devguide.ropensci.org/index.html)。rOpenSci团队R包开发的规范和指南。
 
-# 包结构和状态（Package structure and state）
+# 知识体系
+
+## 包结构和状态（Package structure and state）
 
 开发主要在前面三个阶段，后面两个阶段主要是包的使用：
 
@@ -42,7 +44,7 @@ output:
 
 - **装载状态（installed）**：二进制包已经被解压缩到包目录下（package library）。
 
-- *缓存状态（in-memory）**：包的所有功能函数（functions）都已经在内存中，随时可供用户使用。
+- **缓存状态（in-memory）**：包的所有功能函数（functions）都已经在内存中，随时可供用户使用。
 
 
 下面图\@ref(fig:pkg-files)比较直观地呈现了它们之间的关联与差异：
@@ -52,15 +54,43 @@ knitr::include_graphics("/pic/xmetrics/package-files.png", error = FALSE)
 ```
 
 
-概念要点：
-
-- 注意区分`.Rbuildignore`和`.gitignore`两个文件的目的和作用。简单说，`.Rbuildignore`是为了协调**包开发实践**与**`CRAN`包发布要求**之间的不同；而`.gitignore`是为了满足**版本控制**工具（如git）的特定需求。
-
-> 建议使用`usethis::use_build_ignore()`来添加`.Rbuildignore`忽略文件清单。
-
-
 而下面图\@ref(fig:pkg-installation)比较直观地呈现了不同方法调用不同包状态的差异：
 
 ```{r pkg-installation,echo=FALSE, fig.cap="不同方法调用不同包状态的差异"}
 knitr::include_graphics("/pic/xmetrics/package-installation.png", error = FALSE)
+```
+
+# 概念要点
+
+## 区分`.Rbuildignore`和`.gitignore`
+
+需要注意区分`.Rbuildignore`和`.gitignore`两个文件的目的和作用。简单说，`.Rbuildignore`是为了协调**包开发实践**与**`CRAN`包发布要求**之间的不同；而`.gitignore`是为了满足**版本控制**工具（如git）的特定需求。
+
+> 建议使用`usethis::use_build_ignore()`来添加`.Rbuildignore`忽略文件清单。
+
+
+## 区分`RStudio Project`和`active usethis project`
+
+需要注意的是`usethis`包的函数不会明确知名路径，而是**默认**在`active usethis project`下，因此它也意味着默认它是与`RStudio Project`同路径的。
+
+> 建议使用`usethis::proj_sitrep()`查看二者路径状态是否一致。
+
+```r
+usethis::proj_sitrep()
+
+#   working_directory: 'D:/github/xmerit'
+# active_usethis_proj: 'D:/github/xmerit'
+# active_rstudio_proj: 'D:/github/xmerit'
+```
+
+## `load_all()`的使用
+
+开发或测试期间，如何转载或缓存一个开发包？
+
+> 建议使用`pkgload::load_all()`，Rstudio快捷键：`Ctrl + Shift + L`。
+
+当然，其他的方法还包括`devtools::load_all()`等，具体差异可以见下面图\@ref(fig:load-all)：
+
+```{r load-all,echo=FALSE, fig.cap="R包开发阶段的若干调用方法"}
+knitr::include_graphics("/pic/xmetrics/load-all.png", error = FALSE)
 ```
