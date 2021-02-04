@@ -29,15 +29,25 @@ output:
 <div id="TOC">
 <ul>
 <li><a href="#学习资源"><span class="toc-section-number">1</span> 学习资源</a></li>
-<li><a href="#知识体系"><span class="toc-section-number">2</span> 知识体系</a>
+<li><a href="#体系流程"><span class="toc-section-number">2</span> 体系流程</a>
 <ul>
-<li><a href="#包结构和状态package-structure-and-state"><span class="toc-section-number">2.1</span> 包结构和状态（Package structure and state）</a></li>
+<li><a href="#files-structure"><span class="toc-section-number">2.1</span> 文件夹结构体系</a></li>
+<li><a href="#包结构和状态package-structure-and-state"><span class="toc-section-number">2.2</span> 包结构和状态（Package structure and state）</a></li>
+<li><a href="#常规健康检查流程"><span class="toc-section-number">2.3</span> 常规“健康检查”流程</a></li>
+<li><a href="#数据集的管理和使用"><span class="toc-section-number">2.4</span> 数据集的管理和使用</a></li>
 </ul></li>
 <li><a href="#概念要点"><span class="toc-section-number">3</span> 概念要点</a>
 <ul>
-<li><a href="#区分.rbuildignore和.gitignore"><span class="toc-section-number">3.1</span> 区分<code>.Rbuildignore</code>和<code>.gitignore</code></a></li>
-<li><a href="#区分rstudio-project和active-usethis-project"><span class="toc-section-number">3.2</span> 区分<code>RStudio Project</code>和<code>active usethis project</code></a></li>
-<li><a href="#load_all的使用"><span class="toc-section-number">3.3</span> <code>load_all()</code>的使用</a></li>
+<li><a href="#区分description和namespace的作用"><span class="toc-section-number">3.1</span> 区分<code>DESCRIPTION</code>和<code>NAMESPACE</code>的作用</a></li>
+<li><a href="#区分.rbuildignore和.gitignore"><span class="toc-section-number">3.2</span> 区分<code>.Rbuildignore</code>和<code>.gitignore</code></a></li>
+<li><a href="#区分rstudio-project和active-usethis-project"><span class="toc-section-number">3.3</span> 区分<code>RStudio Project</code>和<code>active usethis project</code></a></li>
+<li><a href="#注意load_all的使用"><span class="toc-section-number">3.4</span> 注意<code>load_all()</code>的使用</a></li>
+<li><a href="#区分code-in-scripts和code-in-packages"><span class="toc-section-number">3.5</span> 区分<code>code in scripts</code>和<code id="landscape">code in packages</code></a></li>
+</ul></li>
+<li><a href="#r编程技巧"><span class="toc-section-number">4</span> R编程技巧</a>
+<ul>
+<li><a href="#用styler包保持良好代码风格"><span class="toc-section-number">4.1</span> 用<code>styler</code>包保持良好代码风格</a></li>
+<li><a href="#用withr包管理环境状态"><span class="toc-section-number">4.2</span> 用<code>withr</code>包管理环境状态</a></li>
 </ul></li>
 </ul>
 </div>
@@ -47,18 +57,48 @@ output:
 <ul>
 <li><p>“R packages” by <a href="https://r-pkgs.org/index.html">Hadley Wickham</a>。R包开发的常备红宝书之一。</p></li>
 <li><p>“rOpenSci Packages: Development, Maintenance, and Peer Review” by <a href="https://devguide.ropensci.org/index.html">rOpenSci team</a>。rOpenSci团队R包开发的规范和指南。</p></li>
+<li><p>“The tidyverse style guide” by <a href="https://style.tidyverse.org/">Hadley Wickham</a>。提供了很多关于R编程规范和风格的建议。</p></li>
 </ul>
 </div>
-<div id="知识体系" class="section level1" number="2">
-<h1><span class="header-section-number">2</span> 知识体系</h1>
-<div id="包结构和状态package-structure-and-state" class="section level2" number="2.1">
-<h2><span class="header-section-number">2.1</span> 包结构和状态（Package structure and state）</h2>
+<div id="体系流程" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> 体系流程</h1>
+<div id="files-structure" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> 文件夹结构体系</h2>
+<p>典型R包开发的文件夹结构体系如下：</p>
+<pre><code>               levelName
+1  package of ‘xmetrics’
+2   |--.git             
+3   |--.Rproj.user      
+4   |--man              
+5   |   |--lx.est.Rd    
+6   |   |--lx.psm.Rd    
+7   |   °--other.man.Rd 
+8   |--R                
+9   |   |--lx-est.R     
+10  |   |--lx-psm.R     
+11  |   °--other-fun.R  
+12  |--.gitignore       
+13  |--.Rbuildignore    
+14  |--.Rhistory        
+15  |--DESCRIPTION      
+16  |--LICENSE          
+17  |--LICENSE.md       
+18  |--NAMESPACE        
+19  °--xmetrics.Rproj   </code></pre>
+<p>其中有两个比较重要的且容易混淆的文件是：</p>
+<ul>
+<li><p>文件<code>DESCRIPTION</code>：存放包基本信息（Title, Version/Authors/Depends/License/Imports/Suggests/Depends等），是包开发必备文件之一，文件类型为<code>DCF</code>（Debian control format），多行值换行需要空格（4格）。</p></li>
+<li><p>文件<code>NAMESPACE</code>：存放<code>import</code>外部依赖包或函数以及导出<code>export</code>内部函数等名称信息。该文件为“只读状态”，相关信息通过开发工具函数（<code>roxygen2</code>包）自动记录和更新。</p></li>
+</ul>
+</div>
+<div id="包结构和状态package-structure-and-state" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> 包结构和状态（Package structure and state）</h2>
 <p>开发主要在前面三个阶段，后面两个阶段主要是包的使用：</p>
 <ul>
 <li><p><strong>源状态（source）</strong>：包开发的最初文件和结构，开发中最频繁使用的阶段。</p></li>
-<li><p><strong>打包状态（bundled）</strong>：将包压缩成了单个文件（<code>.tar.gz</code>，但并不是简单压缩文件而已），仅是一种<code>源状态</code>到<code>装载状态</code>的过渡而已，也没有其他太大实际作用。</p></li>
+<li><p><strong>打包状态（bundled）</strong>：将包压缩成了单个文件（<code>.tar.gz</code>，但并不是简单压缩文件而已），仅是一种<code>源状态</code>到<code>安装状态</code>的过渡而已，也没有其他太大实际作用。</p></li>
 <li><p><strong>二进制状态（binary）</strong>：根据不同操作系统平台的压缩包文件，如windows系统使用<code>.zip</code>包文件，macOS系统使用<code>.tgz</code>包文件。可使用<code>devtools::build(binary = TRUE)</code>构建二进制状态包文件。</p></li>
-<li><p><strong>装载状态（installed）</strong>：二进制包已经被解压缩到包目录下（package library）。</p></li>
+<li><p><strong>安装状态（installed）</strong>：二进制包已经被解压缩到包目录下（package library）。</p></li>
 <li><p><strong>缓存状态（in-memory）</strong>：包的所有功能函数（functions）都已经在内存中，随时可供用户使用。</p></li>
 </ul>
 <p>下面图<a href="#fig:pkg-files">2.1</a>比较直观地呈现了它们之间的关联与差异：</p>
@@ -76,18 +116,78 @@ Figure 2.2: 不同方法调用不同包状态的差异
 </p>
 </div>
 </div>
+<div id="常规健康检查流程" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> 常规“健康检查”流程</h2>
+<p>R包开发过程中应注意对迭代改进的常规“健康检查”（Constant health checks），基于<code>devtools</code>包的操作流程一般为：</p>
+<ul class="task-list">
+<li><p><input type="checkbox" disabled="" checked="" />
+Edit one or more files below <code>"R/."</code></p></li>
+<li><p><input type="checkbox" disabled="" checked="" />
+<code>document()</code> (if you’ve made any changes that impact help files or NAMESPACE)</p></li>
+<li><p><input type="checkbox" disabled="" checked="" />
+<code>load_all()</code></p></li>
+<li><p><input type="checkbox" disabled="" checked="" />
+Run some examples interactively.</p></li>
+<li><p><input type="checkbox" disabled="" checked="" />
+<code>test()</code> (or <code>test_file()</code>)</p></li>
+<li><p><input type="checkbox" disabled="" checked="" />
+<code>check()</code></p></li>
+</ul>
+</div>
+<div id="数据集的管理和使用" class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> 数据集的管理和使用</h2>
+<p>根据数据使用目的，可相应处置如下三类外部数据集（external data）（具体参见14章<a href="https://r-pkgs.org/data.html#data">External data</a>）：</p>
+<p>a.<strong>导出型数据</strong>（exported data）类别：存储并为用户提供二进制数据集（binary data），可以放置在<code>"data/"</code>文件夹下（需要创建该文件夹）。数据文件应该使用<code>save()</code>函数存储，且保存格式为<code>.RData</code>文件。使用该数据集的方法是<code>usethis::use_data()</code>。</p>
+<blockquote>
+<p><code>"data/"</code>文件夹下的数据集<code>mydata.RData</code>也需要像函数一样采用<code>roxygen2 block</code>编写说明文档（document），并存放在<code>"R/data.R"</code>文件里。</p>
+</blockquote>
+<blockquote>
+<p>显然，这里的数据集是对初始数据源经过清洗和整理过的，这些中间数据或操作代码可以放置在另一个文件夹<code>"data-raw/"</code>下，调用数据集也可以相应使用<code>usethis::use_data_raw()</code>函数，当然不要忘记把这个文件夹添加到<code>.Rbuildignore</code>的忽略名单里。</p>
+</blockquote>
+<p>b.<strong>内部数据</strong>（internal data）类别：存储解析数据集（parsed data）但是不希望提供给用户，则可以放置在<code>"R/sysdata.rda"</code>文件里。使用该数据集的方法是<code>usethis::use_data()</code>。因为内部数据集不会export出来，因此不需要为这类数据编写说明文档。</p>
+<blockquote>
+<p>同外部数据类似，内部数据的来源数据或操作代码可以放置在另一个文件夹<code>"data-raw/"</code>下，调用数据集也可以相应使用<code>usethis::use_data_raw()</code>函数。</p>
+</blockquote>
+<p>c.<strong>原始数据</strong>（raw data）类别：存储原始数据集可以放置在<code>inst/extdata</code>文件夹下（需要创建该文件夹）。使用该数据集的方法是<code>system.file()</code>。</p>
+<blockquote>
+<p>需要注意的是：如果调用函数指定的数据文件并不存在，调用函数不会报错，而是返回空值。当然，如果想要显示为报错，则需要设定参数<code>system.file("extdata", "none.csv", mustWork = TRUE)</code></p>
+</blockquote>
+</div>
 </div>
 <div id="概念要点" class="section level1" number="3">
 <h1><span class="header-section-number">3</span> 概念要点</h1>
-<div id="区分.rbuildignore和.gitignore" class="section level2" number="3.1">
-<h2><span class="header-section-number">3.1</span> 区分<code>.Rbuildignore</code>和<code>.gitignore</code></h2>
+<div id="区分description和namespace的作用" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> 区分<code>DESCRIPTION</code>和<code>NAMESPACE</code>的作用</h2>
+<p>二者都是独立文件（见前面<a href="#files-structure">文件夹结构</a>），对于外部依赖包的表述上存在一些容易引起混淆的地方。</p>
+<ul>
+<li><p>内容编辑方式上的不同该。包开发者可以主动编辑<code>DESCRIPTION</code>文件信息，但是<code>NAMESPACE</code>文件本身这是“只读”的（实际上该文件内容的编辑和更新，是自动通过对具体函数function的基本信息获得的）。</p></li>
+<li><p>对包依赖关系的表述和作用不同。</p></li>
+</ul>
+<p>a.在文件<code>DESCRIPTION</code>中，本包对其他包的依赖关系有两种表述方式<code>Imports</code>和<code>Suggests</code>，二者存在差异（具体见节<a href="https://r-pkgs.org/description.html#dependencies">8.1 Dependencies</a>）。简单说，二者主要差异在于强调对外部包依赖程度的强弱不同。</p>
+<blockquote>
+<p><code>Imports</code>列表下的依赖包，必须出现在开发包中，开发包才能正常运作。把依赖包列在清单中，作用是确保这些依赖包已经在<strong>本地安装</strong>了。也即该清单下的外部包<strong>将会</strong>随着开发包的运行而自动安装。</p>
+</blockquote>
+<blockquote>
+<p><code>Suggests</code>清单下的外部包，并不构成本包运行的必须条件，主要用于示例数据集、运行测试、编写函数说明等。该清单下的外部包<strong>不会</strong>随着开发包的运行而自动安装。此外，如果仅仅只是“本地包开发”，则根本不需要使用<code>Suggests</code>清单。</p>
+</blockquote>
+<blockquote>
+<p>[技巧提示]：可以使用函数<code>usethis::use_package()</code>快速而正确地添加依赖包到<code>Imports</code>和<code>Suggests</code>清单下。</p>
+</blockquote>
+<p>b.在文件<code>NAMESPACE</code>中，才是真正地将相关函数<em>（间接地、自动地）</em>导入**到“名空间”中去。这完全不同于<code>DESCRIPTION</code>文件下的<code>Imports</code>的功能。如果外部依赖包正确导入到<code>NAMESPACE</code>列表下，则可以避免多次使用<code>foo::fun()</code>这样的代码。</p>
+<p>c.文件<code>DESCRIPTION</code>和<code>NAMESPACE</code>的关系。一方面，把需要提前安装的外部包都列在<code>DESCRIPTION</code>文件的<code>Imports</code>列表下，并建议明确地使用<code>foo::fun()</code>进行函数编写，便于后期代码检查和维护。另一方面，所有在<code>DESCRIPTION</code>文件<code>Imports</code>列表下的外部依赖包，必须在文件<code>NAMESPACE</code>中“完全”列出。</p>
+<blockquote>
+<p>简单说，只要用到的外部包都应该进入<code>NAMESPACE</code>列表中，否则也别出现在<code>DESCRIPTION</code>文件<code>Imports</code>列表下！</p>
+</blockquote>
+</div>
+<div id="区分.rbuildignore和.gitignore" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> 区分<code>.Rbuildignore</code>和<code>.gitignore</code></h2>
 <p>需要注意区分<code>.Rbuildignore</code>和<code>.gitignore</code>两个文件的目的和作用。简单说，<code>.Rbuildignore</code>是为了协调<strong>包开发实践</strong>与<strong><code>CRAN</code>包发布要求</strong>之间的不同；而<code>.gitignore</code>是为了满足<strong>版本控制</strong>工具（如git）的特定需求。</p>
 <blockquote>
 <p>建议使用<code>usethis::use_build_ignore()</code>来添加<code>.Rbuildignore</code>忽略文件清单。</p>
 </blockquote>
 </div>
-<div id="区分rstudio-project和active-usethis-project" class="section level2" number="3.2">
-<h2><span class="header-section-number">3.2</span> 区分<code>RStudio Project</code>和<code>active usethis project</code></h2>
+<div id="区分rstudio-project和active-usethis-project" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> 区分<code>RStudio Project</code>和<code>active usethis project</code></h2>
 <p>需要注意的是<code>usethis</code>包的函数不会明确知名路径，而是<strong>默认</strong>在<code>active usethis project</code>下，因此它也意味着默认它是与<code>RStudio Project</code>同路径的。</p>
 <blockquote>
 <p>建议使用<code>usethis::proj_sitrep()</code>查看二者路径状态是否一致。</p>
@@ -98,8 +198,8 @@ Figure 2.2: 不同方法调用不同包状态的差异
 # active_usethis_proj: &#39;D:/github/xmerit&#39;
 # active_rstudio_proj: &#39;D:/github/xmerit&#39;</code></pre>
 </div>
-<div id="load_all的使用" class="section level2" number="3.3">
-<h2><span class="header-section-number">3.3</span> <code>load_all()</code>的使用</h2>
+<div id="注意load_all的使用" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> 注意<code>load_all()</code>的使用</h2>
 <p>开发或测试期间，如何转载或缓存一个开发包？</p>
 <blockquote>
 <p>建议使用<code>pkgload::load_all()</code>，Rstudio快捷键：<code>Ctrl + Shift + L</code>。</p>
@@ -111,5 +211,38 @@ Figure 2.2: 不同方法调用不同包状态的差异
 Figure 3.1: R包开发阶段的若干调用方法
 </p>
 </div>
+</div>
+<div id="区分code-in-scripts和code-in-packages" class="section level2" number="3.5">
+<h2><span class="header-section-number">3.5</span> 区分<code>code in scripts</code>和<code id="landscape">code in packages</code></h2>
+<p>区分脚本代码（code in scripts）和包代码（code in packages）的差异。</p>
+<p>（0）从代码存放位置来看：前者理论上可以存放在任意位置，而后者仅存放在<code>"R/"</code>文件夹下。</p>
+<p>（1）从代码运行时点来看：对于脚本代码（code in scripts），一旦触发操作，它当即就已经“运行”；而对于包代码（code in packages），只有包建成（built），它才开始“运行”。</p>
+<p>（2）从代码使用方法来看：前者往往还在源代码阶段使用，例如<code>source("code-in-scripts.R")</code>；后者在包建成后（built）添加该包<code>library("your-pkg")</code>即可直接使用特定函数<code>your-pkg::fun_someone()</code>。</p>
+<p>（3）从R landscape（R环境风貌）来看：简单说一些操作会直接导致R landscape的改变。例如：转载某个包<code>library("your-pkg")</code>、调整环境选项<code>options()</code>、或修改工作文件夹<code>setwd()</code>。这就意味着如果包代码（code in packages）里的一些函数涉及到上述操作，则它们会改变R landscape，从而引起对其他某些函数的新麻烦和问题。此外，我们也要避免使用牵扯到用户环境风貌（user’s landscape）的函数，例如<code>read.csv()</code>就会与用户特定风貌相关的一个参数相关联。总之，包代码（code in packages）的若干具体建议如下：</p>
+<ul>
+<li><p>不要使用<code>library()</code> 或者<code>require()</code> 。它会改变搜索路径（search path）。</p></li>
+<li><p>永远不要使用<code>source()</code>。它会插入执行的代码结果，从而改变当前环境。实际上<code>load_all()</code>能够更好地让你调用你想要的内部函数。</p></li>
+<li><p>一些慎重使用的操作函数。包括：<code>options()</code>、<code>par()</code>
+<code>setwd()</code>、<code>Sys.setenv()</code>、<code>Sys.setlocale()</code>、<code>set.seed()</code>等。</p></li>
+</ul>
+<p>概括起来，包代码（code in packages）会更加严格：</p>
+<blockquote>
+<p>Any R code outside of a function is suspicious and should be carefully reviewed.</p>
+</blockquote>
+</div>
+</div>
+<div id="r编程技巧" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> R编程技巧</h1>
+<div id="用styler包保持良好代码风格" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> 用<code>styler</code>包保持良好代码风格</h2>
+<p>Hadley建议使用<code>tidyverse</code>的代码风格（具体见节<a href="https://r-pkgs.org/r.html#code-style">7.3 Code style</a>）。</p>
+<blockquote>
+<p>建议使用<code>styler</code>包来调整代码风格，而且Rstudio Addins菜单上会有相应插件。一些常见需求的风格调整包括：对整个包<code>styler::style_pkg()</code>（注意使用带来的风险性）；对某个文件夹<code>styler::style_dir()</code>；对某个文件<code>styler::style_file()</code>；对字符向量<code>styler::style_text()</code>。</p>
+</blockquote>
+</div>
+<div id="用withr包管理环境状态" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> 用<code>withr</code>包管理环境状态</h2>
+<p>前面讲过<a href="#landscape">R landscape</a>会因某些操作而改变，因而引发不必要的问题和错误。<code>withr</code>包可以很好处理这个矛盾（具体见节<a href="https://r-pkgs.org/r.html#manage-state-with-withr">7.5.1 Manage state with withr</a>）。</p>
+<p>需要注意的是，<code>withr</code>包的同一类操作分别给出了两个函数，二者作用范围各有不同：<code>with_*()</code>函数主要实现临时性环境状态调整（有点像“阅后即焚”）；而<code>local_*()</code>函数会将修改后的环境状态维持下去，直至本函数操作全部结束（有点像“夜更巡逻”）。</p>
 </div>
 </div>
