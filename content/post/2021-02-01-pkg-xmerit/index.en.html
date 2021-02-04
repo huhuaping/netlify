@@ -163,9 +163,22 @@ ols_origin &lt;- lm(formula = mod_origin, data = mroz)</code></pre>
 <h1><span class="header-section-number">3</span> 一些工具函数</h1>
 <div id="将xls文件高保真地转换为xlsx文件" class="section level2" number="3.1">
 <h2><span class="header-section-number">3.1</span> 将xls文件高保真地转换为xlsx文件</h2>
+<p>参考资料1：<a href="https://rdrr.io/github/KWB-R/kwb.geosalz/man/convert_xls_as_xlsx.html">geosalz 源代码</a>；参考资料2：<a href="https://stackoverflow.com/questions/59248369/r-cannot-run-specific-cmd-code-that-converts-xls-to-xlsx">“队长问答”</a>；参考资料3：<a href="http://justgeeks.blogspot.com/2014/08/">博客文章</a>。</p>
+<p>函数作用：将本地文件夹下的<code>.xls</code>文件批量转换为<code>.xlsx</code>文件。适用于windowns操作系统下，具体会调用Microsoft的本地电脑程序端。</p>
+<p>函数名称：<code>convert_xls_as_xlsx(input_dir, export_dir)</code></p>
+<blockquote>
+<p>使用场景：“D:/github/article-west/R/xls2xlsx.R”；以及“D:/github/article-west/data-set-maintain.Rmd”</p>
+</blockquote>
+<pre><code>convert_xls_as_xlsx(input_dir = &quot;d:/github/article-west/data/v4-cost-revenue/01-raw/&quot;,  
+                    export_dir = &quot;d:/github/article-west/data/v4-cost-revenue/001-out/&quot;)</code></pre>
+<p>注意可能的提示（message）：</p>
+<pre><code>Found 2 versions of &#39;excelcnv.exe&#39;:
+  C:/Program Files/Microsoft Office/Updates/Download/PackageFiles/8BB798B7-EFF4-4781-AD0F-DE53892ADC7D/root/Office16/excelcnv.exe
+  C:/Program Files/Microsoft Office/root/Office16/excelcnv.exe</code></pre>
+<p>根据本地电脑的实际情况，很可能需要修改两个地方：</p>
 <ul>
-<li><p>R函数名称：convert_xls_as_xlsx(input_dir, export_dir)</p></li>
-<li><p>R代码位置：“D:/github/article-west/R/xls2xlsx.R”</p></li>
+<li><p>本地电脑office的安装路径：<code>safe_office_folder()</code>函数的路径参数<code>office_path = "C:/Program Files/Microsoft Office")</code></p></li>
+<li><p>可能有office更新版本：<code>get_excelcnv_exe()</code>函数的输出结果<code>paths[2]</code></p></li>
 </ul>
 </div>
 <div id="df数据列元素进行快速粘合输出" class="section level2" number="3.2">

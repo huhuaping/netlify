@@ -106,7 +106,7 @@ R包开发过程中应注意对迭代改进的常规“健康检查”（Constan
 
 - [x] Edit one or more files below `"R/."`
 
-- [x]  `document()` (if you’ve made any changes that impact help files or NAMESPACE)
+- [x]  `devtools::document()` (if you’ve made any changes that impact help files or NAMESPACE)
 
 - [x]  `load_all()`
 

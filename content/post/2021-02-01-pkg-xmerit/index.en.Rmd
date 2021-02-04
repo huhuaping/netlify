@@ -162,9 +162,33 @@ lx_out<- lx.est(lm.mod = mod_origin, lm.dt = mroz, style = "srm", opt = c("p"))
 
 ## 将xls文件高保真地转换为xlsx文件
 
-- R函数名称：convert_xls_as_xlsx(input_dir, export_dir)
+参考资料1：[geosalz 源代码](https://rdrr.io/github/KWB-R/kwb.geosalz/man/convert_xls_as_xlsx.html)；参考资料2：["队长问答"](https://stackoverflow.com/questions/59248369/r-cannot-run-specific-cmd-code-that-converts-xls-to-xlsx)；参考资料3：[博客文章](http://justgeeks.blogspot.com/2014/08/)。
 
-- R代码位置："D:/github/article-west/R/xls2xlsx.R"
+函数作用：将本地文件夹下的`.xls`文件批量转换为`.xlsx`文件。适用于windowns操作系统下，具体会调用Microsoft的本地电脑程序端。
+
+函数名称：`convert_xls_as_xlsx(input_dir, export_dir)`
+
+> 使用场景："D:/github/article-west/R/xls2xlsx.R"；以及"D:/github/article-west/data-set-maintain.Rmd"
+
+```
+convert_xls_as_xlsx(input_dir = "d:/github/article-west/data/v4-cost-revenue/01-raw/",  
+                    export_dir = "d:/github/article-west/data/v4-cost-revenue/001-out/")
+```
+
+注意可能的提示（message）：
+
+```
+Found 2 versions of 'excelcnv.exe':
+  C:/Program Files/Microsoft Office/Updates/Download/PackageFiles/8BB798B7-EFF4-4781-AD0F-DE53892ADC7D/root/Office16/excelcnv.exe
+  C:/Program Files/Microsoft Office/root/Office16/excelcnv.exe
+```
+
+根据本地电脑的实际情况，很可能需要修改两个地方：
+
+- 本地电脑office的安装路径：`safe_office_folder()`函数的路径参数`office_path = "C:/Program Files/Microsoft Office")`
+
+- 可能有office更新版本：`get_excelcnv_exe()`函数的输出结果`paths[2]`
+
 
 ## df数据列元素进行快速粘合输出
 
