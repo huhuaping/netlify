@@ -30,20 +30,17 @@ options(htmltools.preserve.raw = FALSE)
 here is the include_url():
 
 ```{r, echo=FALSE, out.width='99%'}
-knitr::include_url("/course-statistics/01-introduction.html")
+knitr::include_url(url="/course-statistics/01-introduction.html")
 ```
 
-use the iframe with div block:
+use the markdown synax:
 
-<div >
+The third try is a 浏览课件“第01章 绪论”[点击](/course-statistics/01-introduction.html)
 
-<iframe width="99%" height="400" name="iframe" src="/course-statistics/01-introduction.html"></iframe>
-
-</div>
 
 课件的pdf版本在此[01-introduction.pdf](/course-statistics/material/01-introduction-2019.9.18.pdf)
 
-**附录数据**：
+## **附录数据**：
 
 - 纽约JFK机场2013年[1月数据flights-jan.csv](/course-statistics/data/flights-jan.csv)
 
