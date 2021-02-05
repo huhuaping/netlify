@@ -1,6 +1,8 @@
 ---
-date: "2019-09-09T00:00:00+08:00"
+date: '2021-02-04'
 draft: false
+authors: [胡华平]
+lastmod: '2021-02-04T20:45:53+08:00'
 linktitle: 第01章(绪论)
 menu:
   course-statistics:
@@ -13,6 +15,10 @@ type: docs
 
 ## 第01章 绪论
 
+```{r, echo=T, eval=T}
+options(htmltools.preserve.raw = FALSE)
+```
+
 操作提示（电脑PC端操作）：
 
 - 点击**课件区域**，按**`F`**键，可全屏观看
@@ -20,7 +26,6 @@ type: docs
 - 按左/右方向键（$\leftarrow/\rightarrow$），可以前进/后退翻页
 
 - 敲击数字键，再按**`Enter`**可进入任意指定的页码。如，敲击数字10，观看第10页
-
 
 ```{r, echo=FALSE, out.width='99%'}
 knitr::include_url("/course-statistics/01-introduction.html")
