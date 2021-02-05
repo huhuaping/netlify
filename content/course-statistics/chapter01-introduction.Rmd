@@ -33,10 +33,13 @@ here is the include_url():
 knitr::include_url("/course-statistics/01-introduction.html")
 ```
 
-use the iframe:
+use the iframe with div block:
+
+<div >
 
 <iframe width="99%" height="400" name="iframe" src="/course-statistics/01-introduction.html"></iframe>
 
+</div>
 
 课件的pdf版本在此[01-introduction.pdf](/course-statistics/material/01-introduction-2019.9.18.pdf)
 
