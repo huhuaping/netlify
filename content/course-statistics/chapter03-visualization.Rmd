@@ -3,17 +3,17 @@ date: '2021-02-05'
 draft: false
 authors: [胡华平]
 lastmod: '2021-02-05T09:45:53+08:00'
-linktitle: 第03章(数据的图表展示)
+linktitle: 第03章:数据的图表展示
 menu:
   course-statistics:
     parent: 统计学在线课程 (简介)
-    weight: 1
-title: statistics (统计学)
+    weight: 13
+title: 第03章 数据的图表展示
 math: true
 type: docs
 ---
 
-## 第03章 数据的图表展示
+## 教学课件
 
 操作提示（电脑PC端操作）：
 
