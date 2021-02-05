@@ -27,9 +27,11 @@ options(htmltools.preserve.raw = FALSE)
 
 - 敲击数字键，再按**`Enter`**可进入任意指定的页码。如，敲击数字10，观看第10页
 
-here is the include_url():
 
-```{r, echo=FALSE, out.width='99%'}
+here is the include_url() and try fig.cap:750
+
+
+```{r, echo=FALSE, out.width=750,fig.cap="slide01-introduction"}
 knitr::include_url(url="/course-statistics/01-introduction.html")
 ```
 
