@@ -1,5 +1,5 @@
 ---
-title: netlify网站与静态static资料的正确衔接
+title: Netlify建站：主站与静态static资料的正确衔接
 author: huhuaping
 date: '2021-01-31'
 slug: file-structure-witin-blog
@@ -9,7 +9,7 @@ tags:
   - Blogdown
 subtitle: ''
 summary: ''
-authors: []
+authors: [胡华平]
 lastmod: '2021-01-31T11:24:46+08:00'
 featured: no
 image:
@@ -33,9 +33,9 @@ output:
 
 - `public`文件夹，是建站结果的最终目录树文件系统。netlify服务器网站可以方便国际用户访问，但国内访问速度较慢。`public/`后期还要更新到本地另外一个域名服务器网站（方便国内访问）。（见之前的[博客文章](/2020/10/05/hugo-big-update/#double-site)）
 
-## netlify content文件系统
+## netlify content文件系统{#dir-content}
 
-```{r, comment="", echo=FALSE}
+```{r, comment="", echo=FALSE, message=FALSE}
 library(data.tree)
 
 netlify <- Node$new("netlify")
@@ -46,16 +46,41 @@ netlify <- Node$new("netlify")
       data <- econometrics$AddChild("data")
       rmd <- econometrics$AddChild("schedule-theory.Rmd")
       html <- econometrics$AddChild("schedule-theory.html")
+    post <- content$AddChild("post")
+    project <- content$AddChild("project")
+    publication <- content$AddChild("publication")
   public <- netlify$AddChild("public")
   config <- netlify$AddChild("config")
   proj <- netlify$AddChild("netlify.Rproj")
   
-
 print(netlify)
 
 ```
 
-## netlify static文件夹系统
+
+```{r, eval=FALSE, echo=FALSE}
+library(listviewer)
+library(widgetframe)
+
+l <- ToListSimple(netlify)
+tree <- jsonedit(l)
+
+htmlwidgets::saveWidget(tree, file = "tree.html", selfcontained = TRUE)
+```
+
+<!---
+上述htmlwidgets会保存在本地，然后使用html标记语言插入该文件
+
+<iframe src="tree.html"></iframe> 
+
+参看1[HTML widgets](https://bookdown.org/yihui/blogdown/html-widgets.html)
+
+参看2[HTML Widgets not displaying](https://github.com/rstudio/blogdown/issues/20#issuecomment-269389360)
+
+
+--->
+
+## netlify static文件夹系统{#dir-static}
 
 ```{r, comment="", echo=FALSE}
 library(data.tree)
@@ -68,6 +93,9 @@ netlify <- Node$new("netlify")
       pic <- econometrics$AddChild("pic")
         pic1 <- pic$AddChild("chpt1-log.png")
         pic2 <- pic$AddChild("chpt2-reg.png")
+      reading <- econometrics$AddChild("reading")
+        files <- reading$AddChild("cht01-history.files")
+        html <- reading$AddChild("cht01-history.html")
       intro <- econometrics$AddChild("01-introduction-slide.html")
       reg <- econometrics$AddChild("02-simple-reg-basic-slide.html")
   content <- netlify$AddChild("content")
@@ -200,7 +228,15 @@ Rmd使用代码块生成的图片这会自动存放在同名文件夹下的一�
 ```r
 # r code chunk 14
 
-include_graphics("../pic/chpt1-curve-points.png", dpi=200)
+
+ggplot(data.frame(x = seq(from = -5, to=5,length =500 )), aes(x = x)) +
+  stat_function(fun = dnorm, args = list(0,1),
+                aes(color = "mean=0, sd=1")) +
+  stat_function(fun = dnorm, args = list(0.5,2),
+                aes(color = "mean=0.5, sd=2")) +
+  scale_colour_manual("期望和标准差", values = c("red", "blue"))+
+  scale_y_continuous(name = "概率值(probability)") +
+  theme(legend.text = element_text(size=16), legend.title = element_text(size=16))
 ```
 
 可以使用chrome浏览器开发工具看到其对应的html元素：
@@ -249,14 +285,46 @@ baseurl = "https://yourdomain.netlify.app/"
 
 ```
 
-- Rmd进行引用内部链接。以博文post为例：见之前的[博客文章](/2020/10/05/hugo-big-update/#double-site)。值得说明的是：a.务必要按前述各个模块的链接地址规则进行url设定。b.不要画蛇添足`/2020/10/05/hugo-big-update/index.en.html`（哪怕文件夹下有这个html文件）；c.只要设定了refer ID（如`{#your-section-refer}`）,就可以进行更进一步的链接。具体代码如下：
+- Rmd内部链接1：对于**hugo标准模块**内容的链接。所谓hugo**标准模块内容**，一般包括hugo版本内置好的`post`、`publication`、`tags`等，可以通过上述`config.toml`的参数块`[permalinks]`看到其影子。因此，对于hugo标准模块内容的链接引用，都需要在这里指定链接的参数形式。值得说明的是：a.务必要按前述各个模块的链接地址规则进行url设定。b.不要画蛇添足`/2020/10/05/hugo-big-update/index.en.html`（哪怕文件夹下有这个html文件）；c.只要设定了refer ID（如`{#your-section-refer}`），就可以进行更进一步的链接。
+
+> 例如，以链接其他博文post为例，见之前的一篇博客文章谈到的["双服务器建站需求"](/2020/10/05/hugo-big-update/#double-site)。
+
+其背后具体代码如下：
 
 ```
 # note your can refer the section ID as your have set
 
-见之前的[博客文章](/2020/10/05/hugo-big-update/#double-site)
+例如，以链接其他博文post为例，见之前的一篇博客文章谈到的["双服务器建站需求"](/2020/10/05/hugo-big-update/#double-site)。
 ```
 
+当然，博文内部章节或任意内容的自我链接（需要事先设定为`{#a-ref-id}`）也是一种常见的引用方式。此时对同一篇博文post内部ref ID的引用，则可以直接采用`[link-text](#a-ref-id)`的形式。
+
+> 例如，请查看前面的content文件系统[树形图](#dir-content)。
+
+其背后代码为：
+
+```
+# 需要事先设定好引用指针
+# you should specify the reference ID before link it
+
+例如，请查看前面的content文件系统[树形图](#dir-content)。
+```
+
+- Rmd内部链接2：对于**非hugo标准模块**内容的链接。与上述对应，非hugo标准模块内容一般指用户根据hugo空白模板`widget = "blank"`设定的页面。主站的课程系列（包括course-econometrics、course-advanced-statistics等）的内容（各种课程的文件结构可以参看前面提及的content文件系统[树形图](#dir-content)）就是基于hugo空白模板`widget = "blank"`生成的。具体模板参数可以逐层追溯看到，例如先查看`netlify/content/course-econometrics/_index.md`的yaml参数区域，然后进一步追溯其继承至`netlify/config/_default/menus.toml`的toml参数区域，最后发现它的模板是`netlify/content/home/teaching.md`ymal参数区域指定的`widget = "blank"`。
+
+此时，如果要链接在外部拷贝的一个特定静态网页文件，其存放路径`netlify/static/course-econometrics/reading/cht01-history.html`（具体可参看前面提到的netlify static文件夹系统[树形图](#dir-static)）。此时路径指向应精准和明确。
+
+> 例如，请点击查看《计量经济学》课程扩展阅读资料[计量经济学的前世今生](/course-econometrics/reading/cht01-history.html)。
+
+其背后的具体代码为：
+
+```
+# 路径指向应精准和明确，包含了后缀.html
+# specify the file with full path
+
+例如，请点击查看《计量经济学》课程扩展阅读资料[计量经济学的前世今生](/course-econometrics/reading/cht01-history.html)。
+
+```
 
 2.利用hugo的shortcode特性（未测试）。参看yihui提到的[Shortcode方法](https://bookdown.org/yihui/blogdown/content.html-shortcode)。正文行内引用方式：
 
@@ -280,6 +348,7 @@ baseurl = "https://yourdomain.netlify.app/"
 output:
   blogdown::html_page:
     toc: true
+    number_sections: true
 ```
 			
 			

@@ -1,0 +1,236 @@
+---
+title: R包开发：构架及基础
+author: huhuaping
+date: '2021-02-02'
+slug: pkg-develop
+categories:
+  - R
+tags:
+  - package
+subtitle: ''
+summary: ''
+authors: [胡华平]
+lastmod: '2021-02-02T20:45:53+08:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+math: TRUE
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: true
+---
+
+# 学习资源
+
+- "R packages" by [Hadley Wickham](https://r-pkgs.org/index.html)。R包开发的常备红宝书之一。
+
+- "rOpenSci Packages: Development, Maintenance, and Peer Review" by [rOpenSci team](https://devguide.ropensci.org/index.html)。rOpenSci团队R包开发的规范和指南。
+
+- "The tidyverse style guide" by [Hadley Wickham](https://style.tidyverse.org/)。提供了很多关于R编程规范和风格的建议。
+
+# 体系流程
+
+## 文件夹结构体系{#files-structure}
+
+典型R包开发的文件夹结构体系如下：
+
+```{r, comment="", echo=FALSE}
+library(data.tree)
+
+xmetrics <- Node$new("package of ‘xmetrics’")
+  git <- xmetrics$AddChild(".git")
+  user <- xmetrics$AddChild(".Rproj.user")
+  man <- xmetrics$AddChild("man")
+    lx.est <- man$AddChild("lx.est.Rd")
+    lx.psm <- man$AddChild("lx.psm.Rd")
+    other.man <- man$AddChild("other.man.Rd")
+  R <- xmetrics$AddChild("R")
+    lx.est <- R$AddChild("lx-est.R")
+    lx.psm <- R$AddChild("lx-psm.R")
+    other.fun <- R$AddChild("other-fun.R")
+  gitignore <- xmetrics$AddChild(".gitignore")
+  Rbuildignore <- xmetrics$AddChild(".Rbuildignore")
+  Rhistory <- xmetrics$AddChild(".Rhistory")
+  DESCRIPTION <- xmetrics$AddChild("DESCRIPTION")
+  LICENSE <- xmetrics$AddChild("LICENSE")
+  LICENSE.md <- xmetrics$AddChild("LICENSE.md")
+  NAMESPACE <- xmetrics$AddChild("NAMESPACE")
+  Rproj <- xmetrics$AddChild("xmetrics.Rproj")
+
+print(xmetrics )
+
+```
+
+其中有两个比较重要的且容易混淆的文件是：
+
+- 文件`DESCRIPTION`：存放包基本信息（Title, Version/Authors/Depends/License/Imports/Suggests/Depends等），是包开发必备文件之一，文件类型为`DCF`（Debian control format），多行值换行需要空格（4格）。
+
+- 文件`NAMESPACE`：存放`import`外部依赖包或函数以及导出`export`内部函数等名称信息。该文件为“只读状态”，相关信息通过开发工具函数（`roxygen2`包）自动记录和更新。
+
+## 包结构和状态（Package structure and state）
+
+开发主要在前面三个阶段，后面两个阶段主要是包的使用：
+
+- **源状态（source）**：包开发的最初文件和结构，开发中最频繁使用的阶段。
+
+- **打包状态（bundled）**：将包压缩成了单个文件（`.tar.gz`，但并不是简单压缩文件而已），仅是一种`源状态`到`安装状态`的过渡而已，也没有其他太大实际作用。
+
+- **二进制状态（binary）**：根据不同操作系统平台的压缩包文件，如windows系统使用`.zip`包文件，macOS系统使用`.tgz`包文件。可使用`devtools::build(binary = TRUE)`构建二进制状态包文件。
+
+- **安装状态（installed）**：二进制包已经被解压缩到包目录下（package library）。
+
+- **缓存状态（in-memory）**：包的所有功能函数（functions）都已经在内存中，随时可供用户使用。
+
+
+下面图\@ref(fig:pkg-files)比较直观地呈现了它们之间的关联与差异：
+
+```{r pkg-files,echo=FALSE, fig.cap="三种包开发状态的联系和差异"}
+knitr::include_graphics("/pic/xmetrics/package-files.png", error = FALSE)
+```
+
+
+而下面图\@ref(fig:pkg-installation)比较直观地呈现了不同方法调用不同包状态的差异：
+
+```{r pkg-installation,echo=FALSE, fig.cap="不同方法调用不同包状态的差异"}
+knitr::include_graphics("/pic/xmetrics/package-installation.png", error = FALSE)
+```
+
+
+## 常规“健康检查”流程
+
+R包开发过程中应注意对迭代改进的常规“健康检查”（Constant health checks），基于`devtools`包的操作流程一般为：
+
+- [x] Edit one or more files below `"R/."`
+
+- [x]  `devtools::document()` (if you’ve made any changes that impact help files or NAMESPACE)
+
+- [x]  `load_all()`
+
+- [x]  Run some examples interactively.
+
+- [x]  `test()` (or `test_file()`)
+
+- [x]  `check()`
+
+
+## 数据集的管理和使用
+
+根据数据使用目的，可相应处置如下三类外部数据集（external data）（具体参见14章[External data](https://r-pkgs.org/data.html#data)）：
+
+a.**导出型数据**（exported data）类别：存储并为用户提供二进制数据集（binary data），可以放置在`"data/"`文件夹下（需要创建该文件夹）。数据文件应该使用`save()`函数存储，且保存格式为`.RData`文件。使用该数据集的方法是`usethis::use_data()`。
+
+> `"data/"`文件夹下的数据集`mydata.RData`也需要像函数一样采用`roxygen2 block`编写说明文档（document），并存放在`"R/data.R"`文件里。
+
+> 显然，这里的数据集是对初始数据源经过清洗和整理过的，这些中间数据或操作代码可以放置在另一个文件夹`"data-raw/"`下，调用数据集也可以相应使用`usethis::use_data_raw()`函数，当然不要忘记把这个文件夹添加到`.Rbuildignore`的忽略名单里。
+
+
+b.**内部数据**（internal data）类别：存储解析数据集（parsed data）但是不希望提供给用户，则可以放置在`"R/sysdata.rda"`文件里。使用该数据集的方法是`usethis::use_data()`。因为内部数据集不会export出来，因此不需要为这类数据编写说明文档。
+
+> 同外部数据类似，内部数据的来源数据或操作代码可以放置在另一个文件夹`"data-raw/"`下，调用数据集也可以相应使用`usethis::use_data_raw()`函数。
+
+c.**原始数据**（raw data）类别：存储原始数据集可以放置在`inst/extdata`文件夹下（需要创建该文件夹）。使用该数据集的方法是`system.file()`。
+
+> 需要注意的是：如果调用函数指定的数据文件并不存在，调用函数不会报错，而是返回空值。当然，如果想要显示为报错，则需要设定参数`system.file("extdata", "none.csv", mustWork = TRUE)`
+
+# 概念要点
+
+## 区分`DESCRIPTION`和`NAMESPACE`的作用
+
+二者都是独立文件（见前面[文件夹结构](#files-structure)），对于外部依赖包的表述上存在一些容易引起混淆的地方。
+
+- 内容编辑方式上的不同该。包开发者可以主动编辑`DESCRIPTION`文件信息，但是`NAMESPACE`文件本身这是“只读”的（实际上该文件内容的编辑和更新，是自动通过对具体函数function的基本信息获得的）。
+
+- 对包依赖关系的表述和作用不同。
+
+a.在文件`DESCRIPTION`中，本包对其他包的依赖关系有两种表述方式`Imports`和`Suggests`，二者存在差异（具体见节[8.1 Dependencies](https://r-pkgs.org/description.html#dependencies)）。简单说，二者主要差异在于强调对外部包依赖程度的强弱不同。
+
+> `Imports`列表下的依赖包，必须出现在开发包中，开发包才能正常运作。把依赖包列在清单中，作用是确保这些依赖包已经在**本地安装**了。也即该清单下的外部包**将会**随着开发包的运行而自动安装。
+
+> `Suggests`清单下的外部包，并不构成本包运行的必须条件，主要用于示例数据集、运行测试、编写函数说明等。该清单下的外部包**不会**随着开发包的运行而自动安装。此外，如果仅仅只是“本地包开发”，则根本不需要使用`Suggests`清单。
+
+> [技巧提示]：可以使用函数`usethis::use_package()`快速而正确地添加依赖包到`Imports`和`Suggests`清单下。
+
+b.在文件`NAMESPACE`中，才是真正地将相关函数*（间接地、自动地）*导入**到“名空间”中去。这完全不同于`DESCRIPTION`文件下的`Imports`的功能。如果外部依赖包正确导入到`NAMESPACE`列表下，则可以避免多次使用`foo::fun()`这样的代码。
+
+c.文件`DESCRIPTION`和`NAMESPACE`的关系。一方面，把需要提前安装的外部包都列在`DESCRIPTION`文件的`Imports`列表下，并建议明确地使用`foo::fun()`进行函数编写，便于后期代码检查和维护。另一方面，所有在`DESCRIPTION`文件`Imports`列表下的外部依赖包，必须在文件`NAMESPACE`中“完全”列出。
+
+> 简单说，只要用到的外部包都应该进入`NAMESPACE`列表中，否则也别出现在`DESCRIPTION`文件`Imports`列表下！
+
+## 区分`.Rbuildignore`和`.gitignore`
+
+需要注意区分`.Rbuildignore`和`.gitignore`两个文件的目的和作用。简单说，`.Rbuildignore`是为了协调**包开发实践**与**`CRAN`包发布要求**之间的不同；而`.gitignore`是为了满足**版本控制**工具（如git）的特定需求。
+
+> 建议使用`usethis::use_build_ignore()`来添加`.Rbuildignore`忽略文件清单。
+
+
+## 区分`RStudio Project`和`active usethis project`
+
+需要注意的是`usethis`包的函数不会明确知名路径，而是**默认**在`active usethis project`下，因此它也意味着默认它是与`RStudio Project`同路径的。
+
+> 建议使用`usethis::proj_sitrep()`查看二者路径状态是否一致。
+
+```r
+usethis::proj_sitrep()
+
+#   working_directory: 'D:/github/xmerit'
+# active_usethis_proj: 'D:/github/xmerit'
+# active_rstudio_proj: 'D:/github/xmerit'
+```
+
+## 注意`load_all()`的使用
+
+开发或测试期间，如何转载或缓存一个开发包？
+
+> 建议使用`pkgload::load_all()`，Rstudio快捷键：`Ctrl + Shift + L`。
+
+当然，其他的方法还包括`devtools::load_all()`等，具体差异可以见下面图\@ref(fig:load-all)：
+
+```{r load-all,echo=FALSE, fig.cap="R包开发阶段的若干调用方法"}
+knitr::include_graphics("/pic/xmetrics/load-all.png", error = FALSE)
+```
+
+## 区分`code in scripts`和`code in packages`{#landscape}
+
+区分脚本代码（code in scripts）和包代码（code in packages）的差异。
+
+（0）从代码存放位置来看：前者理论上可以存放在任意位置，而后者仅存放在`"R/"`文件夹下。
+
+（1）从代码运行时点来看：对于脚本代码（code in scripts），一旦触发操作，它当即就已经“运行”；而对于包代码（code in packages），只有包建成（built），它才开始“运行”。
+
+（2）从代码使用方法来看：前者往往还在源代码阶段使用，例如`source("code-in-scripts.R")`；后者在包建成后（built）添加该包`library("your-pkg")`即可直接使用特定函数`your-pkg::fun_someone()`。
+
+（3）从R landscape（R环境风貌）来看：简单说一些操作会直接导致R landscape的改变。例如：转载某个包`library("your-pkg")`、调整环境选项`options()`、或修改工作文件夹`setwd()`。这就意味着如果包代码（code in packages）里的一些函数涉及到上述操作，则它们会改变R landscape，从而引起对其他某些函数的新麻烦和问题。此外，我们也要避免使用牵扯到用户环境风貌（user’s landscape）的函数，例如`read.csv()`就会与用户特定风貌相关的一个参数相关联。总之，包代码（code in packages）的若干具体建议如下：
+
+- 不要使用`library()` 或者`require()` 。它会改变搜索路径（search path）。
+
+- 永远不要使用`source()`。它会插入执行的代码结果，从而改变当前环境。实际上`load_all()`能够更好地让你调用你想要的内部函数。
+
+- 一些慎重使用的操作函数。包括：`options()`、`par()`
+`setwd()`、`Sys.setenv()`、`Sys.setlocale()`、`set.seed()`等。
+
+
+概括起来，包代码（code in packages）会更加严格：
+
+> Any R code outside of a function is suspicious and should be carefully reviewed.
+
+
+
+# R编程技巧
+
+## 用`styler`包保持良好代码风格
+
+Hadley建议使用`tidyverse`的代码风格（具体见节[7.3 Code style](https://r-pkgs.org/r.html#code-style)）。
+
+> 建议使用`styler`包来调整代码风格，而且Rstudio Addins菜单上会有相应插件。一些常见需求的风格调整包括：对整个包`styler::style_pkg()`（注意使用带来的风险性）；对某个文件夹`styler::style_dir()`；对某个文件`styler::style_file()`；对字符向量`styler::style_text()`。
+
+
+## 用`withr`包管理环境状态
+
+前面讲过[R landscape](#landscape)会因某些操作而改变，因而引发不必要的问题和错误。`withr`包可以很好处理这个矛盾（具体见节[7.5.1 Manage state with withr](https://r-pkgs.org/r.html#manage-state-with-withr)）。
+
+需要注意的是，`withr`包的同一类操作分别给出了两个函数，二者作用范围各有不同：`with_*()`函数主要实现临时性环境状态调整（有点像“阅后即焚”）；而`local_*()`函数会将修改后的环境状态维持下去，直至本函数操作全部结束（有点像“夜更巡逻”）。
+

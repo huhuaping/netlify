@@ -1,0 +1,289 @@
+---
+title: CSS突击：xaringan美化
+author: huhuaping
+date: '2021-02-01'
+slug: css-base-xaringan
+categories:
+  - R
+tags:
+  - Xaringan
+  - CSS
+subtitle: ''
+summary: ''
+authors: [胡华平]
+lastmod: '2021-02-01T09:23:57+08:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: true
+---
+
+<script src="{{< blogdown/postref >}}index.en_files/header-attrs/header-attrs.js"></script>
+
+<div id="TOC">
+<ul>
+<li><a href="#css基础"><span class="toc-section-number">1</span> CSS基础</a>
+<ul>
+<li><a href="#css-selector"><span class="toc-section-number">1.1</span> CSS selector</a></li>
+<li><a href="#css-layout"><span class="toc-section-number">1.2</span> CSS layout</a></li>
+</ul></li>
+<li><a href="#xaringan的本质"><span class="toc-section-number">2</span> Xaringan的本质</a></li>
+<li><a href="#xaringan的css美化"><span class="toc-section-number">3</span> Xaringan的CSS美化</a>
+<ul>
+<li><a href="#layout-html"><span class="toc-section-number">3.1</span> header和footer</a></li>
+<li><a href="#个性水印图片"><span class="toc-section-number">3.2</span> 个性水印图片</a></li>
+</ul></li>
+<li><a href="#下一步需要处理的css问题"><span class="toc-section-number">4</span> 下一步需要处理的CSS问题</a></li>
+<li><a href="#最后的若干思考和感受"><span class="toc-section-number">5</span> 最后的若干思考和感受</a></li>
+</ul>
+</div>
+
+<div id="css基础" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> CSS基础</h1>
+<div id="css-selector" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> CSS selector</h2>
+<table>
+<caption>CSS selector</caption>
+<colgroup>
+<col width="60%" />
+<col width="7%" />
+<col width="17%" />
+<col width="3%" />
+<col width="10%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>类型</th>
+<th>含义</th>
+<th>子类</th>
+<th>语法</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Simple selector</td>
+<td></td>
+<td>ID</td>
+<td>#</td>
+<td>#para1 { }</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td>class/name</td>
+<td>.</td>
+<td>.center{ }</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td>Attribute selector</td>
+<td>[ ]</td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td>Universal Selector</td>
+<td>*</td>
+<td>* { }</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td>Grouping Selector</td>
+<td>,</td>
+<td>h1, h2, p { }</td>
+</tr>
+<tr class="even">
+<td>Combinator selector</td>
+<td>relationship</td>
+<td>Descendant</td>
+<td>space</td>
+<td>div p { }</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td>Child</td>
+<td>&gt;</td>
+<td>div &gt; p { }</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td>Adjacent sibling</td>
+<td>+</td>
+<td>div + p { }</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td>General sibling</td>
+<td>~</td>
+<td>div ~ p { }</td>
+</tr>
+<tr class="even">
+<td><a href="https://www.w3schools.com/css/css_pseudo_classes.asp" title="All CSS Pseudo Classes">Pseudo -class selector</a></td>
+<td>state</td>
+<td>Mouse over/ visited link/focus</td>
+<td>:</td>
+<td>a:link {}</td>
+</tr>
+<tr class="odd">
+<td><a href="https://www.w3schools.com/css/css_pseudo_elements.asp" title="All CSS Pseudo Elements">Pseudo -element selector</a></td>
+<td>part</td>
+<td>First letter/ line/ element</td>
+<td>::</td>
+<td>::first-line { }</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td>Insert content before or after</td>
+<td>::</td>
+<td>p::after { }</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="css-layout" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> CSS layout</h2>
+<ul>
+<li><p>布局：margin；border；padding</p></li>
+<li><p>位置：position: static/relative/fixed/absolute/sticky</p></li>
+<li><p>定位：top/right/bottom/left</p></li>
+</ul>
+</div>
+</div>
+<div id="xaringan的本质" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Xaringan的本质</h1>
+<p>Xaringan背后是基于remark.js的。remark.js后台基本工作流程，就是采用JavaScript语言把markdown文档，<strong>映射</strong>到html上，并形成独特的slide幻灯片样式。因此，还是很有必要了解一下remark.js的说明文档（见<a href="https://github.com/gnab/remark/wiki">Wiki页面</a>）。那么Xaringan包又起到了什么作用呢？根据yihui的说法：它扩展支持了Rmarkdown语法以及R代码的直接运行！</p>
+<p>Xaringan本质上是以html形态呈现，并使用css样式进行style视觉美化。Xaringan的技术讨论和细节见其<a href="https://github.com/yihui/xaringan/wiki">wiki页面</a>。</p>
+<p>归结起来这是对slide工具的一种选择，而且是选择了“未来感”的html呈现形态！那么CSS知识这是绕不过去的学习壁垒。html和css的学习至少也是需要在“三姑学院”（<a href="https://www.w3schools.com/css/default.asp">W3school</a>）的汪洋里过水“捞一遍”（通读一遍）。</p>
+</div>
+<div id="xaringan的css美化" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Xaringan的CSS美化</h1>
+<div id="layout-html" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> header和footer</h2>
+<p>调整header和footer视觉效果，主要是从某个slide开始里设定<code>layout: true</code>，并按html语法设置header和footer样式。其完整的语法如下：</p>
+<pre class="html"><code>&lt;!---slide area with layout---&gt;
+---
+layout: true
+
+&lt;div class=&quot;my-header-h2&quot;&gt;&lt;/div&gt;
+
+&lt;div class=&quot;watermark1&quot;&gt;&lt;/div&gt;
+
+&lt;div class=&quot;watermark2&quot;&gt;&lt;/div&gt;
+
+&lt;div class=&quot;watermark3&quot;&gt;&lt;/div&gt;
+
+&lt;div class=&quot;my-footer&quot;&gt;&lt;span&gt;huhuaping@  &amp;emsp;&amp;emsp; &lt;a href=&quot;#chapter01&quot;&gt; 第01章 导论&lt;/a&gt;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&lt;a href=&quot;#sec-process&quot;&gt;1.3 计量经济学分析过程&lt;/a&gt; &lt;/span&gt;&lt;/div&gt; 
+---</code></pre>
+<p>具体样式细节包括：</p>
+<ul>
+<li>heading文本居中设定。需要注意叠放层级参数<code>z-index</code>的设置。</li>
+</ul>
+<pre class="css"><code>.remark-slide-content h2, h3,h4,h5{
+  position: relative;
+  top: 0px;
+  margin: 15px 0px 50px;
+  width: 99%;
+  text-shadow: 0px 0px;
+  text-align: center;
+  z-index: 5;
+}</code></pre>
+<ul>
+<li>header背景色和渐变方式。</li>
+</ul>
+<pre class="css"><code>div.my-header-h2 {
+    background-color: #FFFFFF;
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,#f77a00), color-stop(0%,#f77a00), color-stop(10%,red), color-stop(74%,#fbd0ac), color-stop(83%,#fbd0ac), color-stop(100%,#fddfc8));
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 86.92913px;
+    width: 100%;
+}</code></pre>
+<ul>
+<li>footer导航样式。</li>
+</ul>
+<pre class="css"><code>div.my-footer {
+    background-color: #272822;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    height: 20px;
+    width: 100%;
+}
+
+div.my-footer span {
+    font-size: 10pt;
+    color: #F7F8FA;
+    position: absolute;
+    left: 15px;
+    bottom: 2px;
+}</code></pre>
+<ul>
+<li>footer的导航链接功能。先在css里设定链接文本的颜色，然后在slide里设定<code>layout: true</code>（见前面完整<a href="#layout-html">语句块</a>），并按html语法设定链接定位<code>#a-specify-id</code>。</li>
+</ul>
+<pre class="css"><code>/* link text color*/
+div.my-footer a {
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
+}</code></pre>
+</div>
+<div id="个性水印图片" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> 个性水印图片</h2>
+<p>水印图片的个性化设定。首先需要设定css，然后在slide里设定<code>layout: true</code>（见前面完整<a href="#layout-html">语句块</a>），并按html语法依次设定三个水印图片，其中之一如<code>&lt;div class="watermark1"&gt;&lt;/div&gt;</code>。</p>
+<pre class="css"><code>/* water remark image */
+
+.watermark1::after {
+  content: &quot;&quot;;
+  display: block;
+  width: 30%;
+  height: 20%;
+  position: absolute;
+  top: 150px;
+  left: 100px;
+  background-image: url(&quot;vlog-nwsuaf.jpg&quot;);
+  background-size: 80%;
+  background-position: 0px 20px;
+  background-repeat: no-repeat;
+  opacity: 0.04;  
+  /* Rotate div */
+ -ms-transform: rotate(-45deg); /* IE 9 */
+ -moz-transform: rotate(-45deg); /* firefox */
+ -webkit-transform: rotate(-45deg); /* Chrome, Safari, Opera */
+ transform: rotate(-45deg);
+}</code></pre>
+</div>
+</div>
+<div id="下一步需要处理的css问题" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> 下一步需要处理的CSS问题</h1>
+<ul>
+<li><p>解决字体灵活选用问题。工作量理论上不是很大，主要是受到中文字体适用性和加载速度等的限制。目前暂时还不想去碰它，大众字体就大众字体，先忍一忍。具体看yihui的相关思考和说明。如<a href="https://yihui.org/cn/2017/04/source-han-serif/">思源宋体</a> ；<a href="https://yihui.org/cn/2017/02/kaiti/#fnref:-1">楷体</a>。</p></li>
+<li><p>提前准备好各类丰富slide功能的css实现方法。具体明确的一些炫酷功能,相关css样板可以参看：a)Remark.js推荐的三个<a href="https://github.com/gnab/remark/wiki/HTML-CSS-JS-samples">Remark templates</a>；尤其推荐Story模板<a href="https://story.xaprb.com/slides/adirondack/#5">Remark-Apron</a>。另外，有空还要好好看看<code>xaringanthemer</code><a href="https://github.com/gadenbuie/xaringanthemer">R包</a>。</p></li>
+<li><p>页面紧凑度和宽松度灵活调整。例如<code>remark-slide-content.roomy</code>。</p></li>
+<li><p>图文混排技巧。</p></li>
+<li><p>正文符号列表的前导符设定问题。</p></li>
+</ul>
+</div>
+<div id="最后的若干思考和感受" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> 最后的若干思考和感受</h1>
+<p>这次对Xaringan 又一次发起冲锋，直接缘由是《计量经济学》双一流课程团队的视频录制。团队里其他人都不用R和Rmarkdown，更不要提Xaringan slide了。大家仍旧还是基于PowerPoint准备和制作授课幻灯片，有的老师甚至操作系统还是win7，office套件还是2010版！所以只能我事先用powerpoint设定好ppt模板，大家各自拿去制作自己的授课ppt（其实大部分团队老师甚至连ppt母版也不会用）。考虑到我自己的实际需求，我是希望能同时兼顾自己使用xaringan 和团队其他老师使用ppt的一致性——当然是不能奢求最后两者视觉效果的完全一样！目前在Xaringan上的设定调整，基本上达到了ppt模板类似效果的80%左右。</p>
+<p>事实上，Xaringan和ppt二者效果一致性的达成，并不是最大的挑战。基本上基于html的Xaringan slide，可以使用css技巧实现ppt里的几乎所有功能。而况Xaringan还有很多ppt无法实现的“现代的”以及“未来的”诸多功能！真正的挑战在于团队协作，尤其是对于非常技术守旧的团队（并不指技术之外的其他方面）。到此，我的基本态度就是：最低限度地在技术方面与其他人协作，重点是把协作任务下自己事情做完、基本ok即可！</p>
+<p>当然，这里面也还有一个在协作冲突中推动自己不断学习进步的问题。显然，如果没有这次的协作录制课程，我肯定还是会一如往常地坚持“最小化学习”策略：也即如无实际所需，绝不去茫然学习所谓的各种知识技能。这一次，我充分认识到了CSS对于Xaringan甚至对于Html的重要性，并且看到了一些文档协作、协作和输出的“未来”趋势和走向！</p>
+</div>
