@@ -1,8 +1,8 @@
 ---
-title: 第04章 描述性统计
+title: 第02章 数据收集、整理和清洗
 author: huhuaping
 date: '2021-02-05'
-slug: chpt04-description
+slug: chpt02-data-sourcing
 categories:
   - Course
 tags:
@@ -17,23 +17,24 @@ image:
   focal_point: ''
   preview_only: no
 projects: []
-linktitle: 第04章:描述性统计
+linktitle: 第02章:数据收集、整理和清洗
 menu:
   course-statistics:
     parent: 统计学在线课程 (简介)
-    weight: 14
+    weight: 12
 math: true
 type: docs
 ---
 
 ## 一、教学课件
 
+
 以下种类型课件都可以使用，两者可以互补，但强烈建议使用第一种类型`Xaringan slide`课件[^a]：
 
-**1.现代型课件（Xaringan slide）**（操作提示[^b]）：`r fontawesome::fa('slideshare', fill= "blue", height=17 )`[第04章-描述性统计.html](/course-statistics/02-data-sourcing.html#2) 。
+**1.现代型课件（Xaringan slide）**（操作提示[^b]）：`r fontawesome::fa('slideshare', fill= "blue", height=17 )`[第02章-数据收集、整理和清洗.html](/course-statistics/03-slide-class/02-data-sourcing.html) 。
 
 
-**2.传统型课件（pdf）**：`r fontawesome::fa('file-pdf', fill= "blue", height=17 )`[第04章-描述性统计.pdf](/course-statistics/material/02-data-sourcing-2019.9.29.pdf) 。
+**2.传统型课件（pdf）**：`r fontawesome::fa('file-pdf', fill= "blue", height=17 )`[第02章-数据收集、整理和清洗.pdf](/course-statistics/material/02-data-sourcing-2019.9.29.pdf) 。
 
 
 以上两种类型课件的**差异**：

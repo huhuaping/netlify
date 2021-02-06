@@ -404,6 +404,39 @@ Hugo version not set in .Rprofile.
 
 ```
 
+## 一次意外报错
+
+实在莫名其妙，无论`hugo`渲染网站（powershell命令下`hugo server`），还是`blogdown`渲染网站（`server_site`）分别出现如下报错。
+
+1.报错信息1：
+
+```
+Error: from config: failed to resolve output format "WebAppManifest" from site config
+```
+
+
+2.报错信息2：
+
+```
+Error: from config: failed to resolve output format "headers" from site config
+```
+
+两次报错，如同官网提到的["Error: failed to resolve output format"](https://wowchemy.com/docs/guide/troubleshooting/#error-failed-to-resolve-output-format)：
+
+最后按照官方处理办法：
+
+a. `config.toml`的`[outputs]`清单中暂时先删除`"RSS", "JSON", "WebAppManifest"`
+
+b. 然后在`powershell`命令窗口中依次输入如下命令：
+
+```
+hugo mod clean
+hugo mod get -u ./...
+hugo mod tidy
+```
+
+c. 完成上述操作后，再把`"RSS", "JSON", "WebAppManifest"`补回原处即可。
+
 # hugo模板微调
 
 > 劝君更进一杯酒，模板莫要闲折腾。——somebody

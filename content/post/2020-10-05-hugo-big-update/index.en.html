@@ -42,6 +42,7 @@ output:
 <li><a href="#knitrinclude_graphics函数调用图片可能会报错"><span class="toc-section-number">4.4.2</span> knitr::include_graphics函数调用图片可能会报错</a></li>
 <li><a href="#netlify开发报错的验证与修复"><span class="toc-section-number">4.4.3</span> netlify开发报错的验证与修复</a></li>
 </ul></li>
+<li><a href="#一次意外报错"><span class="toc-section-number">4.5</span> 一次意外报错</a></li>
 </ul></li>
 <li><a href="#hugo模板微调"><span class="toc-section-number">5</span> hugo模板微调</a>
 <ul>
@@ -365,6 +366,26 @@ knitr::include_graphics(&quot;/pic/check-box-invisible.png&quot;, error = FALSE)
   To update a file, re-knit or use blogdown::build_site(build_rmd = &#39;timestamp&#39;)
 </code></pre>
 </div>
+</div>
+<div id="一次意外报错" class="section level2" number="4.5">
+<h2><span class="header-section-number">4.5</span> 一次意外报错</h2>
+<p>实在莫名其妙，无论<code>hugo</code>渲染网站（powershell命令下<code>hugo server</code>），还是<code>blogdown</code>渲染网站（<code>server_site</code>）分别出现如下报错。</p>
+<p>1.报错信息1：</p>
+<pre><code>Error: from config: failed to resolve output format &quot;WebAppManifest&quot; from site config</code></pre>
+<p>2.报错信息2：</p>
+<pre><code>Error: from config: failed to resolve output format &quot;headers&quot; from site config</code></pre>
+<p>两次报错，如同官网提到的<a href="https://wowchemy.com/docs/guide/troubleshooting/#error-failed-to-resolve-output-format">“Error: failed to resolve output format”</a>：</p>
+<p>最后按照官方处理办法：</p>
+<ol style="list-style-type: lower-alpha">
+<li><p><code>config.toml</code>的<code>[outputs]</code>清单中暂时先删除<code>"RSS", "JSON", "WebAppManifest"</code></p></li>
+<li><p>然后在<code>powershell</code>命令窗口中依次输入如下命令：</p></li>
+</ol>
+<pre><code>hugo mod clean
+hugo mod get -u ./...
+hugo mod tidy</code></pre>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>完成上述操作后，再把<code>"RSS", "JSON", "WebAppManifest"</code>补回原处即可。</li>
+</ol>
 </div>
 </div>
 <div id="hugo模板微调" class="section level1" number="5">
