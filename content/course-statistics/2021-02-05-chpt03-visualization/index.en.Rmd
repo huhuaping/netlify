@@ -33,6 +33,32 @@ type: docs
 
 **1.现代型课件（Xaringan slide）**（操作提示[^b]）：`r fontawesome::fa('slideshare', fill= "blue", height=17 )`[第03章-数据的图表展示.html](/course-statistics/03-slide-class/03-visualization.html) 。
 
+**1.现代型课件（Xaringan slide）**（操作提示[^b]）：`r fontawesome::fa('slideshare', fill= "blue", height=17 )`[第03章-数据的图表展示.html](/course-statistics/03-visualization.html) 。
+
+test the `include_url()`
+
+```{r slide01, echo=T, eval=T, out.extra='style="border: none;"', out.width='56%'}
+# out.extra='style="border: none;"', out.width='56%'
+knitr::include_url("/course-statistics/03-slide-class/03-visualization.html/#1")
+```
+
+test xaringanExtra:
+
+```{r}
+xaringanExtra::embed_xaringan(
+  url = "/course-statistics/03-slide-class/03-visualization.html",
+  ratio = "16:9"
+)
+```
+
+somebody's feature slide
+
+```{r}
+xaringanExtra::embed_xaringan(
+  url = "https://rstudio-education.github.io/sharing-short-notice/#1",
+  ratio = "16:9"
+)
+```
 
 **2.传统型课件（pdf）**：`r fontawesome::fa('file-pdf', fill= "blue", height=17 )`[第03章-数据的图表展示.pdf](/course-statistics/material/01-introduction-2019.9.18.pdf) 。
 

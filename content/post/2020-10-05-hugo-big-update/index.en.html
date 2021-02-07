@@ -393,6 +393,12 @@ hugo mod tidy</code></pre>
 <blockquote>
 <p>劝君更进一杯酒，模板莫要闲折腾。——somebody</p>
 </blockquote>
+<p>如果使用blogdown开发课程内容，网上有人提醒慎重升级<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>：</p>
+<ul>
+<li><p>不要升级<code>hugo</code>（包括<code>hugo extend</code>）</p></li>
+<li><p>不要更新<code>hugo theme</code></p></li>
+<li><p>课程开发期间，不要升级任何东西！</p></li>
+</ul>
 <div id="基本原理" class="section level2" number="5.1">
 <h2><span class="header-section-number">5.1</span> 基本原理</h2>
 <p>考虑到<code>hugo-academic</code>模板会不断升级，如果用户想要对模板进行个性化调整，因此<code>hugo</code>开发了一套<strong>模板查找顺位机制</strong>（<a href="https://gohugo.io/templates/lookup-order/">template lookup</a>）。用户可以在不直接修改<code>hugo-academic</code>官方模板文件下，独立地进行个性化修改和微调。当然用户的任何个性化修改，都需要在约定文件路径下，且使用<code>go</code><a href="https://gohugo.io/hugo-modules/">语法</a>。</p>
@@ -410,5 +416,12 @@ hugo mod tidy</code></pre>
 <li><p>默认情况下，是没有目录导航的（toc）。当然也可以通过添加yaml参数<code>toc: true</code>来添加目录导航，但是toc显示在正文之前（而且没有“目录”字样）。对于分节较多的长篇博文，非常不利于读者阅读定位和前后对照。</p></li>
 </ul>
 <p>因此，对于分节较多的长篇博文，自然就有了“侧边浮动目录”（sidebar floating toc）的个性化页面样式修订念头。yihui<a href="https://github.com/rstudio/blogdown/issues/375#issuecomment-476332000">建议</a>可以通过JavaScript或CSS进行设定。Xiaoou WANG也提供了一个hugo语法下的<a href="https://xiaoouwang.github.io/post/add_a_float_toc_to_academic_theme/">实现方法</a>，但是有不少bug。又比如CharlieLeee的<a href="https://github.com/wowchemy/wowchemy-hugo-modules/issues/1520#issuecomment-601982609">方法</a>，只是对于<code>.md</code>格式的写作有效，而对<code>.Rmd</code>格式的写作<a href="https://github.com/wowchemy/wowchemy-hugo-modules/issues/1520#issuecomment-610210353">无效</a>。因此，最后的忠告就是专注于内容写作：劝君更进一杯酒，模板莫要闲折腾。</p>
+<!---footnote--->
 </div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p><a href="https://rstudio-education.github.io/sharing-short-notice/#148">blogdown advice</a><a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
