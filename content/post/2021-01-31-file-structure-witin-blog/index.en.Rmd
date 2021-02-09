@@ -422,6 +422,8 @@ xaringanExtra::embed_xaringan(
 
 怀疑的可能原因：
 
+- 根据hugo团队的观点，它们会原生支持`rveal.js`，但不是`remark.js`。（见[队长讨论]()）
+
 - win10操作系统静默升级，改变了hugo的链接访问权限？？
 
 - `Netlify`的建站规则发生了变化？
