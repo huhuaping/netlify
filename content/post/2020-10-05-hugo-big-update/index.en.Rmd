@@ -224,7 +224,9 @@ hugo -d ./public
 
 ### RStudio插件(addins)New post的正确使用
 
-使用RStudio插件(addins)中blogdown下的`New post`暂时还会带来困扰（参看["stackoverflow队长"问答](https://stackoverflow.com/questions/64688201/blogdown-new-post-addin-creates-but-not-loads-new-file)）。按照hugo的新流程，每个blog都会建立自己的对应的文件夹（参看[网页](https://ropensci.org/technotes/2020/04/23/rmd-learnings/)）。具体文件夹结构如下：
+使用RStudio插件(addins)中blogdown下的`New post`暂时还会带来困扰（参看["stackoverflow队长"问答](https://stackoverflow.com/questions/64688201/blogdown-new-post-addin-creates-but-not-loads-new-file)）。
+
+按照hugo的新流程，每个blog都会建立自己的对应的文件夹（参看[网页](https://ropensci.org/technotes/2020/04/23/rmd-learnings/)）。当然，其背后的原因是hugo新版本（Hugo version 0.32以上）引入了“页面束捆”（[Page Bundles](https://gohugo.io/content-management/page-bundles/)）特性。具体文件夹结构如下：
 
 
 ```{r, comment="", echo=FALSE}
@@ -251,7 +253,7 @@ print(post)
 
 blogdown这样的new-post文件夹系统变化带来的一个影响效应是：
 
-- 新旧文件夹体系的不一致性（见上面树形结构图）。虽然只是视觉上的差异，但是还是不够“一致”！
+- 新旧文件夹体系的不一致性（见上面树形结构图）。虽然只是视觉上的差异，但是还是不够“一致”！当然，也可以关闭这样的新文件夹体系（“页面束捆”），具体需要在`.Rprofile`文件设定 `options(blogdown.new_bundle = FALSE)`。  
 
 - 致命的影响是Rmarkdown引以为傲的直接R代码块功能。新体系下，可以丝滑般得到正常的R代码块运行效果（已测试。这得益于新文件系统下的self-contained理念）；旧体系下则无法运行。而且经测试，新文件夹体系下，不会影响图片`/pic/.png`和数据文件`/data/.rds`的调用。
 
@@ -436,6 +438,20 @@ hugo mod tidy
 ```
 
 c. 完成上述操作后，再把`"RSS", "JSON", "WebAppManifest"`补回原处即可。
+
+# blogdown的升级支持
+
+由于`hugo`在建站流程上做了很大的改变，`blogdown`包也在2021年1月迭代到了`v1.0`版本，显然这次是大版本升级以支持`hugo`，具体可以参看包作者的声明["Announcing blogdown v1.0"](https://blog.rstudio.com/2021/01/18/blogdown-v1.0/)。
+
+其中一些包函数值得关注：
+
+- `blogdown::built_site()`函数，涉及到是否产生`/public`文件夹和如何渲染`.Rmd`文件。
+
+- `blogdown::check_.()`类函数，主要用于核查和比对`blogdown`与`hugo`在配置等方面是否一致。
+
+- `blogdown::find_hugo('all')`函数，方便掌握自己正在（或曾经）使用的hugo版本。为稳定hugo版本，可以设定`.Rprofile`文件，具体可设定为例如`options(blogdown.hugo.version = "0.79.0")`。
+
+- `blogdown::remove_hugo()`函数，可以删除未使用的hugo版本。
 
 # hugo模板微调
 

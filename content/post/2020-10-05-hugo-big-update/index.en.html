@@ -44,10 +44,11 @@ output:
 </ul></li>
 <li><a href="#一次意外报错"><span class="toc-section-number">4.5</span> 一次意外报错</a></li>
 </ul></li>
-<li><a href="#hugo模板微调"><span class="toc-section-number">5</span> hugo模板微调</a>
+<li><a href="#blogdown的升级支持"><span class="toc-section-number">5</span> blogdown的升级支持</a></li>
+<li><a href="#hugo模板微调"><span class="toc-section-number">6</span> hugo模板微调</a>
 <ul>
-<li><a href="#基本原理"><span class="toc-section-number">5.1</span> 基本原理</a></li>
-<li><a href="#给post博文添加floating-toc"><span class="toc-section-number">5.2</span> 给post博文添加floating toc</a></li>
+<li><a href="#基本原理"><span class="toc-section-number">6.1</span> 基本原理</a></li>
+<li><a href="#给post博文添加floating-toc"><span class="toc-section-number">6.2</span> 给post博文添加floating toc</a></li>
 </ul></li>
 </ul>
 </div>
@@ -222,7 +223,8 @@ hugo mod get -u
 <h2><span class="header-section-number">4.4</span> 升级的副效应</h2>
 <div id="rstudio插件addinsnew-post的正确使用" class="section level3" number="4.4.1">
 <h3><span class="header-section-number">4.4.1</span> RStudio插件(addins)New post的正确使用</h3>
-<p>使用RStudio插件(addins)中blogdown下的<code>New post</code>暂时还会带来困扰（参看<a href="https://stackoverflow.com/questions/64688201/blogdown-new-post-addin-creates-but-not-loads-new-file">“stackoverflow队长”问答</a>）。按照hugo的新流程，每个blog都会建立自己的对应的文件夹（参看<a href="https://ropensci.org/technotes/2020/04/23/rmd-learnings/">网页</a>）。具体文件夹结构如下：</p>
+<p>使用RStudio插件(addins)中blogdown下的<code>New post</code>暂时还会带来困扰（参看<a href="https://stackoverflow.com/questions/64688201/blogdown-new-post-addin-creates-but-not-loads-new-file">“stackoverflow队长”问答</a>）。</p>
+<p>按照hugo的新流程，每个blog都会建立自己的对应的文件夹（参看<a href="https://ropensci.org/technotes/2020/04/23/rmd-learnings/">网页</a>）。当然，其背后的原因是hugo新版本（Hugo version 0.32以上）引入了“页面束捆”（<a href="https://gohugo.io/content-management/page-bundles/">Page Bundles</a>）特性。具体文件夹结构如下：</p>
 <pre><code>                                          levelName
 1  post                                            
 2   |--data                                        
@@ -240,7 +242,7 @@ hugo mod get -u
 14      °--index.en.html                           </code></pre>
 <p>blogdown这样的new-post文件夹系统变化带来的一个影响效应是：</p>
 <ul>
-<li><p>新旧文件夹体系的不一致性（见上面树形结构图）。虽然只是视觉上的差异，但是还是不够“一致”！</p></li>
+<li><p>新旧文件夹体系的不一致性（见上面树形结构图）。虽然只是视觉上的差异，但是还是不够“一致”！当然，也可以关闭这样的新文件夹体系（“页面束捆”），具体需要在<code>.Rprofile</code>文件设定 <code>options(blogdown.new_bundle = FALSE)</code>。</p></li>
 <li><p>致命的影响是Rmarkdown引以为傲的直接R代码块功能。新体系下，可以丝滑般得到正常的R代码块运行效果（已测试。这得益于新文件系统下的self-contained理念）；旧体系下则无法运行。而且经测试，新文件夹体系下，不会影响图片<code>/pic/.png</code>和数据文件<code>/data/.rds</code>的调用。</p></li>
 </ul>
 <!---
@@ -388,8 +390,19 @@ hugo mod tidy</code></pre>
 </ol>
 </div>
 </div>
-<div id="hugo模板微调" class="section level1" number="5">
-<h1><span class="header-section-number">5</span> hugo模板微调</h1>
+<div id="blogdown的升级支持" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> blogdown的升级支持</h1>
+<p>由于<code>hugo</code>在建站流程上做了很大的改变，<code>blogdown</code>包也在2021年1月迭代到了<code>v1.0</code>版本，显然这次是大版本升级以支持<code>hugo</code>，具体可以参看包作者的声明<a href="https://blog.rstudio.com/2021/01/18/blogdown-v1.0/">“Announcing blogdown v1.0”</a>。</p>
+<p>其中一些包函数值得关注：</p>
+<ul>
+<li><p><code>blogdown::built_site()</code>函数，涉及到是否产生<code>/public</code>文件夹和如何渲染<code>.Rmd</code>文件。</p></li>
+<li><p><code>blogdown::check_.()</code>类函数，主要用于核查和比对<code>blogdown</code>与<code>hugo</code>在配置等方面是否一致。</p></li>
+<li><p><code>blogdown::find_hugo('all')</code>函数，方便掌握自己正在（或曾经）使用的hugo版本。为稳定hugo版本，可以设定<code>.Rprofile</code>文件，具体可设定为例如<code>options(blogdown.hugo.version = "0.79.0")</code>。</p></li>
+<li><p><code>blogdown::remove_hugo()</code>函数，可以删除未使用的hugo版本。</p></li>
+</ul>
+</div>
+<div id="hugo模板微调" class="section level1" number="6">
+<h1><span class="header-section-number">6</span> hugo模板微调</h1>
 <blockquote>
 <p>劝君更进一杯酒，模板莫要闲折腾。——somebody</p>
 </blockquote>
@@ -399,16 +412,16 @@ hugo mod tidy</code></pre>
 <li><p>不要更新<code>hugo theme</code></p></li>
 <li><p>课程开发期间，不要升级任何东西！</p></li>
 </ul>
-<div id="基本原理" class="section level2" number="5.1">
-<h2><span class="header-section-number">5.1</span> 基本原理</h2>
+<div id="基本原理" class="section level2" number="6.1">
+<h2><span class="header-section-number">6.1</span> 基本原理</h2>
 <p>考虑到<code>hugo-academic</code>模板会不断升级，如果用户想要对模板进行个性化调整，因此<code>hugo</code>开发了一套<strong>模板查找顺位机制</strong>（<a href="https://gohugo.io/templates/lookup-order/">template lookup</a>）。用户可以在不直接修改<code>hugo-academic</code>官方模板文件下，独立地进行个性化修改和微调。当然用户的任何个性化修改，都需要在约定文件路径下，且使用<code>go</code><a href="https://gohugo.io/hugo-modules/">语法</a>。</p>
 <ul>
 <li><p>优点：官方模板文件和用户个性化修改文件互相分离和独立，保证了二者并行不悖。</p></li>
 <li><p>缺点：用户需要熟悉<code>go</code>语法。此外，因为官方模板会不断迭代变化，用户个性化修改可能会失效，因而需要不断去配合官方的迭代步骤！</p></li>
 </ul>
 </div>
-<div id="给post博文添加floating-toc" class="section level2" number="5.2">
-<h2><span class="header-section-number">5.2</span> 给post博文添加floating toc</h2>
+<div id="给post博文添加floating-toc" class="section level2" number="6.2">
+<h2><span class="header-section-number">6.2</span> 给post博文添加floating toc</h2>
 <p>官方模板下，默认的<code>post</code>是基于<code>widget: pages</code>样式。其视觉效果特点是：</p>
 <ul>
 <li><p>在pc端，<code>chrome</code>浏览器下post博文正文宽度为720px，如果显示器分辨率为<code>1920*1080</code>，那么正文的宽度占比为37.5%。按照时兴的说法就是“屏占比”太低！</p></li>
