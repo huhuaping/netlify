@@ -63,7 +63,7 @@ Xaringan本质上是以html形态呈现，并使用css样式进行style视觉美
 
 # Xaringan的CSS美化
 
-## header和footer {#layout-html}
+## 头衬和底衬（header and footer） {#layout-html}
 
 调整header和footer视觉效果，主要是从某个slide开始里设定`layout: true`，并按html语法设置header和footer样式。其完整的语法如下：
 
@@ -149,7 +149,7 @@ div.my-footer a {
 }
 ```
 
-## 个性水印图片
+## 个性水印图片（watermark）
 
 水印图片的个性化设定。首先需要设定css，然后在slide里设定`layout: true`（见前面完整[语句块](#layout-html)），并按html语法依次设定三个水印图片，其中之一如`<div class="watermark1"></div>`。
 
@@ -177,6 +177,72 @@ div.my-footer a {
 }
 ```
 
+## 各类窗框（notes box）
+
+在多个写作场景下（如`xaringan`、`blogdown`、`rmarkdown`），可能会用到各类提示窗框（notes box）。可以利用css设定获得个性化的提示窗框效果，具体可参看desirée de leon的博文[^1]。
+
+
+```{r, echo=FALSE}
+knitr::include_graphics("/pic/div-tip-annotate.png", error = FALSE)
+```
+
+基本要点：
+
+- 背后要用到html的`div`语块
+
+- 可以借用R包`bookdown`的`blocks`代码块，进行快捷应用。
+
+
+第一步：css文件（`/my-css/notes-tips.css`）设定如下：
+
+```{css}
+/* -----------div tips------------- */
+
+div.puzzle, div.fyi, div.demo, div.notes {
+    padding: 0.5em;
+    margin: 0.5em 0;
+    padding-left: 100px;
+    background-size: 70px;
+    background-repeat: no-repeat;
+    background-position: 15px center;
+    min-height: 100px;
+    color: #1f5386;
+    background-color: #bed3ec;
+    border: solid 5px #dfedff;
+}
+
+div.notes {
+  background-image: url("notes-light-bulb-ff5500.png");
+}
+
+```
+
+> 注意：需要自己手动下载背景图片，免费的图片icon下载网站有：
+
+>- [aiconica.net](https://aiconica.net/)。
+- [fontawesome.com](https://fontawesome.com/)。正文里还可使用R函数`fontawesome::fa('slideshare')`。例如slide图标`r fontawesome::fa('slideshare', fill= "blue")`
+
+第二步：在`.Rmd`文件的`yaml`区域引用上面的css文件路径。
+
+```
+css: 
+  - ../mycss/notes-tips.css
+```
+
+
+第三步：在`.Rmd`文件下进行写作，并引用对应的css样式：
+
+``````
+` ``{block, type='notes', echo=T}
+
+待完成：找到新数据，绘制一张条形图，但其不适合制作柱状图。
+
+` ``
+``````
+
+
+
+
 # 下一步需要处理的CSS问题
 
 -   解决字体灵活选用问题。工作量理论上不是很大，主要是受到中文字体适用性和加载速度等的限制。目前暂时还不想去碰它，大众字体就大众字体，先忍一忍。具体看yihui的相关思考和说明。如[思源宋体](https://yihui.org/cn/2017/04/source-han-serif/) ；[楷体](https://yihui.org/cn/2017/02/kaiti/#fnref:-1)。
@@ -196,3 +262,6 @@ div.my-footer a {
 事实上，Xaringan和ppt二者效果一致性的达成，并不是最大的挑战。基本上基于html的Xaringan slide，可以使用css技巧实现ppt里的几乎所有功能。而况Xaringan还有很多ppt无法实现的"现代的"以及"未来的"诸多功能！真正的挑战在于团队协作，尤其是对于非常技术守旧的团队（并不指技术之外的其他方面）。到此，我的基本态度就是：最低限度地在技术方面与其他人协作，重点是把协作任务下自己事情做完、基本ok即可！
 
 当然，这里面也还有一个在协作冲突中推动自己不断学习进步的问题。显然，如果没有这次的协作录制课程，我肯定还是会一如往常地坚持"最小化学习"策略：也即如无实际所需，绝不去茫然学习所谓的各种知识技能。这一次，我充分认识到了CSS对于Xaringan甚至对于Html的重要性，并且看到了一些文档协作、协作和输出的"未来"趋势和走向！
+
+
+[^1]:[MAKING PRETTY NOTE BOXES: A div tip for all occasions](https://desiree.rbind.io/post/2019/making-tip-boxes-with-bookdown-and-rmarkdown/)
