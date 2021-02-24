@@ -1,5 +1,5 @@
 ---
-title: CSS突击：xaringan美化
+title: Xaringan美化：CSS功夫
 author: huhuaping
 date: '2021-02-01'
 slug: css-base-xaringan
@@ -40,7 +40,13 @@ output:
 <li><a href="#个性水印图片watermark"><span class="toc-section-number">3.2</span> 个性水印图片（watermark）</a></li>
 <li><a href="#各类窗框notes-box"><span class="toc-section-number">3.3</span> 各类窗框（notes box）</a></li>
 </ul></li>
-<li><a href="#下一步需要处理的css问题"><span class="toc-section-number">4</span> 下一步需要处理的CSS问题</a></li>
+<li><a href="#下一步需要处理的css问题"><span class="toc-section-number">4</span> 下一步需要处理的CSS问题</a>
+<ul>
+<li><a href="#储备炫酷技能"><span class="toc-section-number">4.1</span> 储备炫酷技能</a></li>
+<li><a href="#灵活选用字体"><span class="toc-section-number">4.2</span> 灵活选用字体</a></li>
+<li><a href="#图文混排"><span class="toc-section-number">4.3</span> 图文混排</a></li>
+<li><a href="#todo清单"><span class="toc-section-number">4.4</span> Todo清单</a></li>
+</ul></li>
 <li><a href="#最后的若干思考和感受"><span class="toc-section-number">5</span> 最后的若干思考和感受</a></li>
 </ul>
 </div>
@@ -343,13 +349,37 @@ div.notes {
 </div>
 <div id="下一步需要处理的css问题" class="section level1" number="4">
 <h1><span class="header-section-number">4</span> 下一步需要处理的CSS问题</h1>
+<div id="储备炫酷技能" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> 储备炫酷技能</h2>
+<p>提前准备好各类丰富slide功能的css实现方法。具体明确的一些炫酷功能，相关slide和css样板可以参看：</p>
 <ul>
-<li><p>解决字体灵活选用问题。工作量理论上不是很大，主要是受到中文字体适用性和加载速度等的限制。目前暂时还不想去碰它，大众字体就大众字体，先忍一忍。具体看yihui的相关思考和说明。如<a href="https://yihui.org/cn/2017/04/source-han-serif/">思源宋体</a> ；<a href="https://yihui.org/cn/2017/02/kaiti/#fnref:-1">楷体</a>。</p></li>
-<li><p>提前准备好各类丰富slide功能的css实现方法。具体明确的一些炫酷功能,相关css样板可以参看：a)Remark.js推荐的三个<a href="https://github.com/gnab/remark/wiki/HTML-CSS-JS-samples">Remark templates</a>；尤其推荐Story模板<a href="https://story.xaprb.com/slides/adirondack/#5">Remark-Apron</a>。另外，有空还要好好看看<code>xaringanthemer</code><a href="https://github.com/gadenbuie/xaringanthemer">R包</a>。</p></li>
-<li><p>页面紧凑度和宽松度灵活调整。例如<code>remark-slide-content.roomy</code>。</p></li>
-<li><p>图文混排技巧。</p></li>
-<li><p>正文符号列表的前导符设定问题。</p></li>
+<li><p>Remark.js推荐的三个<a href="https://github.com/gnab/remark/wiki/HTML-CSS-JS-samples">Remark templates</a>；尤其推荐Story模板<a href="https://story.xaprb.com/slides/adirondack/#5">Remark-Apron</a>。</p></li>
+<li><p>另外，有空还要好好看看<code>xaringanthemer</code><a href="https://github.com/gadenbuie/xaringanthemer">R包</a>。</p></li>
+<li><p><a href="https://slides.earo.me/rladiesakl20/#39">Earo Wang’s slide</a>展示了很多炫酷技巧，包括Javascript交互实现动画效果等。源代码见其<a href="https://github.com/earowang/rladiesakl20">github</a>。</p></li>
+<li><p><a href="https://yongfu.name/slides/xaringan/#1">Yongfu Liao’s slide</a>，提供了简单的xaringan使用介绍。其源代码<a href="https://github.com/liao961120/slides-old/tree/master/xaringan">github</a>。</p></li>
 </ul>
+</div>
+<div id="灵活选用字体" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> 灵活选用字体</h2>
+<p>解决字体灵活选用问题。工作量理论上不是很大，主要是受到中文字体适用性和加载速度等的限制。目前暂时还不想去碰它，大众字体就大众字体，先忍一忍。具体看yihui的相关思考和说明。如<a href="https://yihui.org/cn/2017/04/source-han-serif/">思源宋体</a> ；<a href="https://yihui.org/cn/2017/02/kaiti/#fnref:-1">楷体</a>。</p>
+</div>
+<div id="图文混排" class="section level2" number="4.3">
+<h2><span class="header-section-number">4.3</span> 图文混排</h2>
+<p>图文混排技巧。</p>
+<ul>
+<li><p><code>remark.js</code>自带光环的边栏效果（side bar）<code>.left-column[]</code>或者<code>.right-column[]</code>。</p></li>
+<li><p><code>remark.js</code>自带光环的两栏效果（two columns）<code>.pull-left[]</code>或者<code>.pull-right[]</code>。</p></li>
+</ul>
+</div>
+<div id="todo清单" class="section level2" number="4.4">
+<h2><span class="header-section-number">4.4</span> Todo清单</h2>
+<ul>
+<li><p>页面布局。页面紧凑度和宽松度灵活调整。例如<code>remark-slide-content.roomy</code>。</p></li>
+<li><p>前导符设定。正文符号列表的前导符设定问题。</p></li>
+<li><p>动画效果。see <a href="https://slides.earo.me/rladiesakl20/#1">Earo Wang’s slide</a></p></li>
+<li><p>添加logo。see <a href="https://www.garrickadenbuie.com/blog/xaringan-tip-logo-all-slides/">xaringan Tip: Add A Logo to All of Your Slides</a>。</p></li>
+</ul>
+</div>
 </div>
 <div id="最后的若干思考和感受" class="section level1" number="5">
 <h1><span class="header-section-number">5</span> 最后的若干思考和感受</h1>

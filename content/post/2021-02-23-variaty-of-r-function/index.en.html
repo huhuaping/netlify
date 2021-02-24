@@ -1,0 +1,103 @@
+---
+title: R函数踩坑
+author: huhuaping
+date: '2021-02-23'
+slug: variaty-of-r-function
+categories:
+  - R
+tags:
+  - R beginer
+subtitle: 'variaty of R function'
+summary: '日常碰到的常用的统计分析场景，但是容易有坑的R函数操作。'
+authors: [胡华平]
+lastmod: '2021-02-23T11:45:07+08:00'
+featured: no
+math: yes
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: true
+---
+
+<script src="{{< blogdown/postref >}}index.en_files/header-attrs/header-attrs.js"></script>
+
+<div id="TOC">
+<ul>
+<li><a href="#分析场景与r包"><span class="toc-section-number">1</span> 分析场景与R包</a>
+<ul>
+<li><a href="#统计制表-vs-janitortabyl"><span class="toc-section-number">1.1</span> 统计制表 vs janitor::tabyl</a></li>
+</ul></li>
+<li><a href="#分析场景与r函数"><span class="toc-section-number">2</span> 分析场景与R函数</a>
+<ul>
+<li><a href="#生成重复数据rep"><span class="toc-section-number">2.1</span> 生成重复数据rep()</a></li>
+</ul></li>
+</ul>
+</div>
+
+<div id="分析场景与r包" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> 分析场景与R包</h1>
+<div id="统计制表-vs-janitortabyl" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> 统计制表 vs janitor::tabyl</h2>
+<p>tabyls: a tidy, fully-featured approach to counting things. <a href="https://cran.r-project.org/web/packages/janitor/vignettes/tabyls.html">see link</a></p>
+<ul>
+<li><p><strong>优点</strong>：</p>
+<ul>
+<li><p>方便统计频次和频率</p></li>
+<li><p>方便添加行合计</p></li>
+<li><p>方便调整数据格式（百分数等）</p></li>
+<li><p>可以结合<code>knitr::kable()</code>输出</p></li>
+</ul></li>
+<li><p><strong>不足</strong>：</p>
+<ul>
+<li><code>janitor::tabyl()</code>仅适合处理<strong>原始数据</strong>，并且是<code>data.frame</code>或<code>vector</code>。</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="分析场景与r函数" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> 分析场景与R函数</h1>
+<div id="生成重复数据rep" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> 生成重复数据rep()</h2>
+<p><strong>分析场景</strong>：生成指定的重复数据，要求指定被重复的<code>vector("char vec")</code>，以及指定各自重复的次数<code>vector("times vec")</code>。</p>
+<ul>
+<li><strong>踩坑函数1</strong>：直接<code>rep()</code>。</li>
+</ul>
+<pre class="r"><code>require(magrittr)
+brand&lt;- c(&quot;果汁&quot;,&quot;矿泉水&quot;,&quot;绿茶&quot;,&quot;其他&quot;,&quot;碳酸饮料&quot;)
+reps &lt;- c(6L, 10L,11L, 8L,15L)
+
+rep(brand, reps)</code></pre>
+<pre><code> [1] &quot;果汁&quot;     &quot;果汁&quot;     &quot;果汁&quot;     &quot;果汁&quot;     &quot;果汁&quot;     &quot;果汁&quot;    
+ [7] &quot;矿泉水&quot;   &quot;矿泉水&quot;   &quot;矿泉水&quot;   &quot;矿泉水&quot;   &quot;矿泉水&quot;   &quot;矿泉水&quot;  
+[13] &quot;矿泉水&quot;   &quot;矿泉水&quot;   &quot;矿泉水&quot;   &quot;矿泉水&quot;   &quot;绿茶&quot;     &quot;绿茶&quot;    
+[19] &quot;绿茶&quot;     &quot;绿茶&quot;     &quot;绿茶&quot;     &quot;绿茶&quot;     &quot;绿茶&quot;     &quot;绿茶&quot;    
+[25] &quot;绿茶&quot;     &quot;绿茶&quot;     &quot;绿茶&quot;     &quot;其他&quot;     &quot;其他&quot;     &quot;其他&quot;    
+[31] &quot;其他&quot;     &quot;其他&quot;     &quot;其他&quot;     &quot;其他&quot;     &quot;其他&quot;     &quot;碳酸饮料&quot;
+[37] &quot;碳酸饮料&quot; &quot;碳酸饮料&quot; &quot;碳酸饮料&quot; &quot;碳酸饮料&quot; &quot;碳酸饮料&quot; &quot;碳酸饮料&quot;
+[43] &quot;碳酸饮料&quot; &quot;碳酸饮料&quot; &quot;碳酸饮料&quot; &quot;碳酸饮料&quot; &quot;碳酸饮料&quot; &quot;碳酸饮料&quot;
+[49] &quot;碳酸饮料&quot; &quot;碳酸饮料&quot;</code></pre>
+<ul>
+<li><strong>踩坑函数2</strong>：<code>mapply()</code> + <code>rep()</code>。这个要复杂一点。</li>
+</ul>
+<pre class="r"><code>drink &lt;- mapply(FUN = rep, x=brand, times = reps) %&gt;%
+  unlist()
+
+names(drink) &lt;-NULL
+
+drink</code></pre>
+<pre><code> [1] &quot;果汁&quot;     &quot;果汁&quot;     &quot;果汁&quot;     &quot;果汁&quot;     &quot;果汁&quot;     &quot;果汁&quot;    
+ [7] &quot;矿泉水&quot;   &quot;矿泉水&quot;   &quot;矿泉水&quot;   &quot;矿泉水&quot;   &quot;矿泉水&quot;   &quot;矿泉水&quot;  
+[13] &quot;矿泉水&quot;   &quot;矿泉水&quot;   &quot;矿泉水&quot;   &quot;矿泉水&quot;   &quot;绿茶&quot;     &quot;绿茶&quot;    
+[19] &quot;绿茶&quot;     &quot;绿茶&quot;     &quot;绿茶&quot;     &quot;绿茶&quot;     &quot;绿茶&quot;     &quot;绿茶&quot;    
+[25] &quot;绿茶&quot;     &quot;绿茶&quot;     &quot;绿茶&quot;     &quot;其他&quot;     &quot;其他&quot;     &quot;其他&quot;    
+[31] &quot;其他&quot;     &quot;其他&quot;     &quot;其他&quot;     &quot;其他&quot;     &quot;其他&quot;     &quot;碳酸饮料&quot;
+[37] &quot;碳酸饮料&quot; &quot;碳酸饮料&quot; &quot;碳酸饮料&quot; &quot;碳酸饮料&quot; &quot;碳酸饮料&quot; &quot;碳酸饮料&quot;
+[43] &quot;碳酸饮料&quot; &quot;碳酸饮料&quot; &quot;碳酸饮料&quot; &quot;碳酸饮料&quot; &quot;碳酸饮料&quot; &quot;碳酸饮料&quot;
+[49] &quot;碳酸饮料&quot; &quot;碳酸饮料&quot;</code></pre>
+</div>
+</div>

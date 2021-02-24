@@ -1,5 +1,5 @@
 ---
-title: CSS突击：xaringan美化
+title: Xaringan美化：CSS功夫
 author: huhuaping
 date: '2021-02-01'
 slug: css-base-xaringan
@@ -245,15 +245,39 @@ css:
 
 # 下一步需要处理的CSS问题
 
--   解决字体灵活选用问题。工作量理论上不是很大，主要是受到中文字体适用性和加载速度等的限制。目前暂时还不想去碰它，大众字体就大众字体，先忍一忍。具体看yihui的相关思考和说明。如[思源宋体](https://yihui.org/cn/2017/04/source-han-serif/) ；[楷体](https://yihui.org/cn/2017/02/kaiti/#fnref:-1)。
+## 储备炫酷技能
 
--   提前准备好各类丰富slide功能的css实现方法。具体明确的一些炫酷功能,相关css样板可以参看：a)Remark.js推荐的三个[Remark templates](https://github.com/gnab/remark/wiki/HTML-CSS-JS-samples)；尤其推荐Story模板[Remark-Apron](https://story.xaprb.com/slides/adirondack/#5)。另外，有空还要好好看看`xaringanthemer`[R包](https://github.com/gadenbuie/xaringanthemer)。
+提前准备好各类丰富slide功能的css实现方法。具体明确的一些炫酷功能，相关slide和css样板可以参看：
 
--   页面紧凑度和宽松度灵活调整。例如`remark-slide-content.roomy`。
+- Remark.js推荐的三个[Remark templates](https://github.com/gnab/remark/wiki/HTML-CSS-JS-samples)；尤其推荐Story模板[Remark-Apron](https://story.xaprb.com/slides/adirondack/#5)。
 
--   图文混排技巧。
+- 另外，有空还要好好看看`xaringanthemer`[R包](https://github.com/gadenbuie/xaringanthemer)。
 
--   正文符号列表的前导符设定问题。
+- [Earo Wang's slide](https://slides.earo.me/rladiesakl20/#39)展示了很多炫酷技巧，包括Javascript交互实现动画效果等。源代码见其[github](https://github.com/earowang/rladiesakl20)。
+
+- [Yongfu Liao's slide](https://yongfu.name/slides/xaringan/#1)，提供了简单的xaringan使用介绍。其源代码[github](https://github.com/liao961120/slides-old/tree/master/xaringan)。
+
+## 灵活选用字体
+
+解决字体灵活选用问题。工作量理论上不是很大，主要是受到中文字体适用性和加载速度等的限制。目前暂时还不想去碰它，大众字体就大众字体，先忍一忍。具体看yihui的相关思考和说明。如[思源宋体](https://yihui.org/cn/2017/04/source-han-serif/) ；[楷体](https://yihui.org/cn/2017/02/kaiti/#fnref:-1)。
+
+## 图文混排
+
+图文混排技巧。
+
+- `remark.js`自带光环的边栏效果（side bar）`.left-column[]`或者`.right-column[]`。
+
+- `remark.js`自带光环的两栏效果（two columns）`.pull-left[]`或者`.pull-right[]`。
+
+## Todo清单
+
+- 页面布局。页面紧凑度和宽松度灵活调整。例如`remark-slide-content.roomy`。
+
+- 前导符设定。正文符号列表的前导符设定问题。
+
+- 动画效果。see [Earo Wang's slide](https://slides.earo.me/rladiesakl20/#1)
+
+- 添加logo。see [xaringan Tip: Add A Logo to All of Your Slides](https://www.garrickadenbuie.com/blog/xaringan-tip-logo-all-slides/)。
 
 # 最后的若干思考和感受
 
