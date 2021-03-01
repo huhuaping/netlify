@@ -350,5 +350,82 @@ output:
     toc: true
     number_sections: true
 ```
-			
-			
+
+# 对接失败与报错
+
+## include_url()服务器拒绝访问
+
+报错内容：使用`knitr::include_url()`函数后，hugo或blogdown渲染网站，都无法显示对本地静态（`"static/course/slide.html"`）文件`Xaringan slide`。
+
+具体报错内容如下
+
+- 本地预览下，`include_url('/path/to/file.html')`则显示报错`localhost 拒绝了我们的连接请求。`。markdown语法`[](/path/to/file.html)`则只显示为纯文本。
+
+- `netlify built`在线建站后，`include_url('/path/to/file.html')`则显示服务器`.netlify.app 拒绝了我们的连接请求。`。但是markdown语法`[](/path/to/file.html)`则显示正常。
+
+- chrome开发工具显示：`<div id="main-frame-error class="interstitial-wrapper" </div>`。
+
+1.use markdown syntax（link Ok）。课件（Xaringan slide）`r fontawesome::fa('slideshare', fill= "blue", height=17 )`[第01章-绪论.html](/course-statistics/03-slide-class/01-introduction.html)  。
+
+```
+[第01章-绪论.html](/course-statistics/03-slide-class/03-visualization.html)
+```
+
+
+2.try local graphic（graph OK）。
+
+```{r, eval=T}
+knitr::include_graphics("/pic/facet-multiple-geom.png", error = FALSE)
+```
+
+3.test the `include_url()` （error）：
+
+```{r slide01, echo=T, eval=T, out.extra='style="border: none;"', out.width='80%'}
+# out.extra='style="border: none;"', out.width='80%'
+knitr::include_url("/course-statistics/03-slide-class/03-visualization.html")
+```
+
+4.try iframe html tag（error）:
+
+```
+<iframe seamless src="/course-statistics/03-slide-class/03-visualization.html" width="100%" height="500"></iframe>
+```
+
+<iframe seamless src="/course-statistics/03-slide-class/03-visualization.html" width="100%" height="500"></iframe>
+
+
+5.test `xaringanExtra::embed_xaringan()`（error）:
+
+```{r, echo=T}
+xaringanExtra::embed_xaringan(
+  url = "/course-statistics/03-slide-class/03-visualization.html",
+  ratio = "16:9"
+)
+```
+
+
+排除可能的问题：
+
+- win10 系统防火墙[设置](https://stackoverflow.com/questions/64252065/problem-rendering-hugo-lithium-theme-blogdown-acess-denied)
+
+- chrome隐私[设置](https://stackoverflow.com/questions/51634998/cannot-get-iframe-to-appear-on-static-html-page-after-knitting-through-rmarkdown)
+
+
+- `knitr::include_url()`函数是否正确，包括`chunk option`设定。
+
+- url地址是否正确。外部绝对url地址显示正确。本地相对地址则报错。但使用`knitr::include_graphic()`加载本地图片则能正确显示图片。排除url地址误写。
+
+- 使用`iframe tag`方法，仍旧报错。
+
+- 使用`xaringanExtra::embed_xaringan()`，仍旧报错。
+
+
+怀疑的可能原因：
+
+- 根据hugo团队的观点，它们会原生支持`rveal.js`，但不是`remark.js`。（见[队长讨论]()）
+
+- win10操作系统静默升级，改变了hugo的链接访问权限？？
+
+- `Netlify`的建站规则发生了变化？
+
+- `knitr`包的bug（iframe id失效）？

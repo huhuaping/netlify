@@ -8,16 +8,36 @@ categories:
 tags:
   - LaTex
   - tinyTeX
+subtitle: ''
+summary: ''
+authors: [胡华平]
+lastmod: '2021-02-01T09:23:57+08:00'
+featured: no
 image:
   caption: ''
   focal_point: ''
+math: yes
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: true
 
 ---
 
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
+<div id="TOC">
+<ul>
+<li><a href="#安装tinytex"><span class="toc-section-number">1</span> 安装tinyTeX</a></li>
+<li><a href="#踩过的latex各种坑"><span class="toc-section-number">2</span> 踩过的Latex各种坑</a>
+<ul>
+<li><a href="#千分数"><span class="toc-section-number">2.1</span> 千分数</a></li>
+</ul></li>
+</ul>
+</div>
 
-<div id="安装tinytex" class="section level1">
-<h1>安装tinyTeX</h1>
+<div id="安装tinytex" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> 安装tinyTeX</h1>
 <p>参看谢益辉<a href="https://yihui.name/tinytex/">TinyTeX</a></p>
 <ol style="list-style-type: decimal">
 <li>安装tinytex</li>
@@ -32,4 +52,21 @@ tinytex::install_tinytex()</code></pre>
    &#39;\\begin{document}&#39;, &#39;Hello world!&#39;, &#39;\\end{document}&#39;
  ), &#39;test.tex&#39;)
 tinytex::pdflatex(&#39;test.tex&#39;)</code></pre>
+</div>
+<div id="踩过的latex各种坑" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> 踩过的Latex各种坑</h1>
+<div id="千分数" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> 千分数</h2>
+<p>注意这里的<strong>千分数</strong>是指<strong>千分之几</strong>（也即<span class="math inline">\(\unicode{x2030}\)</span>），而不是指<strong>千分位分隔符</strong>（一般用逗点或空格）。</p>
+<ul>
+<li><p>Latex环境下，一般用法有latex包<code>textcomp::\textperthousand</code>或者<code>wasysym::\permil</code></p></li>
+<li><p>Rmarkdown下，最好直接使用<code>\unicode{x2030}</code><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>来输出千分数<span class="math inline">\(\unicode{x2030}\)</span>。</p></li>
+</ul>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>具体可<a href="https://stats.meta.stackexchange.com/questions/2884/how-to-get-a-permille-perthousand-sign-in-mathjax">参看</a>。<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>

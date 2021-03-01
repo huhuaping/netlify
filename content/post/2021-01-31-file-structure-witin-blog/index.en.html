@@ -24,6 +24,7 @@ output:
 ---
 
 <script src="{{< blogdown/postref >}}index.en_files/header-attrs/header-attrs.js"></script>
+<script src="{{< blogdown/postref >}}index.en_files/fitvids/fitvids.min.js"></script>
 
 <div id="TOC">
 <ul>
@@ -46,6 +47,10 @@ output:
 <ul>
 <li><a href="#netlify内部相互链接"><span class="toc-section-number">3.1</span> netlify内部相互链接</a></li>
 <li><a href="#output"><span class="toc-section-number">3.2</span> netlify指定Rmd输出格式</a></li>
+</ul></li>
+<li><a href="#对接失败与报错"><span class="toc-section-number">4</span> 对接失败与报错</a>
+<ul>
+<li><a href="#include_url服务器拒绝访问"><span class="toc-section-number">4.1</span> include_url()服务器拒绝访问</a></li>
 </ul></li>
 </ul>
 </div>
@@ -292,5 +297,57 @@ output:
   blogdown::html_page:
     toc: true
     number_sections: true</code></pre>
+</div>
+</div>
+<div id="对接失败与报错" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> 对接失败与报错</h1>
+<div id="include_url服务器拒绝访问" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> include_url()服务器拒绝访问</h2>
+<p>报错内容：使用<code>knitr::include_url()</code>函数后，hugo或blogdown渲染网站，都无法显示对本地静态（<code>"static/course/slide.html"</code>）文件<code>Xaringan slide</code>。</p>
+<p>具体报错内容如下</p>
+<ul>
+<li><p>本地预览下，<code>include_url('/path/to/file.html')</code>则显示报错<code>localhost 拒绝了我们的连接请求。</code>。markdown语法<code>[](/path/to/file.html)</code>则只显示为纯文本。</p></li>
+<li><p><code>netlify built</code>在线建站后，<code>include_url('/path/to/file.html')</code>则显示服务器<code>.netlify.app 拒绝了我们的连接请求。</code>。但是markdown语法<code>[](/path/to/file.html)</code>则显示正常。</p></li>
+<li><p>chrome开发工具显示：<code>&lt;div id="main-frame-error class="interstitial-wrapper" &lt;/div&gt;</code>。</p></li>
+</ul>
+<p>1.use markdown syntax（link Ok）。课件（Xaringan slide）<svg style="height:17;fill:blue;" viewBox="0 0 512 512"><path d="M187.7 153.7c-34 0-61.7 25.7-61.7 57.7 0 31.7 27.7 57.7 61.7 57.7s61.7-26 61.7-57.7c0-32-27.7-57.7-61.7-57.7zm143.4 0c-34 0-61.7 25.7-61.7 57.7 0 31.7 27.7 57.7 61.7 57.7 34.3 0 61.7-26 61.7-57.7.1-32-27.4-57.7-61.7-57.7zm156.6 90l-6 4.3V49.7c0-27.4-20.6-49.7-46-49.7H76.6c-25.4 0-46 22.3-46 49.7V248c-2-1.4-4.3-2.9-6.3-4.3-15.1-10.6-25.1 4-16 17.7 18.3 22.6 53.1 50.3 106.3 72C58.3 525.1 252 555.7 248.9 457.5c0-.7.3-56.6.3-96.6 5.1 1.1 9.4 2.3 13.7 3.1 0 39.7.3 92.8.3 93.5-3.1 98.3 190.6 67.7 134.3-124 53.1-21.7 88-49.4 106.3-72 9.1-13.8-.9-28.3-16.1-17.8zm-30.5 19.2c-68.9 37.4-128.3 31.1-160.6 29.7-23.7-.9-32.6 9.1-33.7 24.9-10.3-7.7-18.6-15.5-20.3-17.1-5.1-5.4-13.7-8-27.1-7.7-31.7 1.1-89.7 7.4-157.4-28V72.3c0-34.9 8.9-45.7 40.6-45.7h317.7c30.3 0 40.9 12.9 40.9 45.7v190.6z"/></svg><a href="/course-statistics/03-slide-class/01-introduction.html">第01章-绪论.html</a> 。</p>
+<pre><code>[第01章-绪论.html](/course-statistics/03-slide-class/03-visualization.html)</code></pre>
+<p>2.try local graphic（graph OK）。</p>
+<pre class="r"><code>knitr::include_graphics(&quot;/pic/facet-multiple-geom.png&quot;, error = FALSE)</code></pre>
+<p><img src="/pic/facet-multiple-geom.png" /><!-- --></p>
+<p>3.test the <code>include_url()</code> （error）：</p>
+<pre class="r"><code># out.extra=&#39;style=&quot;border: none;&quot;&#39;, out.width=&#39;80%&#39;
+knitr::include_url(&quot;/course-statistics/03-slide-class/03-visualization.html&quot;)</code></pre>
+<iframe src="/course-statistics/03-slide-class/03-visualization.html" width="80%" height="400px" style="border: none;">
+</iframe>
+<p>4.try iframe html tag（error）:</p>
+<pre><code>&lt;iframe seamless src=&quot;/course-statistics/03-slide-class/03-visualization.html&quot; width=&quot;100%&quot; height=&quot;500&quot;&gt;&lt;/iframe&gt;</code></pre>
+<iframe seamless src="/course-statistics/03-slide-class/03-visualization.html" width="100%" height="500">
+</iframe>
+<p>5.test <code>xaringanExtra::embed_xaringan()</code>（error）:</p>
+<pre class="r"><code>xaringanExtra::embed_xaringan(
+  url = &quot;/course-statistics/03-slide-class/03-visualization.html&quot;,
+  ratio = &quot;16:9&quot;
+)</code></pre>
+<div class="shareagain" style="min-width:300px;margin:1em auto;">
+<iframe src="/course-statistics/03-slide-class/03-visualization.html" width="1600" height="900" style="border:2px solid currentColor;" loading="lazy" allowfullscreen></iframe>
+<script>fitvids('.shareagain', {players: 'iframe'});</script>
+</div>
+<p>排除可能的问题：</p>
+<ul>
+<li><p>win10 系统防火墙<a href="https://stackoverflow.com/questions/64252065/problem-rendering-hugo-lithium-theme-blogdown-acess-denied">设置</a></p></li>
+<li><p>chrome隐私<a href="https://stackoverflow.com/questions/51634998/cannot-get-iframe-to-appear-on-static-html-page-after-knitting-through-rmarkdown">设置</a></p></li>
+<li><p><code>knitr::include_url()</code>函数是否正确，包括<code>chunk option</code>设定。</p></li>
+<li><p>url地址是否正确。外部绝对url地址显示正确。本地相对地址则报错。但使用<code>knitr::include_graphic()</code>加载本地图片则能正确显示图片。排除url地址误写。</p></li>
+<li><p>使用<code>iframe tag</code>方法，仍旧报错。</p></li>
+<li><p>使用<code>xaringanExtra::embed_xaringan()</code>，仍旧报错。</p></li>
+</ul>
+<p>怀疑的可能原因：</p>
+<ul>
+<li><p>根据hugo团队的观点，它们会原生支持<code>rveal.js</code>，但不是<code>remark.js</code>。（见<a href="">队长讨论</a>）</p></li>
+<li><p>win10操作系统静默升级，改变了hugo的链接访问权限？？</p></li>
+<li><p><code>Netlify</code>的建站规则发生了变化？</p></li>
+<li><p><code>knitr</code>包的bug（iframe id失效）？</p></li>
+</ul>
 </div>
 </div>

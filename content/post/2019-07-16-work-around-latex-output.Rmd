@@ -8,9 +8,19 @@ categories:
 tags:
   - LaTex
   - tinyTeX
+subtitle: ''
+summary: ''
+authors: [胡华平]
+lastmod: '2021-02-01T09:23:57+08:00'
+featured: no
 image:
   caption: ''
   focal_point: ''
+math: yes
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: true
 
 ---
 
@@ -35,4 +45,14 @@ writeLines(c(
 tinytex::pdflatex('test.tex')
 ```
 
+# 踩过的Latex各种坑
 
+## 千分数
+
+注意这里的**千分数**是指**千分之几**（也即$\unicode{x2030}$），而不是指**千分位分隔符**（一般用逗点或空格）。
+
+- Latex环境下，一般用法有latex包`textcomp::\textperthousand`或者`wasysym::\permil`
+
+- Rmarkdown下，最好直接使用`\unicode{x2030}`[^1]来输出千分数$\unicode{x2030}$。
+
+[^1]:具体可[参看](https://stats.meta.stackexchange.com/questions/2884/how-to-get-a-permille-perthousand-sign-in-mathjax)。
