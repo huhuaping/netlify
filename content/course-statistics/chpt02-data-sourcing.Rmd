@@ -2,7 +2,7 @@
 title: 第02章 数据收集和整理
 author: huhuaping
 date: '2021-02-28'
-slug: chpt01-introduction
+slug: chpt02-data-sourcing
 categories:
   - Course
 tags:
