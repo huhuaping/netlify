@@ -40,7 +40,6 @@ knitr::include_url("/course-statistics/03-slide-class/00-course-schedule.html")
 
 **2.传统型课件（pdf）**：`r fontawesome::fa('file-pdf', fill= "blue", height=17 )`[第00章-课程说明.pdf](/course-statistics/material/00-course-schedule-2021.3.2.pdf) 。（更新日期：2021.3.2）
 
-
 以上两种类型课件的**差异**：
 
 - 两者的课件内容基本一致，区别有：`Xaringan slide`课件内容会相对细节更丰富一些；`Xaringan slide`课件更新频率会更高、更及时（里面有一些技术性原因）。
