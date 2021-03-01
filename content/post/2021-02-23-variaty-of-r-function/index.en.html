@@ -34,7 +34,8 @@ output:
 </ul></li>
 <li><a href="#分析场景与r函数"><span class="toc-section-number">2</span> 分析场景与R函数</a>
 <ul>
-<li><a href="#生成重复数据rep"><span class="toc-section-number">2.1</span> 生成重复数据rep()</a></li>
+<li><a href="#数据类型读取"><span class="toc-section-number">2.1</span> 数据类型读取</a></li>
+<li><a href="#生成重复数据rep"><span class="toc-section-number">2.2</span> 生成重复数据rep()</a></li>
 </ul></li>
 </ul>
 </div>
@@ -61,8 +62,19 @@ output:
 </div>
 <div id="分析场景与r函数" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> 分析场景与R函数</h1>
-<div id="生成重复数据rep" class="section level2" number="2.1">
-<h2><span class="header-section-number">2.1</span> 生成重复数据rep()</h2>
+<div id="数据类型读取" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> 数据类型读取</h2>
+<ul>
+<li>读取spss文件。为了避免出现编码错误（中文等多字节问题），建议使用<code>foreign::read.spss()</code>函数，而不宜使用<code>haven::read_sav()</code>函数</li>
+</ul>
+<pre class="r"><code>df_computer&lt;- haven::read_sav(&quot;../data/case-3.6-computer-sales.sav&quot;,encoding = &quot;UTF-8&quot;, .name_repair = &quot;unique&quot;)
+
+knitr::kable(df_computer)</code></pre>
+<pre class="r"><code>df_computer&lt;- foreign::read.spss(&quot;../data/case-3.6-computer-sales.sav&quot;, to.data.frame=TRUE)
+knitr::kable(df_computer)</code></pre>
+</div>
+<div id="生成重复数据rep" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> 生成重复数据rep()</h2>
 <p><strong>分析场景</strong>：生成指定的重复数据，要求指定被重复的<code>vector("char vec")</code>，以及指定各自重复的次数<code>vector("times vec")</code>。</p>
 <ul>
 <li><strong>踩坑函数1</strong>：直接<code>rep()</code>。</li>

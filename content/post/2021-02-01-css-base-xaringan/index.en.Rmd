@@ -257,6 +257,8 @@ css:
 
 - [Yongfu Liao's slide](https://yongfu.name/slides/xaringan/#1)，提供了简单的xaringan使用介绍。其源代码[github](https://github.com/liao961120/slides-old/tree/master/xaringan)。
 
+- [Emi Tanaka's slide](https://emitanaka.org/ninja-theme/themes/kunoichi/kunoichi-theme-example.html#1)提供了关于页面布局的多种形式。
+
 ## 灵活选用字体
 
 解决字体灵活选用问题。工作量理论上不是很大，主要是受到中文字体适用性和加载速度等的限制。目前暂时还不想去碰它，大众字体就大众字体，先忍一忍。具体看yihui的相关思考和说明。如[思源宋体](https://yihui.org/cn/2017/04/source-han-serif/) ；[楷体](https://yihui.org/cn/2017/02/kaiti/#fnref:-1)。

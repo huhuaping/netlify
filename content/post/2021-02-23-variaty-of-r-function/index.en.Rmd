@@ -48,6 +48,22 @@ tabyls: a tidy, fully-featured approach to counting things. [see link](https://c
 
 # 分析场景与R函数
 
+## 数据类型读取
+
+- 读取spss文件。为了避免出现编码错误（中文等多字节问题），建议使用`foreign::read.spss()`函数，而不宜使用`haven::read_sav()`函数
+
+```{r, eval=FALSE, echo=T}
+df_computer<- haven::read_sav("../data/case-3.6-computer-sales.sav",encoding = "UTF-8", .name_repair = "unique")
+
+knitr::kable(df_computer)
+```
+
+```{r, eval=FALSE, echo=T}
+df_computer<- foreign::read.spss("../data/case-3.6-computer-sales.sav", to.data.frame=TRUE)
+knitr::kable(df_computer)
+```
+
+
 ## 生成重复数据rep()
 
 **分析场景**：生成指定的重复数据，要求指定被重复的`vector("char vec")`，以及指定各自重复的次数`vector("times vec")`。
