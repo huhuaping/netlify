@@ -1,7 +1,7 @@
 ---
 title: 第01章 绪论
 author: huhuaping
-date: '2021-02-05'
+date: '2021-02-28'
 slug: chpt01-introduction
 categories:
   - Course
@@ -10,7 +10,7 @@ tags:
 subtitle: ''
 summary: ''
 authors: [胡华平]
-lastmod: '2021-02-05T18:05:18+08:00'
+lastmod: '2021-02-28T18:05:18+08:00'
 featured: no
 image:
   caption: ''
@@ -28,7 +28,7 @@ type: docs
 
 ## 一、教学课件
 
-```{r slide01, echo=T, eval=T}
+```{r slide01, echo=F, eval=F}
 # test the `include_url()`
 knitr::include_url("/course-statistics/03-slide-class/01-introduction.html")
 ```
