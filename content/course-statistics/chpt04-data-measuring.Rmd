@@ -1,8 +1,8 @@
 ---
-title: 第02章 数据收集、整理和清洗
+title: 第04章 数据的概括性度量
 author: huhuaping
-date: '2021-02-05'
-slug: chpt02-data-sourcing
+date: '2021-03-02'
+slug: chpt04-data-measuring
 categories:
   - Course
 tags:
@@ -10,31 +10,35 @@ tags:
 subtitle: ''
 summary: ''
 authors: [胡华平]
-lastmod: '2021-02-05T18:05:18+08:00'
+lastmod: '2021-03-01T18:04:18+08:00'
 featured: no
 image:
   caption: ''
   focal_point: ''
   preview_only: no
 projects: []
-linktitle: 第02章:数据收集、整理和清洗
+linktitle: 第04章:数据的概括性度量
 menu:
   course-statistics:
     parent: 统计学在线课程 (简介)
-    weight: 12
+    weight: 14
 math: true
 type: docs
 ---
 
 ## 一、教学课件
 
+```{r slide01, echo=F, eval=F}
+# test the `include_url()`
+knitr::include_url("/course-statistics/03-slide-class/04-data-measuring.html")
+```
 
 以下种类型课件都可以使用，两者可以互补，但强烈建议使用第一种类型`Xaringan slide`课件[^a]：
 
-**1.现代型课件（Xaringan slide）**（操作提示[^b]）：`r fontawesome::fa('slideshare', fill= "blue", height=17 )`[第02章-数据收集、整理和清洗.html](/course-statistics/03-slide-class/02-data-sourcing.html) 。
+**1.现代型课件（Xaringan slide）**（操作提示[^b]）：`r fontawesome::fa('slideshare', fill= "blue", height=17 )`[第04章-数据的概括性度量.html](/course-statistics/03-slide-class/04-data-measuring.html) 。
 
 
-**2.传统型课件（pdf）**：`r fontawesome::fa('file-pdf', fill= "blue", height=17 )`[第02章-数据收集、整理和清洗.pdf](/course-statistics/material/02-data-sourcing-2019.9.29.pdf) 。
+**2.传统型课件（pdf）**：`r fontawesome::fa('file-pdf', fill= "blue", height=17 )`[第04章-数据的概括性度量.pdf](#) 。（更新日期：2021.3.2）
 
 
 以上两种类型课件的**差异**：
