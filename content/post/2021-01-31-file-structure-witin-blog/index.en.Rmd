@@ -25,6 +25,7 @@ output:
 
 # netlify文件夹体系
 
+
 使用blogdown进行netlify建站，下述三个文件夹及作用需要区分清楚：
 
 - `content`文件夹，主要进行写作或者接口配置（链接等），对接包括：post、publication、course、project等

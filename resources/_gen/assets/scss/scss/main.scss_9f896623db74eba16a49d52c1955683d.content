@@ -9485,3 +9485,29 @@ div.chart {
   margin-right: auto;
   margin-bottom: 1rem;
   overflow-x: auto; }
+
+/* -----------div tips------------- */
+div.puzzle, div.fyi, div.demo, div.note {
+  padding: 1em;
+  margin: 1em 0;
+  padding-left: 100px;
+  background-size: 70px;
+  background-repeat: no-repeat;
+  background-position: 15px center;
+  min-height: 120px;
+  color: #1f5386;
+  background-color: #bed3ec;
+  border: solid 5px #dfedff; }
+
+/* -----------image icon------------- */
+div.puzzle {
+  background-image: url("/img/puzzle2-piece.png"); }
+
+div.fyi {
+  background-image: url("/img/fyi2-comments.png"); }
+
+div.demo {
+  background-image: url("/img/demo2-laptop-code.png"); }
+
+div.note {
+  background-image: url("/img/note2-light-bulb-ff5500.png"); }

@@ -20,11 +20,13 @@ image:
 projects: []
 output:
   blogdown::html_page:
+    css: ../../../assets/scss/custom.scss
     toc: true
     number_sections: true
 ---
 
 <script src="{{< blogdown/postref >}}index.en_files/header-attrs/header-attrs.js"></script>
+  <link rel="stylesheet" href="../../../assets/scss/custom.css" type="text/css" />
 
 <div id="TOC">
 <ul>
@@ -49,7 +51,9 @@ output:
 <ul>
 <li><a href="#基本原理"><span class="toc-section-number">6.1</span> 基本原理</a></li>
 <li><a href="#给post博文添加floating-toc"><span class="toc-section-number">6.2</span> 给post博文添加floating toc</a></li>
+<li><a href="#定制box-text样式"><span class="toc-section-number">6.3</span> 定制box text样式</a></li>
 </ul></li>
+<li><a href="#供参考的网络资源"><span class="toc-section-number">7</span> 供参考的网络资源</a></li>
 </ul>
 </div>
 
@@ -429,8 +433,100 @@ hugo mod tidy</code></pre>
 <li><p>默认情况下，是没有目录导航的（toc）。当然也可以通过添加yaml参数<code>toc: true</code>来添加目录导航，但是toc显示在正文之前（而且没有“目录”字样）。对于分节较多的长篇博文，非常不利于读者阅读定位和前后对照。</p></li>
 </ul>
 <p>因此，对于分节较多的长篇博文，自然就有了“侧边浮动目录”（sidebar floating toc）的个性化页面样式修订念头。yihui<a href="https://github.com/rstudio/blogdown/issues/375#issuecomment-476332000">建议</a>可以通过JavaScript或CSS进行设定。Xiaoou WANG也提供了一个hugo语法下的<a href="https://xiaoouwang.github.io/post/add_a_float_toc_to_academic_theme/">实现方法</a>，但是有不少bug。又比如CharlieLeee的<a href="https://github.com/wowchemy/wowchemy-hugo-modules/issues/1520#issuecomment-601982609">方法</a>，只是对于<code>.md</code>格式的写作有效，而对<code>.Rmd</code>格式的写作<a href="https://github.com/wowchemy/wowchemy-hugo-modules/issues/1520#issuecomment-610210353">无效</a>。因此，最后的忠告就是专注于内容写作：劝君更进一杯酒，模板莫要闲折腾。</p>
-<!---footnote--->
 </div>
+<div id="定制box-text样式" class="section level2" number="6.3">
+<h2><span class="header-section-number">6.3</span> 定制box text样式</h2>
+<p>hugo academic模板下，可以使用CSS样式定制个性化文本窗框（box text）的集中常用<code>div</code>类型（例如puzzle、fyi、demo、note）。主要步骤如下：</p>
+<ul>
+<li><p><strong>步骤1</strong>：在工作目录下建立一个文件<code>"netlify/assets/scss/custom.scss"</code>。</p></li>
+<li><p><strong>步骤2</strong>：在<code>custom.scss</code>正常编写个性化css代码，设定文本窗框的各类属性。</p></li>
+</ul>
+<pre class="css"><code>/* -----------div tips------------- */
+
+div.puzzle, div.fyi, div.demo, div.note {
+  padding: 1em;
+  margin: 1em 0;
+  padding-left: 100px;
+  background-size: 70px;
+  background-repeat: no-repeat;
+  background-position: 15px center;
+  min-height: 120px;
+  color: #1f5386;
+  background-color: #bed3ec;
+  border: solid 5px #dfedff;
+}
+
+/* -----------image icon------------- */
+
+div.puzzle {
+  background-image: url(&quot;/img/puzzle2-piece.png&quot;);
+}
+
+div.fyi {
+ background-image: url(&quot;/img/fyi2-comments.png&quot;);
+}
+
+div.demo {
+  background-image: url(&quot;/img/demo2-laptop-code.png&quot;);
+}
+
+div.note {
+  background-image: url(&quot;/img/note2-light-bulb-ff5500.png&quot;);
+}
+</code></pre>
+<ul>
+<li><strong>步骤3</strong>：在R markdown文件中设定<code>yaml</code>区域的参数，正确关联到<code>custom.scss</code>路径。</li>
+</ul>
+<pre class="yaml"><code>output:
+  blogdown::html_page:
+    css: ../../../assets/scss/custom.scss
+    toc: true
+    number_sections: true</code></pre>
+<ul>
+<li><strong>步骤4</strong>：在R markdown文件中进行文本写作，使用<code>div</code>方法或<code>:::</code>方法引用特定窗框类型。</li>
+</ul>
+<pre class="html"><code>&lt;div class=&quot;puzzle&quot;&gt;
+My content goes in here!
+&lt;/div&gt;</code></pre>
+<pre><code>:::puzzle
+My content goes in here!
+:::</code></pre>
+<p>下面给大家展示上述定义的4种窗框类型：</p>
+<div class="puzzle">
+<p>（这是一个<strong>puzzle</strong>窗框类型）</p>
+<p><strong>步骤1</strong>中：</p>
+<ol style="list-style-type: lower-alpha">
+<li><p><code>.scss</code>格式只是<code>.css</code>格式的一个扩展，前者运用了<a href="https://sass-lang.com/guide">Sass语言</a>。二者的差异请参看：<a href="https://www.connorrothschild.com/post/animate-hugo-academic/#step-3-add-css">Animating Your Hugo Academic Site</a>。</p></li>
+<li><p>最好保持<code>custom.scss</code>的文件命名“custom”。经过测试，如果改动文件名，哪怕yaml里正确引用了路径，也会出现无法引用css风格的情况。猜测是hugo其他参数里默认了这个<code>custom.scss</code>的命名。</p></li>
+<li><p>如果渲染建站成功，会发现hugo自动生成了一个相匹配的<code>scss/custom.css</code>的文件，或许这就是<code>.scss</code>的一个效果之一。</p></li>
+</ol>
+</div>
+<div class="note">
+<p>（这是一个<strong>note</strong>窗框类型）</p>
+<p><strong>步骤2</strong>中：需要注意图片存放及路径的正确引用。对于hugo academic模板而言，<code>background-image:url('/path/of/image.png')</code>是相对路径，相对于<code>static/</code>文件夹而言的。因此，你可以把图片文件存放在<code>static/img/note.png</code>或者<code>static/pic/note.png</code>，然后正确引用这一文件路径！</p>
+</div>
+<div class="fyi">
+<p>（这是一个<strong>fyi</strong>(for your information)窗框类型）</p>
+<p><strong>步骤3</strong>中：</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>注意css文件的相对引用路径。如果工作根目录为<code>netlify/</code>，那么R markdown写作文件以<code>netlify/content/post/your-post/index.Rmd</code>为例。因为此时的css文件存放在<code>netlify/assets/scss/custom.scss</code>，那么css文件的相对引用路径应该设定为<code>css: ../../../assets/scss/custom.scss</code>。</p></li>
+<li><p>此时要求R markdown写作文件指定输出风格<code>output:</code>。请参看：<a href="http://desiree.rbind.io/post/2019/making-tip-boxes-with-bookdown-and-rmarkdown/">making pretty note boxes</a>。这也意味着，每一次R markdown写作文件都要做这样的设定，可能略显麻烦了一点。</p></li>
+</ol>
+</div>
+<div class="demo">
+<p>（这是一个<strong>demo</strong>窗框类型）</p>
+<p><strong>步骤4</strong>中：R markdown写作文件，要求是<strong>.Rmd</strong>格式，不是.md格式，或者.Rmarkdown格式。三者的差异请参看：<a href="https://bookdown.org/yihui/blogdown/output-format.html">R Markdown vs. Markdown</a></p>
+</div>
+</div>
+</div>
+<div id="供参考的网络资源" class="section level1" number="7">
+<h1><span class="header-section-number">7</span> 供参考的网络资源</h1>
+<ul>
+<li><p><a href="https://alison.rbind.io/post/2020-12-12-how-much-hugo/">A Spoonful of Hugo: How much Hugo do I need to know?</a>。正如题目所言。</p></li>
+<li><p><a href="http://desiree.rbind.io/post/2019/making-tip-boxes-with-bookdown-and-rmarkdown/">making pretty note boxes</a>。里面谈到了多种情境下，如blogdown、bookdown等，如何设置和定义个性化的文本窗框（text box），但有些地方已经不符合实际情况了。</p></li>
+<li><p><a href="https://www.connorrothschild.com/post/animate-hugo-academic/">Animating Your Hugo Academic Site</a>。主旨是：Make your Hugo Academic homepage more engaging with a few lines of code.这个是效率的要求了，我更关注的是基本功能的实现和维护。</p></li>
+</ul>
+<!---footnote--->
 </div>
 <div class="footnotes">
 <hr />

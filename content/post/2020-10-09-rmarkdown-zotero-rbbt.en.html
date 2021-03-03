@@ -85,9 +85,9 @@ link-citations: yes
 <ul>
 <li>选定需要的Zotero的文献组(group)，以<code>Better BibTeX</code>格式（前提是要安装相应插件）导出到工作路径<code>"netlify/content/bib/netlify.bib"</code>，注意同时要勾选“keep updated”选项。这样的话就能实现Zotero文献的自动关联。</li>
 </ul>
-<p><img src="picture/zetero-export-betterbib.png" width="552" /></p>
+<p><img src="/pic/zetero-export-betterbib.png" /><!-- --></p>
 <ul>
-<li>写作文件.Rmd的yaml区域指明对.bib的关联关系，并设定文献列出样式（csl style）及关联关系</li>
+<li>写作文件.Rmd的yaml区域指明对.bib的关联关系，并设定文献列出样式（csl style）及关联关系（参看“<a href="/2021/03/03/reference-manage-on-csl">文献管理：CSL风格样式</a>”一文）。</li>
 </ul>
 <pre class="yaml"><code>bibliography: &quot;../../bib/netlify.bib&quot;
 csl: &quot;../../bib/china-national-standard-gb-t-7714-2015-author-date.csl&quot;
@@ -119,21 +119,21 @@ require(&quot;rbbt&quot;)</code></pre>
 <h2><span class="header-section-number">3.1</span> 引用形式</h2>
 <p>具体可以参看的Rmarkdown<a href="https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html">官方解释</a>。</p>
 <ul>
-<li>一次同时引用多条文献：<code>[@refkey1; @refkey2]</code></li>
+<li>一次同时引用多条文献，用冒号区隔：<code>[@refkey1; @refkey2]</code></li>
 </ul>
 <pre><code>一些国内学者[@liuhuaqin2014; @xiaohuizhong2019]一起发现...。</code></pre>
 <blockquote>
 <p>一些国内学者<span class="citation">(<a href="#ref-liuhuaqin2014" role="doc-biblioref">刘华芹, 2014</a>; <a href="#ref-xiaohuizhong2019" role="doc-biblioref">肖辉忠, 2019</a>)</span>一起发现…。</p>
 </blockquote>
 <ul>
-<li>强制不出现作者名字：<code>[-@refkey]</code></li>
+<li>强制不出现作者名字，用减号：<code>[-@refkey]</code></li>
 </ul>
-<pre><code>有学者[@alimov2018]...发现。他还发现[-@alimov2018]</code></pre>
+<pre><code>有学者[@alimov2018]...发现。他还发现[-@alimov2018]...。</code></pre>
 <blockquote>
-<p>有学者<span class="citation">(<a href="#ref-alimov2018" role="doc-biblioref">ALIMOV, 2018</a>)</span>…发现。他还发现<span class="citation">(<a href="#ref-alimov2018" role="doc-biblioref">2018</a>)</span></p>
+<p>有学者<span class="citation">(<a href="#ref-alimov2018" role="doc-biblioref">ALIMOV, 2018</a>)</span>…发现。他还发现<span class="citation">(<a href="#ref-alimov2018" role="doc-biblioref">2018</a>)</span>…。</p>
 </blockquote>
 <ul>
-<li>直接行内引用（注意key和后面文本的空格）：<code>@refkey says that ...</code></li>
+<li>行内引用（注意key和后面文本的空格），直接@：<code>@refkey says that ...</code></li>
 </ul>
 <pre><code>@tobin2020a 认为...。</code></pre>
 <blockquote>
@@ -153,7 +153,8 @@ require(&quot;rbbt&quot;)</code></pre>
 # Appendix
 </code></pre>
 <ul>
-<li>其中heading里面的<code>{-}</code>是为了保持不自动给出“索引id”。</li>
+<li><p>其中heading里面的<code>{-}</code>是为了保持不自动给出“索引id”。</p></li>
+<li><p>如果使用了脚注功能<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>，脚注列表依旧会显示在文档最后。</p></li>
 </ul>
 </div>
 <div id="文献列表序号和缩进" class="section level2" number="3.3">
@@ -198,4 +199,10 @@ TOBIN D, 2020. How to <span>Get Data</span> from <span>Multiple Sources</span>[Z
 </div>
 <div id="附录" class="section level1 unnumbered">
 <h1>附录</h1>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>脚注列表与文献列表的位置关系，前者总是在文档最后，并且原生有一道横线。<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>

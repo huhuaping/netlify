@@ -63,11 +63,11 @@ Rmarkdown写作环境下，Zotero + rbbt的方式，基本上实现了比较满�
 
 
 ```{r, echo=FALSE}
-knitr::include_graphics("picture/zetero-export-betterbib.png",error = F)
+knitr::include_graphics("/pic/zetero-export-betterbib.png",error = F)
 ```
 
 
-- 写作文件.Rmd的yaml区域指明对.bib的关联关系，并设定文献列出样式（csl style）及关联关系
+- 写作文件.Rmd的yaml区域指明对.bib的关联关系，并设定文献列出样式（csl style）及关联关系（参看“[文献管理：CSL风格样式](/2021/03/03/reference-manage-on-csl)”一文）。
 
 ```yaml
 bibliography: "../../bib/netlify.bib"
@@ -106,7 +106,7 @@ require("rbbt")
 
 具体可以参看的Rmarkdown[官方解释](https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html)。
 
-- 一次同时引用多条文献：`[@refkey1; @refkey2]`
+- 一次同时引用多条文献，用冒号区隔：`[@refkey1; @refkey2]`
 
 ```
 一些国内学者[@liuhuaqin2014; @xiaohuizhong2019]一起发现...。
@@ -115,15 +115,15 @@ require("rbbt")
 > 一些国内学者[@liuhuaqin2014; @xiaohuizhong2019]一起发现...。
 
 
-- 强制不出现作者名字：`[-@refkey]`
+- 强制不出现作者名字，用减号：`[-@refkey]`
 
 ```
-有学者[@alimov2018]...发现。他还发现[-@alimov2018]
+有学者[@alimov2018]...发现。他还发现[-@alimov2018]...。
 ```
 
-> 有学者[@alimov2018]...发现。他还发现[-@alimov2018]
+> 有学者[@alimov2018]...发现。他还发现[-@alimov2018]...。
 
-- 直接行内引用（注意key和后面文本的空格）：`@refkey says that ...`
+- 行内引用（注意key和后面文本的空格），直接\@：`@refkey says that ...`
 
 ```
 @tobin2020a 认为...。
@@ -150,6 +150,8 @@ require("rbbt")
 ```
 
 - 其中heading里面的`{-}`是为了保持不自动给出“索引id”。
+
+- 如果使用了脚注功能^[脚注列表与文献列表的位置关系，前者总是在文档最后，并且原生有一道横线。]，脚注列表依旧会显示在文档最后。
 
 ## 文献列表序号和缩进
 
