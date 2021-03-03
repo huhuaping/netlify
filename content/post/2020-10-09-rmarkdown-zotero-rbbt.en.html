@@ -24,6 +24,9 @@ output:
   blogdown::html_page:
     toc: true
     number_sections: true
+bibliography: "../bib/netlify.bib"
+csl: "../bib/china-national-standard-gb-t-7714-2015-author-date.csl"
+link-citations: yes
 ---
 
 <script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
@@ -35,12 +38,20 @@ output:
 <li><a href="#安装zotero和扩展插件zotero-better-bibtex"><span class="toc-section-number">1.1</span> 安装zotero和扩展插件zotero-better-bibtex。</a></li>
 <li><a href="#设定citekey的形式默认形式太冗长"><span class="toc-section-number">1.2</span> 设定Citekey的形式（默认形式太冗长）。</a></li>
 </ul></li>
-<li><a href="#r环境准备"><span class="toc-section-number">2</span> R环境准备</a>
+<li><a href="#rmarkdown与zotero自动关联"><span class="toc-section-number">2</span> Rmarkdown与Zotero自动关联</a>
 <ul>
 <li><a href="#zotero导出.bib文件"><span class="toc-section-number">2.1</span> zotero导出.bib文件</a></li>
-<li><a href="#安装rbbt包并进行文献搜索和引用"><span class="toc-section-number">2.2</span> 安装<code>rbbt</code>包，并进行文献搜索和引用</a></li>
+<li><a href="#使用rbbt在rmarkdown写作下调用文献"><span class="toc-section-number">2.2</span> 使用<code>rbbt</code>在Rmarkdown写作下调用文献</a></li>
 </ul></li>
-<li><a href="#总结及注意事项"><span class="toc-section-number">3</span> 总结及注意事项</a></li>
+<li><a href="#rmarkdown写作中引用文献"><span class="toc-section-number">3</span> Rmarkdown写作中引用文献</a>
+<ul>
+<li><a href="#引用形式"><span class="toc-section-number">3.1</span> 引用形式</a></li>
+<li><a href="#文献列表的位置"><span class="toc-section-number">3.2</span> 文献列表的位置</a></li>
+<li><a href="#文献列表序号和缩进"><span class="toc-section-number">3.3</span> 文献列表序号和缩进</a></li>
+</ul></li>
+<li><a href="#总结及注意事项"><span class="toc-section-number">4</span> 总结及注意事项</a></li>
+<li><a href="#参考文献">参考文献</a></li>
+<li><a href="#附录">附录</a></li>
 </ul>
 </div>
 
@@ -67,26 +78,23 @@ output:
 </ul>
 </div>
 </div>
-<div id="r环境准备" class="section level1" number="2">
-<h1><span class="header-section-number">2</span> R环境准备</h1>
+<div id="rmarkdown与zotero自动关联" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Rmarkdown与Zotero自动关联</h1>
 <div id="zotero导出.bib文件" class="section level2" number="2.1">
 <h2><span class="header-section-number">2.1</span> zotero导出.bib文件</h2>
 <ul>
-<li><p>选定需要的Zotero的文献组(group)，直接导出为.bib文件</p></li>
-<li><p>将.bib文件保存在写作文件.Rmd路径中</p></li>
-<li><p>写作文件.Rmd的yaml区域指明对.bib的关联关系</p></li>
+<li>选定需要的Zotero的文献组(group)，以<code>Better BibTeX</code>格式（前提是要安装相应插件）导出到工作路径<code>"netlify/content/bib/netlify.bib"</code>，注意同时要勾选“keep updated”选项。这样的话就能实现Zotero文献的自动关联。</li>
 </ul>
-<pre><code>bibliography: 
-  - bib-west.bib
-  - west-agri.bib</code></pre>
+<p><img src="picture/zetero-export-betterbib.png" width="552" /></p>
 <ul>
-<li>写作文件.Rmd的yaml区域设定文献列出样式（csl style）及关联关系</li>
+<li>写作文件.Rmd的yaml区域指明对.bib的关联关系，并设定文献列出样式（csl style）及关联关系</li>
 </ul>
-<pre><code>biblio-style: &quot;nnsfc.csl&quot;
-csl: &quot;nnsfc.csl&quot;</code></pre>
+<pre class="yaml"><code>bibliography: &quot;../../bib/netlify.bib&quot;
+csl: &quot;../../bib/china-national-standard-gb-t-7714-2015-author-date.csl&quot;
+link-citations: yes</code></pre>
 </div>
-<div id="安装rbbt包并进行文献搜索和引用" class="section level2" number="2.2">
-<h2><span class="header-section-number">2.2</span> 安装<code>rbbt</code>包，并进行文献搜索和引用</h2>
+<div id="使用rbbt在rmarkdown写作下调用文献" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> 使用<code>rbbt</code>在Rmarkdown写作下调用文献</h2>
 <pre class="r"><code># remotes::install_github(&quot;paleolimbot/rbbt&quot;)
 #require(&quot;rbbt&quot;)</code></pre>
 <p>R包<code>rbbt</code>的主要作用<a href="https://github.com/paleolimbot/rbbt">见github</a>：</p>
@@ -101,12 +109,60 @@ csl: &quot;nnsfc.csl&quot;</code></pre>
 <pre><code># remotes::install_github(&quot;paleolimbot/rbbt&quot;)
 require(&quot;rbbt&quot;)</code></pre>
 <ul>
-<li>Rstudio<span class="math inline">\(\Rightarrow\)</span> 点击Addins<span class="math inline">\(\Rightarrow\)</span> Insert Zotero Citation。</li>
+<li>使用插件：Rstudio<span class="math inline">\(\Rightarrow\)</span> 点击Addins<span class="math inline">\(\Rightarrow\)</span> Insert Zotero Citation。</li>
 </ul>
 </div>
 </div>
-<div id="总结及注意事项" class="section level1" number="3">
-<h1><span class="header-section-number">3</span> 总结及注意事项</h1>
+<div id="rmarkdown写作中引用文献" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Rmarkdown写作中引用文献</h1>
+<div id="引用形式" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> 引用形式</h2>
+<p>具体可以参看的Rmarkdown<a href="https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html">官方解释</a>。</p>
+<ul>
+<li>一次同时引用多条文献：<code>[@refkey1; @refkey2]</code></li>
+</ul>
+<pre><code>一些国内学者[@liuhuaqin2014; @xiaohuizhong2019]一起发现...。</code></pre>
+<blockquote>
+<p>一些国内学者<span class="citation">(<a href="#ref-liuhuaqin2014" role="doc-biblioref">刘华芹, 2014</a>; <a href="#ref-xiaohuizhong2019" role="doc-biblioref">肖辉忠, 2019</a>)</span>一起发现…。</p>
+</blockquote>
+<ul>
+<li>强制不出现作者名字：<code>[-@refkey]</code></li>
+</ul>
+<pre><code>有学者[@alimov2018]...发现。他还发现[-@alimov2018]</code></pre>
+<blockquote>
+<p>有学者<span class="citation">(<a href="#ref-alimov2018" role="doc-biblioref">ALIMOV, 2018</a>)</span>…发现。他还发现<span class="citation">(<a href="#ref-alimov2018" role="doc-biblioref">2018</a>)</span></p>
+</blockquote>
+<ul>
+<li>直接行内引用（注意key和后面文本的空格）：<code>@refkey says that ...</code></li>
+</ul>
+<pre><code>@tobin2020a 认为...。</code></pre>
+<blockquote>
+<p><span class="citation"><a href="#ref-tobin2020a" role="doc-biblioref">TOBIN</a> (<a href="#ref-tobin2020a" role="doc-biblioref">2020</a>)</span> 认为…。</p>
+</blockquote>
+</div>
+<div id="文献列表的位置" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> 文献列表的位置</h2>
+<p>默认情况下，文献列表会出现在整个文档的最后。</p>
+<p>如果要指定其出现位置，则需要插入一小段html代码<code>&lt;div id="refs"&gt;&lt;/div&gt;</code>，具体如下（可<a href="https://rmd4sci.njtierney.com/citing-articles-bibliography-styles.html#how-to-move-the-bibliography-location">参看</a>）。</p>
+<pre><code># Introduction
+
+# References {-}
+
+&lt;div id=&quot;refs&quot;&gt;&lt;/div&gt;
+
+# Appendix
+</code></pre>
+<ul>
+<li>其中heading里面的<code>{-}</code>是为了保持不自动给出“索引id”。</li>
+</ul>
+</div>
+<div id="文献列表序号和缩进" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> 文献列表序号和缩进</h2>
+<p>待解决！</p>
+</div>
+</div>
+<div id="总结及注意事项" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> 总结及注意事项</h1>
 <p>Rmarkdown写作环境下，Zotero + <code>rbbt</code>的方式，基本上实现了比较满意的文献管理和引用流程，<strong>优点</strong>如下：</p>
 <ul>
 <li><p>Zotero的免费和相对开放性。免费+插件扩展。对很多网站的文章citation能够快速识别并导入到Zotero库里去，而且还能自动下载关联pdf！</p></li>
@@ -122,4 +178,24 @@ require(&quot;rbbt&quot;)</code></pre>
 <li>设定导出规则：打开Zotero<span class="math inline">\(\Rightarrow\)</span> 编辑<span class="math inline">\(\Rightarrow\)</span> 首选项<span class="math inline">\(\Rightarrow\)</span> Better Bibtex（插件菜单）<span class="math inline">\(\Rightarrow\)</span> Export<span class="math inline">\(\Rightarrow\)</span> Fields<span class="math inline">\(\Rightarrow\)</span> Fields to omit frome export<span class="math inline">\(\Rightarrow\)</span> 输入abstract等（逗号分隔）</li>
 </ul></li>
 </ol>
+</div>
+<div id="参考文献" class="section level1 unnumbered">
+<h1>参考文献</h1>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-alimov2018" class="csl-entry">
+ALIMOV R, 2018. The <span>Shanghai Cooperation Organisation</span>: <span>Its</span> Role and Place in the Development of <span>Eurasia</span>[J]. Journal of Eurasian Studies, 9(2): 114–124. DOI:<a href="https://doi.org/10.1016/j.euras.2018.08.001">10.1016/j.euras.2018.08.001</a>.
+</div>
+<div id="ref-tobin2020a" class="csl-entry">
+TOBIN D, 2020. How to <span>Get Data</span> from <span>Multiple Sources</span>[Z]. https://www.xplenty.com/blog/get-data-from-multiple-sources/(2020–07).
+</div>
+<div id="ref-liuhuaqin2014" class="csl-entry">
+刘华芹, 2014. 深化上海合作组织区域经济合作的构想[J]. 俄罗斯东欧中亚研究, (1): 6–10.
+</div>
+<div id="ref-xiaohuizhong2019" class="csl-entry">
+肖辉忠, 2019. 俄罗斯伏尔加河沿岸联邦区农业问题研究[J]. 欧亚经济, (5): 7–14.
+</div>
+</div>
+</div>
+<div id="附录" class="section level1 unnumbered">
+<h1>附录</h1>
 </div>

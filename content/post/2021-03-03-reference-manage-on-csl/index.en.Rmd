@@ -22,23 +22,22 @@ output:
   blogdown::html_page:
     toc: true
     number_sections: true
-bibliography: "../../bib/post.bib"
-biblio-style: "../../bib/china-national-standard-gb-t-7714-2015-author-date.csl"
+bibliography: "../../bib/netlify.bib"
 csl: "../../bib/china-national-standard-gb-t-7714-2015-author-date.csl"
-link-citations: no
+link-citations: yes
 ---
 
 # 引用样式语言CSL的开源资源
 
 **引用样式语言**（Citation Style Language, CSL，[官方网站](https://citationstyles.org/))）得到很多文献管理软件背后的遵从和使用，包括Endnote、Zotero等。具体可以看CSL官方网站的[authors](https://citationstyles.org/authors/)介绍和说明。
 
-需要关注的是几个内容分工的构成关系：
+需要关注的是几个内容分工的构成关系。简单地看，三者的更新快慢关系是CSL style repository $\ge$ CSL style editor $\ge$ Zotero Style Repository。
+
+- CSL style repository（[on GitHub](https://github.com/citation-style-language/styles)），是团队开源管理的所有CSL样式库，不断在维护和更新。
 
 - CSL样式编辑器（[CSL style editor](https://editor.citationstyles.org/about/)）。里面有一些CSL样式（但不一定是随时更新的），用户可以参考这些样式，完全的修改或定制个性化CSL样式。
  
-- CSL style repository（[on GitHub](https://github.com/citation-style-language/styles)），是团队开源管理的所有CSL样式库，不断在维护和更新。
- 
-- Zotero Style Repository（[网站](https://www.zotero.org/styles)）。专门针对Zotero进行了优化的CSL样式库。里面除了两个比较常用的国标中文CSL样式外，还提供了很多中文期刊的CSL样式：
+- Zotero Style Repository（[网站](https://www.zotero.org/styles)）。专门针对Zotero进行了优化的CSL样式库（但不一定是随时更新的）。里面除了两个比较常用的国标中文CSL样式外，还提供了很多中文期刊的CSL样式：
 
     - 样式1：China National Standard GB/T 7714-2005 (numeric, 中文)
     - 样式2：China National Standard GB/T 7714-2005 (author-date, 中文)
@@ -48,12 +47,4 @@ link-citations: no
 knitr::include_url("https://www.zotero.org/styles?q=chinese")
 ```
 
-[@tobin2020a]
 
-[@liuhuaqin2014]强调
-
-[@xiaohuizhong2019]发现
-
-[@alimov2018]一起发现
-
-# 参考文献

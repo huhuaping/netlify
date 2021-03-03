@@ -24,6 +24,9 @@ output:
   blogdown::html_page:
     toc: true
     number_sections: true
+bibliography: "../bib/netlify.bib"
+csl: "../bib/china-national-standard-gb-t-7714-2015-author-date.csl"
+link-citations: yes
 ---
 
 > 
@@ -51,31 +54,28 @@ Rmarkdown写作环境下，Zotero + rbbt的方式，基本上实现了比较满�
 - 更新citekey值：Zotero$\Rightarrow$ 选中文献条目$\Rightarrow$鼠标右键 $\Rightarrow$  Better Bibtex$\Rightarrow$ refresh Bibtex key。
 
 
-# R环境准备
+# Rmarkdown与Zotero自动关联
 
 
 ## zotero导出.bib文件
 
-- 选定需要的Zotero的文献组(group)，直接导出为.bib文件
+- 选定需要的Zotero的文献组(group)，以`Better BibTeX`格式（前提是要安装相应插件）导出到工作路径`"netlify/content/bib/netlify.bib"`，注意同时要勾选“keep updated”选项。这样的话就能实现Zotero文献的自动关联。
 
-- 将.bib文件保存在写作文件.Rmd路径中
 
--  写作文件.Rmd的yaml区域指明对.bib的关联关系
-
-```
-bibliography: 
-  - bib-west.bib
-  - west-agri.bib
+```{r, echo=FALSE}
+knitr::include_graphics("picture/zetero-export-betterbib.png",error = F)
 ```
 
-- 写作文件.Rmd的yaml区域设定文献列出样式（csl style）及关联关系
 
-```
-biblio-style: "nnsfc.csl"
-csl: "nnsfc.csl"
+- 写作文件.Rmd的yaml区域指明对.bib的关联关系，并设定文献列出样式（csl style）及关联关系
+
+```yaml
+bibliography: "../../bib/netlify.bib"
+csl: "../../bib/china-national-standard-gb-t-7714-2015-author-date.csl"
+link-citations: yes
 ```
 
-## 安装`rbbt`包，并进行文献搜索和引用
+## 使用`rbbt`在Rmarkdown写作下调用文献
 
 ```{r}
 # remotes::install_github("paleolimbot/rbbt")
@@ -97,7 +97,63 @@ R包`rbbt`的主要作用[见github](https://github.com/paleolimbot/rbbt)：
 require("rbbt")
 ```
 
-- Rstudio$\Rightarrow$ 点击Addins$\Rightarrow$ Insert Zotero Citation。
+- 使用插件：Rstudio$\Rightarrow$ 点击Addins$\Rightarrow$ Insert Zotero Citation。
+
+
+# Rmarkdown写作中引用文献
+
+## 引用形式
+
+具体可以参看的Rmarkdown[官方解释](https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html)。
+
+- 一次同时引用多条文献：`[@refkey1; @refkey2]`
+
+```
+一些国内学者[@liuhuaqin2014; @xiaohuizhong2019]一起发现...。
+```
+
+> 一些国内学者[@liuhuaqin2014; @xiaohuizhong2019]一起发现...。
+
+
+- 强制不出现作者名字：`[-@refkey]`
+
+```
+有学者[@alimov2018]...发现。他还发现[-@alimov2018]
+```
+
+> 有学者[@alimov2018]...发现。他还发现[-@alimov2018]
+
+- 直接行内引用（注意key和后面文本的空格）：`@refkey says that ...`
+
+```
+@tobin2020a 认为...。
+```
+
+> @tobin2020a 认为...。
+
+
+## 文献列表的位置
+
+默认情况下，文献列表会出现在整个文档的最后。
+
+如果要指定其出现位置，则需要插入一小段html代码`<div id="refs"></div>`，具体如下（可[参看](https://rmd4sci.njtierney.com/citing-articles-bibliography-styles.html#how-to-move-the-bibliography-location)）。
+
+```
+# Introduction
+
+# References {-}
+
+<div id="refs"></div>
+
+# Appendix
+
+```
+
+- 其中heading里面的`{-}`是为了保持不自动给出“索引id”。
+
+## 文献列表序号和缩进
+
+待解决！
 
 
 # 总结及注意事项
@@ -121,3 +177,10 @@ Rmarkdown写作环境下，Zotero + `rbbt`的方式，基本上实现了比较�
 3. 因为文献条目中可能包含了abstract等长文本域，为了避免Zotero导出.bib后，R包citr识别报错的问题。最好把Zotero 软件的Better Bibtex（插件菜单）做出如下导出设定。
 
     - 设定导出规则：打开Zotero$\Rightarrow$ 编辑$\Rightarrow$ 首选项$\Rightarrow$ Better Bibtex（插件菜单）$\Rightarrow$ Export$\Rightarrow$ Fields$\Rightarrow$  Fields to omit frome export$\Rightarrow$ 输入abstract等（逗号分隔）
+    
+# 参考文献 {-}
+
+<div id="refs"></div>
+
+# 附录{-}
+
