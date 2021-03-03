@@ -1,5 +1,5 @@
 ---
-title: '使用Zotero实现文献引用的自动化Rmarkdown写作'
+title: '文献管理：使用Zotero进行Rmarkdown写作的文献自动化'
 author: huhuaping
 date: '2020-10-09'
 slug: rmarkdown-zotero-rbbt
@@ -19,8 +19,12 @@ image:
   focal_point: ''
   preview_only: no
 projects: []
+math: yes
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: true
 ---
-
 
 > 
 Rmarkdown写作环境下，Zotero + rbbt的方式，基本上实现了比较满意的文献管理和引用流程。Zotero具有免费和相对开放性。Zotero对bibTeX和中文情景比较友好。此外，R包rbbt函数实现了对Zotero的实时联系，引用流程更加自动化。使用者需要正确理解Rmd渲染输出、.bib文件状态和Zotero条目库的关系。
@@ -38,7 +42,6 @@ Rmarkdown写作环境下，Zotero + rbbt的方式，基本上实现了比较满�
 
 - 安装Zotero扩展插件zotero-better-bibtex [开发者网站](https://retorque.re/zotero-better-bibtex/)。zotero-better-bibtex-5.2.78.xpi [下载安装](https://github.com/retorquere/zotero-better-bibtex/releases)。
 
-
 ## 设定Citekey的形式（默认形式太冗长）。
 
 具体修改[方法](https://retorque.re/zotero-better-bibtex/citing/)：
@@ -46,8 +49,6 @@ Rmarkdown写作环境下，Zotero + rbbt的方式，基本上实现了比较满�
 - 设定citekey形式：打开Zotero$\Rightarrow$ 编辑$\Rightarrow$ 首选项$\Rightarrow$ Better Bibtex（插件菜单$\Rightarrow$ Citation keys。
 
 - 更新citekey值：Zotero$\Rightarrow$ 选中文献条目$\Rightarrow$鼠标右键 $\Rightarrow$  Better Bibtex$\Rightarrow$ refresh Bibtex key。
-
-
 
 
 # R环境准备
@@ -68,13 +69,11 @@ bibliography:
 ```
 
 - 写作文件.Rmd的yaml区域设定文献列出样式（csl style）及关联关系
-    
 
 ```
 biblio-style: "nnsfc.csl"
 csl: "nnsfc.csl"
 ```
-
 
 ## 安装`rbbt`包，并进行文献搜索和引用
 
@@ -99,8 +98,6 @@ require("rbbt")
 ```
 
 - Rstudio$\Rightarrow$ 点击Addins$\Rightarrow$ Insert Zotero Citation。
-
-
 
 
 # 总结及注意事项

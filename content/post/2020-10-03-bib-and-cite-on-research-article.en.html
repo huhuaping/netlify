@@ -1,5 +1,5 @@
 ---
-title: Endnote参考文献及Rmarkdown引用问题
+title: 文献管理：Rmarkdown写作环境下的Endnote使用
 author: huhuaping
 date: '2020-10-03'
 slug: bib-and-cite-on-research-article
@@ -18,13 +18,28 @@ image:
   focal_point: ''
   preview_only: no
 projects: []
+math: yes
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: true
 ---
 
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
+<div id="TOC">
+<ul>
+<li><a href="#endnote和流程"><span class="toc-section-number">1</span> EndNote和流程</a></li>
+<li><a href="#配置endnote软件windows系统"><span class="toc-section-number">2</span> 配置EndNote软件（Windows系统）</a></li>
+<li><a href="#endnote里编辑条目"><span class="toc-section-number">3</span> EndNote里编辑条目</a></li>
+<li><a href="#定制输出和显示样式"><span class="toc-section-number">4</span> 定制输出和显示样式</a></li>
+<li><a href="#文献引用"><span class="toc-section-number">5</span> 文献引用</a></li>
+</ul>
+</div>
 
 <p>使用Rmarkdown写科学论文，自然避免不了管理和使用参考文献，以及文献输出样式。</p>
-<div id="endnote和流程" class="section level1">
-<h1>EndNote和流程</h1>
+<div id="endnote和流程" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> EndNote和流程</h1>
 <p>目前为止，我的唯一文献工具是<strong>EndNote</strong>（版本X9）。掐指一算，差不多已经坚持使用了近13年了。多年来攒下的一个文献库.enl里，文献条目多达3500条（多半是存而不读的啦）。</p>
 <p>在使用Rmarkdown写文章后，工作流程总是免不了受这个多年的工具牵连。可行的办法如下：</p>
 <ol style="list-style-type: decimal">
@@ -42,8 +57,8 @@ projects: []
 </ol>
 <p>先不说这些血泪控诉的坑吧，下面把基本过程里的小九九暂时给记录下来。</p>
 </div>
-<div id="配置endnote软件windows系统" class="section level1">
-<h1>配置EndNote软件（Windows系统）</h1>
+<div id="配置endnote软件windows系统" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> 配置EndNote软件（Windows系统）</h1>
 <p>修改定制EndNote软件。具体可以参考<a href="https://www.rhizobia.co.nz/latex/convert">攻略</a>。</p>
 <blockquote>
 <p>基本步骤大概是：
@@ -52,12 +67,12 @@ projects: []
 - 修改display fields： “Custom1”</p>
 </blockquote>
 </div>
-<div id="endnote里编辑条目" class="section level1">
-<h1>EndNote里编辑条目</h1>
+<div id="endnote里编辑条目" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> EndNote里编辑条目</h1>
 <p>编辑文献条目。独立设置ID ：BibTeX里编辑。</p>
 </div>
-<div id="定制输出和显示样式" class="section level1">
-<h1>定制输出和显示样式</h1>
+<div id="定制输出和显示样式" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> 定制输出和显示样式</h1>
 <ol style="list-style-type: decimal">
 <li><p>准备好输出显示样式。cls样式可以参看<a href="https://github.com/citation-style-language/styles">样式库</a></p></li>
 <li><p>设置<code>.Rmd</code>文档的yaml参数，示例如下：</p></li>
@@ -68,8 +83,8 @@ biblio-style: &quot;nnsfc.csl&quot;
 csl: &quot;nnsfc.csl&quot;
 </code></pre>
 </div>
-<div id="文献引用" class="section level1">
-<h1>文献引用</h1>
+<div id="文献引用" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> 文献引用</h1>
 <p>直接使用条目的唯一标识。例如：</p>
 <pre><code>研究发现，balabalabala[@Birthal2011]。
 </code></pre>

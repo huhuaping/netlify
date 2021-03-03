@@ -1,5 +1,5 @@
 ---
-title: '使用Zotero实现文献引用的自动化Rmarkdown写作'
+title: '文献管理：使用Zotero进行Rmarkdown写作的文献自动化'
 author: huhuaping
 date: '2020-10-09'
 slug: rmarkdown-zotero-rbbt
@@ -19,17 +19,38 @@ image:
   focal_point: ''
   preview_only: no
 projects: []
+math: yes
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: true
 ---
 
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
+<div id="TOC">
+<ul>
+<li><a href="#zotero环境准备"><span class="toc-section-number">1</span> zotero环境准备</a>
+<ul>
+<li><a href="#安装zotero和扩展插件zotero-better-bibtex"><span class="toc-section-number">1.1</span> 安装zotero和扩展插件zotero-better-bibtex。</a></li>
+<li><a href="#设定citekey的形式默认形式太冗长"><span class="toc-section-number">1.2</span> 设定Citekey的形式（默认形式太冗长）。</a></li>
+</ul></li>
+<li><a href="#r环境准备"><span class="toc-section-number">2</span> R环境准备</a>
+<ul>
+<li><a href="#zotero导出.bib文件"><span class="toc-section-number">2.1</span> zotero导出.bib文件</a></li>
+<li><a href="#安装rbbt包并进行文献搜索和引用"><span class="toc-section-number">2.2</span> 安装<code>rbbt</code>包，并进行文献搜索和引用</a></li>
+</ul></li>
+<li><a href="#总结及注意事项"><span class="toc-section-number">3</span> 总结及注意事项</a></li>
+</ul>
+</div>
 
 <blockquote>
 <p>Rmarkdown写作环境下，Zotero + rbbt的方式，基本上实现了比较满意的文献管理和引用流程。Zotero具有免费和相对开放性。Zotero对bibTeX和中文情景比较友好。此外，R包rbbt函数实现了对Zotero的实时联系，引用流程更加自动化。使用者需要正确理解Rmd渲染输出、.bib文件状态和Zotero条目库的关系。</p>
 </blockquote>
-<div id="zotero环境准备" class="section level1">
-<h1>zotero环境准备</h1>
-<div id="安装zotero和扩展插件zotero-better-bibtex" class="section level2">
-<h2>安装zotero和扩展插件zotero-better-bibtex。</h2>
+<div id="zotero环境准备" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> zotero环境准备</h1>
+<div id="安装zotero和扩展插件zotero-better-bibtex" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> 安装zotero和扩展插件zotero-better-bibtex。</h2>
 <p>安装文献管理软件zotero和浏览器插件 。<a href="https://www.zotero.org/">官网</a></p>
 <ul>
 <li><p>软件本体Zotero 5.0 for Windows <a href="https://www.zotero.org/download/client/dl?channel=release&amp;platform=win32&amp;version=5.0.89">下载</a>。</p></li>
@@ -37,8 +58,8 @@ projects: []
 <li><p>安装Zotero扩展插件zotero-better-bibtex <a href="https://retorque.re/zotero-better-bibtex/">开发者网站</a>。zotero-better-bibtex-5.2.78.xpi <a href="https://github.com/retorquere/zotero-better-bibtex/releases">下载安装</a>。</p></li>
 </ul>
 </div>
-<div id="设定citekey的形式默认形式太冗长" class="section level2">
-<h2>设定Citekey的形式（默认形式太冗长）。</h2>
+<div id="设定citekey的形式默认形式太冗长" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> 设定Citekey的形式（默认形式太冗长）。</h2>
 <p>具体修改<a href="https://retorque.re/zotero-better-bibtex/citing/">方法</a>：</p>
 <ul>
 <li><p>设定citekey形式：打开Zotero<span class="math inline">\(\Rightarrow\)</span> 编辑<span class="math inline">\(\Rightarrow\)</span> 首选项<span class="math inline">\(\Rightarrow\)</span> Better Bibtex（插件菜单<span class="math inline">\(\Rightarrow\)</span> Citation keys。</p></li>
@@ -46,10 +67,10 @@ projects: []
 </ul>
 </div>
 </div>
-<div id="r环境准备" class="section level1">
-<h1>R环境准备</h1>
-<div id="zotero导出.bib文件" class="section level2">
-<h2>zotero导出.bib文件</h2>
+<div id="r环境准备" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> R环境准备</h1>
+<div id="zotero导出.bib文件" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> zotero导出.bib文件</h2>
 <ul>
 <li><p>选定需要的Zotero的文献组(group)，直接导出为.bib文件</p></li>
 <li><p>将.bib文件保存在写作文件.Rmd路径中</p></li>
@@ -64,8 +85,8 @@ projects: []
 <pre><code>biblio-style: &quot;nnsfc.csl&quot;
 csl: &quot;nnsfc.csl&quot;</code></pre>
 </div>
-<div id="安装rbbt包并进行文献搜索和引用" class="section level2">
-<h2>安装<code>rbbt</code>包，并进行文献搜索和引用</h2>
+<div id="安装rbbt包并进行文献搜索和引用" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> 安装<code>rbbt</code>包，并进行文献搜索和引用</h2>
 <pre class="r"><code># remotes::install_github(&quot;paleolimbot/rbbt&quot;)
 #require(&quot;rbbt&quot;)</code></pre>
 <p>R包<code>rbbt</code>的主要作用<a href="https://github.com/paleolimbot/rbbt">见github</a>：</p>
@@ -84,8 +105,8 @@ require(&quot;rbbt&quot;)</code></pre>
 </ul>
 </div>
 </div>
-<div id="总结及注意事项" class="section level1">
-<h1>总结及注意事项</h1>
+<div id="总结及注意事项" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> 总结及注意事项</h1>
 <p>Rmarkdown写作环境下，Zotero + <code>rbbt</code>的方式，基本上实现了比较满意的文献管理和引用流程，<strong>优点</strong>如下：</p>
 <ul>
 <li><p>Zotero的免费和相对开放性。免费+插件扩展。对很多网站的文章citation能够快速识别并导入到Zotero库里去，而且还能自动下载关联pdf！</p></li>
