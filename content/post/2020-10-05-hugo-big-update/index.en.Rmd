@@ -590,6 +590,28 @@ b. 此时要求R markdown写作文件指定输出风格`output:`。请参看：[
 **步骤4**中：R markdown写作文件，要求是**.Rmd**格式，不是.md格式，或者.Rmarkdown格式。三者的差异请参看：[R Markdown vs. Markdown](https://bookdown.org/yihui/blogdown/output-format.html)
 :::
 
+## 添加站内搜索功能
+
+**问题**：原来hugo academic自带的站点搜索框，在升级后突然消失了。使得查找和检索站内博文或内容异常困难。
+
+blogdown社区的一些讨论如下：
+
+- [Enable site-wide search](https://github.com/yihui/hugo-prose/issues/9)
+
+下面是放狗找到的关于hugo添加站内搜索功能的文档或帮助。总体而言，这些方法能够实现全站点所有内容的搜索功能，但是需要学习到一些额外的新知识。
+
+- hugo的官方文档[Search for your Hugo Website](https://gohugo.io/tools/search/)。文档介绍了多种实现方式，但没有进一步详细说明和演示。
+
+- `lunr.js`（开源）。[Add Search Functionality to Your Hugo Static Site](https://www.forsure.dev/-/2019/09/03/add-search-functionality-to-your-hugo-static-site/)。介绍了使用开源`lunr.js`来搭建站内搜索功能。但是作者使用的是gitlab、而且博文的更新时间为`Sep 3, 2019`，可能已经不能实现了。
+
+- `lunr.js`（开源）。[The easier way to use lunr search with Hugo](https://palant.info/2020/06/04/the-easier-way-to-use-lunr-search-with-hugo/)。
+
+- `Fuse.js`（开源）。[Client Side Search Engine for Hugo Website](https://codingnconcepts.com/hugo/client-side-search-engine-hugo/)。正如其副标题所言“Search engine for Hugo without any server or additional build steps”。背后实际使用的是`Fuse.js`工具链，作者个人网站使用的是`Hugo Mainroad theme`模板。
+
+> `Fuse.js`号称是不依赖其他工具链（zero dependencies）。但是有不少用户反映，`Fuse.js`的搜索结果不是很理想（见[这篇博文](https://gpanders.com/blog/building-site-search-with-hugo/)）。
+
+- `Algolia`（商业）。[Static site search with Hugo + Algolia](https://forestry.io/blog/search-with-algolia-in-hugo/)。介绍了使用商业服务类型的`Algolia`来搭建站内搜索功能，过程步骤也比较详尽。但是博文的更新时间为`March 2, 2018`，而且感觉依赖的工具较多，链条比较复杂，可能实现难度比较大。
+
 # 供参考的网络资源
 
 - [A Spoonful of Hugo: How much Hugo do I need to know?](https://alison.rbind.io/post/2020-12-12-how-much-hugo/)。正如题目所言。
@@ -597,6 +619,8 @@ b. 此时要求R markdown写作文件指定输出风格`output:`。请参看：[
 - [making pretty note boxes](http://desiree.rbind.io/post/2019/making-tip-boxes-with-bookdown-and-rmarkdown/)。里面谈到了多种情境下，如blogdown、bookdown等，如何设置和定义个性化的文本窗框（text box），但有些地方已经不符合实际情况了。
 
 - [Animating Your Hugo Academic Site](https://www.connorrothschild.com/post/animate-hugo-academic/)。主旨是：Make your Hugo Academic homepage more engaging with a few lines of code.这个是效率的要求了，我更关注的是基本功能的实现和维护。
+
+
 
 <!---footnote--->
 
