@@ -1,0 +1,1418 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.0.0-beta.3 for Hugo" />
+  
+
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  
+
+  
+  
+  
+    
+  
+  <meta name="description" content="1 netlify文件夹体系1.1 netlify content文件系统1.2 netlify static文件夹系统1.3 netlify public文件系统2 netlify相关联的Github仓库2.1 Xaringan slide的正确操作2.1.1 xaringan slide的典型文件结构2.1.2 Xaringan Rmd调用本地图片文件2." />
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://huhuaping.netlify.app/2021/01/31/file-structure-witin-blog/" />
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    <meta name="theme-color" content="#1565c0" />
+  
+
+  
+  
+
+  
+  
+  
+  
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css" integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.25a7b8d72ef60dce241c0c505f1ac49e.css" />
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/index.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_2.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_180x180_fill_lanczos_center_2.png" />
+
+  <link rel="canonical" href="https://huhuaping.netlify.app/2021/01/31/file-structure-witin-blog/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary" />
+  
+  <meta property="og:site_name" content="Academic" />
+  <meta property="og:url" content="https://huhuaping.netlify.app/2021/01/31/file-structure-witin-blog/" />
+  <meta property="og:title" content="Netlify建站：主站与静态static资料的正确衔接 | Academic" />
+  <meta property="og:description" content="1 netlify文件夹体系1.1 netlify content文件系统1.2 netlify static文件夹系统1.3 netlify public文件系统2 netlify相关联的Github仓库2.1 Xaringan slide的正确操作2.1.1 xaringan slide的典型文件结构2.1.2 Xaringan Rmd调用本地图片文件2." /><meta property="og:image" content="https://huhuaping.netlify.app/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png" />
+    <meta property="twitter:image" content="https://huhuaping.netlify.app/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2021-01-31T00:00:00&#43;00:00"
+      />
+    
+    <meta property="article:modified_time" content="2021-01-31T11:24:46&#43;08:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://huhuaping.netlify.app/2021/01/31/file-structure-witin-blog/"
+  },
+  "headline": "Netlify建站：主站与静态static资料的正确衔接",
+  
+  "datePublished": "2021-01-31T00:00:00Z",
+  "dateModified": "2021-01-31T11:24:46+08:00",
+  
+  "author": {
+    "@type": "Person",
+    "name": "胡华平"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Academic",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://huhuaping.netlify.app/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "1 netlify文件夹体系\r\r1.1 netlify content文件系统\r1.2 netlify static文件夹系统\r1.3 netlify public文件系统\r\r2 netlify相关联的Github仓库\r\r2.1 Xaringan slide的正确操作\r\r2.1.1 xaringan slide的典型文件结构\r2.1.2 Xaringan Rmd调用本地图片文件\r2."
+}
+</script>
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>Netlify建站：主站与静态static资料的正确衔接 | Academic</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="5cc114238a03c185d1d291b81e533048" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.76abe0ff166961e9adc403995f18189f.js"></script>
+
+  
+
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">Academic</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">Academic</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>Home</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Posts</span></a>
+        </li>
+
+        
+        
+
+        
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"><span>Teaching</span><span class="caret"></span>
+          </a>
+          <div class="dropdown-menu">
+            
+              <a class="dropdown-item" href="/course-econometrics/"><span>计量经济学(本科生)</span></a>
+            
+              <a class="dropdown-item" href="/course-econometrics-master/"><span>中级计量经济学(研究生)</span></a>
+            
+              <a class="dropdown-item" href="/course-statistics/"><span>统计学原理(本科生)</span></a>
+            
+              <a class="dropdown-item" href="/course-advanced-statistics/"><span>高级统计学(博士)</span></a>
+            
+              <a class="dropdown-item" href="/course-or/"><span>数据模型与决策(MBA)</span></a>
+            
+          </div>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#projects"><span>Projects</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#publications"><span>Publications</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+      
+
+      
+      
+
+      
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>Netlify建站：主站与静态static资料的正确衔接</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+  <span >
+      <a href="/authors/%E8%83%A1%E5%8D%8E%E5%B9%B3/">胡华平</a></span>
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+          Last updated on
+      
+    
+    Jan 31, 2021
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    3 min read
+  </span>
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/category/r/">R</a></span>
+  
+
+</div>
+
+    
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      
+<script src="https://huhuaping.netlify.app/2021/01/31/file-structure-witin-blog/index.en_files/header-attrs/header-attrs.js"></script>
+<script src="https://huhuaping.netlify.app/2021/01/31/file-structure-witin-blog/index.en_files/fitvids/fitvids.min.js"></script>
+
+<div id="TOC">
+<ul>
+<li><a href="#netlify文件夹体系"><span class="toc-section-number">1</span> netlify文件夹体系</a>
+<ul>
+<li><a href="#dir-content"><span class="toc-section-number">1.1</span> netlify content文件系统</a></li>
+<li><a href="#dir-static"><span class="toc-section-number">1.2</span> netlify static文件夹系统</a></li>
+<li><a href="#netlify-public文件系统"><span class="toc-section-number">1.3</span> netlify public文件系统</a></li>
+</ul></li>
+<li><a href="#netlify相关联的github仓库"><span class="toc-section-number">2</span> netlify相关联的Github仓库</a>
+<ul>
+<li><a href="#xaringan-slide的正确操作"><span class="toc-section-number">2.1</span> Xaringan slide的正确操作</a>
+<ul>
+<li><a href="#xaringan-slide的典型文件结构"><span class="toc-section-number">2.1.1</span> xaringan slide的典型文件结构</a></li>
+<li><a href="#xaringan-rmd调用本地图片文件"><span class="toc-section-number">2.1.2</span> Xaringan Rmd调用<strong>本地</strong>图片文件</a></li>
+<li><a href="#xaringan-rmd代码块生成的graph"><span class="toc-section-number">2.1.3</span> Xaringan Rmd代码块生成的graph</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#若干netlify对接技巧"><span class="toc-section-number">3</span> 若干netlify对接技巧</a>
+<ul>
+<li><a href="#netlify内部相互链接"><span class="toc-section-number">3.1</span> netlify内部相互链接</a></li>
+<li><a href="#output"><span class="toc-section-number">3.2</span> netlify指定Rmd输出格式</a></li>
+</ul></li>
+<li><a href="#对接失败与报错"><span class="toc-section-number">4</span> 对接失败与报错</a>
+<ul>
+<li><a href="#include_url服务器拒绝访问"><span class="toc-section-number">4.1</span> include_url()服务器拒绝访问</a></li>
+</ul></li>
+</ul>
+</div>
+
+<div id="netlify文件夹体系" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> netlify文件夹体系</h1>
+<p>使用blogdown进行netlify建站，下述三个文件夹及作用需要区分清楚：</p>
+<ul>
+<li><p><code>content</code>文件夹，主要进行写作或者接口配置（链接等），对接包括：post、publication、course、project等</p></li>
+<li><p><code>static</code>文件夹，主要存放来自其他仓库的静态资料。例如，xaringan slide课件制作往往在我的另一个课程仓库（如<code>course-econometrics</code>），相关文件资料（<code>html</code>）需要提前拷贝到这个文件夹对应位置。</p></li>
+<li><p><code>public</code>文件夹，是建站结果的最终目录树文件系统。netlify服务器网站可以方便国际用户访问，但国内访问速度较慢。<code>public/</code>后期还要更新到本地另外一个域名服务器网站（方便国内访问）。（见之前的<a href="/2020/10/05/hugo-big-update/#double-site">博客文章</a>）</p></li>
+</ul>
+<div id="dir-content" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> netlify content文件系统</h2>
+<pre><code>                            levelName
+1  netlify                           
+2   |--static                        
+3   |--content                       
+4   |   |--course-advanced-statistics
+5   |   |--course-econometrics       
+6   |   |   |--data                  
+7   |   |   |--schedule-theory.Rmd   
+8   |   |   °--schedule-theory.html  
+9   |   |--post                      
+10  |   |--project                   
+11  |   °--publication               
+12  |--public                        
+13  |--config                        
+14  °--netlify.Rproj                 </code></pre>
+<!---
+上述htmlwidgets会保存在本地，然后使用html标记语言插入该文件
+
+<iframe src="tree.html"></iframe> 
+
+参看1[HTML widgets](https://bookdown.org/yihui/blogdown/html-widgets.html)
+
+参看2[HTML Widgets not displaying](https://github.com/rstudio/blogdown/issues/20#issuecomment-269389360)
+
+
+--->
+</div>
+<div id="dir-static" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> netlify static文件夹系统</h2>
+<pre><code>                                    levelName
+1  netlify                                   
+2   |--static                                
+3   |   |--course-advanced-statistics        
+4   |   °--course-econometrics               
+5   |       |--data                          
+6   |       |--pic                           
+7   |       |   |--chpt1-log.png             
+8   |       |   °--chpt2-reg.png             
+9   |       |--reading                       
+10  |       |   |--cht01-history.files       
+11  |       |   °--cht01-history.html        
+12  |       |--01-introduction-slide.html    
+13  |       °--02-simple-reg-basic-slide.html
+14  |--content                               
+15  |--public                                
+16  |--config                                
+17  °--netlify.Rproj                         </code></pre>
+</div>
+<div id="netlify-public文件系统" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> netlify public文件系统</h2>
+<pre><code>                                    levelName
+1  netlify                                   
+2   |--static                                
+3   |--content                               
+4   |--public                                
+5   |   |--course-advanced-statistics        
+6   |   °--course-econometrics               
+7   |       |--schedule-theory               
+8   |       |--data                          
+9   |       |--pic                           
+10  |       |   |--chpt1-log.png             
+11  |       |   °--chpt2-reg.png             
+12  |       |--01-introduction-slide.html    
+13  |       °--02-simple-reg-basic-slide.html
+14  |--config                                
+15  °--netlify.Rproj                         </code></pre>
+</div>
+</div>
+<div id="netlify相关联的github仓库" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> netlify相关联的Github仓库</h1>
+<p>目前而言，neglify主站相关联的主要github仓库有：</p>
+<ul>
+<li><p>主站仓库：<code>netlify</code>仓库，基于hugo-academic网站模板，集合了众多的其他仓库的展示材料</p></li>
+<li><p>教学课程仓库：主要包括本科课程《计量经济学》<code>course-econometrics</code>;本科课程《统计学原理》<code>course-statistics</code>;研究生课程《中级计量经济学》<code>master-SEM</code>等。主要关联材料包括：课件Xaringan slide；补充材料html；pdf等。</p></li>
+<li><p>研究项目仓库：包括各类开源的研究类仓库，如<a href="https://github.com/huhuaping/agri-trade-open">agri-trade-open</a>；<a href="https://github.com/huhuaping/team-students">team-students</a>等。</p></li>
+<li><p>其他仓库</p></li>
+</ul>
+<div id="xaringan-slide的正确操作" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Xaringan slide的正确操作</h2>
+<p>使用Xaringan制作教学slide。需要注意到Xaringan制作的slide是不能独立封装的（self-contained），也即它需要依赖各种必要组件或资源。</p>
+<div id="xaringan-slide的典型文件结构" class="section level3" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> xaringan slide的典型文件结构</h3>
+<p>课程仓库下xaringan slide制作的典型文件结构：</p>
+<pre><code>                                levelName
+1  course-econometrics                   
+2   |--data                              
+3   |--pic                               
+4   |   |--chpt1-log.png                 
+5   |   °--chpt1-curve-points.png        
+6   |--01-class-instruction              
+7   |--02-lab-exercise                   
+8   |--03-slide-class                    
+9   |   |--libs                          
+10  |   |   |--crosstalk-1.1.1           
+11  |   |   |--htmlwidgets-1.5.3         
+12  |   |   |   °--htmlwidgets.js        
+13  |   |   °--remark-latest.min.js      
+14  |   |--01-introduction-slide_files   
+15  |   |   °--figure-html               
+16  |   |       |--unnamed-chunk-14-1.png
+17  |   |       °--unnamed-chunk-15-1.png
+18  |   |--01-introduction-slide.html    
+19  |   °--01-introduction-slide.Rmd     
+20  |--template                          
+21  |--EViews                            
+22  |--mycss                             
+23  |--public                            
+24  °--course-econometrics.Rproj         </code></pre>
+</div>
+<div id="xaringan-rmd调用本地图片文件" class="section level3" number="2.1.2">
+<h3><span class="header-section-number">2.1.2</span> Xaringan Rmd调用<strong>本地</strong>图片文件</h3>
+<p>值得注意的是Xaringan Rmd使用<strong>本地</strong>图片文件（存放在<code>pic/</code>文件夹下），应该使用相对路径，而不是绝对路径（参看<a href="https://github.com/yihui/xaringan/issues/145%3E">the full path approach doesn’t work</a>）。也即意味着：</p>
+<ul>
+<li><p>不能使用绝对路径<code>D:/github/course-econometrics/pic/chpt1-log.png</code></p></li>
+<li><p>同时也不能使用<code>here::here("pic","chpt1-log.png")</code>，因为它也会给出绝对路径<code>"D:/github/course-econometrics/pic/chpt1-log.png"</code></p></li>
+</ul>
+<p>那么Rmd文件<code>01-introduction-slide.Rmd</code>对上述本地图片的函数化引用应该设为相对路径形式，如：</p>
+<ul>
+<li><p><code>markdown</code>语法：<code>![]("../pic/chpt1-log.png")</code></p></li>
+<li><p>或者<code>knitr</code>语法：<code>include_graphics("../pic/chpt1-log.png")</code></p></li>
+</ul>
+<p>总结起来，图片绝对路径和相对路径的差异比较如下：</p>
+<ul>
+<li><p>绝对路径直接无法渲染出图形</p></li>
+<li><p>相对路径可以渲染出图形，而且可以使用chrome浏览器开发工具看到html元素</p></li>
+</ul>
+<pre class="html"><code># html develop tool view
+
+&lt;div class=&quot;figure&quot; style=&quot;text-align: center&quot;&gt;
+  &lt;img src=&quot;../pic/chpt1-log.png&quot; alt=&quot;一份样本数据&quot; width=&quot;693&quot;&gt;
+  &lt;p class=&quot;caption&quot;&gt;一份样本数据&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+</div>
+<div id="xaringan-rmd代码块生成的graph" class="section level3" number="2.1.3">
+<h3><span class="header-section-number">2.1.3</span> Xaringan Rmd代码块生成的graph</h3>
+<p>Rmd使用代码块生成的图片这会自动存放在同名文件夹下的一个文件夹内。如<code>01-introduction-slide.Rmd</code>，则代码块<code>chunk-14</code>制图将存放在自动生成的文件夹<code>01-introduction-slide_files/figure-html/unnamed-chunk-14-1.png</code>。</p>
+<p>例如，R代码块14如下：</p>
+<pre class="r"><code># r code chunk 14
+
+
+ggplot(data.frame(x = seq(from = -5, to=5,length =500 )), aes(x = x)) +
+  stat_function(fun = dnorm, args = list(0,1),
+                aes(color = &quot;mean=0, sd=1&quot;)) +
+  stat_function(fun = dnorm, args = list(0.5,2),
+                aes(color = &quot;mean=0.5, sd=2&quot;)) +
+  scale_colour_manual(&quot;期望和标准差&quot;, values = c(&quot;red&quot;, &quot;blue&quot;))+
+  scale_y_continuous(name = &quot;概率值(probability)&quot;) +
+  theme(legend.text = element_text(size=16), legend.title = element_text(size=16))</code></pre>
+<p>可以使用chrome浏览器开发工具看到其对应的html元素：</p>
+<pre class="html"><code>&lt;!--- html develop tool view---&gt;
+
+&lt;div class=&quot;figure&quot; style=&quot;text-align: center&quot;&gt;
+&lt;img src=&quot;01-introduction-slide_files/figure-html/unnamed-chunk-14-1.png&quot; alt=&quot;正态分布(n=500)&quot;&gt;
+&lt;p class=&quot;caption&quot;&gt;正态分布(n=500)&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+</div>
+</div>
+</div>
+<div id="若干netlify对接技巧" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> 若干netlify对接技巧</h1>
+<div id="netlify内部相互链接" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> netlify内部相互链接</h2>
+<p>如果要直接在<code>/content/course-econometrics</code>下用Rmd文件生成.html，然后再别处来调用这个内部的html文件？</p>
+<p>1.基于主站的相对链接引用（已测试）。参看“队长”问答<a href="https://stackoverflow.com/questions/55930617/linking-to-another-post-in-blogdown">Linking to another post in blogdown</a></p>
+<ul>
+<li>设置基准地址，修改<code>config.toml</code>参数：</li>
+</ul>
+<pre><code># config.toml
+
+baseurl = &quot;https://yourdomain.netlify.app/&quot;</code></pre>
+<ul>
+<li>设定内部引用规则，修改<code>config.toml</code>参数：</li>
+</ul>
+<pre class="toml"><code># config.toml
+
+[permalinks]
+  # If only creating events which are talks, we can optimize event URLs for talks.
+  event = &quot;/talk/:slug/&quot;
+  # Workaround Hugo publishing taxonomy URLs as plurals - consistently use singular across Academic.
+  tags = &quot;/tag/:slug/&quot;
+  categories = &quot;/category/:slug/&quot;
+  publication_types = &quot;/publication-type/:slug/&quot;
+  post = &quot;/:year/:month/:day/:slug/&quot;
+</code></pre>
+<ul>
+<li>Rmd内部链接1：对于<strong>hugo标准模块</strong>内容的链接。所谓hugo<strong>标准模块内容</strong>，一般包括hugo版本内置好的<code>post</code>、<code>publication</code>、<code>tags</code>等，可以通过上述<code>config.toml</code>的参数块<code>[permalinks]</code>看到其影子。因此，对于hugo标准模块内容的链接引用，都需要在这里指定链接的参数形式。值得说明的是：a.务必要按前述各个模块的链接地址规则进行url设定。b.不要画蛇添足<code>/2020/10/05/hugo-big-update/index.en.html</code>（哪怕文件夹下有这个html文件）；c.只要设定了refer ID（如<code>{#your-section-refer}</code>），就可以进行更进一步的链接。</li>
+</ul>
+<blockquote>
+<p>例如，以链接其他博文post为例，见之前的一篇博客文章谈到的<a href="/2020/10/05/hugo-big-update/#double-site">“双服务器建站需求”</a>。</p>
+</blockquote>
+<p>其背后具体代码如下：</p>
+<pre><code># note your can refer the section ID as your have set
+
+例如，以链接其他博文post为例，见之前的一篇博客文章谈到的[&quot;双服务器建站需求&quot;](/2020/10/05/hugo-big-update/#double-site)。</code></pre>
+<p>当然，博文内部章节或任意内容的自我链接（需要事先设定为<code>{#a-ref-id}</code>）也是一种常见的引用方式。此时对同一篇博文post内部ref ID的引用，则可以直接采用<code>[link-text](#a-ref-id)</code>的形式。</p>
+<blockquote>
+<p>例如，请查看前面的content文件系统<a href="#dir-content">树形图</a>。</p>
+</blockquote>
+<p>其背后代码为：</p>
+<pre><code># 需要事先设定好引用指针
+# you should specify the reference ID before link it
+
+例如，请查看前面的content文件系统[树形图](#dir-content)。</code></pre>
+<ul>
+<li>Rmd内部链接2：对于<strong>非hugo标准模块</strong>内容的链接。与上述对应，非hugo标准模块内容一般指用户根据hugo空白模板<code>widget = "blank"</code>设定的页面。主站的课程系列（包括course-econometrics、course-advanced-statistics等）的内容（各种课程的文件结构可以参看前面提及的content文件系统<a href="#dir-content">树形图</a>）就是基于hugo空白模板<code>widget = "blank"</code>生成的。具体模板参数可以逐层追溯看到，例如先查看<code>netlify/content/course-econometrics/_index.md</code>的yaml参数区域，然后进一步追溯其继承至<code>netlify/config/_default/menus.toml</code>的toml参数区域，最后发现它的模板是<code>netlify/content/home/teaching.md</code>ymal参数区域指定的<code>widget = "blank"</code>。</li>
+</ul>
+<p>此时，如果要链接在外部拷贝的一个特定静态网页文件，其存放路径<code>netlify/static/course-econometrics/reading/cht01-history.html</code>（具体可参看前面提到的netlify static文件夹系统<a href="#dir-static">树形图</a>）。此时路径指向应精准和明确。</p>
+<blockquote>
+<p>例如，请点击查看《计量经济学》课程扩展阅读资料<a href="/course-econometrics/reading/cht01-history.html">计量经济学的前世今生</a>。</p>
+</blockquote>
+<p>其背后的具体代码为：</p>
+<pre><code># 路径指向应精准和明确，包含了后缀.html
+# specify the file with full path
+
+例如，请点击查看《计量经济学》课程扩展阅读资料[计量经济学的前世今生](/course-econometrics/reading/cht01-history.html)。
+</code></pre>
+<p>2.利用hugo的shortcode特性（未测试）。参看yihui提到的<a href="https://bookdown.org/yihui/blogdown/content.html-shortcode">Shortcode方法</a>。正文行内引用方式：</p>
+<pre><code>[第一章](r blogdown::shortcodex(&quot;relref&quot;, &quot;chapter01-introduction.html&quot;))</code></pre>
+<p>需要注意的是不能直接引用<code>chapter01-introduction.Rmd</code>；但是可以直接引用<code>chapter01-introduction.md</code>或者<code>chapter01-introduction.html</code>。此外还要注意引用路径是相对的。例如：</p>
+<pre><code>[博客文章提到](r blogdown::shortcodex(&quot;relref&quot;, &quot;../post/2019-02-24-xaringan-for-course-slide.html&quot;))
+</code></pre>
+</div>
+<div id="output" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> netlify指定Rmd输出格式</h2>
+<p>用.Rmd生成的文档能不能有其他的输出格式呢？还能做些别的么？</p>
+<pre class="yaml"><code># add this in yaml area
+
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: true</code></pre>
+</div>
+</div>
+<div id="对接失败与报错" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> 对接失败与报错</h1>
+<div id="include_url服务器拒绝访问" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> include_url()服务器拒绝访问</h2>
+<p>报错内容：使用<code>knitr::include_url()</code>函数后，hugo或blogdown渲染网站，都无法显示对本地静态（<code>"static/course/slide.html"</code>）文件<code>Xaringan slide</code>。</p>
+<p>具体报错内容如下</p>
+<ul>
+<li><p>本地预览下，<code>include_url('/path/to/file.html')</code>则显示报错<code>localhost 拒绝了我们的连接请求。</code>。markdown语法<code>[](/path/to/file.html)</code>则只显示为纯文本。</p></li>
+<li><p><code>netlify built</code>在线建站后，<code>include_url('/path/to/file.html')</code>则显示服务器<code>.netlify.app 拒绝了我们的连接请求。</code>。但是markdown语法<code>[](/path/to/file.html)</code>则显示正常。</p></li>
+<li><p>chrome开发工具显示：<code>&lt;div id="main-frame-error class="interstitial-wrapper" &lt;/div&gt;</code>。</p></li>
+</ul>
+<p>1.use markdown syntax（link Ok）。课件（Xaringan slide）<svg style="height:17;fill:blue;" viewBox="0 0 512 512"><path d="M187.7 153.7c-34 0-61.7 25.7-61.7 57.7 0 31.7 27.7 57.7 61.7 57.7s61.7-26 61.7-57.7c0-32-27.7-57.7-61.7-57.7zm143.4 0c-34 0-61.7 25.7-61.7 57.7 0 31.7 27.7 57.7 61.7 57.7 34.3 0 61.7-26 61.7-57.7.1-32-27.4-57.7-61.7-57.7zm156.6 90l-6 4.3V49.7c0-27.4-20.6-49.7-46-49.7H76.6c-25.4 0-46 22.3-46 49.7V248c-2-1.4-4.3-2.9-6.3-4.3-15.1-10.6-25.1 4-16 17.7 18.3 22.6 53.1 50.3 106.3 72C58.3 525.1 252 555.7 248.9 457.5c0-.7.3-56.6.3-96.6 5.1 1.1 9.4 2.3 13.7 3.1 0 39.7.3 92.8.3 93.5-3.1 98.3 190.6 67.7 134.3-124 53.1-21.7 88-49.4 106.3-72 9.1-13.8-.9-28.3-16.1-17.8zm-30.5 19.2c-68.9 37.4-128.3 31.1-160.6 29.7-23.7-.9-32.6 9.1-33.7 24.9-10.3-7.7-18.6-15.5-20.3-17.1-5.1-5.4-13.7-8-27.1-7.7-31.7 1.1-89.7 7.4-157.4-28V72.3c0-34.9 8.9-45.7 40.6-45.7h317.7c30.3 0 40.9 12.9 40.9 45.7v190.6z"/></svg><a href="/course-statistics/03-slide-class/01-introduction.html">第01章-绪论.html</a> 。</p>
+<pre><code>[第01章-绪论.html](/course-statistics/03-slide-class/03-visualization.html)</code></pre>
+<p>2.try local graphic（graph OK）。</p>
+<pre class="r"><code>knitr::include_graphics(&quot;/pic/facet-multiple-geom.png&quot;, error = FALSE)</code></pre>
+<p><img src="/pic/facet-multiple-geom.png" /><!-- --></p>
+<p>3.test the <code>include_url()</code> （error）：</p>
+<pre class="r"><code># out.extra=&#39;style=&quot;border: none;&quot;&#39;, out.width=&#39;80%&#39;
+knitr::include_url(&quot;/course-statistics/03-slide-class/03-visualization.html&quot;)</code></pre>
+<iframe src="/course-statistics/03-slide-class/03-visualization.html" width="80%" height="400px" style="border: none;">
+</iframe>
+<p>4.try iframe html tag（error）:</p>
+<pre><code>&lt;iframe seamless src=&quot;/course-statistics/03-slide-class/03-visualization.html&quot; width=&quot;100%&quot; height=&quot;500&quot;&gt;&lt;/iframe&gt;</code></pre>
+<iframe seamless src="/course-statistics/03-slide-class/03-visualization.html" width="100%" height="500">
+</iframe>
+<p>5.test <code>xaringanExtra::embed_xaringan()</code>（error）:</p>
+<pre class="r"><code>xaringanExtra::embed_xaringan(
+  url = &quot;/course-statistics/03-slide-class/03-visualization.html&quot;,
+  ratio = &quot;16:9&quot;
+)</code></pre>
+<div class="shareagain" style="min-width:300px;margin:1em auto;">
+<iframe src="/course-statistics/03-slide-class/03-visualization.html" width="1600" height="900" style="border:2px solid currentColor;" loading="lazy" allowfullscreen></iframe>
+<script>fitvids('.shareagain', {players: 'iframe'});</script>
+</div>
+<p>排除可能的问题：</p>
+<ul>
+<li><p>win10 系统防火墙<a href="https://stackoverflow.com/questions/64252065/problem-rendering-hugo-lithium-theme-blogdown-acess-denied">设置</a></p></li>
+<li><p>chrome隐私<a href="https://stackoverflow.com/questions/51634998/cannot-get-iframe-to-appear-on-static-html-page-after-knitting-through-rmarkdown">设置</a></p></li>
+<li><p><code>knitr::include_url()</code>函数是否正确，包括<code>chunk option</code>设定。</p></li>
+<li><p>url地址是否正确。外部绝对url地址显示正确。本地相对地址则报错。但使用<code>knitr::include_graphic()</code>加载本地图片则能正确显示图片。排除url地址误写。</p></li>
+<li><p>使用<code>iframe tag</code>方法，仍旧报错。</p></li>
+<li><p>使用<code>xaringanExtra::embed_xaringan()</code>，仍旧报错。</p></li>
+</ul>
+<p>怀疑的可能原因：</p>
+<ul>
+<li><p>根据hugo团队的观点，它们会原生支持<code>rveal.js</code>，但不是<code>remark.js</code>。（见<a href="">队长讨论</a>）</p></li>
+<li><p>win10操作系统静默升级，改变了hugo的链接访问权限？？</p></li>
+<li><p><code>Netlify</code>的建站规则发生了变化？</p></li>
+<li><p><code>knitr</code>包的bug（iframe id失效）？</p></li>
+</ul>
+</div>
+</div>
+
+    </div>
+
+    
+
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/blogdown/">Blogdown</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://huhuaping.netlify.app/2021/01/31/file-structure-witin-blog/&amp;text=Netlify%e5%bb%ba%e7%ab%99%ef%bc%9a%e4%b8%bb%e7%ab%99%e4%b8%8e%e9%9d%99%e6%80%81static%e8%b5%84%e6%96%99%e7%9a%84%e6%ad%a3%e7%a1%ae%e8%a1%94%e6%8e%a5" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://huhuaping.netlify.app/2021/01/31/file-structure-witin-blog/&amp;t=Netlify%e5%bb%ba%e7%ab%99%ef%bc%9a%e4%b8%bb%e7%ab%99%e4%b8%8e%e9%9d%99%e6%80%81static%e8%b5%84%e6%96%99%e7%9a%84%e6%ad%a3%e7%a1%ae%e8%a1%94%e6%8e%a5" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Netlify%e5%bb%ba%e7%ab%99%ef%bc%9a%e4%b8%bb%e7%ab%99%e4%b8%8e%e9%9d%99%e6%80%81static%e8%b5%84%e6%96%99%e7%9a%84%e6%ad%a3%e7%a1%ae%e8%a1%94%e6%8e%a5&amp;body=https://huhuaping.netlify.app/2021/01/31/file-structure-witin-blog/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://huhuaping.netlify.app/2021/01/31/file-structure-witin-blog/&amp;title=Netlify%e5%bb%ba%e7%ab%99%ef%bc%9a%e4%b8%bb%e7%ab%99%e4%b8%8e%e9%9d%99%e6%80%81static%e8%b5%84%e6%96%99%e7%9a%84%e6%ad%a3%e7%a1%ae%e8%a1%94%e6%8e%a5" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=Netlify%e5%bb%ba%e7%ab%99%ef%bc%9a%e4%b8%bb%e7%ab%99%e4%b8%8e%e9%9d%99%e6%80%81static%e8%b5%84%e6%96%99%e7%9a%84%e6%ad%a3%e7%a1%ae%e8%a1%94%e6%8e%a5%20https://huhuaping.netlify.app/2021/01/31/file-structure-witin-blog/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://huhuaping.netlify.app/2021/01/31/file-structure-witin-blog/&amp;title=Netlify%e5%bb%ba%e7%ab%99%ef%bc%9a%e4%b8%bb%e7%ab%99%e4%b8%8e%e9%9d%99%e6%80%81static%e8%b5%84%e6%96%99%e7%9a%84%e6%ad%a3%e7%a1%ae%e8%a1%94%e6%8e%a5" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>Related</h3>
+    <ul>
+      
+      <li><a href="/2019/02/21/three-sord/">Netlify系列1：个人网站开发“三剑客” (blogdown;github;netlify)</a></li>
+      
+      <li><a href="/2021/02/02/pkg-develop/">R包开发：构架及基础</a></li>
+      
+      <li><a href="/2021/02/01/pkg-xmerit/">R包开发：xmetrics</a></li>
+      
+      <li><a href="/2021/02/01/css-base-xaringan/">Xaringan美化：CSS功夫</a></li>
+      
+      <li><a href="/2020/12/05/web-scraping-tech-vision-volidation/">自动化数据抓取技术(V)：APACHA人机验证机制</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+  
+  <p class="powered-by">
+    
+      <a href="/privacy/">Privacy Policy</a>
+    
+    
+       &middot; 
+      <a href="/terms/">Terms</a>
+    
+  </p>
+  
+
+  <p class="powered-by">
+    huhuaping@2019
+  </p>
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-modules" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js"></script>
+        
+      
+
+    
+
+    
+    
+    
+
+    
+    
+
+    
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    <script src="/js/_vendor/bootstrap.bundle.min.f81d0a1705048649befc8b595e455a94.js"></script>
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <script src="/en/js/wowchemy.min.0a233ecde900ea57d5cd5ad14636ad45.js"></script>
+
+    
+
+
+
+
+
+
+</body>
+</html>

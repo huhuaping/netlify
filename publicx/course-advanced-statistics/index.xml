@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>高级统计学(简介) | Academic</title>
+    <link>https://huhuaping.netlify.app/course-advanced-statistics/</link>
+      <atom:link href="https://huhuaping.netlify.app/course-advanced-statistics/index.xml" rel="self" type="application/rss+xml" />
+    <description>高级统计学(简介)</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>huhuaping@2019</copyright><lastBuildDate>Fri, 01 Mar 2019 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://huhuaping.netlify.app/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png</url>
+      <title>高级统计学(简介)</title>
+      <link>https://huhuaping.netlify.app/course-advanced-statistics/</link>
+    </image>
+    
+    <item>
+      <title>第05章-机器学习(machine learning)</title>
+      <link>https://huhuaping.netlify.app/course-advanced-statistics/part05-machine-learning/</link>
+      <pubDate>Mon, 09 Sep 2019 00:00:00 +0800</pubDate>
+      <guid>https://huhuaping.netlify.app/course-advanced-statistics/part05-machine-learning/</guid>
+      <description>
+
+&lt;div id=&#34;TOC&#34;&gt;
+true
+&lt;/div&gt;
+
+&lt;div id=&#34;第05章机器学习&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;第05章：机器学习&lt;/h2&gt;
+&lt;p&gt;操作提示：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;点击&lt;strong&gt;课件区域&lt;/strong&gt;，按F键，可全屏观看&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;按方向键，可以前进/后退&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;敲击数字键，再按Enter可进入任意指定的页码。如，敲击数字10，观看第10页&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;iframe src=&#34;https://huhuaping.netlify.app/course-advanced-statistics/stat-learning-slide.html&#34; width=&#34;672&#34; height=&#34;400px&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

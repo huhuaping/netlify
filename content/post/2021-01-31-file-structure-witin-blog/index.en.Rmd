@@ -1,5 +1,5 @@
 ---
-title: Netlify建站：主站与静态static资料的正确衔接
+title: 个人建站：主站与静态static资料的正确衔接
 author: huhuaping
 date: '2021-01-31'
 slug: file-structure-witin-blog
@@ -8,7 +8,7 @@ categories:
 tags:
   - Blogdown
 subtitle: ''
-summary: ''
+summary: '本文总结了使用blogdown进行netlify建站时各类文件的关联关系。在理解netlify文件夹体系基础上，重点探讨R code图片调用位置、netlify内部文档链接等应用场景的实现技术。'
 authors: [胡华平]
 lastmod: '2021-01-31T11:24:46+08:00'
 featured: no
@@ -24,7 +24,6 @@ output:
 ---
 
 # netlify文件夹体系
-
 
 使用blogdown进行netlify建站，下述三个文件夹及作用需要区分清楚：
 

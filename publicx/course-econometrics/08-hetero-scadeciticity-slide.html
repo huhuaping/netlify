@@ -1,0 +1,1973 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>08-hetero-scadeciticity-slide.utf8</title>
+    <meta charset="utf-8" />
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/duke-blue.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/hygge-duke.css" rel="stylesheet" />
+    <script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+    <script src="libs/jquery-1.12.4/jquery.min.js"></script>
+    <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+    <script src="libs/datatables-binding-0.13/datatables.js"></script>
+    <link href="libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
+    <script src="libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
+    <link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+    <script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+    <link rel="stylesheet" href="libs\cc-fonts.css" type="text/css" />
+    <link rel="stylesheet" href="libs\figure-captions.css" type="text/css" />
+    <link rel="stylesheet" href="libs\animate.css" type="text/css" />
+    <link rel="stylesheet" href="libs\mycss\my-custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+background-image: url("pic/slide-front-page.jpg")
+class: center,middle
+
+# 计量经济学(Econometrics)
+
+### 胡华平
+
+### 西北农林科技大学
+
+### 经济管理学院数量经济教研室
+
+### huhuaping01@hotmail.com
+
+### 2020-05-19
+
+
+
+
+
+
+
+
+---
+class: center, middle,inverse
+# 第8章：放宽基本假设：异方差性
+
+
+[8.1 异方差性的定义和来源](#definition)
+
+[8.2 异方差性的影响和后果](#effect)
+
+[8.3 广义最小二乘法 (GLS)](#GLS)
+
+[8.4 异方差性问题的诊断](#diagnose)
+
+[8.5 异方差性问题的矫正](#adjust)
+
+[8.6 案例展示（异方差问题的诊断和矫正）](#example)
+
+
+
+---
+layout: false
+class: inverse, center, middle, duke-softblue
+name: definition
+
+# 8.1 异方差性的定义和来源
+
+---
+layout: true
+  
+&lt;div class="my-header"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   第8章：放宽基本假设：异方差性   
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+8.1 异方差性的定义和来源 &lt;/span&gt;&lt;/div&gt; 
+
+
+---
+
+## 异方差的概念与内涵
+
+k变量总体回归模型(PRM)
+
+`$$\begin{align}
+Y_i&amp;=\beta_1+\beta_2X_{2i}+\beta_3X_{3i}+\cdots+\beta_kX_{ki}+u_i 
+&amp;&amp; \text{(PRM)} \\
+Y_i&amp;=\hat{\beta}_1+\hat{\beta}_2X_{2i}+\hat{\beta}_3X_{3i}+\cdots+\hat{\beta}_kX_{ki}+e_i 
+&amp;&amp; \text{(SRM)} \\
+\mathbf{y} &amp;= \mathbf{X}\mathbf{\beta}+\mathbf{u} &amp;&amp; \text{(PRM-matrix)}  \\
+\mathbf{y} &amp;= \mathbf{X}\mathbf{\hat{\beta}}+\mathbf{e}  &amp;&amp; \text{(SRM-matrix)} \\
+\end{align}$$`
+
+则随机干扰项的方差协方差矩阵可以写成：
+
+`$$\begin{align}
+var-cov(\boldsymbol{u})&amp;=E(\boldsymbol{uu'})
+=
+  \begin{bmatrix}
+  \sigma_1^2 &amp; \sigma_{12}^2  &amp;\cdots &amp;\sigma_{1n}^2\\
+  \sigma_{21}^2 &amp; \sigma_2^2  &amp;\cdots &amp;\sigma_{2n}^2\\
+  \vdots &amp; \vdots &amp;\vdots &amp;\vdots \\
+  \sigma_{n1}^2 &amp; \sigma_{n2}^2  &amp;\cdots &amp;\sigma_n^2\\
+  \end{bmatrix}
+\end{align}$$`
+
+---
+
+## 异方差的概念与内涵
+
+在**CLRM假设**下，随机干扰项为**同方差**（homoscedasticity），且随机干扰项之间**不相关**。也即：
+
+`$$\begin{align}
+E(u_i^2) &amp;=\sigma^2;\quad  (i \in 1,2,\cdots,n)\\
+cov(u_iu_j) &amp;=0;\quad (i \neq j)
+\end{align}$$`
+
+则，随机干扰项的方差协方差矩阵进一步可以写成：
+
+`$$\begin{align}
+var-cov(\boldsymbol{u})=E(\boldsymbol{uu'})
+\equiv \sigma^2
+  \begin{bmatrix}
+  1 &amp; 0  &amp;\cdots &amp;0\\
+  0 &amp; 1  &amp;\cdots &amp;0\\
+  \vdots &amp; \vdots &amp;\vdots &amp;\vdots \\
+  0 &amp; 0  &amp;\cdots &amp;1\\
+  \end{bmatrix}
+\equiv \sigma^2\boldsymbol{I}
+\end{align}$$`
+
+---
+
+## 异方差的概念与内涵
+
+考虑违背了**CLRM假设**的一种情形：随机干扰项具有**异方差**（hetroscadasticity），但仍假设随机干扰项之间不相关。也即：
+
+`$$\begin{align}
+E(u_i^2) &amp;=\sigma_i^2;\quad i ( \in 1,2,\cdots,n)\\
+cov(u_iuj) &amp; = 0;\quad (i \neq j)
+\end{align}$$`
+
+
+随机干扰项的方差协方差矩阵可以表达为：
+
+`$$\begin{align}
+var-cov(\boldsymbol{u})&amp;=E(\boldsymbol{uu'})
+=
+  \begin{bmatrix}
+  \sigma_1^2 &amp; 0  &amp;\cdots &amp; 0\\
+  0 &amp; \sigma_2^2  &amp;\cdots 0\\
+  \vdots &amp; \vdots &amp;\vdots &amp; \vdots \\
+  0 &amp; 0  &amp;\cdots &amp;\sigma_n^2\\
+  \end{bmatrix}
+\end{align}$$`
+
+
+---
+
+### 异方差的概念与内涵（图示1）
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="pic/chpt3-CLRM-homoscedasticity.png" alt="随机干扰项的方差处处相等" width="608" /&gt;
+&lt;p class="caption"&gt;随机干扰项的方差处处相等&lt;/p&gt;
+&lt;/div&gt;
+
+---
+
+### 异方差的概念与内涵（图示2）
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="pic/chpt3-CLRM-heteroscedasiticity.png" alt="随机干扰项的方差随X取值不同而不同" width="599" /&gt;
+&lt;p class="caption"&gt;随机干扰项的方差随X取值不同而不同&lt;/p&gt;
+&lt;/div&gt;
+
+---
+
+## 数值模拟比较1
+
+&lt;img src="pic/chpt8-heteroscedasiticity-demo1.png" width="846" style="display: block; margin: auto;" /&gt;
+
+---
+
+## 数值模拟比较2
+
+&lt;img src="pic/chpt8-heteroscedasiticity-demo2.png" width="801" style="display: block; margin: auto;" /&gt;
+
+---
+
+## 数值模拟比较3
+
+&lt;img src="pic/chpt8-heteroscedasiticity-demo3.png" width="801" style="display: block; margin: auto;" /&gt;
+
+---
+
+## 异方差的来源
+
+**异方差的来源1**：**边错边改**误差学习模型（error-learning models）的普遍存在。
+
+- 人们的行为误差随时间而减少。
+
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="pic/chpt8-hetero-scedasiticity-source1.png" alt="打字出错与打字练习时长的关系" width="662" /&gt;
+&lt;p class="caption"&gt;打字出错与打字练习时长的关系&lt;/p&gt;
+&lt;/div&gt;
+
+
+---
+
+## 异方差的来源
+
+**异方差的来源2**：随着收入的增长，人们在支出和储蓄中有更大的灵活性。
+
+- 在做储蓄对收入的回归中，随机干扰项的方差
+`\(\sigma^2\)`与收入俱增。
+
+- 随着收入的增长，人们在支出和储蓄中有更大的灵活性。
+
+**异方差的来源3**：随着数据采集技术的改进，随机干扰项的方差
+`\(\sigma^2\)`可能会逐渐减小。
+
+- 有成熟的数据处理设备的银行，在为客户提供的月度或季度报表中，相对于没有这种设备的银行，会出现更少的差错。
+
+---
+
+## 异方差的来源
+
+**异方差的来源4**：**异常值**（outliers）的出现可能导致异方差性增大。
+
+- 异常观测是来自于与产生其余观测值的总体不同的另一个总体。
+
+- 对于小样本数据，问题会更大。
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="pic/chpt8-hetero-scedasiticity-source4.png" alt="股票价格与消费价格的关系" width="396" /&gt;
+&lt;p class="caption"&gt;股票价格与消费价格的关系&lt;/p&gt;
+&lt;/div&gt;
+
+---
+
+## 异方差的来源
+
+**异方差的来源5**：回归模型的**设定偏误**。
+
+- 比如忽略了重要的解释变量。
+
+- 例如，做商品的需求量对价格的回归时，没有将互补品或替代品的价格包括进来，会引起异方差问题
+
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="pic/chpt8-hetero-scedasiticity-source5.png" alt="广告印象Y与广告支出X的两种回归建模结果" width="697" /&gt;
+&lt;p class="caption"&gt;广告印象Y与广告支出X的两种回归建模结果&lt;/p&gt;
+&lt;/div&gt;
+
+---
+
+## 异方差的来源
+
+**异方差的来源6**：数据分布、数据变换和模型函数形式的原因。
+
+- 一个或多个回归元的分布偏态(skewness)。诸如收入、财富和教育等经济变量都是很好的例子。众所周知，大多数社会中收入和财富的分配都是不匀称的，处在顶端的少数几人拥有大部分的收入和财富。
+
+- 不正确的数据变换：(如比率或一阶差分变换等〉
+
+- 不正确的函数形式(如线性与对数线性模型的变换) 
+
+
+---
+
+## 异方差的来源
+
+**异方差的来源7**：**截面数据**中更容易出现异方差性问题。
+
+- 请看下面重点案例——10个行业员工薪水案例
+
+
+
+---
+class: page-font-16
+
+### 案例：行业薪水数据（原始）
+
+
+&lt;div class="figure" style="text-align: center"&gt;
+<div id="htmlwidget-220d6d7b5800f6e5dd4a" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-220d6d7b5800f6e5dd4a">{"x":{"filter":"none","data":[[1,2,3,4,5,6,7,8,9,10],["食品干果","烟草产品","纺织品","器皿用具","纸张类","印刷出版","化工产品","石油与煤炭","相较于塑料","皮革及其制品"],[2994,1721,3600,3494,3498,3611,3875,4616,3538,3016],[3295,2057,3657,3787,3847,4206,4660,5181,3984,3196],[3565,3336,3674,3533,3913,4695,4930,5317,4014,3149],[3907,3320,3437,3215,4135,5083,5005,5337,4287,3317],[4189,2980,3340,3030,4445,5301,5114,5421,4221,3414],[4486,2848,3334,2834,4885,5269,5248,5710,4539,3254],[4676,3072,3225,2750,5132,5182,5630,6316,4721,3177],[4968,2969,3163,2967,5342,5395,5870,6455,4905,3346],[5342,3822,3168,3453,5326,5552,5876,6347,5481,4067]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>ID<\/th>\n      <th>Ind_chn<\/th>\n      <th>A<\/th>\n      <th>B<\/th>\n      <th>C<\/th>\n      <th>D<\/th>\n      <th>E<\/th>\n      <th>F<\/th>\n      <th>G<\/th>\n      <th>H<\/th>\n      <th>I<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0}],"pageLength":10,"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+&lt;p class="caption"&gt;10个行业、不同规模企业下员工薪水数据&lt;/p&gt;
+&lt;/div&gt;
+
+其中，**1-10行**表示不同行业。**A~I列**表示不同企业规模（员工人数）：A=1-4人；B=5-9人；C=10-19人；D=20-49人；E=50-99人；F=100-249人；G=250-499人；H=500-999人；I=1000人及以上。
+
+---
+
+### 案例：行业薪水数据（绘图）
+
+&lt;img src="08-hetero-scadeciticity-slide_files/figure-html/unnamed-chunk-12-1.png" style="display: block; margin: auto;" /&gt;
+
+--
+
+根据以上不同企业规模下员工薪水分布图，可以发现：
+
+- 企业规模（人数）越大，员工薪水
+`\(Y\)`的分布趋向于更加分散，也即薪水分布的标准差
+`\(\sigma_Y\)`倾向于更大。
+
+---
+
+### 案例：行业薪水数据（汇总数据1）
+
+根据前述原始数据，我们可以分别计算出10个行业不同企业规模下（A~I）员工的平均薪水
+`\(Y\)`以及不同企业规模下（A~I）员工薪水的**标准差**
+`\(\sigma_Y\)`。
+
+同时，假定我们也得到了10个行业不同企业规模下员工的平均生产力
+`\(X\)`数据。那么，我们就可以获得如下的**汇总数据表**：
+
+&lt;div class="figure" style="text-align: center"&gt;
+<div id="htmlwidget-b2190e069a6a587ade06" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b2190e069a6a587ade06">{"x":{"filter":"none","data":[[11,12,13],["平均薪水","薪水的标准差","平均生产力"],[3396,743.7,9355],[3787,851.4,8584],[4013,727.8,7962],[4014,805.06,8275],[4146,929.9,8389],[4241,1080.6,9418],[4387,1243.2,9795],[4538,1307.7,10281],[4843,1112.5,11750]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>ID<\/th>\n      <th>Ind_chn<\/th>\n      <th>A<\/th>\n      <th>B<\/th>\n      <th>C<\/th>\n      <th>D<\/th>\n      <th>E<\/th>\n      <th>F<\/th>\n      <th>G<\/th>\n      <th>H<\/th>\n      <th>I<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0}],"pageLength":10,"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+&lt;p class="caption"&gt;10个行业、不同规模企业下员工薪水数据&lt;/p&gt;
+&lt;/div&gt;
+
+其中，**A~I列**表示不同企业规模（员工人数）：A=1-4人；B=5-9人；C=10-19人；D=20-49人；E=50-99人；F=100-249人；G=250-499人；H=500-999人；I=1000人及以上。
+
+---
+
+### 案例：行业薪水数据（汇总数据2）
+
+我们将汇总数据表进一步整理为**标准表**：
+
+&lt;div class="figure" style="text-align: center"&gt;
+<div id="htmlwidget-7f17add3b9329a1da61a" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7f17add3b9329a1da61a">{"x":{"filter":"none","data":[["A","B","C","D","E","F","G","H","I"],["1-4","5-9","10-19","20-49","50-99","100-249","250-499","500-999","1000以上"],[3396.3,3787,4012.6,4104.3,4145.5,4240.7,4388.1,4538,4843.4],[742.180129378606,851.435389340978,727.80327012181,805.055146489288,929.995131409001,1080.60035268467,1241.48400893626,1307.70613416522,1110.72850968282],[9355,8584,7962,8275,8389,9418,9795,10281,11750]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>scales<\/th>\n      <th>企业规模<\/th>\n      <th>薪水\\( Y \\)<\/th>\n      <th>薪水标准差\\( \\sigma_{Y} \\)<\/th>\n      <th>生产力\\( X \\)<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"targets":3,"render":"function(data, type, row, meta) { return DTWidget.formatRound(data, 2, 3, \",\", \".\"); }"},{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render"],"jsHooks":[]}</script>
+&lt;p class="caption"&gt;不同规模企业员工薪水与生产力数据&lt;/p&gt;
+&lt;/div&gt;
+
+---
+
+### 案例：行业薪水数据（汇总制图）
+
+员工生产力
+`\(X\)`与员工薪水
+`\(Y\)`的散点图如下：
+
+&lt;img src="08-hetero-scadeciticity-slide_files/figure-html/unnamed-chunk-15-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+### 案例：行业薪水数据（汇总制图）
+
+员工生产力
+`\(X\)`与员工薪水标准差
+`\(\sigma_Y\)`的散点图如下：
+
+&lt;img src="08-hetero-scadeciticity-slide_files/figure-html/unnamed-chunk-16-1.png" style="display: block; margin: auto;" /&gt;
+&gt; 员工薪水标准差
+`\(\sigma_Y\)`不是处处相等，而呈现明显增大（随
+`\(X\)`增大而增大），这有违CLRM假设。
+
+
+
+---
+layout: false
+class: inverse, center, middle, duke-softblue
+name:effect
+
+# 8.2 异方差性的影响和后果
+
+---
+layout: true
+  
+&lt;div class="my-header"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   第8章：放宽基本假设：异方差性   
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+8.2 异方差性的影响和后果 &lt;/span&gt;&lt;/div&gt; 
+
+
+---
+
+## OLS估计量不再是BLUE
+
+对于双变量模型(一元回归模型)：
+
+`$$\begin {align} 
+ Y_{i} &amp;=\beta_{1}+\beta_{2} X_{2 i}+u_{i} 
+\end {align}$$`
+
+`\(\beta_2\)`的OLS估计量
+`\(\hat{\beta}_2\)`为：
+
+`$$\begin {align} 
+\hat{\beta}_{2}=\frac{\sum x_{i} y_{i}}{\sum x_{i}^{2}}
+=\frac{n \sum X_{i} Y_{i}-\sum X_{i} \sum Y_{i}}{n \sum X_{i}^{2}-\left(\sum X_{i}\right)^{2}}
+\end {align}$$`
+
+.pull-left[
+
+可以证明，在**CLRM假设**下OLS估计量
+`\(\hat{\beta}_2\)`的方差
+`\(\sigma^2_{\hat{\beta}_2}\)`为：
+
+`$$\begin {align} 
+\operatorname{var}\left(\hat{\beta}_{2}\right)=\frac{\sigma^{2}}{\sum x_{i}^{2}}
+\end {align}$$`
+
+]
+
+.pull-right[
+
+但是，若违背**CLRM假设**，使得随机干扰项
+`\(u_i\)`为**异方差**（并保证满足除此之外的其他CLRM条件），则OLS估计量
+`\(\hat{\beta}_2\)`的方差
+`\(\sigma^2_{\hat{\beta}_2}\)`为：
+
+`$$\begin {align} 
+\operatorname{var}\left(\hat{\beta}_{2}\right)=\frac{\sum x_{i}^{2} \sigma_{i}^{2}}{\left(\sum x_{i}^{2}\right)^{2}}
+\end {align}$$`
+
+]
+
+---
+
+## OLS估计量不再是BLUE
+
+异方差对OLS估计带来的后果：
+
+- 若其他CLRM假定不变，**同方差性**假定不成立时（也即随机干扰项
+`\(u_i\)`为**异方差**），则OLS估计量通常不再是.blue[**BLUE**]。
+
+&gt;也有例外，G-M定理只为OLS的有效性提供了充分条件（非必要），而OLS有效性的充要条件则由kruskal定理给出
+
+- 此时，OLS估计量仍然是线性的和无偏的（记为**LUE**，因这两条性质都与方差无关）。但是，不再是“最优的”或“有效的”。
+
+- 那么，在出现异方差性时，什么才是BLUE呢?
+
+---
+
+## 出现异方差性时的态度1
+
+**态度1**：忽视异方差性，坚持错误地使用CLRM假设下OLS方法的各种公式。
+
+在**异方差性**存在的情形下，却坚持使用OLS方法下的方差公式：
+
+`$$\begin {align} 
+\hat{\beta}_{2} \parallel_{OLS}^{\sigma^2} 
+=\frac{\sum x_{i} y_{i}}{\sum x_{i}^{2}}
+=\frac{n \sum X_{i} Y_{i}-\sum X_{i} \sum Y_{i}}{n \sum X_{i}^{2}-\left(\sum X_{i}\right)^{2}}
+\end {align}$$`
+
+`$$\begin {align} 
+\operatorname{var}\left(\hat{\beta}_{2}\right) \parallel_{OLS}^{\sigma^2} 
+=\frac{\sigma^{2}}{\sum x_{i}^{2}}
+\end {align}$$`
+
+
+- 坚持使用的方差公式
+`\(\operatorname{var}\left(\hat{\beta}_{2}\right) \parallel_{OLS}^{\sigma^2}\)`是有偏的，可能高估或低估其真实方差
+`\(\operatorname{var}\left(\hat{\beta}_{2}\right)\)`。
+
+- 坚持使用回归误差方差公式
+`\(\hat{\sigma}^{2} \parallel_{OLS}^{\sigma^2}=\frac{\sum \mathrm{e}_{i}^{2}}{n-2}\)`，并不是真值
+`\(\sigma^2\)`的**无偏估计量**。
+
+- 进一步地，置信区间、t检验和F检验也将不准确。
+
+&gt; 如果我们忽视异方差性而执意使用惯常的检验程序，则无论我们得出什么结论或作出什么推断，都可能产生严重的误导。
+
+
+---
+
+## 出现异方差性时的态度2
+
+**态度2**：承认“**异方差性**”这一事实，但仍旧使用OLS方法。
+
+在**异方差性**存在的情形下，直接使用OLS方法，估计量及其方差公式写成：
+
+`$$\begin {align} 
+\hat{\beta}_{2} \parallel_{OLS}^{\sigma^2_i} 
+=\frac{\sum x_{i} y_{i}}{\sum x_{i}^{2}}
+=\frac{n \sum X_{i} Y_{i}-\sum X_{i} \sum Y_{i}}{n \sum X_{i}^{2}-\left(\sum X_{i}\right)^{2}}
+\end {align}$$`
+
+`$$\begin {align} 
+\operatorname{var}\left(\hat{\beta}_{2}\right) \parallel_{OLS}^{\sigma^2_i} =\frac{\sum x_{i}^{2} \sigma_{i}^{2}}{\left(\sum x_{i}^{2}\right)^{2}}
+\end {align}$$`
+
+
+- 系数估计量仍是一致的
+
+- 方差公式是有偏的，可能高估或低估其真实方差
+`\(\operatorname{var}\left(\hat{\beta}_{2}\right)\)`。
+
+---
+
+## 出现异方差性时的态度3
+
+**态度3**：在**异方差性**存在的情形下，首先想办法消除异方差性，再使用OLS方法。例如**加权最小二乘法**（WLS）下，估计量及其方差公式最终为写成：
+
+`$$\begin {align} 
+\hat{\beta}^*_{2} \parallel_{WLS}^{\sigma^2_i}
+&amp;=\frac{\left(\sum w_{i}\right)\left(\sum w_{i} X_{i} Y_{i}\right)-\left(\sum w_{i} X_{i}\right)\left(\sum w_{i} Y_{i}\right)}{\left(\sum w_{i}\right)\left(\sum w_{i} X_{i}^{2}\right)-\left(\sum w_{i} X_{i}\right)^{2}} 
+&amp;&amp; \leftarrow \left[ w_i= \frac{1}{\sigma^2_i}\right]
+\end {align}$$`
+
+`$$\begin {align} 
+\operatorname{var}\left(\hat{\beta}^*_{2}\right) \parallel_{WLS}^{\sigma^2_i}
+&amp; =\frac{\sum \omega_{i}}{\left(\sum \omega_{i}\right)\left(\sum \omega_{i} X_{i}^{2}\right)-\left(\sum \omega_{i} X_{i}\right)^{2}}
+&amp;&amp; \leftarrow \left[ w_i= \frac{1}{\sigma^2_i}\right]
+\end {align}$$`
+
+- 系数估计量是一致的
+
+- 方差公式是无偏的，其期望将等于真实方差
+`\(\operatorname{var}\left(\hat{\beta}_{2}\right)\)`。
+
+---
+
+## 出现异方差性时的态度：总结
+
+- **态度1**：“把头埋进沙堆的鸵鸟”
+
+`$$\begin {align} 
+\operatorname{var}\left(\hat{\beta}_{2}\right) \parallel_{OLS}^{\sigma^2} 
+=\frac{\sigma^{2}}{\sum x_{i}^{2}}
+\end {align}$$`
+
+- **态度2**：“将错就错地走下去”
+
+`$$\begin {align} 
+\operatorname{var}\left(\hat{\beta}_{2}\right) \parallel_{OLS}^{\sigma^2_i} =\frac{\sum x_{i}^{2} \sigma_{i}^{2}}{\left(\sum x_{i}^{2}\right)^{2}}
+\end {align}$$`
+
+- **态度3**：“直面困难找出路”
+
+`$$\begin {align} 
+\operatorname{var}\left(\hat{\beta}^*_{2}\right) \parallel_{WLS}^{\sigma^2_i}
+&amp; =\frac{\sum \omega_{i}}{\left(\sum \omega_{i}\right)\left(\sum \omega_{i} X_{i}^{2}\right)-\left(\sum \omega_{i} X_{i}\right)^{2}}
+&amp;&amp; \leftarrow \left[ w_i= \frac{1}{\sigma^2_i}\right]
+\end {align}$$`
+
+---
+
+## 出现异方差性时的态度：数据模拟
+
+按照如下规则进行**蒙特卡罗模拟**设置，三种态度的差异见下表：
+
+`$$\begin {align} 
+Y_{i} &amp;=\beta_{1}+\beta_{2} X_{i}+u_{i}  &amp;&amp; \leftarrow 
+\left[ 
+\beta_{1} =1; \beta_{2}=1 ;
+u_{i} \sim N\left(0, X_{i}^{k}\right); n=20000
+\right]
+\end {align}$$`
+
+&lt;img src="pic/chpt8-attitudes-monte.png" width="671" style="display: block; margin: auto;" /&gt;
+
+---
+
+## 异方差性问题的一个小结
+
+**总结**：
+
+- 异方差是指模型中关键变量
+`\(u_i\)`或
+`\(Y_i\)`行为表现“不稳定”或“不一致”。
+
+- 异方差的表现方式多种多样，会给建模分析带来一定困扰
+
+**思考**：
+
+- 实际数据中，异方差是否很容易就能被“识别”出来？
+
+- 识别存在异方差与判明是何种形式的异方差，那项工作更轻松？
+
+- 薪资与生产率案例中，你能看出传统回归分析报告有什么异常么？
+
+- 异方差问题是不是一定带来“十分显眼”的回归异常？
+
+
+---
+layout: false
+class: inverse, center, middle, duke-softblue
+name:GLS
+
+# 8.3 广义最小二乘法 (GLS)
+
+---
+layout: true
+  
+&lt;div class="my-header"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   第8章：放宽基本假设：异方差性   
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+8.3 广义最小二乘法 (GLS) &lt;/span&gt;&lt;/div&gt; 
+
+---
+
+## 广义最小二乘法 (GLS)
+
+**广义最小二乘法**（Generalized Least Square，GLS）：是对普通最小二乘法（OLS）的扩展。当**CLRM假设**不能满足时，OLS方法可能无法得到**BLUE估计量**，这时常用GLS来处理其中的问题，以得到BLUE估计量。
+
+**加权最小二乘法**（Weighted Least Square，WLS），属于广义最小二乘法（GLS）的一种特殊情形。加权最小二乘法（WLS）是专门用来处理随机干扰项
+`\(u_i\)`为异方差（违背CLRM假设，出现
+`\(var(u_i)=\sigma^2_i\)`）情形的分析方法。它通过额外的样本信息对异方差进行特定**权重**调节，从而保证随机干扰项
+`\(u_i\)`为**同方差**，租后获得**BLUE估计量**。
+
+- GLS比OLS更多地利用了样本数据所提供的信息!
+
+- GLS是更一般的方法，它包括了加权最小二乘法（WLS）、工具变量法（IV）等。
+
+- WLS是GLS的一种特殊方法，专门用来解决异方差问题（前提是能获得**权重**信息）。
+
+- WLS的基本思路是：对来自变异较大的总体的观测值赋予较小的权重，而对来自较小变异的总体现测值赋予较大的权重。
+
+---
+
+## 广义最小二乘法 (GLS)
+
+WLS与OLS的区别：
+
+- OLS的思想实质是最小化:
+
+`$$\begin {align} 
+\sum e_{i}^{2}=\sum\left(Y_{i}-\hat{\beta}_{1}-\hat{\beta}_{2} X_{i}\right)^{2}
+\end {align}$$`
+
+
+- WLS的思想实质是最小化:
+
+`$$\begin {align} 
+\sum w_{i} e_{i}^{2}=\sum w_{i}\left(Y_{i}-\hat{\beta}_{1}-\hat{\beta}_{2} X_{i}\right)^{2}
+\end {align}$$`
+
+其中，加权最小二乘法（WLS）需要确定**权重**向量
+`\(\boldsymbol{\omega}=[w_1,w_2,\cdots, w_n]^t\)`
+
+---
+
+## 加权最小二乘法（WLS）：原理
+
+对于k变量总体回归模型(PRM)：
+
+`$$\begin{align}
+Y_i&amp;=\beta_1+\beta_2X_{2i}+\beta_3X_{3i}+\cdots+\beta_kX_{ki}+u_i 
+&amp;&amp; \text{(PRM)} \\
+Y_i&amp;=\hat{\beta}_1+\hat{\beta}_2X_{2i}+\hat{\beta}_3X_{3i}+\cdots+\hat{\beta}_kX_{ki}+e_i 
+&amp;&amp; \text{(SRM)} \\
+\mathbf{y} &amp;= \mathbf{X}\mathbf{\beta}+\mathbf{u} &amp;&amp; \text{(PRM-matrix)}  \\
+\mathbf{y} &amp;= \mathbf{X}\mathbf{\hat{\beta}}+\mathbf{e}  &amp;&amp; \text{(SRM-matrix)} \\
+\end{align}$$`
+
+加权最小二乘法（WLS）需要确定**权重**向量
+`\(\boldsymbol{\omega}=[w_1,w_2,\cdots, w_n]^t\)`，并将异方差修正为同方差
+`\(\boldsymbol{\frac{\sigma^2_{i}}{\omega}=\sigma I}\)`。
+
+`$$\begin{align}
+var-cov(\boldsymbol{u})&amp;=E(\boldsymbol{uu'})\\
+&amp;=
+  \begin{bmatrix}
+  \sigma_1^2 &amp; \sigma_{12}^2  &amp;\cdots &amp;\sigma_{1n}^2\\
+  \sigma_{21}^2 &amp; \sigma_2^2  &amp;\cdots &amp;\sigma_{2n}^2\\
+  \vdots &amp; \vdots &amp;\vdots &amp;\vdots \\
+  \sigma_{n1}^2 &amp; \sigma_{n2}^2  &amp;\cdots &amp;\sigma_n^2\\
+  \end{bmatrix}
+=
+  \begin{bmatrix}
+  \sigma_1^2 &amp; 0  &amp;\cdots &amp; 0\\
+  0 &amp; \sigma_2^2  &amp;\cdots &amp; 0\\
+  \vdots &amp; \vdots &amp;\vdots &amp;\vdots \\
+  0 &amp; 0  &amp;\cdots &amp;\sigma_n^2\\
+  \end{bmatrix}
+=
+  \begin{bmatrix}
+  w_1\sigma^2 &amp; 0  &amp;\cdots &amp; 0\\
+  0 &amp; w_2\sigma^2  &amp;\cdots &amp; 0\\
+  \vdots &amp; \vdots &amp;\vdots &amp;\vdots \\
+  0 &amp; 0  &amp;\cdots &amp; w_n\sigma^2\\
+  \end{bmatrix}\\
+\end{align}$$`
+
+---
+
+## 加权最小二乘法（WLS）：加权处理
+
+对于双变量模型(一元回归模型)：
+
+`$$\begin {align} 
+ Y_{i} &amp;=\beta_{1}+\beta_{2} X_{2 i}+u_{i} 
+\end {align}$$`
+
+`$$\begin {align} 
+Y_{i} &amp; =\beta_{1} X_{0 i}+\beta_{2} X_{i}+u_{i} &amp;&amp; \leftarrow \left[ X_{0i} \equiv 1 \right] \\
+\frac{Y_{i}}{\sigma_{i}} &amp;=\beta_{1}\left(\frac{X_{0 i}}{\sigma_{i}}\right)+\beta_{2}\left(\frac{X_{i}}{\sigma_{i}}\right)+\left(\frac{u_{i}}{\sigma_{i}}\right) &amp;&amp; \leftarrow \left[ \text{if know} \quad \sigma_i \right] \\
+Y_{i}^{*} &amp;=\beta_{1}^{*} X_{0 i}^{*}+\beta_{2}^{*} X_{i}^{*}+u_{i}^{*} &amp;&amp; \leftarrow \left[ \text{both divided} \quad \sigma_i \right]
+\end {align}$$`
+
+
+`$$\begin {align} 
+\operatorname{var}\left(u_{i}^{*}\right)=E\left(u_{i}^{*}\right)^{2}=E\left(\frac{u_{i}}{\sigma_{i}}\right)^{2}=\frac{1}{\sigma_{i}^{2}} E\left(u_{i}^{2}\right)=\frac{1}{\sigma_{i}^{2}}\left(\sigma_{i}^{2}\right)=1
+\end {align}$$`
+
+- 使用加权最小二乘法（WLS），转换后模型的随机干扰项满足同方差性假定，再用OLS方法，就可以得到BLUE估计量。
+
+- 使用加权最小二乘法（WLS），得到估计量称为WLS估计量（记为
+`\(\boldsymbol{\hat{\beta}}_{WLS}\)`）！
+
+
+---
+
+## 加权最小二乘法（WLS）：估计量
+
+利用样本数据，可以进行如下的WLS估计过程：
+
+`$$\begin {align} 
+Y_{i} &amp; =\hat{\beta}_{1} X_{0 i}+\hat{\beta}_{2} X_{i}+e_{i} &amp;&amp; \leftarrow \left[ X_{0i} \equiv 1 \right] \\
+\frac{Y_{i}}{\sigma_{i}} &amp;=\hat{\beta}_{1}\left(\frac{X_{0 i}}{\sigma_{i}}\right)+\hat{\beta}_{2}\left(\frac{X_{i}}{\sigma_{i}}\right)+\left(\frac{u_{i}}{\sigma_{i}}\right) &amp;&amp; \leftarrow \left[ \text{if know} \quad \sigma_i \right] \\
+Y_{i}^{*} &amp;=\hat{\beta}_{1}^{*} X_{0 i}^{*}+\hat{\beta}_{2}^{*} X_{i}^{*}+e_{i}^{*} &amp;&amp; \leftarrow \left[ \text{both divided} \quad \sigma_i \right]
+\end {align}$$`
+
+`$$\begin {align} 
+\sum e_{i}^{*^{2}} 
+&amp; =\sum\left(Y_{i}^{*}-\hat{\beta}_{1} X_{0 i}^{*}-\hat{\beta}_{2} X_{i}^{*}\right)^{2} \\ \sum\left(\frac{e_{i}}{\sigma_{i}}\right)^{2} 
+&amp; =\sum\left[\left(\frac{Y_{i}}{\sigma_{i}}\right)-\hat{\beta}_{1}\left(\frac{X_{0 i}}{\sigma_{i}}\right)-\hat{\beta}_{2}\left(\frac{X_{i}}{\sigma_{i}}\right)\right]^{2}
+\end {align}$$`
+
+---
+
+## 加权最小二乘法（WLS）：估计量
+
+最小化并求偏导，得到斜率系数
+`\(\hat{\beta}_2^*\)`的GLS估计量和方差：
+
+`$$\begin {align} 
+\hat{\beta}^*_{2} 
+&amp;=\frac{\left(\sum w_{i}\right)\left(\sum w_{i} X_{i} Y_{i}\right)-\left(\sum w_{i} X_{i}\right)\left(\sum w_{i} Y_{i}\right)}{\left(\sum w_{i}\right)\left(\sum w_{i} X_{i}^{2}\right)-\left(\sum w_{i} X_{i}\right)^{2}} 
+&amp;&amp; \leftarrow \left[ w_i= \frac{1}{\sigma^2_i}\right]
+\end {align}$$`
+
+`$$\begin {align} 
+\operatorname{var}\left(\hat{\beta}^*_{2}\right) 
+&amp; =\frac{\sum \omega_{i}}{\left(\sum \omega_{i}\right)\left(\sum \omega_{i} X_{i}^{2}\right)-\left(\sum \omega_{i} X_{i}\right)^{2}}
+&amp;&amp; \leftarrow \left[ w_i= \frac{1}{\sigma^2_i}\right]
+\end {align}$$`
+
+
+---
+layout: false
+class: inverse, center, middle, duke-softblue
+name: diagnose
+
+# 8.4 异方差性问题的诊断
+
+---
+layout: true
+  
+&lt;div class="my-header"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   第8章：放宽基本假设：异方差性   
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+8.4 异方差性问题的诊断 &lt;/span&gt;&lt;/div&gt; 
+
+
+---
+
+## 数据类型诊断法
+
+根据数据性质做判断（截面数据经常有）
+
+
+- 在涉及不均匀、异质性（heterogeneous）单元（国家、省份、企业、家庭）的横截面数据中，异方差性可能是一种常规，而不是例外!
+
+- 例如，投资(Y)与销售量(X2)、利率(X3)等变量之间关系的横截面分析中，如果样本同时包含小、中和大型厂家，一般都预期有异方差性。
+
+
+
+---
+
+## 图示法
+
+**图示法**重点关注模型**残差平方**序列（
+`\(e_i^2\)`）是否存在某种系统化模式。
+
+- 图形1：残差平方序列
+`\(e_i^2\)`**描点图**（dot plot）。
+
+- 图形2：残差平方序列
+`\(e_i^2\)`与因变量序列
+`\(Y_i\)`的**散点图**（scatter plot）。
+
+- 图形3：残差平方序列
+`\(e_i^2\)`与自变量序列
+`\(X_{pi},(p \in2,3,\cdots,k)\)`的**散点图**（scatter plot）。
+
+- 图形4：残差平方序列
+`\(e_i^2\)`与自变量序列平方项
+`\(X^2_{pi},(p \in2,3,\cdots,k)\)`的**散点图**（scatter plot）。
+
+---
+
+### 图示法：模拟演示
+
+残差平方序列
+`\(e_i^2\)`与因变量拟合序列
+`\(\hat{Y}_i\)`的**散点图**的若干假想分布模式：
+
+&lt;img src="pic/chpt8-diagnose-ei.png" width="652" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+### 图示法：案例演示（主回归）
+
+
+
+首先构建如下**主回归模型**：
+
+`$$\begin{equation} \begin{alignedat}{999} &amp;Y=&amp;&amp; + \hat{\beta}_{1} &amp;&amp; + \hat{\beta}_{2} X&amp;&amp;+e_i\\ \end{alignedat} \end{equation}$$`
+
+主回归模型回归结果为：
+
+`$$\begin{equation} \begin{alignedat}{999} &amp;\widehat{Y}=&amp;&amp;+1990.67&amp;&amp;+0.23X\\ &amp;\text{(t)}&amp;&amp;(2.1262)&amp;&amp;(2.3358)\\&amp;\text{(se)}&amp;&amp;(936.2559)&amp;&amp;(0.0998)\\&amp;\text{(fitness)}&amp;&amp; R^2=0.4380;&amp;&amp; \bar{R^2}=0.3577\\&amp; &amp;&amp; F^{\ast}=5.46;&amp;&amp; p=0.0522 \end{alignedat} \end{equation}$$`
+
+---
+
+### 图示法：案例演示（主回归EViews报告）
+
+作为对照，下面给出的是主模型的EViews报告：
+
+&lt;img src="pic/chpt8-salary-main.png" width="672" style="display: block; margin: auto;" /&gt;
+
+---
+
+### 图示法：案例演示（残差数据）
+
+得到主回归模型的残差序列
+`\(e_i\)`、残差平方和序列
+`\(e_i^2\)`（及其他变换数据）：
+
+<div id="htmlwidget-23643e807742e66e1605" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-23643e807742e66e1605">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9"],["1-4","5-9","10-19","20-49","50-99","100-249","250-499","500-999","1000以上"],[3396.3,3787,4012.6,4104.3,4145.5,4240.7,4388.1,4538,4843.4],[742.180129378606,851.435389340978,727.80327012181,805.055146489288,929.995131409001,1080.60035268467,1241.48400893626,1307.70613416522,1110.72850968282],[9355,8584,7962,8275,8389,9418,9795,10281,11750],[87516025,73685056,63393444,68475625,70375321,88698724,95942025,105698961,138062500],[-775.466120897482,-205.009092639345,165.608899029348,184.333607401855,198.95474719248,54.2455616183874,113.748804610193,150.33892687549,113.244666809074],[601347.704659788,42028.7280648075,27426.3074377128,33978.8788177812,39582.9914304236,2942.58095529426,12938.7905502478,22601.7929340739,12824.3545606982],[13.3069285897527,10.6461086649861,10.2192579572145,10.4334943993249,10.5861547956443,7.98704235117543,9.46798509770892,10.0257845154798,9.45910134212133],[6.80195917625721,0.475395000781738,0.310224221529779,0.384341612652028,0.447730804819824,0.0332840973294596,0.146353140505823,0.255653213035486,0.145058733088651]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>企业规模<\/th>\n      <th>\\( Y \\)<\/th>\n      <th>\\( \\sigma_Y\\)<\/th>\n      <th>\\( X \\)<\/th>\n      <th>\\( X^2 \\)<\/th>\n      <th>\\(e_i \\)<\/th>\n      <th>\\( e_i^2\\)<\/th>\n      <th>\\( log(e_i^2) \\)<\/th>\n      <th>\\( P_i \\)<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"targets":[3,6,7,8,9],"render":"function(data, type, row, meta) { return DTWidget.formatRound(data, 2, 3, \",\", \".\"); }"},{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":6,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[6,10,25,50,100]}},"evals":["options.columnDefs.0.render"],"jsHooks":[]}</script>
+
+&gt; **提示**：后面BPJ检验中需要用到的数据
+`\(P_{i}=\frac{{e_i^2}} {\tilde{\sigma}^2};\quad \tilde{\sigma}^2=\frac{\sum{e_i^2}} {n}\)`
+
+---
+
+### 图示法：案例演示（残差分布模式1）
+
+**对数化**残差平方序列
+`\(log(e_i^2)\)`的**描点图**（dot plot）为：
+
+&lt;img src="08-hetero-scadeciticity-slide_files/figure-html/unnamed-chunk-24-1.png" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+### 图示法：案例演示（残差分布模式2）
+
+**对数化**残差平方序列
+`\(log(e_i^2)\)`与
+`\(Y_i\)`的**散点图**（scatter plot）为：
+
+&lt;img src="08-hetero-scadeciticity-slide_files/figure-html/unnamed-chunk-25-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+### 图示法：案例演示（残差分布模式3）
+
+**对数化**残差平方序列
+`\(log(e_i^2)\)`与
+`\(X_i\)`的**散点图**（scatter plot）为：
+
+&lt;img src="08-hetero-scadeciticity-slide_files/figure-html/unnamed-chunk-26-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+### 图示法：案例演示（残差分布模式4）
+
+**对数化**残差平方序列
+`\(log(e_i^2)\)`与
+`\(X_i^2\)`的**散点图**（scatter plot）为：
+
+&lt;img src="08-hetero-scadeciticity-slide_files/figure-html/unnamed-chunk-27-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+## 帕克检验（Park heteroscedastic test）
+
+**原理**：若
+`\(\sigma^2_i\)`随着
+`\(X_i\)`而变化（
+`\(H_0:\)`同方差模式），则可以将其表达为：
+
+`$$\begin {align} 
+\sigma_{i}^{2} &amp;=\sigma^{2} X_{i}^{\beta} e^{v_{i}} \\
+\ln \sigma_{i}^{2} &amp;=\ln \sigma^{2}+\beta \ln X_{i}+v_{i} \\
+\ln e_{i}^{2} &amp;=\ln \sigma^{2}+\beta \ln X_{i}+v_{i} &amp;&amp; \leftarrow \left[ e_i^2 \simeq \sigma^2_i \right]\\ 
+&amp;=\alpha+\beta \ln X_{i}+v_{i} &amp;&amp; \leftarrow \left[ \alpha \equiv ln(\sigma^2) \right]
+\end {align}$$`
+
+---
+
+## 帕克检验（Park heteroscedastic test）
+
+**步骤**：
+
+- 先做主回归（不考虑异方差问题，直接OLS估计）
+
+- 再利用主回归模型的残差序列，做如下的**帕克辅助回归**：
+
+`$$\begin{equation}
+ln(e^2_i)=\hat{\alpha}_1+\hat{\alpha}_2ln(X_{2i})+\cdots+\hat{\alpha}_kln(X_{ki})+v_i
+\end{equation}$$`
+  
+
+**诊断标准**：
+
+- 如果**帕克检验辅助方程**的F检验**不显著**（对应的概率值P&gt;0.1），则表明主模型是同方差。
+
+- 如果**帕克检验辅助方程**的F检验**显著**（对应的概率值P&lt;0.1），则表明主模型是异方差。
+
+---
+
+### 帕克检验（案例检验）
+
+薪水案例中，为验证**主模型**是否存在异方差问题。我们可以构建如下的**帕克检验辅助方程**
+
+`$$\begin{equation} \begin{alignedat}{999} &amp;log(ei^2)=&amp;&amp; + \hat{\beta}_{1} &amp;&amp; + \hat{\beta}_{2} log(X)&amp;&amp;+e_i\\ \end{alignedat} \end{equation}$$`
+
+**帕克检验辅助方程**的回归结果为：
+
+`$$\begin{equation} \begin{alignedat}{999} &amp;\widehat{log(ei^2)}=&amp;&amp;+35.82&amp;&amp;-2.80log(X)\\ &amp;\text{(t)}&amp;&amp;(0.9334)&amp;&amp;(-0.6667)\\&amp;\text{(se)}&amp;&amp;(38.3770)&amp;&amp;(4.2021)\\&amp;\text{(fitness)}&amp;&amp; R^2=0.0597;&amp;&amp; \bar{R^2}=-0.0746\\&amp; &amp;&amp; F^{\ast}=0.44;&amp;&amp; p=0.5263 \end{alignedat} \end{equation}$$`
+
+从而可以得到**帕克检验**初步结论：F检验不显著，不能拒绝原假设
+`\(H_0\)`，认为**主模型**为**同方差**。
+
+---
+
+### 帕克检验（案例检验EViews报告）
+
+薪水案例中，**帕克检验**的EViews报告如下（注意：EViews软件中没有帕克检验菜单，但可以通过哈维（Harvey）检验方法来实现）：
+
+&lt;img src="pic/chpt8-diagnose-park.png" width="468" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+## 格莱泽检验（Glejser heteroscedastic test）
+
+**原理**：若随机干扰项
+`\(|u_i|\)`随着
+`\(X_i\)`而变化（
+`\(H_0:\)`同方差模式），则将可能的异方差模式表达为：
+
+`$$\begin {align} 
+\left|u_{i}\right| &amp;=\beta_{1}+\beta_{2} X_{i}+v_{i}  &amp;&amp; \text{(G1)}\\
+\left|u_{i}\right| &amp;=\beta_{1}+\beta_{2} \sqrt{X}_{i}+v_{i}  &amp;&amp; \text{(G2)}\\
+\left|u_{i}\right| &amp;=\beta_{1}+\beta_{2} \frac{1}{X_{i}}+v_{i}  &amp;&amp; \text{(G3)}\\
+\left|u_{i}\right| &amp;=\beta_{1}+\beta_{2} \frac{1}{\sqrt{X}_{i}}+v_{i}  &amp;&amp; \text{(G4)}\\
+\left|u_{i}\right| &amp;=\sqrt{\beta_{1}+\beta_{2} X_{i}}+v_{i}  &amp;&amp; \text{(G5)}\\
+\left|u_{1}\right| &amp;=\sqrt{\beta_{1}+\beta_{2} X_{i}^{2}}+v_{i}  &amp;&amp; \text{(G6)}
+\end {align}$$`
+
+---
+
+## 格莱泽检验（Glejser heteroscedastic test）
+ 
+**步骤**：
+
+- 先做主回归（不考虑异方差问题，直接OLS估计）
+
+- 再利用主回归模型的残差序列，做如下的**格莱泽辅助回归**：
+
+.pull-left[
+
+`$$\begin {align} 
+\left|e_{i}\right| &amp;=\beta_{1}+\beta_{2} X_{i}+v_{i}  &amp;&amp; \text{(G1)}\\
+\left|e_{i}\right| &amp;=\beta_{1}+\beta_{2} \sqrt{X}_{i}+v_{i}  &amp;&amp; \text{(G2)}\\
+\left|e_{i}\right| &amp;=\beta_{1}+\beta_{2} \frac{1}{X_{i}}+v_{i}  &amp;&amp; \text{(G3)}
+\end {align}$$`
+
+]
+
+.pull-right[
+
+`$$\begin {align} 
+\left|u_{i}\right| &amp;=\beta_{1}+\beta_{2} \frac{1}{\sqrt{X}_{i}}+v_{i}  &amp;&amp; \text{(G4)}\\
+\left|e_{i}\right| &amp;=\sqrt{\beta_{1}+\beta_{2} X_{i}}+v_{i}  &amp;&amp; \text{(G5)}\\
+\left|e_{1}\right| &amp;=\sqrt{\beta_{1}+\beta_{2} X_{i}^{2}}+v_{i}  &amp;&amp; \text{(G6)}
+\end {align}$$`
+
+]
+
+**诊断标准**：
+
+- 如果**格莱泽检验辅助方程**的F检验**不显著**（对应的概率值P&gt;0.1），则表明主模型是同方差。
+
+- 如果**格莱泽检验辅助方程**的F检验**显著**（对应的概率值P&lt;0.1），则表明主模型是异方差。
+
+---
+
+### 格莱泽检验（案例检验1）
+
+薪水案例中，为验证**主模型**是否存在异方差问题。我们可以构建如下的**格莱泽检验辅助方程1**
+
+`$$\begin{equation} \begin{alignedat}{999} &amp;abs(ei)=&amp;&amp; + \hat{\beta}_{1} &amp;&amp; + \hat{\beta}_{2} X&amp;&amp;+e_i\\ \end{alignedat} \end{equation}$$`
+
+**格莱泽检验辅助方程1**的回归结果为：
+
+`$$\begin{equation} \begin{alignedat}{999} &amp;\widehat{abs(ei)}=&amp;&amp;+407.26&amp;&amp;-0.02X\\ &amp;\text{(t)}&amp;&amp;(0.6434)&amp;&amp;(-0.3014)\\&amp;\text{(se)}&amp;&amp;(632.9891)&amp;&amp;(0.0675)\\&amp;\text{(fitness)}&amp;&amp; R^2=0.0128;&amp;&amp; \bar{R^2}=-0.1282\\&amp; &amp;&amp; F^{\ast}=0.09;&amp;&amp; p=0.7719 \end{alignedat} \end{equation}$$`
+
+从而可以得到**格莱泽检验**初步结论：F检验不显著，不能拒绝原假设
+`\(H_0\)`，认为**主模型**为**同方差**。
+
+.footnote[ **提示**：.red[`abs(ei)`]表示残差的绝对值（absolute），也即
+`\(|e_i|\)`。]
+
+---
+
+### 格莱泽检验（案例检验1EViews报告）
+
+薪水案例中，**格莱泽检验**（辅助方程1）的EViews报告如下：
+
+&lt;img src="pic/chpt8-diagnose-Glejser-g1.png" width="530" style="display: block; margin: auto;" /&gt;
+
+---
+
+### 格莱泽检验（案例检验2）
+
+薪水案例中，为验证**主模型**是否存在异方差问题。我们可以构建如下的**格莱泽检验辅助方程2**
+
+`$$\begin{equation} \begin{alignedat}{999} &amp;abs(ei)=&amp;&amp; + \hat{\beta}_{1} &amp;&amp; + \hat{\beta}_{2} sqrt(X)&amp;&amp;+e_i\\ \end{alignedat} \end{equation}$$`
+
+**格莱泽克检验辅助方程2**的回归结果为：
+
+`$$\begin{equation} \begin{alignedat}{999} &amp;\widehat{abs(ei)}=&amp;&amp;+575.14&amp;&amp;-3.71sqrt(X)\\ &amp;\text{(t)}&amp;&amp;(0.4480)&amp;&amp;(-0.2788)\\&amp;\text{(se)}&amp;&amp;(1283.8425)&amp;&amp;(13.3042)\\&amp;\text{(fitness)}&amp;&amp; R^2=0.0110;&amp;&amp; \bar{R^2}=-0.1303\\&amp; &amp;&amp; F^{\ast}=0.08;&amp;&amp; p=0.7885 \end{alignedat} \end{equation}$$`
+
+从而可以得到**格莱泽检验**初步结论：F检验不显著，不能拒绝原假设
+`\(H_0\)`，认为**主模型**为**同方差**。
+
+.footnote[ **提示**： .red[`abs(ei)`]表示残差的绝对值（absolute），也即
+`\(|e_i|\)`。.red[`sqrt(X)`]表示自变量开根号（square root），也即
+`\(\sqrt{X_i}\)` ]
+
+---
+
+### 格莱泽检验（案例检验2EViews报告）
+
+薪水案例中，**格莱泽检验**（辅助方程2）的EViews报告如下：
+
+&lt;img src="pic/chpt8-diagnose-Glejser-g2.png" width="530" style="display: block; margin: auto;" /&gt;
+
+---
+
+### 格莱泽检验（案例检验3）
+
+薪水案例中，为验证**主模型**是否存在异方差问题。我们可以构建如下的**格莱泽检验辅助方程3**
+
+`$$\begin{equation} \begin{alignedat}{999} &amp;abs(ei)=&amp;&amp; + \hat{\beta}_{1} &amp;&amp; + \hat{\beta}_{2} I(1/X)&amp;&amp;+e_i\\ \end{alignedat} \end{equation}$$`
+
+**格莱泽克检验辅助方程3**的回归结果为：
+
+`$$\begin{equation} \begin{alignedat}{999} &amp;\widehat{abs(ei)}=&amp;&amp;+76.61&amp;&amp;+1297807.20I(1/X)\\ &amp;\text{(t)}&amp;&amp;(0.1121)&amp;&amp;(0.2081)\\&amp;\text{(se)}&amp;&amp;(683.2112)&amp;&amp;(6237225.2050)\\&amp;\text{(fitness)}&amp;&amp; R^2=0.0061;&amp;&amp; \bar{R^2}=-0.1358\\&amp; &amp;&amp; F^{\ast}=0.04;&amp;&amp; p=0.8411 \end{alignedat} \end{equation}$$`
+
+从而可以得到**格莱泽检验**初步结论：F检验不显著，不能拒绝原假设
+`\(H_0\)`，认为**主模型**为**同方差**。
+
+.footnote[ **提示**： .red[`abs(ei)`]表示残差的绝对值（absolute），也即
+`\(|e_i|\)`。.red[`I(1/X)`]表示自变量的倒数（reciprocal），也即
+`\(\frac{1}{X_i}\)` ]
+
+---
+
+### 格莱泽检验（案例检验3EViews报告）
+
+薪水案例中，**格莱泽检验**（辅助方程3）的EViews报告如下：
+
+&lt;img src="pic/chpt8-diagnose-Glejser-g3.png" width="530" style="display: block; margin: auto;" /&gt;
+
+---
+
+### 格莱泽检验（案例检验4）
+
+薪水案例中，为验证**主模型**是否存在异方差问题。我们可以构建如下的**格莱泽检验辅助方程4**
+
+`$$\begin{equation} \begin{alignedat}{999} &amp;abs(ei)=&amp;&amp; + \hat{\beta}_{1} &amp;&amp; + \hat{\beta}_{2} I(1/sqrt(X))&amp;&amp;+e_i\\ \end{alignedat} \end{equation}$$`
+
+**格莱泽克检验辅助方程4**的回归结果为：
+
+`$$\begin{equation} \begin{alignedat}{999} &amp;\widehat{abs(ei)}=&amp;&amp;-91.15&amp;&amp;+29668.14I(1/sqrt(X))\\ &amp;\text{(t)}&amp;&amp;(-0.0683)&amp;&amp;(0.2320)\\&amp;\text{(se)}&amp;&amp;(1334.3962)&amp;&amp;(127897.8910)\\&amp;\text{(fitness)}&amp;&amp; R^2=0.0076;&amp;&amp; \bar{R^2}=-0.1341\\&amp; &amp;&amp; F^{\ast}=0.05;&amp;&amp; p=0.8232 \end{alignedat} \end{equation}$$`
+
+从而可以得到**格莱泽检验**初步结论：F检验不显著，不能拒绝原假设
+`\(H_0\)`，认为**主模型**为**同方差**。
+
+.footnote[ **提示**： .red[`abs(ei)`]表示残差的绝对值（absolute），也即
+`\(|e_i|\)`。.red[`I(1/sqrt(X))`]表示自变量开根号的倒数，也即
+`\(\frac{1}{\sqrt{X_i}}\)` ]
+
+---
+
+### 格莱泽检验（案例检验4EViews报告）
+
+薪水案例中，**格莱泽检验**（辅助方程4）的EViews报告如下：
+
+&lt;img src="pic/chpt8-diagnose-Glejser-g4.png" width="530" style="display: block; margin: auto;" /&gt;
+
+---
+
+### 格莱泽检验（案例检验6）
+
+薪水案例中，为验证**主模型**是否存在异方差问题。我们可以构建如下的**格莱泽检验辅助方程6**
+
+`$$\begin{equation} \begin{alignedat}{999} &amp;abs(ei)=&amp;&amp; + \hat{\beta}_{1} &amp;&amp; + \hat{\beta}_{2} I(X^2)&amp;&amp;+e_i\\ \end{alignedat} \end{equation}$$`
+
+**格莱泽克检验辅助方程6**的回归结果为：
+
+`$$\begin{equation} \begin{alignedat}{999} &amp;\widehat{abs(ei)}=&amp;&amp;+321.92&amp;&amp;-0.00I(X^2)\\ &amp;\text{(t)}&amp;&amp;(1.0331)&amp;&amp;(-0.3442)\\&amp;\text{(se)}&amp;&amp;(311.6146)&amp;&amp;(0.0000)\\&amp;\text{(fitness)}&amp;&amp; R^2=0.0166;&amp;&amp; \bar{R^2}=-0.1238\\&amp; &amp;&amp; F^{\ast}=0.12;&amp;&amp; p=0.7408 \end{alignedat} \end{equation}$$`
+
+从而可以得到**格莱泽检验**初步结论：F检验不显著，不能拒绝原假设
+`\(H_0\)`，认为**主模型**为**同方差**。
+
+.footnote[ **提示**： .red[`abs(ei)`]表示残差的绝对值（absolute），也即
+`\(|e_i|\)`。.red[`I(X^2)`]表示自变量的平方，也即
+`\(X_i^2\)` ]
+
+---
+
+### 格莱泽检验（案例检验6EViews报告）
+
+薪水案例中，**格莱泽检验**（辅助方程6）的EViews报告如下：
+
+&lt;img src="pic/chpt8-diagnose-Glejser-g6.png" width="530" style="display: block; margin: auto;" /&gt;
+
+---
+
+## BPG检验（Breusch-Pagan-Goldfrey heteroscedastic test）
+
+**BPG检验**有时候又被称为**BP检验**（Breusch–Pagan test），或者**BP LM检验**（Breusch–Pagan Lagrange Multiplier test）。
+
+**原理**：若
+`\(\sigma^2_i\)`随着某些**非随机变量**
+`\(Z_{mi}\)`而变化（
+`\(H_0:\)`同方差模式），则可以将其表达为：
+
+`$$\begin {align} 
+Y_{i} &amp;=\beta_{1}+\beta_{2} X_{2 i}+\cdots+\beta_{k} X_{k i}+u_{i} \\
+\sigma_{i}^{2} &amp;=f\left(\alpha_{1}+\alpha_{2} Z_{2 i}+\alpha_{3} Z_{3 i}+\cdots+\alpha_{m} Z_{m i}\right) \\ 
+&amp;=\alpha_{1}+\alpha_{2} Z_{2 i}+\alpha_{3} Z_{3 i}+\cdots+\alpha_{m} Z_{m i} 
+\end {align}$$`
+
+其中，部分或全部的自变量
+`\(X_{pi},p \in (2,3,\cdots,k)\)`可以作为
+`\(Z_{mi}\)`。
+
+---
+
+## BPG检验（Breusch-Pagan-Goldfrey heteroscedastic test）
+
+**步骤**：
+
+- 先做主回归（不考虑异方差问题，直接OLS估计）
+
+- 再利用主回归模型的残差序列，做如下的**BPG辅助回归**：
+
+`$$\begin {align} 
+P_{i}
+&amp;=\alpha_{1}+\alpha_{2} Z_{2 i}+\alpha_{3} Z_{3 i}+\cdots+\alpha_{m} Z_{m i} &amp;&amp; \leftarrow \left[ P_{i}=\frac{{e_i^2}} {\tilde{\sigma}^2};\quad \tilde{\sigma}^2=\frac{\sum{e_i^2}} {n} \right]
+\end {align}$$`
+
+- 计算**BPG辅助回归**方程的ESS(回归平方和)，并得到如下**LM统计量**（卡方统计量）：
+
+`$$\begin {align} 
+LM \equiv {\chi^2}^{\ast}=\frac{ESS}{2} \sim \chi^{2}(m-1)
+\end {align}$$`
+
+---
+
+## BPG检验（Breusch-Pagan-Goldfrey heteroscedastic test）
+
+**诊断标准**：
+
+- 如果**BPG辅助回归方程**的卡方检验**不显著**，也即
+`\(LM \equiv {\chi^2}^{\ast}&lt; \chi^2_{1-\alpha}(m-1)\)`（对应的概率值P&gt;0.1），则表明主模型是同方差。
+
+- 如果**BPG辅助回归方程**的卡方检验**显著**，也即
+`\(LM \equiv {\chi^2}^{\ast} &gt; \chi^2_{1-\alpha}(m-1)\)`（对应的概率值P&lt;0.1），则表明主模型是异方差。
+
+---
+
+### BPG检验（案例检验）
+
+
+
+
+薪水案例中，为验证**主模型**是否存在异方差问题。我们可以构建如下的**BPG检验辅助方程**
+
+`$$\begin{equation} \begin{alignedat}{999} &amp;Pi=&amp;&amp; + \hat{\beta}_{1} &amp;&amp; + \hat{\beta}_{2} X&amp;&amp;+e_i\\ \end{alignedat} \end{equation}$$`
+
+**BPG检验辅助方程**的回归结果为：
+
+`$$\begin{equation} \begin{alignedat}{999} &amp;\widehat{Pi}=&amp;&amp;+1.50&amp;&amp;-0.00X\\ &amp;\text{(t)}&amp;&amp;(0.2314)&amp;&amp;(-0.0774)\\&amp;\text{(se)}&amp;&amp;(6.4714)&amp;&amp;(0.0007)\\&amp;\text{(fitness)}&amp;&amp; R^2=0.0009;&amp;&amp; \bar{R^2}=-0.1419\\&amp; &amp;&amp; F^{\ast}=0.01;&amp;&amp; p=0.9404 \end{alignedat} \end{equation}$$`
+
+**BPG检验辅助方程**的回归平方和为
+`\(ESS=\)` -5.3979；**LM统计量**（绝对值）为
+`\(LM \equiv {\chi^2}^{\ast}=ESS/2=\)` 2.6990。给定显著性水平
+`\(\alpha=0.05\)`时卡方分布的理论查表值为
+`\(\chi^2_{1-\alpha}(m-1)=\chi^2_{0.95}(1)=\)` 3.841459。从而可以得到**BPG检验**初步结论：卡方检验不显著，不能拒绝原假设
+`\(H_0\)`，认为**主模型**为**同方差**。
+
+&gt;**提示**：
+`\(P_{i}=\frac{{e_i^2}} {\tilde{\sigma}^2};\quad \tilde{\sigma}^2=\frac{\sum{e_i^2}} {n}\)`
+
+---
+
+### BPG检验（案例检验EViews报告）
+
+薪水案例中，**BPG检验**的EViews报告如下（**注意**：EViews采用了BPG不同分析方法，EViews结果（本页）与手动计算结果（上一页））：
+
+&lt;img src="pic/chpt8-diagnose-BPG.png" width="468" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+## GQ检验（Goldfeld–Quandt heteroscedastic test）
+
+**原理**：若
+`\(\sigma^2_i\)`随着某一个自变量的平方项
+`\((X_i^2\)`而变化（
+`\(H_0:\)`同方差模式），则可以将其表达为：
+
+`$$\begin {align} 
+Y_{i} &amp;=\beta_{1}+\beta_{2} X_2+u_{i} \\
+\sigma^2_i &amp;=\sigma^2 X_i^2
+\end {align}$$`
+
+
+---
+
+## GQ检验（Goldfeld–Quandt heteroscedastic test）
+
+**步骤**：
+
+- 把数据按
+`\(X_i\)`由小到大排序，从小到大；去掉中间大约c个数（预先确定的）
+
+- 把数据分成两份样本：前一半样本数
+`\((n-c)/2\)`，后一半样本数
+`\((n-c)/2\)`
+
+- 对两份**分段样本**数据，做如下的**GQ辅助回归**，并分别进行OLS回归
+
+`$$\begin {align} 
+\overleftarrow{Y_{i}} &amp;=\overleftarrow{\alpha_{1}}+\overleftarrow{\alpha_{2}} \overleftarrow{X}_i+\overleftarrow{e_{i}} \\
+\overrightarrow{Y_{i}} &amp;=\overrightarrow{\alpha_{1}}+\overrightarrow{\alpha_{2}} \overrightarrow{X}_i+\overrightarrow{e_{i}} 
+\end {align}$$`
+
+- 分别得到两个辅助回归方程的残差平方和：
+`\(RSS_1\)`和
+`\(RSS_2\)`，其分别对应的自由度为
+`\(df_1=df_2=(n-c-2k)/2\)`。
+
+
+- 计算得到如下F统计量：
+
+`$$\begin {align} 
+F^{*}=\frac{\mathrm{RSS}_{1} / df_1}{\mathrm{RSS}_{2} / df_2} \sim F((n-c-2k)/2,(n-c-2k)/2)
+\end {align}$$`
+
+---
+
+## GQ检验（Goldfeld–Quandt heteroscedastic test）
+
+**诊断标准**：
+
+- 如果**GQ辅助回归方程**的F检验**不显著**，也即
+`\(F^{*} &lt; F_{1-\alpha}((n-c-2k)/2,(n-c-2k)/2)\)`（对应的概率值P&gt;0.1），则表明主模型是同方差。
+
+- 如果**GQ辅助回归方程**的F检验**显著**，也即
+`\(F^{*} &gt; F_{1-\alpha}((n-c-2k)/2,(n-c-2k)/2)\)`（对应的概率值P&lt;0.1），则表明主模型是异方差。
+
+---
+
+## 怀特检验（White heteroscedastic test）
+
+**步骤**：
+
+- 先做主回归（不考虑异方差问题，直接OLS估计）
+
+- 再利用主回归模型的残差序列，做如下的**怀特辅助回归**：
+
+`$$\begin {align} 
+e_i^2 &amp;=\alpha_{1}+\alpha_{2} X_{2 i}+\alpha_{3} X_{3 i}+\alpha_{4} X_{2 i}^{2}+\alpha_{5} X_{3 i}^{2}+\alpha_{6} X_{2 i} X_{3 i}+v_{i}
+\end {align}$$`
+
+- 计算**怀特辅助回归**方程的判定系数
+`\(R^2\)`，并得到如下卡方统计量（
+`\(\tilde{k}\)`为辅助方程中回归系数个数）：
+
+`$$\begin {align} 
+\chi^{*}=n \cdot R^2 \sim \chi^{2}(\tilde{k}-1)
+\end {align}$$`
+
+---
+
+## 怀特检验（White heteroscedastic test）
+
+**诊断标准**：
+
+- 如果**怀特辅助回归方程**的卡方检验**不显著**，也即
+`\(\chi^{*} &lt; \chi^2_{1-\alpha}(m-1)\)`（对应的概率值P&gt;0.1），则表明主模型是同方差。
+
+- 如果**怀特辅助回归方程**的卡方检验**显著**，也即
+`\(\chi^{*} &lt; \chi^2_{1-\alpha}(m-1)\)`（对应的概率值P&lt;0.1），则表明主模型是异方差。
+
+
+---
+
+### 怀特检验（案例检验）
+
+
+
+
+薪水案例中，为验证**主模型**是否存在异方差问题。我们可以构建如下的**怀特检验辅助方程**
+
+`$$\begin{equation} \begin{alignedat}{999} &amp;I(ei^2)=&amp;&amp; + \hat{\beta}_{1} &amp;&amp; + \hat{\beta}_{2} X&amp;&amp; + \hat{\beta}_{3} I(X^2)&amp;&amp;+e_i\\ \end{alignedat} \end{equation}$$`
+
+**怀特检验辅助方程**的回归结果为：
+
+`$$\begin{equation} \begin{alignedat}{999} &amp;\widehat{I(ei^2)}=&amp;&amp;-3793851.07&amp;&amp;+810.57X&amp;&amp;-0.04I(X^2)\\ &amp;\text{(t)}&amp;&amp;(-0.7835)&amp;&amp;(0.8105)&amp;&amp;(-0.8169)\\&amp;\text{(se)}&amp;&amp;(4842167.3561)&amp;&amp;(1000.0435)&amp;&amp;(0.0510)\\&amp;\text{(fitness)}&amp;&amp; R^2=0.1008;&amp;&amp; \bar{R^2}=-0.1989\\&amp; &amp;&amp; F^{\ast}=0.34;&amp;&amp; p=0.7269 \end{alignedat} \end{equation}$$`
+
+**怀特检验辅助方程**的判定系数为
+`\(R^2=\)` 0.1008；样本卡方统计量（绝对值）为
+`\({\chi^2}^{\ast}=nR^2=\)` 0.9076。给定显著性水平
+`\(\alpha=0.05\)`时卡方分布的理论查表值为
+`\(\chi^2_{1-\alpha}(m-1)=\chi^2_{0.95}(1)=\)` 5.991465。从而可以得到**怀特检验**初步结论：卡方检验不显著，不能拒绝原假设
+`\(H_0\)`，认为**主模型**为**同方差**。
+
+&gt;**提示**： .red[`I(ei^2)`]表示残差的平方，也即
+`\(e_i^2\)`。.red[`I(X^2)`]表示自变量平方，也即
+`\(X_i^2\)`
+
+
+---
+
+### 怀特检验（案例检验EViews报告）
+
+薪水案例中，**怀特检验**的EViews报告如下：
+
+&lt;img src="pic/chpt8-diagnose-white.png" width="530" style="display: block; margin: auto;" /&gt;
+
+
+
+---
+layout: false
+class: inverse, center, middle, duke-softblue
+name: adjust
+
+# 8.5 异方差性问题的矫正
+
+---
+layout: true
+  
+&lt;div class="my-header"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   第8章：放宽基本假设：异方差性   
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+8.5 异方差性问题的矫正 &lt;/span&gt;&lt;/div&gt; 
+
+
+---
+
+## WLS矫正1（方差初步已知）
+
+**矫正情形1**：方差
+`\(\sigma^2_i\)`已知且等于样本方差
+`\(S^2_{Y_i}\)`
+
+如果主模型存在异方差问题，且假设方差正比于样本方差
+`\(S^2_{Y_i}\)`，则有：
+
+`$$\begin{equation}
+var(u_i)=E(u^2_i)=\sigma^2_i=\sigma^2S^2_{Y_i}
+\end{equation}$$`
+
+对主回归方程两边同时除以
+`\(S_i\)`，得到：
+
+`$$\begin{align}
+Y_{i} &amp;=\beta_{1}+\beta_{2} X_{2 i}+\cdots+\beta_{k} X_{k i}+u_{i} \\
+\frac{Y_i}{S_i} &amp;=\frac{\beta_1}{S_i}+\beta_2\frac{X_{2i}}{S_i}+ \cdots +\beta_k\frac{X_{ki}}{S_i}+\frac{u_{i}}{S_i}\\
+Y^{\ast}_i &amp;=\beta^{\ast}_1+\beta^{\ast}_2X^{\ast}_{2i}+ \cdots +\beta^{\ast}_kX^{\ast}_{ki}+v_{i}
+\end{align}$$`
+
+容易证明新模型将消除异方差性：
+
+`$$\begin {align} 
+E\left(v_{i}^{2}\right)=E\left(\frac{u_{i}}{S_{Y_i}}\right)^{2}=\frac{1}{S_{Y_i}^{2}} E\left(u_{i}^{2}\right)=\sigma^{2}
+\end {align}$$`
+
+---
+
+## WLS矫正2（方差正比于自变量平方项）
+
+**矫正情形2**：方差
+`\(\sigma^2_i\)`正比于
+`\(X^2_i\)`
+
+如果主模型存在异方差问题，且假设方差正比于
+`\(X^2_{2i}\)`，则有：
+
+`$$\begin{equation}
+var(u_i)=E(u^2_i)=\sigma^2_i=\sigma^2X^2_{2i} 
+\end{equation}$$`
+
+&lt;img src="pic/chpt8-hetero-scedasiticity-type-x-sqr.png" width="381" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+## WLS矫正2（方差正比于自变量平方项）
+
+对主模型两边同时除以
+`\(X_{2i}\)`，得到：
+
+`$$\begin{align}
+Y_{i} &amp;=\beta_{1}+\beta_{2} X_{2 i}+\cdots+\beta_{k} X_{k i}+u_{i}  \\
+\frac{Y_i}{X_{2i}} &amp;=\frac{{\beta}_1}{X_{2i}}+\beta_2+\beta_3\frac{X_{3i}}{X_{2i}}+{\beta}_4\frac{X_{4i}}{X_{2i}}+{\beta}_5\frac{X_{5i}}{X_{2i}}+\frac{e_{i}}{X_{2i}} \\
+Y^{\ast}_i &amp;=\beta^{\ast}_2X^{\ast}_{2i}+\beta^{\ast}_1+ \beta^{\ast}_3X^{\ast}_{3i}\cdots +\beta^{\ast}_kX^{\ast}_{ki}+v_{i}
+\end{align}$$`
+
+容易证明新模型将消除异方差性：
+
+`$$\begin {align} 
+E\left(v_{i}^{2}\right)=E\left(\frac{u_{i}}{X_{2i}}\right)^{2}=\frac{1}{X_{2i}^{2}} E\left(u_{i}^{2}\right)=\sigma^{2}
+\end {align}$$`
+
+---
+
+## WLS矫正3（方差正比于自变量）
+
+**矫正情形3**：方差
+`\(\sigma^2_i\)`正比于
+`\(X_i\)`
+
+如果主模型存在异方差问题，且假设方差正比于
+`\(X_{2i}\)`，则有：
+
+`$$\begin{equation}
+var(u_i)=E(u^2_i)=\sigma^2_i=\sigma^2X_{2i}
+\end{equation}$$`
+
+
+&lt;img src="pic/chpt8-hetero-scedasiticity-type-x.png" width="406" style="display: block; margin: auto;" /&gt;
+
+---
+
+## WLS矫正3（方差正比于自变量）
+
+对主模型两边同时除以
+`\(\sqrt{X_{2i}}\)`，得到：
+
+`$$\begin{align}
+Y_{i} &amp;=\beta_{1}+\beta_{2} X_{2 i}+\cdots+\beta_{k} X_{k i}+u_{i}  \\
+\frac{Y_i}{\sqrt{X_{2i}}} &amp;=\frac{{\beta}_1}{\sqrt{X_{2i}}}+{\beta}_2\sqrt{X_{2i}}+{\beta}_3\frac{X_{3i}}{\sqrt{X_{2i}}}+\cdots+{\beta}_5\frac{X_{5i}}{\sqrt{X_{2i}}}+\frac{e_{i}}{\sqrt{X_{2i}}}\\
+Y^{\ast}_i &amp;=\beta^{\ast}_1+\beta^{\ast}_2X^{\ast}_{2i}+ \cdots +\beta^{\ast}_kX^{\ast}_{ki}+v_{i}
+\end{align}$$`
+
+容易证明新模型将消除异方差性：
+
+`$$\begin {align} 
+E\left(v_{i}^{2}\right)=E\left(\frac{u_{i}}{\sqrt{X_{2i}}}\right)^{2}=\frac{1}{X_{2i}} E\left(u_{i}^{2}\right)=\sigma^{2}
+\end {align}$$`
+
+---
+class:  page-font-21
+
+## WLS矫正4（方差正比于因变量平方项）
+
+**矫正情形4**：方差
+`\(\sigma^2_i\)`正比于
+`\(\hat{Y_i}^2\)`
+
+如果主模型存在异方差问题，且假设方差正比于
+`\(\hat{Y_i}^2\)`，则有：
+
+`$$\begin{equation}
+var(u_i)=E(u^2_i)=\sigma^2_i=\sigma^2\hat{Y_i}^2
+\end{equation}$$`
+
+对主模型两边同时除以
+`\(\hat{Y_i}\)`，得到：
+
+`$$\begin{align}
+Y_{i} &amp;=\beta_{1}+\beta_{2} X_{2 i}+\cdots+\beta_{k} X_{k i}+u_{i}  \\
+\frac{Y_i}{\hat{Y_i}} &amp;=\frac{{\beta}_1}{\hat{Y_i}}+{\beta}_2\frac{X_{2i}}{\hat{Y_i}}+\cdots+{\beta}_k\frac{X_{ki}}{\hat{Y_i}}+\frac{e_{i}}{\hat{Y_i}} \\
+Y^{\ast}_i &amp;=\beta^{\ast}_1+\beta^{\ast}_2X^{\ast}_{2i}+ \cdots +\beta^{\ast}_kX^{\ast}_{ki}+v_{i}
+\end{align}$$`
+
+容易证明新模型将消除异方差性：
+
+`$$\begin {align} 
+E\left(v_{i}^{2}\right)=E\left(\frac{u_{i}}{\hat{Y_i}}\right)^{2}=\frac{1}{\hat{Y_i}^{2}} E\left(u_{i}^{2}\right)=\sigma^{2}
+\end {align}$$`
+
+
+---
+
+
+## WLS矫正5（方差完全未知）
+
+**矫正情形5**：方差
+`\(\sigma^2_i\)`未知
+
+如果主模型存在异方差问题，对主模型两边同时取对数
+`\(ln()\)`通常能够减低异方差性问题。
+
+`$$\begin{align}
+Y_{i} &amp;=\beta_{1}+\beta_{2} X_{2 i}+\cdots+\beta_{k} X_{k i}+u_{i}  \\
+ln{Y_t} &amp;={\beta}_1+{\beta}_2ln{X_{2i}}+\cdots+{\beta}_kln{X_{ki}}+e_{i}
+\end{align}$$`
+
+---
+
+
+## WLS矫正（小结）
+
+以上所有讨论的变换都是一种权宜之计。我们基本上是在猜测
+`\(\sigma^2_i\)`的情形。
+
+
+&gt; “幸福的家庭大抵类似，不幸的家庭各不相同!”——列夫托尔斯泰
+
+&gt; “同方差只有同一种结果（理想状态），异方差则可以异得千奇百怪（普遍现实）”
+
+在所讨论的变换中哪一种能行之有效，要看问题的性质和异方差性的严重程度。这样做也会带来新的问题：
+
+- 当我们超出双变量模型的范围时，我们也许不能预先知道应选择哪一个
+`\(X_{pi}\)`变量进行数据变换。
+
+- 对数变换或开根号变换，当某些Y和X值为零或负数时便不适用。
+
+
+---
+
+## 使用White校正法矫正异方差问题
+
+使用White校正法矫正异方差的EViews报告如下：
+
+&lt;img src="pic/chpt8-salary-adj-white.png" width="605" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+## 使用White校正法矫正异方差问题
+
+作为对照，下面给出的是主模型的EViews报告：
+
+&lt;img src="pic/chpt8-salary-main.png" width="672" style="display: block; margin: auto;" /&gt;
+
+
+---
+layout: false
+class: inverse, center, middle, duke-softblue
+name: example
+
+# 8.6 案例展示（异方差问题的诊断和矫正）
+
+---
+layout: true
+  
+&lt;div class="my-header"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   第8章：放宽基本假设：异方差性   
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+8.6 案例展示（异方差问题的诊断和矫正） &lt;/span&gt;&lt;/div&gt; 
+
+---
+
+class: page-font-16
+
+## 吸烟案例（数据表）
+
+
+
+
+
+&lt;div class="figure" style="text-align: center"&gt;
+<div id="htmlwidget-4b243d7ddf6822339950" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4b243d7ddf6822339950">{"x":{"filter":"none","data":[[0,0,3,0,0,0,0,0,0,0,10,20,30,0,0,20,0,30,0,20,0,0,0,0,0,12,0,30,0,0,0,30,0,2,0,35,0,0,0,0,25,0,0,15,20,0,20,0,0,30,0,20,10,20,0,0,0,20,0,0,0,20,0,0,0,0,0,0,0,0,0,20,0,60,20,3,0,0,0,0,12,0,0,0,0,0,20,0,0,0,25,0,40,0,0,30,0,0,0,0,0,0,0,13,0,0,0,0,1,0,0,0,0,0,20,15,0,0,0,0,0,0,0,20,20,0,40,0,10,0,0,0,20,0,0,0,0,0,5,0,40,8,0,15,15,0,20,0,0,20,30,60,0,0,0,0,0,0,40,25,0,30,0,0,0,10,40,20,0,0,0,0,16,20,40,15,40,40,10,0,0,10,0,0,0,0,30,50,0,0,0,0,0,0,60,0,20,15,20,30,0,30,0,13,0,0,0,0,0,20,0,0,0,0,0,0,9,0,15,28,40,0,0,0,0,0,0,0,20,50,0,7,0,0,20,0,20,0,0,20,0,40,0,30,0,0,0,30,0,5,0,0,0,3,15,0,0,0,0,0,0,0,0,20,15,0,20,0,20,0,1,20,0,15,0,0,0,1,20,20,0,0,50,0,20,0,0,20,0,0,40,0,0,0,20,0,20,30,6,15,20,20,0,30,0,20,20,0,0,15,30,0,40,30,0,0,30,0,0,30,40,0,0,0,15,40,20,30,0,40,0,0,40,0,0,20,10,0,20,0,0,0,0,4,0,20,0,0,50,10,0,0,0,20,25,0,0,0,40,30,15,0,30,2,0,0,0,20,0,20,0,0,20,0,0,20,0,0,0,0,3,30,10,0,14,20,0,20,20,0,30,20,0,0,0,0,0,0,0,20,0,0,0,0,0,0,0,0,8,10,0,25,0,0,0,0,0,1,30,0,0,20,0,0,0,0,2,0,0,20,0,0,18,0,10,20,0,0,20,0,40,0,0,0,5,10,0,20,0,20,30,40,30,0,0,60,0,18,20,15,40,0,0,0,0,0,0,0,0,0,40,0,0,0,0,0,19,20,0,0,20,0,0,0,0,0,0,0,10,0,40,0,0,30,0,0,20,0,0,20,40,0,28,5,0,0,0,28,30,0,0,0,0,0,0,0,20,0,0,20,0,60,20,0,7,0,15,0,0,40,0,20,0,0,10,0,0,0,0,0,0,30,0,10,30,30,0,0,20,10,11,40,40,20,0,0,0,0,0,30,40,10,0,20,0,20,0,0,0,1,20,0,0,3,0,20,20,9,0,18,0,0,1,60,40,6,0,0,0,0,10,0,20,0,0,20,20,0,60,50,0,0,30,20,60,0,40,0,25,10,0,0,0,0,0,0,30,1,33,80,0,0,20,0,0,0,0,0,0,0,0,0,0,15,0,10,0,10,0,0,11,10,0,0,0,0,2,0,0,0,10,0,0,20,20,0,0,0,10,0,0,30,20,0,30,8,0,35,20,0,0,20,0,0,0,0,30,40,0,50,0,0,20,0,20,0,40,0,0,0,0,0,10,40,0,0,0,0,4,0,30,0,0,0,25,0,0,0,20,0,0,0,20,0,0,0,20,15,0,10,0,0,0,0,40,0,0,40,0,12,20,0,15,0,0,0,0,0,0,30,0,0,0,0,0,0,0,0,0,0,0,10,0,0,40,0,5,20,0,20,5,0,15,0,15,6,0,20,0,20,0,15,0,0,55,0,12,0,0,0,0,0,2,0,0,20,0,30,10,0,20,30,0,0,0,15,0,40,5,40,0,0,20,0,0,0,20],[20000,30000,30000,20000,20000,6500,20000,30000,20000,20000,30000,20000,8500,30000,30000,20000,20000,20000,8500,30000,5500,30000,20000,30000,30000,20000,30000,30000,12500,20000,20000,12500,12500,30000,12500,20000,12500,8500,20000,30000,30000,12500,20000,8500,20000,3500,6500,1500,20000,30000,20000,12500,6500,30000,20000,8500,20000,20000,20000,30000,20000,6500,30000,20000,30000,12500,30000,20000,8500,20000,2500,30000,6500,20000,30000,20000,2500,30000,30000,8500,30000,30000,6500,30000,20000,20000,30000,20000,30000,12500,20000,8500,20000,30000,30000,12500,12500,8500,30000,30000,30000,30000,30000,5500,20000,30000,20000,3500,12500,12500,20000,30000,20000,20000,20000,30000,8500,2500,30000,20000,12500,30000,30000,30000,20000,6500,20000,30000,20000,12500,20000,30000,20000,6500,30000,20000,8500,20000,12500,20000,6500,4500,20000,30000,12500,20000,12500,30000,20000,30000,30000,20000,30000,30000,20000,30000,30000,20000,8500,30000,30000,20000,30000,30000,5500,12500,20000,20000,30000,20000,30000,30000,30000,20000,12500,12500,20000,30000,8500,8500,30000,30000,30000,8500,3500,20000,20000,12500,8500,12500,8500,20000,12500,12500,30000,12500,2500,20000,30000,5500,12500,30000,8500,6500,30000,6500,12500,30000,30000,30000,8500,30000,20000,8500,8500,30000,500,20000,30000,20000,8500,20000,20000,12500,12500,20000,30000,30000,20000,30000,12500,5500,8500,6500,12500,30000,8500,30000,20000,30000,12500,30000,8500,20000,30000,20000,30000,30000,30000,30000,3500,20000,8500,30000,20000,20000,30000,30000,8500,20000,20000,20000,3500,20000,12500,12500,30000,30000,20000,8500,20000,30000,12500,20000,20000,30000,12500,20000,4500,20000,20000,3500,12500,12500,20000,30000,12500,30000,20000,20000,12500,30000,6500,30000,20000,1500,12500,20000,8500,20000,8500,20000,8500,12500,8500,30000,12500,8500,12500,20000,3500,20000,4500,1500,30000,20000,8500,8500,4500,30000,12500,5500,20000,12500,20000,12500,30000,30000,30000,30000,30000,12500,30000,30000,20000,1500,30000,30000,20000,30000,30000,30000,12500,20000,20000,20000,12500,12500,20000,8500,20000,3500,20000,30000,20000,30000,5500,20000,30000,30000,30000,30000,30000,30000,30000,30000,1500,20000,20000,12500,500,20000,12500,30000,30000,20000,30000,20000,20000,30000,20000,30000,20000,30000,12500,30000,8500,8500,30000,30000,30000,20000,12500,30000,30000,3500,12500,30000,30000,30000,12500,20000,30000,30000,30000,12500,20000,20000,20000,30000,5500,30000,30000,20000,30000,30000,20000,30000,12500,4500,8500,2500,8500,12500,30000,30000,20000,30000,30000,3500,12500,12500,20000,8500,12500,20000,30000,20000,8500,12500,20000,30000,30000,20000,20000,30000,8500,12500,20000,5500,12500,30000,30000,20000,20000,30000,30000,12500,6500,30000,30000,8500,20000,30000,20000,20000,30000,20000,20000,20000,12500,12500,4500,20000,30000,30000,20000,20000,20000,8500,30000,5500,30000,6500,6500,30000,20000,20000,12500,30000,20000,6500,12500,12500,30000,20000,20000,12500,12500,30000,30000,4500,12500,6500,30000,20000,12500,30000,30000,30000,12500,30000,30000,500,30000,20000,12500,30000,6500,20000,20000,20000,20000,20000,8500,20000,8500,30000,12500,20000,8500,12500,20000,12500,12500,4500,30000,30000,12500,30000,20000,20000,6500,3500,20000,3500,20000,20000,30000,12500,30000,20000,12500,8500,3500,30000,20000,6500,20000,30000,30000,8500,30000,20000,30000,30000,5500,12500,1500,6500,12500,20000,2500,3500,12500,30000,20000,3500,30000,20000,12500,1500,4500,20000,30000,30000,20000,6500,30000,12500,20000,12500,30000,20000,12500,20000,3500,20000,30000,20000,20000,12500,20000,30000,30000,20000,6500,30000,12500,6500,30000,20000,30000,20000,8500,30000,20000,8500,30000,30000,30000,30000,20000,20000,12500,12500,20000,500,2500,20000,4500,20000,2500,3500,12500,5500,12500,8500,30000,12500,8500,12500,20000,6500,30000,30000,20000,30000,30000,30000,3500,20000,30000,8500,20000,30000,12500,20000,30000,20000,6500,20000,20000,6500,30000,5500,12500,12500,30000,20000,12500,6500,20000,12500,12500,20000,30000,20000,30000,12500,2500,30000,30000,20000,30000,20000,12500,1500,30000,500,20000,4500,2500,30000,20000,20000,12500,20000,12500,20000,20000,30000,30000,30000,20000,12500,30000,12500,8500,30000,20000,8500,30000,20000,30000,12500,8500,5500,30000,20000,8500,30000,20000,30000,30000,20000,8500,4500,20000,3500,5500,20000,20000,20000,12500,20000,8500,30000,30000,30000,30000,20000,30000,12500,30000,20000,30000,30000,30000,20000,30000,30000,30000,20000,20000,20000,20000,12500,12500,20000,30000,20000,20000,1500,30000,20000,20000,30000,30000,30000,6500,20000,20000,30000,30000,6500,4500,12500,30000,1500,30000,12500,30000,20000,30000,20000,30000,12500,30000,30000,6500,20000,30000,20000,20000,12500,20000,20000,30000,20000,12500,12500,30000,12500,20000,20000,30000],[60.5060005187988,57.882999420166,57.6640014648438,57.882999420166,58.3199996948242,59.3400001525879,57.882999420166,57.882999420166,59.1949996948242,58.0279998779297,57.882999420166,60.2879981994629,57.882999420166,58.0279998779297,60.7459983825684,60.0709991455078,60.2820014953613,60.7039985656738,59.8600006103516,60.3240013122559,59.0449981689453,60.2939987182617,59.0449981689453,60.6319999694824,61.7439994812012,60.8619995117188,61.398998260498,60.8230018615723,62.0120010375977,61.3219985961914,62.0890007019043,61.0149993896484,62.4889984130859,61.6669998168945,62.0120010375977,61.6669998168945,61.0530014038086,61.0919990539551,61.9739990234375,61.1679992675781,60.8619995117188,61.6290016174316,62.4889984130859,62.0890007019043,61.7439994812012,60.6699981689453,61.1679992675781,61.2449989318848,62.0890007019043,60.5550003051758,60.5550003051758,62.2410011291504,61.7050018310547,60.5550003051758,61.4370002746582,61.3219985961914,61.1679992675781,61.2070007324219,60.8230018615723,60.6319999694824,60.7849998474121,60.5550003051758,60.7080001831055,60.6699981689453,62.7360000610352,62.0890007019043,62.5709991455078,60.7080001831055,62.1590003967285,61.6669998168945,61.2070007324219,61.0530014038086,61.4749984741211,61.6290016174316,61.7439994812012,61.4370002746582,61.9360008239746,61.7439994812012,62.4889984130859,61.3219985961914,60.9000015258789,61.5519981384277,62.4889984130859,60.7849998474121,61.5139999389648,61.8969993591309,61.1679992675781,60.8230018615723,61.5900001525879,61.0919990539551,61.7820014953613,61.4370002746582,61.8969993591309,60.5550003051758,61.7050018310547,61.859001159668,61.7050018310547,62.6539993286133,62.7360000610352,61.2449989318848,61.8969993591309,61.5900001525879,62.5709991455078,62.4059982299805,60.8619995117188,62.0890007019043,60.8619995117188,62.0120010375977,60.8230018615723,60.7080001831055,60.7080001831055,61.7439994812012,61.6290016174316,61.3600006103516,62.6539993286133,62.1590003967285,61.2840003967285,62.0120010375977,60.9000015258789,60.8619995117188,61.2070007324219,60.9379997253418,61.6290016174316,60.8619995117188,61.0919990539551,61.6669998168945,61.9739990234375,62.7360000610352,61.2070007324219,62.7360000610352,61.2840003967285,61.7439994812012,61.859001159668,61.9360008239746,60.8230018615723,60.5550003051758,61.4370002746582,62.0890007019043,61.4749984741211,53.6240005493164,53.3129997253418,55.185001373291,53.3819999694824,54.984001159668,53.9690017700195,54.3139991760254,54.6479988098145,54.140998840332,54.3139991760254,66.5869979858398,65.2900009155273,65.2900009155273,66.0879974365234,65.2900009155273,67.9329986572266,65.2900009155273,65.5400009155273,64.9909973144531,65.140998840332,66.4369964599609,66.0380020141602,65.8889999389648,65.8889999389648,66.5370025634766,66.4369964599609,68.1839981079102,66.6869964599609,66.4369964599609,65.140998840332,65.0410003662109,66.5869979858398,66.0380020141602,66.3379974365234,61.5460014343262,61.1839981079102,62.0120010375977,61.1839981079102,62.0120010375977,65.0820007324219,67.8199996948242,68.1999969482422,69.4020004272461,69.4020004272461,67.1240005493164,68.2630004882812,68.515998840332,67.8199996948242,67.8199996948242,67.7570037841797,67.8199996948242,67.693000793457,67.9469985961914,68.072998046875,69.1490020751953,69.5289993286133,70.0139999389648,68.8330001831055,69.4020004272461,68.3899993896484,69.5920028686523,67.693000793457,69.4020004272461,69.8410034179688,69.8990020751953,67.8830032348633,67.4400024414062,68.8960037231445,69.4649963378906,68.6429977416992,68.3899993896484,70.1289978027344,67.3140029907227,67.1869964599609,57.4729995727539,58.0940017700195,57.4729995727539,59.8520011901855,59.1300010681152,59.1300010681152,59.2330017089844,57.9389991760254,57.4729995727539,58.0940017700195,58.507999420166,57.1100006103516,61.9879989624023,63.5559997558594,57.4659996032715,59.4300003051758,60.0419998168945,59.492000579834,59.6759986877441,58.6319999694824,58.0800018310547,58.5099983215332,60.2210006713867,57.8349990844727,60.5180015563965,59.9210014343262,58.2639999389648,59.4300003051758,59.492000579834,59.2459983825684,57.7120018005371,58.2639999389648,58.6319999694824,57.7120018005371,58.2639999389648,59.2459983825684,58.5099983215332,58.8160018920898,58.4480018615723,57.6500015258789,59.2459983825684,57.6500015258789,59.5530014038086,59.6139984130859,59.4300003051758,58.140998840332,59.2459983825684,57.6500015258789,57.9570007324219,59.9210014343262,59.6139984130859,57.4049987792969,58.8779983520508,59.6139984130859,59.0009994506836,59.185001373291,58.2639999389648,58.6940002441406,58.0800018310547,58.5709991455078,58.4480018615723,59.5530014038086,57.7120018005371,59.0620002746582,59.4300003051758,58.140998840332,53.3250007629395,53.048999786377,52.8880004882812,54.3810005187988,53.6699981689453,53.048999786377,52.7960014343262,53.1180000305176,52.8190002441406,53.6469993591309,53.5089988708496,53.2789993286133,52.8190002441406,53.2560005187988,52.8190002441406,53.2330017089844,52.9799995422363,53.5089988708496,53.3250007629395,52.8190002441406,58.1419982910156,57.9119987487793,56.9000015258789,57.681999206543,59.2350006103516,57.681999206543,56.9000015258789,57.6769981384277,58.3779983520508,55.5960006713867,55.5960006713867,45.2830009460449,44.0589981079102,45.5610008239746,45.2830009460449,45.8390007019043,45.2270011901855,45.8390007019043,44.0040016174316,45.7840003967285,46.5209999084473,58.148998260498,60.2350006103516,58.9830017089844,59.4280014038086,59.3720016479492,56.9039993286133,58.0530014038086,57.0690002441406,57.1790008544922,57.4339981079102,58.7949981689453,58.2550010681152,58.7949981689453,57.8709983825684,57.2879981994629,57.8349990844727,58.7949981689453,57.0690002441406,57.7620010375977,58.2550010681152,58.8849983215332,57.8709983825684,57.0690002441406,58.8849983215332,66.7610015869141,65.7669982910156,65.1989974975586,65.7669982910156,67.1149978637695,68.3349990844727,66.9729995727539,67.3990020751953,66.1220016479492,65.7669982910156,67.5410003662109,67.1149978637695,65.7669982910156,66.7610015869141,65.8379974365234,67.8249969482422,66.5479965209961,58.3810005187988,60.2239990234375,60.2239990234375,60.3489990234375,59.9860000610352,58.2019996643066,58.2620010375977,58.8559989929199,60.5219993591309,58.2019996643066,58.9749984741211,58.9160003662109,59.9860000610352,58.4990005493164,59.867000579834,58.3810005187988,58.2620010375977,57.8450012207031,60.5219993591309,60.2830009460449,58.7369995117188,58.023998260498,58.0830001831055,60.4360008239746,60.5509986877441,59.9860000610352,60.2239990234375,59.9860000610352,60.5509986877441,58.7970008850098,60.4930000305176,59.5699996948242,60.4640007019043,62.1020011901855,62.4650001525879,63.1990013122559,62.3440017700195,62.9480018615723,61.4980010986328,61.4580001831055,61.4980010986328,63.2529983520508,62.9480018615723,63.2529983520508,62.4650001525879,62.2639999389648,62.9480018615723,59.3759994506836,59.6209983825684,54.3380012512207,53.6529998779297,54.9249992370605,56.2939987182617,54.9249992370605,55.0219993591309,54.1419982910156,57.4850006103516,57.5849990844727,57.4850006103516,53.2620010375977,56.9790000915527,55.7070007324219,56.0979995727539,57.3359985351562,54.4360008239746,57.5849990844727,55.0149993896484,59.6529998779297,59.6529998779297,56.8040008544922,58.4640007019043,63.1030006408691,55.1679992675781,55.0069999694824,55.1679992675781,54.3219985961914,55.1679992675781,53.8790016174316,64.9940032958984,65.5500030517578,64.0479965209961,64.4380035400391,65.8280029296875,65.6050033569336,64.4929962158203,64.9380035400391,64.5490036010742,65.4390029907227,64.9940032958984,66.3280029296875,65.7720031738281,65.161003112793,66.7839965820312,66.3280029296875,65.7170028686523,64.1039962768555,65.7170028686523,64.4380035400391,64.3820037841797,66.3280029296875,65.6050033569336,65.161003112793,65.4390029907227,64.1039962768555,66.3840026855469,66.2170028686523,64.3820037841797,65.995002746582,66.1620025634766,64.9940032958984,64.5490036010742,62.0400009155273,64.1920013427734,64.5070037841797,61.8499984741211,64.5640029907227,64.1920013427734,62.1040000915527,63.3689994812012,64.1289978027344,62.6730003356934,63.1790008544922,61.8499984741211,62.4199981689453,62.5470008850098,61.9770011901855,63.6860008239746,62.6100006103516,61.7869987487793,63.3059997558594,61.9770011901855,62.9259986877441,64.0019989013672,64.6510009765625,63.6220016479492,62.1040000915527,63.1160011291504,62.9259986877441,61.8499984741211,61.8499984741211,62.3569984436035,62.4199981689453,64.1920013427734,63.1160011291504,64.1920013427734,64.3190002441406,62.9900016784668,61.7869987487793,63.1790008544922,62.7999992370605,64.5640029907227,63.1160011291504,64.0650024414062,63.1790008544922,64.1289978027344,64.0650024414062,64.6220016479492,63.1160011291504,63.8759994506836,63.0530014038086,62.0400009155273,63.3059997558594,62.9259986877441,63.1790008544922,64.4779968261719,64.1289978027344,64.3820037841797,62.4199981689453,63.0530014038086,64.0019989013672,63.4329986572266,63.3689994812012,63.6860008239746,62.1040000915527,63.6220016479492,63.5589981079102,64.6510009765625,62.7999992370605,64.1920013427734,61.8499984741211,63.5589981079102,62.2929992675781,64.1289978027344,62.7999992370605,61.7239990234375,64.5640029907227,63.7490005493164,61.9770011901855,64.6510009765625,63.4329986572266,64.5640029907227,62.1669998168945,64.0019989013672,64.1289978027344,63.7490005493164,61.7869987487793,46.3139991760254,44.726001739502,44.3810005187988,47.6479988098145,46.3139991760254,47.0040016174316,46.6590003967285,44.4500007629395,47.492000579834,47.2109985351562,47.2109985351562,45.2779998779297,57.3520011901855,57.4900016784668,59.1510009765625,57.0299987792969,57.1679992675781,58.9959983825684,58.0880012512207,57.5359992980957,58.640998840332,57.8120002746582,58.1809997558594,58.0880012512207,58.8919982910156,58.1349983215332,56.8460006713867,57.3979988098145,59.1510009765625,58.3190002441406,57.3979988098145,59.0480003356934,58.1809997558594,58.0880012512207,58.2270011901855,57.3979988098145,56.7540016174316,57.3979988098145,57.4440002441406,59.0480003356934,58.8409996032715,57.8120002746582,57.9039993286133,57.5359992980957,58.7369995117188,58.3190002441406,56.984001159668,57.3979988098145,58.4109992980957,58.7369995117188,58.8919982910156,57.3979988098145,57.4900016784668,58.1349983215332,59.0480003356934,57.8120002746582,58.8409996032715,57.3979988098145,58.8919982910156,56.8460006713867,57.4440002441406,56.8460006713867,60.8730010986328,61.1559982299805,62.7179985046387,63.2729988098145,58.4599990844727,60.0209999084473,59.0279998779297,54.4290008544922,53.3440017700195,52.5789985656738,52.7000007629395,53.1430015563965,52.7000007629395,60.7859992980957,60.9739990234375,61.2690010070801,61.2159996032715,60.7459983825684,61.7509994506836,61.242000579834,60.826000213623,61.0550003051758,61.0810012817383,61.2019996643066,61.6839981079102,60.9469985961914,60.8129997253418,60.7589988708496,61.242000579834,61.0279998779297,61.2290000915527,61.8849983215332,60.7459983825684,61.0410003662109,61.1889991760254,61.1889991760254,60.7859992980957,61.2560005187988,60.9739990234375,61.0009994506836,61.0950012207031,61.2290000915527,61.2290000915527,60.9469985961914,60.9739990234375,61.0009994506836,61.8849983215332,60.7859992980957,61.2560005187988,61.1889991760254,60.7319984436035,61.0410003662109,60.826000213623,61.2159996032715,51,51,51,51.0400009155273,51.0400009155273,50.9189987182617,51.443000793457,51,57.9819984436035,59.9959983825684,58.0400009155273,60.8680000305176,57.9819984436035,60.8030014038086,58.7879981994629,58.6150016784668,58.4420013427734,60.1679992675781,60.3470001220703,60.226001739502,59.9959983825684,63.9889984130859,64.2350006103516,62.8580017089844,63.5190010070801,63.9280014038086,63.5769996643066,63.1450004577637,63.6629981994629,63.0880012512207,63.7439994812012,63.9889984130859,63.6920013427734,62.8289985656738,63.5480003356934,62.5699996948242,62.8289985656738,62.9729995727539,64.2350006103516,63.2319984436035,62.8289985656738,63.4900016784668,63.2599983215332,62.5410003662109,63.9280014038086,62.8289985656738,62.6559982299805,62.8580017089844,63.375,63.318000793457,63.5480003356934,62.685001373291,62.742000579834,62.8289985656738,63.5769996643066,63.2319984436035,62.5699996948242,63.6920013427734,62.8860015869141,63.2029991149902,63.5480003356934,63.9889984130859,62.7709999084473,63.2599983215332,63.6629981994629,63.6629981994629,63.2319984436035,56.173999786377,56.5099983215332,56.173999786377,54.6300010681152,54.7639999389648,56.173999786377,54.7639999389648,54.6300010681152,46.931999206543,47.0349998474121,48.7980003356934,46.310001373291,47.6570014953613,48.0709991455078,47.3460006713867,48.5449981689453,47.5009994506836,47.3460006713867,47.6049995422363,47.8120002746582,46.4659996032715,46.7760009765625,46.310001373291,46.5180015563965,48.5449981689453,63.4500007629395,62.2270011901855,63.1129989624023,63.4080009460449,62.8600006103516,62.2270011901855,62.2270011901855,63.3660011291504,62.0999984741211,63.3660011291504,63.2820014953613,63.2820014953613,64.161003112793,64.1070022583008,63.0279998779297,64.213996887207,63.9990005493164,63.2820014953613,62.2270011901855,62.6910018920898,63.8380012512207,63.4080009460449,63.4930000305176,63.8380012512207,62.2270011901855,62.6910018920898,62.185001373291,62.4799995422363,62.8680000305176,61.2509994506836,59.9879989624023,61.3930015563965,60.7070007324219,61.2509994506836,60.0359992980957,60.2270011901855,60.9949989318848,61.818000793457,61.6759986877441,60.7070007324219,59.9879989624023,59.6520004272461],[16,16,12,13.5,10,6,12,15,12,12,13.5,12,10,6,16,12,12,12,13.5,10,6,18,12,16,16,15,18,12,18,16,13.5,10,10,10,10,10,12,12,18,15,18,8,10,13.5,10,12,12,13.5,16,10,16,8,6,10,18,16,15,12,13.5,13.5,13.5,10,16,10,18,16,18,10,16,13.5,12,12,12,13.5,12,6,10,18,13.5,12,13.5,13.5,8,8,12,12,12,12,18,15,18,12,18,18,15,13.5,6,10,18,13.5,12,12,13.5,12,12,12,12,10,8,13.5,16,13.5,10,13.5,12,13.5,6,6,16,8,12,10,13.5,13.5,10,12,12,12,15,13.5,16,12,10,15,18,13.5,12,15,12,12,13.5,13.5,12,13.5,12,15,13.5,13.5,10,16,12,12,8,12,8,18,18,8,16,13.5,8,10,18,12,10,12,6,10,10,12,16,12,12,12,12,10,18,16,12,13.5,13.5,8,18,12,12,10,12,16,6,13.5,12,15,8,13.5,13.5,12,10,12,18,10,6,13.5,12,12,18,16,12,18,13.5,13.5,8,16,12,12,18,18,15,10,13.5,16,10,16,16,8,13.5,12,16,13.5,12,13.5,16,15,8,6,10,18,12,18,12,8,12,18,8,12,13.5,10,12,12,13.5,10,6,10,12,13.5,10,12,16,12,8,18,16,15,8,13.5,12,10,12,18,10,10,12,10,13.5,16,18,16,10,8,13.5,8,18,10,13.5,12,13.5,10,12,10,6,13.5,13.5,16,12,12,8,8,10,12,10,18,13.5,12,8,15,8,12,12,6,13.5,12,10,12,10,10,10,12,12,12,10,12,12,15,15,13.5,12,8,8,12,18,10,16,10,13.5,12,16,8,12,13.5,12,13.5,18,12,16,16,16,13.5,18,12,12,12,13.5,16,13.5,8,13.5,12,6,12,10,16,13.5,18,12,12,15,10,12,12,16,12,12,12,16,12,10,16,18,12,12,12,13.5,13.5,6,13.5,10,12,13.5,12,12,10,16,13.5,18,12,16,12,12,12,10,18,8,12,16,18,16,12,10,10,8,12,8,12,13.5,12,16,12,12,13.5,10,6,10,6,12,12,13.5,12,12,6,12,12,12,18,10,10,8,13.5,12,12,10,8,12,16,12,13.5,10,13.5,12,13.5,18,8,12,13.5,10,12,15,12,16,13.5,10,13.5,16,6,15,13.5,12,8,16,8,12,12,10,12,8,12,10,15,10,8,13.5,10,12,12,13.5,12,12,18,18,10,12,13.5,10,6,6,12,18,15,16,8,12,13.5,18,6,13.5,6,10,18,10,13.5,12,8,15,16,10,12,18,12,13.5,15,6,12,13.5,16,16,16,10,13.5,13.5,16,16,10,6,10,12,8,10,10,18,16,10,12,12,12,12,12,12,10,12,10,12,10,10,16,8,10,6,18,8,13.5,18,10,13.5,13.5,13.5,10,18,12,6,16,6,12,10,10,13.5,6,15,13.5,12,10,12,18,12,12,16,10,12,12,12,12,12,16,12,13.5,10,18,18,12,12,15,16,10,13.5,12,10,13.5,8,12,13.5,18,10,12,18,12,16,12,18,12,10,13.5,16,18,12,13.5,13.5,12,13.5,12,18,12,15,18,10,13.5,13.5,12,10,18,8,12,16,6,6,8,12,8,12,10,12,18,18,12,12,18,16,12,10,13.5,12,13.5,13.5,12,10,12,12,8,12,12,16,12,10,12,16,6,10,15,12,12,12,10,16,12,6,18,6,16,12,18,18,8,13.5,12,12,12,8,12,13.5,18,13.5,8,13.5,6,10,12,12,13.5,16,13.5,16,10,16,18,10,10,12,12,12,16,12,8,13.5,12,12,16,15,12,16,12,6,12,10,13.5,6,16,12,12,13.5,12,12,16,10,12,12,16,18,15,12,18,10,16,12,18,13.5,12,13.5,13.5,12,6,12,12,10,10,18,12,13.5,6,12,13.5,13.5,12,12,12,12,13.5,12,15,12,12,6,12,12,13.5,18,10,10,16,12,16,10,12,12,12,13.5,13.5,12,12,6,8,18,12,15,10,10,16,18,18,16,10,10],[46,40,58,30,17,86,35,48,48,31,27,24,71,44,22,29,33,34,30,48,61,49,33,24,36,39,38,29,23,51,28,47,80,62,51,51,69,28,38,30,32,71,18,26,30,19,19,21,44,69,53,53,38,49,24,57,28,32,55,47,26,26,61,48,32,29,47,62,30,21,28,50,69,37,40,47,78,38,25,67,50,47,76,28,32,28,53,57,42,49,31,20,45,63,61,35,59,17,38,41,35,40,37,27,48,18,43,20,19,22,60,47,77,26,37,40,44,65,26,77,73,64,28,26,64,29,55,54,42,70,71,24,38,73,29,24,25,22,36,28,27,28,53,23,19,25,34,20,17,51,44,29,65,53,46,51,66,42,32,53,70,30,42,69,18,22,38,52,17,46,46,35,22,54,58,27,47,53,29,29,47,67,31,27,34,25,46,50,69,32,64,30,78,46,49,30,23,27,28,26,44,54,54,66,49,77,74,69,78,57,53,88,79,21,30,39,25,58,23,30,31,31,50,20,24,33,39,19,31,40,39,23,71,54,33,30,31,46,75,40,66,45,73,31,27,50,45,22,44,51,59,59,66,35,17,35,30,23,60,27,37,42,87,26,20,65,35,38,64,62,47,52,32,26,35,35,24,77,24,63,58,69,62,27,30,51,32,51,53,20,22,24,23,65,21,19,24,34,54,50,65,33,69,26,69,59,35,54,28,28,77,64,52,21,46,24,31,26,79,53,32,21,18,30,20,69,59,56,43,40,37,36,28,33,63,51,33,39,21,37,70,20,27,28,30,52,24,71,39,19,21,33,51,54,44,43,68,22,54,37,22,65,30,19,35,59,18,44,37,37,19,25,31,19,18,28,46,27,58,19,30,58,42,45,18,40,66,64,43,53,36,43,25,35,29,18,20,19,17,29,65,42,32,36,57,31,17,17,45,19,74,46,27,66,44,33,64,54,27,75,19,69,30,64,37,31,30,38,20,21,19,71,49,42,54,24,60,54,28,67,56,36,25,34,20,21,42,28,29,70,32,42,17,24,64,57,51,29,66,62,29,58,53,38,24,59,30,37,43,60,24,60,82,61,66,33,26,85,32,27,30,30,47,18,20,32,30,17,22,43,56,64,76,28,37,38,52,68,75,54,36,37,23,36,44,56,64,45,56,62,62,52,18,47,52,18,26,22,65,38,20,41,28,57,44,32,22,30,30,59,42,31,39,65,78,17,34,39,49,51,19,26,82,38,32,27,35,54,37,60,17,28,35,40,24,41,47,22,29,17,40,32,47,58,74,49,69,25,71,66,25,50,19,28,22,49,39,19,60,37,62,20,23,45,28,20,51,62,55,26,41,67,19,33,29,49,29,32,31,17,33,21,59,25,32,25,61,66,22,24,43,51,45,45,66,38,49,29,45,43,49,20,41,31,28,36,37,18,22,33,76,34,78,31,42,32,80,40,53,82,18,46,60,78,47,17,27,48,39,25,30,59,47,32,17,23,20,32,19,23,18,54,65,55,29,19,27,26,59,25,78,69,58,24,54,48,59,38,29,33,32,36,49,69,18,72,35,71,47,20,43,65,23,44,28,67,32,37,32,57,55,31,57,54,24,33,49,19,50,58,65,18,31,34,55,28,65,68,29,29,61,45,66,18,44,41,31,61,29,70,49,35,28,30,23,35,24,22,49,38,22,45,39,61,19,36,21,38,39,29,44,46,26,30,47,64,18,37,67,29,60,39,59,75,19,27,62,63,60,46,28,20,50,43,45,62,70,58,21,27,47,68,17,35,37,30,19,54,41,34,28,26,18,19,29,60,50,52,22,38,63,23,52,31,30,18,47],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>cigs<\/th>\n      <th>income<\/th>\n      <th>cigpric<\/th>\n      <th>educ<\/th>\n      <th>age<\/th>\n      <th>restaurn<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"targets":[2,6,7,8,9],"render":"function(data, type, row, meta) { return DTWidget.formatRound(data, 2, 3, \",\", \".\"); }"},{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0}],"pageLength":8,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[8,10,25,50,100]}},"evals":["options.columnDefs.0.render"],"jsHooks":[]}</script>
+&lt;p class="caption"&gt;吸烟数量及其影响因素案例数据n=(807)&lt;/p&gt;
+&lt;/div&gt;
+
+`cigs`作为因变量Y，表示吸烟数量（每天）；
+其余变量表示自变量X，其中：`income`表示年收入；`cigpric`表示每包香烟价格；`educ`表示读书年数；`age`表示年龄；`restaurn`表示是否禁止在餐馆公共场所吸烟。
+
+---
+
+## 吸烟案例（主模型）
+
+首先构建如下**主回归模型**：
+
+`$$\begin{equation} \begin{alignedat}{999} &amp;cigs=&amp;&amp; + \hat{\beta}_{1} &amp;&amp; + \hat{\beta}_{2} log(income)&amp;&amp; + \hat{\beta}_{3} log(cigpric)&amp;&amp; + \hat{\beta}_{4} educ\\ &amp;\text{(cont.)}&amp;&amp; + \hat{\beta}_{5} age&amp;&amp; + \hat{\beta}_{6} I(age^2)&amp;&amp; + \hat{\beta}_{7} restaurn&amp;&amp;+e_i\\ \end{alignedat} \end{equation}$$`
+
+主回归模型回归结果为：
+
+`$$\begin{equation} \begin{alignedat}{999} &amp;\widehat{cigs}=&amp;&amp;-3.64&amp;&amp;+0.88log(income)&amp;&amp;-0.75log(cigpric)&amp;&amp;-0.50educ\\ &amp;\text{(t)}&amp;&amp;(-0.1512)&amp;&amp;(1.2095)&amp;&amp;(-0.1301)&amp;&amp;(-3.0016)\\&amp;\text{(se)}&amp;&amp;(24.0787)&amp;&amp;(0.7278)&amp;&amp;(5.7733)&amp;&amp;(0.1671)\\&amp;\text{(cont.)}&amp;&amp;+0.77age&amp;&amp;-0.01I(age^2)&amp;&amp;-2.83restaurn\\&amp;\text{(t)}&amp;&amp;(4.8132)&amp;&amp;(-5.1765)&amp;&amp;(-2.5410)\\&amp;\text{(se)}&amp;&amp;(0.1601)&amp;&amp;(0.0017)&amp;&amp;(1.1118)\\&amp;\text{(fitness)}&amp;&amp; R^2=0.0527;&amp;&amp; \bar{R^2}=0.0456\\&amp; &amp;&amp; F^{\ast}=7.42;&amp;&amp; p=0.0000\\ \end{alignedat} \end{equation}$$`
+
+---
+
+## 吸烟案例（主模型EViews报告）
+
+&lt;img src="pic/chpt8-smoke-main.png" width="577" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+class: page-font-16
+
+## 吸烟案例（残差数据）
+
+得到主回归模型的残差序列
+`\(e_i\)`、残差平方和序列
+`\(e_i^2\)`（及其他变换数据）：
+
+<div id="htmlwidget-b9f76f0991f4acc8b059" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b9f76f0991f4acc8b059">{"x":{"filter":"none","data":[[0,0,3,0,0,0,0,0,0,0,10,20,30,0,0,20,0,30,0,20,0,0,0,0,0,12,0,30,0,0,0,30,0,2,0,35,0,0,0,0,25,0,0,15,20,0,20,0,0,30,0,20,10,20,0,0,0,20,0,0,0,20,0,0,0,0,0,0,0,0,0,20,0,60,20,3,0,0,0,0,12,0,0,0,0,0,20,0,0,0,25,0,40,0,0,30,0,0,0,0,0,0,0,13,0,0,0,0,1,0,0,0,0,0,20,15,0,0,0,0,0,0,0,20,20,0,40,0,10,0,0,0,20,0,0,0,0,0,5,0,40,8,0,15,15,0,20,0,0,20,30,60,0,0,0,0,0,0,40,25,0,30,0,0,0,10,40,20,0,0,0,0,16,20,40,15,40,40,10,0,0,10,0,0,0,0,30,50,0,0,0,0,0,0,60,0,20,15,20,30,0,30,0,13,0,0,0,0,0,20,0,0,0,0,0,0,9,0,15,28,40,0,0,0,0,0,0,0,20,50,0,7,0,0,20,0,20,0,0,20,0,40,0,30,0,0,0,30,0,5,0,0,0,3,15,0,0,0,0,0,0,0,0,20,15,0,20,0,20,0,1,20,0,15,0,0,0,1,20,20,0,0,50,0,20,0,0,20,0,0,40,0,0,0,20,0,20,30,6,15,20,20,0,30,0,20,20,0,0,15,30,0,40,30,0,0,30,0,0,30,40,0,0,0,15,40,20,30,0,40,0,0,40,0,0,20,10,0,20,0,0,0,0,4,0,20,0,0,50,10,0,0,0,20,25,0,0,0,40,30,15,0,30,2,0,0,0,20,0,20,0,0,20,0,0,20,0,0,0,0,3,30,10,0,14,20,0,20,20,0,30,20,0,0,0,0,0,0,0,20,0,0,0,0,0,0,0,0,8,10,0,25,0,0,0,0,0,1,30,0,0,20,0,0,0,0,2,0,0,20,0,0,18,0,10,20,0,0,20,0,40,0,0,0,5,10,0,20,0,20,30,40,30,0,0,60,0,18,20,15,40,0,0,0,0,0,0,0,0,0,40,0,0,0,0,0,19,20,0,0,20,0,0,0,0,0,0,0,10,0,40,0,0,30,0,0,20,0,0,20,40,0,28,5,0,0,0,28,30,0,0,0,0,0,0,0,20,0,0,20,0,60,20,0,7,0,15,0,0,40,0,20,0,0,10,0,0,0,0,0,0,30,0,10,30,30,0,0,20,10,11,40,40,20,0,0,0,0,0,30,40,10,0,20,0,20,0,0,0,1,20,0,0,3,0,20,20,9,0,18,0,0,1,60,40,6,0,0,0,0,10,0,20,0,0,20,20,0,60,50,0,0,30,20,60,0,40,0,25,10,0,0,0,0,0,0,30,1,33,80,0,0,20,0,0,0,0,0,0,0,0,0,0,15,0,10,0,10,0,0,11,10,0,0,0,0,2,0,0,0,10,0,0,20,20,0,0,0,10,0,0,30,20,0,30,8,0,35,20,0,0,20,0,0,0,0,30,40,0,50,0,0,20,0,20,0,40,0,0,0,0,0,10,40,0,0,0,0,4,0,30,0,0,0,25,0,0,0,20,0,0,0,20,0,0,0,20,15,0,10,0,0,0,0,40,0,0,40,0,12,20,0,15,0,0,0,0,0,0,30,0,0,0,0,0,0,0,0,0,0,0,10,0,0,40,0,5,20,0,20,5,0,15,0,15,6,0,20,0,20,0,15,0,0,55,0,12,0,0,0,0,0,2,0,0,20,0,30,10,0,20,30,0,0,0,15,0,40,5,40,0,0,20,0,0,0,20],[20000,30000,30000,20000,20000,6500,20000,30000,20000,20000,30000,20000,8500,30000,30000,20000,20000,20000,8500,30000,5500,30000,20000,30000,30000,20000,30000,30000,12500,20000,20000,12500,12500,30000,12500,20000,12500,8500,20000,30000,30000,12500,20000,8500,20000,3500,6500,1500,20000,30000,20000,12500,6500,30000,20000,8500,20000,20000,20000,30000,20000,6500,30000,20000,30000,12500,30000,20000,8500,20000,2500,30000,6500,20000,30000,20000,2500,30000,30000,8500,30000,30000,6500,30000,20000,20000,30000,20000,30000,12500,20000,8500,20000,30000,30000,12500,12500,8500,30000,30000,30000,30000,30000,5500,20000,30000,20000,3500,12500,12500,20000,30000,20000,20000,20000,30000,8500,2500,30000,20000,12500,30000,30000,30000,20000,6500,20000,30000,20000,12500,20000,30000,20000,6500,30000,20000,8500,20000,12500,20000,6500,4500,20000,30000,12500,20000,12500,30000,20000,30000,30000,20000,30000,30000,20000,30000,30000,20000,8500,30000,30000,20000,30000,30000,5500,12500,20000,20000,30000,20000,30000,30000,30000,20000,12500,12500,20000,30000,8500,8500,30000,30000,30000,8500,3500,20000,20000,12500,8500,12500,8500,20000,12500,12500,30000,12500,2500,20000,30000,5500,12500,30000,8500,6500,30000,6500,12500,30000,30000,30000,8500,30000,20000,8500,8500,30000,500,20000,30000,20000,8500,20000,20000,12500,12500,20000,30000,30000,20000,30000,12500,5500,8500,6500,12500,30000,8500,30000,20000,30000,12500,30000,8500,20000,30000,20000,30000,30000,30000,30000,3500,20000,8500,30000,20000,20000,30000,30000,8500,20000,20000,20000,3500,20000,12500,12500,30000,30000,20000,8500,20000,30000,12500,20000,20000,30000,12500,20000,4500,20000,20000,3500,12500,12500,20000,30000,12500,30000,20000,20000,12500,30000,6500,30000,20000,1500,12500,20000,8500,20000,8500,20000,8500,12500,8500,30000,12500,8500,12500,20000,3500,20000,4500,1500,30000,20000,8500,8500,4500,30000,12500,5500,20000,12500,20000,12500,30000,30000,30000,30000,30000,12500,30000,30000,20000,1500,30000,30000,20000,30000,30000,30000,12500,20000,20000,20000,12500,12500,20000,8500,20000,3500,20000,30000,20000,30000,5500,20000,30000,30000,30000,30000,30000,30000,30000,30000,1500,20000,20000,12500,500,20000,12500,30000,30000,20000,30000,20000,20000,30000,20000,30000,20000,30000,12500,30000,8500,8500,30000,30000,30000,20000,12500,30000,30000,3500,12500,30000,30000,30000,12500,20000,30000,30000,30000,12500,20000,20000,20000,30000,5500,30000,30000,20000,30000,30000,20000,30000,12500,4500,8500,2500,8500,12500,30000,30000,20000,30000,30000,3500,12500,12500,20000,8500,12500,20000,30000,20000,8500,12500,20000,30000,30000,20000,20000,30000,8500,12500,20000,5500,12500,30000,30000,20000,20000,30000,30000,12500,6500,30000,30000,8500,20000,30000,20000,20000,30000,20000,20000,20000,12500,12500,4500,20000,30000,30000,20000,20000,20000,8500,30000,5500,30000,6500,6500,30000,20000,20000,12500,30000,20000,6500,12500,12500,30000,20000,20000,12500,12500,30000,30000,4500,12500,6500,30000,20000,12500,30000,30000,30000,12500,30000,30000,500,30000,20000,12500,30000,6500,20000,20000,20000,20000,20000,8500,20000,8500,30000,12500,20000,8500,12500,20000,12500,12500,4500,30000,30000,12500,30000,20000,20000,6500,3500,20000,3500,20000,20000,30000,12500,30000,20000,12500,8500,3500,30000,20000,6500,20000,30000,30000,8500,30000,20000,30000,30000,5500,12500,1500,6500,12500,20000,2500,3500,12500,30000,20000,3500,30000,20000,12500,1500,4500,20000,30000,30000,20000,6500,30000,12500,20000,12500,30000,20000,12500,20000,3500,20000,30000,20000,20000,12500,20000,30000,30000,20000,6500,30000,12500,6500,30000,20000,30000,20000,8500,30000,20000,8500,30000,30000,30000,30000,20000,20000,12500,12500,20000,500,2500,20000,4500,20000,2500,3500,12500,5500,12500,8500,30000,12500,8500,12500,20000,6500,30000,30000,20000,30000,30000,30000,3500,20000,30000,8500,20000,30000,12500,20000,30000,20000,6500,20000,20000,6500,30000,5500,12500,12500,30000,20000,12500,6500,20000,12500,12500,20000,30000,20000,30000,12500,2500,30000,30000,20000,30000,20000,12500,1500,30000,500,20000,4500,2500,30000,20000,20000,12500,20000,12500,20000,20000,30000,30000,30000,20000,12500,30000,12500,8500,30000,20000,8500,30000,20000,30000,12500,8500,5500,30000,20000,8500,30000,20000,30000,30000,20000,8500,4500,20000,3500,5500,20000,20000,20000,12500,20000,8500,30000,30000,30000,30000,20000,30000,12500,30000,20000,30000,30000,30000,20000,30000,30000,30000,20000,20000,20000,20000,12500,12500,20000,30000,20000,20000,1500,30000,20000,20000,30000,30000,30000,6500,20000,20000,30000,30000,6500,4500,12500,30000,1500,30000,12500,30000,20000,30000,20000,30000,12500,30000,30000,6500,20000,30000,20000,20000,12500,20000,20000,30000,20000,12500,12500,30000,12500,20000,20000,30000],[60.5060005187988,57.882999420166,57.6640014648438,57.882999420166,58.3199996948242,59.3400001525879,57.882999420166,57.882999420166,59.1949996948242,58.0279998779297,57.882999420166,60.2879981994629,57.882999420166,58.0279998779297,60.7459983825684,60.0709991455078,60.2820014953613,60.7039985656738,59.8600006103516,60.3240013122559,59.0449981689453,60.2939987182617,59.0449981689453,60.6319999694824,61.7439994812012,60.8619995117188,61.398998260498,60.8230018615723,62.0120010375977,61.3219985961914,62.0890007019043,61.0149993896484,62.4889984130859,61.6669998168945,62.0120010375977,61.6669998168945,61.0530014038086,61.0919990539551,61.9739990234375,61.1679992675781,60.8619995117188,61.6290016174316,62.4889984130859,62.0890007019043,61.7439994812012,60.6699981689453,61.1679992675781,61.2449989318848,62.0890007019043,60.5550003051758,60.5550003051758,62.2410011291504,61.7050018310547,60.5550003051758,61.4370002746582,61.3219985961914,61.1679992675781,61.2070007324219,60.8230018615723,60.6319999694824,60.7849998474121,60.5550003051758,60.7080001831055,60.6699981689453,62.7360000610352,62.0890007019043,62.5709991455078,60.7080001831055,62.1590003967285,61.6669998168945,61.2070007324219,61.0530014038086,61.4749984741211,61.6290016174316,61.7439994812012,61.4370002746582,61.9360008239746,61.7439994812012,62.4889984130859,61.3219985961914,60.9000015258789,61.5519981384277,62.4889984130859,60.7849998474121,61.5139999389648,61.8969993591309,61.1679992675781,60.8230018615723,61.5900001525879,61.0919990539551,61.7820014953613,61.4370002746582,61.8969993591309,60.5550003051758,61.7050018310547,61.859001159668,61.7050018310547,62.6539993286133,62.7360000610352,61.2449989318848,61.8969993591309,61.5900001525879,62.5709991455078,62.4059982299805,60.8619995117188,62.0890007019043,60.8619995117188,62.0120010375977,60.8230018615723,60.7080001831055,60.7080001831055,61.7439994812012,61.6290016174316,61.3600006103516,62.6539993286133,62.1590003967285,61.2840003967285,62.0120010375977,60.9000015258789,60.8619995117188,61.2070007324219,60.9379997253418,61.6290016174316,60.8619995117188,61.0919990539551,61.6669998168945,61.9739990234375,62.7360000610352,61.2070007324219,62.7360000610352,61.2840003967285,61.7439994812012,61.859001159668,61.9360008239746,60.8230018615723,60.5550003051758,61.4370002746582,62.0890007019043,61.4749984741211,53.6240005493164,53.3129997253418,55.185001373291,53.3819999694824,54.984001159668,53.9690017700195,54.3139991760254,54.6479988098145,54.140998840332,54.3139991760254,66.5869979858398,65.2900009155273,65.2900009155273,66.0879974365234,65.2900009155273,67.9329986572266,65.2900009155273,65.5400009155273,64.9909973144531,65.140998840332,66.4369964599609,66.0380020141602,65.8889999389648,65.8889999389648,66.5370025634766,66.4369964599609,68.1839981079102,66.6869964599609,66.4369964599609,65.140998840332,65.0410003662109,66.5869979858398,66.0380020141602,66.3379974365234,61.5460014343262,61.1839981079102,62.0120010375977,61.1839981079102,62.0120010375977,65.0820007324219,67.8199996948242,68.1999969482422,69.4020004272461,69.4020004272461,67.1240005493164,68.2630004882812,68.515998840332,67.8199996948242,67.8199996948242,67.7570037841797,67.8199996948242,67.693000793457,67.9469985961914,68.072998046875,69.1490020751953,69.5289993286133,70.0139999389648,68.8330001831055,69.4020004272461,68.3899993896484,69.5920028686523,67.693000793457,69.4020004272461,69.8410034179688,69.8990020751953,67.8830032348633,67.4400024414062,68.8960037231445,69.4649963378906,68.6429977416992,68.3899993896484,70.1289978027344,67.3140029907227,67.1869964599609,57.4729995727539,58.0940017700195,57.4729995727539,59.8520011901855,59.1300010681152,59.1300010681152,59.2330017089844,57.9389991760254,57.4729995727539,58.0940017700195,58.507999420166,57.1100006103516,61.9879989624023,63.5559997558594,57.4659996032715,59.4300003051758,60.0419998168945,59.492000579834,59.6759986877441,58.6319999694824,58.0800018310547,58.5099983215332,60.2210006713867,57.8349990844727,60.5180015563965,59.9210014343262,58.2639999389648,59.4300003051758,59.492000579834,59.2459983825684,57.7120018005371,58.2639999389648,58.6319999694824,57.7120018005371,58.2639999389648,59.2459983825684,58.5099983215332,58.8160018920898,58.4480018615723,57.6500015258789,59.2459983825684,57.6500015258789,59.5530014038086,59.6139984130859,59.4300003051758,58.140998840332,59.2459983825684,57.6500015258789,57.9570007324219,59.9210014343262,59.6139984130859,57.4049987792969,58.8779983520508,59.6139984130859,59.0009994506836,59.185001373291,58.2639999389648,58.6940002441406,58.0800018310547,58.5709991455078,58.4480018615723,59.5530014038086,57.7120018005371,59.0620002746582,59.4300003051758,58.140998840332,53.3250007629395,53.048999786377,52.8880004882812,54.3810005187988,53.6699981689453,53.048999786377,52.7960014343262,53.1180000305176,52.8190002441406,53.6469993591309,53.5089988708496,53.2789993286133,52.8190002441406,53.2560005187988,52.8190002441406,53.2330017089844,52.9799995422363,53.5089988708496,53.3250007629395,52.8190002441406,58.1419982910156,57.9119987487793,56.9000015258789,57.681999206543,59.2350006103516,57.681999206543,56.9000015258789,57.6769981384277,58.3779983520508,55.5960006713867,55.5960006713867,45.2830009460449,44.0589981079102,45.5610008239746,45.2830009460449,45.8390007019043,45.2270011901855,45.8390007019043,44.0040016174316,45.7840003967285,46.5209999084473,58.148998260498,60.2350006103516,58.9830017089844,59.4280014038086,59.3720016479492,56.9039993286133,58.0530014038086,57.0690002441406,57.1790008544922,57.4339981079102,58.7949981689453,58.2550010681152,58.7949981689453,57.8709983825684,57.2879981994629,57.8349990844727,58.7949981689453,57.0690002441406,57.7620010375977,58.2550010681152,58.8849983215332,57.8709983825684,57.0690002441406,58.8849983215332,66.7610015869141,65.7669982910156,65.1989974975586,65.7669982910156,67.1149978637695,68.3349990844727,66.9729995727539,67.3990020751953,66.1220016479492,65.7669982910156,67.5410003662109,67.1149978637695,65.7669982910156,66.7610015869141,65.8379974365234,67.8249969482422,66.5479965209961,58.3810005187988,60.2239990234375,60.2239990234375,60.3489990234375,59.9860000610352,58.2019996643066,58.2620010375977,58.8559989929199,60.5219993591309,58.2019996643066,58.9749984741211,58.9160003662109,59.9860000610352,58.4990005493164,59.867000579834,58.3810005187988,58.2620010375977,57.8450012207031,60.5219993591309,60.2830009460449,58.7369995117188,58.023998260498,58.0830001831055,60.4360008239746,60.5509986877441,59.9860000610352,60.2239990234375,59.9860000610352,60.5509986877441,58.7970008850098,60.4930000305176,59.5699996948242,60.4640007019043,62.1020011901855,62.4650001525879,63.1990013122559,62.3440017700195,62.9480018615723,61.4980010986328,61.4580001831055,61.4980010986328,63.2529983520508,62.9480018615723,63.2529983520508,62.4650001525879,62.2639999389648,62.9480018615723,59.3759994506836,59.6209983825684,54.3380012512207,53.6529998779297,54.9249992370605,56.2939987182617,54.9249992370605,55.0219993591309,54.1419982910156,57.4850006103516,57.5849990844727,57.4850006103516,53.2620010375977,56.9790000915527,55.7070007324219,56.0979995727539,57.3359985351562,54.4360008239746,57.5849990844727,55.0149993896484,59.6529998779297,59.6529998779297,56.8040008544922,58.4640007019043,63.1030006408691,55.1679992675781,55.0069999694824,55.1679992675781,54.3219985961914,55.1679992675781,53.8790016174316,64.9940032958984,65.5500030517578,64.0479965209961,64.4380035400391,65.8280029296875,65.6050033569336,64.4929962158203,64.9380035400391,64.5490036010742,65.4390029907227,64.9940032958984,66.3280029296875,65.7720031738281,65.161003112793,66.7839965820312,66.3280029296875,65.7170028686523,64.1039962768555,65.7170028686523,64.4380035400391,64.3820037841797,66.3280029296875,65.6050033569336,65.161003112793,65.4390029907227,64.1039962768555,66.3840026855469,66.2170028686523,64.3820037841797,65.995002746582,66.1620025634766,64.9940032958984,64.5490036010742,62.0400009155273,64.1920013427734,64.5070037841797,61.8499984741211,64.5640029907227,64.1920013427734,62.1040000915527,63.3689994812012,64.1289978027344,62.6730003356934,63.1790008544922,61.8499984741211,62.4199981689453,62.5470008850098,61.9770011901855,63.6860008239746,62.6100006103516,61.7869987487793,63.3059997558594,61.9770011901855,62.9259986877441,64.0019989013672,64.6510009765625,63.6220016479492,62.1040000915527,63.1160011291504,62.9259986877441,61.8499984741211,61.8499984741211,62.3569984436035,62.4199981689453,64.1920013427734,63.1160011291504,64.1920013427734,64.3190002441406,62.9900016784668,61.7869987487793,63.1790008544922,62.7999992370605,64.5640029907227,63.1160011291504,64.0650024414062,63.1790008544922,64.1289978027344,64.0650024414062,64.6220016479492,63.1160011291504,63.8759994506836,63.0530014038086,62.0400009155273,63.3059997558594,62.9259986877441,63.1790008544922,64.4779968261719,64.1289978027344,64.3820037841797,62.4199981689453,63.0530014038086,64.0019989013672,63.4329986572266,63.3689994812012,63.6860008239746,62.1040000915527,63.6220016479492,63.5589981079102,64.6510009765625,62.7999992370605,64.1920013427734,61.8499984741211,63.5589981079102,62.2929992675781,64.1289978027344,62.7999992370605,61.7239990234375,64.5640029907227,63.7490005493164,61.9770011901855,64.6510009765625,63.4329986572266,64.5640029907227,62.1669998168945,64.0019989013672,64.1289978027344,63.7490005493164,61.7869987487793,46.3139991760254,44.726001739502,44.3810005187988,47.6479988098145,46.3139991760254,47.0040016174316,46.6590003967285,44.4500007629395,47.492000579834,47.2109985351562,47.2109985351562,45.2779998779297,57.3520011901855,57.4900016784668,59.1510009765625,57.0299987792969,57.1679992675781,58.9959983825684,58.0880012512207,57.5359992980957,58.640998840332,57.8120002746582,58.1809997558594,58.0880012512207,58.8919982910156,58.1349983215332,56.8460006713867,57.3979988098145,59.1510009765625,58.3190002441406,57.3979988098145,59.0480003356934,58.1809997558594,58.0880012512207,58.2270011901855,57.3979988098145,56.7540016174316,57.3979988098145,57.4440002441406,59.0480003356934,58.8409996032715,57.8120002746582,57.9039993286133,57.5359992980957,58.7369995117188,58.3190002441406,56.984001159668,57.3979988098145,58.4109992980957,58.7369995117188,58.8919982910156,57.3979988098145,57.4900016784668,58.1349983215332,59.0480003356934,57.8120002746582,58.8409996032715,57.3979988098145,58.8919982910156,56.8460006713867,57.4440002441406,56.8460006713867,60.8730010986328,61.1559982299805,62.7179985046387,63.2729988098145,58.4599990844727,60.0209999084473,59.0279998779297,54.4290008544922,53.3440017700195,52.5789985656738,52.7000007629395,53.1430015563965,52.7000007629395,60.7859992980957,60.9739990234375,61.2690010070801,61.2159996032715,60.7459983825684,61.7509994506836,61.242000579834,60.826000213623,61.0550003051758,61.0810012817383,61.2019996643066,61.6839981079102,60.9469985961914,60.8129997253418,60.7589988708496,61.242000579834,61.0279998779297,61.2290000915527,61.8849983215332,60.7459983825684,61.0410003662109,61.1889991760254,61.1889991760254,60.7859992980957,61.2560005187988,60.9739990234375,61.0009994506836,61.0950012207031,61.2290000915527,61.2290000915527,60.9469985961914,60.9739990234375,61.0009994506836,61.8849983215332,60.7859992980957,61.2560005187988,61.1889991760254,60.7319984436035,61.0410003662109,60.826000213623,61.2159996032715,51,51,51,51.0400009155273,51.0400009155273,50.9189987182617,51.443000793457,51,57.9819984436035,59.9959983825684,58.0400009155273,60.8680000305176,57.9819984436035,60.8030014038086,58.7879981994629,58.6150016784668,58.4420013427734,60.1679992675781,60.3470001220703,60.226001739502,59.9959983825684,63.9889984130859,64.2350006103516,62.8580017089844,63.5190010070801,63.9280014038086,63.5769996643066,63.1450004577637,63.6629981994629,63.0880012512207,63.7439994812012,63.9889984130859,63.6920013427734,62.8289985656738,63.5480003356934,62.5699996948242,62.8289985656738,62.9729995727539,64.2350006103516,63.2319984436035,62.8289985656738,63.4900016784668,63.2599983215332,62.5410003662109,63.9280014038086,62.8289985656738,62.6559982299805,62.8580017089844,63.375,63.318000793457,63.5480003356934,62.685001373291,62.742000579834,62.8289985656738,63.5769996643066,63.2319984436035,62.5699996948242,63.6920013427734,62.8860015869141,63.2029991149902,63.5480003356934,63.9889984130859,62.7709999084473,63.2599983215332,63.6629981994629,63.6629981994629,63.2319984436035,56.173999786377,56.5099983215332,56.173999786377,54.6300010681152,54.7639999389648,56.173999786377,54.7639999389648,54.6300010681152,46.931999206543,47.0349998474121,48.7980003356934,46.310001373291,47.6570014953613,48.0709991455078,47.3460006713867,48.5449981689453,47.5009994506836,47.3460006713867,47.6049995422363,47.8120002746582,46.4659996032715,46.7760009765625,46.310001373291,46.5180015563965,48.5449981689453,63.4500007629395,62.2270011901855,63.1129989624023,63.4080009460449,62.8600006103516,62.2270011901855,62.2270011901855,63.3660011291504,62.0999984741211,63.3660011291504,63.2820014953613,63.2820014953613,64.161003112793,64.1070022583008,63.0279998779297,64.213996887207,63.9990005493164,63.2820014953613,62.2270011901855,62.6910018920898,63.8380012512207,63.4080009460449,63.4930000305176,63.8380012512207,62.2270011901855,62.6910018920898,62.185001373291,62.4799995422363,62.8680000305176,61.2509994506836,59.9879989624023,61.3930015563965,60.7070007324219,61.2509994506836,60.0359992980957,60.2270011901855,60.9949989318848,61.818000793457,61.6759986877441,60.7070007324219,59.9879989624023,59.6520004272461],[16,16,12,13.5,10,6,12,15,12,12,13.5,12,10,6,16,12,12,12,13.5,10,6,18,12,16,16,15,18,12,18,16,13.5,10,10,10,10,10,12,12,18,15,18,8,10,13.5,10,12,12,13.5,16,10,16,8,6,10,18,16,15,12,13.5,13.5,13.5,10,16,10,18,16,18,10,16,13.5,12,12,12,13.5,12,6,10,18,13.5,12,13.5,13.5,8,8,12,12,12,12,18,15,18,12,18,18,15,13.5,6,10,18,13.5,12,12,13.5,12,12,12,12,10,8,13.5,16,13.5,10,13.5,12,13.5,6,6,16,8,12,10,13.5,13.5,10,12,12,12,15,13.5,16,12,10,15,18,13.5,12,15,12,12,13.5,13.5,12,13.5,12,15,13.5,13.5,10,16,12,12,8,12,8,18,18,8,16,13.5,8,10,18,12,10,12,6,10,10,12,16,12,12,12,12,10,18,16,12,13.5,13.5,8,18,12,12,10,12,16,6,13.5,12,15,8,13.5,13.5,12,10,12,18,10,6,13.5,12,12,18,16,12,18,13.5,13.5,8,16,12,12,18,18,15,10,13.5,16,10,16,16,8,13.5,12,16,13.5,12,13.5,16,15,8,6,10,18,12,18,12,8,12,18,8,12,13.5,10,12,12,13.5,10,6,10,12,13.5,10,12,16,12,8,18,16,15,8,13.5,12,10,12,18,10,10,12,10,13.5,16,18,16,10,8,13.5,8,18,10,13.5,12,13.5,10,12,10,6,13.5,13.5,16,12,12,8,8,10,12,10,18,13.5,12,8,15,8,12,12,6,13.5,12,10,12,10,10,10,12,12,12,10,12,12,15,15,13.5,12,8,8,12,18,10,16,10,13.5,12,16,8,12,13.5,12,13.5,18,12,16,16,16,13.5,18,12,12,12,13.5,16,13.5,8,13.5,12,6,12,10,16,13.5,18,12,12,15,10,12,12,16,12,12,12,16,12,10,16,18,12,12,12,13.5,13.5,6,13.5,10,12,13.5,12,12,10,16,13.5,18,12,16,12,12,12,10,18,8,12,16,18,16,12,10,10,8,12,8,12,13.5,12,16,12,12,13.5,10,6,10,6,12,12,13.5,12,12,6,12,12,12,18,10,10,8,13.5,12,12,10,8,12,16,12,13.5,10,13.5,12,13.5,18,8,12,13.5,10,12,15,12,16,13.5,10,13.5,16,6,15,13.5,12,8,16,8,12,12,10,12,8,12,10,15,10,8,13.5,10,12,12,13.5,12,12,18,18,10,12,13.5,10,6,6,12,18,15,16,8,12,13.5,18,6,13.5,6,10,18,10,13.5,12,8,15,16,10,12,18,12,13.5,15,6,12,13.5,16,16,16,10,13.5,13.5,16,16,10,6,10,12,8,10,10,18,16,10,12,12,12,12,12,12,10,12,10,12,10,10,16,8,10,6,18,8,13.5,18,10,13.5,13.5,13.5,10,18,12,6,16,6,12,10,10,13.5,6,15,13.5,12,10,12,18,12,12,16,10,12,12,12,12,12,16,12,13.5,10,18,18,12,12,15,16,10,13.5,12,10,13.5,8,12,13.5,18,10,12,18,12,16,12,18,12,10,13.5,16,18,12,13.5,13.5,12,13.5,12,18,12,15,18,10,13.5,13.5,12,10,18,8,12,16,6,6,8,12,8,12,10,12,18,18,12,12,18,16,12,10,13.5,12,13.5,13.5,12,10,12,12,8,12,12,16,12,10,12,16,6,10,15,12,12,12,10,16,12,6,18,6,16,12,18,18,8,13.5,12,12,12,8,12,13.5,18,13.5,8,13.5,6,10,12,12,13.5,16,13.5,16,10,16,18,10,10,12,12,12,16,12,8,13.5,12,12,16,15,12,16,12,6,12,10,13.5,6,16,12,12,13.5,12,12,16,10,12,12,16,18,15,12,18,10,16,12,18,13.5,12,13.5,13.5,12,6,12,12,10,10,18,12,13.5,6,12,13.5,13.5,12,12,12,12,13.5,12,15,12,12,6,12,12,13.5,18,10,10,16,12,16,10,12,12,12,13.5,13.5,12,12,6,8,18,12,15,10,10,16,18,18,16,10,10],[46,40,58,30,17,86,35,48,48,31,27,24,71,44,22,29,33,34,30,48,61,49,33,24,36,39,38,29,23,51,28,47,80,62,51,51,69,28,38,30,32,71,18,26,30,19,19,21,44,69,53,53,38,49,24,57,28,32,55,47,26,26,61,48,32,29,47,62,30,21,28,50,69,37,40,47,78,38,25,67,50,47,76,28,32,28,53,57,42,49,31,20,45,63,61,35,59,17,38,41,35,40,37,27,48,18,43,20,19,22,60,47,77,26,37,40,44,65,26,77,73,64,28,26,64,29,55,54,42,70,71,24,38,73,29,24,25,22,36,28,27,28,53,23,19,25,34,20,17,51,44,29,65,53,46,51,66,42,32,53,70,30,42,69,18,22,38,52,17,46,46,35,22,54,58,27,47,53,29,29,47,67,31,27,34,25,46,50,69,32,64,30,78,46,49,30,23,27,28,26,44,54,54,66,49,77,74,69,78,57,53,88,79,21,30,39,25,58,23,30,31,31,50,20,24,33,39,19,31,40,39,23,71,54,33,30,31,46,75,40,66,45,73,31,27,50,45,22,44,51,59,59,66,35,17,35,30,23,60,27,37,42,87,26,20,65,35,38,64,62,47,52,32,26,35,35,24,77,24,63,58,69,62,27,30,51,32,51,53,20,22,24,23,65,21,19,24,34,54,50,65,33,69,26,69,59,35,54,28,28,77,64,52,21,46,24,31,26,79,53,32,21,18,30,20,69,59,56,43,40,37,36,28,33,63,51,33,39,21,37,70,20,27,28,30,52,24,71,39,19,21,33,51,54,44,43,68,22,54,37,22,65,30,19,35,59,18,44,37,37,19,25,31,19,18,28,46,27,58,19,30,58,42,45,18,40,66,64,43,53,36,43,25,35,29,18,20,19,17,29,65,42,32,36,57,31,17,17,45,19,74,46,27,66,44,33,64,54,27,75,19,69,30,64,37,31,30,38,20,21,19,71,49,42,54,24,60,54,28,67,56,36,25,34,20,21,42,28,29,70,32,42,17,24,64,57,51,29,66,62,29,58,53,38,24,59,30,37,43,60,24,60,82,61,66,33,26,85,32,27,30,30,47,18,20,32,30,17,22,43,56,64,76,28,37,38,52,68,75,54,36,37,23,36,44,56,64,45,56,62,62,52,18,47,52,18,26,22,65,38,20,41,28,57,44,32,22,30,30,59,42,31,39,65,78,17,34,39,49,51,19,26,82,38,32,27,35,54,37,60,17,28,35,40,24,41,47,22,29,17,40,32,47,58,74,49,69,25,71,66,25,50,19,28,22,49,39,19,60,37,62,20,23,45,28,20,51,62,55,26,41,67,19,33,29,49,29,32,31,17,33,21,59,25,32,25,61,66,22,24,43,51,45,45,66,38,49,29,45,43,49,20,41,31,28,36,37,18,22,33,76,34,78,31,42,32,80,40,53,82,18,46,60,78,47,17,27,48,39,25,30,59,47,32,17,23,20,32,19,23,18,54,65,55,29,19,27,26,59,25,78,69,58,24,54,48,59,38,29,33,32,36,49,69,18,72,35,71,47,20,43,65,23,44,28,67,32,37,32,57,55,31,57,54,24,33,49,19,50,58,65,18,31,34,55,28,65,68,29,29,61,45,66,18,44,41,31,61,29,70,49,35,28,30,23,35,24,22,49,38,22,45,39,61,19,36,21,38,39,29,44,46,26,30,47,64,18,37,67,29,60,39,59,75,19,27,62,63,60,46,28,20,50,43,45,62,70,58,21,27,47,68,17,35,37,30,19,54,41,34,28,26,18,19,29,60,50,52,22,38,63,23,52,31,30,18,47],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[-10.3329916306363,-10.7547901168039,-7.71989448307373,-10.2606420029215,-7.50415254772552,2.43941539006559,-11.9339472273578,-11.0697857765715,-12.2005332415353,-11.2313135081599,0.151622066691023,10.7184520109568,24.5023075255563,-15.8190072235579,-6.91550078247206,9.25331860999684,-11.5891684892964,18.2499035369474,-9.48220917428316,6.4537384681323,-11.3087248545833,-9.43013130054055,-11.604736659781,-4.80311605511775,-7.54137685233574,4.02128881226781,-6.74860045852572,21.7308268089732,-2.66595249053899,-6.97525820757629,-6.88814565752251,19.9715497334315,2.37113999903763,-5.59924182698678,-9.56211686960685,25.0199650319659,-2.95405950096721,-6.8993325894811,-6.38468350552282,-6.99877994450293,19.0793890580388,-3.96800479840946,-5.08211985752178,9.43199439980987,10.8576843767861,-3.00387504700383,16.4573428717413,-2.3182590855564,-7.57123178199815,25.2661473545089,-6.64935376206948,9.7730096318582,-1.41656888782263,9.38621097995584,-3.43329829302676,-4.999429993118,-6.14711971952689,11.4315619136172,-7.49224587429543,-9.04858152966446,-6.33715854158072,12.8941106192734,-4.94113192389527,-10.3599645900421,-5.89783997728315,-5.47706504187494,-6.76820310377949,-7.25409255175141,-5.37508111713776,-4.59323181728459,-5.82067039866136,10.5179208295867,-2.373257021491,51.4483665084012,10.1127871534468,-9.44299684725558,2.47138434909049,-6.7443931736334,-6.36278620692469,-3.52408668382839,3.26828412416575,-9.0372739224794,-0.603678913672785,-10.0192413702724,-8.56468136362644,-7.64271851531445,10.9952982607695,-7.76477316474472,-6.94174660006293,-7.32902175850078,19.6498293449402,-4.19431079316075,33.461774746263,-3.24376300328196,-5.4303989783629,22.106996515379,-9.79732087152902,-3.87202895812215,-6.73242545372705,-9.18090523963164,-9.4154366363557,-9.88908795379922,-8.89716128937923,6.77428215772947,-9.35459566508454,-4.44086306823928,-9.6065017639682,-4.4092480482619,-5.12852736679843,-4.57398454023638,-4.90527927541244,-9.03493537865723,0.0093474975254057,-6.33008908863584,10.7085046042318,5.8700643746493,-11.8427974501716,-6.288056357606,-5.4389116171788,-1.00305240552578,-0.909991850574486,-6.87581262808362,-7.25064714577533,13.3068741465726,13.4830003834936,-6.91254833331015,31.7695831158771,-8.79095045140445,1.90599277473152,-1.69791831276229,-0.373963251999752,-6.79546277976616,9.6019361633437,1.17902342617346,-5.26018387754339,-5.70089789865454,-6.01764868534048,-4.21857685737033,-3.78000125029431,-10.5755330576854,31.4361458740885,-0.488684445759647,-11.5750987975944,6.3912560121823,7.96260914741466,-8.18398289967024,9.33696663302383,-7.47220565575543,-7.55758616768472,12.7296729086934,20.1036033228047,52.1409588827568,-7.42464389868671,-8.95573450130288,-11.4329584015609,-6.28210042636268,-2.004620533628,-11.55945268677,34.2375431782014,16.8095892147868,-5.18829004841621,20.9064713902465,-6.89108447935652,-3.66012041135825,-3.89970763550555,4.76096900267541,27.652372305388,10.2345628964493,-4.95293362326654,-9.45963105257274,-7.79291718902462,-9.36681184590736,9.96971314659556,8.72650329016531,30.0952429310547,4.21876273809398,30.7467985857127,30.186496062526,0.0666935718011223,-9.15011676443479,-11.7853486099475,0.627641995071643,-8.44484531796024,-9.37927602426365,-10.12769689766,-10.517059909333,17.7466997542062,40.5484025554567,-8.37041840242908,-10.1505113541037,-7.50883277565703,-9.38802837545223,-2.7024924508864,-11.0727522791711,48.420133008535,-10.4562927267104,11.9920698009862,4.89256795141448,12.2591703491277,20.3205212918389,-14.9326847239606,19.212034357154,-10.4253451813043,6.55593126970533,-9.34111432766294,1.25026851806594,-3.09056413200624,-3.44388013490283,-0.708638103837798,9.89351654430106,-12.6229942108582,7.8013396342966,-0.474179572417531,-7.47023449064317,-7.24795256030163,-9.69923876635257,4.13612209602184,-11.3471224183462,6.44584077497377,19.0104147526011,28.5177528324409,-9.23253670182793,-9.98155589380783,-9.40155329628792,-8.15623362515138,-11.5682140266842,-10.6266939209244,-7.00864862999336,8.78661218855934,38.0189613316025,-9.90566359668987,0.698319267490366,-6.49103515987096,-13.3366491346718,7.79916147026557,-8.33108570529221,9.51940026799697,-9.68676414534405,-3.03538815491657,5.23815029745984,-7.14152808014954,30.2500156470713,-5.42603373556071,18.7645864158156,-9.84345176773389,-12.9836236126371,-12.7817823662445,21.0471827968521,-12.0421732426179,-8.20149628321647,-11.5378595086201,-11.0708590891182,-6.82487468811911,-8.52114182480486,7.48717139000101,-11.9125904910419,-9.34168891195984,-9.30260664824947,-11.0215749661595,-7.21724213982654,-10.1730868722283,-10.9600590922316,4.78489887942292,10.8231505233027,7.59014910620049,-8.5628245331568,7.73126031631932,-9.60359884071053,10.634103789149,-9.35681567217208,-11.2933876560915,6.95161999411503,-10.2606007656592,7.06206436403984,-8.90360117755846,-10.2870936926303,-9.88624205950491,-2.84601500775106,12.7565273304278,9.17761834591771,-7.41662197989428,-5.76938809063505,42.0071552430861,-9.88672063329303,9.67387707798083,-13.278656465596,-11.0862251586198,6.72167055087914,-14.5803698988853,-7.1241043228636,32.502918357754,-7.73178348639448,-8.03869034740838,-8.41201594801798,9.71301375983142,-7.19087152948942,10.0396194446144,18.1525886548088,-5.63809502456755,6.02206064012236,13.51948407033,8.36747810860454,-7.48829767187878,21.9843380348631,-7.48829767187878,9.55506475469543,8.47710479302017,-13.568950609852,-9.38243967000104,4.4515839543631,28.4871263166048,-8.58450797096882,28.4393074394343,22.874689423612,-13.9073434424439,-9.49737471534977,19.3448558574284,-9.40385046998867,-0.452109520648434,17.9646874676591,28.9817224056959,-5.54729918169385,-5.44306913182428,-9.82713391206366,7.20171761869022,32.1620197305845,7.56413494506087,18.7565063271153,-9.82638551833215,26.230373391196,-10.5152379104759,-12.6484792112675,29.8889207551567,-11.9767344300781,-6.75656973946326,8.42384120016054,-1.96484046850227,-11.9612774780761,11.7803164359726,-11.7759115389517,-3.08447434169845,-8.17442710636989,-7.83461966540967,-4.49926733163178,-8.89975197838923,9.1571112916875,-5.80002887468112,-4.73830143728418,37.7651426124811,3.47930791157828,-7.35633995215583,-7.96510228276047,-10.9975013554502,6.4133996589549,13.4131349618637,-12.7150711741071,-8.47503488357132,-8.49368102438141,27.4172062565331,19.5920407064762,6.89924893712869,-2.50276602555929,21.4850470705833,-2.90061276491171,-7.92995930722467,-8.58318959685819,-1.85235904973223,10.3750064651954,-7.33245670987374,11.0962383803513,-1.32213603688127,-6.80157322071148,14.0248964972542,-4.90358597030418,-5.48858020671862,14.3382359365364,-6.88867318655238,-7.41372228421967,-7.53553874541965,-4.89690651446731,-4.40505246911315,22.8712810026223,-2.6475908721555,-9.199638909091,9.30652624716892,10.0981372187481,-3.21771773461481,15.228467305884,10.0256945313804,-10.0153105629924,22.4219015505157,11.1411793184995,-3.37131734575181,-9.43302447595672,-6.24755475374792,-2.54513213000529,-4.51256550735898,-4.87463555458445,-4.97864696430425,14.7481031070497,-6.70853441117129,-9.59494047214006,-6.89467403055674,-6.52387960918189,-6.08628353419568,-7.93717571020667,-4.62993271764561,-4.62172909721032,-6.40951417986864,2.26674653906077,-4.55210956766937,12.2138401918399,-9.88776446526443,-7.59596224914564,-10.8452901685646,-12.0146403805922,-8.42976997400335,-9.92942168362843,19.1631495523221,-4.76248476000786,-7.71080241644759,12.5767486181173,-10.2884454674498,-7.98939287921249,-11.7878511922034,-11.6362113815098,-9.01676499382174,-12.849014417423,-5.32657021773163,16.1638685768604,-4.17386434688534,-1.81769376787727,4.94899185794566,-12.7513661087195,-2.95010064144151,11.4040603842522,-10.1767301436596,-11.3556423356633,9.17824795336641,-8.65098313985382,29.2174577098456,-10.338953029674,-9.91705698407766,-10.9370025008876,-3.72632090809855,2.25840998513498,-11.6259417204979,10.7296740339839,-7.67342487717551,13.4679896350458,19.0805384339628,28.0257543665461,22.2222122193003,-9.20471200094823,-6.77284892992183,49.1113331769924,-10.1239465088645,8.48674526053404,12.4918538974215,6.36326826288786,30.9767927324324,-12.521875313283,-9.9208916776996,-11.7825785429988,-9.23546486818323,-11.9782568810835,-9.26281326767635,-14.1021445606921,-12.3707891891853,-9.67175961179462,30.1856208475745,-9.27656305780143,0.818970971485321,-9.37339121567445,-8.85361981830521,-10.4223107025111,8.12780043712788,21.7398611320231,-10.6303513087608,-10.4254972266392,8.70713578226036,-9.8167787996588,-11.8427689009556,-5.92256637073567,-6.77133259830456,-8.72519015100077,-7.95258640379549,-7.43806194584251,1.87184715352154,-12.0249310363746,28.1883063987949,-10.3479185209296,-5.00215777485669,19.9710365992717,-9.44094956757628,-10.6945569399001,10.3678266394983,-8.22561449938872,-2.58491767881868,9.12553238769326,30.6378228161253,-13.8160814983482,20.2571448008695,-9.0059715763609,-13.7499054309786,-7.78927199602354,-8.88970529698069,16.0361735002968,18.8161486883112,-11.4091348188219,-7.1325182458214,-9.95992278915463,-8.25662597447016,-8.98043998015783,-8.97320881851354,-6.88475620801559,11.2909474694517,-7.37055541555501,-9.94099699752896,7.80394009640955,-7.00086855009754,49.6143574488524,11.5550903509143,-8.55834217773439,-5.63902315962945,-10.6021837651238,7.98158010714968,-9.28391482143946,-8.5365059030732,28.9860848731804,-14.645832573418,8.24628975098082,-12.2779814395952,-9.50688037033689,8.23159724807615,-6.12576116507954,-9.06351616326307,-10.613867564685,-12.6408931873862,-12.1289092723762,-7.34877579024785,20.1190170224976,2.50432335212149,-0.658812079503923,18.6257694603668,20.3358180511018,-11.8519281365629,-12.250086382146,7.51834456059188,-0.278373955025735,3.20203133635704,31.56986499304,26.5274009017684,7.42180826198475,-10.7098816856367,-9.71915995300573,-14.2608196940448,-7.0266454311986,-7.95917533266635,21.9338440450169,27.8453593707047,-0.0974133606809667,-12.0648281334421,8.47501906015929,-1.18127419979602,7.3816702879977,-8.25850893062794,-7.37399272746767,-6.16118539510504,-5.59262191353567,9.76492579794258,-12.9770063515451,-4.8269839814487,-9.00218936495949,-6.66830096634242,8.28513951198763,7.64951240249772,2.14250308735855,-10.1299761742011,8.83679388766819,-8.69557705502903,-5.52424882025582,-4.64318264143616,46.5607865718347,29.118617197727,-2.15800039859174,-11.8440370749974,-8.12891922006205,-11.4487343123334,-7.52764453240597,-2.441057307814,-5.97529702981291,11.2352185665221,-8.62546169220923,-7.35814055333285,7.88143902603717,10.7747011392725,-9.91862911815262,50.4149613279293,42.4904723141649,-10.8719283922213,-7.79338606591516,18.9274818394827,10.7428846566925,46.1953220059963,-9.63387324281186,32.3015324616348,-4.91001396025176,15.8035891460394,1.67212900848382,-9.81393536981592,-11.8347093220151,-10.7744895870369,-12.4103175107252,-3.81917477484817,-12.6139766133406,16.8705850504753,-8.27479475146779,22.2128580182242,70.2206206924791,-12.4284618541365,-7.36178640763203,8.37538835123825,-11.2257442977062,-9.32493626459356,-11.6355849450744,-9.21325983701703,-3.77581448707794,-5.3380284878134,-8.68110856667678,-2.22371355691395,-11.1040165310801,1.38747067251248,5.34015027223641,-13.0120937699518,2.75198867598551,-1.47818249716329,-1.60207926424599,-9.82288572255224,-1.09819067488217,1.82258629909729,-3.92414643744922,-9.73027159275014,-2.20086403207884,-12.6220227453148,-7.82964047948303,-8.20729700636684,-9.52293538166535,-9.6541739256103,-9.95541297636094,0.57158853046344,-7.02991733143494,-10.6148726684351,9.35947163988921,12.5319055811708,-8.533419632578,-7.36109713200544,-10.6441392843067,3.03617539325029,-8.92494180369886,-6.93313985720011,18.7226258777797,12.0523754630731,-12.0843495885066,18.9079362793543,1.78806075738622,-7.78724148545518,25.5050341971458,8.60663496917816,-9.60461479522112,1.22762321804952,11.7846998924491,-11.3210899283169,-7.48894899484353,-11.0008990431299,-12.3124202064909,19.4734568308021,26.6324998496525,-9.22171709579912,38.7055045758267,-12.7090308715941,-9.41066743640088,4.54816977215295,-4.22488142119654,12.7191391652934,-1.71807208112373,31.5257251094493,-4.9621266405099,-11.89906948969,-4.56293523531772,-12.4401976209783,-6.64199737624089,0.888773948435306,27.2150249871413,-9.69059765483686,-4.05855019292565,-10.2075609836178,-14.1122774827575,-6.19488701789343,-13.5655962349136,17.9555571624713,-11.5186431260847,-10.9193223164765,-10.8518193899596,17.7691798072796,-10.381875647337,-10.4022041408751,-7.91770725370908,10.8273909846866,-7.64649353065182,-8.92606671609689,-7.13329722495902,8.4762562409884,-11.7242614507504,-11.3942729998345,-8.03172641525207,12.8249763090816,7.5066665983849,-10.3176460937968,-0.715045912324171,-8.63594428822088,-10.7055056137425,-6.00317999216107,-7.24850775211508,29.2539388929679,-12.383186930597,-13.4274007268336,31.9324360675562,-11.711171171708,8.5955582164182,6.0863867537629,-9.86570802726967,4.54787480744865,-10.9427800276513,-7.72421471422649,-11.8730752850013,-8.49220112357989,-6.88028364170803,-13.4012920002381,17.4394135854092,-6.15516176616284,-7.60959073054216,-6.89131969665898,-4.75119333235988,-4.97197306079471,-6.25245109076029,-6.79453265510587,-7.83930527552046,-12.8603643000516,-7.92137923223101,-12.187847073877,-2.8966711887781,-9.70185586423903,-10.4001105266319,27.5452858619008,-11.5206925725573,-2.11012422575292,8.08679870867863,-7.88177287436475,8.07893762621988,-2.28503173144222,-12.5059463942055,5.50959945671263,-3.95435766599436,7.11243196989153,-3.42250958597747,-8.30537705845971,10.9532296545709,-10.0606013102884,7.33275613481867,-9.47445121917347,7.98923009623041,-11.9223251496191,-11.2688896057749,42.2883948851804,-8.05564150282839,4.62159360184628,-9.86908370208157,-8.49834479119655,-7.14739148233501,-9.57382599644822,-7.21218623228521,-5.79975816007177,-9.87361803885223,-12.473054651096,11.0666316054351,-8.69001017807877,19.1636177544819,-2.72710171122231,-12.0884084022333,11.2833741986732,20.8548544638486,-7.26123412964392,-7.33651781248515,-13.7410642044894,3.66242081321853,-8.93708679681453,28.344750629991,-2.41078265067461,26.7543907480622,-9.31426467883132,-6.50644992242903,11.0104393807176,-7.7628157146532,-8.97112893713478,-7.93787424805615,6.35885461770902],[106.7707160388,115.665510456504,59.5967708297922,105.280774312118,56.3123054595355,5.95074744528883,142.41909642536,122.540157139185,148.853011377808,126.142403118574,0.0229892511076572,114.885213511183,600.363074076933,250.240989538977,47.8241510723717,85.6239052981138,134.308826273301,333.058979107884,89.9122908248597,41.6507402150506,127.887257836671,88.9273763454346,134.669912942865,23.0699238389299,56.8723648289454,16.1707637116702,45.5436081488136,472.228833801587,7.10730268181106,48.6542270623604,47.4465505992462,398.86279875493,5.62230489503615,31.3515090370783,91.4340790280199,625.998650200798,8.72646753525461,47.600790180276,40.7641834656951,48.9829207115765,364.023086828011,15.7450620802005,25.8279422462172,88.9625183580447,117.889310025905,9.02326529801224,270.844134398056,5.37432518776479,57.3235506967389,638.378202139757,44.2139054531476,95.5117172643932,2.00666741394704,88.1009565602435,11.7875371689005,24.9943002560878,37.7870808461964,130.680607784862,56.1337482408969,81.8768276989848,40.1595783811295,166.258088662059,24.414784689337,107.328866306926,34.7845163976393,29.9982414729285,45.8085732540103,52.6218587493753,28.8914970158109,21.0977785273155,33.8802038898526,110.626658577454,5.63234889005633,2646.93441638278,102.26846401092,89.1701894572788,6.10774060092944,45.4868392805528,40.485048315031,12.4191869551366,10.6816811162739,81.6723199499263,0.364428230813154,100.385197635778,73.35376686045,58.4111463043304,120.89658384328,60.2917022999398,48.1878458594853,53.7145599365778,386.115793285273,17.5922430296248,1119.69036916965,10.5219984214608,29.4892330642048,488.71929493098,95.9874962596982,14.9926082525365,45.3255524899919,84.2890210190957,88.6504470532292,97.7940605579769,79.1594790092283,45.8908987525318,87.5084600572185,19.7212647908516,92.2848761411242,19.4414683511014,26.3017929520005,20.9213345743214,24.0617647697908,81.630057296512,8.73757099874657e-005,40.0700278700666,114.672070858853,34.4576557625268,140.251851445791,39.5396527564292,29.5817595794825,1.00611412823106,0.828085168111978,47.2767992965142,52.5718840325399,177.072899552722,181.791299341288,47.783324460349,1009.30641135662,77.2808098390481,3.63280845732876,2.88292659681354,0.13984851384623,46.1783143911872,92.1971780849275,1.39009623946581,27.6695344255674,32.5002368508838,36.21209570018,17.7963907015405,14.2884094522266,111.841899454196,988.231267416973,0.238812487527414,133.98291217407,40.8481534132564,63.4031444344916,66.9775761020949,87.1789459062003,55.8338573619034,57.1171086819794,162.044572362323,404.154866560684,2718.67959321334,55.1253370223059,80.2051804578267,130.712537811823,39.4647857669061,4.018503483843,133.620946417674,1172.20936287921,282.562289569877,26.9183536264947,437.080545991194,47.4870453016283,13.3964814256413,15.2077196424203,22.6668258444361,764.653694115788,104.746277681377,24.5315514764842,89.4846196507984,60.7295583149954,87.7371641566304,99.3951802254003,76.151859673266,905.723647079199,17.7979590403302,945.365623270387,911.2245445329,0.00444803251959145,83.7246368027906,138.894441857991,0.393934473977513,71.315412444275,87.970818739327,102.570244450872,110.6085491365,314.945352165943,1644.17294979937,70.0639042317234,103.032880749789,56.3825696527813,88.1350767782962,7.30346544709796,122.605843035889,2344.50928056422,109.334057586657,143.809738111725,23.937221159208,150.287257648931,412.923585572079,222.985073065206,369.102264140465,108.687822149345,42.9802348131002,87.2564168824698,1.5631713672668,9.55158665404346,11.8603103835783,0.502167962210829,97.8816696123588,159.339982847359,60.860900089647,0.224846266898073,55.8044033451949,52.532816316383,94.0752326467166,17.1075059932001,128.757187176934,41.5488632963145,361.395869065913,813.262226612189,85.2397339505998,99.6314580612098,88.3892043829423,66.5241469480501,133.823575767173,112.926623689012,49.1211556187078,77.2045537521395,1445.44142073389,98.1221712907869,0.487649799348281,42.133537446681,177.866210141342,60.826919639275,69.4069890289242,90.6189814623408,93.833399607523,9.21358125100782,27.4382185387786,51.0014233195644,915.06344664806,29.4418420994429,352.109703356612,96.8935427037035,168.574482114627,163.37396045804,442.983903684106,145.013936405224,67.2645412836135,133.122202040654,122.563920971111,46.5789145085289,72.6098579984388,56.0577354232496,141.909812207262,87.2671517278334,86.5384904520553,121.475114734674,52.0885841048879,103.491696509904,120.122895305208,22.8952572863027,117.140587250068,57.6103634543562,73.3219639856321,59.7723860786939,92.2291106932966,113.084163398394,87.549999523005,127.540604750761,48.3250205425799,105.279928072246,49.8727530818414,79.2741139290203,105.824296640953,97.7377820591239,8.09980142434428,162.728989531952,84.2286785033253,55.006281592651,33.2858389403615,1764.60109161674,97.747244880782,93.5838977198829,176.322717531314,122.904388267615,45.1808549945559,212.587186388319,50.7528624030439,1056.43970177082,59.7804758804823,64.6205425015167,70.7620123097088,94.3426362986744,51.7086333536216,100.793958592679,329.516474870694,31.7881155060534,36.2652143533109,182.776449527906,70.0146898979762,56.0746020226651,483.31111883113,56.0746020226651,91.2992624664229,71.8613056718455,184.116420652602,88.0301741612091,19.816599702743,811.516365778198,73.6937771036272,808.794207634663,523.251416226707,193.414201626088,90.2001264837651,374.223448144682,88.4324036619061,0.204403018660957,322.729995810668,839.940233600813,30.7725282112213,29.6270015738183,96.5725609256316,51.8647366593531,1034.39551315051,57.216137467091,351.806529599118,96.5578523548879,688.032488241563,110.57022831391,159.984026357867,893.347583908038,143.442167608618,45.6512346442307,70.9611005655222,3.86059806666421,143.072158907531,138.775855331646,138.672092573215,9.51398196459608,66.8212585173549,61.381265301624,20.243406521489,79.2055852768429,83.8526872083506,33.6403349471347,22.4515005105693,1426.20599654104,12.1055835435712,54.115737491684,63.442854374836,120.945036063129,41.1316951854829,179.91218950517,161.673034962608,71.8262162777507,72.1426173439369,751.703198913276,383.84805904422,47.5996358964713,6.26383777869386,461.607247625179,8.41355441196874,62.8842546142391,73.6711436556146,3.43123404912488,107.640759152847,53.7649214021724,123.126506193582,1.74804370002012,46.2613982766995,196.697721758692,24.045155368164,30.1245126855834,205.585009771784,47.4538182711258,54.9632781075354,56.7843441837207,23.9796934114323,19.4044872556399,523.095494700912,7.00973742632115,84.633356057661,86.611430789244,101.972375288666,10.3537074196547,231.906216486378,100.51455083655,100.306445673187,502.741669141018,124.125876606962,11.365780645767,88.9819507639985,39.0319404010782,6.47769755918527,20.363247458206,23.7620717900188,24.7869255951759,217.506545256169,45.0044339458693,92.0628826639113,47.5365299876335,42.5610051550993,37.0428472586215,62.9987582546948,21.4362769699252,21.3603798480005,41.0818720219372,5.138139872344,20.721701516067,149.177892231803,97.7678861205459,57.6986424904458,117.620318840363,144.351583474956,71.0610218146085,98.5934149713104,367.226300764661,22.6812610893071,59.4564739054939,158.174605803316,105.852110136689,63.8303985784112,138.953435729532,135.401415315178,81.3020509538091,165.097171499144,28.3723502844256,261.270647370015,17.4211435862006,3.30401063377987,24.4925204100125,162.597337638601,8.70309379463358,130.052593247671,103.56583641687,128.950612855509,84.2402354934746,74.839509286035,853.659835026614,106.893949749806,98.3480192254435,119.618023704421,13.8854675101324,5.1004156609574,135.162520888414,115.125904875549,58.881449345656,181.386744809702,364.066946929931,785.442907813978,493.826715919621,84.7267230204003,45.8714826275433,2411.92304642156,102.494292914349,72.024845117197,156.046413794526,40.4911829854759,959.561687988074,156.797361361406,98.4240916806492,138.829157121935,85.2938113314466,143.478637909223,85.7997096318411,198.870481210656,153.036425163265,93.5429339883416,911.171705953524,86.0546221653662,0.67071345213561,87.8604628820829,78.3865838870867,108.624560379677,66.0611399457761,472.621562039651,113.004368947672,108.690992422662,75.8142135307188,96.3691460014305,140.251175241441,35.0767924157691,45.8509451568619,76.1289431711209,63.2436305098329,55.3247655101905,3.50381176614668,144.598966429564,794.580617632344,107.079417715798,25.0215824045592,398.842302849452,89.1315287375188,114.373548140765,107.491829226691,67.6607338925539,6.68179940626937,83.2753413588386,938.676186912286,190.884107969,410.351915483395,81.1075240342205,189.059899360854,60.6727582280365,79.0268602671665,257.158860531622,354.047451460635,130.168357314054,50.8728165269752,99.2000619659218,68.1718724822953,80.6483022372172,80.5184765006491,47.3998680438092,127.485494757918,54.3250871337674,98.8234213048797,60.9014810283487,49.0121604557448,2461.58446506249,133.520113017793,73.2452208311873,31.7985821948373,112.406300589454,63.7056210068475,86.1910744117432,72.8719330332035,840.193116275218,214.500411768593,68.0012946571313,150.748828231045,90.3807743758969,67.7591932545348,37.5249498515967,82.1473252417309,112.654184680672,159.792180574907,147.110440137533,54.0045056153329,404.774845951546,6.27163545198102,0.434033356100284,346.919287990734,413.545495807518,140.468200554252,150.064616370039,56.5255049317815,0.0774920588366699,10.2530046790125,996.656375678775,703.702998603143,55.083237877665,114.701565720336,94.4620701921103,203.370978346056,49.3737460157841,63.3484719761244,481.093514591125,775.364038483694,0.00948936283916012,145.560077889496,71.8259480700633,1.39540873510373,54.489056240708,68.2029697572615,54.375768744746,37.9602054728557,31.2774198677594,95.3537758393245,168.402693848042,23.2997743571624,81.0394133625897,44.4662377777233,68.6435367330987,58.5150399959664,4.59031947934092,102.616417289882,78.0889262131298,75.6130603199474,30.5173250280978,21.5591450417341,2167.90684618794,847.893867507762,4.65696572032209,140.281214233913,66.0793276862942,131.0735173544,56.6654322062614,5.95876078003215,35.704174594491,126.230136237522,74.398589403769,54.1422324026014,62.1170811211417,116.094184640641,98.379203583465,2541.66832569661,1805.44023748081,118.198826965587,60.7368663724006,358.249568783947,115.409570746999,2134.00777523768,92.8115136585663,1043.38899937005,24.1082370898672,249.753429896815,2.79601542101308,96.313327442924,140.060344736592,116.089625861167,154.015980717014,14.5860959608365,159.112406001903,284.616639945322,68.4722281789188,493.411061337787,4930.93557043702,154.466664059726,54.1958991115957,70.1471300340574,126.017335037484,86.954436338732,135.386837014043,84.884156824391,14.2567750408277,28.4945481367074,75.3616459464289,4.94490198320291,123.2991831225,1.92507486708222,28.5172049300666,169.314584278018,7.5734416727525,2.18502349491991,2.56665796892699,96.4890839183206,1.20602275839816,3.32182081765717,15.3989252625454,94.6781852686804,4.84380248769834,159.315458183245,61.3032700379593,67.3597241507181,90.6862982833738,93.2030741859337,99.1102475298957,0.326713448157355,49.4197376868093,112.675521767091,87.5997093778904,157.048657495379,72.8192506256676,54.1857509868187,113.297701103721,9.21836101857858,79.6545861994115,48.0684282794967,350.536719759306,145.259754302888,146.03150497724,357.510054344124,3.19716127210459,60.6411299527943,650.506769397574,74.0741654926803,92.2486253645803,1.50705876549427,138.879151555091,128.167077165038,56.0843570473679,121.019779757136,151.595691341205,379.215520941113,709.290048241742,85.0400661949538,1498.11608446934,161.519465695131,88.5606615985359,20.6858482763258,17.8496230231717,161.7765011061,2.95177167593684,993.871343676565,24.622700796458,141.587854720473,20.820377961704,154.758516848994,44.1161291459908,0.789919131417283,740.657585050724,93.9076829079296,16.4718296684968,104.194301234276,199.156375750345,38.3766251644645,184.025401208701,322.402033014773,132.679139466099,119.231599851102,117.761984072303,315.743751023434,107.783341956769,108.20585098844,62.6900881554373,117.232395535272,58.4688633143002,79.6746670202128,50.883929299608,71.8469198628948,137.458306565552,129.829457194757,64.5086292094578,164.480017328503,56.3500434193075,106.45382091684,0.511290656731506,74.5795337492548,114.607850445872,36.038170018283,52.5408646324724,855.792940753501,153.343318558109,180.295090278972,1019.68047320856,137.151530213043,73.8836210518345,37.0441037163805,97.3321948793332,20.6831652642261,119.744434733564,59.663492951473,140.969916723308,72.1174799233315,47.3383029903551,179.594627275645,304.133146202954,37.8860163676328,57.9058710863532,47.4902871615601,22.573838081461,24.7205161172684,39.0931446423496,46.1656740013,61.4547072028029,165.388969930041,62.7482489408207,148.543616296212,8.39070397589715,94.1260072104692,108.16229896616,758.742773213832,132.726357351377,4.45262424810934,65.3963133546863,62.122343643072,65.2692331683512,5.22137001369783,156.398695214741,30.3556861734081,15.6369445506084,50.5866885263351,11.7135718661077,68.9792880831888,119.973239865771,101.215698724576,53.7693125327209,89.7652259044977,63.8277975305137,142.14183697324,126.987872947142,1788.30834196495,64.8933600220913,21.3591274206265,97.3988131186921,72.2218641900575,51.085205001755,91.6581442102677,52.0156302491643,33.637194715319,97.4883331771482,155.577092329227,122.470335090416,75.5162768951126,367.244245439893,7.43708374335163,146.129617699185,127.314533307285,434.924954708305,52.7255210855056,53.8244936129119,188.816845471899,13.4133262130963,79.8715204137966,803.424888276373,5.8118729887937,715.797424299998,86.7555265073247,42.3338905930767,121.229775356457,60.2613078196666,80.481154406697,63.0098475779531,40.4350320491593],[4.67068369453468,4.75070249517551,4.08760139189529,4.65663082233831,4.03091308070395,1.78351683272482,4.95877409409739,4.80843878964682,5.00295931821319,4.83741145225567,-3.77272851543717,4.7439334865054,6.39753459566433,5.52242441170885,3.86753076446039,4.44996451166112,4.90014182194527,5.80831958873562,4.49883464876074,3.72931914072505,4.85114907763799,4.48782004050737,4.90282669501387,3.13852977087679,4.04080954351984,2.78320490263266,3.81867028781793,6.15746368547583,1.96112280218945,3.88473869205919,3.85960382692869,5.98861749498591,1.72674170349979,3.44526240107448,4.51561826485305,6.43934821486902,2.16636065282769,3.86284936152556,3.70780383963572,3.89147168044395,5.89721729097712,2.75652679739694,3.25145693866977,4.48821513898248,4.76974613359292,2.19980627499753,5.60154350559492,1.68163301966975,4.04871154620438,6.45893090103474,3.78903934261889,4.5592489338284,0.696475343051408,4.4784833905477,2.46704280120173,3.2186478091181,3.63196726765097,4.87275623766223,4.02773720457771,4.4052160167473,3.69286097685051,5.11354133195879,3.19518887868862,4.67589763775178,3.5491723566669,3.40113876237503,3.82447126255466,3.96313159899768,3.36354733092073,3.04916775187376,3.52283088776612,4.70616109600625,1.72852656474535,7.88115742533639,4.62760135574473,4.49054678481963,1.80955691771348,3.81742303753579,3.7009327285431,2.51924261181318,2.36853022903554,4.4027151433574,-1.00942564455226,4.60901476248159,4.29529385787775,4.06750673299799,4.79493550116926,4.09919448729826,3.87510682866713,3.9836840995238,5.95613730708338,2.86745806793789,7.02080746996958,2.35346815328587,3.38402521584963,6.19178828565546,4.56421793569011,2.70755729648045,3.81387094608658,4.43425161950483,4.48470107540913,4.58286384470557,4.37146453922241,3.82626681314701,4.47173547505796,2.98169748458489,4.52488027262392,2.96740832864392,3.26963710993991,3.04076943134558,3.18062405655951,4.4021975433681,-9.34529323169263,3.69062862018229,4.74207649717775,3.53973120100073,4.94343974535518,3.67730403562068,3.38715794095912,0.00609551278864521,-0.188639269847988,3.85601967403208,3.96218145273853,5.17656150966179,5.20285932218937,3.86667671796922,6.91701865250505,4.3474456691331,1.29000602884579,1.05880595763617,-1.96719548616053,3.83251030241971,4.52392952364001,0.329372981771588,3.32033196769296,3.48124737702864,3.58939319838502,2.87899566716113,2.65944868079427,4.71708626201613,6.89591674668925,-1.43207660600255,4.89771227073038,3.70986161620243,4.14951345697184,4.20435787832807,4.46796285573234,4.0223804481393,4.04510369843749,5.08787143542788,6.0017981375788,7.90790159775255,4.00960944753165,4.38458810702359,4.87300054419939,3.675408774713,1.39090956562136,4.89500703337656,7.06664559145217,5.64389902033392,3.2928083449009,6.08011749388085,3.86045694335083,2.59499209230063,2.72180317014115,3.12090243903199,6.63942304390231,4.65154102290953,3.19996010439442,4.49406676303623,4.1064305369536,4.47434557422907,4.59910362380885,4.33272950022835,6.8087342342144,2.8790837900684,6.85157175559773,6.81478934826372,-5.41529341100135,4.42753328069284,4.93371423353843,-0.93157069321694,4.26711246737414,4.47700515425011,4.63054787557544,4.70599738389929,5.75239913858786,7.40499277069082,4.24940774318958,4.63504816786687,4.03216006202907,4.47887060101576,1.98834895429158,4.80897468171301,7.7598313969625,4.6944079439623,4.96849116282525,3.17543461817153,5.01254851371672,6.0232625530143,5.40710483229241,5.91107374423677,4.68847975610638,3.76074035451029,4.46885110430905,0.44671668539528,2.25670728247728,2.47319756384925,-0.688820629174498,4.58375929617683,5.07104017630416,4.10859093387059,-1.49233836853579,4.02185277927012,3.96143804701402,4.54409480946838,2.83951731417034,4.85792836071928,3.72687016343781,5.88997394772731,6.70105359950075,4.44546768604535,4.60147795871039,4.48174983982115,4.19756499375335,4.89652233372083,4.72673825990984,3.89428981000164,4.34645844171778,7.2761700353733,4.58621334807723,-0.718157755030863,3.74084403749528,5.18103163925839,4.10803244820898,4.23998756891085,4.50666369951947,4.54152086520826,2.22067861844471,3.31193687869398,3.93185354056165,6.81899340347055,3.38241686321577,5.86394278430616,4.57361287791159,5.12737768247965,5.09604180900472,6.09353343458615,4.97682985094148,4.20863322237383,4.89126751870783,4.8086326977383,3.84114796037463,4.28510069771525,4.02638214933117,4.95519173052277,4.46897412317078,4.46058929128957,4.79970942480417,3.95294580968078,4.63949138252962,4.78851534626461,3.13092978370928,4.76337481388168,4.05370247260056,4.29486020910528,4.09054378304811,4.52427581492961,4.72813235031523,4.4722100532836,4.84843478253153,3.87794945018649,4.65662278437242,3.90947482320455,4.3729116431815,4.66178013994931,4.58228819933084,2.09183954586483,5.09208617617713,4.4335354630593,4.00744738948639,3.50513204949278,7.47567993340775,4.58238501310542,4.53885833577695,5.17231593834189,4.81140672193629,3.81067343504309,5.35935219310521,3.92696801836178,6.96265976185502,4.09067911735409,4.16853235561826,4.25932230740769,4.54693322211984,3.94562475700495,4.61307841924468,5.79762635230019,3.45909249370835,3.59085899954686,5.20826381881627,4.24870507571811,4.02668298314819,6.18066058465123,4.02668298314819,4.51414270943492,4.27473795118139,5.21556827846354,4.47767964390104,2.98651995529105,6.69890455406885,4.2999183601301,6.69554450600241,6.26006206791911,5.26483401168875,4.50203082932663,5.92485307394169,4.48223845973928,-1.58766165236166,5.77681604735869,6.73333073883082,3.42662235076918,3.38868616084616,4.57029465248018,3.94863911144592,6.94157248981339,4.04683598214693,5.86308139267447,4.57014233498112,6.5338360580998,4.70565086943334,5.07507397498662,6.79497573684542,4.96593194078768,3.82103065255105,4.26213184754173,1.35082211102516,4.96334911073321,4.9328600799991,4.93211209996139,2.25276250233834,4.20202127119235,4.11710466321216,3.00782913665501,4.37204681750614,4.42906153555952,3.51572579186656,3.11135744984199,7.26277304814366,2.49366679604936,3.99112503988457,4.1501395696126,4.79533619498298,3.71677899669772,5.19246889577709,5.08557599301484,4.27424953862731,4.27864495626909,6.62234156374611,5.95024679471356,3.86282511197432,1.83479306095435,6.13471441616504,2.12984402583503,4.14129580827214,4.29961118460863,1.23291997755812,4.67879937853587,3.98462123596422,4.81321233246175,0.55849727693236,3.83430788282075,5.28166814301321,3.17993353626683,3.40533921526781,5.32585962125266,3.85975699117832,4.00666529146899,4.03926065716572,3.17720736433967,2.96550434116024,6.25976403764766,1.94730024332944,4.43832846854577,4.46143180211464,4.62470194609979,2.33734466036891,5.44633305065673,4.61030250146216,4.6082299568431,6.22007645793569,4.82129618463213,2.43060714353042,4.48843354876085,3.66438029558775,1.86836513228433,3.01373168083977,3.16809068724266,3.21031632041255,5.38222894320776,3.80676101704678,4.5224718507808,3.86149846784258,3.75093846212056,3.61207527665684,4.14311501595434,3.0650846723331,3.06153779707997,3.71556695417633,1.63669112142809,3.03118153352097,5.00513950140054,4.58259616034231,4.05523364620862,4.7674617997947,4.9722518757402,4.26353897009277,4.59100447409753,5.90597828135747,3.1215390808987,4.08524451385212,5.06369952287442,4.6620429325422,4.15622954362276,4.93413888225585,4.90824381326829,4.39817124321969,5.10653421873295,3.34541508939452,5.56555683315135,2.85768461715715,1.19513707410993,3.19836778155314,5.09127682329332,2.16367857102537,4.86793893208548,4.64020751112525,4.85942948497607,4.4336726633284,4.3153459445436,6.74953279479726,4.67183721914031,4.58851240457576,4.78430353003219,2.63084279034911,1.62932203855767,4.90647791281461,4.7460263544842,4.07552608936319,5.20063146339983,5.89733777086268,6.66624777244943,6.20218467816046,4.43943105390952,3.82584363046613,7.78817965286944,4.62980711814394,4.27701113056491,5.05015348732184,3.7010842463492,6.86647660518735,5.05495427972245,4.58928560824416,4.93324409173199,4.44610190006547,4.96618615937413,4.45201562224391,5.29265376464321,5.03067596602008,4.53842051794162,6.81473136023902,4.45498223609428,-0.399413279218166,4.47574990693898,4.3616527888238,4.68789753643975,4.19058067603198,6.15829498800247,4.72742648121867,4.6885089242967,4.32828578866772,4.56818608815983,4.94343492398581,3.55753972705687,3.82539581259823,4.33242852332397,4.14699441913485,4.01322064752218,1.25385145192419,4.97396416190911,6.67781445047331,4.67357078079461,3.21973874862475,5.98856610781177,4.49011312976844,4.73946982966388,4.67741483748545,4.21450601006515,1.89938732347039,4.42215248324683,6.84447057086551,5.25166647933031,6.01701512199073,4.39577573159266,5.24206389268383,4.10549480372015,4.36978779806083,5.54969402829315,5.86943094782483,4.86882866885548,3.92932872445305,4.5971386389471,4.22203205283222,4.3900977533542,4.38848667983563,3.85861944481127,4.848002591522,3.99498613007618,4.59333463440177,4.10925749344065,3.89206843988713,7.80856051307733,4.89425212580164,4.29381300114322,3.45942170372418,4.72211999095488,4.15427280055077,4.4565666272011,4.28870355847737,6.73363176574197,5.36831165803333,4.21952674407033,5.0156150626487,4.50403157194706,4.21596014434811,3.62500604111881,4.40851428450988,4.72432281381965,5.07387409956239,4.99118359815169,3.98906748040455,6.00333097659476,1.83603715826913,-0.834633890461184,5.84909215344108,6.024767534548,4.94498113258245,5.01106597713926,4.03469195101722,-2.55757981449651,2.3275708020433,6.9044060522574,6.55635639015874,4.00884545713023,4.74233367461178,4.54819838029928,5.31503179076989,3.8994188257501,4.14865078613094,6.17606166823859,6.65333264614185,-4.65758380885033,4.98058890784615,4.27424580450066,0.333187372431548,3.9979998785828,4.22248810872925,3.99591862714332,3.63653838660526,3.44289642722898,4.55759393104554,5.12635809840262,3.1484436762828,4.39493562105181,3.79473019958826,4.22892697968415,4.06928381514297,1.5239496249925,4.63099793250797,4.35784825694782,4.32562902381982,3.41829455605141,3.07080009041844,7.68151739401091,6.74275547171836,1.53836410308032,4.94364908102232,4.19085595492207,4.87575836696529,4.03716436354948,1.78486253664492,3.5752676173691,4.83810671904425,4.30943698203255,3.99161451722231,4.12902100942929,4.75440179822144,4.58882943602507,7.84057596554038,7.49855973990982,4.77236818077374,4.10655086744711,5.881229863034,4.74848728605099,7.66575707535913,4.53057070169278,6.95022934747161,3.1825535700617,5.52047415075494,1.02819533974014,4.56760670427431,4.94207336357371,4.75436252951046,5.0370563679195,2.68006874350904,5.06961090843137,5.65114315177975,4.22642823501503,6.20134262244507,8.50328401991224,5.03997830645312,3.9926052434354,4.25059489386633,4.83641947715084,4.46538426122078,4.90813614019884,4.44128746606125,2.65723223518977,3.34971277552682,4.32229847114463,1.59835714348347,4.8146137850267,0.654964858974239,3.3505075868888,5.13175843001254,2.02464761046357,0.781626581313499,0.942604651456041,4.56942988192899,0.187327969103858,1.20051307164403,2.73429771883788,4.55048361746463,1.57770005023079,5.07088625039546,4.11583318634743,4.21004727477601,4.50740627937396,4.53478070597517,4.59623284194245,-1.11867179759404,3.90034989271168,4.72451219929234,4.47277768033285,5.05655567768565,4.28798035191801,3.99241797695998,4.73001887748143,2.22119725805501,4.37769961410096,3.87262558487656,5.85946546492254,4.97852354874666,4.9838223859449,5.8791634857781,1.16226331363012,4.10497337494669,6.47775170435126,4.30506682768818,4.52448738161265,0.410159913903494,4.93360414169904,4.85333470312061,4.02685693313503,4.79595400130437,5.02121705157222,5.93810470029511,6.56426453771591,4.44312251243125,7.31196365404493,5.08462566601949,4.48368775899732,3.02944980832202,2.88198238885259,5.08621575987478,1.08240555819705,6.90160776535845,3.20366881402727,4.95292040583294,3.03593221680225,5.04186594623117,3.78682545585803,-0.235824704055332,6.60753842004863,4.54231220297288,2.80165162900282,4.64625743717373,5.29409032392988,3.64744855457324,5.21507379812824,5.77579931648968,4.88793372827321,4.7810678189206,4.76866550327871,5.7549309701351,4.68012311923163,4.68403544062908,4.138203351497,4.76415825136503,4.06849436150434,4.37795168106922,3.9295471428505,4.27453774261371,4.92332064614683,4.86622172147116,4.1667990010463,5.10278908762005,4.03158301101446,4.66771128470039,-0.6708170506178,4.31186612304509,4.74151630495249,3.58457865504373,3.96159124077353,6.75202845523813,5.0326793197259,5.19459489899531,6.92724459564143,4.92108637454371,4.30249116674277,3.61210919512001,4.57812981708656,3.02932009712642,4.78535976116985,4.08872032500053,4.94854651104213,4.27829645489781,3.85731975617578,5.19070224047434,5.71746558645134,3.63458208272924,4.05881877989342,3.86052520932228,3.11679162871871,3.20763351090181,3.66594712277926,3.83223653495122,4.1183004352394,5.1083000931231,4.13913067229697,5.00087862755011,2.12712442350232,4.54463438683804,4.68363286730323,6.63166281773373,4.88828954521252,1.49349364103868,4.18046588615081,4.12910572524222,4.17852076397004,1.65275982219071,5.05240848545967,3.41298385328188,2.74963635481738,3.92368846908168,2.46074815809303,4.23380628682901,4.78726871679502,4.61725387055953,3.98470290540827,4.49719766094078,4.15618879343238,4.95682541100484,4.84409159329408,7.48902539162893,4.17274530756824,3.0614791621633,4.57881402493453,4.27974282817274,3.93349492498933,4.51806583242465,3.95154425513049,3.5156324402874,4.57973271112245,5.04714137937161,4.80786883813148,4.32434822103396,5.90602714560486,2.00647880202507,4.98449402031387,4.84666066485437,6.07517349829382,3.96509960939814,3.98572863517852,5.24077747362896,2.59624870629045,4.38041934885424,6.6888837001314,1.75990289219907,6.57339719997395,4.46309412293413,3.74558796131983,4.79768771472087,4.09869023641498,4.38802305026815,4.14329102493744,3.69969653915683],[0.599398772331156,0.649333146211091,0.334569557979713,0.59103440731656,0.31613093937964,0.0334068258178836,0.799524764101533,0.687926638272268,0.835644037876744,0.708149241414652,0.000129059066024573,0.644952647058974,3.37037066815121,1.40482472611769,0.268479396823961,0.480682958979485,0.753994621073818,1.86975559027428,0.504757472248461,0.233822563693522,0.717944659247603,0.499228273309643,0.756021720961051,0.129511953650314,0.319275049589924,0.0907808458726649,0.25567668574977,2.65103947731497,0.0398995966320521,0.273139349925333,0.266359590303783,2.23917082110224,0.0315629863391708,0.176003840048473,0.513300619794561,3.51428590471348,0.0489894057235556,0.267225473936899,0.228845533971511,0.274984599045341,2.04358460296939,0.0883910048680432,0.144995158303488,0.499425556609757,0.661817306487074,0.0506555949299941,1.52048846045291,0.0301708561969745,0.321807956226518,3.58378331476667,0.248211884604688,0.536192021515653,0.0112652048147706,0.49458884573014,0.0661739058233841,0.140315186079029,0.212132415230386,0.733626211191384,0.315128539268322,0.459647287438879,0.22545134913433,0.933354181102887,0.137061850968576,0.602532165061888,0.195276356649152,0.16840674838626,0.257164170002548,0.295413187270348,0.162193609676582,0.118440552029192,0.190199648099458,0.621045599378837,0.0316193721957778,14.8595916416293,0.574123636616452,0.500591398767118,0.0342881677086804,0.255357991718255,0.227278500679707,0.0697199165692105,0.0599657545164424,0.458499203973059,0.00204585903566331,0.563551191332652,0.411799783997345,0.327913595452036,0.678699802934351,0.338470824970462,0.270521138389315,0.301547488644668,2.16761056832063,0.0987608706368188,6.28581560160574,0.0590693138557028,0.165549232518478,2.74361506847744,0.538862991199729,0.0841668138419777,0.254452545844685,0.473189069009159,0.497673623458741,0.549004839664359,0.444392397998558,0.257626336077442,0.49126263710572,0.110712958974242,0.518076898946912,0.109142213280002,0.147655302787408,0.117450015553147,0.135080036907241,0.458261946197596,4.90517393168162e-007,0.224948622652911,0.643756088218894,0.193441397863836,0.787358094922106,0.221971156510662,0.166068665952318,0.00564821137911615,0.00464877685161901,0.265406625612395,0.295132634839587,0.99406731117594,1.02055587607052,0.268250200823102,5.66613249697868,0.433845760905545,0.0203941774507329,0.0161844251585137,0.000785093803073357,0.259239855096048,0.517584571938436,0.0078038436967602,0.155333649346632,0.182452668593254,0.203290626039621,0.099906932670121,0.0802135211036445,0.627867824766375,5.54781901297489,0.00134066640322299,0.752164976034319,0.22931693179807,0.355938110616013,0.376004567345257,0.489412781781023,0.313444985655769,0.320649014010944,0.90969997524047,2.26887989362274,15.2623609824033,0.309467432282688,0.450262848134783,0.733805462765886,0.221550861665098,0.0225594258817995,0.750132941052639,6.58065131613013,1.58627286356044,0.151116604959674,2.45372094893275,0.266586923001307,0.0752063376363284,0.0853744249529113,0.12724900691742,4.29267970203489,0.588033803441572,0.137717366558072,0.502356574453595,0.340928899315367,0.492546556156752,0.5579933451143,0.427507961848855,5.08463052671939,0.0999157371474162,5.30717611546626,5.11551194535922,2.49707535028923e-005,0.470020679595592,0.779737750405713,0.00221150376096789,0.400356691921545,0.493858266663283,0.575817798011372,0.620943935017314,1.76806772908659,9.23020172733229,0.393330865796213,0.578414986078426,0.3165253946454,0.494780392790712,0.041000832299024,0.688295391496979,13.1618109967392,0.613789083025457,0.807331669875743,0.134380863107022,0.843695734877812,2.31810649437381,1.25181308135919,2.07209853224219,0.610161190077534,0.241286196602027,0.489847695114848,0.00877546796766304,0.0536215315083942,0.0665824464528264,0.00281911437162066,0.549496667026672,0.894516714370142,0.341666237242869,0.00126226161387709,0.313279634123904,0.294913313081983,0.528127758689176,0.0960396115190022,0.722828344568014,0.233250638147972,2.02883569840387,4.56556252781433,0.478526264310686,0.559319782268302,0.496207036536222,0.37345906715235,0.751270479394927,0.633957344428588,0.275760634242086,0.433417667823738,8.11454530987364,0.550846816357327,0.00273761104075274,0.236532932965739,0.998520867455579,0.341475474822311,0.389643017847901,0.508724753879973,0.526770135249159,0.0517240072513944,0.154035068015479,0.286316245306246,5.13706310938897,0.165283184980804,1.97670421018011,0.543949433872029,0.946358153008448,0.917163010256878,2.48686173401915,0.814091903444881,0.377615557548241,0.747333046302621,0.688060045747749,0.261488779027991,0.40762356344588,0.314701811872745,0.796665699870995,0.48990795932746,0.485817337007498,0.681947610188269,0.292419443488533,0.580990726071023,0.674356402636102,0.128531395299707,0.657614061165667,0.32341809073889,0.411621246240648,0.335555442204336,0.517763838004675,0.634841754610521,0.491495834987307,0.715998587873088,0.271291221607751,0.591029656621248,0.279980017734146,0.445035945524873,0.594085680443926,0.54868889851146,0.0454713727696069,0.913542216132525,0.47285031292309,0.308799068511965,0.186862950227055,9.90627174950225,0.548742021726281,0.525369459757843,0.989855873814284,0.689971390797353,0.253640230405195,1.19344051685659,0.284920852320797,5.93073347989175,0.335600857440276,0.3627724462268,0.397249965905524,0.529628932668773,0.290286442771626,0.565845929298576,1.84986837054282,0.178454899582442,0.203588828174586,1.02608639824296,0.393054582070454,0.314796499061874,2.71325417707327,0.314796499061874,0.512543774804576,0.40342127500733,1.0336088451919,0.494191481315458,0.111248158430311,4.55576146176009,0.413708563201058,4.54047957258803,2.93747450745627,1.08580554020036,0.506373349213437,2.10084828235058,0.49644955242201,0.00114749552116553,1.81176984158332,4.71532985382357,0.17275350691316,0.166322649412097,0.542147478327898,0.291162789145274,5.80697988821168,0.321204950455163,1.97500222685746,0.542064906068634,3.86253688348477,0.620728806236056,0.8981323020879,5.01515270221561,0.805268170477393,0.256280888771129,0.398367624946761,0.0216729626574918,0.803190983310243,0.779072019005351,0.778489506568188,0.0534104230179307,0.375127018033395,0.344587508924793,0.113644203831804,0.444651233391167,0.47073954014778,0.188853050875804,0.126040194749066,8.00655980528761,0.0679593823434884,0.303799654247174,0.35616103774786,0.678971808238536,0.230908703366928,1.01000676512857,0.90761420613143,0.403224287101632,0.405000527045246,4.21997708081574,2.15487976374715,0.267218993917648,0.0351644796806105,2.59141108902136,0.0472327466984751,0.353025121617031,0.413581501573528,0.019262561430036,0.604283096364774,0.301830212239396,0.691218335812588,0.00981332041823638,0.259706278670078,1.10423885234273,0.134986793597525,0.169115620749901,1.15413108611275,0.266400390195026,0.308557651790784,0.318780911602985,0.134619297546594,0.108934605575928,2.93659918157471,0.0393518762782654,0.475122127127002,0.48622681584389,0.57246142788353,0.0581245471292126,1.30189537557644,0.564277365630402,0.563109086685921,2.82233509769979,0.696828688736194,0.0638062122125537,0.49953464794776,0.219120916540517,0.0363650643974067,0.114316977350688,0.133397594278625,0.139151008093016,1.22105724338462,0.252649822511352,0.516830652572966,0.266864724454188,0.238932688527405,0.207954371706186,0.35366793215594,0.120340844154821,0.119914766261996,0.230629001739264,0.0288449384420123,0.116329298052377,0.83746788239388,0.54885789932112,0.323913679303037,0.660307220272768,0.810373528707111,0.3989285715832,0.553492325295115,2.061567085174,0.127330044756024,0.333781946850875,0.887974418922307,0.594241822275851,0.358336667250641,0.780068935355,0.760128292876915,0.45642055553893,0.926836922925309,0.159279178407441,1.46674398271193,0.0978003376354503,0.0185483435077561,0.137498250547672,0.912803137233577,0.0488581881767149,0.730100608324189,0.581406939157014,0.723914214538511,0.472915192563916,0.420140574608624,4.79235015074196,0.600090592502709,0.552114701221165,0.671522110342074,0.0779514504313433,0.028633158968846,0.758787166476047,0.646303861265116,0.330553823747327,1.01828475250246,2.04383082864081,4.40938800587259,2.77228755456677,0.475646278738216,0.257517336138945,13.5402642842345,0.575391414641123,0.404339367031137,0.876026988721597,0.227312940028526,5.38687122363265,0.880242723769297,0.552541763415278,0.779371249251694,0.478829848635049,0.805472910636683,0.481669904705018,1.11643647914898,0.859129251614982,0.525139493983454,5.11521531552676,0.483100954952833,0.00376530976574123,0.493238741312084,0.440053451847967,0.609806045628929,0.37085979799841,2.6532442094034,0.634393797552852,0.610178987634808,0.425612454439767,0.541005529857723,0.78735429878706,0.196917161290615,0.257402041092045,0.427379311187311,0.355042617411908,0.310587001348446,0.0196700045576597,0.81176230874708,4.4606860794479,0.601131788771188,0.140468344987267,2.23905575939771,0.500374361841439,0.642080215307543,0.603447020536,0.379839738224516,0.0375108691752662,0.467498385585491,5.26962237330369,1.07160187941953,2.3036694281895,0.455328503325433,1.0613609777869,0.340610030025598,0.443647891319863,1.44366087458587,1.98758250975259,0.730750494752272,0.285594261259952,0.556897973185275,0.38270921268857,0.452750483887487,0.452021656827007,0.266097519696257,0.7156892065813,0.304974919555005,0.554783554942013,0.341894054061378,0.275148747675302,13.8190578942238,0.749566873704392,0.41119041881656,0.178513658394222,0.63103630916104,0.357636180019829,0.483866982492918,0.409094823168814,4.71674950867095,1.20418114862038,0.381751607993355,0.846286940130785,0.507387486130235,0.380392477991424,0.210660841355242,0.46116583017284,0.632427902525484,0.897055301473413,0.825861439231053,0.30317521102339,2.27236038808359,0.0352082549400522,0.00243661436814511,1.94756580300613,2.3215978283786,0.788572654445707,0.842445851818211,0.317327817200329,0.000435031688981411,0.0575592132872125,5.59511662168481,3.95050936340258,0.30923109242706,0.643921669048719,0.53029942109253,1.14170176309499,0.277178648277463,0.355631185593485,2.70080479667862,4.35280636881714,5.32722140210291e-005,0.817157880215824,0.403222781413888,0.00783366744882934,0.305895423650573,0.382883789287183,0.305259440409856,0.213104317382303,0.175587911797916,0.535305356147107,0.94539375303145,0.130802308567463,0.454946137687431,0.249628449850117,0.385357082660532,0.328496842933461,0.0257695364665803,0.576077007128294,0.438382435196923,0.424483202974009,0.171320824991241,0.12103061166911,12.1703848240668,4.75998065861601,0.0261436809558809,0.787522934306968,0.370961901924866,0.735831961254283,0.318113353156728,0.0334518117764462,0.200439214168594,0.708641765261463,0.417665300058338,0.303948393692464,0.348718296047364,0.651739674791534,0.552289766694241,14.2686396665347,10.1355381139339,0.663554899719973,0.340969925926401,2.01117272304544,0.647896329513037,11.9800792584156,0.521033382645153,5.85746830674968,0.135340927277135,1.40208762120922,0.0156965156079425,0.540692170758118,0.786282997829518,0.651714082317107,0.864628366148725,0.0818846996291824,0.893239123595832,1.59780575514966,0.384395375734937,2.76995411656702,27.6817168322626,0.867158451666124,0.30424967255131,0.393798086075293,0.707447123296083,0.488152410359817,0.76004645193656,0.476530094379212,0.0800359290816051,0.159965183384804,0.42307179100241,0.0277601227002415,0.69218772463982,0.0108071534479111,0.160092376070479,0.950513003182674,0.042516448417559,0.0122664757618914,0.014408928708596,0.541678847812375,0.00677047590956121,0.0186483278737612,0.0864478317653578,0.531512666787457,0.0271925615211377,0.894379035668461,0.344149652300592,0.378149903442004,0.509102662930145,0.523231559337273,0.556393765058844,0.00183413249432957,0.277436840337727,0.632547686525059,0.491774900512916,0.881653471957411,0.408799070067476,0.304192702121978,0.636040531233624,0.0517508403281052,0.447171873991398,0.269850741547415,1.96787365745834,0.815471897431465,0.81980441878109,2.00702117228511,0.017948503227681,0.34043247245125,3.65187172509287,0.4158440207672,0.517873391170973,0.00846045814228602,0.779651912367654,0.719515533435958,0.314851262671671,0.679391410916961,0.851041134233761,2.12887321668259,3.98187443070355,0.477405352022668,8.41025493838747,0.906752085563087,0.497169578030247,0.116128022003267,0.100205772927242,0.908195053405735,0.0165709136774495,5.57948176575276,0.138229068572614,0.794858266808036,0.116883256502476,0.868796880348434,0.247662979430618,0.00443451702094378,4.157968248858,0.527187153329774,0.0924709962398028,0.584935069846607,1.11804145888934,0.215442050622138,1.033097872287,1.80992869539153,0.74484574291919,0.669352770359423,0.66110251292657,1.77254985033449,0.605083540164323,0.607455458273311,0.351935092989786,0.658129462536781,0.328237612244299,0.447284605457311,0.28565664711368,0.403340514696413,0.771675448651769,0.72884794765897,0.362144177611993,0.923372288932533,0.316342796034694,0.597619758814086,0.00287032815100619,0.418681101230871,0.643395562054718,0.202314226853836,0.294958495421882,4.80432516600256,0.860852116562703,1.01215632693968,5.72437131159785,0.769953240766538,0.414774325740747,0.207961425318508,0.546411977772712,0.116112959875575,0.672231767619727,0.334944128454714,0.79138923250145,0.404859408397648,0.265751900421348,1.00822400654478,1.70736922278406,0.212687828102838,0.325077037296569,0.266605122437775,0.126726984090966,0.13877819276494,0.219464510256478,0.259168893371137,0.344999803484926,0.928475046445847,0.352261601087231,0.833907128741411,0.0471044669244258,0.528412801370429,0.607210962126283,4.25949645794489,0.745110818808141,0.0249965309495425,0.367127536407437,0.348747839252668,0.366414122556684,0.0293121830798614,0.878004656930878,0.170413402669311,0.0877840452361398,0.283987970896113,0.065758672945551,0.387241952918211,0.673516253857492,0.568213530890851,0.301854863551643,0.503931866352122,0.358322065260747,0.797968260770064,0.712895613791719,10.0393615823821,0.36430401305495,0.119907735275802,0.546785965064059,0.405445409912365,0.286786586232222,0.514558496487199,0.292009888760609,0.188835421968131,0.547288520587974,0.873392270883547,0.687534665155793,0.423939871729449,2.06166782455932,0.0417509503623544,0.820355212549883,0.71472944825592,2.44161970229372,0.295995135948025,0.302164643919795,1.05999650063385,0.0753009023755688,0.448389718233744,4.51033681855383,0.0326272002630536,4.01840610685152,0.487035752973096,0.237657692960218,0.680570302555959,0.338300193782086,0.45181213479582,0.353730186367521,0.226997714997337]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>cigs<\/th>\n      <th>income<\/th>\n      <th>cigpric<\/th>\n      <th>educ<\/th>\n      <th>age<\/th>\n      <th>restaurn<\/th>\n      <th>\\(e_i \\)<\/th>\n      <th>\\( e_i^2\\)<\/th>\n      <th>\\( log(e_i^2) \\)<\/th>\n      <th>\\( P_i \\)<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"targets":[2,6,7,8,9],"render":"function(data, type, row, meta) { return DTWidget.formatRound(data, 2, 3, \",\", \".\"); }"},{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0}],"pageLength":8,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[8,10,25,50,100]}},"evals":["options.columnDefs.0.render"],"jsHooks":[]}</script>
+
+&gt; **提示**：后面BPJ检验中需要用到的数据
+`\(P_{i}=\frac{\sum{e_i^2}} {\tilde{\sigma}^2};\quad \tilde{\sigma}^2=\frac{\sum{e_i^2}} {n}\)`
+
+---
+
+## 残差分布模式（按观测样本）
+
+**对数化**残差平方序列
+`\(log(e_i^2)\)`的**描点图**（dot plot）为：
+
+&lt;img src="08-hetero-scadeciticity-slide_files/figure-html/unnamed-chunk-64-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+## 残差分布模式（对收入）
+
+**对数化**残差平方序列
+`\(log(e_i^2)\)`与**对数化**收入序列
+`\(log(income)\)`的**散点图**（scatter plot）为：
+
+&lt;img src="08-hetero-scadeciticity-slide_files/figure-html/unnamed-chunk-65-1.png" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+## 残差分布模式（对香烟价格）
+
+
+**对数化**残差平方序列
+`\(log(e_i^2)\)`与**对数化**香烟价格序列
+`\(log(cigpric)\)`的**散点图**（scatter plot）为：
+
+&lt;img src="08-hetero-scadeciticity-slide_files/figure-html/unnamed-chunk-66-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+## 残差分布模式（对受教育年数）
+
+**对数化**残差平方序列
+`\(log(e_i^2)\)`与受教育年数序列
+`\(educ\)`的**散点图**（scatter plot）为：
+
+&lt;img src="08-hetero-scadeciticity-slide_files/figure-html/unnamed-chunk-67-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+## 残差分布模式（对年龄）
+
+**对数化**残差平方序列
+`\(log(e_i^2)\)`与年龄序列
+`\(age\)`的**散点图**（scatter plot）为：
+
+&lt;img src="08-hetero-scadeciticity-slide_files/figure-html/unnamed-chunk-68-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+## 帕克检验（关注收入变量）
+
+为验证**主模型**是否存在异方差问题。我们可以构建如下的**帕克检验辅助方程1**
+
+`$$\begin{equation} \begin{alignedat}{999} &amp;log(ei^2)=&amp;&amp; + \hat{\beta}_{1} &amp;&amp; + \hat{\beta}_{2} log(income)&amp;&amp;+e_i\\ \end{alignedat} \end{equation}$$`
+
+**帕克检验辅助方程**的回归结果为：
+
+`$$\begin{equation} \begin{alignedat}{999} &amp;\widehat{log(ei^2)}=&amp;&amp;-0.41&amp;&amp;+0.48log(income)\\ &amp;\text{(t)}&amp;&amp;(-0.5366)&amp;&amp;(6.0171)\\&amp;\text{(se)}&amp;&amp;(0.7700)&amp;&amp;(0.0793)\\&amp;\text{(fitness)}&amp;&amp; R^2=0.0430;&amp;&amp; \bar{R^2}=0.0419\\&amp; &amp;&amp; F^{\ast}=36.21;&amp;&amp; p=0.0000 \end{alignedat} \end{equation}$$`
+
+从而可以得到**帕克检验**初步结论：F检验极显著，拒绝原假设
+`\(H_0\)`，认为**主模型**为**异方差**。
+
+---
+class: page-font-16
+
+## BPG检验（LM检验）
+
+
+
+
+为验证**主模型**是否存在异方差问题。我们可以构建如下的**BPG检验辅助方程**
+
+`$$\begin{equation} \begin{alignedat}{999} &amp;Pi=&amp;&amp; + \hat{\beta}_{1} &amp;&amp; + \hat{\beta}_{2} log(income)&amp;&amp; + \hat{\beta}_{3} log(cigpric)&amp;&amp; + \hat{\beta}_{4} educ\\ &amp;\text{(cont.)}&amp;&amp; + \hat{\beta}_{5} age&amp;&amp; + \hat{\beta}_{6} I(age^2)&amp;&amp; + \hat{\beta}_{7} restaurn&amp;&amp;+e_i\\ \end{alignedat} \end{equation}$$`
+
+**BPG检验辅助方程**的回归结果为：
+
+`$$\begin{equation} \begin{alignedat}{999} &amp;\widehat{Pi}=&amp;&amp;-3.57&amp;&amp;+0.14log(income)&amp;&amp;+0.34log(cigpric)&amp;&amp;-0.01educ\\ &amp;\text{(t)}&amp;&amp;(-0.9752)&amp;&amp;(1.2493)&amp;&amp;(0.3898)&amp;&amp;(-0.5266)\\&amp;\text{(se)}&amp;&amp;(3.6630)&amp;&amp;(0.1107)&amp;&amp;(0.8783)&amp;&amp;(0.0254)\\&amp;\text{(cont.)}&amp;&amp;+0.11age&amp;&amp;-0.00I(age^2)&amp;&amp;-0.40restaurn\\&amp;\text{(t)}&amp;&amp;(4.4750)&amp;&amp;(-4.5474)&amp;&amp;(-2.3626)\\&amp;\text{(se)}&amp;&amp;(0.0244)&amp;&amp;(0.0003)&amp;&amp;(0.1691)\\&amp;\text{(fitness)}&amp;&amp; R^2=0.0400;&amp;&amp; \bar{R^2}=0.0328\\&amp; &amp;&amp; F^{\ast}=5.55;&amp;&amp; p=0.0000\\ \end{alignedat} \end{equation}$$`
+
+**BPG检验辅助方程**的回归平方和为
+`\(ESS=\)` 113.5691；**LM统计量**（绝对值）为
+`\(LM \equiv {\chi^2}^{\ast}=ESS/2=\)` 56.7845。给定显著性水平
+`\(\alpha=0.05\)`时卡方分布的理论查表值为
+`\(\chi^2_{1-\alpha}(m-1)=\chi^2_{0.95}(1)=\)` 12.59159。从而可以得到**BPG检验**初步结论：卡方检验极显著，拒绝原假设
+`\(H_0\)`，认为**主模型**存在**异方差性**。
+
+&gt;**提示**：
+`\(P_{i}=\frac{\sum{e_i^2}} {\tilde{\sigma}^2};\quad \tilde{\sigma}^2=\frac{\sum{e_i^2}} {n}\)`
+
+---
+class: page-font-16
+
+## 怀特检验
+
+
+
+
+通过构建**怀特检验辅助方程**，可以得到如下辅助回归的诊断结果：
+
+`$$\begin{equation} \begin{alignedat}{999} &amp;I(ei^2)=&amp;&amp; + \hat{\beta}_{1} &amp;&amp; + \hat{\beta}_{2} log(income)&amp;&amp; + \hat{\beta}_{3} I((log(income))^2)&amp;&amp; + \hat{\beta}_{4} log(cigpric)&amp;&amp; + \hat{\beta}_{5} I((log(cigpric))^2)\\ &amp;\text{(cont.)}&amp;&amp; + \hat{\beta}_{6} educ&amp;&amp; + \hat{\beta}_{7} age&amp;&amp; + \hat{\beta}_{8} I(age^2)&amp;&amp; + \hat{\beta}_{9} restaurn&amp;&amp;+e_i\\ \end{alignedat} \end{equation}$$`
+
+`$$\begin{equation} \begin{alignedat}{999} &amp;\widehat{I(ei^2)}=&amp;&amp;+19699.17&amp;&amp;+43.49log(income)&amp;&amp;-1.04I((log(income))^2)&amp;&amp;-10054.87log(cigpric)&amp;&amp;+1251.96I((log(cigpric))^2)\\ &amp;\text{(t)}&amp;&amp;(1.0527)&amp;&amp;(0.1572)&amp;&amp;(-0.0683)&amp;&amp;(-1.0865)&amp;&amp;(1.0932)\\&amp;\text{(se)}&amp;&amp;(18712.4188)&amp;&amp;(276.6317)&amp;&amp;(15.2518)&amp;&amp;(9254.3280)&amp;&amp;(1145.2348)\\&amp;\text{(cont.)}&amp;&amp;-2.34educ&amp;&amp;+19.51age&amp;&amp;-0.22I(age^2)&amp;&amp;-67.03restaurn\\&amp;\text{(t)}&amp;&amp;(-0.5116)&amp;&amp;(4.4901)&amp;&amp;(-4.5759)&amp;&amp;(-2.2029)\\&amp;\text{(se)}&amp;&amp;(4.5649)&amp;&amp;(4.3442)&amp;&amp;(0.0473)&amp;&amp;(30.4296)\\&amp;\text{(fitness)}&amp;&amp; R^2=0.0414;&amp;&amp; \bar{R^2}=0.0318\\&amp; &amp;&amp; F^{\ast}=4.31;&amp;&amp; p=0.0000\\ \end{alignedat} \end{equation}$$`
+
+**怀特检验辅助方程**的判定系数为
+`\(R^2=\)` 0.0414；样本卡方统计量（绝对值）为
+`\({\chi^2}^{\ast}=nR^2=\)` 33.4198。给定显著性水平
+`\(\alpha=0.05\)`时卡方分布的理论查表值为
+`\(\chi^2_{1-\alpha}(m-1)=\chi^2_{0.95}(1)=\)` 15.50731。从而可以得到**怀特检验**初步结论：卡方检验显著，应拒绝原假设
+`\(H_0\)`，认为**主模型**存在**异方差问题**。
+
+---
+
+## WLS矫正1（收入变量）
+
+根据散点图，可以认为主模型方差正比于收入（income）的平方，因此加权最小二乘法（WLS）矫正模型如下：
+
+
+
+`$$\begin{equation} \begin{alignedat}{999} &amp;\widehat{I(cigs/income)}=&amp;&amp;+0.00&amp;&amp;+0.00I(log(cigpric/income))&amp;&amp;+0.07I(educ/income)\\ &amp;\text{(t)}&amp;&amp;(5.4182)&amp;&amp;(6.7093)&amp;&amp;(2.1392)\\&amp;\text{(se)}&amp;&amp;(0.0006)&amp;&amp;(0.0001)&amp;&amp;(0.0331)\\&amp;\text{(cont.)}&amp;&amp;+0.00age&amp;&amp;-0.00I(age^2)&amp;&amp;-0.00restaurn\\&amp;\text{(t)}&amp;&amp;(3.6951)&amp;&amp;(-4.0142)&amp;&amp;(-2.3069)\\&amp;\text{(se)}&amp;&amp;(0.0000)&amp;&amp;(0.0000)&amp;&amp;(0.0001)\\&amp;\text{(fitness)}&amp;&amp; R^2=0.1486;&amp;&amp; \bar{R^2}=0.1432\\&amp; &amp;&amp; F^{\ast}=27.95;&amp;&amp; p=0.0000\\ \end{alignedat} \end{equation}$$`
+
+
+---
+class: page-font-16
+
+### 对WLS矫正（收入）模型进行BPG检验
+
+
+
+
+我们可以构建如下的**BPG检验辅助方程**
+
+`$$\begin{equation} \begin{alignedat}{999} &amp;Pi=&amp;&amp; + \hat{\beta}_{1} &amp;&amp; + \hat{\beta}_{2} I(log(cigpric/income))&amp;&amp; + \hat{\beta}_{3} I(educ/income)\\ &amp;\text{(cont.)}&amp;&amp; + \hat{\beta}_{4} age&amp;&amp; + \hat{\beta}_{5} I(age^2)&amp;&amp; + \hat{\beta}_{6} restaurn&amp;&amp;+e_i\\ \end{alignedat} \end{equation}$$`
+
+**BPG检验辅助方程**的回归结果为：
+
+`$$\begin{equation} \begin{alignedat}{999} &amp;\widehat{Pi}=&amp;&amp;+3.77&amp;&amp;+0.95I(log(cigpric/income))&amp;&amp;+1090.12I(educ/income)\\ &amp;\text{(t)}&amp;&amp;(1.4638)&amp;&amp;(2.2419)&amp;&amp;(8.0546)\\&amp;\text{(se)}&amp;&amp;(2.5730)&amp;&amp;(0.4237)&amp;&amp;(135.3412)\\&amp;\text{(cont.)}&amp;&amp;+0.08age&amp;&amp;-0.00I(age^2)&amp;&amp;-0.60restaurn\\&amp;\text{(t)}&amp;&amp;(1.1710)&amp;&amp;(-1.2426)&amp;&amp;(-1.2390)\\&amp;\text{(se)}&amp;&amp;(0.0704)&amp;&amp;(0.0008)&amp;&amp;(0.4858)\\&amp;\text{(fitness)}&amp;&amp; R^2=0.1851;&amp;&amp; \bar{R^2}=0.1800\\&amp; &amp;&amp; F^{\ast}=36.38;&amp;&amp; p=0.0000\\ \end{alignedat} \end{equation}$$`
+
+**BPG检验辅助方程**的回归平方和为
+`\(ESS=\)` 115.8392；**LM统计量**（绝对值）为
+`\(LM \equiv {\chi^2}^{\ast}=ESS/2=\)` 57.9196。给定显著性水平
+`\(\alpha=0.05\)`时卡方分布的理论查表值为
+`\(\chi^2_{1-\alpha}(m-1)=\chi^2_{0.95}(4)=\)` 9.487729。从而可以得到**BPG检验**初步结论：卡方检验极显著，拒绝原假设
+`\(H_0\)`，认为**WLS矫正模型**仍旧存在**异方差性**。
+
+---
+
+## WLS矫正2（香烟价格变量）
+
+根据散点图，也可以认为主模型方差正比于香烟价格（cigpric）的平方，因此加权最小二乘法（WLS）矫正模型如下：
+
+
+
+`$$\begin{equation} \begin{alignedat}{999} &amp;\widehat{I(cigs/cigpric)}=&amp;&amp;-0.06&amp;&amp;+0.01I(log(income/cigpric))&amp;&amp;-0.39I(educ/cigpric)\\ &amp;\text{(t)}&amp;&amp;(-0.7733)&amp;&amp;(1.1926)&amp;&amp;(-2.4633)\\&amp;\text{(se)}&amp;&amp;(0.0742)&amp;&amp;(0.0123)&amp;&amp;(0.1598)\\&amp;\text{(cont.)}&amp;&amp;+0.01age&amp;&amp;-0.00I(age^2)&amp;&amp;-0.06restaurn\\&amp;\text{(t)}&amp;&amp;(4.5097)&amp;&amp;(-4.8636)&amp;&amp;(-3.0092)\\&amp;\text{(se)}&amp;&amp;(0.0027)&amp;&amp;(0.0000)&amp;&amp;(0.0185)\\&amp;\text{(fitness)}&amp;&amp; R^2=0.0492;&amp;&amp; \bar{R^2}=0.0432\\&amp; &amp;&amp; F^{\ast}=8.29;&amp;&amp; p=0.0000\\ \end{alignedat} \end{equation}$$`
+
+
+---
+class: page-font-16
+
+### 对WLS矫正（香烟价格）模型进行BPG检验
+
+
+
+
+我们可以构建如下的**BPG检验辅助方程**
+
+`$$\begin{equation} \begin{alignedat}{999} &amp;Pi=&amp;&amp; + \hat{\beta}_{1} &amp;&amp; + \hat{\beta}_{2} I(log(income/cigpric))&amp;&amp; + \hat{\beta}_{3} I(educ/cigpric)\\ &amp;\text{(cont.)}&amp;&amp; + \hat{\beta}_{4} age&amp;&amp; + \hat{\beta}_{5} I(age^2)&amp;&amp; + \hat{\beta}_{6} restaurn&amp;&amp;+e_i\\ \end{alignedat} \end{equation}$$`
+
+**BPG检验辅助方程**的回归结果为：
+
+`$$\begin{equation} \begin{alignedat}{999} &amp;\widehat{Pi}=&amp;&amp;-1.41&amp;&amp;+0.12I(log(income/cigpric))&amp;&amp;+0.01I(educ/cigpric)\\ &amp;\text{(t)}&amp;&amp;(-2.1108)&amp;&amp;(1.0434)&amp;&amp;(0.0044)\\&amp;\text{(se)}&amp;&amp;(0.6675)&amp;&amp;(0.1103)&amp;&amp;(1.4379)\\&amp;\text{(cont.)}&amp;&amp;+0.10age&amp;&amp;-0.00I(age^2)&amp;&amp;-0.48restaurn\\&amp;\text{(t)}&amp;&amp;(4.0588)&amp;&amp;(-4.1341)&amp;&amp;(-2.8722)\\&amp;\text{(se)}&amp;&amp;(0.0242)&amp;&amp;(0.0003)&amp;&amp;(0.1663)\\&amp;\text{(fitness)}&amp;&amp; R^2=0.0376;&amp;&amp; \bar{R^2}=0.0316\\&amp; &amp;&amp; F^{\ast}=6.27;&amp;&amp; p=0.0000\\ \end{alignedat} \end{equation}$$`
+
+**BPG检验辅助方程**的回归平方和为
+`\(ESS=\)` 117.8926；**LM统计量**（绝对值）为
+`\(LM \equiv {\chi^2}^{\ast}=ESS/2=\)` 58.9463。给定显著性水平
+`\(\alpha=0.05\)`时卡方分布的理论查表值为
+`\(\chi^2_{1-\alpha}(m-1)=\chi^2_{0.95}(4)=\)` 9.487729。从而可以得到**BPG检验**初步结论：卡方检验极显著，拒绝原假设
+`\(H_0\)`，认为**WLS矫正模型**仍旧存在**异方差性**。
+
+
+---
+
+## 使用White校正法矫正异方差问题
+
+使用White校正法矫正异方差的EViews报告如下：
+
+&lt;img src="pic/chpt8-smoke-white-adj.png" width="580" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+## 使用White校正法矫正异方差问题
+
+作为对照，下面给出的是主模型的EViews报告：
+
+&lt;img src="pic/chpt8-smoke-main.png" width="577" style="display: block; margin: auto;" /&gt;
+
+---
+
+layout:false
+background-image: url("pic/thank-you-gif-funny-little-yellow.gif")
+class: inverse,center
+# 本章结束
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

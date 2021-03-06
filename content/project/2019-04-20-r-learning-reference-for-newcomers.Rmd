@@ -6,7 +6,7 @@ slug: r-learning-reference-for-newcomers
 categories:
   - R
 tags:
-  - R language
+  - Data science
 image:
   caption: ''
   focal_point: ''

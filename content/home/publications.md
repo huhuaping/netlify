@@ -10,7 +10,7 @@ headless: true
 weight: 50
 
 title: Recent Publications
-subtitle: ''
+subtitle: '最新发表'
 
 content:
   # Page type to display. E.g. post, talk, publication...

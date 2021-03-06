@@ -1,0 +1,2085 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>04-simple-reg-hypothesis-test-slide.utf8</title>
+    <meta charset="utf-8" />
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/duke-blue.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/hygge-duke.css" rel="stylesheet" />
+    <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+    <link rel="stylesheet" href="libs\cc-fonts.css" type="text/css" />
+    <link rel="stylesheet" href="libs\figure-captions.css" type="text/css" />
+    <link rel="stylesheet" href="libs\animate.css" type="text/css" />
+    <link rel="stylesheet" href="libs\mycss\my-custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+background-image: url("pic/slide-front-page.jpg")
+class: center,middle
+
+# 计量经济学(Econometrics)
+
+### 胡华平
+
+### 西北农林科技大学
+
+### 经济管理学院数量经济教研室
+
+### huhuaping01@hotmail.com
+
+### 2020-05-19
+
+
+
+
+
+
+
+
+
+---
+class: center, middle,inverse
+# 第4章：一元回归：假设检验
+
+
+.red[
+[4.0 统计学的预备知识](#review)
+
+[4.1 回归系数的置信区间](#interval)
+
+[4.2 假设检验](#hypothesis)
+
+[4.3 方差分析](#ANOVA)
+
+[4.4 回归分析应用：预测问题](#predication)
+
+[4.5 报告回归分析结果](#report)
+
+]
+
+---
+layout: false
+class: inverse, center, middle, duke-softblue
+name: review
+
+# 4.0 统计学的相关知识(回顾)
+
+---
+layout: true
+  
+&lt;div class="my-header"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   第04章 一元回归：假设检验   
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+4.0 统计学的相关知识(回顾) &lt;/span&gt;&lt;/div&gt; 
+
+---
+
+## 重要概念1
+
+- 显著性水平
+`\(\alpha\)`
+
+- 置信度（或置信水平）
+`\(1-\alpha\)`
+
+- 置信区间
+
+- 第I类错误：弃真错误
+`\(\alpha = P(Z &gt; Z_0|H_0=True)\)`
+
+- 第II类错误：取伪错误
+`\(\beta = P(Z \leq Z_0|H_1=True)\)`
+
+
+---
+
+## 重要概念2
+
+
+- 区间估计
+
+`$$\begin{align} 
+\operatorname{Pr}\left(\hat{\beta}_{2}-\delta \leq \beta_{2} \leq \hat{\beta}_{2}+\delta\right)=1-\alpha
+ \end {align}$$`
+ 
+- 随机区间(random interval）：
+`\(\left(\hat{\beta}_{2}-\delta, \hat{\beta}_{2}+\delta\right)\)`
+
+- 置信区间(confidence interval)：
+`\(\hat{\beta}_{2}-\delta \leq \beta_{2} \leq \hat{\beta}_{2}+\delta\)`
+
+- 显著性水平(level of significance)：
+`\(\alpha\)`
+
+- 置信度或置信系数(confidence coefficient): 
+`\(1-\alpha\)`
+
+- 置信限（confidence limits）或临界值（critical values）
+
+- 置信上限（lower confidence limit）
+
+- 置信下限（uper confidence limit）
+
+
+---
+
+## 区间估计
+
+注意的几个问题（自己去巩固）：
+
+
+- 陈述问题：
+
+    - 落入给定界限内的概率是
+`\(1-\alpha\)`。  （X）？？
+
+    - 使用我们的方法构造出来的区间包含
+`\(\beta\)`的概率为
+`\(1-\alpha\)`。
+
+    - 抽样层面来理解：从重复多次抽样中来看，平均起来这些区间将有
+`\((1-\alpha)\)`的可能包含着参数的真值。
+
+- 我们构造的区间是只是随机区间！（？）
+
+    - 对于计算出的参数估计值而言，得到的区间中要么包含参数真值要么不包含。概率为0或1！
+    
+    - 例如：对于95%置信区间的
+    `\(0.4268 \leq \beta_2 \leq ≤0.5914\)`而言，不能说这个区间包含真实的
+    `\(\beta_2\)`的概率是95%。这个概率不是1就是0。
+
+---
+
+## 区间估计
+
+注意的几个问题（自己去巩固）：
+
+- 两个游戏:
+
+    - 掷硬币
+
+    - 套圈
+
+请问: 区间估计更象哪一个?
+
+- 置信区间的两个特点:
+    - 位置的随机性
+    
+    - 长度的随机性
+
+---
+layout: false
+class: inverse, center, middle, duke-softblue
+name:interval
+
+# 4.1 回归系数的置信区间
+
+---
+layout: true
+  
+&lt;div class="my-header"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   第04章 一元回归：假设检验   
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+4.1 回归系数的置信区间 &lt;/span&gt;&lt;/div&gt; 
+
+---
+
+## 斜率系数的置信区间
+
+`$$\begin{align}
+\hat{\beta}_2 &amp; \sim N(\mu_{\hat{\beta}_2}, \sigma^2_{\hat{\beta}_2})
+&amp;&amp; \leftarrow \left[ \mu_{\hat{\beta}_2}= \beta_2; \quad
+\sigma^2_{\hat{\beta}_2} = \frac{\sigma^{2}}{\sum x_{i}^{2}} \right]
+\end{align}$$`
+
+`$$\begin {align} 
+&amp;Z=\frac{\left(\hat{\beta}_{2}-\beta_{2}\right)}{\sqrt{\operatorname{var}\left(\hat{\beta}_{2}\right)}}
+=\frac{\left(\hat{\beta}_{2}-\beta_{2}\right)}{\sqrt{\sigma_{\beta_{2}}^{2}}}
+=\frac{\hat{\beta}_{2}-\beta_{2}}{\sigma_{\hat{\beta}_{2}}}
+=\frac{\left(\hat{\beta}_{2}-\beta_{2}\right)}{\sqrt{\frac{\sigma^{2}}{\sum x_{i}^{2}}}} &amp;&amp; \leftarrow Z \sim N(0, 1)
+\end {align}$$`
+
+
+`$$\begin{align} 
+T&amp;=\frac{\left(\hat{\beta}_{2}-\beta_{2}\right)}{\sqrt{S_{\beta_{2}}^{2}}}
+=\frac{\hat{\beta}_{2}-\beta_{2}}{\sqrt{S_{\beta_{2}}^{2}}}
+=\frac{\hat{\beta}_{2}-\beta_{2}}{S_{\hat{\beta}_{2}}}
+&amp;&amp; \leftarrow T \sim t(n-2)
+ \end{align}$$`
+
+`$$\begin{align} 
+S^2_{\hat{\beta}_2} =\frac{\hat{\sigma}^{2}}{\sum x_{i}^{2}}
+; \quad
+\hat{\sigma}^{2}=\frac{\sum e_{i}^{2}}{n-2}
+ \end{align}$$`
+ 
+`$$\begin{align} 
+\operatorname{Pr}\left[-t_{\alpha / 2,(n-2)} \leq \mathrm{T} \leq t_{\alpha / 2,(n-2)}\right]=1-\alpha
+ \end{align}$$`
+ 
+
+---
+
+## 斜率系数的置信区间
+
+
+`$$\begin {align} 
+\operatorname{Pr}\left[-t_{\alpha / 2,(n-2)} \leq \frac{\hat{\beta}_{2}-\beta_{2}}{S_{\hat{\beta}_{2}}} \leq t_{\alpha / 2 ,(n-2)}\right]=1-\alpha
+ \end {align}$$`
+ 
+`$$\begin {align} 
+\operatorname{Pr}\left[\hat{\beta}_{2}-t_{\alpha / 2,(n-2)} \cdot S_{\hat{\beta}_{2}} \leq \beta_{2} \leq \hat{\beta}_{2}+t_{\alpha / 2,(n-2)} \cdot S_{\hat{\beta}_{2}}\right]=1-\alpha
+ \end {align}$$`
+
+因此，
+`\(\beta_2\)`的
+`\(100(1-\alpha)\%\)`置信上限和下限分别为：
+
+`$$\hat{\beta}_{2} \pm t_{\alpha / 2} \cdot S_{\hat{\beta}_{2}}$$`
+
+`\(\beta_2\)`的
+`\(100(1-\alpha)\%\)`置信区间为：
+
+`$$\left[ \hat{\beta}_{2} - t_{\alpha / 2} \cdot S_{\hat{\beta}_{2}}, \quad \hat{\beta}_{2} + t_{\alpha / 2} \cdot S_{\hat{\beta}_{2}} \right]$$`
+
+
+---
+
+## 截距系数的置信区间
+
+`$$\begin{align}
+\hat{\beta}_1 &amp; \sim N(\mu_{\hat{\beta}_1}, \sigma^2_{\hat{\beta}_1})
+&amp;&amp; \leftarrow \left[ \mu_{\hat{\beta}_1}= \beta_1; \quad
+\sigma^2_{\hat{\beta}_1} = \frac{\sum{X_i^2}}{n} \frac{\sigma^{2}}{\sum x_{i}^{2}} \right]
+\end{align}$$`
+
+`$$\begin {align} 
+&amp;Z=\frac{\left(\hat{\beta}_{1}-\beta_{1}\right)}{\sqrt{\operatorname{var}\left(\hat{\beta}_{1}\right)}}
+=\frac{\left(\hat{\beta}_{1}-\beta_{1}\right)}{\sqrt{\sigma_{\beta_{1}}^{2}}}
+=\frac{\hat{\beta}_{1}-\beta_{1}}{\sigma_{\hat{\beta}_{1}}}
+=\frac{\left(\hat{\beta}_{1}-\beta_{1}\right)}{\sqrt{\frac{\sum{X^2_i}}{n} \cdot \frac{\sigma^{2}}{\sum x_{i}^{2}}}} &amp;&amp; \leftarrow Z \sim N(0, 1)
+\end {align}$$`
+
+`$$\begin{align} 
+T&amp;=\frac{\left(\hat{\beta}_{1}-\beta_{1}\right)}{S^2_{\hat{\beta}_1}}
+=\frac{\hat{\beta}_{1}-\beta_{1}}{\sqrt{S_{\beta_{1}}^{2}}}
+=\frac{\hat{\beta}_{1}-\beta_{1}}{S_{\hat{\beta}_{1}}}
+&amp;&amp; \leftarrow T \sim t(n-2)
+ \end{align}$$`
+ 
+`$$\begin{align} 
+S^2_{\hat{\beta}_1} =\frac{\sum{X_i^2}}{n} \cdot \frac{\hat{\sigma}^{2}}{\sum x_{i}^{2}}
+; \quad 
+\hat{\sigma}^{2}=\frac{\sum e_{i}^{2}}{n-2}
+ \end{align}$$`
+ 
+`$$\begin{align} 
+\operatorname{Pr}\left[-t_{\alpha / 2,(n-2)} \leq \mathrm{T} \leq t_{\alpha / 2,(n-2)}\right]=1-\alpha
+ \end{align}$$`
+ 
+
+---
+
+## 截距系数的置信区间
+
+
+`$$\begin {align} 
+\operatorname{Pr}\left[-t_{\alpha / 2,(n-2)} \leq \frac{\hat{\beta}_{1}-\beta_{1}}{S_{\hat{\beta}_{1}}} \leq t_{\alpha / 2 ,(n-2)}\right]=1-\alpha
+ \end {align}$$`
+ 
+`$$\begin {align} 
+\operatorname{Pr}\left[\hat{\beta}_{1}-t_{\alpha / 2,(n-2)} \cdot S_{\hat{\beta}_{1}} \leq \beta_{1} \leq \hat{\beta}_{1}+t_{\alpha / 2,(n-2)} \cdot S_{\hat{\beta}_{1}}\right]=1-\alpha
+ \end {align}$$`
+
+因此，
+`\(\beta_1\)`的
+`\(100(1-\alpha)\%\)`置信上限和下限分别为：
+
+`$$\hat{\beta}_{1} \pm t_{\alpha / 2} \cdot S_{\hat{\beta}_{1}}$$`
+
+`\(\beta_1\)`的
+`\(100(1-\alpha)\%\)`置信区间为：
+
+`$$\left[ \hat{\beta}_{1} - t_{\alpha / 2} \cdot S_{\hat{\beta}_{1}}, \quad \hat{\beta}_{1} + t_{\alpha / 2} \cdot S_{\hat{\beta}_{1}} \right]$$`
+
+---
+
+### 示例：教育程度与时均工资回归（主模型）
+
+我们继续利用样本数据对**教育和工资案例**进行分析。
+
+&gt; **教育和工资案例**的总体回归模型（PRM）如下：
+
+`$$\begin{align}
+Wage_i &amp; = \beta_1 + \beta_2 Edu_i +u_i \\
+Y_i &amp; = \beta_1 + \beta_2 X_i +u_i \\
+\end{align}$$`
+
+&gt; **教育和工资案例**的总体回归模型（SRM）如下：
+
+`$$\begin{align}
+\widehat{Wage}_i &amp; = \hat{\beta}_1 + \hat{\beta}_2 Edu_i +e_i \\
+\hat{Y}_i &amp; = \hat{\beta}_1 + \hat{\beta}_2 X_i + e_i \\
+\end{align}$$`
+
+---
+
+### 示例：教育程度与时均工资回归（FF-ff计算表）
+
+
+
+
+&lt;table class="table" style="font-size: 20px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; obs &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; `\(X_i\)` &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; `\(Y_i\)` &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; `\(X_iY_i\)` &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; `\(X_i^2\)` &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; `\(Y_i^2\)` &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; `\(x_i\)` &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; `\(y_i\)` &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; `\(x_iy_i\)` &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; `\(x_i^2\)` &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; `\(y_i^2\)` &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 6.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4.46 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 26.74 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 36.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 19.86 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -6.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -4.22 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 25.31 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 36.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 17.79 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 5.77 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 40.39 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 49.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 33.29 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -5.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -2.90 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 14.52 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 25.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 8.44 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 8.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 5.98 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 47.83 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 64.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 35.74 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -4.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -2.70 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 10.78 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 16.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7.27 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 9.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7.33 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 65.99 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 81.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 53.75 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -3.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -1.34 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4.03 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 9.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.80 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 10.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7.32 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 73.18 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 100.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 53.56 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -2.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -1.36 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2.71 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.84 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 11.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 6.58 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 72.43 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 121.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 43.35 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -1.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -2.09 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2.09 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4.37 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 12.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7.82 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 93.82 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 144.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 61.12 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -0.86 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.73 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 13.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7.84 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 101.86 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 169.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 61.39 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -0.84 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -0.84 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.70 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 14.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 11.02 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 154.31 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 196.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 121.49 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2.35 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4.70 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 5.51 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 15.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 10.67 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 160.11 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 225.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 113.93 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 6.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 9.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4.00 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 11 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 16.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 10.84 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 173.38 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 256.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 117.42 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2.16 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 8.65 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 16.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4.67 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 12 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 17.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 13.62 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 231.46 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 289.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 185.37 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 5.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4.94 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 24.70 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 25.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 24.41 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 13 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 18.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 13.53 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 243.56 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 324.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 183.09 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 6.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4.86 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 29.14 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 36.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 23.58 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; sum &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 156.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 112.77 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1485.04 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2054.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1083.38 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 131.79 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 182.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 105.12 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+### 示例：教育程度与时均工资回归
+
+
+我们之前已算出：
+
+- 回归系数：
+`\(\hat{\beta}_1 =\)` -0.0145；
+`\(\hat{\beta}_2 =\)` 0.7241；
+`\(\hat{\sigma}^2=\)` 0.8812 。
+
+- 回归误差方差：
+`\(\hat{\sigma}^2=\)` 0.8812。
+
+
+- 回归系数的样本方差:
+`\(S^2_{\hat{\beta}_1} = \frac{\sum{X_i^2}}{n} \cdot \frac{\hat{\sigma}^2} {\sum{x_i^2}}=\)` 0.7650；
+`\(S^2_{\hat{\beta}_2} = \frac{\hat{\sigma}^2} {\sum{x_i^2}}=\)` 0.0048;
+
+- 回归系数的样本标准差:
+`\(S_{\hat{\beta}_1} =\)` 0.8746；
+`\(S_{\hat{\beta}_2} =\)` 0.0696。
+
+
+给定
+`\(\alpha=0.05,\quad (1-\alpha) 100 \%=95 \%\)`，我们可以查t分布表得到理论参照值：
+`\(t_{\alpha / 2}(n-2)=t_{0.05 / 2}(11)=\)` 2.2010
+
+
+
+---
+
+### 示例：教育程度与时均工资回归
+
+下面我们进一步计算回归系数的置信区间：
+
+那么，截距参数
+`\(\beta_1\)`的95%置信区间为：
+
+`$$\begin{align}
+\hat{\beta}_{1} - t_{\alpha / 2} \cdot S_{\hat{\beta}_{1}} \quad \leq &amp; \beta_1 \leq \quad \hat{\beta}_{1} + t_{\alpha / 2} \cdot S_{\hat{\beta}_{1}} \\
+-0.0145-2.201\ast0.8746\quad \leq &amp; \beta_1 \quad \leq-0.0145+2.201\ast0.8746\\
+-1.9395\quad \leq &amp; \beta_1 \quad \leq1.9106\\
+\end{align}$$`
+
+那么，斜率参数
+`\(\beta_2\)`的95%置信区间为：
+
+`$$\begin{align}
+\hat{\beta}_{2} - t_{\alpha / 2} \cdot S_{\hat{\beta}_{2}} \quad \leq &amp; \beta_2 \leq \quad \hat{\beta}_{2} + t_{\alpha / 2} \cdot S_{\hat{\beta}_{2}} \\
+0.7241-2.201\ast0.0696\quad \leq &amp; \beta_2 \quad \leq0.7241+2.201\ast0.0696\\
+0.5709\quad \leq &amp; \beta_2 \quad \leq0.8772\\
+\end{align}$$`
+
+---
+
+## 随机干扰项的方差的置信区间
+
+`$$\begin {align} 
+\chi^{2} &amp; =(n-2) \frac{\hat{\sigma}^{2}}{\sigma^{2}}
+&amp;&amp;\leftarrow \quad \chi^{2} \sim \chi^{2}(n-2)
+ \end {align}$$`
+
+`$$\begin {align} 
+\operatorname{Pr}\left(\chi_{\alpha / 2}^{2} \leq \chi^{2} \leq \chi_{\alpha / 2}^{2}\right)=1-\alpha
+\end {align}$$`
+
+`$$\begin {align} 
+\operatorname{Pr}\left(\chi_{\alpha / 2}^{2} \leq 
+(n-2) \frac{\hat{\sigma}^{2}}{\sigma^{2}} \leq \chi_{1-\alpha / 2}^{2}\right)=1-\alpha
+\end {align}$$`
+
+
+`$$\begin {align} 
+\operatorname{Pr}\left[(n-2) \frac{\hat{\sigma}^{2}}{\chi_{1-\alpha/2}^{2}} \leq \sigma^{2} \leq (n-2) \frac{\hat{\sigma}^{2}}{\chi_{\alpha / 2}^{2}}\right]=1-\alpha
+ \end {align}$$`
+ 
+因此，
+`\(\sigma^2\)`的
+`\(100(1-\alpha)\%\)`为：
+
+`$$\left[ (n-2) \frac{\hat{\sigma}^{2}}{\chi_{1-\alpha/2}^{2}}, \quad (n-2) \frac{\hat{\sigma}^{2}}{\chi_{\alpha / 2}^{2}}\right]$$`
+ 
+---
+
+### 示例：教育程度与时均工资回归
+
+- 给定
+`\(\alpha=0.05,\quad (1-\alpha) 100 \%=95 \%\)`
+
+- 查卡方分布表可知：
+
+    - `\(\chi^2_{\alpha / 2}(n-2)=\chi^2_{0.05 / 2}(11)=\chi^2_{0.025}(11)=\)` 3.8157
+
+    - `\(\chi^2_{1-\alpha / 2}(n-2)=\chi^2_{1-0.05 / 2}(11)=\chi^2_{0.975}(11)=\)` 21.9200
+
+
+们之前已算出回归误差方差
+`\(\hat{\sigma}^2=\frac{\sum{e_i^2}}{n-2}=\)` 0.8812
+。因此可以算出
+`\(\sigma^2\)`的95%置信区间为：
+
+
+`$$\begin {align}\\
+(n-2) \frac{\hat{\sigma}^{2}}{\chi_{\alpha}^{2}} \leq \sigma^{2} \leq(n-2) \frac{\hat{\sigma}^{2}}{\chi_{1-\alpha / 2}^{2}}\\
+11\ast \frac{0.8812}{21.92} \leq \sigma^2 \leq11\ast \frac{0.8812}{3.8157}\\
+0.4422\leq \sigma^2 \leq2.5403\\
+\end {align}$$`
+
+---
+layout: false
+class: inverse, center, middle, duke-softblue
+name: hypothesis
+
+# 4.2 假设检验
+
+---
+layout: true
+  
+&lt;div class="my-header"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   第04章 一元回归：假设检验   
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+4.2 假设检验 &lt;/span&gt;&lt;/div&gt; 
+
+---
+
+## 假设检验的基本原理和思路
+
+**假设检验**（Hypothesis Testing）：某一给定的观测或发现与某声称的假设是否相符？进行统计假设检验，就是要制定一套步骤和规则，以使决定接受或拒绝一个虚拟假设（原假设）。
+
+.pull-left[
+**虚拟假设**(null hypothesis) ——
+`\(H_0\)`
+
+- 指定或声称的假设，如
+`\(H_0:  \beta_2 = 0\)`
+
+- 它是一个等待被挑战的.red[**“靶子”**]！.red[**“稻草人”**]！
+]
+
+.pull-right[
+**备择假设**(alternative hypothesis) ——
+`\(H_1\)`
+
+- 简单的（simple）备择假设，如
+`\(H_1:  \beta_2 = 1.5\)`
+
+- 复合的（composite）备择假设，如
+`\(H_1:  \beta_2 \neq 1.5\)`
+]
+
+假设检验的具体方法：
+
+- **置信区间检验**（confidence interval）
+
+- **显著性检验**（test of significance）
+
+--
+
+**课堂讨论**：参数的置信区间检验和显著性检验有什么区别和联系？
+
+---
+
+## 置信区间检验法——双侧检验
+
+**双侧或双尾检验**（Two-sided or Two-Tail Test）
+
+`$$H_0: \beta_2 =0; \quad H_1: \beta_2 \neq 0$$`
+
+- 假设检验目的：估计的是否与上述相容?
+
+- 决策规则：
+
+    - 构造一个
+    `\(\beta_2\)`的
+    `\(100(1-\alpha)\%\)`置信区间。
+
+    - 如果
+    `\(\beta_2\)`在
+    `\(H_0\)`假设下落入此区间，就不拒绝
+    `\(H_0\)`。
+    
+    - 如果它落在此区间之外，就要拒绝
+    `\(H_0\)`。
+
+---
+
+### 示例：教育程度与时均工资回归
+
+对于**斜率参数**
+`\(\beta_2\)`的置信区间检验法。
+
+- **步骤1**：给出模型，并提出假设：
+
+`$$Y_i = \beta_1 + \beta_2X_i +u_i$$`
+
+`$$H_0: \beta_2 =0.5; \quad H_1: \beta_2 \neq 0.5$$`
+
+- **步骤2**：给定
+`\(\alpha=0.05,\quad (1-\alpha) 100 \%=95 \%\)`
+
+- **步骤3**：根据前述计算结果，计算斜率参数
+`\(\beta_2\)`的95%置信区间为：
+
+`$$\begin{align}
+\hat{\beta}_{2} - t_{\alpha / 2} \cdot S_{\hat{\beta}_{2}} \quad \leq &amp; \beta_2 \leq \quad \hat{\beta}_{2} + t_{\alpha / 2} \cdot S_{\hat{\beta}_{2}} \\
+0.5709\quad \leq &amp; \beta_2 \quad \leq0.8772\\
+\end{align}$$`
+
+- **步骤4**：那么我们可以对斜率参数
+`\(\beta_2\)`做出如下检验判断：
+
+    - 拒绝原假设
+    `\(H_0\)`，接受
+    `\(H_1\)`。认为，长期来看很多个区间 [0.5709,0.8772] 有95%的可能性不包含0.5（
+    `\(\beta_2 \neq 0.5\)`）。
+
+---
+
+### 示例：教育程度与时均工资回归
+
+对于**截距参数**
+`\(\beta_1\)`的置信区间检验法。
+
+- **步骤1**：给出模型，并提出假设：
+
+`$$Y_i = \beta_1 + \beta_2X_i +u_i$$`
+
+`$$H_0: \beta_1 =0; \quad H_1: \beta_1 \neq 0$$`
+
+- **步骤2**：给定
+`\(\alpha=0.05,\quad (1-\alpha) 100 \%=95 \%\)`
+
+- **步骤3**：根据前述计算结果，计算截距参数
+`\(\beta_1\)`的95%置信区间为：
+
+`$$\begin{align}
+\hat{\beta}_{1} - t_{\alpha / 2} \cdot S_{\hat{\beta}_{1}} \quad \leq &amp; \beta_1 \leq \quad \hat{\beta}_{1} + t_{\alpha / 2} \cdot S_{\hat{\beta}_{1}} \\
+-1.9395\quad \leq &amp; \beta_1 \quad \leq1.9106\\
+\end{align}$$`
+
+- **步骤4**：那么我们可以对截距参数
+`\(\beta_1\)`做出如下检验判断：
+
+    - 不能拒绝原假设
+    `\(H_0\)`，暂时接受
+    `\(H_0\)`。认为，长期来看很多个区间[-1.9395,1.9106] 有95%的可能性包含0（
+    `\(\beta_1=0\)`）。
+
+---
+
+## 显著性检验法
+
+**显著性检验方法**( test-of-significance approach)：是一种用样本结果来证实$H_0$真伪的检验程序。
+
+**关键思路**：
+
+- 找到一个适合的检验统计量(test statistic) 。例如t统计量
+`\(\chi^2\)`统计量、F统计量等。
+
+- 知道该统计量在
+`\(H_0\)`下的抽样分布(pdf)。往往与待检验参数有关系。
+
+- 计算样本统计量的值。也即能用样本数据快速计算出来，例如
+`\(t^{\ast}_{\hat{\beta_2}}=\frac{\hat{\beta}_2}{S_{\hat{\beta}_2}}\)`。
+
+
+- 查表找出给定显著性水平
+`\(\alpha\)`下的**理论统计量**的.red[**临界值**]。例如 `\(t_{1-\alpha/2}(n-2)=t_{0.975}(11)=\)`
+2.2010
+
+- 比较样本统计量值和该临界值的大小。例如，比较
+`\(t^{\ast}_{\hat{\beta_2}}\)`与
+`\(t_{0.975}(11)\)`
+
+
+- 做出拒绝还是接受
+`\(H_0\)`的判断。
+
+---
+
+## 回归系数的显著性检验：截距参数的t检验
+
+
+对于截距参数
+`\(\beta_1\)`的显著性检验（t检验）。
+
+- **步骤1**：给出模型，并提出假设：
+
+`$$Y_i = \beta_1 + \beta_2X_i +u_i$$`
+
+`$$H_0: \beta_1 =0; \quad H_1: \beta_1 \neq 0$$`
+
+- **步骤2**：构造合适的检验统计量
+
+`$$\begin{align} 
+T&amp;=\frac{\hat{\beta}_{1}-\beta_{1}}{S_{\hat{\beta}_{1}}}
+&amp;&amp; \leftarrow T \sim t(n-2)
+ \end{align}$$`
+
+---
+
+## 回归系数的显著性检验：截距参数的t检验
+
+- **步骤3**：基于原假设
+`\(H_0\)`计算出样本统计量。
+
+`$$\begin{align} \\
+T&amp;=\frac{\hat{\beta}_{1}-\beta_{1}}{S_{\hat{\beta}_{1}}} &amp;&amp; \leftarrow T \sim t(n-2) \\
+t^{\ast}_{\hat{\beta}_1}&amp;=\frac{\hat{\beta}_{1}}{S_{\hat{\beta}_{1}}} &amp;&amp; \leftarrow H_0: \beta_1 = 0 \\
+t^{\ast}_{\hat{\beta}_1}&amp;= \frac{-0.0145}{0.8746}=-0.0165
+\end{align}$$`
+
+
+- **步骤4**：给定显著性水平
+`\(\alpha=0.05\)`下，查出统计量的**理论分布值**。
+
+&gt; 
+`\(t_{1-\alpha/2}(n-2)=t_{1-0.05/2}(13-2)=t_{0.975}(11)=\)`
+2.2010
+
+---
+
+## 回归系数的显著性检验：截距参数的t检验
+
+- **步骤5**：得到显著性检验的判断结论。
+
+    - 若
+    `\(|t^{\ast}_{\hat{\beta}_1}| &gt; t_{1-\alpha/2}(n-2)\)`，则
+    `\(\beta_1\)`的t检验结果**显著**。换言之，在显著性水平
+    `\(\alpha=0.05\)`下，应**显著**地拒绝原假设
+    `\(H_0\)`，接受备择假设
+    `\(H_1\)`，认为截距参数
+    `\(\beta_1 \neq 0\)`。
+    
+    - 若
+    `\(|t^{\ast}_{\hat{\beta}_1}| &lt; t_{1-\alpha/2}(n-2)\)`，则
+    `\(\beta_1\)`的t检验结果**不显著**。换言之，在显著性水平
+    `\(\alpha=0.05\)`下，不能**显著**地拒绝原假设
+    `\(H_0\)`，只能暂时接受原假设
+    `\(H_0\)`，认为截距参数
+    `\(\beta_1 = 0\)`。
+
+本例中，
+ `\(|t^{\ast}_{\hat{\beta}_1}|=\)`
+0.0165 .red[**小于**]
+`\(t_{0.975}(11)=\)`
+2.2010。因此，认为
+`\(\beta_1\)`的t检验结果**不显著**。
+
+换言之，在显著性水平
+`\(\alpha=0.05\)`下，不能**显著**地拒绝原假设
+`\(H_0\)`，只能暂时接受原假设
+`\(H_0\)`，认为截距参数
+`\(\beta_1 = 0\)`。
+
+---
+
+## 回归系数的显著性检验：斜率参数的t检验
+
+
+对于斜率参数
+`\(\beta_2\)`的显著性检验（t检验）。
+
+- **步骤1**：给出模型，并提出假设：
+
+`$$Y_i = \beta_1 + \beta_2X_i +u_i$$`
+
+`$$H_0: \beta_2 =0; \quad H_1: \beta_2 \neq 0$$`
+
+- **步骤2**：构造合适的检验统计量
+
+`$$\begin{align} 
+T&amp;=\frac{\hat{\beta}_{2}-\beta_{2}}{{S_{\beta_{2}}}}
+&amp;&amp; \leftarrow T \sim t(n-2)
+ \end{align}$$`
+
+---
+
+## 回归系数的显著性检验：斜率参数的t检验
+
+- **步骤3**：基于原假设
+`\(H_0\)`计算出样本统计量。
+
+`$$\begin{align} \\
+T&amp;=\frac{\hat{\beta}_{2}-\beta_{2}}{S_{\hat{\beta}_{2}}} &amp;&amp; \leftarrow T \sim t(n-2) \\
+t^{\ast}_{\hat{\beta}_2}&amp;=\frac{\hat{\beta}_{2}}{S_{\hat{\beta}_{2}}} &amp;&amp; \leftarrow H_0: \beta_2 = 0 \\
+t^{\ast}_{\hat{\beta}_2}&amp;= \frac{0.7241}{0.0696}=10.4064
+\end{align}$$`
+
+
+- **步骤4**：给定显著性水平
+`\(\alpha=0.05\)`下，查出统计量的**理论分布值**。
+
+&gt; 
+`\(t_{1-\alpha/2}(n-2)=t_{1-0.05/2}(13-2)=t_{0.975}(11)=\)`
+2.2010
+
+---
+
+## 回归系数的显著性检验：斜率参数的t检验
+
+- **步骤5**：得到显著性检验的判断结论。
+
+    - 若
+    `\(|t^{\ast}_{\hat{\beta}_2}| &gt; t_{1-\alpha/2}(n-2)\)`，则
+    `\(\beta_2\)`的t检验结果**显著**。换言之，在显著性水平
+    `\(\alpha=0.05\)`下，应**显著**地拒绝原假设
+    `\(H_0\)`，接受备择假设
+    `\(H_1\)`，认为斜率参数
+    `\(\beta_2 \neq 0\)`。
+    
+    - 若
+    `\(|t^{\ast}_{\hat{\beta}_2}| &lt; t_{1-\alpha/2}(n-2)\)`，则
+    `\(\beta_2\)`的t检验结果**不显著**。换言之，在显著性水平
+    `\(\alpha=0.05\)`下，不能**显著**地拒绝原假设
+    `\(H_0\)`，只能暂时接受原假设
+    `\(H_0\)`，认为斜率参数
+    `\(\beta_2 = 0\)`。
+
+本例中，
+ `\(|t^{\ast}_{\hat{\beta}_2}|=\)`
+10.4064 .red[**大于**]
+`\(t_{0.975}(11)=\)`
+2.2010。因此，认为
+`\(\beta_2\)`的t检验结果**显著**。
+
+换言之，在显著性水平
+`\(\alpha=0.05\)`下，应**显著**地拒绝原假设
+`\(H_0\)`，接受备择假设
+`\(H_1\)`，认为斜率参数
+`\(\beta_2 \neq 0\)`。
+
+---
+
+## 假设检验：实际操作中的若干问题
+
+关于**显著性水平**
+`\(\alpha\)`和**显著性概率值**p。
+
+选择显著性水平
+`\(\alpha\)`：
+
+- 犯错误类型：
+
+    - 第I类错误：弃真错误
+    `\(\alpha = P(Z &gt; Z_0|H_0=True)\)`
+
+    - 第II类错误：取伪错误
+    `\(\beta = P(Z \leq Z_0|H_1=True)\)`
+    
+    - [给定样本容量时]如果我们要减少犯第I 类错误， 第II类错误就要增加；反之亦然。
+
+- 为什么
+`\(\alpha\)`通常固定在0.01、0.05、0.1水平上？
+
+    - 约定而已，并非神圣不可改变！
+    
+    - 如何改变？？
+
+---
+
+## 假设检验：实际操作中的若干问题
+
+关于**显著性水平**
+`\(\alpha\)`和**显著性概率值**p
+
+
+精确的显著性水平：p值
+
+- 对给定的样本算出一个检验统计量(如t统计量)，查到与之对应的概率：p值(p value)或概率值(probability value)
+
+- 不约定
+`\(\alpha\)`，而是直接求出犯错误概率p值，由读者自己去评判犯错误的可能性和代价！！因人而异！！
+
+
+
+---
+
+## 假设检验：实际操作中的若干问题
+
+关于**统计显著性**与**实际显著性**。
+
+- 不能一味追求统计显著性，有时候还需要考虑“实际显著性”的现实意义。
+
+- 举例说明：
+
+    - 边际消费倾向(MPC)是指GDP每增加1美元带来消费的增加数；宏观理论表明收入乘数为：1/(1-MPC)。
+    
+    - 若MPC的95%置信区间为(0.7129,0.7306)，当样本表明MPC的估计值为
+    `\(\widehat{MPC}=0.74\)`（此时，即乘数为3.84），你怎样抉择！！！
+    
+---
+
+## 假设检验：实际操作中的若干问题
+
+关于**置信区间方法**和**显著性检验方法**的选择。
+
+- 一般来说，置信区间方法优于显著性检验方法！
+
+- 例如：假设MPC
+`\(H_0: \beta_2 =0\)`显然荒谬的！
+
+---
+layout: false
+class: inverse, center, middle, duke-softblue
+name: ANOVA
+
+# 4.3 方差分析（ANOVA）和F检验
+
+---
+layout: true
+  
+&lt;div class="my-header"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   第04章 一元回归：假设检验   
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+4.3 方差分析（ANOVA）和F检验&lt;/span&gt;&lt;/div&gt; 
+
+---
+
+## 平方和分解
+
+`$$\begin{alignedat}{2}
+&amp;&amp;(Y_i - \bar{Y}) &amp;&amp;= (\hat{Y}_i - \bar{Y}) &amp;&amp;+ (Y_i - \hat{Y}_i ) \\
+&amp;&amp;y_i &amp;&amp;= \hat{y}_i &amp;&amp;+ e_i \\
+&amp;&amp;\sum{y_i^2} &amp;&amp;= \sum{\hat{y}_i^2} &amp;&amp;+ \sum{e_i^2} \\
+&amp;&amp;TSS &amp;&amp;=ESS &amp;&amp;+RSS
+\end{alignedat}$$`
+
+- 其中：
+`\(TSS\)`表示**总离差平方和**;
+`\(ESS\)`表示**回归平方和**;
+`\(RSS\)`表示**残差差平方和**
+
+---
+
+## 双变量方差分析表
+
+
+
+&lt;table class="table" style="font-size: 20px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; 变异来源 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 平方和符号SS &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 平方和计算公式 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 自由度df &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 均方和符号MSS &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 均方和计算公式 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 回归平方和 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; ESS &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(\sum{(\hat{Y}_i-\bar{Y}_i)^2}=\sum{\hat{y}_i^2}\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(MSS_{ESS}\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(ESS/df_{ESS}=\hat{\beta}_2^2\sum{x_i^2}\) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 残差平方和 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; RSS &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(\sum{(Y_i-\hat{Y}_i)^2}=\sum{e_i^2}\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; n-2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(MSS_{RSS}\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(RSS/df_{RSS}=\frac{\sum{e_i^2}}{n-2}\) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 总平方和 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; TSS &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(\sum{(Y_i-\bar{Y}_i)^2}=\sum{y_i^2}\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; n-1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(MSS_{TSS}\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(TSS/df_{TSS}=\frac{\sum{y_i^2}}{n-1}\) &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+class: inverse, center, middle
+## 模型整体显著性检验：F检验
+
+---
+
+## 模型整体显著性检验：F检验
+
+- **步骤1**：给出模型，并提出假设：
+
+一元回归模型下：
+
+`$$Y_i = \beta_1 + \beta_2X_i +u_i$$`
+
+`$$H_0: \beta_2 =0; \quad H_1: \beta_2 \neq 0$$`
+
+多元回归模型下：
+
+`$$Y_i = \beta_1 + \beta_2X_{2i} + \beta_3X_{3i}+ \cdots + \beta_kX_{ki}+ u_i$$`
+
+`$$H_0: \beta_2 = \beta_3 =\cdots= \beta_k= 0; \quad H_1: \text{not all} \quad \beta_j = 0, \quad j \in 2, 3, \cdots, k$$`
+
+---
+
+## 模型整体显著性检验：F检验
+
+- **步骤2**：构造合适的检验统计量
+
+`$$\begin {align} 
+\chi^2_1 &amp;= \left( \frac{\hat{\beta}_{2}-\beta_{2} }{\sigma_{\hat{\beta_2}}}\right)^2
+= \left( \frac{\hat{\beta}_{2}-\beta_{2} }{\sqrt{\sigma^{2}/\sum x_{i}^{2}}}\right)^2=\frac{\left(\hat{\beta}_{2}-\beta_{2}\right)^{2} \sum x_{i}^{2}}{\sigma^{2}} &amp;&amp;\leftarrow \chi^2_1 \sim \chi^2(1)
+ \end {align}$$`
+
+`$$\begin {align} 
+\chi^2_{2}&amp;=(n-2) \frac{\hat{\sigma}^{2}}{\sigma^{2}}=\frac{\sum e_{i}^{2}}{\sigma^{2}} &amp;&amp; \leftarrow \chi^2_2 \sim \chi^2(n-2)
+ \end {align}$$`
+
+`$$\begin {align} 
+F &amp;= \frac{\chi^2_1/1}{\chi^2_2/n-2} 
+= \left( \frac{\left(\hat{\beta}_{2}-\beta_{2}\right)^{2} \sum x_{i}^{2}}{\sigma^{2}} \right ) / \left( \frac{\sum e_{i}^{2}}{(n-2)\sigma^{2}} \right) 
+=\frac{\left(\hat{\beta}_{2}-\beta_{2}\right)^{2} \sum x_{i}^{2}}{\sum e_{i}^{2} /(n-2)}\\
+F &amp; \sim F(1,n-2)
+\end {align}$$`
+
+---
+
+## 模型整体显著性检验：F检验
+
+- **步骤3**：基于原假设
+`\(H_0\)`计算出样本统计量。
+
+`$$\begin {align} 
+F^{\ast} &amp;= \frac{\left(\hat{\beta}_{2}-\beta_{2}\right)^{2} \sum x_{i}^{2}}{\sum e_{i}^{2} /(n-2)} &amp;&amp;\leftarrow H_0: \beta_2=0 \\
+&amp; = \frac{\hat{\beta}_{2}^{2} \sum x_{i}^{2}}{\sum e_{i}^{2} /(n-2)}\\
+&amp; = \frac{ESS / df_{ESS}}{RSS / df_{RSS}}
+=\frac{MSS_{ESS}}{MSS_{RSS}}
+=\frac{\hat{\beta}_{2}^{2} \sum x_{i}^{2}}{\hat{\sigma}^{2}}
+\end {align}$$`
+
+
+---
+
+## 模型整体显著性检验：F检验
+
+- **步骤4**：给定显著性水平
+`\(\alpha=0.05\)`下，查出统计量的**理论分布值**。
+`\(F_{1-\alpha}(1,n-2)\)`
+
+- **步骤5**：得到显著性检验的判断结论。
+
+    - 若
+    `\(F^{\ast} &gt; F_{1-\alpha}(1,n-2)\)`，则
+    模型整体显著性的F检验结果**显著**。换言之，在显著性水平
+    `\(\alpha=0.05\)`下，应**显著**地拒绝原假设
+    `\(H_0\)`，接受备择假设
+    `\(H_1\)`，认为斜率参数
+    `\(\beta_2 \neq 0\)`。
+    
+    - 若
+    `\(F^{\ast} &lt; F_{1-\alpha}(1,n-2)\)`，则
+    模型整体显著性的F检验结果**不显著**。换言之，在显著性水平
+    `\(\alpha=0.05\)`下，不能**显著**地拒绝原假设
+    `\(H_0\)`，只能暂时接受原假设
+    `\(H_0\)`，认为斜率参数
+    `\(\beta_2 = 0\)`。
+
+---
+
+## F检验和t检验的异同及联系
+
+F检验与t检验的**联系**：
+
+- 在一元回归模型中，t检验与F检验的结论总是一致的。
+
+- 对于检验斜率参数
+`\(\beta_2\)`的显著性，两者可相互替代！在一元回归分析中，若假设
+`\(H_0:\beta_2=0\)`，则
+`\(F^{\ast} \simeq (t^{\ast})^2\)`
+
+F检验与t检验的**不同**：
+
+- 检验目的不同。F检验是检验模型的整体显著性；t检验是检验各个回归参数的显著性。
+
+- 假设的提出不同：
+    
+    - F检验：斜率系数联合假设
+    `\(H_0: \beta_2 =0; \quad H_1: \beta_2 \neq 0\)`
+    
+    - t检验：回归系数分别假设
+    `\(H_0: \beta_i =0; \quad H_1: \beta_i \neq 0; \quad i \in 1,2\)`
+
+- 检验原理的不同：F检验需要构造F统计量；t检验需要构造t统计量
+
+---
+class: inverse, center, middle
+## 方差分析（ANOVA）和F检验的案例应用
+
+### 教育程度与时均工资案例
+
+---
+
+## 计算方差分析（ANOVA）表
+
+&lt;table&gt;
+&lt;caption&gt;教育程度与时均工资案例的ANOVA分析表&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; 变异来源 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 平方和SS &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 自由度df &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 均方和MSS &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 回归平方和ESS &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 95.425 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 95.425 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 残差平方和RSS &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 9.693 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 11 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.881 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 总平方和TSS &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 105.118 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 12 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7.086 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+## 模型整体显著性检验
+
+- **步骤1**：给出模型
+`\(Y_i = \beta_1 + \beta_2X_i +u_i\)`，提出假设：
+`\(H_0: \beta_2 =0; \quad H_1: \beta_2 \neq 0\)`
+
+- **步骤2**：构造合适检验的分布：
+
+`$$\begin {align} 
+F &amp;= \frac{\left(\hat{\beta}_{2}-\beta_{2}\right)^{2} \sum x_{i}^{2}}{\sum e_{i}^{2} /(n-2)} 
+&amp;&amp; \leftarrow F \sim F(1,n-2)
+\end {align}$$`
+
+- **步骤3**：基于原假设
+`\(H_0: \beta_2=0\)`，可以计算出样本统计量。
+
+`$$\begin {align}
+F^{\ast} = \frac{\hat{\beta}_{2}^{2} \sum x_{i}^{2}}{\sum e_{i}^{2} /(n-2)}
+= \frac{ESS / df_{ESS}}{RSS / df_{RSS}}
+=\frac{MSS_{ESS}}{MSS_{RSS}}
+=\frac{95.4253}{0.8812}=108.2924
+\end {align}$$`
+
+- **步骤4**：给定
+`\(\alpha=0.05\)`下，查出F**理论值**
+`\(F_{1-\alpha}(1,n-2)=F_{0.95}(1,11)=\)` 4.8443
+
+- **步骤5**：得到显著性检验的判断结论。因为
+`\(F^{\ast}=\)` 108.2924 .red[**大于**] `\(F_{0.95}(1,11)=\)` 4.8443，所以模型整体显著性的F检验结果**显著**。换言之，在显著性水平
+`\(\alpha=0.05\)`下，应**显著**地拒绝原假设
+`\(H_0\)`，接受备择假设
+`\(H_1\)`，认为斜率参数
+`\(\beta_2 \neq 0\)`。
+
+---
+layout: false
+class: inverse, center, middle, duke-softblue
+name: predication
+
+# 4.4 回归预测
+
+---
+layout: true
+  
+&lt;div class="my-header"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   第04章 一元回归：假设检验   
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+4.4 回归预测 &lt;/span&gt;&lt;/div&gt; 
+
+
+---
+
+## 预测未来事件的一些惯常说法
+
+- 算命术士：
+
+    - “客官印堂发黑，明日必有凶象!”
+
+- 天气预报播报词：
+
+    - 预测西安明天是小雨，概率为95%。
+    
+    - 预测西安明天是小雨转阴，概率为95%。
+    
+    - 预测西安明天是天晴或阴天或雨天，概率为100%！
+
+- 简要解析：
+    
+    - 人们在预测什么事件？
+    
+    - 预测多少个事件？它们发生的关系？
+    
+    - 预测如何令人信服？
+
+---
+
+
+## 两类预测
+
+一元回归模型下：
+
+`$$Y_i = \beta_1 + \beta_2X_i +u_i$$`
+
+预测什么？
+
+**均值预测**(mean prediction)：
+
+- 给定
+`\(X_0\)`，预测Y的条件均值
+`\(E(Y|X=X_0)\)`
+
+
+**个值预测**(individual prediction)：
+
+- 给定
+`\(X_0\)`，预测对应于
+`\(X0\)`的Y的个别值
+`\((Y_0|X_0)\)`
+
+---
+
+### 两类预测——图示（样本内）
+
+&lt;img src="pic/chpt4-forecast-demo-01-insample.png" width="781" style="display: block; margin: auto;" /&gt;
+
+---
+
+### 两类预测——图示（样本外）
+
+&lt;img src="pic/chpt4-forecast-demo-02-outsample.png" width="782" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+### 两类预测——图示（均值预测）
+
+&lt;img src="pic/chpt4-forecast-demo-03-exp.png" width="778" style="display: block; margin: auto;" /&gt;
+
+---
+
+### 两类预测——图示（个值预测）
+
+&lt;img src="pic/chpt4-forecast-demo-04-ind.png" width="783" style="display: block; margin: auto;" /&gt;
+
+---
+
+## 预测分析的关键
+
+拿什么来预测？——样本数据？样本回归线？样本拟合值？
+
+样本外拟合值
+`\(\hat{Y}_0|X=X_0\)`：
+
+- 可以证明：样本外拟合值
+  `\(\hat{Y}_0|X=X_0\)`是**均值**
+  `\(E(Y|X=X_0)\)`的一个.blue[**BLUE**]
+
+- 也可以证明：样本外拟合值
+  `\(\hat{Y}_0|X=X_0\)`是**个值**
+  `\((Y_0|X=X_0)\)`的一个.blue[**BLUE**]
+
+工资案例中，给定
+`\(X_0=\)` 20，则可以得到样本外拟合值：
+
+`\begin{align}
+\hat{Y}_{0}=\hat{\beta}_{1}+\hat{\beta}_{2} X_{0}
+=-0.0145+0.7241\ast20
+=14.4675
+\end{align}`
+
+
+---
+
+## 预测分析的关键
+
+&lt;img src="pic/chpt4-forecast-demo-05-fitted.png" width="777" style="display: block; margin: auto;" /&gt;
+
+---
+
+## 均值预测
+
+在**N-CLRM**假设和**OLS**方法下，可以证明（证明过程略）给定
+`\(X_0\)`下的拟合值
+`\(\hat{Y}_0\)`服从如下正态分布：
+
+`$$\begin {align} 
+\hat{Y}_{0} \sim \mathrm{N}\left(\mu_{\hat{Y}_{0}}, \sigma_{\hat{Y}_{0}}^{2}\right)
+\end {align}$$`
+
+`$$\begin {align} 
+\mu_{\hat{Y}_{0}}=E\left(\hat{Y}_{0}\right)=E\left(\hat{\beta}_{1}+\hat{\beta}_{2} X_{0}\right)=\beta_{1}+\beta_{2} X_{0}=E(Y | X_{0})
+\end {align}$$`
+
+`$$\begin {align} 
+\operatorname{var}\left(\hat{Y}_{0}\right)=\sigma_{\hat{Y}_{0}}^{2}=\sigma^{2}\left[\frac{1}{n}+\frac{\left(X_{0}-\overline{X}\right)^{2}}{\sum x_{i}^{2}}\right]
+ \end {align}$$`
+
+`$$\begin {align} 
+\hat{Y}_{0} \sim N\left(E(Y | X_{0}), \sigma^{2}\left[\frac{1}{n}+\frac{\left(X_{0}-\overline{X}\right)^{2}}{\sum x_{i}^{2}}\right]\right)
+\end {align}$$`
+
+---
+
+## 均值预测
+
+对
+`\(\hat{Y}_{0}\)`构造**t统计量**：
+
+`$$\begin {align} 
+T &amp;=\frac{\hat{Y}_{0}-\mathrm{E}(\mathrm{Y} | \mathrm{X}_{0})}{S_{\hat{Y}_{0}}} \sim t(n-2)
+&amp;&amp; \Leftarrow S_{\hat{Y}_{0}}=\sqrt{\hat{\sigma}^{2}\left[\frac{1}{n}+\frac{\left(X_{0}-\overline{X}\right)^{2}}{\sum x_{i}^{2}}\right]}
+\end {align}$$`
+
+得到**均值**
+`\(E(Y|X=X_0)\)`置信区间为：
+
+`$$\begin {align} 
+\operatorname{Pr}\left[\hat{Y}_{0}-t_{1-\alpha / 2}(n-2) \cdot S_{\hat{Y}_{0}} \leq E(Y | X_{0}) \leq \hat{Y}_{0}+t_{1-\alpha / 2}(n-2) \cdot S_{\hat{Y}_{0}}\right]=1-\alpha
+\end {align}$$`
+ 
+`$$\begin {align} 
+\operatorname{Pr}\left[\hat{\beta}+\hat{\beta}_{2} X_{0}-t_{1-\alpha / 2}(n-2) \cdot S_{\hat{Y}_{0}} \leq E(Y | X_{0}) \leq \hat{\beta}+\hat{\beta}_{2} X_{0}+t_{1- \alpha / 2}(n-2) \cdot S_{\hat{Y}_{0}}\right]=1-\alpha
+\end {align}$$`
+
+---
+
+### （均值预测）示例:教育程度和时均工资案例
+
+给定
+`\(X_0=\)` 20时，根据早前计算结果：
+`\(\hat{\sigma}^2=\)` 0.8812；
+`\(\bar{X}=\)` 12.0000；
+`\(\sum{x_i^2}=\)` 182.0000。因此可以得到：
+
+`\begin{align}
+S^2_{\hat{Y}_{0}} &amp;=\hat{\sigma}^{2}\left[\frac{1}{n}+\frac{\left(X_{0}-\overline{X}\right)^{2}}{\sum x_{i}^{2}}\right] 
+=0.8812\left( \frac{1}{13}+\frac{(20-12)^2}{182}\right)
+=0.3776; \quad
+S_{\hat{Y}_{0}} = \sqrt{S^2_{\hat{Y}_{0}}}=0.6145
+\end{align}`
+
+
+`\begin{align}
+\hat{Y}_{0}=\hat{\beta}_{1}+\hat{\beta}_{2} X_{0}
+=-0.0145+0.7241\ast20
+=14.4675
+\end{align}`
+
+因此，可以计算得到**均值**
+`\(E(Y|X=20)\)`置信区间为：
+
+`\begin{align}
+\hat{\beta}+\hat{\beta}_{2} X_{0}-t_{1-\alpha / 2}(n-2) \cdot S_{\hat{Y}_{0}} \leq  &amp; E(Y | X_{0}) \leq \hat{\beta}+\hat{\beta}_{2} X_{0}+t_{1- \alpha / 2}(n-2) \cdot S_{\hat{Y}_{0}} \\
+14.4675-1.7959\ast0.6145\leq &amp; E(Y|X_0=20)\leq14.4675+1.7959\ast0.6145
+\\
+13.3639\leq &amp; E(Y|X_0=20)\leq15.5711
+\end{align}`
+
+---
+
+### （均值预测）示例:教育程度和时均工资案例
+
+&lt;img src="pic/chpt4-forecast-demo-06-interval-exp.png" width="778" style="display: block; margin: auto;" /&gt;
+
+---
+
+## 个值预测
+
+在**N-CLRM**假设和**OLS**方法下，可以证明（证明过程略）给定
+`\(X_0\)`下的个别值
+`\(Y_0=\beta_1+\beta_2X_0 +u_0\)`服从如下正态分布：
+
+`$$\begin {align} 
+Y_{0} &amp;\sim \mathrm{N}\left(\mu_{Y_{0}}, \sigma_{Y_{0}}^{2}\right) \\
+\mu_{Y_{0}}&amp;=E\left(Y_{0}\right)=E\left(\beta_{1}+\beta_{2} X_{0}\right)=\beta_{1}+\beta_{2} X_{0} \\
+Var(Y_{0}) &amp;=Var{(u_0)}=\sigma^{2}
+\end {align}$$`
+
+
+`$$\begin {align} 
+Y_{0} \sim N\left(\beta_{1}+\beta_{2} X_{0}, \sigma^{2} \right)
+\end {align}$$`
+
+---
+
+## 个值预测
+
+进一步可以构造新的随机变量
+`\((Y_0-\hat{Y}_0)\)`，其将服从如下正态分布：
+
+`$$\begin {align} 
+Y_{0} &amp; \sim N\left(\beta_{1}+\beta_{2} X_{0}, \sigma^{2} \right)\\
+\hat{Y}_{0} &amp; \sim N\left( \beta_{1}+\beta_{2} X_{0}, \sigma^{2}\left[\frac{1}{n}+\frac{\left(X_{0}-\overline{X}\right)^{2}}{\sum x_{i}^{2}}\right]\right) 
+\end {align}$$`
+
+`$$\begin {align} 
+Y_{0} - \hat{Y}_{0} &amp; \sim N\left( 0, \sigma^{2}\left[1 + \frac{1}{n}+\frac{\left(X_{0}-\overline{X}\right)^{2}}{\sum x_{i}^{2}}\right]\right) \\
+Y_{0} - \hat{Y}_{0} &amp; \sim N\left( 0, \sigma^{2}_{Y_{0} - \hat{Y}_{0}} \right)
+\end {align}$$`
+
+
+---
+
+## 个值预测
+
+对
+`\(Y_{0} - \hat{Y}_{0}\)`构造**t统计量**：
+
+`$$\begin {align} 
+T &amp;=\frac{(Y_{0} - \hat{Y}_{0})}{S_{(Y_{0} - \hat{Y}_{0})}} \sim t(n-2)
+&amp;&amp; \Leftarrow S_{(Y_{0} - \hat{Y}_{0})}
+=\sqrt{\hat{\sigma}^{2}\left[1+\frac{1}{n}+\frac{\left(X_{0}-\overline{X}\right)^{2}}{\sum x_{i}^{2}}\right]}
+\end {align}$$`
+
+得到**个值**
+`\(Y_{0}\)`置信区间为：
+
+`$$\begin {align} 
+\operatorname{Pr}\left[\hat{Y}_{0}-t_{1-\alpha / 2}(n-2) \cdot S_{(Y_{0} - \hat{Y}_{0})} \leq Y_{0} \leq \hat{Y}_{0}+t_{1-\alpha / 2}(n-2) \cdot S_{(Y_{0} - \hat{Y}_{0})}\right]=1-\alpha
+\end {align}$$`
+ 
+`$$\begin {align} 
+\operatorname{Pr}\left[\hat{\beta}+\hat{\beta}_{2} X_{0}-t_{1-\alpha / 2}(n-2) \cdot S_{(Y_{0} - \hat{Y}_{0})} 
+\leq Y_{0} \leq 
+\hat{\beta}+\hat{\beta}_{2} X_{0}+t_{1- \alpha / 2}(n-2) \cdot S_{(Y_{0} - \hat{Y}_{0})}\right]=1-\alpha
+\end {align}$$`
+
+
+---
+
+### （个值预测）示例:教育程度和时均工资案例
+
+给定
+`\(X_0=\)` 20时，根据早前计算结果：
+`\(\hat{\sigma}^2=\)` 0.8812；
+`\(\bar{X}=\)` 12.0000；
+`\(\sum{x_i^2}=\)` 182.0000。因此可以得到：
+
+`\begin{align}
+S^2_{(Y_{0} - \hat{Y}_{0})} &amp;=\hat{\sigma}^{2}\left[1+\frac{1}{n}+\frac{\left(X_{0}-\overline{X}\right)^{2}}{\sum x_{i}^{2}}\right] 
+=0.8812\left( 1+ \frac{1}{13}+\frac{(20-12)^2}{182}\right)
+=1.2588
+\\
+S_{\hat{Y}_{0}} &amp;= \sqrt{S^2_{\hat{Y}_{0}}}=1.122
+\end{align}`
+
+
+`\begin{align}
+\hat{Y}_{0}=\hat{\beta}_{1}+\hat{\beta}_{2} X_{0}
+=-0.0145+0.7241\ast20
+=14.4675
+\end{align}`
+
+因此，可以计算得到**个值**
+`\((Y_0|X=20)\)`置信区间为：
+
+`\begin{align}
+\hat{\beta}+\hat{\beta}_{2} X_{0}-t_{1-\alpha / 2}(n-2) \cdot S_{(Y_{0} - \hat{Y}_{0})} \leq  &amp; Y_0 | X=X_0) \leq \hat{\beta}+\hat{\beta}_{2} X_{0}+t_{1- \alpha / 2}(n-2) \cdot S_{(Y_{0} - \hat{Y}_{0})} \\
+14.4675-1.7959\ast1.122\leq &amp; Y_0|X_0=20)\leq14.4675+1.7959\ast1.122
+\\
+12.4525\leq &amp; Y_0|X_0=20)\leq16.4824
+\end{align}`
+
+---
+
+### （个值预测）示例:教育程度和时均工资案例
+
+&lt;img src="pic/chpt4-forecast-demo-09-interval-ind.png" width="781" style="display: block; margin: auto;" /&gt;
+
+---
+
+## 置信带
+
+**置信带**(confidence interval)：对所有的X值，分别进行**均值**和**个值**分别进行预测，就能得到：
+
+- 均值预测的置信带——总体回归函数的置信带
+
+- 个值预测的置信带
+
+- 预测如何可信？
+    
+    - 均值预测置信区间
+    
+    - 均值预测置信带
+
+- 样本内置信带。——检验可靠性
+
+- 样本外置信带。——预测未来值范围
+
+
+---
+
+## 置信带
+
+&lt;img src="pic/chpt4-forecast-demo-08-band-exp.png" width="780" style="display: block; margin: auto;" /&gt;
+
+---
+
+## 置信带
+
+&lt;img src="pic/chpt4-forecast-demo-10-band-ind.png" width="785" style="display: block; margin: auto;" /&gt;
+
+---
+
+## 置信带
+
+如何理解置信带？
+
+- 谁更宽？——均值预测更准确
+
+- 何处最窄？—— 中心点
+`\((\bar{X}, \bar{Y})=\)` (12,8.67)是历史信息的集中代表。
+
+---
+
+## 回归预测
+
+**内容总结**：
+
+- 回归预测基于一套坚实严密的“底座”：OLS估计方法、CLRM假设、BLUE估计性质
+
+- 均值预测置信带和个值预测置信带，是对预测可信度的形象表达。
+
+- （同等条件下）均值预测比个值预测更准确（置信带宽窄）
+
+
+**课堂思考**：
+
+- 同样是95%置信度区间，两个人的认识是一样的么？
+
+**课后作业**：工资与教育案例扩展
+
+- 请计算置信度
+`\(100(1−\alpha)=95\%\)`下，
+`\(X_0=20\)`时均值的置信区间。
+与
+`\(100(1−\alpha)=90\%\)`时相比，有什么差异？
+
+- 99%更值得可信么？
+
+---
+layout: false
+class: inverse, center, middle, duke-softblue
+name: report
+
+# 4.5 报告回归分析结果
+
+---
+layout: true
+  
+&lt;div class="my-header"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   第04章 一元回归：假设检验   
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+4.5 报告回归分析结果 &lt;/span&gt;&lt;/div&gt; 
+
+---
+
+## 回归分析的形式
+
+**课程要求**：会熟练、正确阅读统计软件给出的各类分析报告，理解其中的关键信息和内涵。这些分析报告包括：传统的多元回归分析报告；以及各种计量检验的辅助分析报告（如异方差white检验报告）等。
+
+根据统计软件的不同（`stata`；`Eview`；`R` ……），各种分析报告呈现形式略有差异，但基本要素和信息都大抵一致。
+
+给定如下一元回归模型：
+
+`$$Y_i = \beta_1 + \beta_2X_i +u_i$$`
+
+---
+
+## 回归分析的形式（多行方程表达法）
+
+**形式1：多行方程表达法**（整理好的**精炼报告**）：根据统计软件的原始报告，往往是选取最关键的信息，经过整理并以多行**样本回归方程**（SRF）的形式呈现，**精炼报告**的形式一般为：
+
+`$$\begin{equation} \begin{alignedat}{999} &amp;\widehat{Y}=&amp;&amp;-0.01&amp;&amp;+0.72X\\ &amp;\text{(t)}&amp;&amp;(-0.0165)&amp;&amp;(10.4065)\\&amp;\text{(se)}&amp;&amp;(0.8746)&amp;&amp;(0.0696)\\&amp;\text{(fitness)}&amp;&amp; R^2=0.9078;&amp;&amp; \bar{R^2}=0.8994\\&amp; &amp;&amp; F^{\ast}=108.29;&amp;&amp; p=0.0000 \end{alignedat} \end{equation}$$`
+
+--
+
+- 第1行表示样本回归函数（回归系数）
+
+- 第2行(t)表示回归系数对应的**样本t统计量**（
+`\(t^{\ast}_{\hat{\beta}_i},i \in 1,2,\cdots, k\)`）
+
+- 第3行(se)表示回归系数对应的**样本标准误差**（
+`\(S_{\hat{\beta}_i},i \in 1,2,\cdots, k\)`）
+
+- 第4行(fitness)表示回归模型**拟合情况**和**统计检验**的简要信息，其中
+`\(R^2\)`表示**判定系数**，
+`\(\bar{R}^2\)`表示**调整判定系数**，F表示模型整体显著性检验中的**样本F统计量值**（
+`\(F^{\ast}\)`）,p表示样本F统计量值对应的概率值。
+
+---
+
+## 回归分析的形式（表格列示法）
+
+**形式2：表格列示法**（整理好的**精炼报告**）：根据统计软件的原始报告，往往是选取最关键的信息，经过整理以表格形式呈现，**表格列示法**的形式呈现为：
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; term &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; estimate &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; std.error &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; statistic &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; p.value &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; (Intercept) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -0.0144527 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.8746239 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -0.0165245 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.9871118 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; X &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.7240967 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.0695813 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 10.4064779 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.0000005 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+--
+
+- **第1列**：`term`表示回归模型中包含的变量，也即
+`\(X_{2i},X_{3i},\cdots,X_{ki}\)`，其中**截距项**默认为`(Intercept)`。
+
+- **第2列**：`estimate`表示回归系数的估计值，也即
+`\(\hat{\beta}_1,\hat{\beta}_2, \cdots, \hat{\beta}_k\)`。
+
+- **第3列**：`std.error`表示回归系数对应的**样本标准误差**，也即
+`\(S_{\hat{\beta}_i},i \in 1,2,\cdots, k\)`。
+
+- **第4列**：`statistic`表示回归系数对应的**样本t统计量**，也即
+`\(t^{\ast}_{\hat{\beta}_i},i \in 1,2,\cdots, k\)`
+
+- **第5列**：`p.value`表示回归系数**样本t统计量**对应的概率值，也即
+`\(Pr(t = t^{\ast}_{\hat{\beta}_i})=p\)`
+
+---
+
+### 回归分析的形式（EViews软件原始报告）
+
+**形式3：原始报告**：分析软件如`EViews`、`R`、`STATA`等直接自动生成的多元回归分析报告。`EViews`软件原始分析报告形式如下：**抬头区域**
+
+.pull-left[
+&lt;img src="pic/chpt4-eq-report-EViews.png" width="633" style="display: block; margin: auto;" /&gt;
+]
+
+--
+
+.pull-right[
+
+- `Dependent Variable: Y`：因变量
+
+- `Method: Least Squares`：分析方法
+
+- `Date: 03/09/19  Time: 10:55`：分析的时间
+
+- `Sample: 1 13`：样本范围
+
+- `Included observations: 13`：样本数n
+
+]
+
+---
+
+### 回归分析的形式（EViews软件原始报告）
+
+**形式3：原始报告**：分析软件如`EViews`、`R`、`STATA`等直接自动生成的多元回归分析报告。`EViews`软件原始分析报告形式如下：**三线表区域**
+
+.pull-left[
+&lt;img src="pic/chpt4-eq-report-EViews.png" width="633" style="display: block; margin: auto;" /&gt;
+]
+
+--
+
+.pull-right[
+
+- **第1列**：`Variable`表示模型包含的变量，
+`\(X_{2i},X_{3i},\cdots,X_{ki}\)`，其中**截距项**默认为`C`。
+
+- **第2列**：`Coefficient`回归系数，也即
+`\(\hat{\beta}_1,\hat{\beta}_2, \cdots, \hat{\beta}_k\)`；
+
+- **第3列**：`Std. Error`回归系数的样本标准误差，也即也即
+`\(S_{\hat{\beta}_i},i \in 1,2,\cdots, k\)`。
+
+- **第4列**：`t-Statistic`表示回归系数对应的**样本t统计量**，也即
+`\(t^{\ast}_{\hat{\beta}_i},i \in 1,2,\cdots, k\)`；
+
+- **第5列**：`Prob.`表示回归系数**样本t统计量**对应的概率值，也即
+`\(Pr(t = t^{\ast}_{\hat{\beta}_i})=p\)`
+
+]
+
+---
+
+### 回归分析的形式（EViews软件原始报告）
+
+**形式3：原始报告**：分析软件如`EViews`、`R`、`STATA`等直接自动生成的多元回归分析报告。`EViews`软件原始分析报告形式如下：**指标值区域（左）**
+
+.pull-left[
+&lt;img src="pic/chpt4-eq-report-EViews.png" width="633" style="display: block; margin: auto;" /&gt;
+]
+
+--
+
+.pull-right[
+
+- `R-squared`：回归模型**判定系数**
+`\(R^2\)`。
+
+- `Adjusted R-squared`：回归模型**调整判定系数**
+`\(\bar{R}^2\)`。
+
+- `S.E. of regression`：回归模型的**回归误差标准差**
+`\(\hat{\sigma}\)`。
+
+- `Sum squared resid`：回归模型的**残差平方和RSS**
+`\(RSS=\sum{e_i^2}\)`。
+
+- `Log likelihood`：回归模型的**对数似然值**。
+
+- `F-statistic`：回归模型整体显著性的**样本F统计量**
+`\(F^{\ast}\)`。
+
+- `Prob(F-statistic)`：回归模型整体显著性的样本F统计量对应的**概率值p**。
+
+]
+
+---
+
+### 回归分析的形式（EViews软件原始报告）
+
+**形式3：原始报告**：分析软件如`EViews`、`R`、`STATA`等直接自动生成的多元回归分析报告。`EViews`软件原始分析报告形式如下：**指标值区域（右）**
+
+.pull-left[
+&lt;img src="pic/chpt4-eq-report-EViews.png" width="633" style="display: block; margin: auto;" /&gt;
+]
+
+--
+
+.pull-right[
+
+- `Mean dependent var`：Y的**均值**
+`\(\bar{Y}\)`。
+
+- `S.D. dependent var`：Y的**样本标准差**
+`\(S_{Y}\)`。
+
+- `Akaike info criterion`：回归模型的**AIC信息准则**。
+
+- `Schwarz criterion`：回归模型的**Schwarz准则**。
+
+- `Hannan-Quinn criter.	`：回归模型的**Hannan-Quinn准则**。
+
+- `Durbin-Watson stat`：回归模型的**德宾沃森统计量d**。
+
+]
+
+---
+
+## 回归分析的形式（R软件原始报告）
+
+**形式4：原始报告**：分析软件如`EViews`、`R`、`STATA`等直接自动生成的多元回归分析报告。`R`软件原始分析报告形式如下：
+
+
+```
+
+Call:
+lm(formula = mod_wage, data = data_wage)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-1.5637 -0.7350  0.1266  0.7158  1.3198 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -0.01445    0.87462  -0.017    0.987    
+X            0.72410    0.06958  10.406 4.96e-07 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.9387 on 11 degrees of freedom
+Multiple R-squared:  0.9078,	Adjusted R-squared:  0.8994 
+F-statistic: 108.3 on 1 and 11 DF,  p-value: 4.958e-07
+```
+
+
+---
+layout: false
+background-image: url("pic/thank-you-gif-funny-little-yellow.gif")
+class: inverse,center
+# 本章结束
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

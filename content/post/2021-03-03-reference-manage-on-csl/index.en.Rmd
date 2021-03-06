@@ -8,7 +8,7 @@ categories:
 tags:
   - CSL
 subtitle: ''
-summary: ''
+summary: '本文总结和梳理了引用样式语言CSL的开源资源及一些相互关系。'
 authors: []
 lastmod: '2021-03-03T08:46:20+08:00'
 featured: no
@@ -27,11 +27,12 @@ csl: "../../bib/china-national-standard-gb-t-7714-2015-author-date.csl"
 link-citations: yes
 ---
 
-# 引用样式语言CSL的开源资源
 
 **引用样式语言**（Citation Style Language, CSL，[官方网站](https://citationstyles.org/))）得到很多文献管理软件背后的遵从和使用，包括Endnote、Zotero等。具体可以看CSL官方网站的[authors](https://citationstyles.org/authors/)介绍和说明。
 
 需要关注的是几个内容分工的构成关系。简单地看，三者的更新快慢关系是CSL style repository $\ge$ CSL style editor $\ge$ Zotero Style Repository。
+
+引用样式语言CSL的开源资源，主要包括：
 
 - CSL style repository（[on GitHub](https://github.com/citation-style-language/styles)），是团队开源管理的所有CSL样式库，不断在维护和更新。
 

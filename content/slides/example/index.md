@@ -1,18 +1,21 @@
 ---
+title: Slides
+summary: An introduction to using Wowchemy's Slides feature.
 authors: []
+tags: []
 categories: []
 date: "2019-02-05T00:00:00Z"
 slides:
-  highlight_style: dracula
+  # Choose a theme from https://github.com/hakimel/reveal.js#theming
   theme: black
-summary: An introduction to using Academic's Slides feature.
-tags: []
-title: Slides
+  # Choose a code highlighting style (if highlighting enabled in `params.toml`)
+  #   Light style: github. Dark style: dracula (default).
+  highlight_style: dracula
 ---
 
-# Create slides in Markdown with Academic
+# Create slides in Markdown with Wowchemy
 
-[Academic](https://sourcethemes.com/academic/) | [Documentation](https://sourcethemes.com/academic/docs/managing-content/#create-slides)
+[Wowchemy](https://wowchemy.com/) | [Documentation](https://owchemy.com/docs/managing-content/#create-slides)
 
 ---
 
@@ -126,14 +129,14 @@ Press the `S` key to view the speaker notes!
 
 ---
 
-{{< slide background-image="/img/boards.jpg" >}}
+{{< slide background-image="/media/boards.jpg" >}}
 
 ## Custom Slide
 
 Customize the slide style and background
 
 ```markdown
-{{</* slide background-image="/img/boards.jpg" */>}}
+{{</* slide background-image="/media/boards.jpg" */>}}
 {{</* slide background-color="#0000FF" */>}}
 {{</* slide class="my-style" */>}}
 ```
@@ -158,6 +161,6 @@ Create `assets/css/reveal_custom.css` with:
 
 # Questions?
 
-[Ask](https://spectrum.chat/academic)
+[Ask](https://github.com/wowchemy/wowchemy-hugo-modules/discussions)
 
-[Documentation](https://sourcethemes.com/academic/docs/managing-content/#create-slides)
+[Documentation](https://wowchemy.com/docs/managing-content/#create-slides)

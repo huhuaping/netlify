@@ -9,12 +9,21 @@ tags:
   - LaTex
   - Rmarkdown
   - Econometrics
+subtitle: ''
+summary: '本文介绍了如何在Rmarkdown写作环境下，编写R函数自动化输出LaTex数学公示和符号，辅助统计或计量经济教学工作！'
+authors: [胡华平]
+lastmod: '2019-02-28T09:23:57+08:00'
 image:
   caption: ''
   focal_point: ''
-
 math: true
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: true
 ---
+
+本文介绍了如何在Rmarkdown写作环境下，编写R函数自动化输出LaTex数学公示和符号，辅助统计或计量经济教学工作！
 
 # “计量经济学”形式的数学公式
 

@@ -10,18 +10,36 @@ tags:
   - Slide
   - Website
   - Static website
+subtitle: ''
+summary: '本文介绍如何把Xaringan 演示Slides以静态网页（static webpage）形式载入个人网站。'
+authors: [胡华平]
+lastmod: '2019-03-01T09:23:57+08:00'
 image:
   caption: ''
   focal_point: ''
-
-disable_comments: false
+math: true
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: true
 ---
 
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
+<div id="TOC">
+<ul>
+<li><a href="#主要参考资料和实现办法"><span class="toc-section-number">1</span> 主要参考资料和实现办法</a></li>
+<li><a href="#需求和问题列表"><span class="toc-section-number">2</span> 需求和问题列表</a>
+<ul>
+<li><a href="#静态网页方式损失了效率"><span class="toc-section-number">2.1</span> 静态网页方式损失了效率。</a></li>
+<li><a href="#知识版权的保护问题"><span class="toc-section-number">2.2</span> 知识版权的保护问题。</a></li>
+</ul></li>
+</ul>
+</div>
 
-<p>如何把Xaringan 演示Slides以静态网页（static webpage）形式载入个人网站。</p>
-<div id="section" class="section level2">
-<h2>主要参考资料和实现办法</h2>
+<p><strong>导读</strong>：本文介绍如何把Xaringan 演示Slides以静态网页（static webpage）形式载入个人网站。</p>
+<div id="主要参考资料和实现办法" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> 主要参考资料和实现办法</h1>
 <ul>
 <li><p>Yihui Xie的<a href="https://bookdown.org/yihui/blogdown/static-files.html">blogdown中2.7 Static files</a></p></li>
 <li><p>带操作过程<a href="https://timmastny.rbind.io/blog/embed-slides-knitr-blogdown/">Embed Slides in Your Blog</a></p></li>
@@ -29,13 +47,15 @@ disable_comments: false
 </ul>
 <p>以上都有比较系统的说明，可以直接参照。</p>
 </div>
-<div id="section-1" class="section level2">
-<h2>需求和问题列表</h2>
-<ul>
-<li><p>静态网页方式损失了效率。<strong>静态网页</strong>，正如其名，只能相对“固定”地加载封装好的.html文件或.pdf文件之类。显然，交互性和动态性就暂时难以获得。因为我们写作Slide是在另一个repo文件夹下（repo如course-econometrics文件夹下，并使用Xaringan包），然后确认没问题后才能把渲染好的.html形式的Slide文件（一般是如02-simple-reg-basic-slide.html）拷贝到网站repo文件夹指定目录下（repo如netlify，特定目录为<code>\netlify\static\slides-course</code>）。同时，如果html文件不是完全自容的(self-container)，那你还必须把使用到的图片数据等文件夹也一同拷贝过去（这就非常糟糕了！因为你的slide制作可能会经常变动或更新）。那么要如何自动关联Xaringan（实现slide）和blogdown（实现website）呢？</p>
-<ul>
-<li>当然动态性和关联性也是有成本的。如果Xaring里的文件需要渲染很久（比如ggplot作图很多，数据分析很多），那么blogsite会负担比较大。</li>
-</ul></li>
-<li><p>知识版权的保护问题。slide上传到website后，文字和图片等都可以任意拷贝下载。对于开源项目，这完全没毛病。但是，对于一些重视原创知识保护的人，这就是很大的“命门”了。</p></li>
-</ul>
+<div id="需求和问题列表" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> 需求和问题列表</h1>
+<div id="静态网页方式损失了效率" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> 静态网页方式损失了效率。</h2>
+<p><strong>静态网页</strong>，正如其名，只能相对“固定”地加载封装好的.html文件或.pdf文件之类。显然，交互性和动态性就暂时难以获得。因为我们写作Slide是在另一个repo文件夹下（repo如course-econometrics文件夹下，并使用Xaringan包），然后确认没问题后才能把渲染好的.html形式的Slide文件（一般是如02-simple-reg-basic-slide.html）拷贝到网站repo文件夹指定目录下（repo如netlify，特定目录为<code>\netlify\static\slides-course</code>）。同时，如果html文件不是完全自容的(self-container)，那你还必须把使用到的图片数据等文件夹也一同拷贝过去（这就非常糟糕了！因为你的slide制作可能会经常变动或更新）。那么要如何自动关联Xaringan（实现slide）和blogdown（实现website）呢？</p>
+<p>当然动态性和关联性也是有成本的。如果Xaring里的文件需要渲染很久（比如ggplot作图很多，数据分析很多），那么blogsite会负担比较大。</p>
+</div>
+<div id="知识版权的保护问题" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> 知识版权的保护问题。</h2>
+<p>slide上传到website后，文字和图片等都可以任意拷贝下载。对于开源项目，这完全没毛病。但是，对于一些重视原创知识保护的人，这就是很大的“命门”了。</p>
+</div>
 </div>

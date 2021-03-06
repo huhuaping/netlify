@@ -1,0 +1,1246 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.0.0-beta.3 for Hugo" />
+  
+
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Rmarkdown写作环境下，Zotero &#43; rbbt的方式，基本上实现了比较满意的文献管理和引用流程。Zotero具有免费和相对开放性。Zotero对bibTeX和中文情景比较友好。此外，R包rbbt函数实现了对Zotero的实时联系，引用流程更加自动化。使用者需要正确理解Rmd渲染输出、.bib文件状态和Zotero条目库的关系。" />
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://huhuaping.netlify.app/2020/10/09/rmarkdown-zotero-rbbt/" />
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    <meta name="theme-color" content="#1565c0" />
+  
+
+  
+  
+
+  
+  
+  
+  
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css" integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.25a7b8d72ef60dce241c0c505f1ac49e.css" />
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/index.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_2.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_180x180_fill_lanczos_center_2.png" />
+
+  <link rel="canonical" href="https://huhuaping.netlify.app/2020/10/09/rmarkdown-zotero-rbbt/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary" />
+  
+  <meta property="og:site_name" content="Academic" />
+  <meta property="og:url" content="https://huhuaping.netlify.app/2020/10/09/rmarkdown-zotero-rbbt/" />
+  <meta property="og:title" content="使用Zotero实现文献引用的自动化Rmarkdown写作 | Academic" />
+  <meta property="og:description" content="Rmarkdown写作环境下，Zotero &#43; rbbt的方式，基本上实现了比较满意的文献管理和引用流程。Zotero具有免费和相对开放性。Zotero对bibTeX和中文情景比较友好。此外，R包rbbt函数实现了对Zotero的实时联系，引用流程更加自动化。使用者需要正确理解Rmd渲染输出、.bib文件状态和Zotero条目库的关系。" /><meta property="og:image" content="https://huhuaping.netlify.app/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png" />
+    <meta property="twitter:image" content="https://huhuaping.netlify.app/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2020-10-09T00:00:00&#43;00:00"
+      />
+    
+    <meta property="article:modified_time" content="2020-10-09T11:52:18&#43;08:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://huhuaping.netlify.app/2020/10/09/rmarkdown-zotero-rbbt/"
+  },
+  "headline": "使用Zotero实现文献引用的自动化Rmarkdown写作",
+  
+  "datePublished": "2020-10-09T00:00:00Z",
+  "dateModified": "2020-10-09T11:52:18+08:00",
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Academic",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://huhuaping.netlify.app/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "Rmarkdown写作环境下，Zotero + rbbt的方式，基本上实现了比较满意的文献管理和引用流程。Zotero具有免费和相对开放性。Zotero对bibTeX和中文情景比较友好。此外，R包rbbt函数实现了对Zotero的实时联系，引用流程更加自动化。使用者需要正确理解Rmd渲染输出、.bib文件状态和Zotero条目库的关系。"
+}
+</script>
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>使用Zotero实现文献引用的自动化Rmarkdown写作 | Academic</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="49e87dad3b03edb6aa7a73c8ca8cdcb1" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.76abe0ff166961e9adc403995f18189f.js"></script>
+
+  
+
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">Academic</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">Academic</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>Home</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Posts</span></a>
+        </li>
+
+        
+        
+
+        
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"><span>Teaching</span><span class="caret"></span>
+          </a>
+          <div class="dropdown-menu">
+            
+              <a class="dropdown-item" href="/course-econometrics/"><span>计量经济学(本科生)</span></a>
+            
+              <a class="dropdown-item" href="/course-econometrics-master/"><span>中级计量经济学(研究生)</span></a>
+            
+              <a class="dropdown-item" href="/course-statistics/"><span>统计学原理(本科生)</span></a>
+            
+              <a class="dropdown-item" href="/course-advanced-statistics/"><span>高级统计学(博士)</span></a>
+            
+              <a class="dropdown-item" href="/course-or/"><span>数据模型与决策(MBA)</span></a>
+            
+          </div>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#projects"><span>Projects</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#publications"><span>Publications</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+      
+
+      
+      
+
+      
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>使用Zotero实现文献引用的自动化Rmarkdown写作</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+          Last updated on
+      
+    
+    Oct 9, 2020
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    1 min read
+  </span>
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/category/research/">Research</a></span>
+  
+
+</div>
+
+    
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      
+
+
+<blockquote>
+<p>Rmarkdown写作环境下，Zotero + rbbt的方式，基本上实现了比较满意的文献管理和引用流程。Zotero具有免费和相对开放性。Zotero对bibTeX和中文情景比较友好。此外，R包rbbt函数实现了对Zotero的实时联系，引用流程更加自动化。使用者需要正确理解Rmd渲染输出、.bib文件状态和Zotero条目库的关系。</p>
+</blockquote>
+<div id="zotero环境准备" class="section level1">
+<h1>zotero环境准备</h1>
+<div id="安装zotero和扩展插件zotero-better-bibtex" class="section level2">
+<h2>安装zotero和扩展插件zotero-better-bibtex。</h2>
+<p>安装文献管理软件zotero和浏览器插件 。<a href="https://www.zotero.org/">官网</a></p>
+<ul>
+<li><p>软件本体Zotero 5.0 for Windows <a href="https://www.zotero.org/download/client/dl?channel=release&amp;platform=win32&amp;version=5.0.89">下载</a>。</p></li>
+<li><p>浏览器插件Zotero Connector <a href="https://chrome.google.com/webstore/detail/ekhagklcjbdpajgpjgmbionohlpdbjgc">chrome 浏览器插件下载</a>。</p></li>
+<li><p>安装Zotero扩展插件zotero-better-bibtex <a href="https://retorque.re/zotero-better-bibtex/">开发者网站</a>。zotero-better-bibtex-5.2.78.xpi <a href="https://github.com/retorquere/zotero-better-bibtex/releases">下载安装</a>。</p></li>
+</ul>
+</div>
+<div id="设定citekey的形式默认形式太冗长" class="section level2">
+<h2>设定Citekey的形式（默认形式太冗长）。</h2>
+<p>具体修改<a href="https://retorque.re/zotero-better-bibtex/citing/">方法</a>：</p>
+<ul>
+<li><p>设定citekey形式：打开Zotero<span class="math inline">\(\Rightarrow\)</span> 编辑<span class="math inline">\(\Rightarrow\)</span> 首选项<span class="math inline">\(\Rightarrow\)</span> Better Bibtex（插件菜单<span class="math inline">\(\Rightarrow\)</span> Citation keys。</p></li>
+<li><p>更新citekey值：Zotero<span class="math inline">\(\Rightarrow\)</span> 选中文献条目<span class="math inline">\(\Rightarrow\)</span>鼠标右键 <span class="math inline">\(\Rightarrow\)</span> Better Bibtex<span class="math inline">\(\Rightarrow\)</span> refresh Bibtex key。</p></li>
+</ul>
+</div>
+</div>
+<div id="r环境准备" class="section level1">
+<h1>R环境准备</h1>
+<div id="zotero导出.bib文件" class="section level2">
+<h2>zotero导出.bib文件</h2>
+<ul>
+<li><p>选定需要的Zotero的文献组(group)，直接导出为.bib文件</p></li>
+<li><p>将.bib文件保存在写作文件.Rmd路径中</p></li>
+<li><p>写作文件.Rmd的yaml区域指明对.bib的关联关系</p></li>
+</ul>
+<pre><code>bibliography: 
+  - bib-west.bib
+  - west-agri.bib</code></pre>
+<ul>
+<li>写作文件.Rmd的yaml区域设定文献列出样式（csl style）及关联关系</li>
+</ul>
+<pre><code>biblio-style: &quot;nnsfc.csl&quot;
+csl: &quot;nnsfc.csl&quot;</code></pre>
+</div>
+<div id="安装rbbt包并进行文献搜索和引用" class="section level2">
+<h2>安装<code>rbbt</code>包，并进行文献搜索和引用</h2>
+<pre class="r"><code># remotes::install_github(&quot;paleolimbot/rbbt&quot;)
+#require(&quot;rbbt&quot;)</code></pre>
+<p>R包<code>rbbt</code>的主要作用<a href="https://github.com/paleolimbot/rbbt">见github</a>：</p>
+<ul>
+<li><p>与Zotero文献库直接关联，方便引用。</p></li>
+<li><p>与.Rmd文件头yaml区域指定的.bib文件关联，实现“参考文献”列出。</p></li>
+</ul>
+<p>主要过程：</p>
+<ul>
+<li>安装<code>rbbt</code>包。</li>
+</ul>
+<pre><code># remotes::install_github(&quot;paleolimbot/rbbt&quot;)
+require(&quot;rbbt&quot;)</code></pre>
+<ul>
+<li>Rstudio<span class="math inline">\(\Rightarrow\)</span> 点击Addins<span class="math inline">\(\Rightarrow\)</span> Insert Zotero Citation。</li>
+</ul>
+</div>
+</div>
+<div id="总结及注意事项" class="section level1">
+<h1>总结及注意事项</h1>
+<p>Rmarkdown写作环境下，Zotero + <code>rbbt</code>的方式，基本上实现了比较满意的文献管理和引用流程，<strong>优点</strong>如下：</p>
+<ul>
+<li><p>Zotero的免费和相对开放性。免费+插件扩展。对很多网站的文章citation能够快速识别并导入到Zotero库里去，而且还能自动下载关联pdf！</p></li>
+<li><p>Zotero对bibTeX的友好性。因为Rmarkdown对bibTeX的要求，而Zotero的相关操作极为便捷简单。此外，Zotero对中文文献情景也比较友好。</p></li>
+<li><p>R包<code>rbbt</code>函数实现了对Zotero的实时联系，引用流程更加自动化。</p></li>
+</ul>
+<p><strong>重要提示</strong>：</p>
+<ol style="list-style-type: decimal">
+<li><p>正确理解Rmd渲染输出、.bib文件状态和Zotero条目库的关系。简单说：a) Rmd的输出最终只会引用.bib文件里的文献条目。b)R引用包（<code>rbbt</code>）与Zotero可以实时联系（通过zotero-better-bibtex扩展插件），但是这<strong>并不</strong>意味着Rmd渲染输出也是与Zotero实时联系的。c).因此，在写作草稿阶段，可以暂时不用关心.bib，只需要保持与Zotero实时联系即可（完成实时搜索和插入条目）。但是在最后完稿之前，务必需要及时更新调整.bib文件（从Zotero 中导出文献为.bib文件，替换更新原来的.bib旧文件即可）。</p></li>
+<li><p>Zotero中Citekey的设置是一个关键步骤，我们需要做出合理的权衡。这是因为一方面<code>@nameYear</code>的引用便捷性，要求每条文献的citekey必须要简单易用；但是另一方面，Zotero往往会管理海量的文献条目，从而又要求文献的citekey不能重复——不然就没办法精确引用文献了。不过Zotero考虑并提供了选择，可以用动态key（dynamic key），也可以用锁定key（pined key）。</p></li>
+<li><p>因为文献条目中可能包含了abstract等长文本域，为了避免Zotero导出.bib后，R包citr识别报错的问题。最好把Zotero 软件的Better Bibtex（插件菜单）做出如下导出设定。</p>
+<ul>
+<li>设定导出规则：打开Zotero<span class="math inline">\(\Rightarrow\)</span> 编辑<span class="math inline">\(\Rightarrow\)</span> 首选项<span class="math inline">\(\Rightarrow\)</span> Better Bibtex（插件菜单）<span class="math inline">\(\Rightarrow\)</span> Export<span class="math inline">\(\Rightarrow\)</span> Fields<span class="math inline">\(\Rightarrow\)</span> Fields to omit frome export<span class="math inline">\(\Rightarrow\)</span> 输入abstract等（逗号分隔）</li>
+</ul></li>
+</ol>
+</div>
+
+    </div>
+
+    
+
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/bibtex/">bibTeX</a>
+  
+  <a class="badge badge-light" href="/tag/zotero/">Zotero</a>
+  
+  <a class="badge badge-light" href="/tag/rbbt/">rbbt</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://huhuaping.netlify.app/2020/10/09/rmarkdown-zotero-rbbt/&amp;text=%e4%bd%bf%e7%94%a8Zotero%e5%ae%9e%e7%8e%b0%e6%96%87%e7%8c%ae%e5%bc%95%e7%94%a8%e7%9a%84%e8%87%aa%e5%8a%a8%e5%8c%96Rmarkdown%e5%86%99%e4%bd%9c" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://huhuaping.netlify.app/2020/10/09/rmarkdown-zotero-rbbt/&amp;t=%e4%bd%bf%e7%94%a8Zotero%e5%ae%9e%e7%8e%b0%e6%96%87%e7%8c%ae%e5%bc%95%e7%94%a8%e7%9a%84%e8%87%aa%e5%8a%a8%e5%8c%96Rmarkdown%e5%86%99%e4%bd%9c" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=%e4%bd%bf%e7%94%a8Zotero%e5%ae%9e%e7%8e%b0%e6%96%87%e7%8c%ae%e5%bc%95%e7%94%a8%e7%9a%84%e8%87%aa%e5%8a%a8%e5%8c%96Rmarkdown%e5%86%99%e4%bd%9c&amp;body=https://huhuaping.netlify.app/2020/10/09/rmarkdown-zotero-rbbt/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://huhuaping.netlify.app/2020/10/09/rmarkdown-zotero-rbbt/&amp;title=%e4%bd%bf%e7%94%a8Zotero%e5%ae%9e%e7%8e%b0%e6%96%87%e7%8c%ae%e5%bc%95%e7%94%a8%e7%9a%84%e8%87%aa%e5%8a%a8%e5%8c%96Rmarkdown%e5%86%99%e4%bd%9c" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=%e4%bd%bf%e7%94%a8Zotero%e5%ae%9e%e7%8e%b0%e6%96%87%e7%8c%ae%e5%bc%95%e7%94%a8%e7%9a%84%e8%87%aa%e5%8a%a8%e5%8c%96Rmarkdown%e5%86%99%e4%bd%9c%20https://huhuaping.netlify.app/2020/10/09/rmarkdown-zotero-rbbt/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://huhuaping.netlify.app/2020/10/09/rmarkdown-zotero-rbbt/&amp;title=%e4%bd%bf%e7%94%a8Zotero%e5%ae%9e%e7%8e%b0%e6%96%87%e7%8c%ae%e5%bc%95%e7%94%a8%e7%9a%84%e8%87%aa%e5%8a%a8%e5%8c%96Rmarkdown%e5%86%99%e4%bd%9c" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <a href="https://huhuaping.netlify.app/"><img class="avatar mr-3 avatar-circle" src="/authors/admin/avatar_huf18496e0a46b939109734222e1cb1f3d_243022_270x270_fill_lanczos_center_2.png" alt=""></a>
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="https://huhuaping.netlify.app/"></a></h5>
+      <h6 class="card-subtitle">Doctor of Agricultural Economic and Management</h6>
+      <p class="card-text">My research interests include Data Science, Statistics, Agricultural Economics and Management.</p>
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://twitter.com/" target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://scholar.google.co.uk/" target="_blank" rel="noopener">
+        <i class="ai ai-google-scholar"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/huhuaping" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>Related</h3>
+    <ul>
+      
+      <li><a href="/2020/10/03/bib-and-cite-on-research-article/">Endnote参考文献及Rmarkdown引用问题</a></li>
+      
+      <li><a href="/2021/02/09/statistics-stream-and-structure/">Thread：统计学流派与演变</a></li>
+      
+      <li><a href="/2020/02/09/dynamic-web-scraping/">R&#43;docker进行动态网页数据抓取</a></li>
+      
+      <li><a href="/2019/10/17/how-to-do-research-for-undergraduate-students/">本科生如何入手一个研究项目</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+  
+  <p class="powered-by">
+    
+      <a href="/privacy/">Privacy Policy</a>
+    
+    
+       &middot; 
+      <a href="/terms/">Terms</a>
+    
+  </p>
+  
+
+  <p class="powered-by">
+    huhuaping@2019
+  </p>
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-modules" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js"></script>
+        
+      
+
+    
+
+    
+    
+    
+
+    
+    
+
+    
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    <script src="/js/_vendor/bootstrap.bundle.min.f81d0a1705048649befc8b595e455a94.js"></script>
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <script src="/en/js/wowchemy.min.0a233ecde900ea57d5cd5ad14636ad45.js"></script>
+
+    
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Bookdown | Academic</title>
+    <link>https://huhuaping.netlify.app/category/bookdown/</link>
+      <atom:link href="https://huhuaping.netlify.app/category/bookdown/index.xml" rel="self" type="application/rss+xml" />
+    <description>Bookdown</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>huhuaping@2019</copyright><lastBuildDate>Tue, 16 Jul 2019 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://huhuaping.netlify.app/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png</url>
+      <title>Bookdown</title>
+      <link>https://huhuaping.netlify.app/category/bookdown/</link>
+    </image>
+    
+    <item>
+      <title>LateX输出的相关设置</title>
+      <link>https://huhuaping.netlify.app/2019/07/16/work-around-latex-output/</link>
+      <pubDate>Tue, 16 Jul 2019 00:00:00 +0000</pubDate>
+      <guid>https://huhuaping.netlify.app/2019/07/16/work-around-latex-output/</guid>
+      <description>
+&lt;script src=&#34;https://huhuaping.netlify.app/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+&lt;div id=&#34;TOC&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#安装tinytex&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1&lt;/span&gt; 安装tinyTeX&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#踩过的latex各种坑&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2&lt;/span&gt; 踩过的Latex各种坑&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#千分数&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.1&lt;/span&gt; 千分数&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id=&#34;安装tinytex&#34; class=&#34;section level1&#34; number=&#34;1&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;1&lt;/span&gt; 安装tinyTeX&lt;/h1&gt;
+&lt;p&gt;参看谢益辉&lt;a href=&#34;https://yihui.name/tinytex/&#34;&gt;TinyTeX&lt;/a&gt;&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;安装tinytex&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;install.packages(&amp;#39;tinytex&amp;#39;)
+tinytex::install_tinytex()&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start=&#34;2&#34; style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;测试并调用&lt;code&gt;tlmgr&lt;/code&gt;命令安装latex包&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;writeLines(c(
+   &amp;#39;\\documentclass{article}&amp;#39;,
+   &amp;#39;\\begin{document}&amp;#39;, &amp;#39;Hello world!&amp;#39;, &amp;#39;\\end{document}&amp;#39;
+ ), &amp;#39;test.tex&amp;#39;)
+tinytex::pdflatex(&amp;#39;test.tex&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;踩过的latex各种坑&#34; class=&#34;section level1&#34; number=&#34;2&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;2&lt;/span&gt; 踩过的Latex各种坑&lt;/h1&gt;
+&lt;div id=&#34;千分数&#34; class=&#34;section level2&#34; number=&#34;2.1&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.1&lt;/span&gt; 千分数&lt;/h2&gt;
+&lt;p&gt;注意这里的&lt;strong&gt;千分数&lt;/strong&gt;是指&lt;strong&gt;千分之几&lt;/strong&gt;（也即&lt;span class=&#34;math inline&#34;&gt;\(\unicode{x2030}\)&lt;/span&gt;），而不是指&lt;strong&gt;千分位分隔符&lt;/strong&gt;（一般用逗点或空格）。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Latex环境下，一般用法有latex包&lt;code&gt;textcomp::\textperthousand&lt;/code&gt;或者&lt;code&gt;wasysym::\permil&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Rmarkdown下，最好直接使用&lt;code&gt;\unicode{x2030}&lt;/code&gt;&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;来输出千分数&lt;span class=&#34;math inline&#34;&gt;\(\unicode{x2030}\)&lt;/span&gt;。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;具体可&lt;a href=&#34;https://stats.meta.stackexchange.com/questions/2884/how-to-get-a-permille-perthousand-sign-in-mathjax&#34;&gt;参看&lt;/a&gt;。&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Latex pdf和html输出下ggplot绘图中文字体显示问题</title>
+      <link>https://huhuaping.netlify.app/2019/07/04/chinese-character-in-graph-consistence-with-both-latex-and-html/</link>
+      <pubDate>Thu, 04 Jul 2019 00:00:00 +0000</pubDate>
+      <guid>https://huhuaping.netlify.app/2019/07/04/chinese-character-in-graph-consistence-with-both-latex-and-html/</guid>
+      <description>
+
+
+&lt;p&gt;中文字体问题总是会在时不时出来捣乱。今天就碰到了ggplot2绘图时，latex pdf输出和html网页输出显示不一致的问题（类似的 &lt;a href=&#34;https://community.rstudio.com/t/chinese-characters-in-ggplot-on-macos/4429&#34;&gt;问题报告&lt;/a&gt;）。&lt;/p&gt;
+&lt;div id=&#34;section&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;问题描述&lt;/h2&gt;
+&lt;p&gt;google神搜一遍，大家普遍把问题指向：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;操作系统OS问题。Linux/Mac OS普遍采用UTF-8编码格式，而Windows系统则坚持GBK编码格式。因此，如果Rstudio里Rmarkdown文件用UTF-8编码，自然就会导致Windowns粉出现悲催的混乱事件。Windowns系统下还可能存在本地字体库不全的问题。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;中文字体库问题。除了系统阵营的锅，中文字体本身也会给编码世界带来混乱。其实不单是中文字体，CJK字体库就是专门为了解救中文-日文-韩文字体等东亚语言字体问题的。另外就是，字体库有“真体”（TrueType Collection 字体文件 (.ttc)）等字体版本。因此，latex包&lt;code&gt;\usepackage{xeCJK}&lt;/code&gt;渲染时，可能会提示错误（&lt;a href=&#34;https://github.com/CTeX-org/ctex-kit/issues/316&#34;&gt;类似报告1&lt;/a&gt;；&lt;a href=&#34;https://blog.csdn.net/RobertChenGuangzhi/article/details/48979285&#34;&gt;报告2&lt;/a&gt;）&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;engine或dev问题。第三个锅就是软件的问题了。其一，bookdown下默认的Latex引擎&lt;code&gt;pdflatex&lt;/code&gt;对&lt;strong&gt;Unicode characters&lt;/strong&gt;支持不好，需要改用&lt;code&gt;xelatex&lt;/code&gt;引擎（&lt;a href=&#34;https://github.com/yihui/tinytex/issues/35&#34;&gt;yihuixie留爪&lt;/a&gt;）。其二，绘图装置dev也有小九九&lt;a href=&#34;https://github.com/rstudio/rmarkdown/issues/213&#34;&gt;类似报告&lt;/a&gt;。最关键的是绘图装置可以自己根据需要设定，包括：dev=‘cairo_pdf’；dev=‘pdf’；dev=‘svg’（见&lt;a href=&#34;https://github.com/rstudio/rmarkdown/issues/111&#34;&gt;友情提示&lt;/a&gt;）。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;section-1&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;解决办法&lt;/h2&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;p&gt;（windowns系统）安装缺少的字体库。大概就先去看看“c:/windows/fonts”目录吧！。也可以在R中用package如 &lt;code&gt;&#34;showtext&#34;&lt;/code&gt;来安装。——不说这个了，都是泪。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;latex中设定header.tex的包调用。最重要的&lt;code&gt;\usepackage{xeCJK}&lt;/code&gt;，大抵如下：&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;\usepackage{xeCJK}
+%\setCJKmainfont{SimSun}
+\setCJKmainfont{宋体}  % 字体可以更换
+\setCJKmonofont{simsun.ttc} % for \textsf
+\setmainfont{宋体} % 設定英文字型
+\setromanfont{Georgia} % 字型
+\setmonofont{Courier New}&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start=&#34;3&#34; style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Rmarkdown中设定engine和dev。这个地方倒是有一个逻辑性的问题我之前一直没有弄清楚。engine设好后（如前，最好用&lt;code&gt;xelatex&lt;/code&gt;引擎），不同输出形式（pdf、html）对绘图转置dev需求是不一样的，因此需要考虑latex_engine和dev所处的&lt;strong&gt;环境&lt;/strong&gt;。这个&lt;strong&gt;环境&lt;/strong&gt;不一样，控制的范围自然就不同，但大概有三个级别：a. yaml区域的全局性&lt;code&gt;- output&lt;/code&gt;环境； b. R代码块的文档级设置；c.特定R代码块的设置。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;环境1：yaml区域的全局性设置
+output: 
+  bookdown::pdf_document2:
+    latex_engine: xelatex
+    dev: cairo_pdf
+    &lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;环境2：R代码块的文档级设置
+{r global_options,echo=FALSE, message=FALSE}
+knitr::opts_chunk$set(fig.align=&amp;#39;center&amp;#39;, dev=&amp;quot;cairo_pdf&amp;quot;,
+                      echo=FALSE, fig.pos = &amp;#39;H&amp;#39;) #
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;环境3：特定绘图R代码块环境
+{r common-get-sum,echo=FALSE, dev=&amp;quot;cairo_pdf&amp;quot;, message=FALSE,error=FALSE,warning=F, fig.width=10,fig.height=7,fig.cap=&amp;quot;学生累计获得通识课程学分情况&amp;quot;}
+
+ggplot() +
+  theme(text=element_text(family=&amp;quot;Batang&amp;quot;, size=12))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;总结起来，最后的问题解决就是：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;更改pdf&lt;strong&gt;全局性环境&lt;/strong&gt;的引擎为latex_engine: xelatex。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;更改pdf&lt;strong&gt;全局性环境&lt;/strong&gt;里绘图装置为：dev: cairo_pdf。设好后就不要画蛇添足再在环境2或环境3中做额外配置了。因为控制范围是不一样的！html输出默认绘图转置为dev: cairo_pdf&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;因为字体库问题，还得在绘图R代码块里指定一个能够显示的字体。如&lt;code&gt;theme(text=element_text(family=&#34;Batang&#34;, size=12))&lt;/code&gt;。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;最后，html和pdf显示都一致啦！！&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>bookdown下Latex pdf格式输出技巧清单</title>
+      <link>https://huhuaping.netlify.app/2019/04/11/notes-in-latex-output-format-for-bookdown-books/</link>
+      <pubDate>Thu, 11 Apr 2019 00:00:00 +0000</pubDate>
+      <guid>https://huhuaping.netlify.app/2019/04/11/notes-in-latex-output-format-for-bookdown-books/</guid>
+      <description>
+
+&lt;div id=&#34;TOC&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#section&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1&lt;/span&gt; 配置及相关设置&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#yaml&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1.1&lt;/span&gt; yaml信息的设置&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#htmllatex&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2&lt;/span&gt; 表格的HTML和LaTeX“和谐共存”&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#bookdown&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.1&lt;/span&gt; 注意bookdown的渲染方式&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#section-1&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.2&lt;/span&gt; 环境参数的全局性影响&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#section-2&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.3&lt;/span&gt; 表格中插入有图片&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#latexlongtable&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.3.1&lt;/span&gt; latex宏包longtable的使用&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#section-3&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.4&lt;/span&gt; 表格中字符格式（如加粗）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#section-4&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.5&lt;/span&gt; 表格中显示数学公式&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#block&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3&lt;/span&gt; block的使用&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#block-1&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.1&lt;/span&gt; 定理和证明block&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#blocks&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.2&lt;/span&gt; 个性化blocks&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#section-5&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.3&lt;/span&gt; 注意事项&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#latex&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4&lt;/span&gt; Latex输出各种“梗”&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#fig.cap&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.1&lt;/span&gt; fig.cap&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#latex-list&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.2&lt;/span&gt; latex list&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#section-6&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.3&lt;/span&gt; 段落首行缩进&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#section-7&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.4&lt;/span&gt; 页边距调整&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#section-8&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.5&lt;/span&gt; 正确设置章序号&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#section-9&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.6&lt;/span&gt; 正确处理页码序号&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#section-10&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;5&lt;/span&gt; 诡异现象&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#section-11&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;5.1&lt;/span&gt; 编译报错但删除临时文件又好了&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#blogdownhugo-academic&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;6&lt;/span&gt; blogdown相关话题（hugo academic）&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#section-12&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;6.1&lt;/span&gt; 通过静态页面的使用&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#section-13&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;6.2&lt;/span&gt; 直接引用本地数据和图片文件&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;p&gt;bookdown编写LaTex书籍中的注意事项。&lt;/p&gt;
+&lt;div id=&#34;section&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;1&lt;/span&gt; 配置及相关设置&lt;/h1&gt;
+&lt;div id=&#34;yaml&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;1.1&lt;/span&gt; yaml信息的设置&lt;/h2&gt;
+&lt;p&gt;只有index.Rmd具有设置yaml信息的地位！&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;index.Rmd: This is the only Rmd document to contain a YAML frontmatter as described within Chapter 2, and is the first book chapter.
+—&lt;a href=&#34;https://bookdown.org/yihui/rmarkdown/bookdown-project.html&#34;&gt;R Markdown: The Definitive Guide&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;htmllatex&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;2&lt;/span&gt; 表格的HTML和LaTeX“和谐共存”&lt;/h1&gt;
+&lt;div id=&#34;bookdown&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.1&lt;/span&gt; 注意bookdown的渲染方式&lt;/h2&gt;
+&lt;p&gt;表格排版还是需要kable和kableExtra的结合。kableExtra的latex参数请参看Zhuhao的&lt;a href=&#34;https://haozhu233.github.io/kableExtra/awesome_table_in_pdf.pdf&#34;&gt;awesome_table_in_pdf&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;zhuhao提到了kableExtra如何实现&lt;a href=&#34;https://haozhu233.github.io/kableExtra/bookdown/cross-format-tables-in-bookdown.html&#34;&gt;多形式输出的办法&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;首先要采用“M-K”的图书渲染方式，也即先合并（merge）再编译（knit）。具体的实现是在文件&lt;code&gt;_bookdown.yml&lt;/code&gt;设置&lt;code&gt;new_session: true&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;# Example _bookdown.yml
+book_filename: &amp;quot;bookdown_example&amp;quot;
+delete_merged_file: true
+new_session: true
+language:
+  ui:
+    chapter_name: &amp;quot;Chapter &amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;采用“M-K”图书渲染方式后，图书每一章的&lt;code&gt;.Rmd&lt;/code&gt;文件在代码运行时都会强制使用&lt;code&gt;new session&lt;/code&gt;，也即意味着各章的&lt;code&gt;packages&lt;/code&gt;和&lt;code&gt;data&lt;/code&gt;都相互独立。所以每一章的&lt;code&gt;.Rmd&lt;/code&gt;文件最开始，需要分别设置&lt;code&gt;options&lt;/code&gt;及加载&lt;code&gt;packages&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;section-1&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.2&lt;/span&gt; 环境参数的全局性影响&lt;/h2&gt;
+&lt;p&gt;需要注意的是&lt;strong&gt;环境参数&lt;/strong&gt;设置的变化。一种情形是，在Rstudio中点击knitr（或biuld），都会自动识别&lt;code&gt;knitr.table.format =&lt;/code&gt;是latex环境还是html环境。另一种情形就是在console中手动运行比如&lt;code&gt;render_&lt;/code&gt;或&lt;code&gt;preview_chapter()&lt;/code&gt;，这时就需要手动写入执行环境是latex或hetml。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;自动配置情形下，可以全局设置&lt;code&gt;options(knitr.table.format = &#34;latex&#34;)&lt;/code&gt;。如果不想自动配置，则可以禁用它&lt;code&gt;options(kableExtra.auto_format = FALSE)&lt;/code&gt;。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;手动配置情形下，则需要在code chunk里对&lt;code&gt;kable()&lt;/code&gt;函数设定&lt;code&gt;format=&#34;latex&#34;&lt;/code&gt;。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;函数&lt;code&gt;kable()&lt;/code&gt;处理的数据类型应该是dataframe（或tibble）。不然&lt;code&gt;booktab=T&lt;/code&gt;或&lt;code&gt;kable_styling(latex_options = c(&#34;striped&#34;))&lt;/code&gt;将会不起作用。请参看在线问答&lt;a href=&#34;https://stackoverflow.com/questions/50340653/r-markdown-kableextra-latex-table-booktabs-not-working&#34;&gt;R markdown KableExtra latex table booktabs not working&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;调用latex包的先后顺序很有影响。例如涉及到颜色的使用，可能出现报错&lt;code&gt;Option clash for package xcolor&lt;/code&gt;。这个时候latex包的先后顺序会带来各种问题。参看在线问答&lt;a href=&#34;https://tex.stackexchange.com/questions/83101/option-clash-for-package-xcolor&#34;&gt;Option clash for package xcolor&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;(&lt;a href=&#34;https://stackoverflow.com/questions/16507191/automatically-adjust-latex-table-width-to-fit-pdf-using-knitr-and-rstudio&#34; class=&#34;uri&#34;&gt;https://stackoverflow.com/questions/16507191/automatically-adjust-latex-table-width-to-fit-pdf-using-knitr-and-rstudio&lt;/a&gt;)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;section-2&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.3&lt;/span&gt; 表格中插入有图片&lt;/h2&gt;
+&lt;p&gt;有时候我们会独立地展示图片（.png之类），有时候我们还希望在表格中展示图片（.png之类）或图标（icon之类）。&lt;/p&gt;
+&lt;p&gt;如下&lt;strong&gt;R代码块&lt;/strong&gt;（R code chunk）情况下，是可以正确输出html，但是却无法正确输出Latex：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;动图是不行的。&lt;code&gt;knitr::include_graphics(&#39;local.gif&#39;)&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;在线图片是不行的。&lt;code&gt;knitr::include_graphics(&#39;https://commonmark.org/images/markdown-mark.png&#39;)&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;此外，在kable环境下，data.frame中出现如下value，也是可以正确输出html，但是却无法正确输出Latex：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Rmarkdown语言，&lt;code&gt;![](picture/object/Alpha,png)&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;HTML语言，&lt;code&gt;&amp;lt;image source=&#34;picture/object/Alpha,png&#34;&amp;gt;&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;yihuixie指出了这种&lt;strong&gt;混合表格&lt;/strong&gt;是&lt;a href=&#34;https://stackoverflow.com/questions/25106481/add-an-image-to-a-table-like-output-in-r&#34;&gt;不能兼得两种输出&lt;/a&gt;，同时也为latex输出指明了出路——使用&lt;code&gt;//includgraphics&lt;/code&gt;。然而此&lt;code&gt;//includgraphics&lt;/code&gt;并非彼&lt;code&gt;include_graphics()&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;错误的&lt;code&gt;include_graphics()&lt;/code&gt;。我开始一直认为是使用R code chunk下的&lt;code&gt;include_graphics()&lt;/code&gt;函数。当然是无功而返，无论怎么做都无法实现正确的latex输出。&lt;/p&gt;
+&lt;p&gt;正确的&lt;code&gt;//includgraphics&lt;/code&gt;。进一步googlew问答&lt;a href=&#34;https://stackoverflow.com/questions/28032846/add-and-resize-a-local-image-to-a-rmd-file-in-rstudio-that-will-produce-a-pdf&#34;&gt;add and resize a local image to a .Rmd file in RStudio that will produce a pdf&lt;/a&gt;，终于明白了其中玄机。原来yihuixie所说的&lt;code&gt;//includgraphics&lt;/code&gt;是一种&lt;strong&gt;原生的latex语法&lt;/strong&gt;。——略加调整，问题果真迎刃而解！&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;使用latex语法正确处理data.frame的单元格value（此处为字符串）：&lt;code&gt;&#34;\\includegraphics{picture/object/Alpha.png}&#34;&lt;/code&gt;。如果需要调整图片属性（如大小），则可以处理data.frame的单元格value为：&lt;code&gt;&#34;\\includegraphics[width=0.9\linewidth]{picture/object/Alpha.png}&#34;&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;设置kable参数：&lt;code&gt;kable(dat, escape = FALSE,booktab=T)&lt;/code&gt;。（假定环境配置为自动判别latex还是html输出，此处为latex输出）&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;if函数上场，实现latex和html并行输出。根据输出格式（output）来设定data.frame的value值。而且再knitr1.18版本开始，可以直接使用两个函数来自动判明输出格式：&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;knitr::is_html_output()
+
+knitr::is_latex_output()&lt;/code&gt;&lt;/pre&gt;
+&lt;div id=&#34;latexlongtable&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.3.1&lt;/span&gt; latex宏包longtable的使用&lt;/h3&gt;
+&lt;p&gt;如果latex表格很长，一般需要调用&lt;code&gt;longtable&lt;/code&gt;参数，但是kableExtra()函数下自动缩放大小&lt;code&gt;latex_options = c( &#34;scale_down&#34;)&lt;/code&gt;就会失效。并提示：&lt;code&gt;Longtable cannot be resized&lt;/code&gt;。但是可以利用kableextra的函数&lt;code&gt;column_sep()&lt;/code&gt;来设定各列的宽度。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;kable_styling(full_width = F,
+  latex_options = c( &amp;quot;scale_down&amp;quot;,&amp;quot;striped&amp;quot;)) %&amp;gt;%
+  column_spec(5, width = &amp;quot;15em&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;表格中显示图标（icon）。则可以参看&lt;a href=&#34;https://stackoverflow.com/questions/53549662/how-can-i-add-a-fontawesome-icon-to-a-table-in-rmarkdown&#34;&gt;add a fontawesome icon to a table in Rmarkdown&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;section-3&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.4&lt;/span&gt; 表格中字符格式（如加粗）&lt;/h2&gt;
+&lt;p&gt;建议尽量对整个单元格进行latex参数操作。&lt;/p&gt;
+&lt;p&gt;单元格部分字符加粗，则必须使用&lt;a href=&#34;http://edpflager.com/2018/09/28/font-formatting-coloring-and-emphasis/&#34;&gt;latex语法&lt;/a&gt;：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;dat &amp;lt;- data.frame(
+  country = c(&amp;#39;Canada&amp;#39;, &amp;#39;United Kindom&amp;#39;),
+  abbr = c(&amp;quot;Alpha&amp;quot;,&amp;quot;Coef&amp;quot;),
+  var1 = c(1, 2),
+  var2 = rnorm(2),
+  var3 =c(&amp;quot;\\textbf{加粗}&amp;quot;,&amp;quot;*斜体*&amp;quot;)
+)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;section-4&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.5&lt;/span&gt; 表格中显示数学公式&lt;/h2&gt;
+&lt;p&gt;kable如何显示数学公式。&lt;/p&gt;
+&lt;p&gt;数学公式可以参看在线问答&lt;a href=&#34;https://stackoverflow.com/questions/42598821/r-bookdown-math-in-table-header-not-working&#34;&gt;math in table-header not working&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;block&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;3&lt;/span&gt; block的使用&lt;/h1&gt;
+&lt;div id=&#34;block-1&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.1&lt;/span&gt; 定理和证明block&lt;/h2&gt;
+&lt;p&gt;Bookdown说明书&lt;a href=&#34;https://bookdown.org/yihui/bookdown/markdown-extensions-by-bookdown.html#theorems&#34;&gt;2.2.2 Theorems and proofs&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;定理环境（theorem environment）下的block类型有：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;theorem&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;lemma&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;corollary&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;proposition&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;conjecture&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;definition&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;example&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;exercise&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;证明环境（proof environments）下目前支持的block类型包括：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;proof&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;remark&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;solution&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;blocks&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.2&lt;/span&gt; 个性化blocks&lt;/h2&gt;
+&lt;p&gt;Bookdown说明书里指出了个性化blocks&lt;a href=&#34;https://bookdown.org/yihui/bookdown/custom-blocks.html&#34;&gt;2.7 Custom blocks&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;如果是html输出，则需要去设置。bookdown内置的block类型包括：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;rmdcomment&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;rmdlist&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;rmdnotes&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;也可以参考yihuixie的案例&lt;a href=&#34;https://github.com/rstudio/bookdown/blob/master/inst/examples/css/style.css&#34;&gt;CSS&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;section-5&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.3&lt;/span&gt; 注意事项&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;注意block参数的设置&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;\BeginKnitrBlock{theorem}\iffalse{-91-39640-26031-45-39532-23572-21487-22827-23450-29702-40-71-97-117-115-115-45-77-97-114-107-111-118-32-84-104-101-111-114-101-109-41-93-}\fi{}&amp;lt;div class=&amp;quot;theorem&amp;quot;&amp;gt;&amp;lt;span class=&amp;quot;theorem&amp;quot; id=&amp;quot;thm:BLUE&amp;quot;&amp;gt;&amp;lt;strong&amp;gt;(\#thm:BLUE)  \iffalse (高斯-马尔可夫定理(Gauss-Markov Theorem)) \fi{} &amp;lt;/strong&amp;gt;&amp;lt;/span&amp;gt;在正态经典线性回归模型假设（N-CLRM）下，采用普通最小二乘法（OLS），得到的估计量$\hat{\beta}$，是真实参数$\beta$最优的、线性的、无偏估计量（BLUE）。记为：
+\xrightarrow[\text{N-CLRM}]{\text{OLS}}\hat{\beta} \xrightarrow[\text{}]{\text{BLUE}} \beta&amp;lt;/div&amp;gt;\EndKnitrBlock{theorem}&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;所有类型的block都需要给出&lt;code&gt;echo=TRUE&lt;/code&gt;的参数设置才能正常显示&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;html输出和latex输出的block类型支持是不一样的，前者应该更多&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;latex&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;4&lt;/span&gt; Latex输出各种“梗”&lt;/h1&gt;
+&lt;div id=&#34;fig.cap&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.1&lt;/span&gt; fig.cap&lt;/h2&gt;
+&lt;p&gt;不要在R code chunk的options中出现特殊字符。比如：&lt;code&gt;fig.cap=&lt;/code&gt;中出现了特殊符号&lt;code&gt;&amp;amp;&lt;/code&gt;，则会报错。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;fig.cap=&amp;quot;绘制Line &amp;amp; Symbol图&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;图题中的数学公式符号，使用货币符号表达是需要注意LaTeX的规范写法（特定命令符需要加双斜杠&lt;code&gt;\\alpha&lt;/code&gt;）。例如：&lt;code&gt;fig.cap=&#34;判定系数$R^2$和调整判定系数$\bar{R}^2$&#34;&lt;/code&gt;，则LaTex会报错&lt;code&gt;! Text line contains an invalid character.&lt;/code&gt;。正确的写法应该是（&lt;a href=&#34;https://stackoverflow.com/questions/52211695/how-to-add-a-latex-symbol-to-fig-cap-in-r-markdown&#34;&gt;参看解决方案&lt;/a&gt;）：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;fig.cap=&amp;quot;判定系数$R^2$和调整判定系数$\\bar{R}^2$&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;latex-list&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.2&lt;/span&gt; latex list&lt;/h2&gt;
+&lt;p&gt;正文内容中列表（list）层级太多，则会报错：&lt;code&gt;LaTeX Error: Too deeply nested.&lt;/code&gt;。如果非要那么多层级，就需要加载LaTex的&lt;code&gt;enumitem package&lt;/code&gt;（让tinytex自动加载去吧），并在preamble.tex中调用它（&lt;a href=&#34;https://github.com/jgm/pandoc/issues/2922&#34;&gt;参看在线文达jgm的 解决方案&lt;/a&gt;）：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;\usepackage{enumitem}
+   \setlistdepth{9}
+
+   \setlist[itemize,1]{label=$\bullet$}
+   \setlist[itemize,2]{label=$\bullet$}
+   \setlist[itemize,3]{label=$\bullet$}
+   \setlist[itemize,4]{label=$\bullet$}
+   \setlist[itemize,5]{label=$\bullet$}
+   \setlist[itemize,6]{label=$\bullet$}
+   \setlist[itemize,7]{label=$\bullet$}
+   \setlist[itemize,8]{label=$\bullet$}
+   \setlist[itemize,9]{label=$\bullet$}
+   \renewlist{itemize}{itemize}{9}
+
+   \setlist[enumerate,1]{label=$\arabic*.$}
+   \setlist[enumerate,2]{label=$\alph*.$}
+   \setlist[enumerate,3]{label=$\roman*.$}
+   \setlist[enumerate,4]{label=$\arabic*.$}
+   \setlist[enumerate,5]{label=$\alpha*$}
+   \setlist[enumerate,6]{label=$\roman*.$}
+   \setlist[enumerate,7]{label=$\arabic*.$}
+   \setlist[enumerate,8]{label=$\alph*.$}
+   \setlist[enumerate,9]{label=$\roman*.$}
+   \renewlist{enumerate}{enumerate}{9}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;section-6&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.3&lt;/span&gt; 段落首行缩进&lt;/h2&gt;
+&lt;p&gt;段落首行缩进。在&lt;code&gt;preamble.tex&lt;/code&gt;中条用如下包[解决方案(&lt;a href=&#34;https://stackoverflow.com/questions/29460112/first-line-paragraph-indenting-in-pdfs-using-r-markdown&#34; class=&#34;uri&#34;&gt;https://stackoverflow.com/questions/29460112/first-line-paragraph-indenting-in-pdfs-using-r-markdown&lt;/a&gt;)]&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;% first-line paragraph indenting
+\usepackage{indentfirst}
+\setlength\parindent{24pt}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;section-7&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.4&lt;/span&gt; 页边距调整&lt;/h2&gt;
+&lt;p&gt;页边距调整。需要在&lt;code&gt;output.yaml&lt;/code&gt;文件中进行设置（&lt;a href=&#34;https://stackoverflow.com/questions/13515893/set-margin-size-when-converting-from-markdown-to-pdf-with-pandoc&#34;&gt;参看解决方案&lt;/a&gt;）&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;geometry: [a4paper, tmargin=2.5cm, bmargin=2.5cm, lmargin=2.5cm, rmargin=2.5cm]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;section-8&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.5&lt;/span&gt; 正确设置章序号&lt;/h2&gt;
+&lt;p&gt;正确设置章序号。如果修改了&lt;code&gt;documentclass:&lt;/code&gt;，那么就需要告诉Pandoc你是按chapter来编码的，而不是section（默认）。在&lt;code&gt;output.yaml&lt;/code&gt;文件下设置&lt;code&gt;pandoc_args: --top-level-division=chapter&lt;/code&gt;。（&lt;a href=&#34;https://community.rstudio.com/t/chapter-starts-with-0-1-not-1-0-in-pdf-book-format/12797/4&#34;&gt;参看解决方案&lt;/a&gt;）&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;documentclass: ctexbook
+
+bookdown::pdf_book:
+  includes:
+    in_header: latex/preamble.tex
+    before_body: latex/before_body.tex
+    after_body: latex/after_body.tex
+  keep_tex: yes
+  dev: &amp;quot;cairo_pdf&amp;quot;
+  latex_engine: xelatex
+  citation_package: natbib
+  template: latex/template.tex
+  pandoc_args: &amp;quot;--top-level-division=chapter&amp;quot;
+  toc_depth: 4
+  toc_unnumbered: no
+  toc_appendix: yes
+  quote_footer: [&amp;quot;\\begin{flushright}&amp;quot;, &amp;quot;\\end{flushright}&amp;quot;]&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;section-9&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.6&lt;/span&gt; 正确处理页码序号&lt;/h2&gt;
+&lt;p&gt;正确处理页码序号。其实&lt;a href=&#34;https://bookdown.org/yihui/bookdown/publishers.html&#34;&gt;bookdown电子书 6.3 Publishers&lt;/a&gt;专门提到了这一点，只是我一直没有细看。另外也可以参看在线问答&lt;a href=&#34;https://stackoverflow.com/questions/43711029/page-numbering-in-r-bookdown&#34;&gt;Page Numbering in R Bookdown&lt;/a&gt;。 总体意思就是要让Pandoc知道哪些部分属于&lt;code&gt;\frontmatter&lt;/code&gt;,&lt;code&gt;\mainmatter&lt;/code&gt;,&lt;code&gt;\backmatter&lt;/code&gt;。所以需要做如下几件事情：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;在preamble.tex文件下加入代码行&lt;code&gt;\frontmatter&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;在before_body.tex文件下加入代码行&lt;code&gt;\frontmatter&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;在（序言）&lt;code&gt;index.Rmd&lt;/code&gt;文件第一行加入代码行&lt;code&gt;\frontmatter&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;在（第一章）&lt;code&gt;01-introduction.Rmd&lt;/code&gt;文件第一行加入代码行&lt;code&gt;\mainmatter&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;在after_body.tex文件下加入代码行&lt;code&gt;\backmatter&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;总之，这些&lt;strong&gt;标记代码&lt;/strong&gt;可以插入到相应的章节，合适的位置。跟word的分节符很像。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;section-10&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;5&lt;/span&gt; 诡异现象&lt;/h1&gt;
+&lt;div id=&#34;section-11&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;5.1&lt;/span&gt; 编译报错但删除临时文件又好了&lt;/h2&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Latex错误提示：&lt;code&gt;! File ended while scanning use of \@writefile.&lt;/code&gt;。突然之间，Latex无法编译，反复查看yaml代码，感觉都没有问题，大半个下午解决不了（包括更新bookdown和Rstudio；多次重启。）。google搜索，最后采用了&lt;a href=&#34;https://tex.stackexchange.com/questions/471345/error-file-ended-while-scanning-use-of-writefile&#34;&gt;David Carlisle的建议&lt;/a&gt;，把&lt;code&gt;.aux&lt;/code&gt;等日志文件删除，重新Latex编译，最后消除了不能编译的错误。——最终还是没有明白原因。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;blogdownhugo-academic&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;6&lt;/span&gt; blogdown相关话题（hugo academic）&lt;/h1&gt;
+&lt;div id=&#34;section-12&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;6.1&lt;/span&gt; 通过静态页面的使用&lt;/h2&gt;
+&lt;/div&gt;
+&lt;div id=&#34;section-13&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;6.2&lt;/span&gt; 直接引用本地数据和图片文件&lt;/h2&gt;
+&lt;p&gt;既然blogdown下就能直接编写.Rmd文件，那就可以直接在里面进行数据分析、可视化等操作。问题的关键是如何引用本地数据（“data/”目录下）和图片文件（“pic/”目录下）。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://blogdown-demo.rbind.io/2018/02/27/r-file-paths/&#34;&gt;Adding and reading local data files in R Markdown posts&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

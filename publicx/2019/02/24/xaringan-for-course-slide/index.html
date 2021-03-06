@@ -1,0 +1,1161 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.0.0-beta.3 for Hugo" />
+  
+
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  
+
+  
+  
+  
+    
+  
+  <meta name="description" content="利用Xaringan制作统计和计量相关课程slide，提升效率和简洁性的一些技巧。" />
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://huhuaping.netlify.app/2019/02/24/xaringan-for-course-slide/" />
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    <meta name="theme-color" content="#1565c0" />
+  
+
+  
+  
+    
+    <script src="/js/mathjax-config.js"></script>
+  
+
+  
+  
+  
+  
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css" integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.25a7b8d72ef60dce241c0c505f1ac49e.css" />
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/index.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_2.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_180x180_fill_lanczos_center_2.png" />
+
+  <link rel="canonical" href="https://huhuaping.netlify.app/2019/02/24/xaringan-for-course-slide/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary" />
+  
+  <meta property="og:site_name" content="Academic" />
+  <meta property="og:url" content="https://huhuaping.netlify.app/2019/02/24/xaringan-for-course-slide/" />
+  <meta property="og:title" content="Xaringan缘起：创建课程slide | Academic" />
+  <meta property="og:description" content="利用Xaringan制作统计和计量相关课程slide，提升效率和简洁性的一些技巧。" /><meta property="og:image" content="https://huhuaping.netlify.app/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png" />
+    <meta property="twitter:image" content="https://huhuaping.netlify.app/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2019-02-24T00:00:00&#43;00:00"
+      />
+    
+    <meta property="article:modified_time" content="2021-02-01T09:23:57&#43;08:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://huhuaping.netlify.app/2019/02/24/xaringan-for-course-slide/"
+  },
+  "headline": "Xaringan缘起：创建课程slide",
+  
+  "datePublished": "2019-02-24T00:00:00Z",
+  "dateModified": "2021-02-01T09:23:57+08:00",
+  
+  "author": {
+    "@type": "Person",
+    "name": "胡华平"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Academic",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://huhuaping.netlify.app/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "利用Xaringan制作统计和计量相关课程slide，提升效率和简洁性的一些技巧。"
+}
+</script>
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>Xaringan缘起：创建课程slide | Academic</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="eaef192d8cbbd2c96825328cb4578f4a" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.76abe0ff166961e9adc403995f18189f.js"></script>
+
+  
+
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">Academic</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">Academic</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>Home</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Posts</span></a>
+        </li>
+
+        
+        
+
+        
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"><span>Teaching</span><span class="caret"></span>
+          </a>
+          <div class="dropdown-menu">
+            
+              <a class="dropdown-item" href="/course-econometrics/"><span>计量经济学(本科生)</span></a>
+            
+              <a class="dropdown-item" href="/course-econometrics-master/"><span>中级计量经济学(研究生)</span></a>
+            
+              <a class="dropdown-item" href="/course-statistics/"><span>统计学原理(本科生)</span></a>
+            
+              <a class="dropdown-item" href="/course-advanced-statistics/"><span>高级统计学(博士)</span></a>
+            
+              <a class="dropdown-item" href="/course-or/"><span>数据模型与决策(MBA)</span></a>
+            
+          </div>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#projects"><span>Projects</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#publications"><span>Publications</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+      
+
+      
+      
+
+      
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>Xaringan缘起：创建课程slide</h1>
+
+  
+  <p class="page-subtitle">xaringan for course slide</p>
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+  <span >
+      <a href="/authors/%E8%83%A1%E5%8D%8E%E5%B9%B3/">胡华平</a></span>
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+          Last updated on
+      
+    
+    Feb 1, 2021
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    1 min read
+  </span>
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/category/r/">R</a></span>
+  
+
+</div>
+
+    
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+<div id="TOC">
+<ul>
+<li><a href="#前言"><span class="toc-section-number">1</span> 前言</a></li>
+<li><a href="#逃离powerpoint拥抱html5"><span class="toc-section-number">2</span> 逃离PowerPoint，拥抱HTML5？</a>
+<ul>
+<li><a href="#powerpoint的断舍离"><span class="toc-section-number">2.1</span> PowerPoint的“断、舍、离”</a></li>
+<li><a href="#html形式slide的前世今生"><span class="toc-section-number">2.2</span> HTML形式slide的“前世今生”</a></li>
+</ul></li>
+<li><a href="#xaringan的优势和不足"><span class="toc-section-number">3</span> Xaringan的优势和不足</a>
+<ul>
+<li><a href="#xaringan的优势"><span class="toc-section-number">3.1</span> Xaringan的优势</a></li>
+<li><a href="#xaringan的不足"><span class="toc-section-number">3.2</span> Xaringan的不足</a></li>
+</ul></li>
+</ul>
+</div>
+
+<div id="前言" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> 前言</h1>
+<p>现在对（本科）教学工作的要求，已经发生了很大的改变：教学的内容变得更加专业化和细分化（学生就业市场的倒逼）；教学过程/流程需要标准化（一切变得透明公开）；教学活动应该能够便于复制并规模化运行（课程最好能以公开课/慕课方式运作）；个性化教学和灵活性调整被反复强调（对学生多元考核、“一人一套试卷”）；其他方面。</p>
+<p>教师在讲台上的台前“艺术化”魅力（仪态、表情、音色等）已经不再如曾经那么重要；教师在台后的“技术性”设计（内容、互动、展示等）上升到了无与伦比的地位。</p>
+<p>尤其是对于哪些<strong>技术性课程</strong>，如计量经济学（Econometrics）和统计学（Statistics），“技术性”设计必须要赶上这些教学新要求的呼声。（当你发现一位大学教师还在“坚持”使用Office2007，你一点都不要惊讶——经管现在已经是2019年了。）</p>
+</div>
+<div id="逃离powerpoint拥抱html5" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> 逃离PowerPoint，拥抱HTML5？</h1>
+<p>为什么要逃离PowerPoint，拥抱HTML形式的slide？下面分别来说一说。</p>
+<div id="powerpoint的断舍离" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> PowerPoint的“断、舍、离”</h2>
+<ul>
+<li><p>office版本太过分散，ppt可能会上演各种“变形记”。（现在国内有很多学生，已经不能区分WPS和Office了。学生的毕业论文或作业提交，那酸爽，真是谁看谁知道。）</p></li>
+<li><p>ppt维护和更新的各种“梗”。最让我纠结的就是mathtype公式，神一般地会一夜之间“变砖”（倒腾几下，公式变图片，或者干脆显示不了），更不要说公式的重复使用和编辑修改。如果使用一些新技巧、新字体，那一定会让你记住“凡走过的都是一个一个的巨坑”。</p></li>
+<li><p>难以逾越数据、图形和模型分析的“天堑”。表格数据加总等分析基本等于不可能（事实上也可以关联excel，但是“关联越多，等价于羁绊越多”！）；数据图形化，你只能老老实实拷贝统计软件里的做好的图吧（泪奔！）；建模分析结果的调用，就更别提了（反复在多个软件窗口中切换和敲键盘，眼花缭乱的“骚操作”不说，最担心的还是手一抖怕敲错了结果啊！）。</p></li>
+</ul>
+</div>
+<div id="html形式slide的前世今生" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> HTML形式slide的“前世今生”</h2>
+<ul>
+<li><p>一个浏览器就够了。HTML是互联网世界最广泛使用的交流形式。每台电脑都会安装浏览器（chrome、firefox、IE…），但不是都会安装Microsoft office全家桶（365家庭版那可是每年500RMB啊，心疼一下下！）。</p></li>
+<li><p>一份文本多种输出形态的终极需求。就像KTV里嗨唱切歌，老师们常常要在word、pdf、html、ppt、png等格式中不断切换啊。一个逗号或减号，在word里改了，那还得改ppt啊，就问你蛋疼不蛋疼。所以，仅维护一份文本，随时获得各种输出（html、word、ppt、slide…）简直就是人类共同的梦想啊。</p></li>
+<li><p>“纯文本”就是你的最底层“话语”。一切的文字、代码、图形、格式、排版…，统统汇集于一份“纯文本”中！<strong>Plain Text</strong>，正如其名，平铺直叙，朴素而不简单，包含了你所需的一切，你想说和想呈现的一切。</p></li>
+</ul>
+</div>
+</div>
+<div id="xaringan的优势和不足" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Xaringan的优势和不足</h1>
+<div id="xaringan的优势" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Xaringan的优势</h2>
+<ul>
+<li><p>R语言和RMarkdown的应用就是它最大的优势。这赋予了教学准备工作更强的“生产力”：代码可重复利用、统计处理和分析报告完美整合。</p></li>
+<li><p>Xaringan Slide可以高度灵活的定制化。本质上形式的呈现，完全依赖于CSS技术，这与PowerPoint中的模板使用是完全不同的体验，效率上完全秒掉后者。</p></li>
+<li><p>Xaringan Slide可以完美转成pdf格式的slide。其实直接用Chrome浏览器打开HTML Slide不就完了嘛，这种格式转换的操作本来就是多此一举！总之，你说，世界需要pdf；于是Xaringan便说，给你pdf！</p></li>
+<li><p>与GitHub版本控制技术融合。我想说的是，这是一种全新的师生交互和反馈机制！</p></li>
+</ul>
+</div>
+<div id="xaringan的不足" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Xaringan的不足</h2>
+<ul>
+<li><p>对行内公式支持不是很友好。比如<span class="math inline">\(\beta\)</span>的实现代码<code>$\beta$</code>必须要保持独立一行！一段话要是有很多这样的inline equation，那么xaringan::moon_reader文档就显得很破碎了。</p></li>
+<li><p>风格调整CSS技术的学习还是有一定成本的。换言之，制作一份自己喜欢的“专属”模板，还需要花费一些时间。</p></li>
+<li><p>强迫症的一些小细节。使用<code>knitr::kable()</code>制表，转pdf时表格无法显示，替代办法就是用<code>DT::datatable()</code>的表格风格，而它往往不是真正的Table风格！另外，就是windows环境下，不支持Rstudio面板Viewer中预览slide，只能在浏览器中预览。</p></li>
+</ul>
+</div>
+</div>
+
+    </div>
+
+    
+
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/econometrics/">Econometrics</a>
+  
+  <a class="badge badge-light" href="/tag/xaringan/">Xaringan</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://huhuaping.netlify.app/2019/02/24/xaringan-for-course-slide/&amp;text=Xaringan%e7%bc%98%e8%b5%b7%ef%bc%9a%e5%88%9b%e5%bb%ba%e8%af%be%e7%a8%8bslide" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://huhuaping.netlify.app/2019/02/24/xaringan-for-course-slide/&amp;t=Xaringan%e7%bc%98%e8%b5%b7%ef%bc%9a%e5%88%9b%e5%bb%ba%e8%af%be%e7%a8%8bslide" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Xaringan%e7%bc%98%e8%b5%b7%ef%bc%9a%e5%88%9b%e5%bb%ba%e8%af%be%e7%a8%8bslide&amp;body=https://huhuaping.netlify.app/2019/02/24/xaringan-for-course-slide/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://huhuaping.netlify.app/2019/02/24/xaringan-for-course-slide/&amp;title=Xaringan%e7%bc%98%e8%b5%b7%ef%bc%9a%e5%88%9b%e5%bb%ba%e8%af%be%e7%a8%8bslide" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=Xaringan%e7%bc%98%e8%b5%b7%ef%bc%9a%e5%88%9b%e5%bb%ba%e8%af%be%e7%a8%8bslide%20https://huhuaping.netlify.app/2019/02/24/xaringan-for-course-slide/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://huhuaping.netlify.app/2019/02/24/xaringan-for-course-slide/&amp;title=Xaringan%e7%bc%98%e8%b5%b7%ef%bc%9a%e5%88%9b%e5%bb%ba%e8%af%be%e7%a8%8bslide" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>Related</h3>
+    <ul>
+      
+      <li><a href="/2021/02/01/css-base-xaringan/">Xaringan美化：CSS功夫</a></li>
+      
+      <li><a href="/2020/11/28/xaringan-slide-efficiency/">Xaringan效率：底层与简洁</a></li>
+      
+      <li><a href="/2019/03/01/post-xaringan-slide-to-website/">在blogdown网站中展示Xaringan slide</a></li>
+      
+      <li><a href="/2019/02/28/improve-latex-math-with-rmarkdown-chunk/">Rmarkdown下自动化编译Latex公式输出</a></li>
+      
+      <li><a href="/2021/02/09/statistics-stream-and-structure/">Thread：统计学流派与演变</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+  
+  <p class="powered-by">
+    
+      <a href="/privacy/">Privacy Policy</a>
+    
+    
+       &middot; 
+      <a href="/terms/">Terms</a>
+    
+  </p>
+  
+
+  <p class="powered-by">
+    huhuaping@2019
+  </p>
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-modules" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js"></script>
+        
+      
+
+    
+
+    
+    
+    
+
+    
+    
+
+    
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    <script src="/js/_vendor/bootstrap.bundle.min.f81d0a1705048649befc8b595e455a94.js"></script>
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <script src="/en/js/wowchemy.min.0a233ecde900ea57d5cd5ad14636ad45.js"></script>
+
+    
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>package | Academic</title>
+    <link>https://huhuaping.netlify.app/tag/package/</link>
+      <atom:link href="https://huhuaping.netlify.app/tag/package/index.xml" rel="self" type="application/rss+xml" />
+    <description>package</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>huhuaping@2019</copyright><lastBuildDate>Tue, 02 Feb 2021 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://huhuaping.netlify.app/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png</url>
+      <title>package</title>
+      <link>https://huhuaping.netlify.app/tag/package/</link>
+    </image>
+    
+    <item>
+      <title>R包开发：构架及基础</title>
+      <link>https://huhuaping.netlify.app/2021/02/02/pkg-develop/</link>
+      <pubDate>Tue, 02 Feb 2021 00:00:00 +0000</pubDate>
+      <guid>https://huhuaping.netlify.app/2021/02/02/pkg-develop/</guid>
+      <description>
+&lt;script src=&#34;https://huhuaping.netlify.app/2021/02/02/pkg-develop/index.en_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+&lt;div id=&#34;TOC&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#学习资源&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1&lt;/span&gt; 学习资源&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#体系流程&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2&lt;/span&gt; 体系流程&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#files-structure&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.1&lt;/span&gt; 文件夹结构体系&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#包结构和状态package-structure-and-state&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.2&lt;/span&gt; 包结构和状态（Package structure and state）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#常规健康检查流程&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.3&lt;/span&gt; 常规“健康检查”流程&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#数据集的管理和使用&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.4&lt;/span&gt; 数据集的管理和使用&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#概念要点&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3&lt;/span&gt; 概念要点&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#区分description和namespace的作用&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.1&lt;/span&gt; 区分&lt;code&gt;DESCRIPTION&lt;/code&gt;和&lt;code&gt;NAMESPACE&lt;/code&gt;的作用&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#区分.rbuildignore和.gitignore&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.2&lt;/span&gt; 区分&lt;code&gt;.Rbuildignore&lt;/code&gt;和&lt;code&gt;.gitignore&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#区分rstudio-project和active-usethis-project&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.3&lt;/span&gt; 区分&lt;code&gt;RStudio Project&lt;/code&gt;和&lt;code&gt;active usethis project&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#注意load_all的使用&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.4&lt;/span&gt; 注意&lt;code&gt;load_all()&lt;/code&gt;的使用&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#区分code-in-scripts和code-in-packages&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.5&lt;/span&gt; 区分&lt;code&gt;code in scripts&lt;/code&gt;和&lt;code id=&#34;landscape&#34;&gt;code in packages&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#r编程技巧&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4&lt;/span&gt; R编程技巧&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#用styler包保持良好代码风格&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.1&lt;/span&gt; 用&lt;code&gt;styler&lt;/code&gt;包保持良好代码风格&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#用withr包管理环境状态&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.2&lt;/span&gt; 用&lt;code&gt;withr&lt;/code&gt;包管理环境状态&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id=&#34;学习资源&#34; class=&#34;section level1&#34; number=&#34;1&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;1&lt;/span&gt; 学习资源&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;“R packages” by &lt;a href=&#34;https://r-pkgs.org/index.html&#34;&gt;Hadley Wickham&lt;/a&gt;。R包开发的常备红宝书之一。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;“rOpenSci Packages: Development, Maintenance, and Peer Review” by &lt;a href=&#34;https://devguide.ropensci.org/index.html&#34;&gt;rOpenSci team&lt;/a&gt;。rOpenSci团队R包开发的规范和指南。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;“The tidyverse style guide” by &lt;a href=&#34;https://style.tidyverse.org/&#34;&gt;Hadley Wickham&lt;/a&gt;。提供了很多关于R编程规范和风格的建议。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;体系流程&#34; class=&#34;section level1&#34; number=&#34;2&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;2&lt;/span&gt; 体系流程&lt;/h1&gt;
+&lt;div id=&#34;files-structure&#34; class=&#34;section level2&#34; number=&#34;2.1&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.1&lt;/span&gt; 文件夹结构体系&lt;/h2&gt;
+&lt;p&gt;典型R包开发的文件夹结构体系如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;               levelName
+1  package of ‘xmetrics’
+2   |--.git             
+3   |--.Rproj.user      
+4   |--man              
+5   |   |--lx.est.Rd    
+6   |   |--lx.psm.Rd    
+7   |   °--other.man.Rd 
+8   |--R                
+9   |   |--lx-est.R     
+10  |   |--lx-psm.R     
+11  |   °--other-fun.R  
+12  |--.gitignore       
+13  |--.Rbuildignore    
+14  |--.Rhistory        
+15  |--DESCRIPTION      
+16  |--LICENSE          
+17  |--LICENSE.md       
+18  |--NAMESPACE        
+19  °--xmetrics.Rproj   &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;其中有两个比较重要的且容易混淆的文件是：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;文件&lt;code&gt;DESCRIPTION&lt;/code&gt;：存放包基本信息（Title, Version/Authors/Depends/License/Imports/Suggests/Depends等），是包开发必备文件之一，文件类型为&lt;code&gt;DCF&lt;/code&gt;（Debian control format），多行值换行需要空格（4格）。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;文件&lt;code&gt;NAMESPACE&lt;/code&gt;：存放&lt;code&gt;import&lt;/code&gt;外部依赖包或函数以及导出&lt;code&gt;export&lt;/code&gt;内部函数等名称信息。该文件为“只读状态”，相关信息通过开发工具函数（&lt;code&gt;roxygen2&lt;/code&gt;包）自动记录和更新。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;包结构和状态package-structure-and-state&#34; class=&#34;section level2&#34; number=&#34;2.2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.2&lt;/span&gt; 包结构和状态（Package structure and state）&lt;/h2&gt;
+&lt;p&gt;开发主要在前面三个阶段，后面两个阶段主要是包的使用：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;源状态（source）&lt;/strong&gt;：包开发的最初文件和结构，开发中最频繁使用的阶段。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;打包状态（bundled）&lt;/strong&gt;：将包压缩成了单个文件（&lt;code&gt;.tar.gz&lt;/code&gt;，但并不是简单压缩文件而已），仅是一种&lt;code&gt;源状态&lt;/code&gt;到&lt;code&gt;安装状态&lt;/code&gt;的过渡而已，也没有其他太大实际作用。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;二进制状态（binary）&lt;/strong&gt;：根据不同操作系统平台的压缩包文件，如windows系统使用&lt;code&gt;.zip&lt;/code&gt;包文件，macOS系统使用&lt;code&gt;.tgz&lt;/code&gt;包文件。可使用&lt;code&gt;devtools::build(binary = TRUE)&lt;/code&gt;构建二进制状态包文件。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;安装状态（installed）&lt;/strong&gt;：二进制包已经被解压缩到包目录下（package library）。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;缓存状态（in-memory）&lt;/strong&gt;：包的所有功能函数（functions）都已经在内存中，随时可供用户使用。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;下面图&lt;a href=&#34;#fig:pkg-files&#34;&gt;2.1&lt;/a&gt;比较直观地呈现了它们之间的关联与差异：&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:pkg-files&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;https://huhuaping.netlify.app/pic/xmetrics/package-files.png&#34; alt=&#34;三种包开发状态的联系和差异&#34;  /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 2.1: 三种包开发状态的联系和差异
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;而下面图&lt;a href=&#34;#fig:pkg-installation&#34;&gt;2.2&lt;/a&gt;比较直观地呈现了不同方法调用不同包状态的差异：&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:pkg-installation&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;https://huhuaping.netlify.app/pic/xmetrics/package-installation.png&#34; alt=&#34;不同方法调用不同包状态的差异&#34;  /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 2.2: 不同方法调用不同包状态的差异
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;常规健康检查流程&#34; class=&#34;section level2&#34; number=&#34;2.3&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.3&lt;/span&gt; 常规“健康检查”流程&lt;/h2&gt;
+&lt;p&gt;R包开发过程中应注意对迭代改进的常规“健康检查”（Constant health checks），基于&lt;code&gt;devtools&lt;/code&gt;包的操作流程一般为：&lt;/p&gt;
+&lt;ul class=&#34;task-list&#34;&gt;
+&lt;li&gt;&lt;p&gt;&lt;input type=&#34;checkbox&#34; disabled=&#34;&#34; checked=&#34;&#34; /&gt;
+Edit one or more files below &lt;code&gt;&#34;R/.&#34;&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;input type=&#34;checkbox&#34; disabled=&#34;&#34; checked=&#34;&#34; /&gt;
+&lt;code&gt;devtools::document()&lt;/code&gt; (if you’ve made any changes that impact help files or NAMESPACE)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;input type=&#34;checkbox&#34; disabled=&#34;&#34; checked=&#34;&#34; /&gt;
+&lt;code&gt;load_all()&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;input type=&#34;checkbox&#34; disabled=&#34;&#34; checked=&#34;&#34; /&gt;
+Run some examples interactively.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;input type=&#34;checkbox&#34; disabled=&#34;&#34; checked=&#34;&#34; /&gt;
+&lt;code&gt;test()&lt;/code&gt; (or &lt;code&gt;test_file()&lt;/code&gt;)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;input type=&#34;checkbox&#34; disabled=&#34;&#34; checked=&#34;&#34; /&gt;
+&lt;code&gt;check()&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;数据集的管理和使用&#34; class=&#34;section level2&#34; number=&#34;2.4&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.4&lt;/span&gt; 数据集的管理和使用&lt;/h2&gt;
+&lt;p&gt;根据数据使用目的，可相应处置如下三类外部数据集（external data）（具体参见14章&lt;a href=&#34;https://r-pkgs.org/data.html#data&#34;&gt;External data&lt;/a&gt;）：&lt;/p&gt;
+&lt;p&gt;a.&lt;strong&gt;导出型数据&lt;/strong&gt;（exported data）类别：存储并为用户提供二进制数据集（binary data），可以放置在&lt;code&gt;&#34;data/&#34;&lt;/code&gt;文件夹下（需要创建该文件夹）。数据文件应该使用&lt;code&gt;save()&lt;/code&gt;函数存储，且保存格式为&lt;code&gt;.RData&lt;/code&gt;文件。使用该数据集的方法是&lt;code&gt;usethis::use_data()&lt;/code&gt;。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;&#34;data/&#34;&lt;/code&gt;文件夹下的数据集&lt;code&gt;mydata.RData&lt;/code&gt;也需要像函数一样采用&lt;code&gt;roxygen2 block&lt;/code&gt;编写说明文档（document），并存放在&lt;code&gt;&#34;R/data.R&#34;&lt;/code&gt;文件里。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;显然，这里的数据集是对初始数据源经过清洗和整理过的，这些中间数据或操作代码可以放置在另一个文件夹&lt;code&gt;&#34;data-raw/&#34;&lt;/code&gt;下，调用数据集也可以相应使用&lt;code&gt;usethis::use_data_raw()&lt;/code&gt;函数，当然不要忘记把这个文件夹添加到&lt;code&gt;.Rbuildignore&lt;/code&gt;的忽略名单里。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;b.&lt;strong&gt;内部数据&lt;/strong&gt;（internal data）类别：存储解析数据集（parsed data）但是不希望提供给用户，则可以放置在&lt;code&gt;&#34;R/sysdata.rda&#34;&lt;/code&gt;文件里。使用该数据集的方法是&lt;code&gt;usethis::use_data()&lt;/code&gt;。因为内部数据集不会export出来，因此不需要为这类数据编写说明文档。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;同外部数据类似，内部数据的来源数据或操作代码可以放置在另一个文件夹&lt;code&gt;&#34;data-raw/&#34;&lt;/code&gt;下，调用数据集也可以相应使用&lt;code&gt;usethis::use_data_raw()&lt;/code&gt;函数。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;c.&lt;strong&gt;原始数据&lt;/strong&gt;（raw data）类别：存储原始数据集可以放置在&lt;code&gt;inst/extdata&lt;/code&gt;文件夹下（需要创建该文件夹）。使用该数据集的方法是&lt;code&gt;system.file()&lt;/code&gt;。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;需要注意的是：如果调用函数指定的数据文件并不存在，调用函数不会报错，而是返回空值。当然，如果想要显示为报错，则需要设定参数&lt;code&gt;system.file(&#34;extdata&#34;, &#34;none.csv&#34;, mustWork = TRUE)&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;概念要点&#34; class=&#34;section level1&#34; number=&#34;3&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;3&lt;/span&gt; 概念要点&lt;/h1&gt;
+&lt;div id=&#34;区分description和namespace的作用&#34; class=&#34;section level2&#34; number=&#34;3.1&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.1&lt;/span&gt; 区分&lt;code&gt;DESCRIPTION&lt;/code&gt;和&lt;code&gt;NAMESPACE&lt;/code&gt;的作用&lt;/h2&gt;
+&lt;p&gt;二者都是独立文件（见前面&lt;a href=&#34;#files-structure&#34;&gt;文件夹结构&lt;/a&gt;），对于外部依赖包的表述上存在一些容易引起混淆的地方。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;内容编辑方式上的不同该。包开发者可以主动编辑&lt;code&gt;DESCRIPTION&lt;/code&gt;文件信息，但是&lt;code&gt;NAMESPACE&lt;/code&gt;文件本身这是“只读”的（实际上该文件内容的编辑和更新，是自动通过对具体函数function的基本信息获得的）。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;对包依赖关系的表述和作用不同。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;a.在文件&lt;code&gt;DESCRIPTION&lt;/code&gt;中，本包对其他包的依赖关系有两种表述方式&lt;code&gt;Imports&lt;/code&gt;和&lt;code&gt;Suggests&lt;/code&gt;，二者存在差异（具体见节&lt;a href=&#34;https://r-pkgs.org/description.html#dependencies&#34;&gt;8.1 Dependencies&lt;/a&gt;）。简单说，二者主要差异在于强调对外部包依赖程度的强弱不同。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;Imports&lt;/code&gt;列表下的依赖包，必须出现在开发包中，开发包才能正常运作。把依赖包列在清单中，作用是确保这些依赖包已经在&lt;strong&gt;本地安装&lt;/strong&gt;了。也即该清单下的外部包&lt;strong&gt;将会&lt;/strong&gt;随着开发包的运行而自动安装。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;Suggests&lt;/code&gt;清单下的外部包，并不构成本包运行的必须条件，主要用于示例数据集、运行测试、编写函数说明等。该清单下的外部包&lt;strong&gt;不会&lt;/strong&gt;随着开发包的运行而自动安装。此外，如果仅仅只是“本地包开发”，则根本不需要使用&lt;code&gt;Suggests&lt;/code&gt;清单。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;[技巧提示]：可以使用函数&lt;code&gt;usethis::use_package()&lt;/code&gt;快速而正确地添加依赖包到&lt;code&gt;Imports&lt;/code&gt;和&lt;code&gt;Suggests&lt;/code&gt;清单下。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;b.在文件&lt;code&gt;NAMESPACE&lt;/code&gt;中，才是真正地将相关函数&lt;em&gt;（间接地、自动地）&lt;/em&gt;导入**到“名空间”中去。这完全不同于&lt;code&gt;DESCRIPTION&lt;/code&gt;文件下的&lt;code&gt;Imports&lt;/code&gt;的功能。如果外部依赖包正确导入到&lt;code&gt;NAMESPACE&lt;/code&gt;列表下，则可以避免多次使用&lt;code&gt;foo::fun()&lt;/code&gt;这样的代码。&lt;/p&gt;
+&lt;p&gt;c.文件&lt;code&gt;DESCRIPTION&lt;/code&gt;和&lt;code&gt;NAMESPACE&lt;/code&gt;的关系。一方面，把需要提前安装的外部包都列在&lt;code&gt;DESCRIPTION&lt;/code&gt;文件的&lt;code&gt;Imports&lt;/code&gt;列表下，并建议明确地使用&lt;code&gt;foo::fun()&lt;/code&gt;进行函数编写，便于后期代码检查和维护。另一方面，所有在&lt;code&gt;DESCRIPTION&lt;/code&gt;文件&lt;code&gt;Imports&lt;/code&gt;列表下的外部依赖包，必须在文件&lt;code&gt;NAMESPACE&lt;/code&gt;中“完全”列出。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;简单说，只要用到的外部包都应该进入&lt;code&gt;NAMESPACE&lt;/code&gt;列表中，否则也别出现在&lt;code&gt;DESCRIPTION&lt;/code&gt;文件&lt;code&gt;Imports&lt;/code&gt;列表下！&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div id=&#34;区分.rbuildignore和.gitignore&#34; class=&#34;section level2&#34; number=&#34;3.2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.2&lt;/span&gt; 区分&lt;code&gt;.Rbuildignore&lt;/code&gt;和&lt;code&gt;.gitignore&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;需要注意区分&lt;code&gt;.Rbuildignore&lt;/code&gt;和&lt;code&gt;.gitignore&lt;/code&gt;两个文件的目的和作用。简单说，&lt;code&gt;.Rbuildignore&lt;/code&gt;是为了协调&lt;strong&gt;包开发实践&lt;/strong&gt;与&lt;strong&gt;&lt;code&gt;CRAN&lt;/code&gt;包发布要求&lt;/strong&gt;之间的不同；而&lt;code&gt;.gitignore&lt;/code&gt;是为了满足&lt;strong&gt;版本控制&lt;/strong&gt;工具（如git）的特定需求。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;建议使用&lt;code&gt;usethis::use_build_ignore()&lt;/code&gt;来添加&lt;code&gt;.Rbuildignore&lt;/code&gt;忽略文件清单。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div id=&#34;区分rstudio-project和active-usethis-project&#34; class=&#34;section level2&#34; number=&#34;3.3&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.3&lt;/span&gt; 区分&lt;code&gt;RStudio Project&lt;/code&gt;和&lt;code&gt;active usethis project&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;需要注意的是&lt;code&gt;usethis&lt;/code&gt;包的函数不会明确知名路径，而是&lt;strong&gt;默认&lt;/strong&gt;在&lt;code&gt;active usethis project&lt;/code&gt;下，因此它也意味着默认它是与&lt;code&gt;RStudio Project&lt;/code&gt;同路径的。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;建议使用&lt;code&gt;usethis::proj_sitrep()&lt;/code&gt;查看二者路径状态是否一致。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;usethis::proj_sitrep()
+
+#   working_directory: &amp;#39;D:/github/xmerit&amp;#39;
+# active_usethis_proj: &amp;#39;D:/github/xmerit&amp;#39;
+# active_rstudio_proj: &amp;#39;D:/github/xmerit&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;注意load_all的使用&#34; class=&#34;section level2&#34; number=&#34;3.4&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.4&lt;/span&gt; 注意&lt;code&gt;load_all()&lt;/code&gt;的使用&lt;/h2&gt;
+&lt;p&gt;开发或测试期间，如何转载或缓存一个开发包？&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;建议使用&lt;code&gt;pkgload::load_all()&lt;/code&gt;，Rstudio快捷键：&lt;code&gt;Ctrl + Shift + L&lt;/code&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;当然，其他的方法还包括&lt;code&gt;devtools::load_all()&lt;/code&gt;等，具体差异可以见下面图&lt;a href=&#34;#fig:load-all&#34;&gt;3.1&lt;/a&gt;：&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:load-all&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;https://huhuaping.netlify.app/pic/xmetrics/load-all.png&#34; alt=&#34;R包开发阶段的若干调用方法&#34;  /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 3.1: R包开发阶段的若干调用方法
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;区分code-in-scripts和code-in-packages&#34; class=&#34;section level2&#34; number=&#34;3.5&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.5&lt;/span&gt; 区分&lt;code&gt;code in scripts&lt;/code&gt;和&lt;code id=&#34;landscape&#34;&gt;code in packages&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;区分脚本代码（code in scripts）和包代码（code in packages）的差异。&lt;/p&gt;
+&lt;p&gt;（0）从代码存放位置来看：前者理论上可以存放在任意位置，而后者仅存放在&lt;code&gt;&#34;R/&#34;&lt;/code&gt;文件夹下。&lt;/p&gt;
+&lt;p&gt;（1）从代码运行时点来看：对于脚本代码（code in scripts），一旦触发操作，它当即就已经“运行”；而对于包代码（code in packages），只有包建成（built），它才开始“运行”。&lt;/p&gt;
+&lt;p&gt;（2）从代码使用方法来看：前者往往还在源代码阶段使用，例如&lt;code&gt;source(&#34;code-in-scripts.R&#34;)&lt;/code&gt;；后者在包建成后（built）添加该包&lt;code&gt;library(&#34;your-pkg&#34;)&lt;/code&gt;即可直接使用特定函数&lt;code&gt;your-pkg::fun_someone()&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;（3）从R landscape（R环境风貌）来看：简单说一些操作会直接导致R landscape的改变。例如：转载某个包&lt;code&gt;library(&#34;your-pkg&#34;)&lt;/code&gt;、调整环境选项&lt;code&gt;options()&lt;/code&gt;、或修改工作文件夹&lt;code&gt;setwd()&lt;/code&gt;。这就意味着如果包代码（code in packages）里的一些函数涉及到上述操作，则它们会改变R landscape，从而引起对其他某些函数的新麻烦和问题。此外，我们也要避免使用牵扯到用户环境风貌（user’s landscape）的函数，例如&lt;code&gt;read.csv()&lt;/code&gt;就会与用户特定风貌相关的一个参数相关联。总之，包代码（code in packages）的若干具体建议如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;不要使用&lt;code&gt;library()&lt;/code&gt; 或者&lt;code&gt;require()&lt;/code&gt; 。它会改变搜索路径（search path）。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;永远不要使用&lt;code&gt;source()&lt;/code&gt;。它会插入执行的代码结果，从而改变当前环境。实际上&lt;code&gt;load_all()&lt;/code&gt;能够更好地让你调用你想要的内部函数。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;一些慎重使用的操作函数。包括：&lt;code&gt;options()&lt;/code&gt;、&lt;code&gt;par()&lt;/code&gt;
+&lt;code&gt;setwd()&lt;/code&gt;、&lt;code&gt;Sys.setenv()&lt;/code&gt;、&lt;code&gt;Sys.setlocale()&lt;/code&gt;、&lt;code&gt;set.seed()&lt;/code&gt;等。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;概括起来，包代码（code in packages）会更加严格：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Any R code outside of a function is suspicious and should be carefully reviewed.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;r编程技巧&#34; class=&#34;section level1&#34; number=&#34;4&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;4&lt;/span&gt; R编程技巧&lt;/h1&gt;
+&lt;div id=&#34;用styler包保持良好代码风格&#34; class=&#34;section level2&#34; number=&#34;4.1&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.1&lt;/span&gt; 用&lt;code&gt;styler&lt;/code&gt;包保持良好代码风格&lt;/h2&gt;
+&lt;p&gt;Hadley建议使用&lt;code&gt;tidyverse&lt;/code&gt;的代码风格（具体见节&lt;a href=&#34;https://r-pkgs.org/r.html#code-style&#34;&gt;7.3 Code style&lt;/a&gt;）。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;建议使用&lt;code&gt;styler&lt;/code&gt;包来调整代码风格，而且Rstudio Addins菜单上会有相应插件。一些常见需求的风格调整包括：对整个包&lt;code&gt;styler::style_pkg()&lt;/code&gt;（注意使用带来的风险性）；对某个文件夹&lt;code&gt;styler::style_dir()&lt;/code&gt;；对某个文件&lt;code&gt;styler::style_file()&lt;/code&gt;；对字符向量&lt;code&gt;styler::style_text()&lt;/code&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div id=&#34;用withr包管理环境状态&#34; class=&#34;section level2&#34; number=&#34;4.2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.2&lt;/span&gt; 用&lt;code&gt;withr&lt;/code&gt;包管理环境状态&lt;/h2&gt;
+&lt;p&gt;前面讲过&lt;a href=&#34;#landscape&#34;&gt;R landscape&lt;/a&gt;会因某些操作而改变，因而引发不必要的问题和错误。&lt;code&gt;withr&lt;/code&gt;包可以很好处理这个矛盾（具体见节&lt;a href=&#34;https://r-pkgs.org/r.html#manage-state-with-withr&#34;&gt;7.5.1 Manage state with withr&lt;/a&gt;）。&lt;/p&gt;
+&lt;p&gt;需要注意的是，&lt;code&gt;withr&lt;/code&gt;包的同一类操作分别给出了两个函数，二者作用范围各有不同：&lt;code&gt;with_*()&lt;/code&gt;函数主要实现临时性环境状态调整（有点像“阅后即焚”）；而&lt;code&gt;local_*()&lt;/code&gt;函数会将修改后的环境状态维持下去，直至本函数操作全部结束（有点像“夜更巡逻”）。&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>R包开发：xmetrics</title>
+      <link>https://huhuaping.netlify.app/2021/02/01/pkg-xmerit/</link>
+      <pubDate>Mon, 01 Feb 2021 00:00:00 +0000</pubDate>
+      <guid>https://huhuaping.netlify.app/2021/02/01/pkg-xmerit/</guid>
+      <description>
+&lt;script src=&#34;https://huhuaping.netlify.app/2021/02/01/pkg-xmerit/index.en_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+&lt;div id=&#34;TOC&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#缘由&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1&lt;/span&gt; 缘由&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#开发思路&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2&lt;/span&gt; 开发思路&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#主要功能&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.1&lt;/span&gt; 主要功能&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#主要挑战&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.2&lt;/span&gt; 主要挑战&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#理论公式输出&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.2.1&lt;/span&gt; 理论公式输出&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#数值公式输出&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.2.2&lt;/span&gt; 数值公式输出&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#一些工具函数&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3&lt;/span&gt; 一些工具函数&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#将xls文件高保真地转换为xlsx文件&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.1&lt;/span&gt; 将xls文件高保真地转换为xlsx文件&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#df数据列元素进行快速粘合输出&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.2&lt;/span&gt; df数据列元素进行快速粘合输出&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id=&#34;缘由&#34; class=&#34;section level1&#34; number=&#34;1&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;1&lt;/span&gt; 缘由&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;R包&lt;code&gt;xmetrics&lt;/code&gt;定位于辅助计量经济学和统计学课程进行高效的、可重现的（reproducable）教学内容准备和演示。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;R包命名的原则应该坚持：a.词形或发音与表意一致性，也即与开发R包核心功能定位的一致；b.不能太范化或通用，避免后期用户搜索的混淆，或推广传播的混乱。&lt;/p&gt;
+&lt;p&gt;拟定开发的R包命名&lt;code&gt;xmetrics&lt;/code&gt;，音近于计量经济学英文&lt;strong&gt;Econometrics&lt;/strong&gt;，&lt;code&gt;X&lt;/code&gt;也有多种用途或神通广大的含义，而且metrics本身就是测量或度量的含义。通过google搜索关键词“xmetrics”的重合度或范化度，仅发现一款游泳穿戴设备名为“Xmetrics”（见&lt;a href=&#34;https://swimswam.com/xmetrics-the-worlds-first-activity-tracker-for-swimmers/&#34;&gt;网页&lt;/a&gt;）。继续google搜索关键词“R xmetrics”，发现一个定位为机器学习（Machine Learning）的R包命名为“Metrics”（见&lt;a href=&#34;https://cran.r-project.org/web/packages/Metrics/index.html&#34;&gt;CRAN&lt;/a&gt;）。&lt;/p&gt;
+&lt;p&gt;功能类似R包主要有： &lt;code&gt;equatiomatic&lt;/code&gt;（见github仓库&lt;a href=&#34;https://github.com/datalorax/equatiomatic&#34;&gt;datalorax/equatiomatic&lt;/a&gt;）&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The goal of &lt;code&gt;equatiomatic&lt;/code&gt; is to reduce the pain associated with writing LaTeX code from a fitted model. In the future, the package aims to support any model supported by &lt;code&gt;broom&lt;/code&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;优点：简单、容易上手；支持较多的几类计量模型。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;不足：功能相对较少（见下面）&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;开发思路&#34; class=&#34;section level1&#34; number=&#34;2&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;2&lt;/span&gt; 开发思路&lt;/h1&gt;
+&lt;div id=&#34;主要功能&#34; class=&#34;section level2&#34; number=&#34;2.1&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.1&lt;/span&gt; 主要功能&lt;/h2&gt;
+&lt;p&gt;math equation输出需要考虑的几个方面：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;支持纯latex符号公式（symbol equation）、模型结果数值化（value equation）以及二者的混合；&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;支持计量经济学数学公式（math equation）的各类理论表达，如总体回归模型PRM、总体回归函数PRF、样本回归模型（SRM）、样本回归函数（SRF）等；&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;支持多种数值结果形式输出，例如经典三行式（系数、标准误、t值），或者经典一行式（系数）。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;支持多种latex美化效果，包括&lt;code&gt;align&lt;/code&gt;、&lt;code&gt;alignedat&lt;/code&gt;等排列对齐环境；&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;支持灵活个性化的参数符号（如&lt;span class=&#34;math inline&#34;&gt;\(\alpha,\beta,\gamma,\cdots\)&lt;/span&gt;）和下标符号（如&lt;span class=&#34;math inline&#34;&gt;\(X_i, u_i, u_t\)&lt;/span&gt;）选择等；&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;支持多种模型估计方法，包括OLS回归、虚拟变量回归（ANOVA）等；&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;与通用R包保持接口一致，如包&lt;code&gt;broom&lt;/code&gt;等；&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;主要挑战&#34; class=&#34;section level2&#34; number=&#34;2.2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.2&lt;/span&gt; 主要挑战&lt;/h2&gt;
+&lt;p&gt;计量经济学的语言符号体系&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;符号体系的标准化和一致性问题【低难度】&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;数学证明和逻辑推导问题【工作强度大】。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div id=&#34;理论公式输出&#34; class=&#34;section level3&#34; number=&#34;2.2.1&#34;&gt;
+&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.2.1&lt;/span&gt; 理论公式输出&lt;/h3&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;X &amp;lt;- c(paste0(rep(c(&amp;quot;X&amp;quot;,&amp;quot;Z&amp;quot;),each=4),1:4), &amp;quot;fathedu&amp;quot;, &amp;quot;mothedu&amp;quot;)
+Y &amp;lt;- &amp;quot;lwage&amp;quot;
+Greek.g &amp;lt;- c(&amp;quot;alpha&amp;quot;,&amp;quot;beta&amp;quot;,&amp;quot;lambda&amp;quot;)
+Greek.n &amp;lt;- c(4,4,2)
+#type &amp;lt;- &amp;quot;srm&amp;quot;
+Obs &amp;lt;- &amp;quot;i&amp;quot;
+N.row &amp;lt;- 4
+Cst &amp;lt;- F&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;总体回归模型PRM：&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34; id=&#34;eq:prm&#34;&gt;\[\begin{equation}
+\begin{alignedat}{999}
+lwage_i&amp;amp;=&amp;amp;&amp;amp;\alpha_{1}X1_i+&amp;amp;&amp;amp;\alpha_{2}X2_i+&amp;amp;&amp;amp;\alpha_{3}X3_i+&amp;amp;&amp;amp;\alpha_{4}X4_i\\&amp;amp;+&amp;amp;&amp;amp;\beta_{1}Z1_i+&amp;amp;&amp;amp;\beta_{2}Z2_i+&amp;amp;&amp;amp;\beta_{3}Z3_i+&amp;amp;&amp;amp;\beta_{4}Z4_i\\&amp;amp;+&amp;amp;&amp;amp;\lambda_{1}fathedu_i+&amp;amp;&amp;amp;\lambda_{2}mothedu_i+&amp;amp;&amp;amp;u_i
+\end{alignedat}
+\tag{2.1}
+\end{equation}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;样本回归模型SRM：&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;srm_test &amp;lt;- lx.psm(x =X, y = Y, greek.g = Greek.g, greek.n = Greek.n,
+       type = &amp;quot;srm&amp;quot;, intercept = Cst, lm.label = &amp;quot;srm&amp;quot;, 
+       obs = Obs, n.row = N.row)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34; id=&#34;eq:srm&#34;&gt;\[\begin{equation}
+\begin{alignedat}{999}
+lwage_i&amp;amp;=&amp;amp;&amp;amp;\hat{\alpha}_{1}X1_i+&amp;amp;&amp;amp;\hat{\alpha}_{2}X2_i+&amp;amp;&amp;amp;\hat{\alpha}_{3}X3_i+&amp;amp;&amp;amp;\hat{\alpha}_{4}X4_i\\&amp;amp;+&amp;amp;&amp;amp;\hat{\beta}_{1}Z1_i+&amp;amp;&amp;amp;\hat{\beta}_{2}Z2_i+&amp;amp;&amp;amp;\hat{\beta}_{3}Z3_i+&amp;amp;&amp;amp;\hat{\beta}_{4}Z4_i\\&amp;amp;+&amp;amp;&amp;amp;\hat{\lambda}_{1}fathedu_i+&amp;amp;&amp;amp;\hat{\lambda}_{2}mothedu_i+&amp;amp;&amp;amp;e_i
+\end{alignedat}
+\tag{2.2}
+\end{equation}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;样本回归函数SRF：&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;srf_test &amp;lt;- lx.psm(x =X, y = Y,greek.g = Greek.g, greek.n = Greek.n,
+       type = &amp;quot;srf&amp;quot;, intercept = Cst, lm.label = &amp;quot;srf&amp;quot;,
+       obs = Obs, n.row = N.row )&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34; id=&#34;eq:srf&#34;&gt;\[\begin{equation}
+\begin{alignedat}{999}
+\widehat{lwage}_i&amp;amp;=&amp;amp;&amp;amp;\hat{\alpha}_{1}X1_i+&amp;amp;&amp;amp;\hat{\alpha}_{2}X2_i+&amp;amp;&amp;amp;\hat{\alpha}_{3}X3_i+&amp;amp;&amp;amp;\hat{\alpha}_{4}X4_i\\&amp;amp;+&amp;amp;&amp;amp;\hat{\beta}_{1}Z1_i+&amp;amp;&amp;amp;\hat{\beta}_{2}Z2_i+&amp;amp;&amp;amp;\hat{\beta}_{3}Z3_i+&amp;amp;&amp;amp;\hat{\beta}_{4}Z4_i\\&amp;amp;+&amp;amp;&amp;amp;\hat{\lambda}_{1}fathedu_i+&amp;amp;&amp;amp;\hat{\lambda}_{2}mothedu_i
+\end{alignedat}
+\tag{2.3}
+\end{equation}\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;数值公式输出&#34; class=&#34;section level3&#34; number=&#34;2.2.2&#34;&gt;
+&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.2.2&lt;/span&gt; 数值公式输出&lt;/h3&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;require(&amp;quot;wooldridge&amp;quot;)
+mroz &amp;lt;- wooldridge::mroz %&amp;gt;%
+  as_tibble() %&amp;gt;%
+  select(lwage, educ,exper, 
+         fatheduc,motheduc,everything()) %&amp;gt;%
+  filter(!is.na(wage))
+
+mod_origin &amp;lt;- formula(lwage ~ educ + nwifeinc +exper+I(exper^2) + I(exper^2*city)  )
+
+ols_origin &amp;lt;- lm(formula = mod_origin, data = mroz)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;默认形式：&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;lx_out&amp;lt;- lx.est(lm.mod = mod_origin, lm.dt = mroz)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\begin{equation}
+\begin{alignedat}{999}
+\widehat{lwage}&amp;amp;=&amp;amp;&amp;amp;-0.53&amp;amp;&amp;amp;+0.10educ_i&amp;amp;&amp;amp;+0.01nwifeinc_i\\&amp;amp;(s)&amp;amp;&amp;amp;0.2011&amp;amp;&amp;amp;0.0148&amp;amp;&amp;amp;0.0032\\&amp;amp;(t)&amp;amp;&amp;amp;-2.61&amp;amp;&amp;amp;+6.67&amp;amp;&amp;amp;+1.59\\&amp;amp;(cont.)&amp;amp;&amp;amp;+0.04exper_i&amp;amp;&amp;amp;-0.00exper^2_i&amp;amp;&amp;amp;+0.00exper^2*city_i\\&amp;amp;(s)&amp;amp;&amp;amp;0.0132&amp;amp;&amp;amp;0.0004&amp;amp;&amp;amp;0.0002\\&amp;amp;(t)&amp;amp;&amp;amp;+3.23&amp;amp;&amp;amp;-2.19&amp;amp;&amp;amp;+0.79
+\end{alignedat}
+\end{equation}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;srm形式：&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;lx_out&amp;lt;- lx.est(lm.mod = mod_origin, lm.dt = mroz, style = &amp;quot;srm&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\begin{equation}
+\begin{alignedat}{999}
+{lwage}&amp;amp;=&amp;amp;&amp;amp;-0.53&amp;amp;&amp;amp;+0.10educ_i&amp;amp;&amp;amp;+0.01nwifeinc_i\\&amp;amp;(s)&amp;amp;&amp;amp;0.2011&amp;amp;&amp;amp;0.0148&amp;amp;&amp;amp;0.0032\\&amp;amp;(t)&amp;amp;&amp;amp;-2.61&amp;amp;&amp;amp;+6.67&amp;amp;&amp;amp;+1.59\\&amp;amp;(cont.)&amp;amp;&amp;amp;+0.04exper_i&amp;amp;&amp;amp;-0.00exper^2_i&amp;amp;&amp;amp;+0.00exper^2*city_i&amp;amp;&amp;amp;+e_i\\&amp;amp;(s)&amp;amp;&amp;amp;0.0132&amp;amp;&amp;amp;0.0004&amp;amp;&amp;amp;0.0002\\&amp;amp;(t)&amp;amp;&amp;amp;+3.23&amp;amp;&amp;amp;-2.19&amp;amp;&amp;amp;+0.79
+\end{alignedat}
+\end{equation}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;一行形式：&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;lx_out&amp;lt;- lx.est(lm.mod = mod_origin, lm.dt = mroz, style = &amp;quot;srm&amp;quot;, opt = c(&amp;quot;p&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\begin{equation}
+\begin{alignedat}{999}
+{lwage}&amp;amp;=&amp;amp;&amp;amp;-0.53&amp;amp;&amp;amp;+0.10educ_i&amp;amp;&amp;amp;+0.01nwifeinc_i\\&amp;amp;(p)&amp;amp;&amp;amp;0.0093&amp;amp;&amp;amp;0.0000&amp;amp;&amp;amp;0.1116\\&amp;amp;(cont.)&amp;amp;&amp;amp;+0.04exper_i&amp;amp;&amp;amp;-0.00exper^2_i&amp;amp;&amp;amp;+0.00exper^2*city_i&amp;amp;&amp;amp;+e_i\\&amp;amp;(p)&amp;amp;&amp;amp;0.0014&amp;amp;&amp;amp;0.0288&amp;amp;&amp;amp;0.4322
+\end{alignedat}
+\end{equation}\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;一些工具函数&#34; class=&#34;section level1&#34; number=&#34;3&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;3&lt;/span&gt; 一些工具函数&lt;/h1&gt;
+&lt;div id=&#34;将xls文件高保真地转换为xlsx文件&#34; class=&#34;section level2&#34; number=&#34;3.1&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.1&lt;/span&gt; 将xls文件高保真地转换为xlsx文件&lt;/h2&gt;
+&lt;p&gt;参考资料1：&lt;a href=&#34;https://rdrr.io/github/KWB-R/kwb.geosalz/man/convert_xls_as_xlsx.html&#34;&gt;geosalz 源代码&lt;/a&gt;；参考资料2：&lt;a href=&#34;https://stackoverflow.com/questions/59248369/r-cannot-run-specific-cmd-code-that-converts-xls-to-xlsx&#34;&gt;“队长问答”&lt;/a&gt;；参考资料3：&lt;a href=&#34;http://justgeeks.blogspot.com/2014/08/&#34;&gt;博客文章&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;函数作用：将本地文件夹下的&lt;code&gt;.xls&lt;/code&gt;文件批量转换为&lt;code&gt;.xlsx&lt;/code&gt;文件。适用于windowns操作系统下，具体会调用Microsoft的本地电脑程序端。&lt;/p&gt;
+&lt;p&gt;函数名称：&lt;code&gt;convert_xls_as_xlsx(input_dir, export_dir)&lt;/code&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;使用场景：“D:/github/article-west/R/xls2xlsx.R”；以及“D:/github/article-west/data-set-maintain.Rmd”&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;convert_xls_as_xlsx(input_dir = &amp;quot;d:/github/article-west/data/v4-cost-revenue/01-raw/&amp;quot;,  
+                    export_dir = &amp;quot;d:/github/article-west/data/v4-cost-revenue/001-out/&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;注意可能的提示（message）：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Found 2 versions of &amp;#39;excelcnv.exe&amp;#39;:
+  C:/Program Files/Microsoft Office/Updates/Download/PackageFiles/8BB798B7-EFF4-4781-AD0F-DE53892ADC7D/root/Office16/excelcnv.exe
+  C:/Program Files/Microsoft Office/root/Office16/excelcnv.exe&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;根据本地电脑的实际情况，很可能需要修改两个地方：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;本地电脑office的安装路径：&lt;code&gt;safe_office_folder()&lt;/code&gt;函数的路径参数&lt;code&gt;office_path = &#34;C:/Program Files/Microsoft Office&#34;)&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;可能有office更新版本：&lt;code&gt;get_excelcnv_exe()&lt;/code&gt;函数的输出结果&lt;code&gt;paths[2]&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;df数据列元素进行快速粘合输出&#34; class=&#34;section level2&#34; number=&#34;3.2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.2&lt;/span&gt; df数据列元素进行快速粘合输出&lt;/h2&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

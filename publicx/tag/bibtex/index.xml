@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>bibTeX | Academic</title>
+    <link>https://huhuaping.netlify.app/tag/bibtex/</link>
+      <atom:link href="https://huhuaping.netlify.app/tag/bibtex/index.xml" rel="self" type="application/rss+xml" />
+    <description>bibTeX</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>huhuaping@2019</copyright><lastBuildDate>Fri, 09 Oct 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://huhuaping.netlify.app/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png</url>
+      <title>bibTeX</title>
+      <link>https://huhuaping.netlify.app/tag/bibtex/</link>
+    </image>
+    
+    <item>
+      <title>使用Zotero实现文献引用的自动化Rmarkdown写作</title>
+      <link>https://huhuaping.netlify.app/2020/10/09/rmarkdown-zotero-rbbt/</link>
+      <pubDate>Fri, 09 Oct 2020 00:00:00 +0000</pubDate>
+      <guid>https://huhuaping.netlify.app/2020/10/09/rmarkdown-zotero-rbbt/</guid>
+      <description>
+
+
+&lt;blockquote&gt;
+&lt;p&gt;Rmarkdown写作环境下，Zotero + rbbt的方式，基本上实现了比较满意的文献管理和引用流程。Zotero具有免费和相对开放性。Zotero对bibTeX和中文情景比较友好。此外，R包rbbt函数实现了对Zotero的实时联系，引用流程更加自动化。使用者需要正确理解Rmd渲染输出、.bib文件状态和Zotero条目库的关系。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div id=&#34;zotero环境准备&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;zotero环境准备&lt;/h1&gt;
+&lt;div id=&#34;安装zotero和扩展插件zotero-better-bibtex&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;安装zotero和扩展插件zotero-better-bibtex。&lt;/h2&gt;
+&lt;p&gt;安装文献管理软件zotero和浏览器插件 。&lt;a href=&#34;https://www.zotero.org/&#34;&gt;官网&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;软件本体Zotero 5.0 for Windows &lt;a href=&#34;https://www.zotero.org/download/client/dl?channel=release&amp;amp;platform=win32&amp;amp;version=5.0.89&#34;&gt;下载&lt;/a&gt;。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;浏览器插件Zotero Connector &lt;a href=&#34;https://chrome.google.com/webstore/detail/ekhagklcjbdpajgpjgmbionohlpdbjgc&#34;&gt;chrome 浏览器插件下载&lt;/a&gt;。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;安装Zotero扩展插件zotero-better-bibtex &lt;a href=&#34;https://retorque.re/zotero-better-bibtex/&#34;&gt;开发者网站&lt;/a&gt;。zotero-better-bibtex-5.2.78.xpi &lt;a href=&#34;https://github.com/retorquere/zotero-better-bibtex/releases&#34;&gt;下载安装&lt;/a&gt;。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;设定citekey的形式默认形式太冗长&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;设定Citekey的形式（默认形式太冗长）。&lt;/h2&gt;
+&lt;p&gt;具体修改&lt;a href=&#34;https://retorque.re/zotero-better-bibtex/citing/&#34;&gt;方法&lt;/a&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;设定citekey形式：打开Zotero&lt;span class=&#34;math inline&#34;&gt;\(\Rightarrow\)&lt;/span&gt; 编辑&lt;span class=&#34;math inline&#34;&gt;\(\Rightarrow\)&lt;/span&gt; 首选项&lt;span class=&#34;math inline&#34;&gt;\(\Rightarrow\)&lt;/span&gt; Better Bibtex（插件菜单&lt;span class=&#34;math inline&#34;&gt;\(\Rightarrow\)&lt;/span&gt; Citation keys。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;更新citekey值：Zotero&lt;span class=&#34;math inline&#34;&gt;\(\Rightarrow\)&lt;/span&gt; 选中文献条目&lt;span class=&#34;math inline&#34;&gt;\(\Rightarrow\)&lt;/span&gt;鼠标右键 &lt;span class=&#34;math inline&#34;&gt;\(\Rightarrow\)&lt;/span&gt; Better Bibtex&lt;span class=&#34;math inline&#34;&gt;\(\Rightarrow\)&lt;/span&gt; refresh Bibtex key。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;r环境准备&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;R环境准备&lt;/h1&gt;
+&lt;div id=&#34;zotero导出.bib文件&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;zotero导出.bib文件&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;选定需要的Zotero的文献组(group)，直接导出为.bib文件&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;将.bib文件保存在写作文件.Rmd路径中&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;写作文件.Rmd的yaml区域指明对.bib的关联关系&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;bibliography: 
+  - bib-west.bib
+  - west-agri.bib&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;写作文件.Rmd的yaml区域设定文献列出样式（csl style）及关联关系&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;biblio-style: &amp;quot;nnsfc.csl&amp;quot;
+csl: &amp;quot;nnsfc.csl&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;安装rbbt包并进行文献搜索和引用&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;安装&lt;code&gt;rbbt&lt;/code&gt;包，并进行文献搜索和引用&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# remotes::install_github(&amp;quot;paleolimbot/rbbt&amp;quot;)
+#require(&amp;quot;rbbt&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;R包&lt;code&gt;rbbt&lt;/code&gt;的主要作用&lt;a href=&#34;https://github.com/paleolimbot/rbbt&#34;&gt;见github&lt;/a&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;与Zotero文献库直接关联，方便引用。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;与.Rmd文件头yaml区域指定的.bib文件关联，实现“参考文献”列出。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;主要过程：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;安装&lt;code&gt;rbbt&lt;/code&gt;包。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;# remotes::install_github(&amp;quot;paleolimbot/rbbt&amp;quot;)
+require(&amp;quot;rbbt&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;Rstudio&lt;span class=&#34;math inline&#34;&gt;\(\Rightarrow\)&lt;/span&gt; 点击Addins&lt;span class=&#34;math inline&#34;&gt;\(\Rightarrow\)&lt;/span&gt; Insert Zotero Citation。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;总结及注意事项&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;总结及注意事项&lt;/h1&gt;
+&lt;p&gt;Rmarkdown写作环境下，Zotero + &lt;code&gt;rbbt&lt;/code&gt;的方式，基本上实现了比较满意的文献管理和引用流程，&lt;strong&gt;优点&lt;/strong&gt;如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Zotero的免费和相对开放性。免费+插件扩展。对很多网站的文章citation能够快速识别并导入到Zotero库里去，而且还能自动下载关联pdf！&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Zotero对bibTeX的友好性。因为Rmarkdown对bibTeX的要求，而Zotero的相关操作极为便捷简单。此外，Zotero对中文文献情景也比较友好。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;R包&lt;code&gt;rbbt&lt;/code&gt;函数实现了对Zotero的实时联系，引用流程更加自动化。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;重要提示&lt;/strong&gt;：&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;p&gt;正确理解Rmd渲染输出、.bib文件状态和Zotero条目库的关系。简单说：a) Rmd的输出最终只会引用.bib文件里的文献条目。b)R引用包（&lt;code&gt;rbbt&lt;/code&gt;）与Zotero可以实时联系（通过zotero-better-bibtex扩展插件），但是这&lt;strong&gt;并不&lt;/strong&gt;意味着Rmd渲染输出也是与Zotero实时联系的。c).因此，在写作草稿阶段，可以暂时不用关心.bib，只需要保持与Zotero实时联系即可（完成实时搜索和插入条目）。但是在最后完稿之前，务必需要及时更新调整.bib文件（从Zotero 中导出文献为.bib文件，替换更新原来的.bib旧文件即可）。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Zotero中Citekey的设置是一个关键步骤，我们需要做出合理的权衡。这是因为一方面&lt;code&gt;@nameYear&lt;/code&gt;的引用便捷性，要求每条文献的citekey必须要简单易用；但是另一方面，Zotero往往会管理海量的文献条目，从而又要求文献的citekey不能重复——不然就没办法精确引用文献了。不过Zotero考虑并提供了选择，可以用动态key（dynamic key），也可以用锁定key（pined key）。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;因为文献条目中可能包含了abstract等长文本域，为了避免Zotero导出.bib后，R包citr识别报错的问题。最好把Zotero 软件的Better Bibtex（插件菜单）做出如下导出设定。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;设定导出规则：打开Zotero&lt;span class=&#34;math inline&#34;&gt;\(\Rightarrow\)&lt;/span&gt; 编辑&lt;span class=&#34;math inline&#34;&gt;\(\Rightarrow\)&lt;/span&gt; 首选项&lt;span class=&#34;math inline&#34;&gt;\(\Rightarrow\)&lt;/span&gt; Better Bibtex（插件菜单）&lt;span class=&#34;math inline&#34;&gt;\(\Rightarrow\)&lt;/span&gt; Export&lt;span class=&#34;math inline&#34;&gt;\(\Rightarrow\)&lt;/span&gt; Fields&lt;span class=&#34;math inline&#34;&gt;\(\Rightarrow\)&lt;/span&gt; Fields to omit frome export&lt;span class=&#34;math inline&#34;&gt;\(\Rightarrow\)&lt;/span&gt; 输入abstract等（逗号分隔）&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Endnote参考文献及Rmarkdown引用问题</title>
+      <link>https://huhuaping.netlify.app/2020/10/03/bib-and-cite-on-research-article/</link>
+      <pubDate>Sat, 03 Oct 2020 00:00:00 +0000</pubDate>
+      <guid>https://huhuaping.netlify.app/2020/10/03/bib-and-cite-on-research-article/</guid>
+      <description>
+
+
+&lt;p&gt;使用Rmarkdown写科学论文，自然避免不了管理和使用参考文献，以及文献输出样式。&lt;/p&gt;
+&lt;div id=&#34;endnote和流程&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;EndNote和流程&lt;/h1&gt;
+&lt;p&gt;目前为止，我的唯一文献工具是&lt;strong&gt;EndNote&lt;/strong&gt;（版本X9）。掐指一算，差不多已经坚持使用了近13年了。多年来攒下的一个文献库.enl里，文献条目多达3500条（多半是存而不读的啦）。&lt;/p&gt;
+&lt;p&gt;在使用Rmarkdown写文章后，工作流程总是免不了受这个多年的工具牵连。可行的办法如下：&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;p&gt;查找学术文献。利用谷歌学术查找文献，导入EndNote。（google学术设置里拉选一下默认导入工具）&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;修改定制EndNote软件。Endnote里一番神设置（具体见后），获得文献条目的BibTex格式。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;集中注意力写文章的地方。Rmarkdown文档&lt;code&gt;.Rmd&lt;/code&gt;里写文章，同时新建一个&lt;code&gt;.bib&lt;/code&gt;的附带文件。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;管理BibTex文献的地方。把BibTex格式的文献条目，复制到&lt;code&gt;.bib&lt;/code&gt;文件里面去。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;管理正文里文献引用显示和以及&lt;code&gt;参考文献&lt;/code&gt;的输出样式。与&lt;code&gt;.Rmd&lt;/code&gt;并行配置一个&lt;code&gt;.csl&lt;/code&gt;文档。关于引用样式语言——Citation Style Language (CSL) ，后面再说。&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;目前的流程是没有可行的，但是几个问题仍旧存在：&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: lower-alpha&#34;&gt;
+&lt;li&gt;&lt;p&gt;EndNote重度使用的后遗症。一是要手动把EndNote文献条目的BibTeX内容复制到&lt;code&gt;.bib&lt;/code&gt;里面去，太费手啦！二是，EndNote文献条目的BibTeX内容中，引用ID需要手动调整，这个也是很费手！&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;文献管理存档的主副之争。EndNote文献条目，跟&lt;code&gt;.bib&lt;/code&gt;里的文献条目是无法关联的。意味着，要同时管理两个家伙！&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;引用样式语言Citation Style Language (CSL) 文档，可能需要定制化修改！&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;先不说这些血泪控诉的坑吧，下面把基本过程里的小九九暂时给记录下来。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;配置endnote软件windows系统&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;配置EndNote软件（Windows系统）&lt;/h1&gt;
+&lt;p&gt;修改定制EndNote软件。具体可以参考&lt;a href=&#34;https://www.rhizobia.co.nz/latex/convert&#34;&gt;攻略&lt;/a&gt;。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;基本步骤大概是：
+- 下载style模板，导入并保存模板；然后选用此模板
+- 修改Preferences ： “modify reference types”
+- 修改display fields： “Custom1”&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div id=&#34;endnote里编辑条目&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;EndNote里编辑条目&lt;/h1&gt;
+&lt;p&gt;编辑文献条目。独立设置ID ：BibTeX里编辑。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;定制输出和显示样式&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;定制输出和显示样式&lt;/h1&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;p&gt;准备好输出显示样式。cls样式可以参看&lt;a href=&#34;https://github.com/citation-style-language/styles&#34;&gt;样式库&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;设置&lt;code&gt;.Rmd&lt;/code&gt;文档的yaml参数，示例如下：&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;# 一级yaml参数
+
+biblio-style: &amp;quot;nnsfc.csl&amp;quot;
+csl: &amp;quot;nnsfc.csl&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;文献引用&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;文献引用&lt;/h1&gt;
+&lt;p&gt;直接使用条目的唯一标识。例如：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;研究发现，balabalabala[@Birthal2011]。
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
