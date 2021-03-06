@@ -600,7 +600,9 @@ blogdown社区的一些讨论如下：
 
 下面是放狗找到的关于hugo添加站内搜索功能的文档或帮助。总体而言，这些方法能够实现全站点所有内容的搜索功能，但是需要学习到一些额外的新知识。
 
-- hugo的官方文档[Search for your Hugo Website](https://gohugo.io/tools/search/)。文档介绍了多种实现方式，但没有进一步详细说明和演示。
+- hugo的官方文档1[Search for your Hugo Website](https://gohugo.io/tools/search/)。文档介绍了多种实现方式，但没有进一步详细说明和演示。
+
+- hugo的官方文档2[Add search](https://wowchemy.com/docs/guide/search/)。
 
 - `lunr.js`（开源）。[Add Search Functionality to Your Hugo Static Site](https://www.forsure.dev/-/2019/09/03/add-search-functionality-to-your-hugo-static-site/)。介绍了使用开源`lunr.js`来搭建站内搜索功能。但是作者使用的是gitlab、而且博文的更新时间为`Sep 3, 2019`，可能已经不能实现了。
 
@@ -612,7 +614,19 @@ blogdown社区的一些讨论如下：
 
 - `Algolia`（商业）。[Static site search with Hugo + Algolia](https://forestry.io/blog/search-with-algolia-in-hugo/)。介绍了使用商业服务类型的`Algolia`来搭建站内搜索功能，过程步骤也比较详尽。但是博文的更新时间为`March 2, 2018`，而且感觉依赖的工具较多，链条比较复杂，可能实现难度比较大。
 
+以下是几个中文世界的应用：
+
+- 添加搜索按钮 [雨临Lewis](https://lewky.cn/posts/hugo-3.html/)
+
+- [Hugo 实现搜索功能小白教程](https://blog.csdn.net/weixin_44903718/article/details/108541002)
+
+- [为 Hugo 添加搜索功能](https://blog.humblepg.com/post/2019/06/hugo-search.html)
+
+- [5分钟给Hugo博客增加搜索功能](https://ttys3.dev/post/hugo/hugo-fast-search/)
+
 # 供参考的网络资源
+
+- [Hugo 静态网站构建手册](https://jimmysong.io/hugo-handbook/)。开源book，是一本介绍hugo的简明手册。
 
 - [A Spoonful of Hugo: How much Hugo do I need to know?](https://alison.rbind.io/post/2020-12-12-how-much-hugo/)。正如题目所言。
 

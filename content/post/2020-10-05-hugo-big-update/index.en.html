@@ -52,6 +52,7 @@ output:
 <li><a href="#基本原理"><span class="toc-section-number">6.1</span> 基本原理</a></li>
 <li><a href="#给post博文添加floating-toc"><span class="toc-section-number">6.2</span> 给post博文添加floating toc</a></li>
 <li><a href="#定制box-text样式"><span class="toc-section-number">6.3</span> 定制box text样式</a></li>
+<li><a href="#添加站内搜索功能"><span class="toc-section-number">6.4</span> 添加站内搜索功能</a></li>
 </ul></li>
 <li><a href="#供参考的网络资源"><span class="toc-section-number">7</span> 供参考的网络资源</a></li>
 </ul>
@@ -518,10 +519,40 @@ My content goes in here!
 <p><strong>步骤4</strong>中：R markdown写作文件，要求是<strong>.Rmd</strong>格式，不是.md格式，或者.Rmarkdown格式。三者的差异请参看：<a href="https://bookdown.org/yihui/blogdown/output-format.html">R Markdown vs. Markdown</a></p>
 </div>
 </div>
+<div id="添加站内搜索功能" class="section level2" number="6.4">
+<h2><span class="header-section-number">6.4</span> 添加站内搜索功能</h2>
+<p><strong>问题</strong>：原来hugo academic自带的站点搜索框，在升级后突然消失了。使得查找和检索站内博文或内容异常困难。</p>
+<p>blogdown社区的一些讨论如下：</p>
+<ul>
+<li><a href="https://github.com/yihui/hugo-prose/issues/9">Enable site-wide search</a></li>
+</ul>
+<p>下面是放狗找到的关于hugo添加站内搜索功能的文档或帮助。总体而言，这些方法能够实现全站点所有内容的搜索功能，但是需要学习到一些额外的新知识。</p>
+<ul>
+<li><p>hugo的官方文档1<a href="https://gohugo.io/tools/search/">Search for your Hugo Website</a>。文档介绍了多种实现方式，但没有进一步详细说明和演示。</p></li>
+<li><p>hugo的官方文档2<a href="https://wowchemy.com/docs/guide/search/">Add search</a>。</p></li>
+<li><p><code>lunr.js</code>（开源）。<a href="https://www.forsure.dev/-/2019/09/03/add-search-functionality-to-your-hugo-static-site/">Add Search Functionality to Your Hugo Static Site</a>。介绍了使用开源<code>lunr.js</code>来搭建站内搜索功能。但是作者使用的是gitlab、而且博文的更新时间为<code>Sep 3, 2019</code>，可能已经不能实现了。</p></li>
+<li><p><code>lunr.js</code>（开源）。<a href="https://palant.info/2020/06/04/the-easier-way-to-use-lunr-search-with-hugo/">The easier way to use lunr search with Hugo</a>。</p></li>
+<li><p><code>Fuse.js</code>（开源）。<a href="https://codingnconcepts.com/hugo/client-side-search-engine-hugo/">Client Side Search Engine for Hugo Website</a>。正如其副标题所言“Search engine for Hugo without any server or additional build steps”。背后实际使用的是<code>Fuse.js</code>工具链，作者个人网站使用的是<code>Hugo Mainroad theme</code>模板。</p></li>
+</ul>
+<blockquote>
+<p><code>Fuse.js</code>号称是不依赖其他工具链（zero dependencies）。但是有不少用户反映，<code>Fuse.js</code>的搜索结果不是很理想（见<a href="https://gpanders.com/blog/building-site-search-with-hugo/">这篇博文</a>）。</p>
+</blockquote>
+<ul>
+<li><code>Algolia</code>（商业）。<a href="https://forestry.io/blog/search-with-algolia-in-hugo/">Static site search with Hugo + Algolia</a>。介绍了使用商业服务类型的<code>Algolia</code>来搭建站内搜索功能，过程步骤也比较详尽。但是博文的更新时间为<code>March 2, 2018</code>，而且感觉依赖的工具较多，链条比较复杂，可能实现难度比较大。</li>
+</ul>
+<p>以下是几个中文世界的应用：</p>
+<ul>
+<li><p>添加搜索按钮 <a href="https://lewky.cn/posts/hugo-3.html/">雨临Lewis</a></p></li>
+<li><p><a href="https://blog.csdn.net/weixin_44903718/article/details/108541002">Hugo 实现搜索功能小白教程</a></p></li>
+<li><p><a href="https://blog.humblepg.com/post/2019/06/hugo-search.html">为 Hugo 添加搜索功能</a></p></li>
+<li><p><a href="https://ttys3.dev/post/hugo/hugo-fast-search/">5分钟给Hugo博客增加搜索功能</a></p></li>
+</ul>
+</div>
 </div>
 <div id="供参考的网络资源" class="section level1" number="7">
 <h1><span class="header-section-number">7</span> 供参考的网络资源</h1>
 <ul>
+<li><p><a href="https://jimmysong.io/hugo-handbook/">Hugo 静态网站构建手册</a>。开源book，是一本介绍hugo的简明手册。</p></li>
 <li><p><a href="https://alison.rbind.io/post/2020-12-12-how-much-hugo/">A Spoonful of Hugo: How much Hugo do I need to know?</a>。正如题目所言。</p></li>
 <li><p><a href="http://desiree.rbind.io/post/2019/making-tip-boxes-with-bookdown-and-rmarkdown/">making pretty note boxes</a>。里面谈到了多种情境下，如blogdown、bookdown等，如何设置和定义个性化的文本窗框（text box），但有些地方已经不符合实际情况了。</p></li>
 <li><p><a href="https://www.connorrothschild.com/post/animate-hugo-academic/">Animating Your Hugo Academic Site</a>。主旨是：Make your Hugo Academic homepage more engaging with a few lines of code.这个是效率的要求了，我更关注的是基本功能的实现和维护。</p></li>
