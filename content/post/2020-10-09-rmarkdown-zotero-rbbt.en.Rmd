@@ -102,6 +102,17 @@ require("rbbt")
 
 # Rmarkdown写作中引用文献
 
+## 快速复制预览文献条目
+
+很多时候，我们更希望直接看到指定预览格式的文献条目细节，或者希望直接快速地将预览格式的文献条目复制粘贴到word、Rmarkdown或txt里去。
+
+下面是实现操作（参看 [指导说明](https://www.zotero.org/support/creating_bibliographies#quick_copy)）：
+
+- 设置指定预览格式。edit $\Rightarrow$ preference $\Rightarrow$ export。
+
+- 选中文献条目，直接用鼠标拉到你想要放置的地方去。
+
+
 ## 引用形式
 
 具体可以参看的Rmarkdown[官方解释](https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html)。
@@ -160,6 +171,8 @@ require("rbbt")
 
 # 总结及注意事项
 
+## 优点
+
 Rmarkdown写作环境下，Zotero + `rbbt`的方式，基本上实现了比较满意的文献管理和引用流程，**优点**如下：
 
 - Zotero的免费和相对开放性。免费+插件扩展。对很多网站的文章citation能够快速识别并导入到Zotero库里去，而且还能自动下载关联pdf！
@@ -169,8 +182,7 @@ Rmarkdown写作环境下，Zotero + `rbbt`的方式，基本上实现了比较�
 - R包`rbbt`函数实现了对Zotero的实时联系，引用流程更加自动化。
 
 
-
-**重要提示**：
+## 重要提示
 
 1. 正确理解Rmd渲染输出、.bib文件状态和Zotero条目库的关系。简单说：a) Rmd的输出最终只会引用.bib文件里的文献条目。b)R引用包（`rbbt`）与Zotero可以实时联系（通过zotero-better-bibtex扩展插件），但是这**并不**意味着Rmd渲染输出也是与Zotero实时联系的。c).因此，在写作草稿阶段，可以暂时不用关心.bib，只需要保持与Zotero实时联系即可（完成实时搜索和插入条目）。但是在最后完稿之前，务必需要及时更新调整.bib文件（从Zotero 中导出文献为.bib文件，替换更新原来的.bib旧文件即可）。
 

@@ -34,7 +34,6 @@ R包命名的原则应该坚持：a.词形或发音与表意一致性，也即�
 拟定开发的R包命名`xmetrics`，音近于计量经济学英文**Econometrics**，`X`也有多种用途或神通广大的含义，而且metrics本身就是测量或度量的含义。通过google搜索关键词"xmetrics"的重合度或范化度，仅发现一款游泳穿戴设备名为"Xmetrics"（见[网页](https://swimswam.com/xmetrics-the-worlds-first-activity-tracker-for-swimmers/)）。继续google搜索关键词"R xmetrics"，发现一个定位为机器学习（Machine Learning）的R包命名为"Metrics"（见[CRAN](https://cran.r-project.org/web/packages/Metrics/index.html)）。
 
 
-
 ```{r, echo=FALSE, comment="", message=FALSE}
 require("xmerit")
 require("tidyverse")

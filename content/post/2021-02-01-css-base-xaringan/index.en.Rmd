@@ -219,8 +219,10 @@ div.notes {
 
 > 注意：需要自己手动下载背景图片，免费的图片icon下载网站有：
 
->- [aiconica.net](https://aiconica.net/)。
-- [fontawesome.com](https://fontawesome.com/)。正文里还可使用R函数`fontawesome::fa('slideshare')`。例如slide图标`r fontawesome::fa('slideshare', fill= "blue")`
+>- [iconfinder](https://www.iconfinder.com/)。需要账号登陆。
+- [fontawesome.com](https://fontawesome.com/)。图标可以先编辑，在下载。正文里还可使用R函数`fontawesome::fa('slideshare')`。例如slide图标`r fontawesome::fa('slideshare', fill= "blue")`
+- [aiconica.net](https://aiconica.net/)。搜索功能比较弱。
+
 
 第二步：在`.Rmd`文件的`yaml`区域引用上面的css文件路径。
 
