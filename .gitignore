@@ -6,6 +6,16 @@
 /public/
 /resources/
 
+
+
 # advise 
 .DS_Store
 Thumbs.db
+
+# IDEs
+.idea/
+
+# Hugo
+/resources/
+jsconfig.json
+node_modules/

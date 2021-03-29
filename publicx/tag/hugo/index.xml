@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>hugo | Academic</title>
+    <link>https://huhuaping.netlify.app/tag/hugo/</link>
+      <atom:link href="https://huhuaping.netlify.app/tag/hugo/index.xml" rel="self" type="application/rss+xml" />
+    <description>hugo</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>huhuaping@2019</copyright><lastBuildDate>Mon, 05 Oct 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://huhuaping.netlify.app/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png</url>
+      <title>hugo</title>
+      <link>https://huhuaping.netlify.app/tag/hugo/</link>
+    </image>
+    
+    <item>
+      <title>建站平台hugo-academic大升级</title>
+      <link>https://huhuaping.netlify.app/2020/10/05/hugo-big-update/</link>
+      <pubDate>Mon, 05 Oct 2020 00:00:00 +0000</pubDate>
+      <guid>https://huhuaping.netlify.app/2020/10/05/hugo-big-update/</guid>
+      <description>
+&lt;script src=&#34;https://huhuaping.netlify.app/2020/10/05/hugo-big-update/index.en_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+&lt;div id=&#34;TOC&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#hugo的大变革&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1&lt;/span&gt; hugo的大变革&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#本地开发预览一条思路填平若干个坑&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2&lt;/span&gt; 本地开发预览：一条思路填平若干个坑&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#云端开发预览netlify的断点&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3&lt;/span&gt; 云端开发预览：netlify的断点&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#后续故事&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4&lt;/span&gt; 后续故事&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#double-site&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.1&lt;/span&gt; 双服务器建站需求&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#更新hugo-extend&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.2&lt;/span&gt; 更新hugo extend&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#获得public文件夹&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.3&lt;/span&gt; 获得&lt;code&gt;public/&lt;/code&gt;文件夹&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#升级的副效应&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.4&lt;/span&gt; 升级的副效应&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#rstudio插件addinsnew-post的正确使用&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.4.1&lt;/span&gt; RStudio插件(addins)New post的正确使用&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#knitrinclude_graphics函数调用图片可能会报错&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.4.2&lt;/span&gt; knitr::include_graphics函数调用图片可能会报错&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#netlify开发报错的验证与修复&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.4.3&lt;/span&gt; netlify开发报错的验证与修复&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#一次意外报错&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.5&lt;/span&gt; 一次意外报错&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#blogdown的升级支持&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;5&lt;/span&gt; blogdown的升级支持&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#hugo模板微调&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;6&lt;/span&gt; hugo模板微调&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#基本原理&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;6.1&lt;/span&gt; 基本原理&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#给post博文添加floating-toc&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;6.2&lt;/span&gt; 给post博文添加floating toc&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;对于搭建个人网站，曾经有一句经典的忠告摆在我的面前：
+永远不要使用复杂的模板，否则总有一天会掉入网站迁移漩涡，甚至万劫不复的境地。 ————nobody&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;这种事，总算是被我赶上了一遭。&lt;/p&gt;
+&lt;p&gt;采用hugo-academic模板搭建个人网站，2020年9月3日以后，面临一次建站流程的全新大换代升级。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Convert an old Academic Kickstarter site If you have an existing site based on the Academic Kickstarter Template that was created before 3rd September 2020, it may need converting to use Hugo’s new modular system.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;在学习测试两天后，总算是跌跌撞撞地完成了网站的升级更新。截至写这篇博文，针对哪些blogdown用户，网络上还并没有足够完整和清晰的升级操作攻略。这里先记录一二，或许对于急迫升级的人有些许帮助。&lt;/p&gt;
+&lt;p&gt;事先说明一下我的环境：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Win 10操作系统&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;R环境 R version 4.0.3 (2020-10-10)。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;升级后hugo version: &lt;code&gt;Hugo Static Site Generator v0.75.1/extended windows/amd64 BuildDate: unknown&lt;/code&gt;。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;netlify 关联 github的仓库，自动激活建站开发。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div id=&#34;hugo的大变革&#34; class=&#34;section level1&#34; number=&#34;1&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;1&lt;/span&gt; hugo的大变革&lt;/h1&gt;
+&lt;p&gt;hugo academic的大换血，变革了什么？后面复杂的flow、原理之类东东我也没有完全明白。不过基本按照官方的提示，是可以完成网站升级的，完全可以忽略下面这些什么go module之类的工具或概念。&lt;/p&gt;
+&lt;p&gt;对于windowns党，你大概需要本地安装一些工具：&lt;a href=&#34;https://wowchemy.com/docs/install-locally/&#34;&gt;Edit your site on your PC&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://gohugo.io/getting-started/installing/&#34;&gt;Hugo Extended&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://golang.org/dl/&#34;&gt;Go installed&lt;/a&gt; 用于执行hugo modules命令&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;git bash 这个不用多说了&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;不过按照官方的说法，此次最大的变革是实现了“模块化”建站流程。&lt;/p&gt;
+&lt;p&gt;就我个人后面的感受而言，比前一代思路确实更加简洁，最关键的是建站速度贼快。&lt;/p&gt;
+&lt;p&gt;倒是让我收获了一个很深刻的领悟：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;平时我可能只关心hugo的建站工具性，从来不想了解背后的最基本的指导思想和运行原理（尽管可能还是会一知半解，技术细节确实可以完全忽视）。现在看来，既然把身家大计（网站）都托付给了它，起码不能完全对其漠然无知。工具性导向很容易误人误事！&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div id=&#34;本地开发预览一条思路填平若干个坑&#34; class=&#34;section level1&#34; number=&#34;2&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;2&lt;/span&gt; 本地开发预览：一条思路填平若干个坑&lt;/h1&gt;
+&lt;p&gt;现在简单说一下blogdown用户，如何从早前一代的“hugo-academic”升级到新一代的“Wowchemy Hugo Module”流程。&lt;/p&gt;
+&lt;p&gt;先说&lt;strong&gt;一条思路&lt;/strong&gt;——实际上我们完全可以用两种方法来实现academic模板的建站。如果按官方说明正确安装软件、工具和环境，则可以：&lt;/p&gt;
+&lt;ol start=&#34;2&#34; style=&#34;list-style-type: lower-alpha&#34;&gt;
+&lt;li&gt;&lt;p&gt;blogdown+hugo建站。如果默认安装，hugo执行程序应该在&lt;code&gt;C:\Users\yourname\AppData\Roaming\Hugo\hugo.exe&lt;/code&gt;。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Scoop+hugo建站。如果默认安装，hugo执行程序应该在&lt;code&gt;C:\Users\yourname\scoop\shims\hugo.exe&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;两种方式应该可以同时建站。如果报错，则建议把其中之一的hugo.exe修改为不可识别的（如hugo.exex）。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;我相信对于大部分blogdown用户而言，应该不太关心后一种。不过在目前的跨代升级中，这一条却是非常重要。因为前者的一些流程，需要后者来援助！&lt;/p&gt;
+&lt;p&gt;下面列几个要点，跳开这几个坑应该就可以完成&lt;code&gt;blogdown+hugo&lt;/code&gt;建站升级过程：&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;p&gt;一定记得提前备份网站！（git用户表示窃喜中）&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;首先下载&lt;code&gt;starter-academica&lt;/code&gt;模板到本地，解压缩&lt;strong&gt;备用&lt;/strong&gt;。&lt;a href=&#34;https://github.com/wowchemy/starter-academic/archive/master.zip&#34;&gt;Download Academic Template&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;处理旧版网站的项目文件。如下操作删除旧模板。&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;git submodule deinit themes/hugo-academic    
+git rm themes -r&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;同时记得手动删除旧网站项目文件下的&lt;code&gt;public/&lt;/code&gt;文件夹。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol start=&#34;4&#34; style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;p&gt;把新模板&lt;code&gt;starter-academic&lt;/code&gt;中的如下文件，拷贝或替换旧版网站项目文件：&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: lower-alpha&#34;&gt;
+&lt;li&gt;模板文件，整个&lt;code&gt;exampleSite&lt;/code&gt;文件夹&lt;/li&gt;
+&lt;li&gt;配置文件，整个&lt;code&gt;config&lt;/code&gt;文件夹&lt;/li&gt;
+&lt;li&gt;两个go文件，&lt;code&gt;go.sum&lt;/code&gt;和&lt;code&gt;go.mod&lt;/code&gt;文件&lt;/li&gt;
+&lt;li&gt;其他&lt;code&gt;starter-academic&lt;/code&gt;有，而旧项目文件里没有的文件。&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;在win power shell命令窗口中执行go操作&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: lower-alpha&#34;&gt;
+&lt;li&gt;cd 命令进入到旧项目根文件夹下（此步骤自行脑补吧）&lt;/li&gt;
+&lt;li&gt;go 命令执行建站：&lt;code&gt;hugo server&lt;/code&gt;（如果顺利，可以直接预览渲染的网站）；或者&lt;code&gt;hugo&lt;/code&gt;（如果顺利，可以得到渲染后的public/文件夹）&lt;/li&gt;
+&lt;li&gt;如果不能顺利进行go建站渲染，则按提示修改其中的升级跃迁断点问题（break issues）。我碰到的断点问题主要是：&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;callout&lt;/code&gt;问题。按报错依次找到文件，替换参数即可。&lt;/li&gt;
+&lt;li&gt;jpg图片问题。按照toml里参数的提示，把文件夹路径更换即可。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;ol start=&#34;6&#34; style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;p&gt;网站内容的维护和调整。具体包括：&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: lower-alpha&#34;&gt;
+&lt;li&gt;&lt;code&gt;config.toml&lt;/code&gt;参数的更新调整（地址等）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;content/&lt;/code&gt;文件夹各个.md的核查&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;如果在go建站预览下如果基本没有问题，则可以如常使用blogdown的&lt;code&gt;blogdown::serve_site()&lt;/code&gt;进行独立的建站渲染。&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;最后，blogdown可能还是会报出提示：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;WARN 2020/10/05 21:08:20 Module &amp;quot;github.com/wowchemy/wowchemy-hugo-modules/wowchemy&amp;quot; is not compatible with this Hugo version; run &amp;quot;hugo mod graph&amp;quot; for more information.&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;不过，好在网站本地开发预览，总算是升级正常啦！&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;云端开发预览netlify的断点&#34; class=&#34;section level1&#34; number=&#34;3&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;3&lt;/span&gt; 云端开发预览：netlify的断点&lt;/h1&gt;
+&lt;p&gt;尽管前面的网站本地开发预览已经OK，但是云端自动开发流程我们还没有进行配置。——我几乎又花费了一个早上来查找问题，直到最后成功。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;核心提示&lt;/strong&gt;：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;如果仍旧采用旧版网站的netlify开发流程，则云端开发会一直提示fail。所以需要采用新的netlify开发流程。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;netlify新开发流程，官方说是采用了CMS管理平台——里面的原理暂时没有深究。如果注意比较新旧流程开发同样的网站代码，会发现主要的区别是：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;开放工具链（tool chain）中，部分工具的版本新旧，如ruby、go等的调用&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;开发速度上，新流程明显完成得更快&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;为了解决这个新旧流程得断点（break point）问题，暂时摸索出来的办法如下：&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;新建一个netlify开发网站&lt;/strong&gt;。根据starter-academic的官方说明，利用github账号接入netlify的api，创建一个基于starter-academic模板的github repo（称之为repo-B）。netlify预览网站（称之为website-B）应该是正常的。——这里纯粹是为了获得新流程的CMS平台。后面的话，这个repo可以直接不用。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;准备好本地开发成功的网站项目&lt;/strong&gt;。首先，准备工作。把本地开发预览正常的网站项目（称之为repo-A），推送到github远端（remote）。当然，关联给netlify云端的开发预览网站（称之为website-A）是不会成功更新的。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;修改新旧网站的链接关系&lt;/strong&gt;。此时，我们有两个netlify网站（website-B和website-A）以及对应的两个github repo（repo-B和repo-A）。新流程下的website-B网站是完全可以云端正常自动开发的，但是旧流程下的website-A网站则是无法自动激发云端开发的。关键步骤就是“嫁接替换法”：&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;ol style=&#34;list-style-type: lower-alpha&#34;&gt;
+&lt;li&gt;将website-B关联的github仓库，修改为repo-A。netlify操作过程：&lt;code&gt;https://app.netlify.com/sites/huhuaping-kick/settings/deploys#continuous-deployment&lt;/code&gt; –》build settings –》 edit setting –》reopsitory –》Link a different repository&lt;/li&gt;
+&lt;li&gt;将website-B的域名修改为原来website-A的域名。netlify操作过程：&lt;code&gt;https://app.netlify.com/sites/huhuaping/settings/general&lt;/code&gt; –》sitede tails –》site information –》 change site name&lt;/li&gt;
+&lt;li&gt;“嫁接替换”完成后，netlify就在CMS新流程下，开发了原来的repo-A的网站代码内容。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;至此，我们只需要继续维护本地更新升级后的repo-A，并持续推送给github，那么每次commit提交就会自动激活netlify使用新流程开发渲染网站内容啦！&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;后续故事&#34; class=&#34;section level1&#34; number=&#34;4&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;4&lt;/span&gt; 后续故事&lt;/h1&gt;
+&lt;p&gt;考虑到后期可能还会面临hugo academic升级的问题。相关升级问题记录如下：&lt;/p&gt;
+&lt;div id=&#34;double-site&#34; class=&#34;section level2&#34; number=&#34;4.1&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.1&lt;/span&gt; 双服务器建站需求&lt;/h2&gt;
+&lt;p&gt;我的特殊“双服务器”建站需求。简单说，首先我会使用blogdown+hugo+github+netlify工作流建立一个服务器在netlify的网站（A服务器网站），同时会得到该网站的一个&lt;code&gt;public&lt;/code&gt;文件夹。因为netlify服务器在国外，国际友人访问自然没有问题，但是国内访问速度明显就不行了。因此，我必须为国内访问用户搭建一个服务器在国内的同步“复刻网站”（B服务器网站），这时我只需要将前面的&lt;code&gt;public/&lt;/code&gt;文件夹同步上去即可。因此，“双服务器”建站需求，并不是我个人有什么极客级别的建站癖好，纯粹只是出于“简单性”和“可用性”原则。以上双服务器网站的差异性和联系：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;二者是几乎是“完全复制”的。但就网站更新频率和时间先后而言，后者更新频率更低而且会滞后于前者。下面说原因！&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;netlify网站（A服务器网站）是基于自动化工作流的（automate workflow），只需要github提交（commit）即可后台自动更新整个网站。因此是时效性最强的。而且可以基于git分支进行测试（如feature 分支），即兴写博客post或测试新功能，简直是指哪打哪，顺服得不要不要的。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;国内网站（B服务器网站）采用的是goodsync的FTP自动上传同步功能。尽管也可以完全设定自动同步（例如，可以设定goodsync规则为：一旦&lt;code&gt;public、&lt;/code&gt;有文件修改就自动上传），但是因为不具备git那样的分枝提交功能，会导致同步正在测试阶段的网站，从而导致用户访问失败或页面错乱。最要命的是goodsync的FTP上传速度很慢，对于我这个相对庞杂的网站，要完成一次完整的网站同步，大概需要4-6个小时才能完成（家里稳定网速下）。简单说，我不能让B服务器网站“实时同步”，而且只能在网站版本稳定后才“手动”进行goodsync同步（一般在晚上进行这个同步动作）。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;更新hugo-extend&#34; class=&#34;section level2&#34; number=&#34;4.2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.2&lt;/span&gt; 更新hugo extend&lt;/h2&gt;
+&lt;p&gt;注意hugo extend与hugo存在一定差异性，简单说hugo extend似乎功能性要更多一点（参看&lt;a href=&#34;https://github.com/gohugoio/hugoDocs/issues/1152#issuecomment-646284959&#34;&gt;社区问答&lt;/a&gt;）。建议windows用户下载使用hugo extend。原因很简单：因为hugo extend能够让我顺利生成网站的本地&lt;code&gt;public/&lt;/code&gt;文件夹，而hugo则会报错无法生成&lt;code&gt;public/&lt;/code&gt;文件夹！更新hugo extend基本上有两种方法：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;方法一（已测试）&lt;/strong&gt;：手动下载hugo extend版本进行升级更新。具体做法进入官方版本&lt;a href=&#34;https://github.com/gohugoio/hugo/releases&#34;&gt;下载界面&lt;/a&gt;，下载后解压缩并放到指定本地电脑路径下！还是要注意blogdown和scoop两种渲染网站的hugo路径是不同的。（见前面说过的这两种渲染方式。）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# hugo extended
+hugo_extended_0.80.0_Windows-64bit.zip
+
+# target directory path for blogdown
+C:\Users\huhua\AppData\Roaming\Hugo\0.80.0\hugo.exe
+
+# target directory path for scoop
+C:\Users\huhua\scoop\shims\hugo.exe&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;方法二（未测试过）&lt;/strong&gt;：在windows 命令行里进行hugo升级（见&lt;a href=&#34;https://wowchemy.com/docs/update/&#34;&gt;官方说明&lt;/a&gt;）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Update to get the very latest developments:
+hugo mod get -u ./...
+
+# Alternatively, update to the latest official release:
+hugo mod get -u
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;获得public文件夹&#34; class=&#34;section level2&#34; number=&#34;4.3&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.3&lt;/span&gt; 获得&lt;code&gt;public/&lt;/code&gt;文件夹&lt;/h2&gt;
+&lt;p&gt;更新blogdown包。照常使用Rstudio addins &lt;code&gt;serv site&lt;/code&gt;。需要注意的是新的hugo流程默认是在缓存里渲染网站，也就意味着&lt;code&gt;public/&lt;/code&gt;文件夹默认不会随着渲染而自动更新。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;解决方案1（已测试）：那么需要blogdown执行的是&lt;strong&gt;本地渲染&lt;/strong&gt;（参看 &lt;a href=&#34;https://stackoverflow.com/questions/64500959/problem-with-rendering-hugo-blogdown-site&#34;&gt;网络问答&lt;/a&gt;）。（尽管如此，blogdown本地预览会优先使用&lt;code&gt;public/&lt;/code&gt;文件夹，所以好像必须要删除&lt;code&gt;public/&lt;/code&gt;才能获得实时修改更新，这似乎是一个bug啊！目前对这个问题也是纠结中。因为它带来了goodsync的一个同步问题，每次获得blogdown方法下的&lt;code&gt;public/&lt;/code&gt;文件夹里的每一个文件都是全新的、不同于原同步文件（生成时间或内容改变了），这将意味着goodsync每次同步都必须上传&lt;code&gt;public/&lt;/code&gt;的所有文件！——而实际上我只是小步调更改了网站的部分内容！）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;blogdown::build_site(local=TRUE)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;解决方案2（已测试）：直接在windows命令视窗里指定hugo生成&lt;code&gt;public/&lt;/code&gt;文件夹。具体参看blogdown社区&lt;a href=&#34;https://github.com/rstudio/blogdown/issues/495&#34;&gt;讨论&lt;/a&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;hugo -d ./public
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;升级的副效应&#34; class=&#34;section level2&#34; number=&#34;4.4&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.4&lt;/span&gt; 升级的副效应&lt;/h2&gt;
+&lt;div id=&#34;rstudio插件addinsnew-post的正确使用&#34; class=&#34;section level3&#34; number=&#34;4.4.1&#34;&gt;
+&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.4.1&lt;/span&gt; RStudio插件(addins)New post的正确使用&lt;/h3&gt;
+&lt;p&gt;使用RStudio插件(addins)中blogdown下的&lt;code&gt;New post&lt;/code&gt;暂时还会带来困扰（参看&lt;a href=&#34;https://stackoverflow.com/questions/64688201/blogdown-new-post-addin-creates-but-not-loads-new-file&#34;&gt;“stackoverflow队长”问答&lt;/a&gt;）。&lt;/p&gt;
+&lt;p&gt;按照hugo的新流程，每个blog都会建立自己的对应的文件夹（参看&lt;a href=&#34;https://ropensci.org/technotes/2020/04/23/rmd-learnings/&#34;&gt;网页&lt;/a&gt;）。当然，其背后的原因是hugo新版本（Hugo version 0.32以上）引入了“页面束捆”（&lt;a href=&#34;https://gohugo.io/content-management/page-bundles/&#34;&gt;Page Bundles&lt;/a&gt;）特性。具体文件夹结构如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;                                          levelName
+1  post                                            
+2   |--data                                        
+3   |   |--fultonfish.rda                          
+4   |   |--fultonfish.xlsx                         
+5   |   °--other-data-file.dat                     
+6   |--pic                                         
+7   |   |--check-box-invisible.png                 
+8   |   °--other-image-file.jpeg                   
+9   |--2020-12-05-web-scraping-tech-webelem.en.Rmd 
+10  |--2020-12-05-web-scraping-tech-webelem.en.html
+11  °--2021-01-31-new-post                         
+12      |--index.en_file                           
+13      |--index.en.Rmd                            
+14      °--index.en.html                           &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;blogdown这样的new-post文件夹系统变化带来的一个影响效应是：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;新旧文件夹体系的不一致性（见上面树形结构图）。虽然只是视觉上的差异，但是还是不够“一致”！当然，也可以关闭这样的新文件夹体系（“页面束捆”），具体需要在&lt;code&gt;.Rprofile&lt;/code&gt;文件设定 &lt;code&gt;options(blogdown.new_bundle = FALSE)&lt;/code&gt;。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;致命的影响是Rmarkdown引以为傲的直接R代码块功能。新体系下，可以丝滑般得到正常的R代码块运行效果（已测试。这得益于新文件系统下的self-contained理念）；旧体系下则无法运行。而且经测试，新文件夹体系下，不会影响图片&lt;code&gt;/pic/.png&lt;/code&gt;和数据文件&lt;code&gt;/data/.rds&lt;/code&gt;的调用。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!---
+
+- 困扰2：默认情况下，yaml区域不会自动指定输出样式，从而导致报错。因此需要在yaml区域手动添加如下参数：
+
+```r
+output:
+  blogdown::html_page:
+    toc: true
+```
+---&gt;
+&lt;/div&gt;
+&lt;div id=&#34;knitrinclude_graphics函数调用图片可能会报错&#34; class=&#34;section level3&#34; number=&#34;4.4.2&#34;&gt;
+&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.4.2&lt;/span&gt; knitr::include_graphics函数调用图片可能会报错&lt;/h3&gt;
+&lt;p&gt;使用&lt;code&gt;knitr::include_graphics&lt;/code&gt;函数调用图片，需要额外设定参数&lt;code&gt;error = FALSE&lt;/code&gt;。（参看&lt;a href=&#34;https://stackoverflow.com/questions/60292022/knitr-cannot-find-img-files-in-static-folder&#34;&gt;网络问答&lt;/a&gt;）&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#knitr::include_graphics(here::here(&amp;quot;static&amp;quot;,&amp;quot;pic&amp;quot;,&amp;quot;check-box-invisible.png&amp;quot;))
+
+#knitr::include_graphics(&amp;quot;../../static/img/check-box-invisible.png&amp;quot;)
+knitr::include_graphics(&amp;quot;/pic/check-box-invisible.png&amp;quot;, error = FALSE)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://huhuaping.netlify.app/pic/check-box-invisible.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;netlify开发报错的验证与修复&#34; class=&#34;section level3&#34; number=&#34;4.4.3&#34;&gt;
+&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.4.3&lt;/span&gt; netlify开发报错的验证与修复&lt;/h3&gt;
+&lt;p&gt;有时候本地预览显示正常，但netlify网站开发仍可能出错（Deploy failed），导致无法更新云端网站，此时则建议：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;登陆&lt;a href=&#34;https://app.netlify.com/&#34;&gt;netlify&lt;/a&gt;账户，立即查看开发日志（Deploy log）&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Rstudio里利用&lt;code&gt;blogdown::check_site()&lt;/code&gt;函数进行网站检查，并根据提示做出修改调整。具体参看blogdown&lt;a href=&#34;https://github.com/rstudio/blogdown/issues/576#issuecomment-768379160&#34;&gt;社区问答&lt;/a&gt;。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;下面是我的Rstudio里的一个网站检查结果和建议清单：&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;blogdown::check_site()
+
+# here my check result
+― Running a series of automated checks for your blogdown website project...
+----------------------------------------------------------------------------------------------
+○ A successful check looks like this.
+● [TODO] A check that needs your attention looks like this.
+| Let&amp;#39;s check out your blogdown site!
+----------------------------------------------------------------------------------------------
+― Checking config.toml
+| Checking &amp;quot;baseURL&amp;quot; setting for Hugo...
+○ Found baseURL = &amp;quot;https://huhuaping.netlify.app/&amp;quot;; nothing to do here!
+| Checking &amp;quot;ignoreFiles&amp;quot; setting for Hugo...
+● [TODO] Add these items to the &amp;quot;ignoreFiles&amp;quot; setting: &amp;quot;\\.knit\\.md$&amp;quot;, &amp;quot;\\.utf8\\.md$&amp;quot;
+| Checking setting for Hugo&amp;#39;s Markdown renderer...
+○ All set! Found the &amp;quot;unsafe&amp;quot; setting for goldmark.
+― Check complete: config.toml
+
+― Checking .gitignore
+| Checking for items to remove...
+○ Nothing to see here - found no items to remove.
+| Checking for items to change...
+● [TODO] Change items in .gitignore: blogdown -&amp;gt; /blogdown, public/ -&amp;gt; /public/
+| Checking for items you can safely ignore...
+● [TODO] You can safely add to .gitignore: .DS_Store, Thumbs.db
+| Checking for items to ignore if you build the site on Netlify...
+● [TODO] When Netlify builds your site, you can safely add to .gitignore: /public/, /resources/
+| Checking for files required by blogdown but not committed...
+● [TODO] Found 1 file that should be committed in GIT:
+
+  layouts/shortcodes/blogdown/postref.html
+― Check complete: .gitignore
+
+― Checking Hugo
+| Checking Hugo version...
+○ Found 4 versions of Hugo. You are using Hugo 0.80.0.
+| Checking .Rprofile for Hugo version used by blogdown...
+| Hugo version not set in .Rprofile.
+● [TODO] Set options(blogdown.hugo.version = &amp;quot;0.80.0&amp;quot;) in .Rprofile and restart R.
+― Check complete: Hugo
+
+― Checking netlify.toml...
+○ Found HUGO_VERSION = 0.80.0 in [build] context of netlify.toml.
+| Checking that Netlify &amp;amp; local Hugo versions match...
+○ It&amp;#39;s a match! Blogdown and Netlify are using the same Hugo version (0.80.0).
+| Checking that Netlify &amp;amp; local Hugo publish directories match...
+○ Good to go - blogdown and Netlify are using the same publish directory: public
+― Check complete: netlify.toml
+
+― Checking content files
+| Checking for validity of YAML metadata in posts...
+○ All YAML metadata appears to be syntactically valid.
+| Checking for previewed content that will not be published...
+○ Found 0 files with future publish dates.
+● [TODO] Found 2 files marked as drafts. To un-draft, run the command:
+
+  blogdown::edit_draft(c(
+  &amp;quot;content/privacy.md&amp;quot;,
+  &amp;quot;content/terms.md&amp;quot;
+  ))
+
+  and change a file&amp;#39;s YAML from &amp;#39;draft: true&amp;#39; to &amp;#39;draft: false&amp;#39; or delete it
+| Checking your R Markdown content...
+○ All R Markdown files have been knitted.
+● [TODO] Found 2 R Markdown files to update by re-rendering:
+
+  content/post/2019-04-10-note-for-git-version-control-skills.Rmd
+  content/post/2020-10-05-hugo-big-update/index.en.Rmd
+
+  To update a file, re-knit or use blogdown::build_site(build_rmd = &amp;#39;timestamp&amp;#39;)
+| Checking for .html/.md files to clean up...
+○ Found 0 duplicate .html output files.
+○ Found 0 incompatible .html files to clean up.
+| Checking for the unnecessary &amp;#39;content/&amp;#39; directory in theme...
+○ Great! Your theme does not contain the content/ directory.
+― Check complete: Content&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;具体调整如下：&lt;/p&gt;
+&lt;p&gt;调整1：根据建议，&lt;code&gt;config.toml&lt;/code&gt;需要调整&lt;code&gt;ignoreFiles&lt;/code&gt;参数&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Checking &amp;quot;ignoreFiles&amp;quot; setting for Hugo...
+[TODO] Add these items to the &amp;quot;ignoreFiles&amp;quot; setting: &amp;quot;\\.knit\\.md$&amp;quot;, &amp;quot;\\.utf8\\.md$&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;调整2：根据建议，&lt;code&gt;.gitignore&lt;/code&gt;需要调整参数&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[TODO] Change items in .gitignore: blogdown -&amp;gt; /blogdown, public/ -&amp;gt; /public/&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;调整3：根据建议，&lt;code&gt;.Rprofilee&lt;/code&gt;需要调整hugo版本参数&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Hugo version not set in .Rprofile.
+[TODO] Set options(blogdown.hugo.version = &amp;quot;0.80.0&amp;quot;) in .Rprofile and restart R.&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;调整4：根据建议，部分Rmd文件需要重新渲染更新，可采用函数&lt;code&gt;blogdown::build_site(build_rmd = &#39;timestamp&#39;)&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[TODO] Found 2 R Markdown files to update by re-rendering:
+
+  content/post/2019-04-10-note-for-git-version-control-skills.Rmd
+  content/post/2020-10-05-hugo-big-update/index.en.Rmd
+
+  To update a file, re-knit or use blogdown::build_site(build_rmd = &amp;#39;timestamp&amp;#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;一次意外报错&#34; class=&#34;section level2&#34; number=&#34;4.5&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.5&lt;/span&gt; 一次意外报错&lt;/h2&gt;
+&lt;p&gt;实在莫名其妙，无论&lt;code&gt;hugo&lt;/code&gt;渲染网站（powershell命令下&lt;code&gt;hugo server&lt;/code&gt;），还是&lt;code&gt;blogdown&lt;/code&gt;渲染网站（&lt;code&gt;server_site&lt;/code&gt;）分别出现如下报错。&lt;/p&gt;
+&lt;p&gt;1.报错信息1：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Error: from config: failed to resolve output format &amp;quot;WebAppManifest&amp;quot; from site config&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;2.报错信息2：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Error: from config: failed to resolve output format &amp;quot;headers&amp;quot; from site config&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;两次报错，如同官网提到的&lt;a href=&#34;https://wowchemy.com/docs/guide/troubleshooting/#error-failed-to-resolve-output-format&#34;&gt;“Error: failed to resolve output format”&lt;/a&gt;：&lt;/p&gt;
+&lt;p&gt;最后按照官方处理办法：&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: lower-alpha&#34;&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;config.toml&lt;/code&gt;的&lt;code&gt;[outputs]&lt;/code&gt;清单中暂时先删除&lt;code&gt;&#34;RSS&#34;, &#34;JSON&#34;, &#34;WebAppManifest&#34;&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;然后在&lt;code&gt;powershell&lt;/code&gt;命令窗口中依次输入如下命令：&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;hugo mod clean
+hugo mod get -u ./...
+hugo mod tidy&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start=&#34;3&#34; style=&#34;list-style-type: lower-alpha&#34;&gt;
+&lt;li&gt;完成上述操作后，再把&lt;code&gt;&#34;RSS&#34;, &#34;JSON&#34;, &#34;WebAppManifest&#34;&lt;/code&gt;补回原处即可。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;blogdown的升级支持&#34; class=&#34;section level1&#34; number=&#34;5&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;5&lt;/span&gt; blogdown的升级支持&lt;/h1&gt;
+&lt;p&gt;由于&lt;code&gt;hugo&lt;/code&gt;在建站流程上做了很大的改变，&lt;code&gt;blogdown&lt;/code&gt;包也在2021年1月迭代到了&lt;code&gt;v1.0&lt;/code&gt;版本，显然这次是大版本升级以支持&lt;code&gt;hugo&lt;/code&gt;，具体可以参看包作者的声明&lt;a href=&#34;https://blog.rstudio.com/2021/01/18/blogdown-v1.0/&#34;&gt;“Announcing blogdown v1.0”&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;其中一些包函数值得关注：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;blogdown::built_site()&lt;/code&gt;函数，涉及到是否产生&lt;code&gt;/public&lt;/code&gt;文件夹和如何渲染&lt;code&gt;.Rmd&lt;/code&gt;文件。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;blogdown::check_.()&lt;/code&gt;类函数，主要用于核查和比对&lt;code&gt;blogdown&lt;/code&gt;与&lt;code&gt;hugo&lt;/code&gt;在配置等方面是否一致。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;blogdown::find_hugo(&#39;all&#39;)&lt;/code&gt;函数，方便掌握自己正在（或曾经）使用的hugo版本。为稳定hugo版本，可以设定&lt;code&gt;.Rprofile&lt;/code&gt;文件，具体可设定为例如&lt;code&gt;options(blogdown.hugo.version = &#34;0.79.0&#34;)&lt;/code&gt;。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;blogdown::remove_hugo()&lt;/code&gt;函数，可以删除未使用的hugo版本。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;hugo模板微调&#34; class=&#34;section level1&#34; number=&#34;6&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;6&lt;/span&gt; hugo模板微调&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;劝君更进一杯酒，模板莫要闲折腾。——somebody&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;如果使用blogdown开发课程内容，网上有人提醒慎重升级&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;不要升级&lt;code&gt;hugo&lt;/code&gt;（包括&lt;code&gt;hugo extend&lt;/code&gt;）&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;不要更新&lt;code&gt;hugo theme&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;课程开发期间，不要升级任何东西！&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div id=&#34;基本原理&#34; class=&#34;section level2&#34; number=&#34;6.1&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;6.1&lt;/span&gt; 基本原理&lt;/h2&gt;
+&lt;p&gt;考虑到&lt;code&gt;hugo-academic&lt;/code&gt;模板会不断升级，如果用户想要对模板进行个性化调整，因此&lt;code&gt;hugo&lt;/code&gt;开发了一套&lt;strong&gt;模板查找顺位机制&lt;/strong&gt;（&lt;a href=&#34;https://gohugo.io/templates/lookup-order/&#34;&gt;template lookup&lt;/a&gt;）。用户可以在不直接修改&lt;code&gt;hugo-academic&lt;/code&gt;官方模板文件下，独立地进行个性化修改和微调。当然用户的任何个性化修改，都需要在约定文件路径下，且使用&lt;code&gt;go&lt;/code&gt;&lt;a href=&#34;https://gohugo.io/hugo-modules/&#34;&gt;语法&lt;/a&gt;。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;优点：官方模板文件和用户个性化修改文件互相分离和独立，保证了二者并行不悖。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;缺点：用户需要熟悉&lt;code&gt;go&lt;/code&gt;语法。此外，因为官方模板会不断迭代变化，用户个性化修改可能会失效，因而需要不断去配合官方的迭代步骤！&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;给post博文添加floating-toc&#34; class=&#34;section level2&#34; number=&#34;6.2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;6.2&lt;/span&gt; 给post博文添加floating toc&lt;/h2&gt;
+&lt;p&gt;官方模板下，默认的&lt;code&gt;post&lt;/code&gt;是基于&lt;code&gt;widget: pages&lt;/code&gt;样式。其视觉效果特点是：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;在pc端，&lt;code&gt;chrome&lt;/code&gt;浏览器下post博文正文宽度为720px，如果显示器分辨率为&lt;code&gt;1920*1080&lt;/code&gt;，那么正文的宽度占比为37.5%。按照时兴的说法就是“屏占比”太低！&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;在移动手机端，post博文正文宽度显示不错。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;默认情况下，是没有目录导航的（toc）。当然也可以通过添加yaml参数&lt;code&gt;toc: true&lt;/code&gt;来添加目录导航，但是toc显示在正文之前（而且没有“目录”字样）。对于分节较多的长篇博文，非常不利于读者阅读定位和前后对照。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;因此，对于分节较多的长篇博文，自然就有了“侧边浮动目录”（sidebar floating toc）的个性化页面样式修订念头。yihui&lt;a href=&#34;https://github.com/rstudio/blogdown/issues/375#issuecomment-476332000&#34;&gt;建议&lt;/a&gt;可以通过JavaScript或CSS进行设定。Xiaoou WANG也提供了一个hugo语法下的&lt;a href=&#34;https://xiaoouwang.github.io/post/add_a_float_toc_to_academic_theme/&#34;&gt;实现方法&lt;/a&gt;，但是有不少bug。又比如CharlieLeee的&lt;a href=&#34;https://github.com/wowchemy/wowchemy-hugo-modules/issues/1520#issuecomment-601982609&#34;&gt;方法&lt;/a&gt;，只是对于&lt;code&gt;.md&lt;/code&gt;格式的写作有效，而对&lt;code&gt;.Rmd&lt;/code&gt;格式的写作&lt;a href=&#34;https://github.com/wowchemy/wowchemy-hugo-modules/issues/1520#issuecomment-610210353&#34;&gt;无效&lt;/a&gt;。因此，最后的忠告就是专注于内容写作：劝君更进一杯酒，模板莫要闲折腾。&lt;/p&gt;
+&lt;!---footnote---&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;&lt;a href=&#34;https://rstudio-education.github.io/sharing-short-notice/#148&#34;&gt;blogdown advice&lt;/a&gt;&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

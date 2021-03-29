@@ -9,7 +9,7 @@ tags:
   - Econometrics
   - Statistics
 subtitle: ''
-summary: ''
+summary: '本文结合统计学流派和主要热门话题，拟基于布尔巴基学派的构建主意思想，探索和理解统计学的发展趋势和主要脉络。'
 authors: [胡华平]
 lastmod: '2021-02-09T22:31:17+08:00'
 featured: no
@@ -23,7 +23,7 @@ output:
     toc: true
     number_sections: true
 math: true
-draft: yes
+draft: false
 ---
 
 

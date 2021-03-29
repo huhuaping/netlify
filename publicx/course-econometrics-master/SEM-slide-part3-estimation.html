@@ -1,0 +1,1740 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>SEM-slide-part3-estimation.utf8</title>
+    <meta charset="utf-8" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+    <link href="libs/remark-css/duke-blue.css" rel="stylesheet" />
+    <link href="libs/remark-css/hygge-duke.css" rel="stylesheet" />
+    <script src="libs/htmlwidgets/htmlwidgets.js"></script>
+    <script src="libs/jquery/jquery.min.js"></script>
+    <link href="libs/datatables-css/datatables-crosstalk.css" rel="stylesheet" />
+    <script src="libs/datatables-binding/datatables.js"></script>
+    <link href="libs/dt-core/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="libs/dt-core/css/jquery.dataTables.extra.css" rel="stylesheet" />
+    <script src="libs/dt-core/js/jquery.dataTables.min.js"></script>
+    <link href="libs/crosstalk/css/crosstalk.css" rel="stylesheet" />
+    <script src="libs/crosstalk/js/crosstalk.min.js"></script>
+    <link rel="stylesheet" href="libs/cc-fonts.css" type="text/css" />
+    <link rel="stylesheet" href="libs/figure-captions.css" type="text/css" />
+    <link rel="stylesheet" href="libs/mycss/my-custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+background-image: url("slide/pic/backup/summer.jpg")
+class: center,middle
+
+# 计量经济学II 
+# (Econometrics II)
+
+&lt;!---    chakra: libs/remark-latest.min.js ---&gt;
+
+### 胡华平
+
+### 西北农林科技大学
+
+### 经济管理学院数量经济教研室
+
+### huhuaping01@hotmail.com
+
+### 2020-10-27
+
+
+
+
+
+
+
+---
+class: inverse, middle, center
+
+# 模块2：结构方程模型（SEM）
+
+## Chapter 17. 内生自变量问题
+
+## Chapter 18. 为什么要关心联立方程模型？
+
+## Chapter 19. 联立方程模型的识别问题
+
+## .red[Chapter 20. 联立方程模型的估计方法]
+
+
+
+---
+class: center, middle,inverse
+
+## Chapter 20. 联立方程模型的估计方法
+
+### 20.1 估计方法简介
+### 20.2 普通最小二乘法(OLS)
+### 20.3 间接最小二乘法(ILS)
+### 20.4 两阶段最小二乘法(2SLS)
+### 20.5 松露供需案例
+### 20.6 鳕鱼供需案例
+
+---
+class: center, middle,duke-orange
+
+## 20.1 估计方法简介
+
+---
+layout: true
+  
+&lt;div class="my-header"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   第20章 联立方程模型的估计方法   
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+20.1 估计方法简介 &lt;/span&gt;&lt;/div&gt; 
+
+---
+
+### 估计的方法简介
+
+
+
+为了估计结构方程，可采取两种方法：
+
+- 单方程法，又称有限息法(limited information methods) 。
+
+    - 我们逐个估计(联立)方程组中的每一个方程，仅考虑对该方程的约束(如对某些变量的排除)而不考虑对其他方程的约束
+
+- 方程组法(或系统法)，又称完全信息法 (full information methods) 
+
+    - 我们同时估计模型中的全部方程，适当考虑了因某些变量被排除而对方程组造成的全部约束
+
+---
+
+### 估计的方法简介
+
+工具变量往往被用于估计联立方程问题，主要又包括三类方法：
+
+- 三阶段最小二乘法( three-stage least squares, **3SLS**)：少数情况下可用
+
+- 广义矩估计方法（Generalized  moment method, **GMM**）：普遍用于动态模型问题
+
+- 完全信息极大似然法（ full information maximum likelihood, **FIML**）：更具有理论价值，也优于3SLS，但计算量较大。
+
+---
+
+### 估计的方法简介
+
+考虑如下的联立方程模型：
+
+`$$\begin{cases}
+  \begin{alignedat}{9}
+&amp;  Y_{t1} &amp;-\gamma_{21}Y_{t2}&amp;-\gamma_{31}Y_{t3} &amp; &amp;-\beta_{01}&amp;-\beta_{11}X_{t1} &amp;  &amp; &amp;= &amp;u_{t1} \\
+&amp; &amp; Y_{t2} &amp;-\gamma_{32} Y_{3t} &amp; &amp; -\beta_{02}&amp;-\beta_{12}X_{1t} &amp;- \beta_{22}X_{2t} &amp; &amp;= &amp;u_{t2}\\
+&amp;-\gamma_{13}Y_{t1} &amp;  &amp;+ Y_{t3} &amp; &amp; -\beta_{03}&amp;-\beta_{13}X_{1t} &amp;-\beta_{23}X_{2t} &amp; &amp;= &amp;u_{t3} \\
+&amp;-\gamma_{14}Y_{t1}&amp;-\gamma_{24}Y_{t2} &amp;  &amp;+Y_{t4}   &amp;-\beta_{04} &amp; &amp; &amp;-\beta_{34}X_{t3} &amp;= &amp;u_{t4} 
+  \end{alignedat}
+\end{cases}$$`
+
+- 如果仅仅关注于估计第三个方程，采用**单方程法**将只考虑此方程，也即仅注意变量
+`\(Y_2,Y_4,X_3\)`
+被排除在此方程之外。
+
+- 如果希望**同时**估计全部四个方程，采用**方程组法**将会对方程组中多个方程的全部约束都考虑进来。
+
+---
+
+### 估计的方法简介
+
+为了保持联立方程模型的品质，最理想的应是使用**方程组法**，比如**完全信息极大似然法** (full information maximum likelihood, FIML) 。
+
+然而，实际上**方程组法**并不常用，主要原因包括：
+
+1. 计算上的负担太大。
+
+2. 像FIML这样的系统方法常常导致参数的高度非线性解，以致难
+以确定。
+
+3. 如果方程组中的一个或多个方程有**设定误差**(比如说，一个错误的函数形式或漏掉有关变量)，则误差将传递至其余方程。其结果是，方程组法变得对设定误差非常敏感。
+
+---
+class: center, middle,duke-orange
+
+## 20.2 普通最小二乘法(OLS)
+
+---
+layout: true
+  
+&lt;div class="my-header"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   第20章 联立方程模型的估计方法   
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+20.2 普通最小二乘法(OLS) &lt;/span&gt;&lt;/div&gt; 
+
+---
+
+### OLS方法：递归模型
+
+递归模型(recursive model)：也称为三角形模型(triangular model)或因果性(causalmodel)模型。不同方程中的同期干扰项是不相关的，每个方程都展现一种单向的因果依赖关系。
+
+考虑下面的联立方程模型：
+
+`$$\begin{alignat}{6}
+Y_{t1} =  &amp; &amp; &amp; &amp; +\beta_{01}&amp; + \beta_{11}X_{t1} &amp; + \beta_{21}X_{t2}  &amp; &amp; +u_{t1} \\
+Y_{t2} =  &amp; + \gamma_{12}Y_{1t} &amp; &amp; &amp;+\beta_{02} &amp; + \beta_{12}X_{t1} &amp; + \beta_{22}X_{t2} &amp; &amp; + u_{t2}\\
+Y_{t3} =  &amp; + \gamma_{13}Y_{t1}&amp; + \gamma_{23}Y_{t2}&amp; &amp;+\beta_{03} &amp; + \beta_{13}X_{t1} &amp; + \beta_{23}X_{t2} &amp; &amp; + u_{t3} \\
+\end{alignat}$$`
+
+---
+
+### OLS方法：递归模型
+
+`$$\begin{alignat}{6}
+Y_{t1} =  &amp; &amp; &amp; &amp; +\beta_{01}&amp; + \beta_{11}X_{t1} &amp; + \beta_{21}X_{t2}  &amp; &amp; +u_{t1} \\
+Y_{t2} =  &amp; + \gamma_{12}Y_{1t} &amp; &amp; &amp;+\beta_{02} &amp; + \beta_{12}X_{t1} &amp; + \beta_{22}X_{t2} &amp; &amp; + u_{t2}\\
+Y_{t3} =  &amp; + \gamma_{13}Y_{t1}&amp; + \gamma_{23}Y_{t2}&amp; &amp;+\beta_{03} &amp; + \beta_{13}X_{t1} &amp; + \beta_{23}X_{t2} &amp; &amp; + u_{t3} \\
+\end{alignat}$$`
+
+我们很容易发现,不同方程中的同期干扰项是不相关的(或者说是零同期相关)：
+
+`$$cov(u_{t1},u_{t2})=cov(u_{t1},u_{t3})=cov(u_{t2},u_{t3})=0$$`
+
+- 对于第一个方程。因为它的右边仅含有外生变量，又因为按假定外生变量与干扰项均不相关，所以此方程满足经典OLS解释变量与干扰项不相关的基本假定。因而 OLS可直接应用于此方程的估计。
+
+- 对于第二个方程。因为
+`\(cov(u_{t1},u_{t2})=0\)`
+，也就意味着
+`\(cov(Y_{t1},u_{t2})=0\)`
+。因而OLS可直接应用于此方程的估计。
+
+- 对于第三个方程。因为
+`\(cov(u_{t1},u_{t3})=0\)`
+，也就意味着
+`\(cov(Y_{t1},u_{t3})=0\)`
+。又因为
+`\(cov(u_{t1},u_{t3})=0\)`
+，也就意味着
+`\(cov(Y_{t2},u_{t3})=0\)`
+。因而OLS可直接用于此方程的估计。
+
+???
+zero contemporaneous correlation
+
+---
+
+### OLS方法：递归模型
+
+我们也可以用图形进行直观表达：
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="pic/recursive-graph.png" alt="递归形式的方程组" width="711" /&gt;
+&lt;p class="caption"&gt;递归形式的方程组&lt;/p&gt;
+&lt;/div&gt;
+
+---
+
+### OLS方法：递归模型
+
+再看一个**工资价格模型**：
+
+`$$\begin{align}
+P_t &amp;= \beta_0+\beta_1U_t+\beta_2R_t+\beta_3M_t+u_{t2}  &amp;&amp;\text{(价格方程)}\\
+W_t &amp;= \alpha_0+\alpha_1UN_t+\alpha_2P_t+u_{t1}   &amp;&amp;\text{(工资方程)}
+\end{align}$$`
+
+其中：
+
+- 价格方程假定当前价格变化率是资本和原料价格变化率、劳动生产率变化率以及前期工资变化率等的函数。
+
+- 工资方程则表示当前工资变化率取决于当前价格变化率和失业率。
+
+    - 货币工资变化率W
+    - 失业率UN，%
+    - 价格变化率P
+    - 资本成本变化率R
+    - 进口原材料的价格变化率M
+
+---
+class: center, middle,duke-orange
+
+## 20.3 间接最小二乘法(ILS)
+
+---
+layout: true
+  
+&lt;div class="my-header"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   第20章 联立方程模型的估计方法   
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+20.3 间接最小二乘法(ILS) &lt;/span&gt;&lt;/div&gt; 
+
+---
+
+### ILS方法：恰好识别模型
+
+对一个恰好识别的结构方程，从**约简型系数**的OLS估计值获得**结构系数**估计值的方法叫做间接最小二乘法 (method of indirect least squares, ILS)，而如此得到的估计值称**间接最小二乘估计值**。 
+
+间接最小二乘法(ILS方法)包含以下三个步骤:
+
+- step 1：先求约简型方程。从结构方程组解出约简型方程，使得在每个方程的因变量都成为唯一的内生变量，并且仅仅是前定变量(外生或滞后内生)和随机误差项的函数。 
+
+- step 2：对约简型方程逐个应用OLS。因为这些方程中的解释变量是前定的并因而与随机干扰项不相关，所以这种做法是合适的，由此得到的估计值是一致的。
+
+- step 3: 从得到的约简型系数的估计值求原始结构系数的估计值 。若方程恰可识别，则结构与约简型系数之间有一一对应关系，就是说可以从后者导出前者的唯一估计值。
+
+---
+
+### 美国农作物供需案例
+
+美国农作物供需案例的变量说明如下：
+
+<div id="htmlwidget-8c91049fbbeda3b638bb" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-8c91049fbbeda3b638bb">{"x":{"filter":"none","caption":"<caption>美国农作物供需案例的变量说明<\/caption>","data":[["1","2","3"],["Q","P","X"],["作物产量指数(1996=100)","农产品收购价格指数(1990-1992=100)","人均个人消费支出(按2007年美元计算)"],["连续变量","连续变量","连续变量"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>变量<\/th>\n      <th>含义<\/th>\n      <th>备注<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":3,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[3,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+
+---
+
+### 美国农作物供需案例
+
+美国农作物供需案例的数据如下：
+
+<div id="htmlwidget-9e9b65753b4d457d79df" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9e9b65753b4d457d79df">{"x":{"filter":"none","caption":"<caption>美国农作物供需数据(样本数n=30)<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30"],["1975 ","1976 ","1977 ","1978 ","1979 ","1980 ","1981 ","1982 ","1983 ","1984 ","1985 ","1986 ","1987 ","1988 ","1989 ","1990 ","1991 ","1992 ","1993 ","1994 ","1995 ","1996 ","1997 ","1998 ","1999  ","2000 ","2001 ","2002","2003","2004 "],[66,67,71,73,78,75,81,82,71,81,85,82,84,80,86,90,90,96,91,101,96,100,104,105,108,108,108,107,108,112],[88,87,83,89,98,107,111,98,108,111,98,87,86,104,109,103,101,101,102,105,112,127,115,107,97,96,99,105,111,117],[4789,5282,5804,6417,7073,7716,8439,8945,9775,10589,11406,12048,12766,13685,14546,15349,15722,16485,17204,18004,18665,19490,20323,21291,22491,23862,24722,25501,26463,27937]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>year<\/th>\n      <th>Q<\/th>\n      <th>P<\/th>\n      <th>X<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":7,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[7,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+
+---
+
+### 美国农作物供需案例
+
+因此我们可以构造出如下的联立方程：
+
+`$$\begin{align}
+Q &amp;= \alpha_0+\alpha_1P_t+\alpha_2X_t+u_{t1}   &amp;(\alpha_1&lt;0,\alpha_2&gt;0)  &amp;&amp;\text{(需求函数)}\\
+Q &amp;= \beta_0+\beta_1P_t+u_{t2}  &amp;(\beta_1&gt;0) &amp;&amp;\text{(供给函数)}
+\end{align}$$`
+
+其中：Q=作物产量指数；P=农产品收购价格指数；X=人均个人消费支出。
+
+---
+
+### 美国农作物供需案例
+
+得到其对应的约简方程形式：
+
+`$$\begin{align}
+P_t &amp;= \pi_{11}+ \pi_{21}X_t+w_t &amp;&amp;\text{(约简方程1)}\\
+Q_t &amp;= \pi_{12}+\pi_{22}X_t+v_t &amp;&amp;\text{(约简方程2)} \\
+\end{align}$$`
+
+其中，约简系数表达为：
+
+.pull-left[
+
+`$$\begin{align}
+\pi_{11} &amp;= \frac{\beta_0-\alpha_0}{\alpha_1-\beta_1} \\
+\pi_{21} &amp;= - \frac{\alpha_2}{\alpha_1-\beta_1}\\
+w_t &amp;= \frac{u_{2t}-u_{t1}}{\alpha_1-\beta_1}  \\
+\end{align}$$`
+
+]
+
+.pull-right[
+
+`$$\begin{align}
+\pi_{12} &amp;= \frac{\alpha_1\beta_0-\alpha_0\beta_1}{\alpha_1-\beta_1}  \\
+\pi_{22} &amp;= - \frac{\alpha_2\beta_1}{\alpha_1-\beta_1}  \\
+v_t &amp;= \frac{\alpha_1u_{t2}-\beta_1u_{1t}}{\alpha_1-\beta_1} 
+\end{align}$$`
+
+]
+
+---
+
+### 美国农作物供需案例
+
+对于上述约简方程形式,我们可以采用OLS方法进行估计，可以得到：
+
+`$$\begin{align}
+\widehat{\pi}_{21} &amp;=  \frac{\sum{p_t x_t}}{\sum{x^2_t}} &amp;&amp;\text{(价格约简方程的斜率)} \\
+\widehat{\pi}_{11} &amp;= \overline{P} - \widehat{\pi}_1 \cdot \overline{X} &amp;&amp;\text{(价格约简方程的截距)} \\
+\widehat{\pi}_{22} &amp;= \frac{\sum{q_t x_t}}{\sum{x^2_t}} &amp;&amp;\text{(数量约简方程的斜率)} \\
+\widehat{\pi}_{12} &amp;= \overline{Q} - \widehat{\pi}_3 \cdot \overline{X} &amp;&amp;\text{(数量约简方程的截距)} 
+\end{align}$$`
+
+---
+
+### 美国农作物供需案例
+
+因为我们已经知道（复习阶条件和秩条件），**供给方程**是**恰好可识别的**，因此供给方程的结构系数是可以由简约系数唯一地估计得到：
+
+`$$\begin{align}
+\beta_0 &amp;= \pi_{12}+ \beta_1 \pi_{11} \\
+\beta_1 &amp;= \frac{\pi_{22}}{\pi_{21}} \\
+\end{align}$$`
+
+也即：
+
+`$$\begin{align}
+\hat{\beta_0} &amp;= \widehat{\pi}_{12}+ \hat{\beta_1} \widehat{\pi}_{11} \\
+\hat{\beta_1} &amp;= \frac{\widehat{\pi}_{22}}{\widehat{\pi}_{21}} \\
+\end{align}$$`
+
+---
+
+### 美国农作物供需案例
+
+下面我们对约简方程进行OLS回归。
+
+`$$\begin{align}
+P_t &amp;= \pi_{11}+ \pi_{21}X_t+w_t &amp;&amp;\text{(约简方程1)}\\
+Q_t &amp;= \pi_{12}+\pi_{22}X_t+v_t &amp;&amp;\text{(约简方程2)} \\
+\end{align}$$`
+
+
+
+.pull-left[
+价格约简方程的回归结果如下：
+`$$\begin{equation} \begin{alignedat}{999} &amp;\widehat{P}=&amp;&amp;+90.96&amp;&amp;+0.00X\\ &amp;\text{(t)}&amp;&amp;(22.4499)&amp;&amp;(3.0060)\\&amp;\text{(se)}&amp;&amp;(4.0517)&amp;&amp;(0.0002)\\&amp;\text{(fitness)}&amp;&amp; R^2=0.2440;&amp;&amp; \bar{R^2}=0.2170\\&amp; &amp;&amp; F^{\ast}=9.04;&amp;&amp; p=0.0055 \end{alignedat} \end{equation}$$`
+
+]
+
+.pull-right[
+
+数量约简方程的回归结果如下：
+`$$\begin{equation} \begin{alignedat}{999} &amp;\widehat{Q}=&amp;&amp;+59.76&amp;&amp;+0.00X\\ &amp;\text{(t)}&amp;&amp;(38.3080)&amp;&amp;(20.9273)\\&amp;\text{(se)}&amp;&amp;(1.5600)&amp;&amp;(0.0001)\\&amp;\text{(fitness)}&amp;&amp; R^2=0.9399;&amp;&amp; \bar{R^2}=0.9378\\&amp; &amp;&amp; F^{\ast}=437.95;&amp;&amp; p=0.0000 \end{alignedat} \end{equation}$$`
+]
+
+---
+
+### 美国农作物供需案例
+
+可以得到**约简系数**：
+
+
+
+.pull-left[
+`\(\widehat{\pi}_{21}=\)`
+0.00074
+
+`\(\widehat{\pi}_{11}=\)`
+90.96007
+
+]
+
+.pull-right[
+`\(\widehat{\pi}_{22}=\)`
+0.00197
+
+`\(\widehat{\pi}_{12}=\)`
+59.76183
+]
+
+
+由于**供给方程**是**恰好识别的**。因此，利用约简系数，进一步可以计算得到**供给方程**的**结构系数**：
+
+--
+
+`\(\hat{\beta_1} = \frac{\widehat{\pi}_{22}}{\widehat{\pi}_{12}}\)` = 
+0.00197 / 
+0.00074 = 
+2.68052
+
+`\(\hat{\beta_0} = \widehat{\pi}_{12}+ \hat{\beta_1} \widehat{\pi}_{11}\)` = 
+59.76183 - 
+2.68052 `\(\cdot\)` 
+90.96007 = 
+-184.05874
+
+--
+
+因此，基于间接最小二乘法(ILS)估计得到的**供给方程**是：
+
+`\(\hat{Q_t}=\)`
+-184.05874 +
+2.68052
+`\(P_t\)`
+
+---
+
+### 美国农作物供需案例
+
+作为对比，我们给出一个**"有偏误"**的估计方法，也即直接对数量Q对价格P采用OLS方法，将得到如下结果：
+
+
+- 基于间接最小二乘法(ILS)估计得到的**供给方程**是：
+
+`\(\hat{Q_t}=\)`
+-184.05874 +
+2.68052
+`\(P_t\)`
+
+.pull_right[
+- 基于OLS估计方法得到**"有偏误"**的**供给方程**是：
+
+`$$\begin{equation} \begin{alignedat}{999} &amp;\widehat{Q}=&amp;&amp;+20.89&amp;&amp;+0.67P\\ &amp;\text{(t)}&amp;&amp;(0.9067)&amp;&amp;(2.9940)\\&amp;\text{(se)}&amp;&amp;(23.0396)&amp;&amp;(0.2246)\\&amp;\text{(fitness)}&amp;&amp; R^2=0.2425;&amp;&amp; \bar{R^2}=0.2154\\&amp; &amp;&amp; F^{\ast}=8.96;&amp;&amp; p=0.0057 \end{alignedat} \end{equation}$$`
+]
+
+
+---
+class: center, middle,duke-orange
+
+## 20.4 两阶段最小二乘法(2SLS)
+
+---
+layout: true
+  
+&lt;div class="my-header"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   第20章 联立方程模型的估计方法   
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+20.4 两阶段最小二乘法(2SLS) &lt;/span&gt;&lt;/div&gt; 
+
+---
+
+### 2SLS方法：过度识别模型
+
+考虑下面的联立方程模型：
+
+`$$\begin{alignat}{6}
+Y_{t1} = &amp; &amp;+ \gamma_{21}Y_{2t} &amp; &amp; +\beta_{01}  &amp; + \beta_{11}X_{t1} &amp; + \beta_{21}X_{t2}  &amp;  +u_{t1} &amp; \text{   (收入方程)} \\
+Y_{t2} =  &amp; + \gamma_{12}Y_{t1} &amp; &amp;  &amp;    +\beta_{02} &amp; &amp; &amp; + u_{t2} &amp; \text{   (货币供给方程)}
+\end{alignat}$$`
+
+其中: 
+`\(Y_1=\)`
+收入；
+`\(Y_2=\)`
+货币存量；
+`\(X_1=\)`
+投资支出；
+`\(X_2=\)`
+政府对商品和服务的支出
+
+运用**阶条件识别规则**和**秩条件识别规则**（复习提问？），可以知道：
+
+- **收入方程**是**不可识别的**
+
+    - 如果不改变模型设定，那“神也帮不了你”！
+    
+- **货币供给方程**是**过度识别的**
+
+    - 容易证明，如果采用ILS估计方法，
+    `\(\gamma_{21}\)`
+    有两个ILS估计值。所以也没办法估计得到！
+
+---
+
+### 2SLS方法：过度识别模型
+
+寻找**工具变量**破解**过度识别**问题：
+
+- 从实际考虑，人们也许想用OLS去估计货币供给方程，但却因为
+`\(Y_1\)`
+和
+`\(u_2\)`
+之间可能存在相关关系而使得估计量有偏。
+
+- 如果能找到这样的一个代理变量——它和
+`\(Y_1\)`
+高度相关而又与
+`\(u_2\)`
+不相关——则OLS就可直接用于估计货币供给函数。这样的代理变量被称为**工具变量**(Instrument Variable)
+
+- 由瑟尔和巴斯曼 (Robert Basmann)各自独立发现的两阶段最小二乘 (two-stage least squares, 2SLS)成为寻找合适**工具变量**的重要方途径和方法。
+
+
+---
+
+### 2SLS方法：过度识别模型
+
+**两阶段最小二乘 **(two-stage least squares, 2SLS)实际上连续使用两次OLS估计方法的过程：
+
+**stage 1: **为摆脱
+`\(Y_1\)`
+和
+`\(u_2\)`
+之间可能的相关性，先求
+`\(Y_1\)`
+对整个方程组(不仅仅是所考虑的方程中)全部**前定变量**的回归。也即：
+
+`$$\begin{align}
+Y_{t1} &amp;= \widehat{\pi}_{01} + \widehat{\pi}_{11} X_{t1} +  \widehat{\pi}_{21} X_{t2} + \hat{v}_{t1} \\
+       &amp;= \hat{Y_{t1} } + \hat{v}_{t1} \\
+\hat{Y_{t1} }&amp;= \widehat{\pi}_{01} + \widehat{\pi}_{11} X_{t1} +  \widehat{\pi}_{21} X_{t2}
+\end{align}$$`
+
+
+表明随机的
+`\(Y_1\)`
+是由两部分构成：
+
+- 随机X的一个线性组合而成的
+`\(\hat{Y}_{t1}\)`
+- 随机成分
+`\(\hat{u}_t\)`
+- 按照OLS理论，
+`\(\hat{Y}_{t1}\)`
+与
+`\(\hat{v}_{t1}\)`
+是不相关的（Why？提问）。
+
+---
+
+### 2SLS方法：过度识别模型
+
+**stage 2:** 现在重新变换**过度识别的**供给方程如下：
+
+`$$\begin{align}
+Y_{t2} &amp; = \beta_{02}  + \gamma_{12} Y_{t1} + u_{t2}  \\
+       &amp; = \beta_{02}  + \gamma_{12} (\hat{Y}_{t1}+\hat{v}_{t1}) + u_{t2} \\
+       &amp; = \beta_{02}  + \gamma_{12} \hat{Y}_{t1}+(\gamma_{12} \hat{v}_{t1} + u_{t2} ) \\
+       &amp; = \beta_{02}  + \gamma_{12} \hat{Y}_{t1}+ u_{t2}^{\ast}
+\end{align}$$`
+
+我们可以证明：
+
+- `\(Y_{t1}\)`
+和干扰项
+`\(u_{t2}\)`
+很可能相关，从而使得OLS估计方法不适用！
+
+- 但是
+`\(\hat{Y_{1t}}\)`
+和干扰项
+`\(u_{t2}^{\ast}\)`
+之间，渐进地（随着样本数无限增加时）**不相关**。从而OLS估计方法又变得适用了！（也即参数估计是一致性的！）
+
+---
+
+### 2SLS方法：过度识别模型
+
+.large[
+两阶段最小二乘法(2SLS方法)的特点：
+
+- 它可以应用于方程组中的某个方程而无需考虑方程组中的其他方程。因此，在求解涉及大量方程的计量经济模型时，2SLS提供了一个经济适用的方法。由于这一原因，此法在实际中被广泛应用。
+
+- 相对于ILS为过度识别的方程提供参数的多个估计值，而2SLS对每个参数只提供一个估计值。
+
+- 它只需知道方程组中一共有多少个外生或前定变量，而无需知道方程组中的任何其他变量，故易于应用。
+]
+
+---
+
+### 2SLS方法：过度识别模型
+
+.large[
+两阶段最小二乘法(2SLS方法)的特点(续)：
+
+- 此法虽然专为过度识别的方程而设计，但同样适用于恰好识别的方程。但这时ILS和2SLS将给出相同的估计。(为什么?)
+
+- 如果约简型回归（即阶段1的回归）的F值很高，比如说高于0.8。则经典OLS估计和 2SLS估计将相差无几。
+
+- 在ILS方法的回归报告中，我们没有给出所估系数的**标准误**，但我们能对 2SLS估计值给出这些**标准误**。
+]
+
+---
+
+### 2SLS方法：关于标准误校正
+
+在ILS方法的回归报告中，我们没有给出所估系数的**标准误**，但我们能对 2SLS估计值给出这些**标准误**。
+
+- 需要注意的是：
+`\(u^{\ast}_{t2}=u_{t2}+\gamma_{12}\hat{v}_{t1}\)`
+
+- 这意味着
+`\(u^{\ast}_{t2} \neq u_{t2}\)`
+，因此需要进行**误差校正**
+
+- 误差矫正的具体办法，可以参考教材附录20A.2
+
+- 下面的案例展示中，我们将会分别展示**没有误差校正**的2SLS估计和**经过误差矫正**的2SLS估计。
+
+---
+
+### 2SLS方法：关于标准误校正
+
+误差矫正的计算过程如下：
+
+- **stage 2:**中供给方程的回归形式为
+
+`$$\begin{align}
+Y_{t2} &amp; = \beta_{02}  + \gamma_{12} Y_{1t} + u_{2t}  \\
+       &amp; = \beta_{02}  + \gamma_{12} (\hat{Y_{1t}}+\hat{v}_{t1}) + u_{2t} \\
+       &amp; = \beta_{02}  + \gamma_{12} \hat{Y_{1t}}+(\gamma_{12} \hat{v}_{t1} + u_{t2} ) \\
+       &amp; = \beta_{02}  + \gamma_{12} \hat{Y_{1t}}+ u_{t2}^{\ast}
+\end{align}$$`
+
+- 其中
+`\(u^{\ast}_{t2}=u_{t2}+\gamma_{12}\hat{v}_{t1}\)`
+
+---
+
+### 2SLS方法：关于标准误校正
+
+- **stage 2:**中对于参数
+`\(\gamma_{12}\)`
+的估计值
+`\(\hat{\gamma}_{12}\)`
+，其估计标准误
+`\(s.e_{\hat{\gamma}_{12}}\)`
+的计算公式为：
+
+`$$\begin{align}
+Y_{t2} &amp; = \beta_{02}  + \gamma_{12} \hat{Y_{1t}}+ u_{t2}^{\ast}
+\end{align}$$`
+
+`$$\begin{align}
+s.e_{\hat{\gamma}_{21}} &amp; = \frac{\hat{\sigma}^2_{u^{\ast}_{t2}}}{\sum{\hat{y}^2_{t1}}}\\
+\hat{\sigma}^2_{u^{\ast}_{t2}} &amp; =\frac{ \sum{\left ( u^{\ast}_{t2} \right )^2} }{n-2} = \frac{ \sum{\left (Y_{t2}-\hat{\beta}_{02} -\hat{\gamma}_{12}\hat{Y}_{1t} \right )^2} }{n-2}
+\end{align}$$`
+
+---
+
+### 2SLS方法：关于标准误校正
+
+- 实际上
+`\(u^{\ast}_{t2} \neq u_{t2}\)`
+，也即意味着
+`\(\hat{\sigma}_{u^{\ast}_{t2}} \neq \hat{\sigma}_{u_{t2}}\)`
+。下面我们也可以计算得到
+`\(\hat{\sigma}_{u_{t2}}\)`
+。
+
+`$$\begin{align}
+\hat{u}_{t2} &amp;= Y_{t2} - \hat{\beta}_{02} - \hat{\gamma}_{12}Y_{t1} \\
+\hat{\sigma}^2_{u_{2t}} &amp; =\frac{ \sum{\left ( u_{2t} \right )^2} }{n-2} = \frac{ \sum{\left (Y_{t2}-\hat{\beta}_{02} -\hat{\gamma}_{12}Y_{1t} \right )^2} }{n-2}
+\end{align}$$`
+
+---
+
+### 2SLS方法：关于标准误校正
+
+- **误差矫正因子**：因此校正**stage 2** 回归所估计的系数的标准误，需要对每一个系数的标准误乘以如下的**误差矫正因子**
+
+`$$\begin{align}
+\eta &amp;= \frac{ \hat{\sigma}^2_{u_{t2}} } {\hat{\sigma}^2_{u^{\ast}_{t2}} } 
+\end{align}$$`
+
+`$$\begin{align}
+s.e^{\ast}_{\hat{\gamma}_{12}} &amp; = s.e_{\hat{\gamma}_{12}} \cdot \eta = s.e_{\hat{\gamma}_{12}} \cdot \frac{ \hat{\sigma}^2_{u_{t2}} } {\hat{\sigma}^2_{u^{\ast}_{t2}} } \\
+s.e^{\ast}_{\hat{\beta}_{02}} &amp; = s.e_{\hat{\beta}_{02}} \cdot \eta = s.e_{\hat{\beta}_{20}} \cdot \frac{ \hat{\sigma}^2_{u_{t2}} } {\hat{\sigma}^2_{u^{\ast}_{t2}} } 
+\end{align}$$`
+
+---
+class: inverse, middle, center
+
+## 2SLS估计方法的案例分析和应用
+
+---
+
+### 货币市场案例：数据和变量说明
+
+美国货币市场案例的变量说明如下：
+
+<div id="htmlwidget-6d11732ee9cb3c500f7f" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6d11732ee9cb3c500f7f">{"x":{"filter":"none","caption":"<caption>美国货币市场案例的变量说明<\/caption>","data":[["1","2","3","4","5","6","7"],["Y1","Y2","X1","X2","Y1.l1","Y2.l1","X3"],["GDP:国内生产总值(按2000年10亿美元计)","M2:货币供给(10亿美元)","GDPI:私人国内总投资(按2000年10亿美元计)","FEDEXP:联邦政府支出(10亿美元)","GDP_t-1:前一期的国内生产总值","M2_t-1:前一期的货币供给","TB6:6个月国债利率(%)"],["连续变量","连续变量","连续变量","连续变量","连续变量","连续变量","连续变量"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>变量<\/th>\n      <th>含义<\/th>\n      <th>备注<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":7,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[7,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+
+---
+
+### 货币市场案例：数据和变量说明
+
+美国货币市场案例的数据如下：
+
+<div id="htmlwidget-fda0c64fc6bdf2aea46b" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-fda0c64fc6bdf2aea46b">{"x":{"filter":"none","caption":"<caption>美国货币市场案例(样本数n=36)<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36"],["1970 ","1971 ","1972 ","1973 ","1974 ","1975 ","1976 ","1977 ","1978 ","1979 ","1980 ","1981 ","1982 ","1983 ","1984 ","1985 ","1986 ","1987 ","1988 ","1989 ","1990 ","1991 ","1992 ","1993 ","1994 ","1995 ","1996 ","1997 ","1998 ","1999  ","2000 ","2001 ","2002","2003","2004 ","2005 "],[3771.9,3898.6,4105,4341.5,4319.6,4311.2,4540.9,4750.5,5015,5173.4,5161.7,5291.7,5189.3,5423.8,5813.6,6053.7,6263.6,6475.1,6742.7,6981.4,7112.5,7100.5,7336.6,7532.7,7835.5,8031.7,8328.9,8703.5,9066.9,9470.3,9817,9890.7,10048.8,10301,10703.5,11048.6],[626.5,710.3,802.3,855.5,902.1,1016.2,1152,1270.3,1366,1473.7,1599.8,1755.4,1910.3,2126.5,2310,2495.7,2732.4,2831.4,2994.5,3158.5,3278.6,3379.1,3432.5,3484,3497.5,3640.4,3815.1,4031.6,4379,4641.1,4920.9,5430.3,5774.1,6062,6411.7,6669.4],[427.1,475.7,532.1,594.4,550.6,453.1,544.7,627,702.6,725,645.3,704.9,606,662.5,857.7,849.7,843.9,870,890.5,926.2,895.1,822.2,889,968.3,1099.6,1134,1234.3,1387.7,1524.1,1642.6,1735.5,1598.4,1557.1,1613.1,1770.6,1866.3],[201.1,220,244.4,261.7,293.3,346.2,374.3,407.5,450,497.5,585.7,672.7,748.5,815.4,877.1,948.2,1006,1041.6,1092.7,1167.5,1253.5,1315,1444.6,1496,1533.1,1603.5,1665.8,1708.9,1734.9,1787.6,1864.4,1969.5,2101.1,2252.1,2383,2555.9],[null,3771.9,3898.6,4105,4341.5,4319.6,4311.2,4540.9,4750.5,5015,5173.4,5161.7,5291.7,5189.3,5423.8,5813.6,6053.7,6263.6,6475.1,6742.7,6981.4,7112.5,7100.5,7336.6,7532.7,7835.5,8031.7,8328.9,8703.5,9066.9,9470.3,9817,9890.7,10048.8,10301,10703.5],[null,626.5,710.3,802.3,855.5,902.1,1016.2,1152,1270.3,1366,1473.7,1599.8,1755.4,1910.3,2126.5,2310,2495.7,2732.4,2831.4,2994.5,3158.5,3278.6,3379.1,3432.5,3484,3497.5,3640.4,3815.1,4031.6,4379,4641.1,4920.9,5430.3,5774.1,6062,6411.7]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>year<\/th>\n      <th>Y1<\/th>\n      <th>Y2<\/th>\n      <th>X1<\/th>\n      <th>X2<\/th>\n      <th>Y1.l1<\/th>\n      <th>Y2.l1<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":8,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[8,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+
+---
+class: inverse, middle, center
+
+###  建模情形1：仅货币供给方程过度识别
+
+---
+
+### 模型构建及识别情况
+
+因此我们可以构造出如下的联立方程：
+
+`$$\begin{alignat}{6}
+Y_{t1} = \beta_{01} &amp; &amp;+ \gamma_{21}Y_{t2} &amp; &amp; + \beta_{11}X_{t1} &amp; + \beta_{21}X_{t2}  &amp; &amp; +u_{t1} &amp; \text{   (收入方程)} \\
+Y_{t2} = \beta_{02} &amp; + \gamma_{12}Y_{1t} &amp; &amp;  &amp;  &amp;  &amp; &amp; + u_{t2} &amp; \text{   (货币供给方程)}
+\end{alignat}$$`
+
+其中: 
+`\(Y_1=GDP\)`
+(国内生产总值)；
+`\(Y_2=M2\)`
+货币供给；
+`\(X_1=GDPI\)`
+(私人国内投资)；
+`\(X_2=FEDEXP\)`
+(联邦政府的支出)
+
+
+---
+
+### 两阶段最小二乘法估计（没有误差矫正）
+
+
+
+`$$\begin{alignat}{6}
+Y_{t1} = \beta_{01} &amp; &amp;+ \gamma_{21}Y_{t2} &amp; &amp; + \beta_{11}X_{t1} &amp; + \beta_{21}X_{t2}  &amp; &amp; +u_{t1} &amp; \text{   (收入方程)} \\
+Y_{t2} = \beta_{02} &amp; + \gamma_{12}Y_{1t} &amp; &amp;  &amp;  &amp;  &amp; &amp; + u_{t2} &amp; \text{   (货币供给方程)}
+\end{alignat}$$`
+
+**stage 1: **先求
+`\(Y_1\)`
+对整个方程组(不仅仅是所考虑的方程中)全部**前定变量**的回归，并分别得到
+`\(\hat{Y }_{t1} ;\hat{v}_{t1}\)`
+。也即：
+
+`$$\begin{align}
+Y_{1t} &amp;= \widehat{\pi_0} + \widehat{\pi_1} X_{1t} +  \widehat{\pi_2} X_{2t} + \hat{v}_{t1} \\
+       &amp;= \hat{Y_{1t} } + \hat{v}_{t1}
+\end{align}$$`
+
+**stage 1**的回归结果如下：
+
+.pull_right[
+`$$\begin{equation} \begin{alignedat}{999} &amp;\widehat{Y1}=&amp;&amp;+2689.85&amp;&amp;+1.87X1&amp;&amp;+2.03X2\\ &amp;\text{(t)}&amp;&amp;(39.5639)&amp;&amp;(10.8938)&amp;&amp;(18.9295)\\&amp;\text{(se)}&amp;&amp;(67.9874)&amp;&amp;(0.1717)&amp;&amp;(0.1075)\\&amp;\text{(fitness)}&amp;&amp; R^2=0.9964;&amp;&amp; \bar{R^2}=0.9962\\&amp; &amp;&amp; F^{\ast}=4534.36;&amp;&amp; p=0.0000 \end{alignedat} \end{equation}$$`
+]
+
+---
+
+### 两阶段最小二乘法估计（没有误差矫正）
+
+同时，我们可以得到
+`\(\hat{Y }_{t1} ;\hat{v}_{t1}\)`
+
+<div id="htmlwidget-2d3faf58546b889ecc71" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2d3faf58546b889ecc71">{"x":{"filter":"none","caption":"<caption>stage 1 回归后得到的新变量Yt1.hat和vt1.hat<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36"],["1970 ","1971 ","1972 ","1973 ","1974 ","1975 ","1976 ","1977 ","1978 ","1979 ","1980 ","1981 ","1982 ","1983 ","1984 ","1985 ","1986 ","1987 ","1988 ","1989 ","1990 ","1991 ","1992 ","1993 ","1994 ","1995 ","1996 ","1997 ","1998 ","1999  ","2000 ","2001 ","2002","2003","2004 ","2005 "],[3771.9,3898.6,4105,4341.5,4319.6,4311.2,4540.9,4750.5,5015,5173.4,5161.7,5291.7,5189.3,5423.8,5813.6,6053.7,6263.6,6475.1,6742.7,6981.4,7112.5,7100.5,7336.6,7532.7,7835.5,8031.7,8328.9,8703.5,9066.9,9470.3,9817,9890.7,10048.8,10301,10703.5,11048.6],[626.5,710.3,802.3,855.5,902.1,1016.2,1152,1270.3,1366,1473.7,1599.8,1755.4,1910.3,2126.5,2310,2495.7,2732.4,2831.4,2994.5,3158.5,3278.6,3379.1,3432.5,3484,3497.5,3640.4,3815.1,4031.6,4379,4641.1,4920.9,5430.3,5774.1,6062,6411.7,6669.4],[427.1,475.7,532.1,594.4,550.6,453.1,544.7,627,702.6,725,645.3,704.9,606,662.5,857.7,849.7,843.9,870,890.5,926.2,895.1,822.2,889,968.3,1099.6,1134,1234.3,1387.7,1524.1,1642.6,1735.5,1598.4,1557.1,1613.1,1770.6,1866.3],[201.1,220,244.4,261.7,293.3,346.2,374.3,407.5,450,497.5,585.7,672.7,748.5,815.4,877.1,948.2,1006,1041.6,1092.7,1167.5,1253.5,1315,1444.6,1496,1533.1,1603.5,1665.8,1708.9,1734.9,1787.6,1864.4,1969.5,2101.1,2252.1,2383,2555.9],[null,3771.9,3898.6,4105,4341.5,4319.6,4311.2,4540.9,4750.5,5015,5173.4,5161.7,5291.7,5189.3,5423.8,5813.6,6053.7,6263.6,6475.1,6742.7,6981.4,7112.5,7100.5,7336.6,7532.7,7835.5,8031.7,8328.9,8703.5,9066.9,9470.3,9817,9890.7,10048.8,10301,10703.5],[null,626.5,710.3,802.3,855.5,902.1,1016.2,1152,1270.3,1366,1473.7,1599.8,1755.4,1910.3,2126.5,2310,2495.7,2732.4,2831.4,2994.5,3158.5,3278.6,3379.1,3432.5,3484,3497.5,3640.4,3815.1,4031.6,4379,4641.1,4920.9,5430.3,5774.1,6062,6411.7],[3897.6136,4026.9427,4182.0464,4333.7391,4316.1193,4241.4135,4469.867,4691.3048,4919.1332,5057.6509,5088.0423,5376.4787,5345.7411,5587.4906,6078.0259,6207.7069,6314.4452,6435.6733,6577.9617,6796.8872,6913.6834,6902.474,7291.0365,7543.8892,7864.8892,8072.4327,8386.7288,8761.261,9069.2169,9398.0169,9727.973,9685.4085,9875.8963,10287.7978,10848.6108,11379.3017],[-125.7136,-128.3427,-77.0464,7.7609,3.4807,69.7865,71.033,59.1952,95.8668,115.7491,73.6577,-84.7787,-156.4411,-163.6906,-264.4259,-154.0069,-50.8452,39.4267,164.7383,184.5128,198.8166,198.026,45.5635,-11.1892,-29.3892,-40.7327,-57.8288,-57.761,-2.3169,72.2831,89.027,205.2915,172.9037,13.2022,-145.1108,-330.7017]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>year<\/th>\n      <th>Y1<\/th>\n      <th>Y2<\/th>\n      <th>X1<\/th>\n      <th>X2<\/th>\n      <th>Y1.l1<\/th>\n      <th>Y2.l1<\/th>\n      <th>Y1.hat<\/th>\n      <th>v1.hat<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":6,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[6,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+
+---
+
+### 两阶段最小二乘法估计（没有误差矫正）
+
+`$$\begin{alignat}{6}
+Y_{t1} = \beta_{01} &amp; &amp;+ \gamma_{21}Y_{t2} &amp; &amp; + \beta_{11}X_{t1} &amp; + \beta_{21}X_{t2}  &amp; &amp; +u_{t2} &amp; \text{   (收入方程)} \\
+Y_{t2} = \beta_{02} &amp; + \gamma_{12}Y_{1t} &amp; &amp;  &amp;  &amp;  &amp; &amp; + u_{t2} &amp; \text{   (货币供给方程)}
+\end{alignat}$$`
+
+**stage 2:** 现在重新变换**过度识别的**供给方程如下：
+
+`$$\begin{align}
+Y_{t2} &amp; = \beta_{02}  + \gamma_{12} \hat{Y}_{1t}+ u_{t2}^{\ast}
+\end{align}$$`
+
+利用**stage 1**的结果，采用OLS进一步回归，得到：
+
+.pull_right[
+`$$\begin{equation} \begin{alignedat}{999} &amp;\widehat{Y2}=&amp;&amp;-2440.20&amp;&amp;+0.79Y1.hat\\ &amp;\text{(t)}&amp;&amp;(-19.1578)&amp;&amp;(44.5241)\\&amp;\text{(se)}&amp;&amp;(127.3738)&amp;&amp;(0.0178)\\&amp;\text{(fitness)}&amp;&amp; R^2=0.9831;&amp;&amp; \bar{R^2}=0.9826\\&amp; &amp;&amp; F^{\ast}=1982.40;&amp;&amp; p=0.0000 \end{alignedat} \end{equation}$$`
+]
+
+---
+
+### 对比：有偏误的普通最小二乘法OLS估计
+
+作为对比，我们给出一个**"有偏误"**的估计方法，也即直接对数量
+`\(Y2\)`
+对
+`\(Y1\)`
+采用OLS方法，将得到如下结果：
+
+.pull_right[
+`$$\begin{equation} \begin{alignedat}{999} &amp;\widehat{Y2}=&amp;&amp;-2430.34&amp;&amp;+0.79Y1\\ &amp;\text{(t)}&amp;&amp;(-19.1042)&amp;&amp;(44.5059)\\&amp;\text{(se)}&amp;&amp;(127.2148)&amp;&amp;(0.0178)\\&amp;\text{(fitness)}&amp;&amp; R^2=0.9831;&amp;&amp; \bar{R^2}=0.9826\\&amp; &amp;&amp; F^{\ast}=1980.77;&amp;&amp; p=0.0000 \end{alignedat} \end{equation}$$`
+]
+
+---
+class: duke-orange
+
+### 对比：有偏误的普通最小二乘法OLS估计
+
+这是原始分析报告：
+
+
+```
+
+Call:
+lm(formula = models_money$mod.ols, data = us_money_new)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-418.3 -151.6   40.2  143.5  380.8 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -2.43e+03   1.27e+02   -19.1   &lt;2e-16 ***
+Y1           7.90e-01   1.78e-02    44.5   &lt;2e-16 ***
+---
+Signif. codes:  
+0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 229 on 34 degrees of freedom
+Multiple R-squared:  0.983,	Adjusted R-squared:  0.983 
+F-statistic: 1.98e+03 on 1 and 34 DF,  p-value: &lt;2e-16
+```
+
+---
+class: inverse, middle, center
+
+### 建模情形2：收入方程和货币供给方程都是过度识别
+
+
+---
+
+### 改进后的模型及识别情况
+
+因此我们可以构造出如下的联立方程：
+
+`$$\begin{alignat}{6}
+Y_{t1} = \beta_{01} &amp; &amp;+ \gamma_{12}Y_{t2} &amp; &amp; + \beta_{11}X_{t1} &amp; + \beta_{21}X_{t2} &amp; &amp; &amp; +u_{t1} &amp; \text{   (收入方程)} \\
+Y_{t2} = \beta_{02} &amp; + \gamma_{12}Y_{1t} &amp; &amp;  &amp;  &amp; &amp;+ \beta_{12}Y_{1,t-1}  &amp;+ \beta_{22}Y_{2,t-1} &amp; + u_{t2} &amp; \text{   (货币供给方程)}
+\end{alignat}$$`
+
+下面，我们根据**阶条件规则2**，对上述联立方程模型进行判断：
+
+- 联立方程模型中前定变量个数
+`\(K=4\)`
+（分别是什么？）
+
+- 对于第一个方程（收入方程），前定变量个数
+`\(k=2\)`
+，则
+`\((K-k)=2\)`
+；第一个方程的内生变量个数
+`\(m=2\)`
+，则
+`\((m-1)=1\)`
+；显然
+`\((K-k)&gt;(m-1)\)`
+。因此第一个方程是**过度识别的**
+
+- 对于第二个方程（货币供给方程），前定变量个数
+`\(k=2\)`
+，则
+`\((K-k)=2\)`
+；第二个方程的内生变量个数
+`\(m=2\)`
+，则
+`\((m-1)=1\)`
+；显然
+`\((K-k)&gt;(m-1)\)`
+。因此第二个方程是**过度识别的**
+- 结论：收入方程和货币供给方程都是**过度识别的**
+
+---
+
+### 两阶段最小二乘法估计（没有误差矫正）
+
+
+
+下面我们将使用两阶段最小二乘法（2SLS）对**收入方程**和**货币供给方程**进行**一致性**的估计。
+
+**stage 1: **先求
+`\(Y_1\)`
+对整个方程组(不仅仅是所考虑的方程中)全部**前定变量**的回归，并分别得到
+`\(\hat{Y}_{t1} ;\hat{v}^{\ast}_{t1}\)`
+。同时，求
+`\(Y_2\)`
+对整个方程组(不仅仅是所考虑的方程中)全部**前定变量**的回归，并分别得到
+`\(\hat{Y}_{t2} ;\hat{v}^{\ast}_{t2}\)`
+。也即：
+
+`$$\begin{align}
+Y_{t1} &amp;= \widehat{\pi}_{01} + \widehat{\pi}_{11} X_{t1} +  \widehat{\pi}_{21} X_{t2} +  \widehat{\pi}_{31} Y_{t-1,1} +  \widehat{\pi}_{41} Y_{t-1,2}+ \hat{v}_{t1} \\
+       &amp;= \hat{Y}_{1t} +\hat{v}_{t1} \\
+Y_{t2} &amp;= \widehat{\pi}_{02} + \widehat{\pi}_{12} X_{t1} +  \widehat{\pi}_{22} X_{t2} +  \widehat{\pi}_{32} Y_{t-1,1} +  \widehat{\pi}_{42} Y_{t-1,2}+ \hat{v}_{t2} \\
+       &amp;= \hat{Y}_{t2} +\hat{v}_{t2} 
+\end{align}$$`
+
+---
+
+### 两阶段最小二乘法估计（没有误差矫正）
+
+- **收入方程**在**stage 1**的OLS回归结果
+
+`$$\begin{equation} \begin{alignedat}{999} &amp;\widehat{Y1}=&amp;&amp;+1098.90&amp;&amp;+0.98X1&amp;&amp;+0.77X2&amp;&amp;+0.59Y1.l1&amp;&amp;-0.01Y2.l1\\ &amp;\text{(t)}&amp;&amp;(5.9222)&amp;&amp;(7.4954)&amp;&amp;(4.1895)&amp;&amp;(8.8729)&amp;&amp;(-0.1024)\\&amp;\text{(se)}&amp;&amp;(185.5566)&amp;&amp;(0.1308)&amp;&amp;(0.1831)&amp;&amp;(0.0667)&amp;&amp;(0.0721)\\&amp;\text{(fitness)}&amp;&amp; R^2=0.9990;&amp;&amp; \bar{R^2}=0.9989\\&amp; &amp;&amp; F^{\ast}=7857.58;&amp;&amp; p=0.0000 \end{alignedat} \end{equation}$$`
+
+---
+
+### 两阶段最小二乘法估计（没有误差矫正）
+
+- **货币供给方程**在**stage 1**的OLS回归结果
+
+`$$\begin{equation} \begin{alignedat}{999} &amp;\widehat{Y2}=&amp;&amp;-207.14&amp;&amp;+0.20X1&amp;&amp;-0.35X2&amp;&amp;+0.06Y1.l1&amp;&amp;+1.06Y2.l1\\ &amp;\text{(t)}&amp;&amp;(-1.1202)&amp;&amp;(1.5298)&amp;&amp;(-1.9455)&amp;&amp;(0.9352)&amp;&amp;(14.7779)\\&amp;\text{(se)}&amp;&amp;(184.9121)&amp;&amp;(0.1303)&amp;&amp;(0.1824)&amp;&amp;(0.0665)&amp;&amp;(0.0718)\\&amp;\text{(fitness)}&amp;&amp; R^2=0.9985;&amp;&amp; \bar{R^2}=0.9983\\&amp; &amp;&amp; F^{\ast}=5050.57;&amp;&amp; p=0.0000 \end{alignedat} \end{equation}$$`
+
+---
+
+### 两阶段最小二乘法估计（没有误差矫正）
+
+同时，我们可以得到
+`\(\hat{Y}_{t1} ;\hat{v}_{t1}\)`
+以及
+`\(\hat{Y}_{t2} ;\hat{v}_{t2}\)`
+
+<div id="htmlwidget-5ebbc3fc504985e22b6d" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-5ebbc3fc504985e22b6d">{"x":{"filter":"none","caption":"<caption>stage 1 回归后得到的新变量<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36"],[3771.9,3898.6,4105,4341.5,4319.6,4311.2,4540.9,4750.5,5015,5173.4,5161.7,5291.7,5189.3,5423.8,5813.6,6053.7,6263.6,6475.1,6742.7,6981.4,7112.5,7100.5,7336.6,7532.7,7835.5,8031.7,8328.9,8703.5,9066.9,9470.3,9817,9890.7,10048.8,10301,10703.5,11048.6],[null,3771.9,3898.6,4105,4341.5,4319.6,4311.2,4540.9,4750.5,5015,5173.4,5161.7,5291.7,5189.3,5423.8,5813.6,6053.7,6263.6,6475.1,6742.7,6981.4,7112.5,7100.5,7336.6,7532.7,7835.5,8031.7,8328.9,8703.5,9066.9,9470.3,9817,9890.7,10048.8,10301,10703.5],[null,3963.16221869858,4111.57768515084,4307.47247766228,4428.44578929569,4360.13019724065,4465.65151104022,4706.82054171374,4936.77948285524,5151.10621835138,5233.64066667267,5350.92313637302,5387.95457278017,5432.85464188149,5808.79666392269,6084.98378291147,6264.45271747674,6439.90312423001,6623.71519014263,6873.35406319449,7048.98138643086,7101.44509267014,7258.46679484753,7515.05137834654,7787.96482502016,8054.90588062043,8316.14347279548,8674.28762062313,9048.1848874992,9417.41369997324,9804.35062660564,9953.83037210483,10054.1619236847,10315.9539535962,10717.9655811806,11180.1678224072],[null,-64.5622186985847,-6.57768515083779,34.0275223377157,-108.845789295686,-48.9301972406478,75.2484889597812,43.6794582862606,78.2205171447622,22.2937816486204,-71.9406666726673,-59.2231363730194,-198.654572780171,-9.05464188148986,4.80333607731182,-31.283782911466,-0.85271747673761,35.1968757699915,118.984809857367,108.045936805509,63.5186135691421,-0.945092670141772,78.133205152469,17.6486216534632,47.5351749798449,-23.2058806204262,12.7565272045159,29.2123793768659,18.7151125008005,52.8863000267624,12.6493733943621,-63.1303721048319,-5.36192368471812,-14.9539535962474,-14.465581180628,-131.567822407243],[626.5,710.3,802.3,855.5,902.1,1016.2,1152,1270.3,1366,1473.7,1599.8,1755.4,1910.3,2126.5,2310,2495.7,2732.4,2831.4,2994.5,3158.5,3278.6,3379.1,3432.5,3484,3497.5,3640.4,3815.1,4031.6,4379,4641.1,4920.9,5430.3,5774.1,6062,6411.7,6669.4],[null,626.5,710.3,802.3,855.5,902.1,1016.2,1152,1270.3,1366,1473.7,1599.8,1755.4,1910.3,2126.5,2310,2495.7,2732.4,2831.4,2994.5,3158.5,3278.6,3379.1,3432.5,3484,3497.5,3640.4,3815.1,4031.6,4379,4641.1,4920.9,5430.3,5774.1,6062,6411.7],[null,709.457616666095,808.900075055048,925.702961862726,976.954305239303,986.8583813217,1115.77254277551,1278.87469212458,1417.50934887674,1523.18268842586,1600.19772622861,1714.36502045826,1841.04472126788,1986.66384756197,2247.82434948008,2440.07917012719,2630.51598424703,2887.46242677249,2991.6861628997,3162.07830524493,3314.33588042833,3413.64979201753,3486.93431582749,3555.88808187473,3635.77808162732,3650.82230965648,3812.64025282157,4031.90549670109,4303.0468398627,4699.43221839384,4994.08078620441,5248.09808963875,5738.60827762642,6071.05390603444,6377.36949878321,6731.42584586597],[null,0.84238333390528,-6.6000750550477,-70.202961862726,-74.854305239303,29.3416186783003,36.2274572244865,-8.57469212458065,-51.5093488767377,-49.4826884258629,-0.39772622861023,41.0349795417435,69.2552787321182,139.836152438026,62.1756505199233,55.6208298728086,101.88401575297,-56.0624267724932,2.8138371002993,-3.57830524492592,-35.735880428334,-34.5497920175316,-54.4343158274884,-71.8880818747347,-138.27808162732,-10.4223096564801,2.45974717842692,-0.305496701088675,75.9531601373015,-58.3322183938402,-73.1807862044147,182.201910361249,35.4917223735841,-9.05390603444351,34.3305012167902,-62.0258458659686]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Y1<\/th>\n      <th>Y1.l1<\/th>\n      <th>Y1.hat<\/th>\n      <th>v1.hat<\/th>\n      <th>Y2<\/th>\n      <th>Y2.l1<\/th>\n      <th>Y2.hat<\/th>\n      <th>v2.hat<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"targets":4,"render":"function(data, type, row, meta) { return DTWidget.formatRound(data, 4, 3, \",\", \".\"); }"},{"targets":8,"render":"function(data, type, row, meta) { return DTWidget.formatRound(data, 4, 3, \",\", \".\"); }"},{"targets":1,"render":"function(data, type, row, meta) { return DTWidget.formatRound(data, 1, 3, \",\", \".\"); }"},{"targets":2,"render":"function(data, type, row, meta) { return DTWidget.formatRound(data, 1, 3, \",\", \".\"); }"},{"targets":3,"render":"function(data, type, row, meta) { return DTWidget.formatRound(data, 1, 3, \",\", \".\"); }"},{"targets":5,"render":"function(data, type, row, meta) { return DTWidget.formatRound(data, 1, 3, \",\", \".\"); }"},{"targets":6,"render":"function(data, type, row, meta) { return DTWidget.formatRound(data, 1, 3, \",\", \".\"); }"},{"targets":7,"render":"function(data, type, row, meta) { return DTWidget.formatRound(data, 1, 3, \",\", \".\"); }"},{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":6,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[6,10,25,50,100]}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render","options.columnDefs.4.render","options.columnDefs.5.render","options.columnDefs.6.render","options.columnDefs.7.render"],"jsHooks":[]}</script>
+
+---
+
+### 两阶段最小二乘法估计（没有误差矫正）
+
+**stage 2:** 重新变换**过度识别的**收入方程和货币供给方程如下：
+
+`$$\begin{align}
+Y_{t1} &amp;= \beta_{01}  + \gamma_{21} \hat{Y}_{t2}  + \beta_{11}X_{t1}  + \beta_{21}X_{t2} +u^{\ast}_{t1}  \\
+Y_{t2} &amp;= \beta_{20}  + \gamma_{12} \hat{Y}_{1t} + \beta_{12}Y_{t-1,1}  + \beta_{22}Y_{t-1,2}  + u^{\ast}_{t2} 
+\end{align}$$`
+
+---
+
+### 两阶段最小二乘法估计（没有误差矫正）
+
+- 收入方程在**stage 2**的OLS估计结果
+
+`$$\begin{equation} \begin{alignedat}{999} &amp;\widehat{Y1}=&amp;&amp;+2723.68&amp;&amp;+0.22Y2.hat&amp;&amp;+1.71X1&amp;&amp;+1.57X2\\ &amp;\text{(t)}&amp;&amp;(40.3310)&amp;&amp;(1.8961)&amp;&amp;(9.2748)&amp;&amp;(5.9811)\\&amp;\text{(se)}&amp;&amp;(67.5331)&amp;&amp;(0.1156)&amp;&amp;(0.1848)&amp;&amp;(0.2623)\\&amp;\text{(fitness)}&amp;&amp; R^2=0.9966;&amp;&amp; \bar{R^2}=0.9963\\&amp; &amp;&amp; F^{\ast}=3073.97;&amp;&amp; p=0.0000 \end{alignedat} \end{equation}$$`
+
+---
+
+### 两阶段最小二乘法估计（没有误差矫正）
+
+- 货币供给方程在**stage 2**的OLS估计结果
+
+`$$\begin{equation} \begin{alignedat}{999} &amp;\widehat{Y2}=&amp;&amp;-228.13&amp;&amp;+0.11Y1.hat&amp;&amp;-0.03Y1.l1&amp;&amp;+0.93Y2.l1\\ &amp;\text{(t)}&amp;&amp;(-1.4843)&amp;&amp;(0.7685)&amp;&amp;(-0.1691)&amp;&amp;(15.0961)\\&amp;\text{(se)}&amp;&amp;(153.6925)&amp;&amp;(0.1431)&amp;&amp;(0.1481)&amp;&amp;(0.0618)\\&amp;\text{(fitness)}&amp;&amp; R^2=0.9981;&amp;&amp; \bar{R^2}=0.9979\\&amp; &amp;&amp; F^{\ast}=5461.60;&amp;&amp; p=0.0000 \end{alignedat} \end{equation}$$`
+
+---
+
+### 两阶段最小二乘法估计（没有误差矫正）
+
+- 收入方程在**stage 2**的OLS估计具体摘要如下：
+
+
+```
+
+Call:
+lm(formula = models_money2$mod2.stage2.1, data = us_money_new2)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-360.4  -66.8   35.7   81.2  186.2 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 2723.681     67.533   40.33  &lt; 2e-16 ***
+Y2.hat         0.219      0.116    1.90    0.067 .  
+X1             1.714      0.185    9.27  1.9e-10 ***
+X2             1.569      0.262    5.98  1.3e-06 ***
+---
+Signif. codes:  
+0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 130 on 31 degrees of freedom
+  (1 observation deleted due to missingness)
+Multiple R-squared:  0.997,	Adjusted R-squared:  0.996 
+F-statistic: 3.07e+03 on 3 and 31 DF,  p-value: &lt;2e-16
+```
+
+---
+
+### 两阶段最小二乘法估计（没有误差矫正）
+
+- 货币供给方程在**stage 2**的OLS估计具体摘要如下：
+
+
+```
+
+Call:
+lm(formula = models_money2$mod2.stage2.2, data = us_money_new2)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-192.58  -42.96    7.05   42.93  218.68 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -228.1320   153.6925   -1.48     0.15    
+Y1.hat         0.1100     0.1431    0.77     0.45    
+Y1.l1         -0.0250     0.1481   -0.17     0.87    
+Y2.l1          0.9330     0.0618   15.10  7.8e-16 ***
+---
+Signif. codes:  
+0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 78 on 31 degrees of freedom
+  (1 observation deleted due to missingness)
+Multiple R-squared:  0.998,	Adjusted R-squared:  0.998 
+F-statistic: 5.46e+03 on 3 and 31 DF,  p-value: &lt;2e-16
+```
+
+---
+
+### 两阶段最小二乘法估计（矫正误差）
+
+`R`软件下采用`systemfit` 分析包，得到的“误差矫正”后的两阶段最小二乘法估计结果汇总如下：
+
+<div id="htmlwidget-07fe59828d7646bf9471" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-07fe59828d7646bf9471">{"x":{"filter":"none","caption":"<caption>两阶段最小二乘法（2SLS）回归结果<\/caption>","data":[["1","2","3","4","5","6","7","8"],["eq1","eq1","eq1","eq1","eq2","eq2","eq2","eq2"],["(Intercept)","Y2","X1","X2","(Intercept)","Y1","Y1.l1","Y2.l1"],[2723.68094389355,0.219243322396451,1.71421562765313,1.56903879525853,-228.132038697227,0.109968179861762,-0.0250416176584451,0.932956220564694],[69.1017290433198,0.118316604725378,0.189118852526913,0.268426771265983,157.94546242023,0.147050396020319,0.152227171258453,0.0635111321118053],[39.4155252205929,1.85302242999054,9.06422392452482,5.84531411624282,-1.4443722231808,0.747826478798241,-0.164501629054968,14.6896487205158],[0,0.0734196596058307,3.17168957764125e-10,1.90684580059219e-06,0.15866639996072,0.460200592912428,0.870404215458877,1.77635683940025e-15]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>eq<\/th>\n      <th>vars<\/th>\n      <th>Estimate<\/th>\n      <th>Std. Error<\/th>\n      <th>t value<\/th>\n      <th>Pr(&gt;|t|)<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"targets":3,"render":"function(data, type, row, meta) { return DTWidget.formatRound(data, 2, 3, \",\", \".\"); }"},{"targets":4,"render":"function(data, type, row, meta) { return DTWidget.formatRound(data, 4, 3, \",\", \".\"); }"},{"targets":5,"render":"function(data, type, row, meta) { return DTWidget.formatRound(data, 4, 3, \",\", \".\"); }"},{"targets":6,"render":"function(data, type, row, meta) { return DTWidget.formatRound(data, 4, 3, \",\", \".\"); }"},{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":10,"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render"],"jsHooks":[]}</script>
+
+
+---
+
+### 两阶段最小二乘法估计（矫正误差）
+
+`R`软件下采用`systemfit` 分析包，得到的“误差矫正”后的两阶段最小二乘法估计结果详细报告：
+
+
+```
+
+systemfit results 
+method: 2SLS 
+
+        N DF    SSR  detRCov OLS-R2 McElroy-R2
+system 70 62 749260 1.07e+08  0.997      0.998
+
+     N DF    SSR   MSE  RMSE    R2 Adj R2
+eq1 35 31 549669 17731 133.2 0.996  0.996
+eq2 35 31 199592  6438  80.2 0.998  0.998
+
+The covariance matrix of the residuals
+      eq1   eq2
+eq1 17731 -2604
+eq2 -2604  6438
+
+The correlations of the residuals
+       eq1    eq2
+eq1  1.000 -0.244
+eq2 -0.244  1.000
+
+
+2SLS estimates for 'eq1' (equation 1)
+Model Formula: Y1 ~ Y2 + X1 + X2
+Instruments: ~X1 + X2 + Y1.l1 + Y2.l1
+
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 2723.681     69.102   39.42  &lt; 2e-16 ***
+Y2             0.219      0.118    1.85    0.073 .  
+X1             1.714      0.189    9.06  3.2e-10 ***
+X2             1.569      0.268    5.85  1.9e-06 ***
+---
+Signif. codes:  
+0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 133.159 on 31 degrees of freedom
+Number of observations: 35 Degrees of Freedom: 31 
+SSR: 549668.549 MSE: 17731.244 Root MSE: 133.159 
+Multiple R-Squared: 0.996 Adjusted R-Squared: 0.996 
+
+
+2SLS estimates for 'eq2' (equation 2)
+Model Formula: Y2 ~ Y1 + Y1.l1 + Y2.l1
+Instruments: ~X1 + X2 + Y1.l1 + Y2.l1
+
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -228.1320   157.9455   -1.44     0.16    
+Y1             0.1100     0.1471    0.75     0.46    
+Y1.l1         -0.0250     0.1522   -0.16     0.87    
+Y2.l1          0.9330     0.0635   14.69  1.8e-15 ***
+---
+Signif. codes:  
+0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 80.24 on 31 degrees of freedom
+Number of observations: 35 Degrees of Freedom: 31 
+SSR: 199591.775 MSE: 6438.444 Root MSE: 80.24 
+Multiple R-Squared: 0.998 Adjusted R-Squared: 0.998 
+```
+
+---
+
+### 对比：有偏误的OLS估计结果
+
+- 收入方程的**"有偏误"**OLS估计结果
+
+`$$\begin{equation} \begin{alignedat}{999} &amp;\widehat{Y1}=&amp;&amp;+2706.39&amp;&amp;+0.17Y2&amp;&amp;+1.75X1&amp;&amp;+1.68X2\\ &amp;\text{(t)}&amp;&amp;(40.0265)&amp;&amp;(1.5062)&amp;&amp;(9.3862)&amp;&amp;(6.6008)\\&amp;\text{(se)}&amp;&amp;(67.6150)&amp;&amp;(0.1115)&amp;&amp;(0.1864)&amp;&amp;(0.2552)\\&amp;\text{(fitness)}&amp;&amp; R^2=0.9966;&amp;&amp; \bar{R^2}=0.9963\\&amp; &amp;&amp; F^{\ast}=3139.86;&amp;&amp; p=0.0000 \end{alignedat} \end{equation}$$`
+
+- 货币供给方程的**"有偏误"**OLS估计结果
+
+`$$\begin{equation} \begin{alignedat}{999} &amp;\widehat{Y2}=&amp;&amp;-206.53&amp;&amp;-0.02Y1&amp;&amp;+0.10Y1.l1&amp;&amp;+0.94Y2.l1\\ &amp;\text{(t)}&amp;&amp;(-1.3373)&amp;&amp;(-0.1377)&amp;&amp;(0.7870)&amp;&amp;(15.1363)\\&amp;\text{(se)}&amp;&amp;(154.4428)&amp;&amp;(0.1178)&amp;&amp;(0.1252)&amp;&amp;(0.0622)\\&amp;\text{(fitness)}&amp;&amp; R^2=0.9981;&amp;&amp; \bar{R^2}=0.9979\\&amp; &amp;&amp; F^{\ast}=5362.58;&amp;&amp; p=0.0000 \end{alignedat} \end{equation}$$`
+
+---
+class: center, middle,duke-orange
+
+## 20.5 松露供需案例
+
+---
+layout: true
+  
+&lt;div class="my-header"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   第20章 联立方程模型的估计方法   
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+20.5 松露供需案例 &lt;/span&gt;&lt;/div&gt; 
+
+
+---
+class: inverse,center
+
+## 松露供需案例
+
+.pull-left[
+
+&lt;img src="pic/Truffle-pig.jpg" width="367" style="display: block; margin: auto;" /&gt;
+
+&lt;img src="pic/Truffle-pig2.jpg" width="367" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+&lt;img src="pic/Truffle-pig4.jpg" width="380" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+### 数据说明
+
+案例来源：Hill, R. C., W. E. Griffiths and G. C. Lim. Principles of Econometrics 4th Edition  [M], Wiley, 2011. chpt 11
+
+实例参考：[PoE with R](https://bookdown.org/ccolonescu/RPoE4/simultaneous-equations-models.html)
+
+<div id="htmlwidget-876110cfb93a51cab456" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-876110cfb93a51cab456">{"x":{"filter":"none","caption":"<caption>松露案例的变量说明（样本数n=30）<\/caption>","data":[["1","2","3","4","5"],["P","Q","PS","DI","PF"],["松露市场价格","松露产量或需求量","松露替代品的市场价格","当地居民可支配收入","生产成本(小猪的租金)"],["美元/盎司","盎司","美元/盎司","美元/人","美元/小时"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>变量<\/th>\n      <th>含义<\/th>\n      <th>单位<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":5,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+
+---
+
+### 数据说明
+
+<div id="htmlwidget-2a9255b78653001d83a6" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2a9255b78653001d83a6">{"x":{"filter":"none","caption":"<caption>松露案例的数据（样本数n=30）<\/caption>","data":[["1","2","3","4","5"],["P","Q","PS","DI","PF"],["松露市场价格","松露产量或需求量","松露替代品的市场价格","当地居民可支配收入","生产成本(小猪的租金)"],["美元/盎司","盎司","美元/盎司","美元/人","美元/小时"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>变量<\/th>\n      <th>含义<\/th>\n      <th>单位<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":10,"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+
+---
+
+### 数据说明
+
+下面给出松露数量Q与松露市场价格P的散点图：
+
+&lt;img src="SEM-slide-part3-estimation_files/figure-html/unnamed-chunk-5-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+### 结构方程
+
+给定联立方程：
+
+`$$\begin{align}
+Q_i &amp;= \alpha_0+\alpha_1P_i+\alpha_2PS_i+\alpha_3DI_i+u_{i1}  &amp;&amp;\text{(需求函数)}\\
+Q_i &amp;= \beta_0+\beta_1P_i+\beta_2PF_i+u_{i2}    &amp;&amp;\text{(供给函数)}
+\end{align}$$`
+
+---
+
+### 约简方程
+
+我们可以得到约简方程1：
+
+`$$\begin{cases}
+  \begin{align}
+  P_i &amp;= \pi_{01}+ \pi_{11}PS_i+\pi_{21}DI_i+\pi_{31}PF_i+v_{t1}\\
+  Q_i &amp;= \pi_{02}+\pi_{12}PS_t+\pi_{22}DI_i+\pi_{32}PF_i+v_{t2}
+  \end{align}
+\end{cases}$$`
+
+.pull-left[
+`$$\begin{align}
+&amp; \pi_{01} = \frac{\beta_0-\alpha_0}{\alpha_1-\beta_1}  \\
+&amp; \pi_{11} = - \frac{\alpha_2}{\alpha_1-\beta_1}  \\
+&amp; \pi_{21} = - \frac{\alpha_3}{\alpha_1-\beta_1}  \\
+&amp; \pi_{31} = \frac{\beta_2}{\alpha_1-\beta_1}  \\
+&amp; v_{t1} = \frac{u_{2t}-u_{1t}}{\alpha_1-\beta_1} &amp;&amp;
+\end{align}$$`
+
+]
+
+.pull-right[
+
+`$$\begin{align}
+&amp; \pi_{02} = - \frac{\alpha_1\beta_0-\alpha_0\beta_1}{\alpha_1-\beta_1} \\
+&amp; \pi_{12} = - \frac{\alpha_2\beta_1}{\alpha_1-\beta_1}  \\
+&amp; \pi_{22} = - \frac{\alpha_3\beta_1}{\alpha_1-\beta_1}  \\
+&amp; \pi_{32} =   \frac{\alpha_1\beta_2}{\alpha_1-\beta_1}  \\
+&amp; v_{t2} = \frac{\alpha_1u_{2t}-\beta_1u_{1t}}{\alpha_1-\beta_1} 
+\end{align}$$`
+]
+
+
+
+---
+
+### 约简模型回归结果
+
+
+
+**价格**约简方程1的回归结果如下：
+`$$\begin{equation} \begin{alignedat}{999} &amp;\widehat{P}=&amp;&amp;-32.51&amp;&amp;+1.71PS&amp;&amp;+7.60DI&amp;&amp;+1.35PF\\ &amp;\text{(t)}&amp;&amp;(-4.0721)&amp;&amp;(4.8682)&amp;&amp;(4.4089)&amp;&amp;(4.5356)\\&amp;\text{(se)}&amp;&amp;(7.9842)&amp;&amp;(0.3509)&amp;&amp;(1.7243)&amp;&amp;(0.2985)\\&amp;\text{(fitness)}&amp;&amp; R^2=0.8887;&amp;&amp; \bar{R^2}=0.8758\\&amp; &amp;&amp; F^{\ast}=69.19;&amp;&amp; p=0.0000 \end{alignedat} \end{equation}$$`
+
+**数量**约简方程2的回归结果如下：
+`$$\begin{equation} \begin{alignedat}{999} &amp;\widehat{Q}=&amp;&amp;+7.90&amp;&amp;+0.66PS&amp;&amp;+2.17DI&amp;&amp;-0.51PF\\ &amp;\text{(t)}&amp;&amp;(2.4342)&amp;&amp;(4.6051)&amp;&amp;(3.0938)&amp;&amp;(-4.1809)\\&amp;\text{(se)}&amp;&amp;(3.2434)&amp;&amp;(0.1425)&amp;&amp;(0.7005)&amp;&amp;(0.1213)\\&amp;\text{(fitness)}&amp;&amp; R^2=0.6974;&amp;&amp; \bar{R^2}=0.6625\\&amp; &amp;&amp; F^{\ast}=19.97;&amp;&amp; p=0.0000 \end{alignedat} \end{equation}$$`
+
+---
+
+### 两阶段最小二乘法（2SLS）回归结果
+
+<div id="htmlwidget-2f9e55d5568b96798197" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2f9e55d5568b96798197">{"x":{"filter":"none","caption":"<caption>两阶段最小二乘法（2SLS）回归结果<\/caption>","data":[["1","2","3","4","5","6","7"],["eq1","eq1","eq1","eq1","eq2","eq2","eq2"],["(Intercept)","P","PS","DI","(Intercept)","P","PF"],[-4.27947061497233,-0.374459060942076,1.29603324237432,5.01397707849119,20.0328021518429,0.337981567223284,-1.00090937478858],[5.54388441531859,0.164751696005395,0.35519318191257,2.28355585791892,1.22311480030668,0.0249195580539933,0.0825279436522352],[-0.771926377676184,-2.27286923304155,3.64881227560651,2.19568838708443,16.3785134043181,13.5629037437573,-12.1281269167001],[0.447117984640339,0.0315350456407235,0.00116008232650699,0.0372352383660512,1.55431223447522e-15,1.4344081478157e-13,1.94555482835312e-12]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>eq<\/th>\n      <th>vars<\/th>\n      <th>Estimate<\/th>\n      <th>Std. Error<\/th>\n      <th>t value<\/th>\n      <th>Pr(&gt;|t|)<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"targets":3,"render":"function(data, type, row, meta) { return DTWidget.formatRound(data, 4, 3, \",\", \".\"); }"},{"targets":4,"render":"function(data, type, row, meta) { return DTWidget.formatRound(data, 4, 3, \",\", \".\"); }"},{"targets":5,"render":"function(data, type, row, meta) { return DTWidget.formatRound(data, 4, 3, \",\", \".\"); }"},{"targets":6,"render":"function(data, type, row, meta) { return DTWidget.formatRound(data, 4, 3, \",\", \".\"); }"},{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":10,"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render"],"jsHooks":[]}</script>
+
+---
+
+### 有偏误的OLS估计
+
+作为对比，我们下面给出有偏误的OLS估计——也即不采用2SLS估计联立方程，而是简单而执意地使用OLS方法分别估计需求方程和供给方程！
+
+- 需求方程**有偏误的**OLS估计结果为：
+
+`$$\begin{equation} \begin{alignedat}{999} &amp;\widehat{Q}=&amp;&amp;+1.09&amp;&amp;+0.02P&amp;&amp;+0.71PS&amp;&amp;+0.08DI\\ &amp;\text{(t)}&amp;&amp;(0.2940)&amp;&amp;(0.3032)&amp;&amp;(3.3129)&amp;&amp;(0.0642)\\&amp;\text{(se)}&amp;&amp;(3.7116)&amp;&amp;(0.0768)&amp;&amp;(0.2143)&amp;&amp;(1.1909)\\&amp;\text{(fitness)}&amp;&amp; R^2=0.4957;&amp;&amp; \bar{R^2}=0.4375\\&amp; &amp;&amp; F^{\ast}=8.52;&amp;&amp; p=0.0004 \end{alignedat} \end{equation}$$`
+
+- 供给方程**有偏误的**OLS估计结果为：
+
+`$$\begin{equation} \begin{alignedat}{999} &amp;\widehat{Q}=&amp;&amp;+20.03&amp;&amp;+0.34P&amp;&amp;-1.00PF\\ &amp;\text{(t)}&amp;&amp;(16.3938)&amp;&amp;(15.5436)&amp;&amp;(-13.1028)\\&amp;\text{(se)}&amp;&amp;(1.2220)&amp;&amp;(0.0217)&amp;&amp;(0.0764)\\&amp;\text{(fitness)}&amp;&amp; R^2=0.9019;&amp;&amp; \bar{R^2}=0.8946\\&amp; &amp;&amp; F^{\ast}=124.08;&amp;&amp; p=0.0000 \end{alignedat} \end{equation}$$`
+
+---
+
+
+### 有偏误的OLS估计
+
+- 需求方程**有偏误的**OLS估计的`R`软件摘要结果具体为：
+
+
+```
+
+Call:
+lm(formula = D, data = truffles)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-7.155 -1.936 -0.374  2.396  6.335 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)   
+(Intercept)   1.0910     3.7116    0.29   0.7711   
+P             0.0233     0.0768    0.30   0.7642   
+PS            0.7100     0.2143    3.31   0.0027 **
+DI            0.0764     1.1909    0.06   0.9493   
+---
+Signif. codes:  
+0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 3.5 on 26 degrees of freedom
+Multiple R-squared:  0.496,	Adjusted R-squared:  0.438 
+F-statistic: 8.52 on 3 and 26 DF,  p-value: 0.000416
+```
+
+---
+
+
+### 有偏误的OLS估计
+
+- 供给方程**有偏误的**OLS估计的`R`软件摘要结果具体为：
+
+
+```
+
+Call:
+lm(formula = S, data = truffles)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-3.783 -0.853  0.227  0.758  3.347 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  20.0328     1.2220    16.4  1.5e-15 ***
+P             0.3380     0.0217    15.5  5.4e-15 ***
+PF           -1.0009     0.0764   -13.1  3.2e-13 ***
+---
+Signif. codes:  
+0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 1.5 on 27 degrees of freedom
+Multiple R-squared:  0.902,	Adjusted R-squared:  0.895 
+F-statistic:  124 on 2 and 27 DF,  p-value: 2.45e-14
+```
+
+
+---
+class: center, middle,invrese
+
+## 20.6 鳕鱼供需案例
+
+---
+layout: true
+  
+&lt;div class="my-header"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   第20章 联立方程模型的估计方法   
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+20.6 鳕鱼供需案例 &lt;/span&gt;&lt;/div&gt; 
+
+
+---
+class: center, inverse
+
+### 鳕鱼供需案例
+
+.pull-left[
+
+&lt;img src="pic/whiting-fishing.jpg" width="345" style="display: block; margin: auto;" /&gt;
+
+&lt;img src="pic/whiting-fishing2.jpg" width="345" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+&lt;img src="pic/whiting-fishing4.jpg" width="259" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+### 数据说明
+
+<div id="htmlwidget-3e3fc8cbce7a5ce5fe40" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3e3fc8cbce7a5ce5fe40">{"x":{"filter":"none","caption":"<caption>鳕鱼案例的变量说明<\/caption>","data":[["1","2","3","4","5","6","7"],["lprice","lquan","mon","tue","wen","thu","stormy"],["对数化的鳕鱼市场价格","对数化的鳕鱼数量","周一","周二","周三","周四","暴风雨天气"],["连续变量","连续变量","虚拟变量0/1","虚拟变量0/1","虚拟变量0/1","虚拟变量0/1","虚拟变量0/1"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>变量<\/th>\n      <th>含义<\/th>\n      <th>备注<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":8,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[8,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+
+.footer-note[.tiny[
+案例来源：Hill, R. C., W. E. Griffiths and G. C. Lim. Principles of Econometrics 4th Edition  [M], Wiley, 2011. chpt 11。实例参考：[PoE with R](https://bookdown.org/ccolonescu/RPoE4/simultaneous-equations-models.html)
+]
+]
+
+---
+
+### 数据说明
+
+<div id="htmlwidget-d2cf87197dad869c157f" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d2cf87197dad869c157f">{"x":{"filter":"none","caption":"<caption>鳕鱼供需日期数据（样本数n=111)<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","96","97","98","99","100","101","102","103","104","105","106","107","108","109","110","111"],["1991-12-02","1991-12-03","1991-12-04","1991-12-05","1991-12-06","1991-12-09","1991-12-10","1991-12-11","1991-12-12","1991-12-13","1991-12-16","1991-12-17","1991-12-18","1991-12-19","1991-12-20","1991-12-23","1991-12-24","1991-12-26","1991-12-27","1991-12-30","1991-12-31","1992-01-02","1992-01-03","1992-01-06","1992-01-07","1992-01-08","1992-01-09","1992-01-10","1992-01-13","1992-01-14","1992-01-15","1992-01-16","1992-01-17","1992-01-20","1992-01-21","1992-01-22","1992-01-23","1992-01-24","1992-01-27","1992-01-28","1992-01-29","1992-01-30","1992-01-31","1992-02-03","1992-02-04","1992-02-05","1992-02-06","1992-02-07","1992-02-10","1992-02-11","1992-02-12","1992-02-13","1992-02-14","1992-02-18","1992-02-19","1992-02-20","1992-02-21","1992-02-24","1992-02-25","1992-02-26","1992-02-27","1992-02-28","1992-03-02","1992-03-03","1992-03-04","1992-03-05","1992-03-06","1992-03-09","1992-03-10","1992-03-11","1992-03-12","1992-03-13","1992-03-16","1992-03-17","1992-03-18","1992-03-19","1992-03-20","1992-03-23","1992-03-24","1992-03-25","1992-03-26","1992-03-27","1992-03-30","1992-03-31","1992-04-01","1992-04-02","1992-04-03","1992-04-06","1992-04-07","1992-04-08","1992-04-09","1992-04-10","1992-04-13","1992-04-14","1992-04-15","1992-04-16","1992-04-17","1992-04-21","1992-04-22","1992-04-23","1992-04-24","1992-04-27","1992-04-28","1992-04-29","1992-04-30","1992-05-01","1992-05-04","1992-05-05","1992-05-06","1992-05-07","1992-05-08"],[-0.4307829,0,0.0723207,0.247139,0.6643268,-0.2065143,-0.1158318,-0.2598674,-0.1171254,-0.3420761,-0.1255632,0.027399,-0.0712275,0.1230601,0.2130932,-0.3172045,-0.1088388,0.2231435,0.2464593,-0.075431,0.2055992,0.2188098,0.307025,0.399592,0.4969802,0.3968258,0.2830518,0.2263384,-0.0723207,-0.1545295,0.2363888,0.1718503,0.1541506,0.0350913,0.218131,-0.0624355,-0.4418328,-0.7699343,-0.7391911,-0.7230001,-0.5184302,-0.5533853,-0.5590724,-0.4238143,-0.7731899,-0.2040953,0.3841877,0.3479887,0.3229889,0.4345259,0.2000211,-0.0071685,-0.4744579,-0.7711087,-1.094774,-0.8602012,-0.597837,-0.567984,-0.7711087,-0.2724146,0.1849223,0.20676,0.074108,-0.0071685,-0.2548923,-0.2364898,-0.4848501,-0.8119307,-0.4780358,-0.2301122,-0.2887938,-0.3409266,-0.4812668,-0.5817336,-0.0370413,0.0746435,-0.5268259,-0.1123292,-0.2376716,-0.4243931,-0.4828126,-0.1923718,0.1823216,0.2876821,-0.1873341,-0.4404448,-0.567984,-0.3873608,-0.5108256,-0.6149098,-0.3876929,-0.3716677,-0.3101549,-0.3502024,-0.2231435,-0.3119048,-0.2258646,-0.2842691,-0.0971638,-0.1419181,-0.5364382,-0.4596867,-0.4866114,-0.7603559,-0.8931236,-1.107745,-0.7985078,-0.0870114,0.1849223,0.2231435,0.5611184],[8058.003,2224.001,4231.001,5749.998,2551.001,10952,7485,9008.996,4055,9992.003,5180.002,5030,7083,9762.996,5999.002,12196,3463.999,814.9999,6626.999,14260.01,4014.999,4109.001,7221.997,11344,3370.001,3470,13607.01,5260,11930,5590,2269.999,4690,1283,579.9999,1500.001,4410.001,9783.996,11140,4288.999,5548.001,3445,6067.998,4525,8249.997,1860.001,1279.999,4855,7939.001,6274.992,2680,5389.999,8399.999,13708,17555,3493.998,5869.997,8390,4339.999,2100.001,2575,2849.999,6189.998,5615,6610,8054.999,10135,5263.001,21619.99,9625,3349.999,10315,3030.001,15460,9589.999,1704.999,5510,7346.999,2585,3745.001,2940,12040,2235.001,2220.001,1112.001,4880.001,11310,14455,7907.001,1464.999,12280,6249.998,5350.002,5755.007,1609.999,490.0003,9774.996,6499.999,10520,3999.999,6230.003,15550.01,5180.002,3509.999,5785.002,8950.003,8219.997,5490,1289.999,1574.999,6400,4140],[8.994421,7.707063,8.350194,8.656955,7.844241,9.301277,8.920656,9.105979,8.307706,9.20954,8.552561,8.523175,8.865453,9.186355,8.699348,9.408863,8.150179,6.703188,8.798907,9.565214,8.297792,8.320935,8.884887,9.336444,8.122668,8.15191,9.51834,8.567886,9.386811,8.628735,7.727535,8.453188,7.156956,6.363028,7.313221,8.39163,9.188503,9.318297,8.363809,8.621193,8.144679,8.710784,8.417373,9.017968,7.528332,7.154615,8.487764,8.979543,8.744328,7.893572,8.5923,9.035987,9.525735,9.773094,8.158802,8.677609,9.034796,8.375629,7.649693,7.853605,7.955074,8.73069,8.633197,8.796339,8.994048,9.22375,8.568457,9.981374,9.172119,8.116715,9.241354,8.016318,9.646011,9.168476,7.44132,8.61432,8.902047,7.857481,8.228177,7.986165,9.395989,7.711997,7.705263,7.013916,8.492901,9.333443,9.578795,8.975504,7.28961,9.415728,8.740336,8.584852,8.657825,7.383989,6.194406,9.187583,8.779557,9.261033,8.294049,8.737132,9.651816,8.552561,8.163371,8.663024,9.099409,9.014325,8.610683,7.162397,7.36201,8.764053,8.328451],[1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0],[0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0],[0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0],[0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0],[1,1,0,1,1,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,0,1,1,1,1,0,1,1,1,0,0,0,0,0,0,0,0,0,1,1,0,1,0,0,0,0,0,0,1,1,0,0,0,0,1,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>date<\/th>\n      <th>lprice<\/th>\n      <th>quan<\/th>\n      <th>lquan<\/th>\n      <th>mon<\/th>\n      <th>tue<\/th>\n      <th>wed<\/th>\n      <th>thu<\/th>\n      <th>stormy<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"targets":3,"render":"function(data, type, row, meta) { return DTWidget.formatRound(data, 0, 3, \",\", \".\"); }"},{"targets":2,"render":"function(data, type, row, meta) { return DTWidget.formatRound(data, 2, 3, \",\", \".\"); }"},{"targets":4,"render":"function(data, type, row, meta) { return DTWidget.formatRound(data, 2, 3, \",\", \".\"); }"},{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":7,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[7,10,25,50,100]}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render"],"jsHooks":[]}</script>
+
+---
+
+### 数据说明
+
+&lt;img src="SEM-slide-part3-estimation_files/figure-html/unnamed-chunk-13-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+### 联立方程模型
+
+给定联立方程：
+
+`$$\begin{align}
+lquan_t &amp;= \alpha_0+\alpha_1lprice_t+\alpha_2mon_t+\alpha_3tue_t+\alpha_4wen_t+\alpha_5thu_t+u_{1t}  &amp;&amp;\text{(需求函数)}\\
+lquan_t &amp;= \beta_0+\beta_1lprice_t+\beta_3stormy_t+u_{2t}    &amp;&amp;\text{(供给函数)}
+\end{align}$$`
+
+可得到约简方程：
+
+`$$\begin{align}
+lquan_t &amp;= \pi_0 + \pi_1mon_t+\pi_2tue_t+\pi_3wen_t+\pi_4thu_t\\
+        &amp;+\pi_5stormy_t+v_t &amp;&amp;\text{(约简方程1)}\\
+lprice_t &amp;= \pi_0 + \pi_1mon_t+\pi_2tue_t+\pi_3wen_t+\pi_4thu_t\\
+        &amp;+\pi_5stormy_t+v_t &amp;&amp;\text{(约简方程2)}\\
+\end{align}$$`
+
+---
+
+### 约简模型回归结果
+
+
+
+**数量**约简方程的回归结果如下：
+
+`$$\begin{alignedat}{999}
+&amp;\widehat{lquan}=&amp;&amp;+8.81&amp;&amp;+0.10mon&amp;&amp;-0.48tue&amp;&amp;-0.55wed&amp;&amp;+0.05thu&amp;&amp;-0.39stormy\\
+&amp;\text{(t)}&amp;&amp;(59.9225)&amp;&amp;(0.4891)&amp;&amp;(-2.4097)&amp;&amp;(-2.6875)&amp;&amp;(0.2671)&amp;&amp;(-2.6979)\\
+&amp;\text{(se)}&amp;&amp;(0.1470)&amp;&amp;(0.2065)&amp;&amp;(0.2011)&amp;&amp;(0.2058)&amp;&amp;(0.2010)&amp;&amp;(0.1437)\\
+&amp;\text{(fitness)}&amp;&amp; n=111;&amp;&amp; R^2=0.1934;&amp;&amp; \bar{R^2}=0.1550\\
+&amp; &amp;&amp; F^{\ast}=5.03;&amp;&amp; p=0.0004\\
+\end{alignedat}$$`
+
+**价格**约简方程的回归结果如下：
+
+`$$\begin{alignedat}{999}
+&amp;\widehat{lprice}=&amp;&amp;-0.27&amp;&amp;-0.11mon&amp;&amp;-0.04tue&amp;&amp;-0.01wed&amp;&amp;+0.05thu&amp;&amp;+0.35stormy\\
+&amp;\text{(t)}&amp;&amp;(-3.5569)&amp;&amp;(-1.0525)&amp;&amp;(-0.3937)&amp;&amp;(-0.1106)&amp;&amp;(0.4753)&amp;&amp;(4.6387)\\
+&amp;\text{(se)}&amp;&amp;(0.0764)&amp;&amp;(0.1073)&amp;&amp;(0.1045)&amp;&amp;(0.1069)&amp;&amp;(0.1045)&amp;&amp;(0.0747)\\
+&amp;\text{(fitness)}&amp;&amp; n=111;&amp;&amp; R^2=0.1789;&amp;&amp; \bar{R^2}=0.1398\\
+&amp; &amp;&amp; F^{\ast}=4.58;&amp;&amp; p=0.0008\\
+\end{alignedat}$$`
+
+---
+
+### 两阶段最小二乘法（2SLS）回归结果
+
+<div id="htmlwidget-be3598871cb885de729d" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-be3598871cb885de729d">{"x":{"filter":"none","caption":"<caption>两阶段最小二乘法（2SLS）回归结果<\/caption>","data":[["1","2","3","4","5","6","7","8","9"],["eq1","eq1","eq1","eq1","eq1","eq1","eq2","eq2","eq2"],["(Intercept)","lprice","mon","tue","wed","thu","(Intercept)","lprice","stormy"],[8.5059112890502,-1.11941694703997,-0.0254021646376243,-0.530769384683624,-0.56635107482246,0.109267314500112,8.62835440243637,0.0010593145839648,-0.363246058871382],[0.166166893894006,0.428645030869011,0.214774153720313,0.208000076745794,0.212754855116754,0.208786577906619,0.388970231453113,1.30954696779856,0.464912480042289],[51.1889648396264,-2.61152437663987,-0.118273843465839,-2.55177494637321,-2.66198895678157,0.523344534862691,22.18255718491,0.000808916831555558,-0.781321376527343],[0,0.0103334470784988,0.906076649619626,0.0121574239875613,0.00898948735794836,0.601837263643839,0,0.999356070103824,0.436322895676659]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>eq<\/th>\n      <th>vars<\/th>\n      <th>Estimate<\/th>\n      <th>Std. Error<\/th>\n      <th>t value<\/th>\n      <th>Pr(&gt;|t|)<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"targets":3,"render":"function(data, type, row, meta) { return DTWidget.formatRound(data, 4, 3, \",\", \".\"); }"},{"targets":4,"render":"function(data, type, row, meta) { return DTWidget.formatRound(data, 4, 3, \",\", \".\"); }"},{"targets":5,"render":"function(data, type, row, meta) { return DTWidget.formatRound(data, 4, 3, \",\", \".\"); }"},{"targets":6,"render":"function(data, type, row, meta) { return DTWidget.formatRound(data, 4, 3, \",\", \".\"); }"},{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":10,"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render"],"jsHooks":[]}</script>
+
+---
+### 两阶段最小二乘法（2SLS）回归结果
+
+
+
+```
+
+systemfit results 
+method: 2SLS 
+
+         N  DF SSR detRCov OLS-R2 McElroy-R2
+system 222 213 110   0.107  0.094     -0.598
+
+      N  DF  SSR   MSE  RMSE    R2 Adj R2
+eq1 111 105 52.1 0.496 0.704 0.139  0.098
+eq2 111 108 57.5 0.533 0.730 0.049  0.032
+
+The covariance matrix of the residuals
+      eq1   eq2
+eq1 0.496 0.396
+eq2 0.396 0.533
+
+The correlations of the residuals
+      eq1   eq2
+eq1 1.000 0.771
+eq2 0.771 1.000
+
+
+2SLS estimates for 'eq1' (equation 1)
+Model Formula: lquan ~ lprice + mon + tue + wed + thu
+Instruments: ~mon + tue + wed + thu + stormy
+
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   8.5059     0.1662   51.19   &lt;2e-16 ***
+lprice       -1.1194     0.4286   -2.61    0.010 *  
+mon          -0.0254     0.2148   -0.12    0.906    
+tue          -0.5308     0.2080   -2.55    0.012 *  
+wed          -0.5664     0.2128   -2.66    0.009 ** 
+thu           0.1093     0.2088    0.52    0.602    
+---
+Signif. codes:  
+0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.704 on 105 degrees of freedom
+Number of observations: 111 Degrees of Freedom: 105 
+SSR: 52.09 MSE: 0.496 Root MSE: 0.704 
+Multiple R-Squared: 0.139 Adjusted R-Squared: 0.098 
+
+
+2SLS estimates for 'eq2' (equation 2)
+Model Formula: lquan ~ lprice + stormy
+Instruments: ~mon + tue + wed + thu + stormy
+
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  8.62835    0.38897   22.18   &lt;2e-16 ***
+lprice       0.00106    1.30955    0.00     1.00    
+stormy      -0.36325    0.46491   -0.78     0.44    
+---
+Signif. codes:  
+0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.73 on 108 degrees of freedom
+Number of observations: 111 Degrees of Freedom: 108 
+SSR: 57.522 MSE: 0.533 Root MSE: 0.73 
+Multiple R-Squared: 0.049 Adjusted R-Squared: 0.032 
+```
+
+---
+
+
+### 有偏误的OLS估计
+
+- 需求方程**有偏误的**OLS估计结果为：
+
+`$$\begin{equation} \begin{alignedat}{999} &amp;\widehat{lquan}=&amp;&amp;+8.61&amp;&amp;-0.56lprice&amp;&amp;+0.01mon&amp;&amp;-0.52tue&amp;&amp;-0.56wed&amp;&amp;+0.08thu\\ &amp;\text{(t)}&amp;&amp;(60.1698)&amp;&amp;(-3.3443)&amp;&amp;(0.0706)&amp;&amp;(-2.6114)&amp;&amp;(-2.7450)&amp;&amp;(0.4126)\\&amp;\text{(se)}&amp;&amp;(0.1430)&amp;&amp;(0.1682)&amp;&amp;(0.2026)&amp;&amp;(0.1977)&amp;&amp;(0.2023)&amp;&amp;(0.1978)\\&amp;\text{(fitness)}&amp;&amp; R^2=0.2205;&amp;&amp; \bar{R^2}=0.1834\\&amp; &amp;&amp; F^{\ast}=5.94;&amp;&amp; p=0.0001 \end{alignedat} \end{equation}$$`
+
+- 供给方程**有偏误的**OLS估计结果为：
+
+`$$\begin{equation} \begin{alignedat}{999} &amp;\widehat{lquan}=&amp;&amp;+8.50&amp;&amp;-0.44lprice&amp;&amp;-0.22stormy\\ &amp;\text{(t)}&amp;&amp;(86.6914)&amp;&amp;(-2.2560)&amp;&amp;(-1.3253)\\&amp;\text{(se)}&amp;&amp;(0.0981)&amp;&amp;(0.1942)&amp;&amp;(0.1630)\\&amp;\text{(fitness)}&amp;&amp; R^2=0.0923;&amp;&amp; \bar{R^2}=0.0755\\&amp; &amp;&amp; F^{\ast}=5.49;&amp;&amp; p=0.0053 \end{alignedat} \end{equation}$$`
+
+---
+class: duke-orange
+
+### 有偏误的OLS估计
+
+- 需求方程**有偏误的**OLS估计的`R`软件摘要结果具体为：
+
+
+```
+
+Call:
+lm(formula = fish.D, data = fultonfish)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-2.2384 -0.3674  0.0883  0.4230  1.2487 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   8.6069     0.1430   60.17   &lt;2e-16 ***
+lprice       -0.5625     0.1682   -3.34   0.0011 ** 
+mon           0.0143     0.2026    0.07   0.9438    
+tue          -0.5162     0.1977   -2.61   0.0103 *  
+wed          -0.5554     0.2023   -2.75   0.0071 ** 
+thu           0.0816     0.1978    0.41   0.6807    
+---
+Signif. codes:  
+0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.67 on 105 degrees of freedom
+Multiple R-squared:  0.22,	Adjusted R-squared:  0.183 
+F-statistic: 5.94 on 5 and 105 DF,  p-value: 7.08e-05
+```
+
+---
+
+### 有偏误的OLS估计
+
+- 供给方程**有偏误的**OLS估计的`R`软件摘要结果具体为：
+
+
+```
+
+Call:
+lm(formula = fish.S, data = fultonfish)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-2.4042 -0.3754  0.0734  0.5197  1.2267 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   8.5009     0.0981   86.69   &lt;2e-16 ***
+lprice       -0.4381     0.1942   -2.26    0.026 *  
+stormy       -0.2160     0.1630   -1.33    0.188    
+---
+Signif. codes:  
+0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.71 on 108 degrees of freedom
+Multiple R-squared:  0.0923,	Adjusted R-squared:  0.0755 
+F-statistic: 5.49 on 2 and 108 DF,  p-value: 0.00534
+```
+
+---
+layout:false
+background-image: url("pic/thank-you-gif-funny-little-yellow.gif")
+class: inverse,center
+# 本章结束
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "tomorrow-night-bright",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

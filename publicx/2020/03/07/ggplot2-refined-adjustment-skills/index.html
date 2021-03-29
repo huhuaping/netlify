@@ -1,0 +1,1286 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.0.0-beta.3 for Hugo" />
+  
+
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  
+
+  
+  
+  
+    
+  
+  <meta name="description" content="调整轴题与轴标签之间的间距geom_text()如何控制字体大小如何给geom_hline()添加图例保持读取csv编码正确facet_grid() 实现多种图形并存调整轴题与轴标签之间的间距Increase distance between text and title on the y-axis
+ggplot(mpg, aes(cty, hwy)) &#43; geom_point()&#43;theme(axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0)))geom_text()如何控制字体大小首先，geom_text()的size是按mm计量的。所以并不是跟font size一样的计量规则。所以不要混同二者的度量尺度。（参看The size in geom_text is not a font size）" />
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://huhuaping.netlify.app/2020/03/07/ggplot2-refined-adjustment-skills/" />
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    <meta name="theme-color" content="#1565c0" />
+  
+
+  
+  
+
+  
+  
+  
+  
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css" integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.25a7b8d72ef60dce241c0c505f1ac49e.css" />
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+    <link rel="manifest" href="/index.webmanifest" />
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_32x32_fill_lanczos_center_2.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_180x180_fill_lanczos_center_2.png" />
+
+  <link rel="canonical" href="https://huhuaping.netlify.app/2020/03/07/ggplot2-refined-adjustment-skills/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary" />
+  
+  <meta property="og:site_name" content="Academic" />
+  <meta property="og:url" content="https://huhuaping.netlify.app/2020/03/07/ggplot2-refined-adjustment-skills/" />
+  <meta property="og:title" content="ggplot2绘图细节及美化技巧 | Academic" />
+  <meta property="og:description" content="调整轴题与轴标签之间的间距geom_text()如何控制字体大小如何给geom_hline()添加图例保持读取csv编码正确facet_grid() 实现多种图形并存调整轴题与轴标签之间的间距Increase distance between text and title on the y-axis
+ggplot(mpg, aes(cty, hwy)) &#43; geom_point()&#43;theme(axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0)))geom_text()如何控制字体大小首先，geom_text()的size是按mm计量的。所以并不是跟font size一样的计量规则。所以不要混同二者的度量尺度。（参看The size in geom_text is not a font size）" /><meta property="og:image" content="https://huhuaping.netlify.app/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png" />
+    <meta property="twitter:image" content="https://huhuaping.netlify.app/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2020-03-07T00:00:00&#43;00:00"
+      />
+    
+    <meta property="article:modified_time" content="2020-03-07T00:00:00&#43;00:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://huhuaping.netlify.app/2020/03/07/ggplot2-refined-adjustment-skills/"
+  },
+  "headline": "ggplot2绘图细节及美化技巧",
+  
+  "datePublished": "2020-03-07T00:00:00Z",
+  "dateModified": "2020-03-07T00:00:00Z",
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Academic",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://huhuaping.netlify.app/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "调整轴题与轴标签之间的间距\rgeom_text()如何控制字体大小\r如何给geom_hline()添加图例\r保持读取csv编码正确\rfacet_grid() 实现多种图形并存\r\r\r调整轴题与轴标签之间的间距\rIncrease distance between text and title on the y-axis\nggplot(mpg, aes(cty, hwy)) + geom_point()+\rtheme(axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0)))\r\rgeom_text()如何控制字体大小\r首先，geom_text()的size是按mm计量的。所以并不是跟font size一样的计量规则。所以不要混同二者的度量尺度。（参看The size in geom_text is not a font size）"
+}
+</script>
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>ggplot2绘图细节及美化技巧 | Academic</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="83320adc39d5712cfe95e4d15ece9f65" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.76abe0ff166961e9adc403995f18189f.js"></script>
+
+  
+
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">Academic</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">Academic</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>Home</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Posts</span></a>
+        </li>
+
+        
+        
+
+        
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"><span>Teaching</span><span class="caret"></span>
+          </a>
+          <div class="dropdown-menu">
+            
+              <a class="dropdown-item" href="/course-econometrics/"><span>计量经济学(本科生)</span></a>
+            
+              <a class="dropdown-item" href="/course-econometrics-master/"><span>中级计量经济学(研究生)</span></a>
+            
+              <a class="dropdown-item" href="/course-statistics/"><span>统计学原理(本科生)</span></a>
+            
+              <a class="dropdown-item" href="/course-advanced-statistics/"><span>高级统计学(博士)</span></a>
+            
+              <a class="dropdown-item" href="/course-or/"><span>数据模型与决策(MBA)</span></a>
+            
+          </div>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#projects"><span>Projects</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#publications"><span>Publications</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+      
+
+      
+      
+
+      
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>ggplot2绘图细节及美化技巧</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Mar 7, 2020
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    3 min read
+  </span>
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/category/graph/">graph</a></span>
+  
+
+</div>
+
+    
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      
+
+<div id="TOC">
+<ul>
+<li><a href="#调整轴题与轴标签之间的间距">调整轴题与轴标签之间的间距</a></li>
+<li><a href="#geom_text如何控制字体大小">geom_text()如何控制字体大小</a></li>
+<li><a href="#如何给geom_hline添加图例">如何给geom_hline()添加图例</a></li>
+<li><a href="#保持读取csv编码正确">保持读取csv编码正确</a></li>
+<li><a href="#facet_grid-实现多种图形并存">facet_grid() 实现多种图形并存</a></li>
+</ul>
+</div>
+
+<div id="调整轴题与轴标签之间的间距" class="section level1">
+<h1>调整轴题与轴标签之间的间距</h1>
+<p><a href="https://stackoverflow.com/questions/14487188/increase-distance-between-text-and-title-on-the-y-axis">Increase distance between text and title on the y-axis</a></p>
+<pre><code>ggplot(mpg, aes(cty, hwy)) + geom_point()+
+  theme(axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0)))</code></pre>
+</div>
+<div id="geom_text如何控制字体大小" class="section level1">
+<h1>geom_text()如何控制字体大小</h1>
+<p>首先，geom_text()的size是按mm计量的。所以并不是跟font size一样的计量规则。所以不要混同二者的度量尺度。（参看<a href="https://github.com/tidyverse/ggplot2/issues/1828">The size in geom_text is not a font size</a>）</p>
+<p>其次，ggplot中字体控制的关系如下。简言之：geom_text()是单独控制字体的！！（参看：<a href="https://stackoverflow.com/questions/25061822/ggplot-geom-text-font-size-control">ggplot geom_text font size control</a>）</p>
+<pre><code>p &lt;- p + theme(axis.text = element_text(size = 15)) # changes axis labels
+
+p &lt;- p + theme(axis.title = element_text(size = 25)) # change axis titles
+
+p &lt;- p + theme(text = element_text(size = 10)) # this will change all text size 
+                                                             # (except geom_text)</code></pre>
+</div>
+<div id="如何给geom_hline添加图例" class="section level1">
+<h1>如何给geom_hline()添加图例</h1>
+<p>给geom_hline<a href="https://stackoverflow.com/questions/39119917/how-to-add-a-legend-to-hline">添加图例</a></p>
+</div>
+<div id="保持读取csv编码正确" class="section level1">
+<h1>保持读取csv编码正确</h1>
+<p><a href="https://stackoverflow.com/questions/46996501/readrread-csv-issue-chinese-character-becomes-messy-codes">编码正确</a></p>
+</div>
+<div id="facet_grid-实现多种图形并存" class="section level1">
+<h1>facet_grid() 实现多种图形并存</h1>
+<p>facet_grid()可以同时绘制多个子图，但是默认情况下每个子图都是同一种类型，如都是line，或都是point。</p>
+<p>下面是多个子图不同类型的实现思路<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> <a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>：</p>
+<ul>
+<li><p>保持数据为long format data格式</p></li>
+<li><p>设定一个factor作为子图分类。 factor levels 将决定子图的个数。</p></li>
+<li><p>绘制空白图p1。含有factor levels个数的子图，data为全数据集。</p></li>
+<li><p>通过subset()函数选定数据子集，并分别叠加绘制在p1上,直至所有空白子图都绘制完成。子图的geom_xxx()可以各不相同。</p></li>
+</ul>
+<p>一个样本案例可以参照：</p>
+<pre><code># for column select
+got_vars &lt;- c(&quot;bigtractor&quot;,&quot;bigtractor1&quot;, &quot;smalltractor&quot;, &quot;smalltractor1&quot;, &quot;match_big&quot;, &quot;match_small&quot;)
+
+# gather for facet
+smry_tractor &lt;- smry %&gt;%
+  filter(region_pro == &quot;旱区&quot;) %&gt;%
+  select(one_of(c(&quot;year&quot;, &quot;region_pro&quot;, got_vars))) %&gt;%
+  gather(key=&quot;variables&quot;, value=&quot;value&quot;, bigtractor:match_small) %&gt;%
+  mutate(mark = as.factor(if_else(str_detect(variables, &quot;bigtractor.?&quot;), 
+                        &quot;bigtractor&quot;,
+                        if_else(str_detect(variables, &quot;^smalltractor&quot;),
+                                &quot;smalltractor&quot;,
+                                if_else(str_detect(variables, &quot;^match&quot;),
+                                        &quot;match&quot;,
+                                        &quot;NA&quot;))))) %&gt;%
+  mutate(mark= fct_relevel(mark,&quot;bigtractor&quot;, &quot;smalltractor&quot;, &quot;mathch&quot;))
+
+# list for facet labels                       
+list_chn &lt;- c(bigtractor=&quot;中大型及配套(万台)&quot;,
+              smalltractor=&quot;小型及配套(万台)&quot;, 
+              match=&quot;配套比(%)&quot;)
+
+# base plot
+p0 &lt;-  ggplot(smry_tractor, aes(factor(year), value)) +
+  facet_grid(mark~., 
+              scales = &quot;free&quot;,
+              labeller = labeller(mark = list_chn)) +
+  labs(x =&quot;年份&quot;, y=&quot;&quot;) +
+  theme(axis.title.x = element_text(margin = margin(t = 10, r = 0, b = 0, l = 0)),
+        strip.text.y = element_text(size = 8)) # tune facet label font size
+
+# raw 1 plot 
+list_big &lt;- c(&quot;bigtractor&quot;, &quot;bigtractor1&quot;) # for subset
+list_text &lt;- c(&quot;中大型&quot;, &quot;中大型配套&quot;, &quot;小型&quot;, &quot;小型配套&quot;) # for legend text
+p1 &lt;-  p0 +
+   geom_bar( subset(smry_tractor, variables %in% list_big),
+             mapping = aes(fill = variables),
+             stat = &quot;identity&quot;, position = &quot;stack&quot;) +
+  geom_text( subset(smry_tractor, variables %in% list_big),
+             mapping = aes(label = round(value,0)),
+             position = position_stack(vjust = 0.7), size =3) +
+  scale_fill_discrete(name = &quot;&quot;, labels = list_text)
+
+# raw 2 plot 
+list_small &lt;- c(&quot;smalltractor&quot;, &quot;smalltractor1&quot;) # for subset
+p2 &lt;- p1 +
+  geom_bar( subset(smry_tractor, variables %in% list_small),
+            mapping = aes(fill = variables),
+            stat = &quot;identity&quot;, position = &quot;stack&quot;) +
+  geom_text( subset(smry_tractor, variables %in% list_small),
+             mapping = aes(label = round(value,0)),
+             position = position_stack(vjust = 0.7), size =3) +
+  scale_fill_discrete(name = &quot;&quot;, labels = list_text)
+
+# raw 3 plot  
+list_match &lt;- c(&quot;match_big&quot;, &quot;match_small&quot;) # for subset
+list_text &lt;- c(&quot;中大型&quot;, &quot;小型&quot;)  # for legend text
+p3 &lt;- p2 +
+   geom_line( subset(smry_tractor, variables %in% list_match),
+              mapping = aes(linetype = variables, group = variables)) +
+   geom_point( subset(smry_tractor, variables %in% list_match),
+               mapping = aes(color = variables, group = variables)) +
+   geom_text_repel( subset(smry_tractor, variables %in% list_match),
+                    mapping = aes(label = formatC(value,1, format = &quot;f&quot;)), 
+                    direction =&quot;both&quot;, size =3) +
+  scale_linetype_discrete(name = &quot;&quot;, labels = list_text) +
+  scale_color_discrete(name = &quot;&quot;, labels = list_text) +
+  guides(fill = guide_legend(order = 1))  # tune legend order
+ 
+ p3</code></pre>
+<div class="figure"><span id="fig:unnamed-chunk-1"></span>
+<img src="pic/facet-multiple-geom.png" alt="include_graphics函数方法插入图片" width="826" />
+<p class="caption">
+Figure 1: include_graphics函数方法插入图片
+</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p><a href="https://learnr.wordpress.com/2009/05/18/ggplot2-three-variable-time-series-panel-chart/">ggplot2: Three Variable Time Series Panel Chart</a><a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p><a href="https://statbandit.wordpress.com/2011/07/29/a-ggplot-trick-to-plot-different-plot-types-in-facets/">A GGPLOT TRICK TO PLOT DIFFERENT PLOT TYPES IN FACETS</a><a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+
+    </div>
+
+    
+
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/ggplot2/">ggplot2</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://huhuaping.netlify.app/2020/03/07/ggplot2-refined-adjustment-skills/&amp;text=ggplot2%e7%bb%98%e5%9b%be%e7%bb%86%e8%8a%82%e5%8f%8a%e7%be%8e%e5%8c%96%e6%8a%80%e5%b7%a7" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://huhuaping.netlify.app/2020/03/07/ggplot2-refined-adjustment-skills/&amp;t=ggplot2%e7%bb%98%e5%9b%be%e7%bb%86%e8%8a%82%e5%8f%8a%e7%be%8e%e5%8c%96%e6%8a%80%e5%b7%a7" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=ggplot2%e7%bb%98%e5%9b%be%e7%bb%86%e8%8a%82%e5%8f%8a%e7%be%8e%e5%8c%96%e6%8a%80%e5%b7%a7&amp;body=https://huhuaping.netlify.app/2020/03/07/ggplot2-refined-adjustment-skills/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://huhuaping.netlify.app/2020/03/07/ggplot2-refined-adjustment-skills/&amp;title=ggplot2%e7%bb%98%e5%9b%be%e7%bb%86%e8%8a%82%e5%8f%8a%e7%be%8e%e5%8c%96%e6%8a%80%e5%b7%a7" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=ggplot2%e7%bb%98%e5%9b%be%e7%bb%86%e8%8a%82%e5%8f%8a%e7%be%8e%e5%8c%96%e6%8a%80%e5%b7%a7%20https://huhuaping.netlify.app/2020/03/07/ggplot2-refined-adjustment-skills/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://huhuaping.netlify.app/2020/03/07/ggplot2-refined-adjustment-skills/&amp;title=ggplot2%e7%bb%98%e5%9b%be%e7%bb%86%e8%8a%82%e5%8f%8a%e7%be%8e%e5%8c%96%e6%8a%80%e5%b7%a7" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <a href="https://huhuaping.netlify.app/"><img class="avatar mr-3 avatar-circle" src="/authors/admin/avatar_huf18496e0a46b939109734222e1cb1f3d_243022_270x270_fill_lanczos_center_2.png" alt=""></a>
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="https://huhuaping.netlify.app/"></a></h5>
+      <h6 class="card-subtitle">Doctor of Agricultural Economic and Management</h6>
+      <p class="card-text">My research interests include Data Science, Statistics, Agricultural Economics and Management.</p>
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://twitter.com/" target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://scholar.google.co.uk/" target="_blank" rel="noopener">
+        <i class="ai ai-google-scholar"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/huhuaping" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>Related</h3>
+    <ul>
+      
+      <li><a href="/2019/07/04/chinese-character-in-graph-consistence-with-both-latex-and-html/">Latex pdf和html输出下ggplot绘图中文字体显示问题</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+  
+  <p class="powered-by">
+    
+      <a href="/privacy/">Privacy Policy</a>
+    
+    
+       &middot; 
+      <a href="/terms/">Terms</a>
+    
+  </p>
+  
+
+  <p class="powered-by">
+    huhuaping@2019
+  </p>
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-modules" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js"></script>
+        
+      
+
+    
+
+    
+    
+    
+
+    
+    
+
+    
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    <script src="/js/_vendor/bootstrap.bundle.min.f81d0a1705048649befc8b595e455a94.js"></script>
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <script src="/en/js/wowchemy.min.0a233ecde900ea57d5cd5ad14636ad45.js"></script>
+
+    
+
+
+
+
+
+
+</body>
+</html>

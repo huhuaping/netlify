@@ -1,0 +1,659 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Xaringan | Academic</title>
+    <link>https://huhuaping.netlify.app/tag/xaringan/</link>
+      <atom:link href="https://huhuaping.netlify.app/tag/xaringan/index.xml" rel="self" type="application/rss+xml" />
+    <description>Xaringan</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>huhuaping@2019</copyright><lastBuildDate>Mon, 01 Feb 2021 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://huhuaping.netlify.app/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png</url>
+      <title>Xaringan</title>
+      <link>https://huhuaping.netlify.app/tag/xaringan/</link>
+    </image>
+    
+    <item>
+      <title>Xaringan美化：CSS功夫</title>
+      <link>https://huhuaping.netlify.app/2021/02/01/css-base-xaringan/</link>
+      <pubDate>Mon, 01 Feb 2021 00:00:00 +0000</pubDate>
+      <guid>https://huhuaping.netlify.app/2021/02/01/css-base-xaringan/</guid>
+      <description>
+&lt;script src=&#34;https://huhuaping.netlify.app/2021/02/01/css-base-xaringan/index.en_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+&lt;div id=&#34;TOC&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#css基础&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1&lt;/span&gt; CSS基础&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#css-selector&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1.1&lt;/span&gt; CSS selector&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#css-layout&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1.2&lt;/span&gt; CSS layout&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#xaringan的本质&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2&lt;/span&gt; Xaringan的本质&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#xaringan的css美化&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3&lt;/span&gt; Xaringan的CSS美化&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#layout-html&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.1&lt;/span&gt; 头衬和底衬（header and footer）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#个性水印图片watermark&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.2&lt;/span&gt; 个性水印图片（watermark）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#各类窗框notes-box&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.3&lt;/span&gt; 各类窗框（notes box）&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#下一步需要处理的css问题&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4&lt;/span&gt; 下一步需要处理的CSS问题&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#储备炫酷技能&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.1&lt;/span&gt; 储备炫酷技能&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#灵活选用字体&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.2&lt;/span&gt; 灵活选用字体&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#图文混排&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.3&lt;/span&gt; 图文混排&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#todo清单&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.4&lt;/span&gt; Todo清单&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#最后的若干思考和感受&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;5&lt;/span&gt; 最后的若干思考和感受&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id=&#34;css基础&#34; class=&#34;section level1&#34; number=&#34;1&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;1&lt;/span&gt; CSS基础&lt;/h1&gt;
+&lt;div id=&#34;css-selector&#34; class=&#34;section level2&#34; number=&#34;1.1&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;1.1&lt;/span&gt; CSS selector&lt;/h2&gt;
+&lt;table&gt;
+&lt;caption&gt;CSS selector&lt;/caption&gt;
+&lt;colgroup&gt;
+&lt;col width=&#34;60%&#34; /&gt;
+&lt;col width=&#34;7%&#34; /&gt;
+&lt;col width=&#34;17%&#34; /&gt;
+&lt;col width=&#34;3%&#34; /&gt;
+&lt;col width=&#34;10%&#34; /&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th&gt;类型&lt;/th&gt;
+&lt;th&gt;含义&lt;/th&gt;
+&lt;th&gt;子类&lt;/th&gt;
+&lt;th&gt;语法&lt;/th&gt;
+&lt;th&gt;示例&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;Simple selector&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;ID&lt;/td&gt;
+&lt;td&gt;#&lt;/td&gt;
+&lt;td&gt;#para1 { }&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;class/name&lt;/td&gt;
+&lt;td&gt;.&lt;/td&gt;
+&lt;td&gt;.center{ }&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Attribute selector&lt;/td&gt;
+&lt;td&gt;[ ]&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Universal Selector&lt;/td&gt;
+&lt;td&gt;*&lt;/td&gt;
+&lt;td&gt;* { }&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Grouping Selector&lt;/td&gt;
+&lt;td&gt;,&lt;/td&gt;
+&lt;td&gt;h1, h2, p { }&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;Combinator selector&lt;/td&gt;
+&lt;td&gt;relationship&lt;/td&gt;
+&lt;td&gt;Descendant&lt;/td&gt;
+&lt;td&gt;space&lt;/td&gt;
+&lt;td&gt;div p { }&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Child&lt;/td&gt;
+&lt;td&gt;&amp;gt;&lt;/td&gt;
+&lt;td&gt;div &amp;gt; p { }&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Adjacent sibling&lt;/td&gt;
+&lt;td&gt;+&lt;/td&gt;
+&lt;td&gt;div + p { }&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;General sibling&lt;/td&gt;
+&lt;td&gt;~&lt;/td&gt;
+&lt;td&gt;div ~ p { }&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;&lt;a href=&#34;https://www.w3schools.com/css/css_pseudo_classes.asp&#34; title=&#34;All CSS Pseudo Classes&#34;&gt;Pseudo -class selector&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;state&lt;/td&gt;
+&lt;td&gt;Mouse over/ visited link/focus&lt;/td&gt;
+&lt;td&gt;:&lt;/td&gt;
+&lt;td&gt;a:link {}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;&lt;a href=&#34;https://www.w3schools.com/css/css_pseudo_elements.asp&#34; title=&#34;All CSS Pseudo Elements&#34;&gt;Pseudo -element selector&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;part&lt;/td&gt;
+&lt;td&gt;First letter/ line/ element&lt;/td&gt;
+&lt;td&gt;::&lt;/td&gt;
+&lt;td&gt;::first-line { }&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Insert content before or after&lt;/td&gt;
+&lt;td&gt;::&lt;/td&gt;
+&lt;td&gt;p::after { }&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div id=&#34;css-layout&#34; class=&#34;section level2&#34; number=&#34;1.2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;1.2&lt;/span&gt; CSS layout&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;布局：margin；border；padding&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;位置：position: static/relative/fixed/absolute/sticky&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;定位：top/right/bottom/left&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;xaringan的本质&#34; class=&#34;section level1&#34; number=&#34;2&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;2&lt;/span&gt; Xaringan的本质&lt;/h1&gt;
+&lt;p&gt;Xaringan背后是基于remark.js的。remark.js后台基本工作流程，就是采用JavaScript语言把markdown文档，&lt;strong&gt;映射&lt;/strong&gt;到html上，并形成独特的slide幻灯片样式。因此，还是很有必要了解一下remark.js的说明文档（见&lt;a href=&#34;https://github.com/gnab/remark/wiki&#34;&gt;Wiki页面&lt;/a&gt;）。那么Xaringan包又起到了什么作用呢？根据yihui的说法：它扩展支持了Rmarkdown语法以及R代码的直接运行！&lt;/p&gt;
+&lt;p&gt;Xaringan本质上是以html形态呈现，并使用css样式进行style视觉美化。Xaringan的技术讨论和细节见其&lt;a href=&#34;https://github.com/yihui/xaringan/wiki&#34;&gt;wiki页面&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;归结起来这是对slide工具的一种选择，而且是选择了“未来感”的html呈现形态！那么CSS知识这是绕不过去的学习壁垒。html和css的学习至少也是需要在“三姑学院”（&lt;a href=&#34;https://www.w3schools.com/css/default.asp&#34;&gt;W3school&lt;/a&gt;）的汪洋里过水“捞一遍”（通读一遍）。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;xaringan的css美化&#34; class=&#34;section level1&#34; number=&#34;3&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;3&lt;/span&gt; Xaringan的CSS美化&lt;/h1&gt;
+&lt;div id=&#34;layout-html&#34; class=&#34;section level2&#34; number=&#34;3.1&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.1&lt;/span&gt; 头衬和底衬（header and footer）&lt;/h2&gt;
+&lt;p&gt;调整header和footer视觉效果，主要是从某个slide开始里设定&lt;code&gt;layout: true&lt;/code&gt;，并按html语法设置header和footer样式。其完整的语法如下：&lt;/p&gt;
+&lt;pre class=&#34;html&#34;&gt;&lt;code&gt;&amp;lt;!---slide area with layout---&amp;gt;
+---
+layout: true
+
+&amp;lt;div class=&amp;quot;my-header-h2&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+
+&amp;lt;div class=&amp;quot;watermark1&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+
+&amp;lt;div class=&amp;quot;watermark2&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+
+&amp;lt;div class=&amp;quot;watermark3&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+
+&amp;lt;div class=&amp;quot;my-footer&amp;quot;&amp;gt;&amp;lt;span&amp;gt;huhuaping@  &amp;amp;emsp;&amp;amp;emsp; &amp;lt;a href=&amp;quot;#chapter01&amp;quot;&amp;gt; 第01章 导论&amp;lt;/a&amp;gt;
+&amp;amp;emsp;&amp;amp;emsp;&amp;amp;emsp;&amp;amp;emsp;&amp;amp;emsp;&amp;amp;emsp;&amp;amp;emsp;&amp;amp;emsp;&amp;amp;emsp;&amp;amp;emsp;&amp;amp;emsp;&amp;amp;emsp;&amp;amp;emsp;
+&amp;amp;emsp;&amp;amp;emsp;&amp;amp;emsp;&amp;amp;emsp;&amp;amp;emsp;&amp;amp;emsp;&amp;amp;emsp;&amp;amp;emsp;&amp;amp;emsp;&amp;amp;emsp;&amp;amp;emsp;&amp;amp;emsp;&amp;amp;emsp;
+&amp;lt;a href=&amp;quot;#sec-process&amp;quot;&amp;gt;1.3 计量经济学分析过程&amp;lt;/a&amp;gt; &amp;lt;/span&amp;gt;&amp;lt;/div&amp;gt; 
+---&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;具体样式细节包括：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;heading文本居中设定。需要注意叠放层级参数&lt;code&gt;z-index&lt;/code&gt;的设置。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&#34;css&#34;&gt;&lt;code&gt;.remark-slide-content h2, h3,h4,h5{
+  position: relative;
+  top: 0px;
+  margin: 15px 0px 50px;
+  width: 99%;
+  text-shadow: 0px 0px;
+  text-align: center;
+  z-index: 5;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;header背景色和渐变方式。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&#34;css&#34;&gt;&lt;code&gt;div.my-header-h2 {
+    background-color: #FFFFFF;
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,#f77a00), color-stop(0%,#f77a00), color-stop(10%,red), color-stop(74%,#fbd0ac), color-stop(83%,#fbd0ac), color-stop(100%,#fddfc8));
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 86.92913px;
+    width: 100%;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;footer导航样式。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&#34;css&#34;&gt;&lt;code&gt;div.my-footer {
+    background-color: #272822;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    height: 20px;
+    width: 100%;
+}
+
+div.my-footer span {
+    font-size: 10pt;
+    color: #F7F8FA;
+    position: absolute;
+    left: 15px;
+    bottom: 2px;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;footer的导航链接功能。先在css里设定链接文本的颜色，然后在slide里设定&lt;code&gt;layout: true&lt;/code&gt;（见前面完整&lt;a href=&#34;#layout-html&#34;&gt;语句块&lt;/a&gt;），并按html语法设定链接定位&lt;code&gt;#a-specify-id&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&#34;css&#34;&gt;&lt;code&gt;/* link text color*/
+div.my-footer a {
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;个性水印图片watermark&#34; class=&#34;section level2&#34; number=&#34;3.2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.2&lt;/span&gt; 个性水印图片（watermark）&lt;/h2&gt;
+&lt;p&gt;水印图片的个性化设定。首先需要设定css，然后在slide里设定&lt;code&gt;layout: true&lt;/code&gt;（见前面完整&lt;a href=&#34;#layout-html&#34;&gt;语句块&lt;/a&gt;），并按html语法依次设定三个水印图片，其中之一如&lt;code&gt;&amp;lt;div class=&#34;watermark1&#34;&amp;gt;&amp;lt;/div&amp;gt;&lt;/code&gt;。&lt;/p&gt;
+&lt;pre class=&#34;css&#34;&gt;&lt;code&gt;/* water remark image */
+
+.watermark1::after {
+  content: &amp;quot;&amp;quot;;
+  display: block;
+  width: 30%;
+  height: 20%;
+  position: absolute;
+  top: 150px;
+  left: 100px;
+  background-image: url(&amp;quot;vlog-nwsuaf.jpg&amp;quot;);
+  background-size: 80%;
+  background-position: 0px 20px;
+  background-repeat: no-repeat;
+  opacity: 0.04;  
+  /* Rotate div */
+ -ms-transform: rotate(-45deg); /* IE 9 */
+ -moz-transform: rotate(-45deg); /* firefox */
+ -webkit-transform: rotate(-45deg); /* Chrome, Safari, Opera */
+ transform: rotate(-45deg);
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;各类窗框notes-box&#34; class=&#34;section level2&#34; number=&#34;3.3&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.3&lt;/span&gt; 各类窗框（notes box）&lt;/h2&gt;
+&lt;p&gt;在多个写作场景下（如&lt;code&gt;xaringan&lt;/code&gt;、&lt;code&gt;blogdown&lt;/code&gt;、&lt;code&gt;rmarkdown&lt;/code&gt;），可能会用到各类提示窗框（notes box）。可以利用css设定获得个性化的提示窗框效果，具体可参看desirée de leon的博文&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://huhuaping.netlify.app/pic/div-tip-annotate.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;p&gt;基本要点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;背后要用到html的&lt;code&gt;div&lt;/code&gt;语块&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;可以借用R包&lt;code&gt;bookdown&lt;/code&gt;的&lt;code&gt;blocks&lt;/code&gt;代码块，进行快捷应用。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;第一步：css文件（&lt;code&gt;/my-css/notes-tips.css&lt;/code&gt;）设定如下：&lt;/p&gt;
+&lt;pre class=&#34;css&#34;&gt;&lt;code&gt;/* -----------div tips------------- */
+
+div.puzzle, div.fyi, div.demo, div.notes {
+    padding: 0.5em;
+    margin: 0.5em 0;
+    padding-left: 100px;
+    background-size: 70px;
+    background-repeat: no-repeat;
+    background-position: 15px center;
+    min-height: 100px;
+    color: #1f5386;
+    background-color: #bed3ec;
+    border: solid 5px #dfedff;
+}
+
+div.notes {
+  background-image: url(&amp;quot;notes-light-bulb-ff5500.png&amp;quot;);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;style type=&#34;text/css&#34;&gt;
+/* -----------div tips------------- */
+
+div.puzzle, div.fyi, div.demo, div.notes {
+    padding: 0.5em;
+    margin: 0.5em 0;
+    padding-left: 100px;
+    background-size: 70px;
+    background-repeat: no-repeat;
+    background-position: 15px center;
+    min-height: 100px;
+    color: #1f5386;
+    background-color: #bed3ec;
+    border: solid 5px #dfedff;
+}
+
+div.notes {
+  background-image: url(&#34;notes-light-bulb-ff5500.png&#34;);
+}
+
+&lt;/style&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意：需要自己手动下载背景图片，免费的图片icon下载网站有：&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://aiconica.net/&#34;&gt;aiconica.net&lt;/a&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://fontawesome.com/&#34;&gt;fontawesome.com&lt;/a&gt;。正文里还可使用R函数&lt;code&gt;fontawesome::fa(&#39;slideshare&#39;)&lt;/code&gt;。例如slide图标&lt;svg style=&#34;height:0.8em;top:.04em;position:relative;fill:blue;&#34; viewBox=&#34;0 0 512 512&#34;&gt;&lt;path d=&#34;M187.7 153.7c-34 0-61.7 25.7-61.7 57.7 0 31.7 27.7 57.7 61.7 57.7s61.7-26 61.7-57.7c0-32-27.7-57.7-61.7-57.7zm143.4 0c-34 0-61.7 25.7-61.7 57.7 0 31.7 27.7 57.7 61.7 57.7 34.3 0 61.7-26 61.7-57.7.1-32-27.4-57.7-61.7-57.7zm156.6 90l-6 4.3V49.7c0-27.4-20.6-49.7-46-49.7H76.6c-25.4 0-46 22.3-46 49.7V248c-2-1.4-4.3-2.9-6.3-4.3-15.1-10.6-25.1 4-16 17.7 18.3 22.6 53.1 50.3 106.3 72C58.3 525.1 252 555.7 248.9 457.5c0-.7.3-56.6.3-96.6 5.1 1.1 9.4 2.3 13.7 3.1 0 39.7.3 92.8.3 93.5-3.1 98.3 190.6 67.7 134.3-124 53.1-21.7 88-49.4 106.3-72 9.1-13.8-.9-28.3-16.1-17.8zm-30.5 19.2c-68.9 37.4-128.3 31.1-160.6 29.7-23.7-.9-32.6 9.1-33.7 24.9-10.3-7.7-18.6-15.5-20.3-17.1-5.1-5.4-13.7-8-27.1-7.7-31.7 1.1-89.7 7.4-157.4-28V72.3c0-34.9 8.9-45.7 40.6-45.7h317.7c30.3 0 40.9 12.9 40.9 45.7v190.6z&#34;/&gt;&lt;/svg&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;第二步：在&lt;code&gt;.Rmd&lt;/code&gt;文件的&lt;code&gt;yaml&lt;/code&gt;区域引用上面的css文件路径。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;css: 
+  - ../mycss/notes-tips.css&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;第三步：在&lt;code&gt;.Rmd&lt;/code&gt;文件下进行写作，并引用对应的css样式：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;` ``{block, type=&amp;#39;notes&amp;#39;, echo=T}
+
+待完成：找到新数据，绘制一张条形图，但其不适合制作柱状图。
+
+` ``&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;下一步需要处理的css问题&#34; class=&#34;section level1&#34; number=&#34;4&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;4&lt;/span&gt; 下一步需要处理的CSS问题&lt;/h1&gt;
+&lt;div id=&#34;储备炫酷技能&#34; class=&#34;section level2&#34; number=&#34;4.1&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.1&lt;/span&gt; 储备炫酷技能&lt;/h2&gt;
+&lt;p&gt;提前准备好各类丰富slide功能的css实现方法。具体明确的一些炫酷功能，相关slide和css样板可以参看：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Remark.js推荐的三个&lt;a href=&#34;https://github.com/gnab/remark/wiki/HTML-CSS-JS-samples&#34;&gt;Remark templates&lt;/a&gt;；尤其推荐Story模板&lt;a href=&#34;https://story.xaprb.com/slides/adirondack/#5&#34;&gt;Remark-Apron&lt;/a&gt;。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;另外，有空还要好好看看&lt;code&gt;xaringanthemer&lt;/code&gt;&lt;a href=&#34;https://github.com/gadenbuie/xaringanthemer&#34;&gt;R包&lt;/a&gt;。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://slides.earo.me/rladiesakl20/#39&#34;&gt;Earo Wang’s slide&lt;/a&gt;展示了很多炫酷技巧，包括Javascript交互实现动画效果等。源代码见其&lt;a href=&#34;https://github.com/earowang/rladiesakl20&#34;&gt;github&lt;/a&gt;。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://yongfu.name/slides/xaringan/#1&#34;&gt;Yongfu Liao’s slide&lt;/a&gt;，提供了简单的xaringan使用介绍。其源代码&lt;a href=&#34;https://github.com/liao961120/slides-old/tree/master/xaringan&#34;&gt;github&lt;/a&gt;。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://emitanaka.org/ninja-theme/themes/kunoichi/kunoichi-theme-example.html#1&#34;&gt;Emi Tanaka’s slide&lt;/a&gt;提供了关于页面布局的多种形式。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;灵活选用字体&#34; class=&#34;section level2&#34; number=&#34;4.2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.2&lt;/span&gt; 灵活选用字体&lt;/h2&gt;
+&lt;p&gt;解决字体灵活选用问题。工作量理论上不是很大，主要是受到中文字体适用性和加载速度等的限制。目前暂时还不想去碰它，大众字体就大众字体，先忍一忍。具体看yihui的相关思考和说明。如&lt;a href=&#34;https://yihui.org/cn/2017/04/source-han-serif/&#34;&gt;思源宋体&lt;/a&gt; ；&lt;a href=&#34;https://yihui.org/cn/2017/02/kaiti/#fnref:-1&#34;&gt;楷体&lt;/a&gt;。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;图文混排&#34; class=&#34;section level2&#34; number=&#34;4.3&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.3&lt;/span&gt; 图文混排&lt;/h2&gt;
+&lt;p&gt;图文混排技巧。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;remark.js&lt;/code&gt;自带光环的边栏效果（side bar）&lt;code&gt;.left-column[]&lt;/code&gt;或者&lt;code&gt;.right-column[]&lt;/code&gt;。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;remark.js&lt;/code&gt;自带光环的两栏效果（two columns）&lt;code&gt;.pull-left[]&lt;/code&gt;或者&lt;code&gt;.pull-right[]&lt;/code&gt;。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;todo清单&#34; class=&#34;section level2&#34; number=&#34;4.4&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.4&lt;/span&gt; Todo清单&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;页面布局。页面紧凑度和宽松度灵活调整。例如&lt;code&gt;remark-slide-content.roomy&lt;/code&gt;。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;前导符设定。正文符号列表的前导符设定问题。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;动画效果。see &lt;a href=&#34;https://slides.earo.me/rladiesakl20/#1&#34;&gt;Earo Wang’s slide&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;添加logo。see &lt;a href=&#34;https://www.garrickadenbuie.com/blog/xaringan-tip-logo-all-slides/&#34;&gt;xaringan Tip: Add A Logo to All of Your Slides&lt;/a&gt;。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;最后的若干思考和感受&#34; class=&#34;section level1&#34; number=&#34;5&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;5&lt;/span&gt; 最后的若干思考和感受&lt;/h1&gt;
+&lt;p&gt;这次对Xaringan 又一次发起冲锋，直接缘由是《计量经济学》双一流课程团队的视频录制。团队里其他人都不用R和Rmarkdown，更不要提Xaringan slide了。大家仍旧还是基于PowerPoint准备和制作授课幻灯片，有的老师甚至操作系统还是win7，office套件还是2010版！所以只能我事先用powerpoint设定好ppt模板，大家各自拿去制作自己的授课ppt（其实大部分团队老师甚至连ppt母版也不会用）。考虑到我自己的实际需求，我是希望能同时兼顾自己使用xaringan 和团队其他老师使用ppt的一致性——当然是不能奢求最后两者视觉效果的完全一样！目前在Xaringan上的设定调整，基本上达到了ppt模板类似效果的80%左右。&lt;/p&gt;
+&lt;p&gt;事实上，Xaringan和ppt二者效果一致性的达成，并不是最大的挑战。基本上基于html的Xaringan slide，可以使用css技巧实现ppt里的几乎所有功能。而况Xaringan还有很多ppt无法实现的“现代的”以及“未来的”诸多功能！真正的挑战在于团队协作，尤其是对于非常技术守旧的团队（并不指技术之外的其他方面）。到此，我的基本态度就是：最低限度地在技术方面与其他人协作，重点是把协作任务下自己事情做完、基本ok即可！&lt;/p&gt;
+&lt;p&gt;当然，这里面也还有一个在协作冲突中推动自己不断学习进步的问题。显然，如果没有这次的协作录制课程，我肯定还是会一如往常地坚持“最小化学习”策略：也即如无实际所需，绝不去茫然学习所谓的各种知识技能。这一次，我充分认识到了CSS对于Xaringan甚至对于Html的重要性，并且看到了一些文档协作、协作和输出的“未来”趋势和走向！&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;&lt;a href=&#34;https://desiree.rbind.io/post/2019/making-tip-boxes-with-bookdown-and-rmarkdown/&#34;&gt;MAKING PRETTY NOTE BOXES: A div tip for all occasions&lt;/a&gt;&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Xaringan效率：底层与简洁</title>
+      <link>https://huhuaping.netlify.app/2020/11/28/xaringan-slide-efficiency/</link>
+      <pubDate>Sat, 28 Nov 2020 00:00:00 +0000</pubDate>
+      <guid>https://huhuaping.netlify.app/2020/11/28/xaringan-slide-efficiency/</guid>
+      <description>
+&lt;script src=&#34;https://huhuaping.netlify.app/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+&lt;div id=&#34;TOC&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#xaringan底层逻辑&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1&lt;/span&gt; Xaringan底层逻辑&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#xaringan的渲染方式&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1.1&lt;/span&gt; Xaringan的渲染方式&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#共用文件夹的情形&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1.2&lt;/span&gt; 共用文件夹的情形&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#测试和发现&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1.3&lt;/span&gt; 测试和发现&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#xaringan效率方法&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2&lt;/span&gt; Xaringan效率方法&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#减少系统复杂性&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.1&lt;/span&gt; 减少系统复杂性&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#提高代码复用性&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.2&lt;/span&gt; 提高代码复用性&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#修改预览实时化&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.3&lt;/span&gt; 修改预览实时化&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#选用一个好模板&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.4&lt;/span&gt; 选用一个好模板&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#定制个性化模板&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.5&lt;/span&gt; 定制个性化模板&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#结论&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.6&lt;/span&gt; 结论&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id=&#34;xaringan底层逻辑&#34; class=&#34;section level1&#34; number=&#34;1&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;1&lt;/span&gt; Xaringan底层逻辑&lt;/h1&gt;
+&lt;div id=&#34;xaringan的渲染方式&#34; class=&#34;section level2&#34; number=&#34;1.1&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;1.1&lt;/span&gt; Xaringan的渲染方式&lt;/h2&gt;
+&lt;p&gt;Xaringan slide的渲染方式主要有两类&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;p&gt;静态渲染方式：Rstudio菜单knit&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;实时渲染有两种方式（live preview）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Rstudio里插件 “Infinite Moon Reader”&lt;/li&gt;
+&lt;li&gt;console里调用xaringan::xaringan::inf_mr()&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div id=&#34;共用文件夹的情形&#34; class=&#34;section level2&#34; number=&#34;1.2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;1.2&lt;/span&gt; 共用文件夹的情形&lt;/h2&gt;
+&lt;p&gt;mycss：假定课程里全部slide都使用同样的css风格。&lt;/p&gt;
+&lt;p&gt;pic：假定课程slide里的本地图片都放在pic文件夹下。&lt;/p&gt;
+&lt;p&gt;若干可能的文件体系结构及面临的主要问题&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;p&gt;体系1“全部一起堆放”：随着Rmd文件数的增加，一级目录下会有很多文件！&lt;code&gt;chn-chpt01.Rmd; chn-chpt02.Rmd；……；eng-chpt01.Rmd; eng-chpt02.Rmd；……&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;体系2“分模块堆放”：比较合理。但是在实时渲染时，将面临如何管理css和pic等问题。子文件夹1：&lt;code&gt;Slide-chn：chn-chpt01.Rmd; chn-chpt02.Rmd；……&lt;/code&gt;;子文件夹2：&lt;code&gt;Slide-eng：eng-chpt01.Rmd; eng-chpt02.Rmd；……&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div id=&#34;测试和发现&#34; class=&#34;section level2&#34; number=&#34;1.3&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;1.3&lt;/span&gt; 测试和发现&lt;/h2&gt;
+&lt;p&gt;测试：比较合理的体系2“分模块对方”下，进行实时渲染&lt;/p&gt;
+&lt;p&gt;css问题：xaringan包已经解决此问题。只要确保css文件和Rmd文件在同一个work directory下即可。&lt;/p&gt;
+&lt;p&gt;pic问题：假定pic文件夹与模块文件夹(slide-chn; slide-eng)并列&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;静态渲染方式下，图片引用可以使用“相对路径”&lt;code&gt;(&#34;../pic/a.png&#34;)&lt;/code&gt;或“绝对路径”（&lt;code&gt;here::here(&#34;pic&#34;, &#34;a.png&#34;)&lt;/code&gt;）引用的任何一种来实现正常显示。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;实时渲染方式下，图片引用只能使用“相对路径”(“../pic/a.png”)来实现正常显示。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;xaringan效率方法&#34; class=&#34;section level1&#34; number=&#34;2&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;2&lt;/span&gt; Xaringan效率方法&lt;/h1&gt;
+&lt;div id=&#34;减少系统复杂性&#34; class=&#34;section level2&#34; number=&#34;2.1&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.1&lt;/span&gt; 减少系统复杂性&lt;/h2&gt;
+&lt;p&gt;Yongfu的&lt;a href=&#34;https://yongfu.name/2019/04/29/xaringan_tips.html&#34;&gt;博客文章&lt;/a&gt;Tips to Reduce the Complexity of Slide Making with Xaringan，比较详细地介绍了如何减少xaringan制作复杂性的一些方法。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;使用子文档（child document）架构（see rmarkdown cookbook: &lt;a href=&#34;https://bookdown.org/yihui/rmarkdown-cookbook/child-document.html&#34;&gt;16.4 Child documents&lt;/a&gt;）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;提高代码复用性&#34; class=&#34;section level2&#34; number=&#34;2.2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.2&lt;/span&gt; 提高代码复用性&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;引用代码块。前后slide如果要多次（2次及以上）用到同样的代码块，则可以使用代码块标签索引（see rmarkdown cookbook: &lt;a href=&#34;https://bookdown.org/yihui/rmarkdown-cookbook/reuse-chunks.html&#34;&gt;reference labels&lt;/a&gt;）。具体有两种操作情形：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;简单重复引用代码块。先定义label，然后直接使用相同标签的代码块头即可。&lt;/li&gt;
+&lt;li&gt;组合引用多个代码块。先定义label，然后设定&lt;code&gt;ref.label=&lt;/code&gt;参数进行引用即可。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;# 简单重复引用代码块
+`` `{r, chunk-one, eval=TRUE} # def
+
+some long content balabala 
+
+`` `{r, chunk-one, eval=TRUE} # use
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;/br&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# 组合引用多个代码块
+
+`` `{r chunk-a} # def1
+
+some long content balabala 
+
+`` `{r chunk-b} # def2
+
+some long content balabala 
+
+`` `{r chunk-a, ref.label=c(&amp;#39;chunk-c&amp;#39;, &amp;#39;chunk-b&amp;#39;)} # use
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;修改预览实时化&#34; class=&#34;section level2&#34; number=&#34;2.3&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.3&lt;/span&gt; 修改预览实时化&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;赶紧去看Yihui的blog，&lt;a href=&#34;https://yihui.name/en/2019/02/ultimate-inf-mr/&#34;&gt;The Ultimate Infinite Moon Reader for xaringan Slides&lt;/a&gt;。赶快安装更新包：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;remotes::install_github(&amp;#39;yihui/xaringan&amp;#39;, upgrade = TRUE)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;而且是Windows用户的又一个福音啊。前面刚说Rstudio里不能Viewer预览，但是更新Xaringan包后发现Chrome浏览器竟然可以“实时”同步预览了！yoo！&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;定制自己的字体大小：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;在Rmd文档里添加代码：(参看&lt;a href=&#34;https://stackoverflow.com/questions/53481699/customize-font-size-for-all-the-slides-in-xaringan&#34;&gt;Customize font size for all the slides in xaringan&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;style type=&amp;quot;text/css&amp;quot;&amp;gt;
+.remark-slide-content {
+    font-size: 30px;
+    padding: 1em 4em 1em 4em;
+}
+&amp;lt;/style&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;选用一个好模板&#34; class=&#34;section level2&#34; number=&#34;2.4&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.4&lt;/span&gt; 选用一个好模板&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;比如我使用的杜克大学模板：&lt;a href=&#34;https://johnlittle.info/dukeslides/&#34;&gt;Slide Template for Duke University&lt;/a&gt;。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;初学者最好先不要删除模板的内容，里面的示例说明可以很好地参考。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;定制个性化模板&#34; class=&#34;section level2&#34; number=&#34;2.5&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.5&lt;/span&gt; 定制个性化模板&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;关于动画设置。并不是ppt的专利。可以实现的，请参看&lt;a href=&#34;https://www.garrickadenbuie.com/blog/animate-xaringan-slide-transitions/&#34;&gt;Animate Xaringan Slide Transitions&lt;/a&gt;。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;关于定制样式。世界另一头，总有一个大牛，已经做好了包供你使用，具体请看&lt;a href=&#34;https://www.garrickadenbuie.com/project/xaringanthemer/&#34;&gt;xaringanthemer&lt;/a&gt;。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;结论&#34; class=&#34;section level2&#34; number=&#34;2.6&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.6&lt;/span&gt; 结论&lt;/h2&gt;
+&lt;p&gt;xaringan实时渲染方式，会调用servr package来搭建本地网页服务[参看官方文档] (&lt;a href=&#34;https://bookdown.org/yihui/rmarkdown/xaringan-preview.html&#34; class=&#34;uri&#34;&gt;https://bookdown.org/yihui/rmarkdown/xaringan-preview.html&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;因此实时渲染下：本地服务会寻找一个根目录（root directory），从而会引发上述的图片渲染问题。libs文件夹总是会和.Rmd文件并列&lt;/p&gt;
+&lt;p&gt;总之，使用相对路径引用图片是比较保险的方式。具体的地方包括&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;remark.js背景图：&lt;code&gt;background-image: url(&#34;../pic/a.png&#34;)&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;R函数正文图：&lt;code&gt;include_graphics(&#34;../pic/a.png&#34;)&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;markdown行内图：&lt;code&gt;![](&#34;../pic/a.png&#34;)&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;其次，css的yaml设置&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;css: 
+      - default
+      - default-fonts
+      - duke-blue
+      - hygge-duke
+      - ../mycss/my-custom.css&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>在blogdown网站中展示Xaringan slide</title>
+      <link>https://huhuaping.netlify.app/2019/03/01/post-xaringan-slide-to-website/</link>
+      <pubDate>Fri, 01 Mar 2019 00:00:00 +0000</pubDate>
+      <guid>https://huhuaping.netlify.app/2019/03/01/post-xaringan-slide-to-website/</guid>
+      <description>
+
+
+&lt;p&gt;如何把Xaringan 演示Slides以静态网页（static webpage）形式载入个人网站。&lt;/p&gt;
+&lt;div id=&#34;section&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;主要参考资料和实现办法&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Yihui Xie的&lt;a href=&#34;https://bookdown.org/yihui/blogdown/static-files.html&#34;&gt;blogdown中2.7 Static files&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;带操作过程&lt;a href=&#34;https://timmastny.rbind.io/blog/embed-slides-knitr-blogdown/&#34;&gt;Embed Slides in Your Blog&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;带各种探索尝试的&lt;a href=&#34;https://portfolio.peter-baumgartner.net/2018/07/21/presentations-with-xaringan/&#34;&gt;Xaringan presentations with blogdown&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;以上都有比较系统的说明，可以直接参照。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;section-1&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;需求和问题列表&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;静态网页方式损失了效率。&lt;strong&gt;静态网页&lt;/strong&gt;，正如其名，只能相对“固定”地加载封装好的.html文件或.pdf文件之类。显然，交互性和动态性就暂时难以获得。因为我们写作Slide是在另一个repo文件夹下（repo如course-econometrics文件夹下，并使用Xaringan包），然后确认没问题后才能把渲染好的.html形式的Slide文件（一般是如02-simple-reg-basic-slide.html）拷贝到网站repo文件夹指定目录下（repo如netlify，特定目录为&lt;code&gt;\netlify\static\slides-course&lt;/code&gt;）。同时，如果html文件不是完全自容的(self-container)，那你还必须把使用到的图片数据等文件夹也一同拷贝过去（这就非常糟糕了！因为你的slide制作可能会经常变动或更新）。那么要如何自动关联Xaringan（实现slide）和blogdown（实现website）呢？&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;当然动态性和关联性也是有成本的。如果Xaring里的文件需要渲染很久（比如ggplot作图很多，数据分析很多），那么blogsite会负担比较大。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;知识版权的保护问题。slide上传到website后，文字和图片等都可以任意拷贝下载。对于开源项目，这完全没毛病。但是，对于一些重视原创知识保护的人，这就是很大的“命门”了。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Xaringan缘起：创建课程slide</title>
+      <link>https://huhuaping.netlify.app/2019/02/24/xaringan-for-course-slide/</link>
+      <pubDate>Sun, 24 Feb 2019 00:00:00 +0000</pubDate>
+      <guid>https://huhuaping.netlify.app/2019/02/24/xaringan-for-course-slide/</guid>
+      <description>
+&lt;script src=&#34;https://huhuaping.netlify.app/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+&lt;div id=&#34;TOC&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#前言&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1&lt;/span&gt; 前言&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#逃离powerpoint拥抱html5&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2&lt;/span&gt; 逃离PowerPoint，拥抱HTML5？&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#powerpoint的断舍离&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.1&lt;/span&gt; PowerPoint的“断、舍、离”&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#html形式slide的前世今生&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.2&lt;/span&gt; HTML形式slide的“前世今生”&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#xaringan的优势和不足&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3&lt;/span&gt; Xaringan的优势和不足&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#xaringan的优势&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.1&lt;/span&gt; Xaringan的优势&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#xaringan的不足&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.2&lt;/span&gt; Xaringan的不足&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id=&#34;前言&#34; class=&#34;section level1&#34; number=&#34;1&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;1&lt;/span&gt; 前言&lt;/h1&gt;
+&lt;p&gt;现在对（本科）教学工作的要求，已经发生了很大的改变：教学的内容变得更加专业化和细分化（学生就业市场的倒逼）；教学过程/流程需要标准化（一切变得透明公开）；教学活动应该能够便于复制并规模化运行（课程最好能以公开课/慕课方式运作）；个性化教学和灵活性调整被反复强调（对学生多元考核、“一人一套试卷”）；其他方面。&lt;/p&gt;
+&lt;p&gt;教师在讲台上的台前“艺术化”魅力（仪态、表情、音色等）已经不再如曾经那么重要；教师在台后的“技术性”设计（内容、互动、展示等）上升到了无与伦比的地位。&lt;/p&gt;
+&lt;p&gt;尤其是对于哪些&lt;strong&gt;技术性课程&lt;/strong&gt;，如计量经济学（Econometrics）和统计学（Statistics），“技术性”设计必须要赶上这些教学新要求的呼声。（当你发现一位大学教师还在“坚持”使用Office2007，你一点都不要惊讶——经管现在已经是2019年了。）&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;逃离powerpoint拥抱html5&#34; class=&#34;section level1&#34; number=&#34;2&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;2&lt;/span&gt; 逃离PowerPoint，拥抱HTML5？&lt;/h1&gt;
+&lt;p&gt;为什么要逃离PowerPoint，拥抱HTML形式的slide？下面分别来说一说。&lt;/p&gt;
+&lt;div id=&#34;powerpoint的断舍离&#34; class=&#34;section level2&#34; number=&#34;2.1&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.1&lt;/span&gt; PowerPoint的“断、舍、离”&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;office版本太过分散，ppt可能会上演各种“变形记”。（现在国内有很多学生，已经不能区分WPS和Office了。学生的毕业论文或作业提交，那酸爽，真是谁看谁知道。）&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;ppt维护和更新的各种“梗”。最让我纠结的就是mathtype公式，神一般地会一夜之间“变砖”（倒腾几下，公式变图片，或者干脆显示不了），更不要说公式的重复使用和编辑修改。如果使用一些新技巧、新字体，那一定会让你记住“凡走过的都是一个一个的巨坑”。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;难以逾越数据、图形和模型分析的“天堑”。表格数据加总等分析基本等于不可能（事实上也可以关联excel，但是“关联越多，等价于羁绊越多”！）；数据图形化，你只能老老实实拷贝统计软件里的做好的图吧（泪奔！）；建模分析结果的调用，就更别提了（反复在多个软件窗口中切换和敲键盘，眼花缭乱的“骚操作”不说，最担心的还是手一抖怕敲错了结果啊！）。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;html形式slide的前世今生&#34; class=&#34;section level2&#34; number=&#34;2.2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.2&lt;/span&gt; HTML形式slide的“前世今生”&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;一个浏览器就够了。HTML是互联网世界最广泛使用的交流形式。每台电脑都会安装浏览器（chrome、firefox、IE…），但不是都会安装Microsoft office全家桶（365家庭版那可是每年500RMB啊，心疼一下下！）。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;一份文本多种输出形态的终极需求。就像KTV里嗨唱切歌，老师们常常要在word、pdf、html、ppt、png等格式中不断切换啊。一个逗号或减号，在word里改了，那还得改ppt啊，就问你蛋疼不蛋疼。所以，仅维护一份文本，随时获得各种输出（html、word、ppt、slide…）简直就是人类共同的梦想啊。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;“纯文本”就是你的最底层“话语”。一切的文字、代码、图形、格式、排版…，统统汇集于一份“纯文本”中！&lt;strong&gt;Plain Text&lt;/strong&gt;，正如其名，平铺直叙，朴素而不简单，包含了你所需的一切，你想说和想呈现的一切。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;xaringan的优势和不足&#34; class=&#34;section level1&#34; number=&#34;3&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;3&lt;/span&gt; Xaringan的优势和不足&lt;/h1&gt;
+&lt;div id=&#34;xaringan的优势&#34; class=&#34;section level2&#34; number=&#34;3.1&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.1&lt;/span&gt; Xaringan的优势&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;R语言和RMarkdown的应用就是它最大的优势。这赋予了教学准备工作更强的“生产力”：代码可重复利用、统计处理和分析报告完美整合。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Xaringan Slide可以高度灵活的定制化。本质上形式的呈现，完全依赖于CSS技术，这与PowerPoint中的模板使用是完全不同的体验，效率上完全秒掉后者。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Xaringan Slide可以完美转成pdf格式的slide。其实直接用Chrome浏览器打开HTML Slide不就完了嘛，这种格式转换的操作本来就是多此一举！总之，你说，世界需要pdf；于是Xaringan便说，给你pdf！&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;与GitHub版本控制技术融合。我想说的是，这是一种全新的师生交互和反馈机制！&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;xaringan的不足&#34; class=&#34;section level2&#34; number=&#34;3.2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.2&lt;/span&gt; Xaringan的不足&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;对行内公式支持不是很友好。比如&lt;span class=&#34;math inline&#34;&gt;\(\beta\)&lt;/span&gt;的实现代码&lt;code&gt;$\beta$&lt;/code&gt;必须要保持独立一行！一段话要是有很多这样的inline equation，那么xaringan::moon_reader文档就显得很破碎了。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;风格调整CSS技术的学习还是有一定成本的。换言之，制作一份自己喜欢的“专属”模板，还需要花费一些时间。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;强迫症的一些小细节。使用&lt;code&gt;knitr::kable()&lt;/code&gt;制表，转pdf时表格无法显示，替代办法就是用&lt;code&gt;DT::datatable()&lt;/code&gt;的表格风格，而它往往不是真正的Table风格！另外，就是windows环境下，不支持Rstudio面板Viewer中预览slide，只能在浏览器中预览。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

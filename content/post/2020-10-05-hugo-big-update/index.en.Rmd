@@ -9,7 +9,7 @@ tags:
   - Website
   - hugo
 subtitle: ''
-summary: '对于搭建个人网站，曾经有一句经典的忠告摆在我的面前：永远不要使用复杂的模板，否则总有一天会掉入网站迁移漩涡，甚至万劫不复的境地。这种事，难免大家都会赶上那么一遭。这篇博文给出了一些使用经验和若干建议。本博文会随时更新。'
+summary: '对于搭建个人网站，曾经有一句经典的忠告摆在我的面前：永远不要使用复杂的模板，否则总有一天会掉入网站迁移漩涡，甚至万劫不复的境地。这种事，难免大家都会赶上那么一遭。这篇博文给出了一些hugo+blogdown建站使用经验和若干建议。本博文会随时更新。'
 authors: [胡华平]
 lastmod: '2020-10-05T21:08:21+08:00'
 featured: no
@@ -20,6 +20,7 @@ image:
 projects: []
 output:
   blogdown::html_page:
+    css: ../../../assets/scss/custom.scss
     toc: true
     number_sections: true
 ---
@@ -41,7 +42,6 @@ output:
 
 - R环境 `r version$version.string`。
 
-
 - 升级后hugo version: `Hugo Static Site Generator v0.75.1/extended windows/amd64 BuildDate: unknown`。
 
 - netlify 关联 github的仓库，自动激活建站开发。
@@ -57,7 +57,6 @@ hugo academic的大换血，变革了什么？后面复杂的flow、原理之类
 - [Go installed](https://golang.org/dl/) 用于执行hugo modules命令
 
 - git bash 这个不用多说了
-
 
 不过按照官方的说法，此次最大的变革是实现了“模块化”建站流程。
 
@@ -484,6 +483,157 @@ c. 完成上述操作后，再把`"RSS", "JSON", "WebAppManifest"`补回原处�
 - 默认情况下，是没有目录导航的（toc）。当然也可以通过添加yaml参数`toc: true`来添加目录导航，但是toc显示在正文之前（而且没有“目录”字样）。对于分节较多的长篇博文，非常不利于读者阅读定位和前后对照。
 
 因此，对于分节较多的长篇博文，自然就有了"侧边浮动目录"（sidebar floating toc）的个性化页面样式修订念头。yihui[建议](https://github.com/rstudio/blogdown/issues/375#issuecomment-476332000)可以通过JavaScript或CSS进行设定。Xiaoou WANG也提供了一个hugo语法下的[实现方法](https://xiaoouwang.github.io/post/add_a_float_toc_to_academic_theme/)，但是有不少bug。又比如CharlieLeee的[方法](https://github.com/wowchemy/wowchemy-hugo-modules/issues/1520#issuecomment-601982609)，只是对于`.md`格式的写作有效，而对`.Rmd`格式的写作[无效](https://github.com/wowchemy/wowchemy-hugo-modules/issues/1520#issuecomment-610210353)。因此，最后的忠告就是专注于内容写作：劝君更进一杯酒，模板莫要闲折腾。
+
+## 定制box text样式
+
+hugo academic模板下，可以使用CSS样式定制个性化文本窗框（box text）的集中常用`div`类型（例如puzzle、fyi、demo、note）。主要步骤如下：
+
+- **步骤1**：在工作目录下建立一个文件`"netlify/assets/scss/custom.scss"`。
+
+- **步骤2**：在`custom.scss`正常编写个性化css代码，设定文本窗框的各类属性。
+
+```css
+/* -----------div tips------------- */
+
+div.puzzle, div.fyi, div.demo, div.note {
+  padding: 1em;
+  margin: 1em 0;
+  padding-left: 100px;
+  background-size: 70px;
+  background-repeat: no-repeat;
+  background-position: 15px center;
+  min-height: 120px;
+  color: #1f5386;
+  background-color: #bed3ec;
+  border: solid 5px #dfedff;
+}
+
+/* -----------image icon------------- */
+
+div.puzzle {
+  background-image: url("/img/puzzle2-piece.png");
+}
+
+div.fyi {
+ background-image: url("/img/fyi2-comments.png");
+}
+
+div.demo {
+  background-image: url("/img/demo2-laptop-code.png");
+}
+
+div.note {
+  background-image: url("/img/note2-light-bulb-ff5500.png");
+}
+
+```
+
+- **步骤3**：在R markdown文件中设定`yaml`区域的参数，正确关联到`custom.scss`路径。
+
+```yaml
+output:
+  blogdown::html_page:
+    css: ../../../assets/scss/custom.scss
+    toc: true
+    number_sections: true
+```
+
+- **步骤4**：在R markdown文件中进行文本写作，使用`div`方法或`:::`方法引用特定窗框类型。
+
+```html
+<div class="puzzle">
+My content goes in here!
+</div>
+```
+
+```
+:::puzzle
+My content goes in here!
+:::
+```
+
+下面给大家展示上述定义的4种窗框类型：
+
+:::puzzle
+（这是一个**puzzle**窗框类型）
+
+**步骤1**中：
+
+a. `.scss`格式只是`.css`格式的一个扩展，前者运用了[Sass语言](https://sass-lang.com/guide)。二者的差异请参看：[Animating Your Hugo Academic Site](https://www.connorrothschild.com/post/animate-hugo-academic/#step-3-add-css)。
+
+b. 最好保持`custom.scss`的文件命名"custom"。经过测试，如果改动文件名，哪怕yaml里正确引用了路径，也会出现无法引用css风格的情况。猜测是hugo其他参数里默认了这个`custom.scss`的命名。
+
+c. 如果渲染建站成功，会发现hugo自动生成了一个相匹配的`scss/custom.css`的文件，或许这就是`.scss`的一个效果之一。
+:::
+
+
+:::note
+（这是一个**note**窗框类型）
+
+**步骤2**中：需要注意图片存放及路径的正确引用。对于hugo academic模板而言，`background-image:url('/path/of/image.png')`是相对路径，相对于`static/`文件夹而言的。因此，你可以把图片文件存放在`static/img/note.png`或者`static/pic/note.png`，然后正确引用这一文件路径！
+:::
+
+
+:::fyi
+（这是一个**fyi**(for your information)窗框类型）
+
+**步骤3**中：
+
+a. 注意css文件的相对引用路径。如果工作根目录为`netlify/`，那么R markdown写作文件以`netlify/content/post/your-post/index.Rmd`为例。因为此时的css文件存放在`netlify/assets/scss/custom.scss`，那么css文件的相对引用路径应该设定为`css: ../../../assets/scss/custom.scss`。
+
+b. 此时要求R markdown写作文件指定输出风格`output:`。请参看：[making pretty note boxes](http://desiree.rbind.io/post/2019/making-tip-boxes-with-bookdown-and-rmarkdown/)。这也意味着，每一次R markdown写作文件都要做这样的设定，可能略显麻烦了一点。
+:::
+
+:::demo
+（这是一个**demo**窗框类型）
+
+**步骤4**中：R markdown写作文件，要求是**.Rmd**格式，不是.md格式，或者.Rmarkdown格式。三者的差异请参看：[R Markdown vs. Markdown](https://bookdown.org/yihui/blogdown/output-format.html)
+:::
+
+## 添加站内搜索功能
+
+**问题**：原来hugo academic自带的站点搜索框，在升级后突然消失了。使得查找和检索站内博文或内容异常困难。
+
+blogdown社区的一些讨论如下：
+
+- [Enable site-wide search](https://github.com/yihui/hugo-prose/issues/9)
+
+下面是放狗找到的关于hugo添加站内搜索功能的文档或帮助。总体而言，这些方法能够实现全站点所有内容的搜索功能，但是需要学习到一些额外的新知识。
+
+- hugo的官方文档1[Search for your Hugo Website](https://gohugo.io/tools/search/)。文档介绍了多种实现方式，但没有进一步详细说明和演示。
+
+- hugo的官方文档2[Add search](https://wowchemy.com/docs/guide/search/)。
+
+- `lunr.js`（开源）。[Add Search Functionality to Your Hugo Static Site](https://www.forsure.dev/-/2019/09/03/add-search-functionality-to-your-hugo-static-site/)。介绍了使用开源`lunr.js`来搭建站内搜索功能。但是作者使用的是gitlab、而且博文的更新时间为`Sep 3, 2019`，可能已经不能实现了。
+
+- `lunr.js`（开源）。[The easier way to use lunr search with Hugo](https://palant.info/2020/06/04/the-easier-way-to-use-lunr-search-with-hugo/)。
+
+- `Fuse.js`（开源）。[Client Side Search Engine for Hugo Website](https://codingnconcepts.com/hugo/client-side-search-engine-hugo/)。正如其副标题所言“Search engine for Hugo without any server or additional build steps”。背后实际使用的是`Fuse.js`工具链，作者个人网站使用的是`Hugo Mainroad theme`模板。
+
+> `Fuse.js`号称是不依赖其他工具链（zero dependencies）。但是有不少用户反映，`Fuse.js`的搜索结果不是很理想（见[这篇博文](https://gpanders.com/blog/building-site-search-with-hugo/)）。
+
+- `Algolia`（商业）。[Static site search with Hugo + Algolia](https://forestry.io/blog/search-with-algolia-in-hugo/)。介绍了使用商业服务类型的`Algolia`来搭建站内搜索功能，过程步骤也比较详尽。但是博文的更新时间为`March 2, 2018`，而且感觉依赖的工具较多，链条比较复杂，可能实现难度比较大。
+
+以下是几个中文世界的应用：
+
+- 添加搜索按钮 [雨临Lewis](https://lewky.cn/posts/hugo-3.html/)
+
+- [Hugo 实现搜索功能小白教程](https://blog.csdn.net/weixin_44903718/article/details/108541002)
+
+- [为 Hugo 添加搜索功能](https://blog.humblepg.com/post/2019/06/hugo-search.html)
+
+- [5分钟给Hugo博客增加搜索功能](https://ttys3.dev/post/hugo/hugo-fast-search/)
+
+# 供参考的网络资源
+
+- [Hugo 静态网站构建手册](https://jimmysong.io/hugo-handbook/)。开源book，是一本介绍hugo的简明手册。
+
+- [A Spoonful of Hugo: How much Hugo do I need to know?](https://alison.rbind.io/post/2020-12-12-how-much-hugo/)。正如题目所言。
+
+- [making pretty note boxes](http://desiree.rbind.io/post/2019/making-tip-boxes-with-bookdown-and-rmarkdown/)。里面谈到了多种情境下，如blogdown、bookdown等，如何设置和定义个性化的文本窗框（text box），但有些地方已经不符合实际情况了。
+
+- [Animating Your Hugo Academic Site](https://www.connorrothschild.com/post/animate-hugo-academic/)。主旨是：Make your Hugo Academic homepage more engaging with a few lines of code.这个是效率的要求了，我更关注的是基本功能的实现和维护。
+
 
 
 <!---footnote--->

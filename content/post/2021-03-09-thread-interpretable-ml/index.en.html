@@ -1,0 +1,219 @@
+---
+title: 阅读报告：可解释性机器学习模型
+author: huhuaping
+date: '2021-03-09'
+slug: thread-interpretable-ml
+categories: []
+tags: []
+subtitle: ''
+summary: '本文为读书报告，阅读数目为“Interpretable Machine Learning:A Guide for Making Black Box Models Explainable”，作者是Christoph Molnar。目的是初步掌握经典模型与机器学习模型在可解释性上的联系和差异。'
+authors: [胡华平]
+lastmod: '2021-03-09T14:52:01+08:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: true
+bibliography: "../../bib/netlify.bib"
+csl: "../../bib/china-national-standard-gb-t-7714-2015-author-date.csl"
+link-citations: yes
+---
+
+<script src="{{< blogdown/postref >}}index.en_files/header-attrs/header-attrs.js"></script>
+
+<div id="TOC">
+<ul>
+<li><a href="#阅读目标和进度"><span class="toc-section-number">1</span> 阅读目标和进度</a>
+<ul>
+<li><a href="#时间进度"><span class="toc-section-number">1.1</span> 时间进度</a></li>
+</ul></li>
+<li><a href="#可解释模型chapter-04"><span class="toc-section-number">2</span> 可解释模型（chapter 04）</a>
+<ul>
+<li><a href="#线性回归"><span class="toc-section-number">2.1</span> 线性回归</a></li>
+<li><a href="#逻辑斯蒂克回归"><span class="toc-section-number">2.2</span> 逻辑斯蒂克回归</a></li>
+<li><a href="#广义线性glm广义加法gam及相关模型"><span class="toc-section-number">2.3</span> 广义线性GLM、广义加法GAM及相关模型</a></li>
+<li><a href="#决策树decision-tree"><span class="toc-section-number">2.4</span> 决策树（decision Tree）</a></li>
+<li><a href="#决策规则decision-rules"><span class="toc-section-number">2.5</span> 决策规则（Decision Rules）</a></li>
+<li><a href="#规则拟合rulefit"><span class="toc-section-number">2.6</span> 规则拟合（RuleFit）</a></li>
+</ul></li>
+<li><a href="#模型诊断方法chapter-05"><span class="toc-section-number">3</span> 模型诊断方法（chapter 05）</a></li>
+<li><a href="#基于案例的解释chapter-06"><span class="toc-section-number">4</span> 基于案例的解释（chapter 06）</a>
+<ul>
+<li><a href="#反事实案例counterfactual"><span class="toc-section-number">4.1</span> 反事实案例（Counterfactual）</a></li>
+<li><a href="#对抗案例adversarial-examples"><span class="toc-section-number">4.2</span> 对抗案例（Adversarial Examples）</a></li>
+<li><a href="#原型和驳斥prototype-and-criticism"><span class="toc-section-number">4.3</span> 原型和驳斥（prototype and criticism）</a></li>
+<li><a href="#影响力个体influential-instances"><span class="toc-section-number">4.4</span> 影响力个体（Influential Instances）</a></li>
+</ul></li>
+<li><a href="#参考文献">参考文献</a></li>
+</ul>
+</div>
+
+<p><strong>导读</strong>：本文为读书报告，阅读数目为“Interpretable Machine Learning:A Guide for Making Black Box Models Explainable”（<a href="https://christophm.github.io/interpretable-ml-book">免费在线</a>），作者是Christoph Molnar <span class="citation">(<a href="#ref-molnar2020" role="doc-biblioref">2020</a>)</span> 。目的是初步掌握经典模型与机器学习模型在可解释性上的联系和差异。</p>
+<div id="阅读目标和进度" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> 阅读目标和进度</h1>
+<p>兴趣章节：</p>
+<ul>
+<li><p>Chapter 7 Neural Network Interpretation</p></li>
+<li><p>Chapter 8 A Look into the Crystal Ball</p></li>
+</ul>
+<div id="时间进度" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> 时间进度</h2>
+<p>一周内粗读完毕（2021-03-09）。</p>
+<p>然后精读感兴趣内容。</p>
+</div>
+</div>
+<div id="可解释模型chapter-04" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> 可解释模型（chapter 04）</h1>
+<div id="线性回归" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> 线性回归</h2>
+<p><strong>Lasso</strong>表示“最小绝对收缩和选择算子”（least absolute shrinkage and selection operator）</p>
+</div>
+<div id="逻辑斯蒂克回归" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> 逻辑斯蒂克回归</h2>
+</div>
+<div id="广义线性glm广义加法gam及相关模型" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> 广义线性GLM、广义加法GAM及相关模型</h2>
+</div>
+<div id="决策树decision-tree" class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> 决策树（decision Tree）</h2>
+</div>
+<div id="决策规则decision-rules" class="section level2" number="2.5">
+<h2><span class="header-section-number">2.5</span> 决策规则（Decision Rules）</h2>
+</div>
+<div id="规则拟合rulefit" class="section level2" number="2.6">
+<h2><span class="header-section-number">2.6</span> 规则拟合（RuleFit）</h2>
+<p>规则拟合（RuleFit）方法的<strong>主要步骤</strong>：</p>
+<p><strong>第1步，规则生成阶段（Rule generation）</strong>：本质上是进行特征变换（feature transformation）。采用梯度提升（Gradient boosting）方法来拟合一整套决策树，它使用初始特征<span class="math inline">\(X\)</span>来回归或分类$Y
+$。不仅可以使用增强树（boosted trees），还可以使用任何树集成算法（tree ensemble algorithm）为RuleFit生成树。</p>
+<div class="note">
+<p>RuleFit作者引入的一个技术是学习具有随机深度的树，以便生成具有不同长度的许多不同规则。</p>
+<p>第一步规则生成的另一种办法是产生新的二元化特征，利用的初始特征<span class="math inline">\(X\)</span>的协方差矩阵来生成这些规则。</p>
+</div>
+<p><strong>第2步，稀疏线性模型（Sparse linear model）</strong>：一般可以直接使用Lasso方法。</p>
+<div class="note">
+<p>在训练稀疏线性模型之前，需要先对原始特征进行解优化处理（winsorize），以使它们对异常值具有更强的鲁棒性。</p>
+</div>
+<p><strong>第3步（可选）：特征重要性测算</strong>：初始特征和决策规则项的重要性测算有不同的公式。</p>
+<div class="note">
+<p>可以选择数据子集并计算该群组的特征重要性。</p>
+</div>
+<p>规则拟合（RuleFit）方法的<strong>主要优点</strong>：</p>
+<ul>
+<li><p>RuleFit自动化地将特征交互添加到线性模型，解决了手动添加交互作用项的问题，并且对非线性关系的建模问题有帮助。</p></li>
+<li><p>RuleFit可以同时处理分类和回归任务。</p></li>
+<li><p>创建的规则易于解释，因为它们是二进制型决策规则。</p></li>
+<li><p>RuleFit提出了许多有用的诊断工具。</p></li>
+</ul>
+<p>规则拟合（RuleFit）方法的<strong>主要不足</strong>：</p>
+<ul>
+<li><p>有时RuleFit创建许多规则，这些规则在LASSO模型中的权重为非零，使得可解释性随着模型中特征数量的增加而降低。</p></li>
+<li><p>RuleFit本质上还是线性模型，因此权重解释仍然不直观，尤其是当有重叠的规则时。</p></li>
+</ul>
+</div>
+</div>
+<div id="模型诊断方法chapter-05" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> 模型诊断方法（chapter 05）</h1>
+<p>目前，模型诊断解释方法比较多，使用也比较灵活，但是也带来了一些障碍，比如研究结论的可对比性不强、诊断方法的推广实用范围比较窄。</p>
+<p>模型诊断解释体系应该具有如下特性：</p>
+<ul>
+<li><p><strong>模型的灵活性</strong>：解释方法可以与任何机器学习模型一起使用，例如随机森林和深度神经网络。</p></li>
+<li><p><strong>解释的灵活性</strong>：不限于某种形式的解释，可以是线性公式化的解释，也可以是特征重要性的图形化解释。</p></li>
+<li><p><strong>表示形式的灵活性</strong>：能够使用与所解释模型不同的特征表示形式。对于使用抽象词嵌入向量的文本分类器，可能更希望对单个词进行解释。</p></li>
+</ul>
+<div class="figure"><span id="fig:unnamed-chunk-1"></span>
+<img src="https://christophm.github.io/interpretable-ml-book/images/big-picture.png" alt="一个有意思的大图景（big picture）"  />
+<p class="caption">
+Figure 3.1: 一个有意思的大图景（big picture）
+</p>
+</div>
+</div>
+<div id="基于案例的解释chapter-06" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> 基于案例的解释（chapter 06）</h1>
+<div id="反事实案例counterfactual" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> 反事实案例（Counterfactual）</h2>
+<p>反事实主义者却遭受了<strong>“罗生门效应”</strong>的困扰。《罗生门》是一部日本电影，其中杀害武士的故事是由不同的人讲述的。每个故事都很好地解释了结果，但每个故事相互矛盾。</p>
+<p>可以通过报告所有反事实解释，或通过具有评估反事实并选择最佳事实的<strong>标准</strong>来解决这个多重事实（multiple truths）问题。</p>
+<ul>
+<li><p>首先，反事实解释的用户定义了实例预测中的相关变化（=替代现实）。一个明显的首要要求是，反事实实例尽可能接近地产生预定义的预测。因为我们并非总是可以通过预定义的预测找到事实。</p></li>
+<li><p>其次，另一个质量标准是，反事实应该与实例的有关特征（feature）尽可能相似。反事实不仅应接近原始实例，而且还应更改尽可能减少相关特征的变动。</p></li>
+<li><p>第三，通常希望产生多种多样的反事实解释，以使决策者能够获得多种产生不同结果的可行方法。</p></li>
+<li><p>最后一个要求是，反事实实例的特征应该具有现实性。</p></li>
+</ul>
+<p>遍历试错法（searching by trial and error）。</p>
+<p>损失函数（loss function）+优化算法。</p>
+<p><strong>优点</strong>：</p>
+<ul>
+<li><p>反事实案例的解释很清楚。</p></li>
+<li><p>不需要访问数据或模型，仅需要模型的预测功能。</p></li>
+<li><p>该方法还适用于不使用机器学习的系统。</p></li>
+<li><p>反事实解释方法相对容易实现，因为它本质上是一种损失函数（具有单个或多个目标），可以使用标准优化器库进行优化。</p></li>
+</ul>
+<p><strong>缺点</strong>：对于每个实例，通常会找到多种反事实的解释（罗生门效应）。大多数人都喜欢简单的解释，而不是现实世界的复杂性。</p>
+</div>
+<div id="对抗案例adversarial-examples" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> 对抗案例（Adversarial Examples）</h2>
+<p>里面又很多有意思的案例：</p>
+<ul>
+<li><p>我的狗出了毛病：狗狗被错误地分类为鸵鸟。</p></li>
+<li><p>1像素攻击：可以通过更改单个像素来欺骗图像分类器，水母变成浴缸。</p></li>
+<li><p>一切都是烤面包机：香蕉图像被分类为烤面包机。</p></li>
+<li><p>3D打印的海龟卷入枪战：像乌龟一样的物理物体对计算机而言就像步枪！</p></li>
+<li><p>被蒙住眼睛的对手：黑匣子袭击。</p></li>
+</ul>
+</div>
+<div id="原型和驳斥prototype-and-criticism" class="section level2" number="4.3">
+<h2><span class="header-section-number">4.3</span> 原型和驳斥（prototype and criticism）</h2>
+<p>是一种与K均值聚类有关联的机器学习算法，预测效果要优于单纯的随机机器学习分类。以下两个应用场景会有助于理解：</p>
+<ul>
+<li><p>手写数字的图像识别。</p></li>
+<li><p>两类狗品种的图像识别。</p></li>
+</ul>
+<p><strong>优点</strong>：</p>
+<ul>
+<li><p>可以自由选择原型和驳斥的数量。</p></li>
+<li><p>算法易于实现。</p></li>
+<li><p>驳斥与原型的选择过程无关。</p></li>
+</ul>
+<p><strong>缺点</strong>：</p>
+<ul>
+<li><p>驳斥在很大程度上取决于现有原型以及原型数量的临界值。</p></li>
+<li><p>必须选择原型和驳斥的数量。</p></li>
+<li><p>选择内核及其缩放参数，本身就是一个问题。</p></li>
+<li><p>以所有特征为输入，而忽略了某些特征可能与预测目标结果无关的事实。</p></li>
+</ul>
+</div>
+<div id="影响力个体influential-instances" class="section level2" number="4.4">
+<h2><span class="header-section-number">4.4</span> 影响力个体（Influential Instances）</h2>
+<p>这是一个相对底层的关于个体在机器学习中影响力的思考，本质上也是对不同机器学习算法的哲学思考和定量化分析。具体的应用场景有助于理解这一内容的重要性：</p>
+<ul>
+<li><p>了解不同机器学习模型的行为</p></li>
+<li><p>处理不匹配/调试模型错误</p></li>
+<li><p>固定训练数据</p></li>
+</ul>
+<p><strong>优点</strong>：</p>
+<ul>
+<li><p>删除诊断与模型无关，因此该方法可以应用于任何模型。</p></li>
+<li><p>可以使用这些方法来比较不同的机器学习模型，并更好地了解它们的不同行为，而不仅仅是比较预测性能。</p></li>
+</ul>
+<p><strong>缺点</strong>：</p>
+<ul>
+<li><p>影响函数是删除诊断的一个很好的替代方法，但是仅对于具有可区分参数的模型（例如神经网络）有效。</p></li>
+<li><p>影响函数仅是近似函数，而近似值可能是错误的。</p></li>
+<li><p>影响个体方法仅考虑单个个体的删除，而不是一次删除多个个体。</p></li>
+</ul>
+</div>
+</div>
+<div id="参考文献" class="section level1 unnumbered">
+<h1>参考文献</h1>
+<!---reference here--->
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-molnar2020" class="csl-entry">
+MOLNAR C, 2020. Interpretable <span>Machine Learning</span>[M]. online 版. <span>github</span>.
+</div>
+</div>
+</div>

@@ -9,17 +9,41 @@ tags:
   - LaTex
   - Rmarkdown
   - Econometrics
+subtitle: ''
+summary: '本文介绍了如何在Rmarkdown写作环境下，编写R函数自动化输出LaTex数学公示和符号，辅助统计或计量经济教学工作！'
+authors: [胡华平]
+lastmod: '2019-02-28T09:23:57+08:00'
 image:
   caption: ''
   focal_point: ''
-
 math: true
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: true
 ---
 
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
+<div id="TOC">
+<ul>
+<li><a href="#计量经济学形式的数学公式"><span class="toc-section-number">1</span> “计量经济学”形式的数学公式</a></li>
+<li><a href="#代码实现过程中的各种梗"><span class="toc-section-number">2</span> 代码实现过程中的各种“梗”</a>
+<ul>
+<li><a href="#格式选择真是一个大问题关于pdfhtmlword输出形式"><span class="toc-section-number">2.1</span> 格式选择真是一个大问题：关于pdf、html、word输出形式</a></li>
+<li><a href="#数学公式的排版alignment"><span class="toc-section-number">2.2</span> 数学公式的排版（alignment）</a></li>
+<li><a href="#公式分行显示"><span class="toc-section-number">2.3</span> 公式分行显示</a></li>
+<li><a href="#label的取舍"><span class="toc-section-number">2.4</span> label的取舍</a></li>
+<li><a href="#美元焦虑"><span class="toc-section-number">2.5</span> “美元”焦虑！</a></li>
+<li><a href="#小心猫cat"><span class="toc-section-number">2.6</span> 小心猫（cat）！</a></li>
+<li><a href="#外部文档关联"><span class="toc-section-number">2.7</span> 外部文档关联</a></li>
+</ul></li>
+</ul>
+</div>
 
-<div id="section" class="section level1">
-<h1>“计量经济学”形式的数学公式</h1>
+<p>本文介绍了如何在Rmarkdown写作环境下，编写R函数自动化输出LaTex数学公示和符号，辅助统计或计量经济教学工作！</p>
+<div id="计量经济学形式的数学公式" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> “计量经济学”形式的数学公式</h1>
 <p>本科生课程《计量经济学》会大量使用各类公式。这些公式大概有两类：</p>
 <ul>
 <li><p>理论公式：这些数学公式的呈现基本上用不到数据报告的结果。在Rmarkdown文档中处理办法相对简单，直接使用LaTex形式代码输入即可。</p></li>
@@ -27,19 +51,19 @@ math: true
 </ul>
 <p>所以，如果一切顺利，“计量经济学”课程的大量报告公式，都可以自动地使用R函数调用实现，可谓一本万利，合算得很！</p>
 </div>
-<div id="section-1" class="section level1">
-<h1>代码实现过程中的各种“梗”</h1>
+<div id="代码实现过程中的各种梗" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> 代码实现过程中的各种“梗”</h1>
 <p>实现思路倒是很清晰，Rmarkdown下的操作也是可行的。下面就是需要撸起袖子加油干，找到“聪明”的实现办法，破除各种“梗”！</p>
-<div id="pdfhtmlword" class="section level2">
-<h2>格式选择真是一个大问题：关于pdf、html、word输出形式</h2>
+<div id="格式选择真是一个大问题关于pdfhtmlword输出形式" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> 格式选择真是一个大问题：关于pdf、html、word输出形式</h2>
 <p>选择Rmarkdown的一个很重要理由，就是它可以实现一份文档种格式输出。这个“理想”确实比较宏大。在数学公式领域，起码就有这几个问题：</p>
 <ul>
 <li><p>数学公式友好度差别较大。word比较另类，数学公式支持是最糟糕的；Latex（pdf）下是最灵活的。html则最通用。所以，复杂的公式，在latex（pdf）下OK，放到word里可能就吃不消了。</p></li>
 <li><p>package实现各不相同。如果写书，最好就是用bookdown包；如果做演示slide可以用Xaringan包；写网站文章，可以用blogdown。对于数学公式而言，最需要注意是：是否需要交叉引用（cross reference）公式。基本就是两种情形：写slide和blog默认是不交叉应用公式的；写book则必然需要的。</p></li>
 </ul>
 </div>
-<div id="alignment" class="section level2">
-<h2>数学公式的排版（alignment）</h2>
+<div id="数学公式的排版alignment" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> 数学公式的排版（alignment）</h2>
 <p>这个部分折腾我很久。因为主要使用Latex语法形式来编写R chunk代码。所以必须要熟悉Latex math equation的公式环境（environment）。</p>
 <p>独立公式环境：</p>
 <ul>
@@ -61,8 +85,8 @@ math: true
 &quot;\\end{equation}&quot;)</code></pre>
 <p><span class="math display">\[\begin{equation} \begin{alignedat}{999} &amp;\widehat{Y}=&amp;&amp;+17.81&amp;&amp;+0.62X\\ &amp;\text{(t)}&amp;&amp;(1.9238)&amp;&amp;(11.9968)\\ &amp;\text{(se)}&amp;&amp;(9.2556)&amp;&amp;(0.0516)\\ &amp;\text{(fitness)}&amp;&amp; n=10;&amp;&amp; R^2=0.9473;&amp;&amp; \bar{R^2}=0.9408\\ &amp; &amp;&amp; F^{\ast}=143.92;&amp;&amp; p=0.0000 \end{alignedat} \end{equation}\]</span></p>
 </div>
-<div id="section-2" class="section level2">
-<h2>公式分行显示</h2>
+<div id="公式分行显示" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> 公式分行显示</h2>
 <p>本质上，这还是公式排版问题。但是需要结果代码语句和公式环境来共同解决。</p>
 <pre><code>if (k&lt;=lm.n) {
     cat(
@@ -90,8 +114,8 @@ math: true
   ...
   }</code></pre>
 </div>
-<div id="label" class="section level2">
-<h2>label的取舍</h2>
+<div id="label的取舍" class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> label的取舍</h2>
 <p>理论上，用一个if函数是可以搞定的。</p>
 <pre><code># default no equation label
   if (!is.null(lm.label)) {
@@ -114,11 +138,11 @@ cat(
     (paste0(&#39;(\\#eq:&#39;,lm.label,&#39;)&#39;))
   },
 &quot;\\end{equation}&quot;)</code></pre>
-<p><span class="math display" id="eq:eq-SRF">\[\begin{equation} \begin{alignedat}{999} &amp;\widehat{Y}=&amp;&amp;+17.81&amp;&amp;+0.62X\\ &amp;\text{(t)}&amp;&amp;(1.9238)&amp;&amp;(11.9968)\\ &amp;\text{(se)}&amp;&amp;(9.2556)&amp;&amp;(0.0516)\\ &amp;\text{(fitness)}&amp;&amp; n=10;&amp;&amp; R^2=0.9473;&amp;&amp; \bar{R^2}=0.9408\\ &amp; &amp;&amp; F^{\ast}=143.92;&amp;&amp; p=0.0000 \\tag{1}t} (#eq:eq-SRF) \end{equation}\]</span></p>
+<p><span class="math display" id="eq:eq-SRF">\[\begin{equation} \begin{alignedat}{999} &amp;\widehat{Y}=&amp;&amp;+17.81&amp;&amp;+0.62X\\ &amp;\text{(t)}&amp;&amp;(1.9238)&amp;&amp;(11.9968)\\ &amp;\text{(se)}&amp;&amp;(9.2556)&amp;&amp;(0.0516)\\ &amp;\text{(fitness)}&amp;&amp; n=10;&amp;&amp; R^2=0.9473;&amp;&amp; \bar{R^2}=0.9408\\ &amp; &amp;&amp; F^{\ast}=143.92;&amp;&amp; p=0.0000 \\tag{2.1}t} (#eq:eq-SRF) \end{equation}\]</span></p>
 <p>问题是blog里不支持对label进行公式交叉引用；Xaringan里也不支持。只有bookdown或bookdown::render(out= html_document2)才支持。当然这个问题也不是很大：只要在Xanringan或blog里不输label就好了！如果写书，再加上label呗！</p>
 </div>
-<div id="section-3" class="section level2">
-<h2>“美元”焦虑！</h2>
+<div id="美元焦虑" class="section level2" number="2.5">
+<h2><span class="header-section-number">2.5</span> “美元”焦虑！</h2>
 <p>Rmarkdown的公式世界里，比较喜欢铜臭味——美元符号。行内公式采用的是<span class="math inline">\(\$...\$\)</span>形式，独立公式采用<span class="math inline">\(\$\$...\$\$\)</span>形式。</p>
 <p>所以，记得要时刻保持“富有”！如下的美元符号：</p>
 <pre class="r"><code>cat(
@@ -133,8 +157,8 @@ cat(
 &quot;\\end{equation}$$&quot;)</code></pre>
 <p><span class="math display">\[\begin{equation} \begin{alignedat}{999} &amp;\widehat{Y}=&amp;&amp;+17.81&amp;&amp;+0.62X\\ &amp;\text{(t)}&amp;&amp;(1.9238)&amp;&amp;(11.9968)\\ &amp;\text{(se)}&amp;&amp;(9.2556)&amp;&amp;(0.0516)\\ &amp;\text{(fitness)}&amp;&amp; n=10;&amp;&amp; R^2=0.9473;&amp;&amp; \bar{R^2}=0.9408\\ &amp; &amp;&amp; F^{\ast}=143.92;&amp;&amp; p=0.0000 \end{alignedat} \end{equation}\]</span></p>
 </div>
-<div id="cat" class="section level2">
-<h2>小心猫（cat）！</h2>
+<div id="小心猫cat" class="section level2" number="2.6">
+<h2><span class="header-section-number">2.6</span> 小心猫（cat）！</h2>
 <p>理论上，<code>cat(, sep="\n")</code>函数里只要设置<code>sep="\n"</code>就能保证换行，输出也很有层次和条理。</p>
 <p>但是你还是要保持美元“富有”，并小心猫（cat）的这个挠人小利爪（<code>sep="\n"</code>）。</p>
 <p>换言之，下面的代码就可能会让你“很受伤”！</p>
@@ -150,8 +174,8 @@ cat(
 &quot;\\end{equation}&quot;,
 sep= &quot;\n&quot;)</code></pre>
 </div>
-<div id="section-4" class="section level2">
-<h2>外部文档关联</h2>
+<div id="外部文档关联" class="section level2" number="2.7">
+<h2><span class="header-section-number">2.7</span> 外部文档关联</h2>
 <p>如果完事顺利，你只需要在Rmardown里直接调用公式文件.R</p>
 <pre><code>source(&quot;external-math-equation.R&quot;)
 </code></pre>

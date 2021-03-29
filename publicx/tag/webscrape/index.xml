@@ -1,0 +1,577 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>webscrape | Academic</title>
+    <link>https://huhuaping.netlify.app/tag/webscrape/</link>
+      <atom:link href="https://huhuaping.netlify.app/tag/webscrape/index.xml" rel="self" type="application/rss+xml" />
+    <description>webscrape</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>huhuaping@2019</copyright><lastBuildDate>Sat, 05 Dec 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://huhuaping.netlify.app/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png</url>
+      <title>webscrape</title>
+      <link>https://huhuaping.netlify.app/tag/webscrape/</link>
+    </image>
+    
+    <item>
+      <title>自动化数据抓取技术(V)：APACHA人机验证机制</title>
+      <link>https://huhuaping.netlify.app/2020/12/05/web-scraping-tech-vision-volidation/</link>
+      <pubDate>Sat, 05 Dec 2020 00:00:00 +0000</pubDate>
+      <guid>https://huhuaping.netlify.app/2020/12/05/web-scraping-tech-vision-volidation/</guid>
+      <description>
+&lt;script src=&#34;https://huhuaping.netlify.app/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+&lt;div id=&#34;TOC&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#apacha人机验证的类型&#34;&gt;APACHA人机验证的类型&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#视觉识别ocr技术&#34;&gt;视觉识别OCR技术&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#传统的tesseract识别包&#34;&gt;传统的tesseract识别包&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#google-vision-云平台api&#34;&gt;google vision 云平台API&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id=&#34;apacha人机验证的类型&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;APACHA人机验证的类型&lt;/h1&gt;
+&lt;p&gt;APACHA是一种人机验证机制，对于网络爬虫而言，大家更熟悉的是网站采用APACHA机制来设置“防爬虫”门槛，也即各类验证码、滑块验证。这种验证机制比较成熟和严谨，应用场景十分广泛。如何有效识别和破解成为现实一大难题。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;视觉识别ocr技术&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;视觉识别OCR技术&lt;/h1&gt;
+&lt;p&gt;实际上视觉识别已经发展到多个领域，包括图片标记、面孔和地标检测、光学字符识别 (OCR)等。&lt;/p&gt;
+&lt;div id=&#34;传统的tesseract识别包&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;传统的tesseract识别包&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;tesseract&lt;/code&gt;包专门用于从图片中提取文本&lt;a href=&#34;https://github.com/ropensci/tesseract&#34;&gt;github repo&lt;/a&gt;。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;优点：独立算法，简单快速，本地即可运行，无需联网。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;缺点：算法比较老旧，识别准确率不太高。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;具体代码示例如下：&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#install.packages(&amp;quot;tesseract&amp;quot;)
+library(&amp;quot;tesseract&amp;quot;)
+dir_gray &amp;lt;- here::here(&amp;quot;pic&amp;quot;, &amp;quot;zhuyun&amp;quot;, &amp;quot;valid-img-gray.png&amp;quot;)
+eng &amp;lt;- tesseract(&amp;quot;eng&amp;quot;)
+txt &amp;lt;- tesseract::ocr(image = dir_gray, engine = eng) %&amp;gt;% str_extract(&amp;quot;\\d{4}&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;google-vision-云平台api&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;google vision 云平台API&lt;/h2&gt;
+&lt;p&gt;google cloud platform 提供了Vision API，可以完成各类视觉识别任务。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;优点&lt;/strong&gt;：识别技术强大，识别准确率高。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;缺点&lt;/strong&gt;：（国内）需要网络和网速支持。另外就是有使用量的限制，需要支付结算进行扩容使用量。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;R用户的具体实现：&lt;/p&gt;
+&lt;p&gt;1.申请google vision API接入授权。具体：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;登陆google开发者控制台（&lt;a href=&#34;https://console.cloud.google.com/&#34;&gt;Google’s developer console&lt;/a&gt;）进行申请和授权。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;创建project，并申请开通Vision的API服务。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;设置&lt;code&gt;OAuth 2.0&lt;/code&gt;客户端和OAuth同意屏幕。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;2.下载安装&lt;code&gt;RoogleVision&lt;/code&gt;包（&lt;a href=&#34;https://github.com/cloudyr/RoogleVision&#34;&gt;github repo&lt;/a&gt;）。&lt;/p&gt;
+&lt;p&gt;具体代码示例如下：&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#install.packages(&amp;quot;RoogleVision&amp;quot;, repos = c(getOption(&amp;quot;repos&amp;quot;), &amp;quot;http://cloudyr.github.io/drat&amp;quot;))
+if (!require(&amp;quot;devtools&amp;quot;)) {
+    install.packages(&amp;quot;ghit&amp;quot;)
+}
+devtools::install_github(&amp;quot;cloudyr/RoogleVision&amp;quot;)
+
+library(&amp;quot;RoogleVision&amp;quot;)
+
+### plugin your credentials
+options(&amp;quot;googleAuthR.client_id&amp;quot; = keyring::key_get(&amp;quot;id&amp;quot;, keyring = &amp;quot;gg-vision2&amp;quot;))
+options(&amp;quot;googleAuthR.client_secret&amp;quot; = keyring::key_get(&amp;quot;secret&amp;quot;, keyring = &amp;quot;gg-vision2&amp;quot;))
+
+## use the fantastic Google Auth R package
+### define scope!
+options(&amp;quot;googleAuthR.scopes.selected&amp;quot; = c(&amp;quot;https://www.googleapis.com/auth/cloud-platform&amp;quot;))
+
+googleAuthR::gar_auth()
+
+
+#Basic: you can provide both, local as well as online images:
+txt &amp;lt;- getGoogleVisionResponse(imagePath=&amp;quot;pic/zhuyun/valid-img-gray.png&amp;quot;, feature=&amp;quot;TEXT_DETECTION&amp;quot;,numResults = 1)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>自动化数据抓取技术(III)：网页元素处理</title>
+      <link>https://huhuaping.netlify.app/2020/12/03/web-scraping-tech-webelem/</link>
+      <pubDate>Thu, 03 Dec 2020 00:00:00 +0000</pubDate>
+      <guid>https://huhuaping.netlify.app/2020/12/03/web-scraping-tech-webelem/</guid>
+      <description>
+&lt;script src=&#34;https://huhuaping.netlify.app/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+&lt;div id=&#34;TOC&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#常见问题场景及处理方法&#34;&gt;常见问题场景及处理方法&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#中文乱码问题&#34;&gt;中文乱码问题&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#nodes节点选择&#34;&gt;nodes节点选择&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#利用chrome浏览器查看json数据&#34;&gt;利用chrome浏览器查看json数据&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id=&#34;常见问题场景及处理方法&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;常见问题场景及处理方法&lt;/h2&gt;
+&lt;div id=&#34;中文乱码问题&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;中文乱码问题&lt;/h3&gt;
+&lt;p&gt;中文乱码问题再次出现，见各种乱码问题。编码问题详解可以参看&lt;a href=&#34;https://kunststube.net/encoding/&#34;&gt;What Every Programmer Absolutely, Positively Needs To Know About Encodings And Character Sets To Work With Text&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;1.快捷办法，直接抓取网页表格，无论如何都显示乱码。只能放弃。&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# look for table element
+tableElem &amp;lt;- remDr$findElement(using = &amp;quot;id&amp;quot;, &amp;quot;courseTable&amp;quot;)
+
+txt &amp;lt;- tableElem$getElementAttribute(&amp;quot;outerHTML&amp;quot;)[[1]]
+
+table &amp;lt;- XML::readHTMLTable(txt, header=F, as.data.frame=TRUE)[[1]]&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start=&#34;2&#34; style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;暴力抓取网页元素总，虽然颇为费劲，但总是可行。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# scrape the date and room 
+v_date &amp;lt;- txt %&amp;gt;% read_html() %&amp;gt;%  xml_nodes(&amp;quot;tbody&amp;quot;) %&amp;gt;% xml_nodes(&amp;quot;td:nth-child(2)&amp;quot;) %&amp;gt;% xml_text()
+
+v_room &amp;lt;- txt %&amp;gt;% read_html() %&amp;gt;%  xml_nodes(&amp;quot;tbody&amp;quot;) %&amp;gt;% xml_nodes(&amp;quot;td:nth-child(4)&amp;quot;) %&amp;gt;% xml_text()
+
+# tidy data.frame
+info &amp;lt;- data.frame(date=v_date, room =v_room) %&amp;gt;%
+  separate(col = &amp;quot;date&amp;quot; , into = c(&amp;quot;date&amp;quot;,&amp;quot;week&amp;quot;, &amp;quot;weekday&amp;quot;, &amp;quot;slot&amp;quot;), sep = &amp;quot; &amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;nodes节点选择&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;nodes节点选择&lt;/h3&gt;
+&lt;p&gt;如何选择和提取网页多个节点tr下第n个元素td下的文本text。参看&lt;a href=&#34;https://stackoverflow.com/questions/56782998/how-to-extract-text-in-second-p-element-inside-div&#34;&gt;网络解答&lt;/a&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;    txt %&amp;gt;% 
+  read_html() %&amp;gt;%  
+  xml_nodes(&amp;quot;tbody&amp;quot;) %&amp;gt;% 
+  xml_nodes(&amp;quot;td:nth-child(2)&amp;quot;) %&amp;gt;% 
+  xml_text()&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;利用chrome浏览器查看json数据&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;利用chrome浏览器查看json数据&lt;/h3&gt;
+&lt;p&gt;具体参看&lt;a href=&#34;https://stackoverflow.com/questions/31775176/scraping-javascript-in-r-with-rselenium&#34;&gt;资料&lt;/a&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Using Chrome: Right-click &amp;gt; Inspect; navigate to Network tab &amp;gt; type in .json &amp;gt; Search &amp;gt; Refresh Site (to catch calls made prior) &lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>自动化数据抓取技术(II)： RSelenium</title>
+      <link>https://huhuaping.netlify.app/2020/12/02/web-scraping-tech-rselenium/</link>
+      <pubDate>Wed, 02 Dec 2020 00:00:00 +0000</pubDate>
+      <guid>https://huhuaping.netlify.app/2020/12/02/web-scraping-tech-rselenium/</guid>
+      <description>
+&lt;script src=&#34;https://huhuaping.netlify.app/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+&lt;div id=&#34;TOC&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#学习材料&#34;&gt;学习材料&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#经常碰到的爬虫场景和处理方法&#34;&gt;经常碰到的爬虫场景和处理方法&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#正确关闭rselenium-server&#34;&gt;正确关闭Rselenium server&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#在浏览器窗口之间进行自由切换&#34;&gt;在浏览器窗口之间进行自由切换&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#鼠标相关操作&#34;&gt;鼠标相关操作&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#选择不可见的勾选框&#34;&gt;选择不可见的勾选框&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#日历和下拉菜单操作&#34;&gt;日历和下拉菜单操作&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#悬置鼠标唤出下级菜单&#34;&gt;悬置鼠标唤出下级菜单&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id=&#34;学习材料&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;学习材料&lt;/h2&gt;
+&lt;p&gt;RSelenium包在CRAN的官方&lt;a href=&#34;https://cran.r-project.org/web/packages/RSelenium/vignettes/basics.html#introduction&#34;&gt;文档&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;常用的操作，可以参考中文&lt;a href=&#34;https://blog.csdn.net/weixin_40628687/article/details/79008995&#34;&gt;教程&lt;/a&gt;。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;经常碰到的爬虫场景和处理方法&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;经常碰到的爬虫场景和处理方法&lt;/h2&gt;
+&lt;p&gt;下面列出一些常碰到的爬虫场景和处理办法。&lt;/p&gt;
+&lt;div id=&#34;正确关闭rselenium-server&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;正确关闭Rselenium server&lt;/h3&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;remDr$closeServer()
+remDr$close()
+rm(remDr)
+rm(driver)
+gc()&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;在浏览器窗口之间进行自由切换&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;在浏览器窗口之间进行自由切换&lt;/h3&gt;
+&lt;p&gt;具体见github issue社区互动 &lt;a href=&#34;https://github.com/ropensci/RSelenium/issues/143&#34;&gt;参考&lt;/a&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;myswitch &amp;lt;- function (remDr, windowId) 
+{
+  qpath &amp;lt;- sprintf(&amp;quot;%s/session/%s/window&amp;quot;, remDr$serverURL, 
+                   remDr$sessionInfo[[&amp;quot;id&amp;quot;]])
+  remDr$queryRD(qpath, &amp;quot;POST&amp;quot;, qdata = list(handle = windowId))
+}
+
+Sys.sleep(1)
+windows_handles &amp;lt;- remDr$getWindowHandles()
+Sys.sleep(1)
+#remDr$switchToWindow(windows_handles[[2]])
+
+myswitch(remDr = remDr, windowId = windows_handles[[2]])&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;鼠标相关操作&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;鼠标相关操作&lt;/h3&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;移动鼠标到指定位置 并点击&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;xpath_submit &amp;lt;- &amp;quot;//*[@id=&amp;#39;loginform-1&amp;#39;]/div[4]/input&amp;quot;
+webelm &amp;lt;- remDr$findElement(using = &amp;quot;xpath&amp;quot;, value = xpath_submit)
+loc &amp;lt;- remDr$mouseMoveToLocation(webElement = webelm)
+remDr$click(1)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;选择不可见的勾选框&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;选择不可见的勾选框&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;参考&lt;a href=&#34;https://stackoverflow.com/questions/46253566/selenium-cant-click-specific-checkbox&#34;&gt;网络问答&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;对于一些网站，有时候存在肉眼不可见的网页元素。具体图示如下：&lt;/p&gt;
+&lt;div class=&#34;figure&#34; style=&#34;text-align: center&#34;&gt;&lt;span id=&#34;fig:unnamed-chunk-5&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;https://huhuaping.netlify.app/pic/check-box-invisible.png&#34; alt=&#34;一个示例&#34;  /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 1: 一个示例
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;这时，我们需要使用&lt;code&gt;remDr$executeScript()&lt;/code&gt;函数来执行&lt;code&gt;java&lt;/code&gt;操作。&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;webelem &amp;lt;- remDr$findElement(using = &amp;quot;xpath&amp;quot;, &amp;quot;//*[@id=&amp;#39;ztcountryCode_273_check&amp;#39;]&amp;quot;)
+
+remDr$executeScript(&amp;quot;arguments[0].click()&amp;quot;, args = list(webelem))&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;日历和下拉菜单操作&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;日历和下拉菜单操作&lt;/h3&gt;
+&lt;p&gt;一个比较全的&lt;a href=&#34;https://towardsdatascience.com/climbing-mt-whitney-with-web-browser-automation-and-r-b11dcf9353b2&#34;&gt;示例&lt;/a&gt;。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;悬置鼠标唤出下级菜单&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;悬置鼠标唤出下级菜单&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://stackoverflow.com/questions/37307379/how-to-click-a-link-in-a-hover-menu-with-selenium-webdriver&#34;&gt;见示例&lt;/a&gt;。&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>自动化数据抓取技术(I)：基础准备</title>
+      <link>https://huhuaping.netlify.app/2020/11/30/web-scraping-tech-basic/</link>
+      <pubDate>Mon, 30 Nov 2020 00:00:00 +0000</pubDate>
+      <guid>https://huhuaping.netlify.app/2020/11/30/web-scraping-tech-basic/</guid>
+      <description>
+&lt;link href=&#34;https://huhuaping.netlify.app/rmarkdown-libs/anchor-sections/anchor-sections.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;https://huhuaping.netlify.app/rmarkdown-libs/anchor-sections/anchor-sections.js&#34;&gt;&lt;/script&gt;
+
+&lt;div id=&#34;TOC&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#环境和安装&#34;&gt;环境和安装&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#一些必要设置&#34;&gt;一些必要设置&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#docker设置&#34;&gt;docker设置&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#tightvnc配置&#34;&gt;TightVNC配置&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#docker常用操作&#34;&gt;docker常用操作&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id=&#34;环境和安装&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;环境和安装&lt;/h2&gt;
+&lt;p&gt;1.下载安装docker desk&lt;a href=&#34;https://www.docker.com/products/docker-desktop&#34;&gt;官网&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;win10用户需要注意一个操作系统的坑。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Win10的&lt;strong&gt;专业版用户&lt;/strong&gt;(professional version)，可以直接安装docker desk。但是也需要需要启用hyper-V 虚拟服务。可以ctrl+shift+delete查看cpu性能，能看到是否已经启用。具体启用办法：进bios –&amp;gt; system security，记得按F10确认启用。（ps. 2020版win10开始有了性的服务支持，主要是liniux模块的加入，可以进一步提升docker的运行性能。）&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Win10&lt;strong&gt;家庭版用户&lt;/strong&gt;(home version)不支持docker desk，只能使用安装Install Docker Toolbox&lt;a href=&#34;https://docs.docker.com/toolbox/toolbox_install_windows/&#34;&gt;官网下载&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;2.下载安装TightVNC用于查看实时交互。&lt;/p&gt;
+&lt;p&gt;下载安装TightVNC用于查看实时交互。&lt;a href=&#34;https://www.tightvnc.com/&#34;&gt;官网&lt;/a&gt;。一份说明供学习：&lt;a href=&#34;https://cran.r-project.org/web/packages/RSelenium/vignettes/docker.html#debugging-using-vnc&#34;&gt;Debugging Using VNC&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;3.Rstudio安装RSelenium包。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;一些必要设置&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;一些必要设置&lt;/h2&gt;
+&lt;div id=&#34;docker设置&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;docker设置&lt;/h3&gt;
+&lt;p&gt;1.注册docker hub账号。（此步骤可忽略）。&lt;/p&gt;
+&lt;p&gt;2.配置国内镜像站点。速度明显改观！docker desk软件里设置修改：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;quot;RegistryMirror&amp;quot;: [
+                &amp;quot;https://hub-mirror.c.163.com&amp;quot;,
+                &amp;quot;https://mirror.baidubce.com&amp;quot;
+                ]&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;如果是Docker toolbox则需要修改配置文件&lt;code&gt;C:\Users\&amp;lt;user&amp;gt;\.docker\machine\machines\default\config.json&lt;/code&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;tightvnc配置&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;TightVNC配置&lt;/h3&gt;
+&lt;p&gt;参看&lt;a href=&#34;https://gist.github.com/HanjoStudy/aeb331b7a277be9639f3cfb3bf875ba2&#34;&gt;资料1&lt;/a&gt;，或Youtube视频&lt;a href=&#34;https://www.youtube.com/watch?v=OxbvFiYxEzI&#34;&gt;资料2&lt;/a&gt; 。&lt;/p&gt;
+&lt;p&gt;第一步，docker命令行，拉取chrome。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ docker run --name chrome -v /dev/shm:/dev/shm -d -p 4445:4444 -p 5901:5900 selenium/standalone-chrome-debug:latest&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;以上命令主要内容是，创建chrome实例，并分别打开两类端口。其中第一类端口&lt;code&gt;4445:4444&lt;/code&gt;是分配给chrome通信；第二类端口&lt;code&gt;5901:5900&lt;/code&gt;是分配给下面的TightVNC通信。&lt;/p&gt;
+&lt;p&gt;第二步，配置TightVNC Viewer【注意：不是server】。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;端口：127.0.0.1:5901   【option 里面要设置port为5901】
+密码：secret&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;docker常用操作&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;docker常用操作&lt;/h2&gt;
+&lt;p&gt;1.docker命令拉取selenium -chrome镜像。&lt;/p&gt;
+&lt;p&gt;标准模式：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ docker run -d -p 4445:4444 selenium/standalone-chrome
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;诊断模式：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ docker run -d -p 4445:4444 selenium/standalone-chrome-debug
+$ docker run -d -p 5901:5900 -p 192.168.31.135:4445:4444 --link http-server selenium/standalone-chrome-debug
+  &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;2.docker常见操作&lt;a href=&#34;https://stackoverflow.com/questions/45395849/cant-execute-rsdriver-connection-refused&#34;&gt;参看资料&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;3.Docker与jave version的匹配&lt;/p&gt;
+&lt;p&gt;查看java 版本。&lt;a href=&#34;https://stackoverflow.com/questions/49189913/how-to-check-java-version-of-the-docker-container&#34;&gt;参考&lt;/a&gt;。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ docker exec 【containerId】 java -version
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Docker 设置jave_home环境变量。&lt;a href=&#34;https://stackoverflow.com/questions/46277631/change-java-home-in-docker/56035653&#34;&gt;参考&lt;/a&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ docker  ENV JAVA_HOME /path/to/java
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>R&#43;docker进行动态网页数据抓取</title>
+      <link>https://huhuaping.netlify.app/2020/02/09/dynamic-web-scraping/</link>
+      <pubDate>Sun, 09 Feb 2020 00:00:00 +0000</pubDate>
+      <guid>https://huhuaping.netlify.app/2020/02/09/dynamic-web-scraping/</guid>
+      <description>
+&lt;link href=&#34;https://huhuaping.netlify.app/rmarkdown-libs/anchor-sections/anchor-sections.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;https://huhuaping.netlify.app/rmarkdown-libs/anchor-sections/anchor-sections.js&#34;&gt;&lt;/script&gt;
+
+&lt;div id=&#34;TOC&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#工具和准备&#34;&gt;工具和准备&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#安装工具软件&#34;&gt;安装工具软件&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#docker配置准备&#34;&gt;docker配置准备&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#rselenium相关操作&#34;&gt;RSelenium相关操作&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#一个实例抓取并下载智慧教学云平台资料&#34;&gt;一个实例：抓取并下载智慧教学云平台资料&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#案例数据抓取的目标&#34;&gt;案例数据抓取的目标&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#案例数据抓取的特点&#34;&gt;案例数据抓取的特点&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#r代码实现&#34;&gt;R代码实现&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id=&#34;工具和准备&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;工具和准备&lt;/h1&gt;
+&lt;div id=&#34;安装工具软件&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;安装工具软件&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;下载安装docker &lt;a href=&#34;https://www.docker.com/&#34;&gt;官网&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;一个教程供学习：&lt;a href=&#34;https://docker-curriculum.com/&#34;&gt;A Docker Tutorial for Beginners&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Rstudio中安装RSelenium包 &lt;a href=&#34;https://github.com/ropensci/RSelenium&#34;&gt;官网&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# install.packages(&amp;quot;devtools&amp;quot;)
+devtools::install_github(&amp;quot;ropensci/RSelenium&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;下载安装TightVNC用于查看实时交互。&lt;a href=&#34;https://www.tightvnc.com/&#34;&gt;官网&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;一份说明供学习：&lt;a href=&#34;https://cran.r-project.org/web/packages/RSelenium/vignettes/docker.html#debugging-using-vnc&#34;&gt;Debugging Using VNC&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;docker配置准备&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;docker配置准备&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;注册docker hub账号（非必须）&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;配置国内镜像站点（强烈建议）。速度将明显改观！具体参看&lt;a href=&#34;https://yeasy.gitbooks.io/docker_practice/install/mirror.html&#34;&gt;材料&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;使用docker命令拉取selenium -chrome镜像（请根据自己的浏览器选择，chrome或者firefox）&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在Rstudio的Terminal窗口中执行如下命令！&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;启动docker服务：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ docker run -d -p 4445:4444 selenium/standalone-chrome&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;rselenium相关操作&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;RSelenium相关操作&lt;/h2&gt;
+&lt;p&gt;使用RSelenium包控制浏览器主要依靠remoteDriver系列函数。简单操作命令如下。可参考&lt;a href=&#34;https://blog.csdn.net/weixin_40628687/article/details/79008995&#34;&gt;网络材料&lt;/a&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(RSelenium)
+remDr &amp;lt;- remoteDriver(browserName =&amp;quot;chrome&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# 打开浏览器
+remDr$open()
+# 关闭浏览器
+remDr$quit()  # 直接退出
+remDr$close()  # close用于关闭当前会话，也可以用作关闭浏览器&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# 打开网页
+url &amp;lt;- &amp;#39;http://www.baidu.com&amp;#39;
+remDr$navigate(url)
+# 关闭网页
+remDr$closeWindow()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# 打开网页
+url &amp;lt;- &amp;#39;http://www.baidu.com&amp;#39;
+remDr$navigate(url)
+# 定位
+xpath &amp;lt;- &amp;#39;//*[@id=&amp;quot;su&amp;quot;]&amp;#39;
+btn &amp;lt;- remDr$findElement(using = &amp;#39;xpath&amp;#39;, value = xpath)
+# 单击
+btn$clickElement()&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;一个实例抓取并下载智慧教学云平台资料&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;一个实例：抓取并下载智慧教学云平台资料&lt;/h1&gt;
+&lt;div id=&#34;案例数据抓取的目标&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;案例数据抓取的目标&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;目标是获得全部视频（83x3= 249）的下载地址。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;整理各个视频的基本信息，用于下载视频后期的准确重命名（下载地址url是一串字符而已）。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;登录后的&lt;strong&gt;目标页面&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://huhuaping.netlify.app/pic/web-scrape-AI-room-vedio-list.png&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;案例数据抓取的特点&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;案例数据抓取的特点&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;需要账号/密码登陆&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;动态网页：可能会碰到JavaScript、下拉选择等操作&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;网站可能随时调整：例如视频材料定期清除&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;r代码实现&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;R代码实现&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# useful packages
+library(RSelenium)
+library(wdman)
+library(&amp;quot;XML&amp;quot;)
+library(&amp;quot;tidyverse&amp;quot;)
+library(xml2)
+library(rvest)
+
+# remote driver
+remDr &amp;lt;- RSelenium::remoteDriver(remoteServerAddr = &amp;quot;localhost&amp;quot;,
+                                 port = 4445L,
+                                 browserName = &amp;quot;chrome&amp;quot;)
+remDr$open()
+
+# navigate to the website of interest
+remDr$navigate(&amp;quot;http://172.26.3.11:8080/&amp;quot;)
+
+# check on there
+remDr$screenshot(display = TRUE)
+
+# login info
+remDr$findElement(&amp;quot;id&amp;quot;, &amp;quot;username&amp;quot;)$sendKeysToElement(list(&amp;quot;your-id&amp;quot;))
+remDr$findElement(&amp;quot;id&amp;quot;, &amp;quot;password&amp;quot;)$sendKeysToElement(list(&amp;quot;your-password&amp;quot;))
+remDr$findElement(&amp;quot;css&amp;quot;, &amp;quot;.login-aside input[type=&amp;#39;submit&amp;#39;]&amp;quot;)$clickElement()
+
+# check again
+remDr$screenshot(display = TRUE)
+
+# click my video
+remDr$navigate(&amp;quot;https://ylb.nwafu.edu.cn/ICloudRecordPlay/teacherVideoManagement&amp;quot;)
+
+# click one year (avoid random jump)
+remDr$findElement(using = &amp;quot;css&amp;quot;, &amp;quot;#body &amp;gt; div.mod-filter &amp;gt; dl:nth-child(1) &amp;gt; dd &amp;gt; a:nth-child(1)&amp;quot;)$clickElement()
+
+# click page 2
+remDr$findElement(using = &amp;quot;css&amp;quot;, &amp;quot;#body &amp;gt; div.bootstrap-table &amp;gt; div.fixed-table-container &amp;gt; div.fixed-table-pagination &amp;gt; div.pull-right.pagination &amp;gt; ul &amp;gt; li:nth-child(3) &amp;gt; a&amp;quot;)$clickElement()
+remDr$screenshot(display = TRUE)
+
+# set page number css (number 1 begin with par 2)
+page_total &amp;lt;- 6
+page_css &amp;lt;- paste0(&amp;quot;#body &amp;gt; div.bootstrap-table &amp;gt; div.fixed-table-container &amp;gt; div.fixed-table-pagination &amp;gt; div.pull-right.pagination &amp;gt; ul &amp;gt; li:nth-child(&amp;quot;, 1:page_total+1, &amp;quot;) &amp;gt; a&amp;quot;)
+
+
+# set download page (click &amp;quot;下载&amp;quot;)
+item_total &amp;lt;- 15
+pos &amp;lt;- paste(&amp;quot;#courseTable &amp;gt; tbody &amp;gt; tr:nth-child(&amp;quot;, 1:item_total,&amp;quot;) &amp;gt; td:nth-child(6) &amp;gt; a:nth-child(2)&amp;quot;, sep =&amp;quot;&amp;quot;)
+
+
+pageinfo &amp;lt;- NULL
+ 
+#----- page loop --------
+
+for (i in 1:5){
+  # click one year (avoid random jump)
+  #remDr$findElement(using = &amp;quot;css&amp;quot;, &amp;quot;#body &amp;gt; div.mod-filter &amp;gt; dl:nth-child(1) &amp;gt; dd &amp;gt; a:nth-child(1)&amp;quot;)$clickElement()
+  
+  # set chromeDriver window size (very important! for page number &amp;gt;3)
+  remDr$setWindowSize(1600, 900)
+  
+  # click the page number(number 1 begin with par 2)
+  remDr$findElement(using = &amp;quot;css&amp;quot;, page_css[6] )$clickElement()
+  
+  # wait load page
+  Sys.sleep(2)
+  remDr$screenshot(display = TRUE)
+ 
+   # look for table element
+  tableElem &amp;lt;- remDr$findElement(using = &amp;quot;id&amp;quot;, &amp;quot;courseTable&amp;quot;)
+  
+  # Html output
+  txt &amp;lt;- tableElem$getElementAttribute(&amp;quot;outerHTML&amp;quot;)[[1]]
+  
+  # scrape the date and room 
+  v_date &amp;lt;- txt %&amp;gt;% read_html() %&amp;gt;%  xml_nodes(&amp;quot;tbody&amp;quot;) %&amp;gt;% xml_nodes(&amp;quot;td:nth-child(2)&amp;quot;) %&amp;gt;% xml_text()
+  v_room &amp;lt;- txt %&amp;gt;% read_html() %&amp;gt;%  xml_nodes(&amp;quot;tbody&amp;quot;) %&amp;gt;% xml_nodes(&amp;quot;td:nth-child(4)&amp;quot;) %&amp;gt;% xml_text()
+  
+  # tidy data.frame
+  info_tem &amp;lt;- data.frame(date=v_date, room =v_room) 
+  
+  
+  #----- loop for download url-------
+  url &amp;lt;- NULL
+  for (i in  1:8 ){
+    # click and open window
+    remDr$findElement(using = &amp;quot;css&amp;quot;, pos[i])$clickElement()
+    
+    Sys.sleep(1)
+    #remDr$setImplicitWaitTimeout(milliseconds = 10000)
+    
+    remDr$screenshot(display = TRUE)
+    
+    # look for download element
+    downElem &amp;lt;- remDr$findElement(using = &amp;quot;css&amp;quot;, &amp;quot;#downloadVideo-modal &amp;gt; div &amp;gt; div&amp;quot;)
+    
+    txt_down &amp;lt;- downElem$getElementAttribute(&amp;quot;outerHTML&amp;quot;)[[1]]
+    
+    # get attributes
+    
+    url_down &amp;lt;- txt_down %&amp;gt;% read_html() %&amp;gt;%  xml_nodes(&amp;quot;div &amp;gt;div &amp;gt; a&amp;quot;) %&amp;gt;% xml_attr(&amp;quot;href&amp;quot;)
+    
+    # close the float window
+    remDr$findElement(using = &amp;quot;css&amp;quot;, &amp;quot;#closePicResourceDetail-modal &amp;gt; span&amp;quot;)$clickElement()
+    
+    url_tem &amp;lt;- t(data.frame(url_down)) %&amp;gt;% as_tibble() 
+    url &amp;lt;- rbind(url, url_tem)
+    
+  }
+
+pageinfo_tem &amp;lt;- bind_cols(info_tem, url) 
+
+pageinfo &amp;lt;- bind_rows(pageinfo, pageinfo_tem)
+}
+
+# close drivers
+remDr$getStatus()
+remDr$closeWindow()
+
+# tidy data 
+
+pageinfo_ok  &amp;lt;- pageinfo %&amp;gt;%
+  gather(key = &amp;quot;VideoAngle&amp;quot;, value = &amp;quot;url&amp;quot;, V1:V3) %&amp;gt;%
+  separate(col = &amp;quot;date&amp;quot; , into = c(&amp;quot;date&amp;quot;,&amp;quot;week&amp;quot;, &amp;quot;weekday&amp;quot;, &amp;quot;slot&amp;quot;), sep = &amp;quot; &amp;quot;) %&amp;gt;%
+  arrange(date, week, weekday, slot,room) %&amp;gt;%
+  mutate(VideoRole= recode(VideoAngle,&amp;quot;V1&amp;quot;=&amp;quot;teacher&amp;quot;,&amp;quot;V2&amp;quot;=&amp;quot;student&amp;quot;, &amp;quot;V3&amp;quot;=&amp;quot;slide&amp;quot;)) %&amp;gt;%
+  mutate(exist= if_else(url==&amp;quot;javascript:void(0)&amp;quot;, &amp;quot;NO&amp;quot;, &amp;quot;YES&amp;quot;)) %&amp;gt;%
+  mutate(week.en = str_c(&amp;quot;week&amp;quot;,str_extract(week, &amp;#39;[:digit:]&amp;#39;)),
+         slot.en = str_c(&amp;quot;slot&amp;quot;,str_extract(slot, &amp;quot;[:digit:]&amp;quot;))) %&amp;gt;%
+  #mutate( weekday.en =weekday) %&amp;gt;%
+  mutate(weekday.en =recode(weekday, &amp;quot;星期一&amp;quot;=&amp;quot;1&amp;quot;, &amp;quot;星期二&amp;quot;=&amp;quot;2&amp;quot;,&amp;quot;星期三&amp;quot;=&amp;quot;3&amp;quot;,
+                             &amp;quot;星期四&amp;quot;=&amp;quot;4&amp;quot;,&amp;quot;星期五&amp;quot;=&amp;quot;5&amp;quot;)) %&amp;gt;%
+  mutate(weekday.en =str_c(&amp;quot;weekday&amp;quot;,weekday.en)) %&amp;gt;%
+  mutate(dir= str_c(
+    str_c(date, week.en, weekday.en, slot.en, VideoRole, sep=&amp;quot;-&amp;quot;),
+    &amp;quot;.mp4&amp;quot;)
+    ) 
+
+# export file
+xlsx::write.xlsx2(pageinfo_ok, &amp;quot;page-info-ok.xlsx&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

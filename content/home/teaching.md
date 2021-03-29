@@ -9,7 +9,7 @@ active = true  # Activate this widget? true/false
 weight = 30  # Order that this section will appear.
 
 title = "Teaching"
-subtitle = ""
+subtitle = "教学工作"
 
 [design]
   # Choose how many columns the section has. Valid values: 1 or 2.

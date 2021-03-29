@@ -1,0 +1,737 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>计量课程简介 | Academic</title>
+    <link>https://huhuaping.netlify.app/course-econometrics/</link>
+      <atom:link href="https://huhuaping.netlify.app/course-econometrics/index.xml" rel="self" type="application/rss+xml" />
+    <description>计量课程简介</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>huhuaping@2019</copyright><lastBuildDate>Fri, 01 Mar 2019 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://huhuaping.netlify.app/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_2.png</url>
+      <title>计量课程简介</title>
+      <link>https://huhuaping.netlify.app/course-econometrics/</link>
+    </image>
+    
+    <item>
+      <title>参考资料电子版</title>
+      <link>https://huhuaping.netlify.app/course-econometrics/textbook/</link>
+      <pubDate>Sat, 27 Apr 2019 00:00:00 +0800</pubDate>
+      <guid>https://huhuaping.netlify.app/course-econometrics/textbook/</guid>
+      <description>
+
+&lt;div id=&#34;TOC&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#参考教材1古扎拉蒂-计量经济学基础&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1&lt;/span&gt; 参考教材1：古扎拉蒂-计量经济学基础&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#参考教材2李子奈-计量经济学&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2&lt;/span&gt; 参考教材2：李子奈-计量经济学&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;友情提示：
+- 因新冠疫情，为方便师生教学，以下材料仅供延迟开学期间学生学习使用，后期将会择机删除。
+- 任何个人和机构不得用于商业目的，如产生法律纠纷，后果一律使用者承担。
+- 支持著者，保护版权！&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div id=&#34;参考教材1古扎拉蒂-计量经济学基础&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;1&lt;/span&gt; 参考教材1：古扎拉蒂-计量经济学基础&lt;/h1&gt;
+&lt;p&gt;古扎拉蒂,计量经济学基础（上下册）(第5版)[M], 北京:中国人民大学出版社, 2013&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;第01章 导论 &lt;a href=&#34;https://d.seit2019.xyz/wp-content/uploads/2020/03/book-gujarati-chpt01-introduction.pdf&#34;&gt;在线浏览或下载&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;第02章 一元回归分析：基本思想 &lt;a href=&#34;https://d.seit2019.xyz/wp-content/uploads/2020/03/book-gujarati-chpt02-simple-reg-basic.pdf&#34;&gt;在线浏览或下载&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;参考教材2李子奈-计量经济学&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;2&lt;/span&gt; 参考教材2：李子奈-计量经济学&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;李子奈,潘文卿. 计量经济学(第四版)[M].高等教育出版社,北京:2015,9&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;第一章 绪论 (pdf格式，文件大小14.4 MB) &lt;a href=&#34;https://d.seit2019.xyz/wp-content/uploads/2020/03/book-v4-chpt1-intro.pdf&#34;&gt;下载站点1&lt;/a&gt;；&lt;a href=&#34;https://huhuaping.netlify.app/course-econometrics/resource/book-v4-chpt1-intro.pdf&#34;&gt;下载站点2&lt;/a&gt;;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;第二章 经典单方程计量经济学模型：一元线性回归模型 (pdf格式，文件大小13.4 MB) &lt;a href=&#34;https://d.seit2019.xyz/wp-content/uploads/2020/03/book-v4-chpt2-simple-reg.pdf&#34;&gt;下载站点1&lt;/a&gt;；&lt;a href=&#34;https://huhuaping.netlify.app/course-econometrics/resource/book-v4-chpt2-simple-reg.pdf&#34;&gt;下载站点2&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;第三章 经典单方程计量经济学模型：多元线性回归模型 (pdf格式，文件大小19.6 MB) &lt;a href=&#34;https://d.seit2019.xyz/wp-content/uploads/2020/03/book-v4-chpt3-multiple-reg.pdf&#34;&gt;下载站点1&lt;/a&gt;；&lt;a href=&#34;https://huhuaping.netlify.app/course-econometrics/resource/book-v4-chpt3-multiple-reg.pdf&#34;&gt;下载站点2&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;第四章 经典单方程计量经济学模型：放宽基本假定的模型 (pdf格式，文件大小17.8 MB) &lt;a href=&#34;https://d.seit2019.xyz/wp-content/uploads/2020/03/book-v4-chpt4-relax-reg.pdf&#34;&gt;下载站点1&lt;/a&gt;；&lt;a href=&#34;https://huhuaping.netlify.app/course-econometrics/resource/book-v4-chpt4-relax-reg.pdf&#34;&gt;下载站点2&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;第五章 时间序列计量经济学模型 (pdf格式，文件大小22.1 MB) &lt;a href=&#34;https://d.seit2019.xyz/wp-content/uploads/2020/03/book-v4-chpt5-time-series.pdf&#34;&gt;下载站点1&lt;/a&gt;；&lt;a href=&#34;https://huhuaping.netlify.app/course-econometrics/resource/book-v4-chpt5-time-series.pdf&#34;&gt;下载站点2&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>教学大纲</title>
+      <link>https://huhuaping.netlify.app/course-econometrics/syllabus/</link>
+      <pubDate>Sat, 27 Apr 2019 00:00:00 +0800</pubDate>
+      <guid>https://huhuaping.netlify.app/course-econometrics/syllabus/</guid>
+      <description>
+&lt;script src=&#34;https://huhuaping.netlify.app/rmarkdown-libs/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://huhuaping.netlify.app/rmarkdown-libs/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
+
+&lt;div id=&#34;TOC&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#课程平台&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1&lt;/span&gt; 课程平台&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#个人课程网站&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1.1&lt;/span&gt; 个人课程网站&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#学校平台课程&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1.2&lt;/span&gt; 学校平台课程&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#在线资源&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2&lt;/span&gt; 在线资源&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#使用教材&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3&lt;/span&gt; 使用教材&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#参考教材&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4&lt;/span&gt; 参考教材&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#软件材料&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;5&lt;/span&gt; 软件材料&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#考核方式&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;6&lt;/span&gt; 考核方式&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#理论课内容&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;7&lt;/span&gt; 理论课内容&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#实验课安排&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;8&lt;/span&gt; 实验课安排&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id=&#34;课程平台&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;1&lt;/span&gt; 课程平台&lt;/h1&gt;
+&lt;div id=&#34;个人课程网站&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;1.1&lt;/span&gt; 个人课程网站&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;说明&lt;/strong&gt;：
+1. 个人开发的独立网站，应用R编程语言和Rmarkdown语言开发建设；
+2. 只要设备能联网，就等浏览课程资源（建议使用chrome浏览器）；
+3. 连接速度根据你的电信供应商而定。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;PC电脑&lt;/strong&gt;访问网站：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;使用浏览器（chrome或360极速浏览器）登陆个人网站网址&lt;a href=&#34;huhuaping.com&#34;&gt;huhuaping.com&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;点击首页导航栏&lt;strong&gt;Teaching&lt;/strong&gt;，然后点击&lt;strong&gt;计量经济学（本科）&lt;/strong&gt;。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://huhuaping.netlify.app/pic/chpt00-course-netlify.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;手机设备&lt;/strong&gt;访问课程网站：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;使用浏览器（chrome、Safari或360极速浏览器）登陆个人网站网址&lt;a href=&#34;huhuaping.com&#34;&gt;huhuaping.com&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;手机界面下，需要点击网站导航&lt;strong&gt;三道杠&lt;/strong&gt;。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://huhuaping.netlify.app/pic/chpt00-mobile3.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;学校平台课程&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;1.2&lt;/span&gt; 学校平台课程&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;说明&lt;/strong&gt;：
+1. 外网可以访问；
+2. 手机端暂时不支持&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;西北农林科技大学&lt;strong&gt;在线教育综合平台&lt;/strong&gt;，我的课程在平台上运行多年。&lt;strong&gt;《计量经济学》（胡华平）&lt;/strong&gt;课程网址：&lt;a href=&#34;http://eol.nwsuaf.edu.cn/meol/jpk/course/layout/newpage/index.jsp?courseId=35257&#34;&gt;http://eol.nwsuaf.edu.cn/meol/jpk/course/layout/newpage/index.jsp?courseId=35257&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://huhuaping.netlify.app/pic/chpt00-course-university.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;p&gt;西北农林科技大学&lt;strong&gt;在线教育综合平台&lt;/strong&gt;，登陆方式：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;门户登陆（&lt;strong&gt;建议&lt;/strong&gt;）：西农首页—&amp;gt;（登陆）信息综合服务平台—&amp;gt;（点击进入）网络综合教学平台—&amp;gt;（选择课程）《计量经济学》（胡华平）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://huhuaping.netlify.app/pic/chpt00-login.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;在线资源&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;2&lt;/span&gt; 在线资源&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;课程资源&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;教学课件（课堂ppt、实验指导书…）&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;统计软件（EVieWs、mathtype、office…）&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;参考图书&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;教学活动&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;实验上机作业&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;实验指导视频…&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;教学答疑&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;使用教材&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;3&lt;/span&gt; 使用教材&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://item.jd.com/12276682.html&#34;&gt;李子奈和潘文卿：《计量经济学》第4版，高等教育出版社，2015&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://huhuaping.netlify.app/pic/book-li-4th.jpg&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;参考教材&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;4&lt;/span&gt; 参考教材&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&#34;https://huhuaping.netlify.app/pic/book-Wooldridge-5th_.jpg&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://item.jd.com/11690382.html&#34;&gt;伍德里奇：《计量经济学导论：现代观点》第5版，中国人民大学出版社，2015.4&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://huhuaping.netlify.app/pic/book-Gujarati-5th.png&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://item.jd.com/10780359.html&#34;&gt;古扎拉蒂：《计量经济学基础》（上下册）第5版，北京：中国人民大学出版社，2013&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;软件材料&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;5&lt;/span&gt; 软件材料&lt;/h1&gt;
+&lt;p&gt;熟练掌握一门计量软件。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;EViews软件&lt;/strong&gt;（课程指定软件）：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;实验室版本：EViews 10.0&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;软件参考使用书：&lt;a href=&#34;https://www.amazon.cn/dp/B071XNMXYM/ref=sr_1_4?s=books&amp;amp;ie=UTF8&amp;amp;qid=1550820189&amp;amp;sr=1-4&amp;amp;keywords=EViews&#34;&gt;高铁梅，计量经济分析方法与建模:EViews应用及实例(第3版)，清华大学出版社，2016.12&lt;/a&gt;
+]&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;R软件&lt;/strong&gt;（选用，自学）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Adler, J. R in a Nutshell (2ed) [M], Reilly, 2012.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Crawley, M. J. The R Book (2nd) [M], Wiley, 2013.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;stata软件&lt;/strong&gt;（选用，自学）：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://item.jd.com/12245551.html&#34;&gt;陈强：《计量经济学及Stata应用》，高等教育出版社，2015.7&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;考核方式&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;6&lt;/span&gt; 考核方式&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;期末成绩（60%）：闭卷考试（务必带上&lt;strong&gt;科学计算器&lt;/strong&gt;）&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;平时成绩（10%）：考勤+随堂提问&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;上机实验（30%）：7次实验作业&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;理论课内容&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;7&lt;/span&gt; 理论课内容&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;第1章 导论（2学时）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;1.1 科学哲学简介*&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;1.2 计量经济学的方法论基础*&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;1.3 计量经济学的内容体系&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;1.4 计量经济学建模步骤和要点&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;第2章 一元回归分析：基本思想(4学时)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;2.1 一个假设的例子&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;2.2 总体回归函数的概念&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;2.3 “线性”一词的含义&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;2.4 总体回归函数&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;2.5 随机平扰顶的含义&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;2.6 样本回归函数&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;2.7 说明性例子&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;第3章 一元回归分析：估计问题（4学时）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;3.1 普通最小二乘法&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;3.2 经典线性回归模型: 最小二乘法的基本假定&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;3.3 最小二乘估计的精度就标准误&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;3.4 最小二乘估计量的性质:高斯-马尔可夫定理&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;3.5 判定系数:“似合优度”的一个度量&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;3.6 说明性例子&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;第4章 一元回归分析：正态假设（2学时）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;4.1 随机干扰项的概率分布&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;4.2 随机干扰项的正态性假设&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;4.3 在正态性假设下OLS估计量的性质&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;4.4 极大似然法&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;第5章 一元回归分析：推断与预测（4学时）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;5.1 区间估计: 一些基本思想&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;5.2 回归系数的置信区间&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;5.3 回归误差方差的置信区间&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;5.4 假设检验: 置信区间方法&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;5.5 假设检验: 显著性检验方法&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;5.6 假设检验:一些实际操作问题&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;5.7 回归分析与方差分析&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;5.8 回归分析的应用:预测问题&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;5.9 报告回归分析的结果&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;5.10 评价回归分析的结果&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;第6章 一元回归分析：模型选择（2学时）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;6.1 过原点回归&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;6.2 尺度与测量单位&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;6.3 标准化变量的回归&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;6.4 对数模型&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;6.5 倒数模型&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;6.6 函数形式的选择&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;第7章 多元回归分析：估计问题（4学时）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;7.1 三变量模型:符号与假定&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;7.2 对多元回归方程的解释&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;7.3 偏回归系数的含义&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;7.4 偏回归系数的OLS与ML估计&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;7.5 多元判定系&lt;span class=&#34;math inline&#34;&gt;\(R2\)&lt;/span&gt;与多元相关系数&lt;sup&gt;R&lt;/sup&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;7.6 &lt;span class=&#34;math inline&#34;&gt;\(R^2\)&lt;/span&gt;及调整&lt;span class=&#34;math inline&#34;&gt;\(R^2\)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;第8章 多元回归分析：推断与预测（4学时）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;8.1 多元回归中的假设检验&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;8.2 检验关于个别偏回归系数的假设&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;8.3 检验样本回归的总显著性&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;8.4 检验两个回归系数是否相等&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;8.5 受约束的最小二乘法:检验线性等式约束条件&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;8.6 检验回归模型的结构或稳定性:邹至庄检验&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;8.7 用多元回归做预测&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;8.8 假设检验: 似然比、瓦尔德与拉格朗日乘数检验&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;第9章 虚拟变量回归模型（4学时）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;9.1 虚拟变量的性质&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;9.2 ANOVA 模型&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;9.3 含有两个定性变量的ANOVA模型&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;9.4 同时含有定性和定量回归元的回归: ANOVA模型&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;9.5 邹至庄检验的虚拟变量方法&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;9.6 使用虚拟变量的交互效应&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;9.7 季节分析中虚拟变量的使用&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;9.8 分段线性回归&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;第10章 放宽经典假设：多重共线性（6学时）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;10.1 多重共线性的性质&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;10.2 出现完全多重共线性 时的估计问题&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;10.3 出现“高度”但“不完全”多重共线性的估计问题&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;10.4多重共线性的理论后果&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;10.5 多重共线性的实际后果&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;10.6 说明性的例子&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;10.7 多重共线性的侦察&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;10.8 补救措施&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;10.9 多重共线性一定是坏事吗?&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;第11章 放宽经典假设：异方差性（6学时）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;11.1 异方差的性质&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;11.2 出现异方差性时的OLS 估计&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;11.3 广义最小二乘法&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;11.4 出现异方差性时使用OLS的后果&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;11.5 异方差性的侦察&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;11.6 补救措施&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;11.7 总结性的例子&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;11.8 谨防对异方差性反应过度&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;第12章 放宽经典假设：自相关性（6学时）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;12.1 自相关的性质&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;12.2 出现自相关时的OLS估计量&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;12.3 自相关出现时的BLUE&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;12.4 出现自相关时使用OLS的后果&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;12.5 说明案例：工资与生产率&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;12.6 侦察自相关&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;12.7 补救措施&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;12.8 模型误设与纯粹自相关&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;12.9 OLS与FGLS和HAC&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;实验课安排&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;8&lt;/span&gt; 实验课安排&lt;/h1&gt;
+&lt;table class=&#34;table&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:center;&#34;&gt;
+序号
+&lt;/th&gt;
+&lt;th style=&#34;text-align:center;&#34;&gt;
+实验主题
+&lt;/th&gt;
+&lt;th style=&#34;text-align:center;&#34;&gt;
+学时
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center;&#34;&gt;
+Lab 1
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;&#34;&gt;
+EViews软件入门与基本操作
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;&#34;&gt;
+4
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center;&#34;&gt;
+Lab 2
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;&#34;&gt;
+一元线性回归及参数估计
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;&#34;&gt;
+4
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center;&#34;&gt;
+Lab 3
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;&#34;&gt;
+模型函数形式与模型选择
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;&#34;&gt;
+4
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center;&#34;&gt;
+Lab 4
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;&#34;&gt;
+多元线性回归及矩阵运算
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;&#34;&gt;
+4
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center;&#34;&gt;
+Lab 5
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;&#34;&gt;
+虚拟变量模型的设置和处理
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;&#34;&gt;
+4
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center;&#34;&gt;
+Lab 6
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;&#34;&gt;
+多重共线性的检验与处理
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;&#34;&gt;
+4
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center;&#34;&gt;
+Lab 7
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;&#34;&gt;
+异方差模型的检验和处理
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;&#34;&gt;
+4
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center;&#34;&gt;
+Lab 8
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;&#34;&gt;
+自相关模型的检验和处理
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;&#34;&gt;
+4
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>计量经济学理论课教学安排</title>
+      <link>https://huhuaping.netlify.app/course-econometrics/schedule-theory/</link>
+      <pubDate>Sat, 27 Apr 2019 00:00:00 +0800</pubDate>
+      <guid>https://huhuaping.netlify.app/course-econometrics/schedule-theory/</guid>
+      <description>
+&lt;script src=&#34;https://huhuaping.netlify.app/rmarkdown-libs/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://huhuaping.netlify.app/rmarkdown-libs/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
+
+&lt;div id=&#34;TOC&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#内容安排48学时&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1&lt;/span&gt; 内容安排（48学时）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#教学环节&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2&lt;/span&gt; 教学环节&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#课前预习材料&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.1&lt;/span&gt; （课前）预习材料&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#课中教学讲稿&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.2&lt;/span&gt; （课中）教学讲稿&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#课后随堂作业&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.3&lt;/span&gt; （课后）随堂作业&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id=&#34;内容安排48学时&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;1&lt;/span&gt; 内容安排（48学时）&lt;/h1&gt;
+&lt;p&gt;下表列出了教学内容和相关材料，大家可以&lt;strong&gt;点击观看&lt;/strong&gt;或&lt;strong&gt;下载&lt;/strong&gt;，并完成相关学习要求。&lt;/p&gt;
+&lt;table class=&#34;table table-striped&#34; style=&#34;width: auto !important; margin-left: auto; margin-right: auto;&#34;&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:center;position: sticky; top:0; background-color: #FFFFFF;&#34;&gt;
+章内容
+&lt;/th&gt;
+&lt;th style=&#34;text-align:center;position: sticky; top:0; background-color: #FFFFFF;&#34;&gt;
+阅读材料
+&lt;/th&gt;
+&lt;th style=&#34;text-align:center;position: sticky; top:0; background-color: #FFFFFF;&#34;&gt;
+幻灯片
+&lt;/th&gt;
+&lt;th style=&#34;text-align:center;position: sticky; top:0; background-color: #FFFFFF;&#34;&gt;
+pdf课件
+&lt;/th&gt;
+&lt;th style=&#34;text-align:center;position: sticky; top:0; background-color: #FFFFFF;&#34;&gt;
+随堂作业
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center;width: 20em; font-weight: bold;&#34;&gt;
+&lt;span style=&#34;     text-align: l;&#34;&gt;第00章 课程说明&lt;/span&gt;
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 8em; &#34;&gt;
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 8em; &#34;&gt;
+&lt;a href=&#34;https://huhuaping.netlify.app/course-econometrics/00-course-schedule-slide.html&#34;&gt;&lt;svg style=&#34;height:17;fill:blue;&#34; viewbox=&#34;0 0 384 512&#34;&gt;&lt;path d=&#34;M193.7 271.2c8.8 0 15.5 2.7 20.3 8.1 9.6 10.9 9.8 32.7-.2 44.1-4.9 5.6-11.9 8.5-21.1 8.5h-26.9v-60.7h27.9zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-153 31V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm53 165.2c0 90.3-88.8 77.6-111.1 77.6V436c0 6.6-5.4 12-12 12h-30.8c-6.6 0-12-5.4-12-12V236.2c0-6.6 5.4-12 12-12h81c44.5 0 72.9 32.8 72.9 77z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 8em; &#34;&gt;
+&lt;a href=&#34;https://d.seit2019.xyz/wp-content/uploads/2020/03/00-course-schedule-slide.pdf&#34;&gt;&lt;svg style=&#34;height:17;fill:blue;&#34; viewbox=&#34;0 0 384 512&#34;&gt;&lt;path d=&#34;M181.9 256.1c-5-16-4.9-46.9-2-46.9 8.4 0 7.6 36.9 2 46.9zm-1.7 47.2c-7.7 20.2-17.3 43.3-28.4 62.7 18.3-7 39-17.2 62.9-21.9-12.7-9.6-24.9-23.4-34.5-40.8zM86.1 428.1c0 .8 13.2-5.4 34.9-40.2-6.7 6.3-29.1 24.5-34.9 40.2zM248 160h136v328c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V24C0 10.7 10.7 0 24 0h200v136c0 13.2 10.8 24 24 24zm-8 171.8c-20-12.2-33.3-29-42.7-53.8 4.5-18.5 11.6-46.6 6.2-64.2-4.7-29.4-42.4-26.5-47.8-6.8-5 18.3-.4 44.1 8.1 77-11.6 27.6-28.7 64.6-40.8 85.8-.1 0-.1.1-.2.1-27.1 13.9-73.6 44.5-54.5 68 5.6 6.9 16 10 21.5 10 17.9 0 35.7-18 61.1-61.8 25.8-8.5 54.1-19.1 79-23.2 21.7 11.8 47.1 19.5 64 19.5 29.2 0 31.2-32 19.7-43.4-13.9-13.6-54.3-9.7-73.6-7.2zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-74.1 255.3c4.1-2.7-2.5-11.9-42.8-9 37.1 15.8 42.8 9 42.8 9z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 8em; &#34;&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr grouplength=&#34;7&#34;&gt;
+&lt;td colspan=&#34;5&#34; style=&#34;border-bottom: 1px solid;&#34;&gt;
+&lt;strong&gt;Part I 经典假设&lt;/strong&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center;width: 20em; font-weight: bold; padding-left:  2em;&#34; indentlevel=&#34;1&#34;&gt;
+&lt;span style=&#34;     text-align: l;&#34;&gt;第01章 绪论&lt;/span&gt;
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 8em; &#34;&gt;
+&lt;a href=&#34;https://huhuaping.netlify.app/course-econometrics/reading/cht01-history.html&#34;&gt;&lt;svg style=&#34;height:17;fill:blue;&#34; viewbox=&#34;0 0 576 512&#34;&gt;&lt;path d=&#34;M542.22 32.05c-54.8 3.11-163.72 14.43-230.96 55.59-4.64 2.84-7.27 7.89-7.27 13.17v363.87c0 11.55 12.63 18.85 23.28 13.49 69.18-34.82 169.23-44.32 218.7-46.92 16.89-.89 30.02-14.43 30.02-30.66V62.75c.01-17.71-15.35-31.74-33.77-30.7zM264.73 87.64C197.5 46.48 88.58 35.17 33.78 32.05 15.36 31.01 0 45.04 0 62.75V400.6c0 16.24 13.13 29.78 30.02 30.66 49.49 2.6 149.59 12.11 218.77 46.95 10.62 5.35 23.21-1.94 23.21-13.46V100.63c0-5.29-2.62-10.14-7.27-12.99z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 8em; &#34;&gt;
+&lt;a href=&#34;https://huhuaping.netlify.app/course-econometrics/01-introduction-slide.html&#34;&gt;&lt;svg style=&#34;height:17;fill:blue;&#34; viewbox=&#34;0 0 384 512&#34;&gt;&lt;path d=&#34;M193.7 271.2c8.8 0 15.5 2.7 20.3 8.1 9.6 10.9 9.8 32.7-.2 44.1-4.9 5.6-11.9 8.5-21.1 8.5h-26.9v-60.7h27.9zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-153 31V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm53 165.2c0 90.3-88.8 77.6-111.1 77.6V436c0 6.6-5.4 12-12 12h-30.8c-6.6 0-12-5.4-12-12V236.2c0-6.6 5.4-12 12-12h81c44.5 0 72.9 32.8 72.9 77z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 8em; &#34;&gt;
+&lt;a href=&#34;https://d.seit2019.xyz/wp-content/uploads/2020/03/01-introduction-slide.pdf&#34;&gt;&lt;svg style=&#34;height:17;fill:blue;&#34; viewbox=&#34;0 0 384 512&#34;&gt;&lt;path d=&#34;M181.9 256.1c-5-16-4.9-46.9-2-46.9 8.4 0 7.6 36.9 2 46.9zm-1.7 47.2c-7.7 20.2-17.3 43.3-28.4 62.7 18.3-7 39-17.2 62.9-21.9-12.7-9.6-24.9-23.4-34.5-40.8zM86.1 428.1c0 .8 13.2-5.4 34.9-40.2-6.7 6.3-29.1 24.5-34.9 40.2zM248 160h136v328c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V24C0 10.7 10.7 0 24 0h200v136c0 13.2 10.8 24 24 24zm-8 171.8c-20-12.2-33.3-29-42.7-53.8 4.5-18.5 11.6-46.6 6.2-64.2-4.7-29.4-42.4-26.5-47.8-6.8-5 18.3-.4 44.1 8.1 77-11.6 27.6-28.7 64.6-40.8 85.8-.1 0-.1.1-.2.1-27.1 13.9-73.6 44.5-54.5 68 5.6 6.9 16 10 21.5 10 17.9 0 35.7-18 61.1-61.8 25.8-8.5 54.1-19.1 79-23.2 21.7 11.8 47.1 19.5 64 19.5 29.2 0 31.2-32 19.7-43.4-13.9-13.6-54.3-9.7-73.6-7.2zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-74.1 255.3c4.1-2.7-2.5-11.9-42.8-9 37.1 15.8 42.8 9 42.8 9z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 8em; &#34;&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center;width: 20em; font-weight: bold; padding-left:  2em;&#34; indentlevel=&#34;1&#34;&gt;
+&lt;span style=&#34;     text-align: l;&#34;&gt;第02章 一元回归：基本思想&lt;/span&gt;
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 8em; &#34;&gt;
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 8em; &#34;&gt;
+&lt;a href=&#34;https://huhuaping.netlify.app/course-econometrics/02-simple-reg-basic-slide.html&#34;&gt;&lt;svg style=&#34;height:17;fill:blue;&#34; viewbox=&#34;0 0 384 512&#34;&gt;&lt;path d=&#34;M193.7 271.2c8.8 0 15.5 2.7 20.3 8.1 9.6 10.9 9.8 32.7-.2 44.1-4.9 5.6-11.9 8.5-21.1 8.5h-26.9v-60.7h27.9zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-153 31V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm53 165.2c0 90.3-88.8 77.6-111.1 77.6V436c0 6.6-5.4 12-12 12h-30.8c-6.6 0-12-5.4-12-12V236.2c0-6.6 5.4-12 12-12h81c44.5 0 72.9 32.8 72.9 77z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 8em; &#34;&gt;
+&lt;a href=&#34;https://d.seit2019.xyz/wp-content/uploads/2020/03/02-simple-reg-basic-slide.pdf&#34;&gt;&lt;svg style=&#34;height:17;fill:blue;&#34; viewbox=&#34;0 0 384 512&#34;&gt;&lt;path d=&#34;M181.9 256.1c-5-16-4.9-46.9-2-46.9 8.4 0 7.6 36.9 2 46.9zm-1.7 47.2c-7.7 20.2-17.3 43.3-28.4 62.7 18.3-7 39-17.2 62.9-21.9-12.7-9.6-24.9-23.4-34.5-40.8zM86.1 428.1c0 .8 13.2-5.4 34.9-40.2-6.7 6.3-29.1 24.5-34.9 40.2zM248 160h136v328c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V24C0 10.7 10.7 0 24 0h200v136c0 13.2 10.8 24 24 24zm-8 171.8c-20-12.2-33.3-29-42.7-53.8 4.5-18.5 11.6-46.6 6.2-64.2-4.7-29.4-42.4-26.5-47.8-6.8-5 18.3-.4 44.1 8.1 77-11.6 27.6-28.7 64.6-40.8 85.8-.1 0-.1.1-.2.1-27.1 13.9-73.6 44.5-54.5 68 5.6 6.9 16 10 21.5 10 17.9 0 35.7-18 61.1-61.8 25.8-8.5 54.1-19.1 79-23.2 21.7 11.8 47.1 19.5 64 19.5 29.2 0 31.2-32 19.7-43.4-13.9-13.6-54.3-9.7-73.6-7.2zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-74.1 255.3c4.1-2.7-2.5-11.9-42.8-9 37.1 15.8 42.8 9 42.8 9z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 8em; &#34;&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center;width: 20em; font-weight: bold; padding-left:  2em;&#34; indentlevel=&#34;1&#34;&gt;
+&lt;span style=&#34;     text-align: l;&#34;&gt;第03章 一元回归：估计问题&lt;/span&gt;
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 8em; &#34;&gt;
+&lt;a href=&#34;https://huhuaping.netlify.app/course-econometrics/reading/cht03-monte-simul.html&#34;&gt;&lt;svg style=&#34;height:17;fill:blue;&#34; viewbox=&#34;0 0 576 512&#34;&gt;&lt;path d=&#34;M542.22 32.05c-54.8 3.11-163.72 14.43-230.96 55.59-4.64 2.84-7.27 7.89-7.27 13.17v363.87c0 11.55 12.63 18.85 23.28 13.49 69.18-34.82 169.23-44.32 218.7-46.92 16.89-.89 30.02-14.43 30.02-30.66V62.75c.01-17.71-15.35-31.74-33.77-30.7zM264.73 87.64C197.5 46.48 88.58 35.17 33.78 32.05 15.36 31.01 0 45.04 0 62.75V400.6c0 16.24 13.13 29.78 30.02 30.66 49.49 2.6 149.59 12.11 218.77 46.95 10.62 5.35 23.21-1.94 23.21-13.46V100.63c0-5.29-2.62-10.14-7.27-12.99z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 8em; &#34;&gt;
+&lt;a href=&#34;https://huhuaping.netlify.app/course-econometrics/03-simple-reg-parameter-estimate-slide.html&#34;&gt;&lt;svg style=&#34;height:17;fill:blue;&#34; viewbox=&#34;0 0 384 512&#34;&gt;&lt;path d=&#34;M193.7 271.2c8.8 0 15.5 2.7 20.3 8.1 9.6 10.9 9.8 32.7-.2 44.1-4.9 5.6-11.9 8.5-21.1 8.5h-26.9v-60.7h27.9zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-153 31V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm53 165.2c0 90.3-88.8 77.6-111.1 77.6V436c0 6.6-5.4 12-12 12h-30.8c-6.6 0-12-5.4-12-12V236.2c0-6.6 5.4-12 12-12h81c44.5 0 72.9 32.8 72.9 77z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 8em; &#34;&gt;
+&lt;a href=&#34;https://d.seit2019.xyz/wp-content/uploads/2020/03/03-simple-reg-parameter-estimate-slide.pdf&#34;&gt;&lt;svg style=&#34;height:17;fill:blue;&#34; viewbox=&#34;0 0 384 512&#34;&gt;&lt;path d=&#34;M181.9 256.1c-5-16-4.9-46.9-2-46.9 8.4 0 7.6 36.9 2 46.9zm-1.7 47.2c-7.7 20.2-17.3 43.3-28.4 62.7 18.3-7 39-17.2 62.9-21.9-12.7-9.6-24.9-23.4-34.5-40.8zM86.1 428.1c0 .8 13.2-5.4 34.9-40.2-6.7 6.3-29.1 24.5-34.9 40.2zM248 160h136v328c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V24C0 10.7 10.7 0 24 0h200v136c0 13.2 10.8 24 24 24zm-8 171.8c-20-12.2-33.3-29-42.7-53.8 4.5-18.5 11.6-46.6 6.2-64.2-4.7-29.4-42.4-26.5-47.8-6.8-5 18.3-.4 44.1 8.1 77-11.6 27.6-28.7 64.6-40.8 85.8-.1 0-.1.1-.2.1-27.1 13.9-73.6 44.5-54.5 68 5.6 6.9 16 10 21.5 10 17.9 0 35.7-18 61.1-61.8 25.8-8.5 54.1-19.1 79-23.2 21.7 11.8 47.1 19.5 64 19.5 29.2 0 31.2-32 19.7-43.4-13.9-13.6-54.3-9.7-73.6-7.2zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-74.1 255.3c4.1-2.7-2.5-11.9-42.8-9 37.1 15.8 42.8 9 42.8 9z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 8em; &#34;&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center;width: 20em; font-weight: bold; padding-left:  2em;&#34; indentlevel=&#34;1&#34;&gt;
+&lt;span style=&#34;     text-align: l;&#34;&gt;第04章 一元回归：假设检验&lt;/span&gt;
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 8em; &#34;&gt;
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 8em; &#34;&gt;
+&lt;a href=&#34;https://huhuaping.netlify.app/course-econometrics/04-simple-reg-hypothesis-test-slide.html&#34;&gt;&lt;svg style=&#34;height:17;fill:blue;&#34; viewbox=&#34;0 0 384 512&#34;&gt;&lt;path d=&#34;M193.7 271.2c8.8 0 15.5 2.7 20.3 8.1 9.6 10.9 9.8 32.7-.2 44.1-4.9 5.6-11.9 8.5-21.1 8.5h-26.9v-60.7h27.9zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-153 31V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm53 165.2c0 90.3-88.8 77.6-111.1 77.6V436c0 6.6-5.4 12-12 12h-30.8c-6.6 0-12-5.4-12-12V236.2c0-6.6 5.4-12 12-12h81c44.5 0 72.9 32.8 72.9 77z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 8em; &#34;&gt;
+&lt;a href=&#34;https://d.seit2019.xyz/wp-content/uploads/2020/03/04-simple-reg-hypothesis-test-slide.pdf&#34;&gt;&lt;svg style=&#34;height:17;fill:blue;&#34; viewbox=&#34;0 0 384 512&#34;&gt;&lt;path d=&#34;M181.9 256.1c-5-16-4.9-46.9-2-46.9 8.4 0 7.6 36.9 2 46.9zm-1.7 47.2c-7.7 20.2-17.3 43.3-28.4 62.7 18.3-7 39-17.2 62.9-21.9-12.7-9.6-24.9-23.4-34.5-40.8zM86.1 428.1c0 .8 13.2-5.4 34.9-40.2-6.7 6.3-29.1 24.5-34.9 40.2zM248 160h136v328c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V24C0 10.7 10.7 0 24 0h200v136c0 13.2 10.8 24 24 24zm-8 171.8c-20-12.2-33.3-29-42.7-53.8 4.5-18.5 11.6-46.6 6.2-64.2-4.7-29.4-42.4-26.5-47.8-6.8-5 18.3-.4 44.1 8.1 77-11.6 27.6-28.7 64.6-40.8 85.8-.1 0-.1.1-.2.1-27.1 13.9-73.6 44.5-54.5 68 5.6 6.9 16 10 21.5 10 17.9 0 35.7-18 61.1-61.8 25.8-8.5 54.1-19.1 79-23.2 21.7 11.8 47.1 19.5 64 19.5 29.2 0 31.2-32 19.7-43.4-13.9-13.6-54.3-9.7-73.6-7.2zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-74.1 255.3c4.1-2.7-2.5-11.9-42.8-9 37.1 15.8 42.8 9 42.8 9z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 8em; &#34;&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center;width: 20em; font-weight: bold; padding-left:  2em;&#34; indentlevel=&#34;1&#34;&gt;
+&lt;span style=&#34;     text-align: l;&#34;&gt;第05章 一元回归：模型形式&lt;/span&gt;
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 8em; &#34;&gt;
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 8em; &#34;&gt;
+&lt;a href=&#34;https://huhuaping.netlify.app/course-econometrics/05-simple-reg-eq-forms-slide.html&#34;&gt;&lt;svg style=&#34;height:17;fill:blue;&#34; viewbox=&#34;0 0 384 512&#34;&gt;&lt;path d=&#34;M193.7 271.2c8.8 0 15.5 2.7 20.3 8.1 9.6 10.9 9.8 32.7-.2 44.1-4.9 5.6-11.9 8.5-21.1 8.5h-26.9v-60.7h27.9zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-153 31V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm53 165.2c0 90.3-88.8 77.6-111.1 77.6V436c0 6.6-5.4 12-12 12h-30.8c-6.6 0-12-5.4-12-12V236.2c0-6.6 5.4-12 12-12h81c44.5 0 72.9 32.8 72.9 77z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 8em; &#34;&gt;
+&lt;a href=&#34;https://d.seit2019.xyz/wp-content/uploads/2020/03/05-simple-reg-eq-forms-slide.pdf&#34;&gt;&lt;svg style=&#34;height:17;fill:blue;&#34; viewbox=&#34;0 0 384 512&#34;&gt;&lt;path d=&#34;M181.9 256.1c-5-16-4.9-46.9-2-46.9 8.4 0 7.6 36.9 2 46.9zm-1.7 47.2c-7.7 20.2-17.3 43.3-28.4 62.7 18.3-7 39-17.2 62.9-21.9-12.7-9.6-24.9-23.4-34.5-40.8zM86.1 428.1c0 .8 13.2-5.4 34.9-40.2-6.7 6.3-29.1 24.5-34.9 40.2zM248 160h136v328c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V24C0 10.7 10.7 0 24 0h200v136c0 13.2 10.8 24 24 24zm-8 171.8c-20-12.2-33.3-29-42.7-53.8 4.5-18.5 11.6-46.6 6.2-64.2-4.7-29.4-42.4-26.5-47.8-6.8-5 18.3-.4 44.1 8.1 77-11.6 27.6-28.7 64.6-40.8 85.8-.1 0-.1.1-.2.1-27.1 13.9-73.6 44.5-54.5 68 5.6 6.9 16 10 21.5 10 17.9 0 35.7-18 61.1-61.8 25.8-8.5 54.1-19.1 79-23.2 21.7 11.8 47.1 19.5 64 19.5 29.2 0 31.2-32 19.7-43.4-13.9-13.6-54.3-9.7-73.6-7.2zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-74.1 255.3c4.1-2.7-2.5-11.9-42.8-9 37.1 15.8 42.8 9 42.8 9z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 8em; &#34;&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center;width: 20em; font-weight: bold; padding-left:  2em;&#34; indentlevel=&#34;1&#34;&gt;
+&lt;span style=&#34;     text-align: l;&#34;&gt;第06章 多元回归1：代数部分&lt;/span&gt;
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 8em; &#34;&gt;
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 8em; &#34;&gt;
+&lt;a href=&#34;https://huhuaping.netlify.app/course-econometrics/06-multiple-reg-algebra-slide.html&#34;&gt;&lt;svg style=&#34;height:17;fill:blue;&#34; viewbox=&#34;0 0 384 512&#34;&gt;&lt;path d=&#34;M193.7 271.2c8.8 0 15.5 2.7 20.3 8.1 9.6 10.9 9.8 32.7-.2 44.1-4.9 5.6-11.9 8.5-21.1 8.5h-26.9v-60.7h27.9zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-153 31V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm53 165.2c0 90.3-88.8 77.6-111.1 77.6V436c0 6.6-5.4 12-12 12h-30.8c-6.6 0-12-5.4-12-12V236.2c0-6.6 5.4-12 12-12h81c44.5 0 72.9 32.8 72.9 77z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 8em; &#34;&gt;
+&lt;a href=&#34;https://d.seit2019.xyz/wp-content/uploads/2020/03/06-multiple-reg-algebra-slide.pdf&#34;&gt;&lt;svg style=&#34;height:17;fill:blue;&#34; viewbox=&#34;0 0 384 512&#34;&gt;&lt;path d=&#34;M181.9 256.1c-5-16-4.9-46.9-2-46.9 8.4 0 7.6 36.9 2 46.9zm-1.7 47.2c-7.7 20.2-17.3 43.3-28.4 62.7 18.3-7 39-17.2 62.9-21.9-12.7-9.6-24.9-23.4-34.5-40.8zM86.1 428.1c0 .8 13.2-5.4 34.9-40.2-6.7 6.3-29.1 24.5-34.9 40.2zM248 160h136v328c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V24C0 10.7 10.7 0 24 0h200v136c0 13.2 10.8 24 24 24zm-8 171.8c-20-12.2-33.3-29-42.7-53.8 4.5-18.5 11.6-46.6 6.2-64.2-4.7-29.4-42.4-26.5-47.8-6.8-5 18.3-.4 44.1 8.1 77-11.6 27.6-28.7 64.6-40.8 85.8-.1 0-.1.1-.2.1-27.1 13.9-73.6 44.5-54.5 68 5.6 6.9 16 10 21.5 10 17.9 0 35.7-18 61.1-61.8 25.8-8.5 54.1-19.1 79-23.2 21.7 11.8 47.1 19.5 64 19.5 29.2 0 31.2-32 19.7-43.4-13.9-13.6-54.3-9.7-73.6-7.2zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-74.1 255.3c4.1-2.7-2.5-11.9-42.8-9 37.1 15.8 42.8 9 42.8 9z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 8em; &#34;&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center;width: 20em; font-weight: bold; padding-left:  2em;&#34; indentlevel=&#34;1&#34;&gt;
+&lt;span style=&#34;     text-align: l;&#34;&gt;第06章 多元回归2：矩阵部分&lt;/span&gt;
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 8em; &#34;&gt;
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 8em; &#34;&gt;
+&lt;a href=&#34;https://huhuaping.netlify.app/course-econometrics/06-multiple-reg-matrix-slide.html&#34;&gt;&lt;svg style=&#34;height:17;fill:blue;&#34; viewbox=&#34;0 0 384 512&#34;&gt;&lt;path d=&#34;M193.7 271.2c8.8 0 15.5 2.7 20.3 8.1 9.6 10.9 9.8 32.7-.2 44.1-4.9 5.6-11.9 8.5-21.1 8.5h-26.9v-60.7h27.9zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-153 31V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm53 165.2c0 90.3-88.8 77.6-111.1 77.6V436c0 6.6-5.4 12-12 12h-30.8c-6.6 0-12-5.4-12-12V236.2c0-6.6 5.4-12 12-12h81c44.5 0 72.9 32.8 72.9 77z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 8em; &#34;&gt;
+&lt;a href=&#34;https://d.seit2019.xyz/wp-content/uploads/2020/03/06-multiple-reg-matrix-slide.pdf&#34;&gt;&lt;svg style=&#34;height:17;fill:blue;&#34; viewbox=&#34;0 0 384 512&#34;&gt;&lt;path d=&#34;M181.9 256.1c-5-16-4.9-46.9-2-46.9 8.4 0 7.6 36.9 2 46.9zm-1.7 47.2c-7.7 20.2-17.3 43.3-28.4 62.7 18.3-7 39-17.2 62.9-21.9-12.7-9.6-24.9-23.4-34.5-40.8zM86.1 428.1c0 .8 13.2-5.4 34.9-40.2-6.7 6.3-29.1 24.5-34.9 40.2zM248 160h136v328c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V24C0 10.7 10.7 0 24 0h200v136c0 13.2 10.8 24 24 24zm-8 171.8c-20-12.2-33.3-29-42.7-53.8 4.5-18.5 11.6-46.6 6.2-64.2-4.7-29.4-42.4-26.5-47.8-6.8-5 18.3-.4 44.1 8.1 77-11.6 27.6-28.7 64.6-40.8 85.8-.1 0-.1.1-.2.1-27.1 13.9-73.6 44.5-54.5 68 5.6 6.9 16 10 21.5 10 17.9 0 35.7-18 61.1-61.8 25.8-8.5 54.1-19.1 79-23.2 21.7 11.8 47.1 19.5 64 19.5 29.2 0 31.2-32 19.7-43.4-13.9-13.6-54.3-9.7-73.6-7.2zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-74.1 255.3c4.1-2.7-2.5-11.9-42.8-9 37.1 15.8 42.8 9 42.8 9z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 8em; &#34;&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr grouplength=&#34;3&#34;&gt;
+&lt;td colspan=&#34;5&#34; style=&#34;border-bottom: 1px solid;&#34;&gt;
+&lt;strong&gt;Part II 放宽假设&lt;/strong&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center;width: 20em; font-weight: bold; padding-left:  2em;&#34; indentlevel=&#34;1&#34;&gt;
+&lt;span style=&#34;     text-align: l;&#34;&gt;第07章 放宽基本假设：多重共线性&lt;/span&gt;
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 8em; &#34;&gt;
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 8em; &#34;&gt;
+&lt;a href=&#34;https://huhuaping.netlify.app/course-econometrics/07-multi-linearity-slide.html&#34;&gt;&lt;svg style=&#34;height:17;fill:blue;&#34; viewbox=&#34;0 0 384 512&#34;&gt;&lt;path d=&#34;M193.7 271.2c8.8 0 15.5 2.7 20.3 8.1 9.6 10.9 9.8 32.7-.2 44.1-4.9 5.6-11.9 8.5-21.1 8.5h-26.9v-60.7h27.9zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-153 31V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm53 165.2c0 90.3-88.8 77.6-111.1 77.6V436c0 6.6-5.4 12-12 12h-30.8c-6.6 0-12-5.4-12-12V236.2c0-6.6 5.4-12 12-12h81c44.5 0 72.9 32.8 72.9 77z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 8em; &#34;&gt;
+&lt;a href=&#34;https://d.seit2019.xyz/wp-content/uploads/2020/03/07-multi-linearity-slide.pdf&#34;&gt;&lt;svg style=&#34;height:17;fill:blue;&#34; viewbox=&#34;0 0 384 512&#34;&gt;&lt;path d=&#34;M181.9 256.1c-5-16-4.9-46.9-2-46.9 8.4 0 7.6 36.9 2 46.9zm-1.7 47.2c-7.7 20.2-17.3 43.3-28.4 62.7 18.3-7 39-17.2 62.9-21.9-12.7-9.6-24.9-23.4-34.5-40.8zM86.1 428.1c0 .8 13.2-5.4 34.9-40.2-6.7 6.3-29.1 24.5-34.9 40.2zM248 160h136v328c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V24C0 10.7 10.7 0 24 0h200v136c0 13.2 10.8 24 24 24zm-8 171.8c-20-12.2-33.3-29-42.7-53.8 4.5-18.5 11.6-46.6 6.2-64.2-4.7-29.4-42.4-26.5-47.8-6.8-5 18.3-.4 44.1 8.1 77-11.6 27.6-28.7 64.6-40.8 85.8-.1 0-.1.1-.2.1-27.1 13.9-73.6 44.5-54.5 68 5.6 6.9 16 10 21.5 10 17.9 0 35.7-18 61.1-61.8 25.8-8.5 54.1-19.1 79-23.2 21.7 11.8 47.1 19.5 64 19.5 29.2 0 31.2-32 19.7-43.4-13.9-13.6-54.3-9.7-73.6-7.2zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-74.1 255.3c4.1-2.7-2.5-11.9-42.8-9 37.1 15.8 42.8 9 42.8 9z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 8em; &#34;&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center;width: 20em; font-weight: bold; padding-left:  2em;&#34; indentlevel=&#34;1&#34;&gt;
+&lt;span style=&#34;     text-align: l;&#34;&gt;第08章 放宽基本假设：异方差性&lt;/span&gt;
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 8em; &#34;&gt;
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 8em; &#34;&gt;
+&lt;a href=&#34;https://huhuaping.netlify.app/course-econometrics/08-hetero-scadeciticity-slide.html&#34;&gt;&lt;svg style=&#34;height:17;fill:blue;&#34; viewbox=&#34;0 0 384 512&#34;&gt;&lt;path d=&#34;M193.7 271.2c8.8 0 15.5 2.7 20.3 8.1 9.6 10.9 9.8 32.7-.2 44.1-4.9 5.6-11.9 8.5-21.1 8.5h-26.9v-60.7h27.9zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-153 31V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm53 165.2c0 90.3-88.8 77.6-111.1 77.6V436c0 6.6-5.4 12-12 12h-30.8c-6.6 0-12-5.4-12-12V236.2c0-6.6 5.4-12 12-12h81c44.5 0 72.9 32.8 72.9 77z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 8em; &#34;&gt;
+&lt;a href=&#34;https://d.seit2019.xyz/wp-content/uploads/2020/03/08-hetero-scadeciticity-slide.pdf&#34;&gt;&lt;svg style=&#34;height:17;fill:blue;&#34; viewbox=&#34;0 0 384 512&#34;&gt;&lt;path d=&#34;M181.9 256.1c-5-16-4.9-46.9-2-46.9 8.4 0 7.6 36.9 2 46.9zm-1.7 47.2c-7.7 20.2-17.3 43.3-28.4 62.7 18.3-7 39-17.2 62.9-21.9-12.7-9.6-24.9-23.4-34.5-40.8zM86.1 428.1c0 .8 13.2-5.4 34.9-40.2-6.7 6.3-29.1 24.5-34.9 40.2zM248 160h136v328c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V24C0 10.7 10.7 0 24 0h200v136c0 13.2 10.8 24 24 24zm-8 171.8c-20-12.2-33.3-29-42.7-53.8 4.5-18.5 11.6-46.6 6.2-64.2-4.7-29.4-42.4-26.5-47.8-6.8-5 18.3-.4 44.1 8.1 77-11.6 27.6-28.7 64.6-40.8 85.8-.1 0-.1.1-.2.1-27.1 13.9-73.6 44.5-54.5 68 5.6 6.9 16 10 21.5 10 17.9 0 35.7-18 61.1-61.8 25.8-8.5 54.1-19.1 79-23.2 21.7 11.8 47.1 19.5 64 19.5 29.2 0 31.2-32 19.7-43.4-13.9-13.6-54.3-9.7-73.6-7.2zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-74.1 255.3c4.1-2.7-2.5-11.9-42.8-9 37.1 15.8 42.8 9 42.8 9z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 8em; &#34;&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center;width: 20em; font-weight: bold; padding-left:  2em;&#34; indentlevel=&#34;1&#34;&gt;
+&lt;span style=&#34;     text-align: l;&#34;&gt;第09章 放宽基本假设：自相关性&lt;/span&gt;
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 8em; &#34;&gt;
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 8em; &#34;&gt;
+&lt;a href=&#34;https://huhuaping.netlify.app/course-econometrics/09-auto-correlation-slide.html&#34;&gt;&lt;svg style=&#34;height:17;fill:blue;&#34; viewbox=&#34;0 0 384 512&#34;&gt;&lt;path d=&#34;M193.7 271.2c8.8 0 15.5 2.7 20.3 8.1 9.6 10.9 9.8 32.7-.2 44.1-4.9 5.6-11.9 8.5-21.1 8.5h-26.9v-60.7h27.9zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-153 31V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm53 165.2c0 90.3-88.8 77.6-111.1 77.6V436c0 6.6-5.4 12-12 12h-30.8c-6.6 0-12-5.4-12-12V236.2c0-6.6 5.4-12 12-12h81c44.5 0 72.9 32.8 72.9 77z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 8em; &#34;&gt;
+&lt;a href=&#34;https://d.seit2019.xyz/wp-content/uploads/2020/03/09-auto-correlation-slide.pdf&#34;&gt;&lt;svg style=&#34;height:17;fill:blue;&#34; viewbox=&#34;0 0 384 512&#34;&gt;&lt;path d=&#34;M181.9 256.1c-5-16-4.9-46.9-2-46.9 8.4 0 7.6 36.9 2 46.9zm-1.7 47.2c-7.7 20.2-17.3 43.3-28.4 62.7 18.3-7 39-17.2 62.9-21.9-12.7-9.6-24.9-23.4-34.5-40.8zM86.1 428.1c0 .8 13.2-5.4 34.9-40.2-6.7 6.3-29.1 24.5-34.9 40.2zM248 160h136v328c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V24C0 10.7 10.7 0 24 0h200v136c0 13.2 10.8 24 24 24zm-8 171.8c-20-12.2-33.3-29-42.7-53.8 4.5-18.5 11.6-46.6 6.2-64.2-4.7-29.4-42.4-26.5-47.8-6.8-5 18.3-.4 44.1 8.1 77-11.6 27.6-28.7 64.6-40.8 85.8-.1 0-.1.1-.2.1-27.1 13.9-73.6 44.5-54.5 68 5.6 6.9 16 10 21.5 10 17.9 0 35.7-18 61.1-61.8 25.8-8.5 54.1-19.1 79-23.2 21.7 11.8 47.1 19.5 64 19.5 29.2 0 31.2-32 19.7-43.4-13.9-13.6-54.3-9.7-73.6-7.2zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-74.1 255.3c4.1-2.7-2.5-11.9-42.8-9 37.1 15.8 42.8 9 42.8 9z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 8em; &#34;&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr grouplength=&#34;2&#34;&gt;
+&lt;td colspan=&#34;5&#34; style=&#34;border-bottom: 1px solid;&#34;&gt;
+&lt;strong&gt;Part III 模型扩展&lt;/strong&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center;width: 20em; font-weight: bold; padding-left:  2em;&#34; indentlevel=&#34;1&#34;&gt;
+&lt;span style=&#34;     text-align: l;&#34;&gt;第10章 虚拟变量回归模型&lt;/span&gt;
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 8em; &#34;&gt;
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 8em; &#34;&gt;
+&lt;a href=&#34;https://huhuaping.netlify.app/course-econometrics/10-dummy-model-slide.html&#34;&gt;&lt;svg style=&#34;height:17;fill:blue;&#34; viewbox=&#34;0 0 384 512&#34;&gt;&lt;path d=&#34;M193.7 271.2c8.8 0 15.5 2.7 20.3 8.1 9.6 10.9 9.8 32.7-.2 44.1-4.9 5.6-11.9 8.5-21.1 8.5h-26.9v-60.7h27.9zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-153 31V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm53 165.2c0 90.3-88.8 77.6-111.1 77.6V436c0 6.6-5.4 12-12 12h-30.8c-6.6 0-12-5.4-12-12V236.2c0-6.6 5.4-12 12-12h81c44.5 0 72.9 32.8 72.9 77z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 8em; &#34;&gt;
+&lt;a href=&#34;https://d.seit2019.xyz/wp-content/uploads/2020/03/10-dummy-model-slide.pdf&#34;&gt;&lt;svg style=&#34;height:17;fill:blue;&#34; viewbox=&#34;0 0 384 512&#34;&gt;&lt;path d=&#34;M181.9 256.1c-5-16-4.9-46.9-2-46.9 8.4 0 7.6 36.9 2 46.9zm-1.7 47.2c-7.7 20.2-17.3 43.3-28.4 62.7 18.3-7 39-17.2 62.9-21.9-12.7-9.6-24.9-23.4-34.5-40.8zM86.1 428.1c0 .8 13.2-5.4 34.9-40.2-6.7 6.3-29.1 24.5-34.9 40.2zM248 160h136v328c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V24C0 10.7 10.7 0 24 0h200v136c0 13.2 10.8 24 24 24zm-8 171.8c-20-12.2-33.3-29-42.7-53.8 4.5-18.5 11.6-46.6 6.2-64.2-4.7-29.4-42.4-26.5-47.8-6.8-5 18.3-.4 44.1 8.1 77-11.6 27.6-28.7 64.6-40.8 85.8-.1 0-.1.1-.2.1-27.1 13.9-73.6 44.5-54.5 68 5.6 6.9 16 10 21.5 10 17.9 0 35.7-18 61.1-61.8 25.8-8.5 54.1-19.1 79-23.2 21.7 11.8 47.1 19.5 64 19.5 29.2 0 31.2-32 19.7-43.4-13.9-13.6-54.3-9.7-73.6-7.2zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-74.1 255.3c4.1-2.7-2.5-11.9-42.8-9 37.1 15.8 42.8 9 42.8 9z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 8em; &#34;&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center;width: 20em; font-weight: bold; padding-left:  2em;&#34; indentlevel=&#34;1&#34;&gt;
+&lt;span style=&#34;     text-align: l;&#34;&gt;第11章 内生解释变量问题&lt;/span&gt;
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 8em; &#34;&gt;
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 8em; &#34;&gt;
+&lt;a href=&#34;https://huhuaping.netlify.app/course-econometrics/11-instrument-variable-slide.html&#34;&gt;&lt;svg style=&#34;height:17;fill:blue;&#34; viewbox=&#34;0 0 384 512&#34;&gt;&lt;path d=&#34;M193.7 271.2c8.8 0 15.5 2.7 20.3 8.1 9.6 10.9 9.8 32.7-.2 44.1-4.9 5.6-11.9 8.5-21.1 8.5h-26.9v-60.7h27.9zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-153 31V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm53 165.2c0 90.3-88.8 77.6-111.1 77.6V436c0 6.6-5.4 12-12 12h-30.8c-6.6 0-12-5.4-12-12V236.2c0-6.6 5.4-12 12-12h81c44.5 0 72.9 32.8 72.9 77z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 8em; &#34;&gt;
+&lt;a href=&#34;https://d.seit2019.xyz/wp-content/uploads/2020/03/11-instrument-variable-slide.pdf&#34;&gt;&lt;svg style=&#34;height:17;fill:blue;&#34; viewbox=&#34;0 0 384 512&#34;&gt;&lt;path d=&#34;M181.9 256.1c-5-16-4.9-46.9-2-46.9 8.4 0 7.6 36.9 2 46.9zm-1.7 47.2c-7.7 20.2-17.3 43.3-28.4 62.7 18.3-7 39-17.2 62.9-21.9-12.7-9.6-24.9-23.4-34.5-40.8zM86.1 428.1c0 .8 13.2-5.4 34.9-40.2-6.7 6.3-29.1 24.5-34.9 40.2zM248 160h136v328c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V24C0 10.7 10.7 0 24 0h200v136c0 13.2 10.8 24 24 24zm-8 171.8c-20-12.2-33.3-29-42.7-53.8 4.5-18.5 11.6-46.6 6.2-64.2-4.7-29.4-42.4-26.5-47.8-6.8-5 18.3-.4 44.1 8.1 77-11.6 27.6-28.7 64.6-40.8 85.8-.1 0-.1.1-.2.1-27.1 13.9-73.6 44.5-54.5 68 5.6 6.9 16 10 21.5 10 17.9 0 35.7-18 61.1-61.8 25.8-8.5 54.1-19.1 79-23.2 21.7 11.8 47.1 19.5 64 19.5 29.2 0 31.2-32 19.7-43.4-13.9-13.6-54.3-9.7-73.6-7.2zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-74.1 255.3c4.1-2.7-2.5-11.9-42.8-9 37.1 15.8 42.8 9 42.8 9z&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;
+&lt;/td&gt;
+&lt;td style=&#34;text-align:center;width: 8em; &#34;&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div id=&#34;教学环节&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;2&lt;/span&gt; 教学环节&lt;/h1&gt;
+&lt;div id=&#34;课前预习材料&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.1&lt;/span&gt; （课前）预习材料&lt;/h2&gt;
+&lt;p&gt;上课之前必须阅读提供的相关预习资料。&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;课中教学讲稿&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.2&lt;/span&gt; （课中）教学讲稿&lt;/h2&gt;
+&lt;p&gt;你可以用浏览器&lt;strong&gt;在线观看&lt;/strong&gt;讲稿幻灯片。强烈建议360极速浏览器、chrome浏览器、Safari浏览器中任何之一。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;通过电脑pc在线观看。主要操作技巧有：
+&lt;ul&gt;
+&lt;li&gt;全屏观看：先鼠标点击幻灯片，再按键盘F键；&lt;/li&gt;
+&lt;li&gt;退出全屏观看：按键盘Esc键；&lt;/li&gt;
+&lt;li&gt;前进后退：点击键盘方向键上/下；或左/右；&lt;/li&gt;
+&lt;li&gt;观看指定页码：按键盘数字键输入数字如“56”，再按键盘Enter则会播放第56页幻灯片。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;手机可以观看。
+&lt;ul&gt;
+&lt;li&gt;建议横屏观看；&lt;/li&gt;
+&lt;li&gt;前进后退：点击幻灯片的左/右区域。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;课后随堂作业&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.3&lt;/span&gt; （课后）随堂作业&lt;/h2&gt;
+&lt;p&gt;随堂作业应该在课堂内完成，师生讨论并点评。&lt;/p&gt;
+&lt;!---参考[阅读资料](/course-econometrics/reading/cht01-history/) ---&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>EViews实验操作指导</title>
+      <link>https://huhuaping.netlify.app/course-econometrics/schedule-lab/</link>
+      <pubDate>Sun, 09 Sep 2018 00:00:00 +0800</pubDate>
+      <guid>https://huhuaping.netlify.app/course-econometrics/schedule-lab/</guid>
+      <description>
+
+
+&lt;p&gt;《计量经济学原理与方法：EViews软件实现》是对&lt;strong&gt;计量经济学&lt;/strong&gt;课程的实验环节的详细说明书。共包括8次实验指导说明：&lt;/p&gt;
+&lt;p&gt;请点击下面链接进入各个实验指导说明：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;实验1：&lt;a href=&#34;https://hhp.seit2019.xyz/introduction.html&#34;&gt;EViews软件入门与基本操作&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;实验2：&lt;a href=&#34;https://hhp.seit2019.xyz/simple-regression.html&#34;&gt;一元线性回归模型&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;实验2的结果演示：&lt;a href=&#34;https://huhuaping.netlify.app/course-econometrics/lab/lab2-monte.html&#34;&gt;一元回归OLS方法的蒙特卡洛模拟实验&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;实验3：&lt;a href=&#34;https://hhp.seit2019.xyz/introduction.html&#34;&gt;模型函数形式与模型选择&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;实验4：&lt;a href=&#34;https://hhp.seit2019.xyz/matrix-regression.html&#34;&gt;多元线性回归及矩阵运算&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;实验5：&lt;a href=&#34;https://hhp.seit2019.xyz/multilinearity.html&#34;&gt;多重共线性的诊断和矫正&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;实验6：&lt;a href=&#34;https://hhp.seit2019.xyz/heteroskedasticity.html&#34;&gt;异方差的诊断和矫正&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;实验7：&lt;a href=&#34;https://hhp.seit2019.xyz/auto-correlation.html&#34;&gt;自相关的诊断和矫&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;实验8：&lt;a href=&#34;https://hhp.seit2019.xyz/dummy-variable.html&#34;&gt;虚拟变量回归模型&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

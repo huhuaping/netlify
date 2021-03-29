@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>slide-01-CSPS-score-model.utf8.md</title>
+    <meta charset="utf-8" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+    <link href="libs/remark-css/duke-blue.css" rel="stylesheet" />
+    <link href="libs/remark-css/hygge-duke.css" rel="stylesheet" />
+    <script src="libs/kePrint/kePrint.js"></script>
+    <script src="libs/htmlwidgets/htmlwidgets.js"></script>
+    <script src="libs/jquery/jquery.min.js"></script>
+    <link href="libs/datatables-css/datatables-crosstalk.css" rel="stylesheet" />
+    <script src="libs/datatables-binding/datatables.js"></script>
+    <link href="libs/dt-core/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="libs/dt-core/css/jquery.dataTables.extra.css" rel="stylesheet" />
+    <script src="libs/dt-core/js/jquery.dataTables.min.js"></script>
+    <link href="libs/crosstalk/css/crosstalk.css" rel="stylesheet" />
+    <script src="libs/crosstalk/js/crosstalk.min.js"></script>
+    <link rel="stylesheet" href="libs\cc-fonts.css" type="text/css" />
+    <link rel="stylesheet" href="libs\figure-captions.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+background-image: url("pic/slide-front-page.jpg")
+class: center,middle
+
+.red[.Large[2017年校级教改项目结题验收汇报]]
+
+### 基于学习型社区模式的在线课程学习
+
+### 行为投入、效果评价及优化路径研究
+
+### 周丹
+
+### 西北农林科技大学
+
+### dandanyi123@hotmail.com
+
+### 2019-07-03
+
+
+
+&lt;style type="text/css"&gt;
+.remark-slide-content {
+    font-size: 22px;
+    padding: 1em 4em 1em 4em;
+}
+
+.page-font-16 {
+  font-size: 16px;
+}
+
+.page-font-index {
+  font-size: 22px;
+}
+
+&lt;/style&gt;
+
+---
+class:  middle,inverse, center
+## 汇报提纲
+
+
+### 一、 研究目标
+
+### 二、拟解决的教学问题
+
+### 三、合同预期成果及完成情况
+
+### 四、 研究内容
+
+### 五、特色和创新之处
+
+
+
+---
+
+# 一、 研究目标
+
+- 构建高校学生在线学习行为投入分析模型，构建一套适合农林高校学生在线学习效果评价的指标体系。
+
+- 通过在线学习数据挖掘和实证分析技术，对上述模型有效性进行实证验证，对在线学习效果进行多期动态评估，全面了解农林高校学生在线学习的决策模式和行为规律。
+
+- 探索学习型社区模式的培育和发展路径，优化高校学生在线学习体验，提升在线学习质量和学习效果。从技术支持、学习内容和社会交流三个维度实现在线学习的“协作建构”和“交互性学习”，为在线教学改革的思路和方向提供有益参考。
+
+---
+
+# 二、拟解决的教学问题
+
+- 高校学生在线课程学习与传统课程学习难以有效对接、互补与融合。
+
+- 高校学生在线学习“黏度”不高，自主性、交互性和创新性学习驱动力疲软。
+
+
+---
+# 三、合同预期成果及完成情况
+
+**合同预期成果**：
+
+- 改进1-2门“远程教学平台”课程在线教学互动，推动在线教学创新和探索。
+
+- 撰写有针对性的研究报告1份，提交给学校相关机构供参考。
+
+**任务完成情况**：
+
+- 项目团队成员进行《统计学原理》和《计量经济学》在线课程平台建设工作，结合项目研究细致分析了在线课程教学互动模式、特点，并提出了很多改进建议。
+
+- 按要求完成研究报告1份（约3万字）
+
+**经费使用情况**：
+
+- 已经执行55%的经费开支
+
+
+---
+class: middle, inverse, center
+
+## 四、 研究内容
+
+####（一）重要概念与相关理论
+
+####（二）在线课程学习基本情况分析
+
+####（三）在线课程选择分化与学习效果的实证分析
+
+####（四）在线课程评价指标体系设计
+
+
+
+---
+class: duke-orange, middle, center
+## （一）重要概念与相关理论
+
+---
+### 1. 重要概念
+
+**学习投入**：是指学习者在学习过程中投入的时间和精力，是学习者在线学习活动表现的状态，包括认知投入、情感投入和行为投入三方面。
+
+**学习型社区**：是基于学习的组织形式，由教学者、学习者、助学者等共同构成的有机体，成员在教与学过程中形成了协作关系，形成了共同的学习目标和对学习社区的认同感。
+
+### 2. 学习投入与学习效果的关系
+
+主要受**内部影响因素**（如个体特征、学习兴趣、学习动机等）和**外部影响因素**（如硬件、师资、内容、技术、政策等）共同影响。
+
+- 绩效投入：学生遵循和响应课程规定和教师要求，如阅读资料、提交作业、参加考试等
+- 社会性学习行为：在线交互活动和线下朋辈间交互活动
+- 教育政策支持：课程资源的丰富性与可获得性、政策保障的一致性等
+
+
+---
+class: duke-green, middle, center
+## （二）在线课程学习基本情况分析
+
+---
+
+### 1. 通识课程模块
+
+通识课程模块是学生毕业总学分的重要构成部分，学生毕业往往需要满足本专业的通识课程学分要求。
+
+&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
+&lt;caption&gt;培养方案中对通识课学分的要求&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; 学院 &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; 学科门类 &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; 专业名称 &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; 2008版学分要求 &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; 2014版学分要求 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 园艺学院 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 农学 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 园艺 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 4 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 动物医学院 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 农学 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 动物医学 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 5 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 经济管理学院 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 经济学 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 国际经济与贸易 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 17.5 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 5 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 经济管理学院 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 经济学 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 保险学 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 17.5 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 5 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 人文学院 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 管理学 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 公共事业管理 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 4 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;tfoot&gt;&lt;tr&gt;&lt;td style="padding: 0; border: 0;" colspan="100%"&gt;
+&lt;span style="font-style: italic;"&gt;说明：&lt;/span&gt; &lt;sup&gt;&lt;/sup&gt; 此处只列出了两次培养方案通识课学分差大于2的部分专业。&lt;/td&gt;&lt;/tr&gt;&lt;/tfoot&gt;
+&lt;/table&gt;
+
+---
+
+### 2. 在线课程学习平台
+
+为了完成通识课程模块学分，学生可以选修传统通识课程，也可以选修在线通识课程。在线通识课程通过两个网络平台承担运行：
+
+- 尔雅通识课[在线教学平台](http://erya.mooc.chaoxing.com/index)（记为EY）。由超星集团打造的一个在线通识课程教育品牌。2013年秋学期，开始引入并启用。
+
+- 智慧树通识课[在线教学平台](https://www.zhihuishu.com/)（记为ZH）。是上海卓越睿新数码科技有限公司的一个在线通识课程平台，于2016年秋学期，开始引入并启用。
+
+
+
+
+---
+### 3. 学生群组和样本分布
+
+本研究主要收集了四个入学年份（2013-2016年）共19452名学生在**11个连续学期**（2013秋学期-2018春学期）上的通识课程学习相关数据。考虑到尔雅在线平台和智慧树在线平台的上线运行时间，以及学生学业完成情况，本研究将全体学生划分为两个群组，其中：
+
+- **样本群组1**为2013年和2014年入学的学生，共计9726人。他们是第一批接触在线课程学分认定的学生，主要通过尔雅在线课程平台学习课程并获得通识课学分。
+
+- **样本群组2**为2015年和2016年入学的学生，共计9671人。因为智慧树在线课程平台同步上线运行，他们开始有更多的在线课程选择机会。同时，也因为2014年培养方案调整和在线课程学分认定管理办法不断修订，他们的在线课程选择决策会变得更加复杂和多样化。
+
+
+---
+
+（1）连续变量的样本分布情况：
+
+<div id="htmlwidget-2be798e93f8b42290d84" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2be798e93f8b42290d84">{"x":{"filter":"none","caption":"<caption>样本基本情况1<\/caption>","data":[["sample1","sample1","sample1","sample2","sample2","sample2"],["在线学分数","高考录取线分差","传统学分数","在线学分数","高考录取线分差","传统学分数"],[1.14096236890808,37.0064111134106,4.52159161011721,2.55123565298315,56.4429974380871,5.32685347947472],[9726,9664,9726,9671,9368,9671],["100.00%","99.36%","100.00%","100.00%","96.87%","100.00%"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>学生分组<\/th>\n      <th>连续变量<\/th>\n      <th>均值<\/th>\n      <th>有效样本数n<\/th>\n      <th>有效百分比%<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":6,"dom":"t","columnDefs":[{"className":"dt-center","targets":"_all"}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[6,10,25,50,100],"rowCallback":"function(row, data) {\nDTWidget.formatRound(this, row, data, 1, 2, 3, ',', '.');\nDTWidget.formatRound(this, row, data, 2, 2, 3, ',', '.');\n}"}},"evals":["options.rowCallback"],"jsHooks":[]}</script>
+
+.red[.footnote[**说明**：**sample1**为入学年份为2013年和2014年的学生；**sample2**为入学年份为2015年和2016年的学生]]
+ 
+
+---
+
+（2）类别变量的样本分布情况：
+&lt;!--- part 2---&gt;
+
+<div id="htmlwidget-b5bf9a1495560d599ec8" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b5bf9a1495560d599ec8">{"x":{"filter":"none","caption":"<caption>样本基本情况2<\/caption>","data":[["sample1","sample1","sample1","sample1","sample1","sample1","sample1","sample1","sample2","sample2","sample2","sample2","sample2","sample2","sample2","sample2"],["性别","性别","生源地","生源地","生源地","生源地","户籍类型","户籍类型","性别","性别","生源地","生源地","生源地","生源地","户籍类型","户籍类型"],["男","女","东北","东部","西部","中部","城镇","农村","男","女","东北","东部","西部","中部","城镇","农村"],[4909,4817,454,2014,5218,2040,5296,4430,4995,4676,445,1947,5127,2152,5571,4100],["50.473%","49.527%","4.7%","20.7%","53.7%","21.0%","54.45%","45.55%","51.65%","48.35%","4.6%","20.1%","53.0%","22.3%","57.6%","42.4%"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>学生分组<\/th>\n      <th>离散变量<\/th>\n      <th>取值<\/th>\n      <th>有效样本数n<\/th>\n      <th>有效百分比%<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":10,"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"}],"order":[],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data) {\nDTWidget.formatRound(this, row, data, 1, 2, 3, ',', '.');\nDTWidget.formatRound(this, row, data, 2, 2, 3, ',', '.');\n}"}},"evals":["options.rowCallback"],"jsHooks":[]}</script>
+
+
+ 
+
+
+---
+### 4. 学生通识课程学分获得情况分析1
+
+学生累计获得**通识课程学分**情况：4年累计的最终通识课程总学分大部分在5-7学分之间，其中大部分学生在第二个年度就会完成5-6分的目标。
+
+&lt;img src="slide-01-CSPS-score-model_files/figure-html/common-get-sum-1.png" style="display: block; margin: auto;" /&gt;
+
+
+---
+### 4. 学生通识课程学分获得情况分析2
+
+学生获得**传统课程学分**：大部分学生在大一、大二阶段获得基本的传统课学分，随后的学业阶段多是课程的兴趣选择和学分的择机补足。
+
+&lt;img src="slide-01-CSPS-score-model_files/figure-html/tradition-grade-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+### 4. 学生通识课程学分获得情况分析3
+
+学生获得**在线课程学分**：在线课程并没有成为学生通识课选择的主要构成，学生大部分只会在各学业阶段选择1-2门在线课程。
+
+&lt;img src="slide-01-CSPS-score-model_files/figure-html/online-grade-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+### 5. 尔雅平台与智慧树平台的选课情况
+
+- 学生不会因为“新奇”心理而参加在线课程平台（无论是智慧树平台还是尔雅平台），更多只是为了完成通识课学分要求。
+
+- 学生的学习行为表现出典型的“理性人”特点，即便是同时拥有两个在线课程平台的选择自由，学生的选课决策和学习行为更多地是受到学分政策、平台依赖性等因素的决定。
+
+
+
+.red[.footnote[**说明**：具体选课分布表见下一页slide！]]
+
+---
+
+<div id="htmlwidget-b195de00829a0335e8fa" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b195de00829a0335e8fa">{"x":{"filter":"none","caption":"<caption>两个在线课程平台的选课人次分布<\/caption>","data":[["样本1","样本1","样本1","样本1","样本1","样本1","样本1","样本1","样本1","样本2","样本2","样本2","样本2","样本2","样本2","样本2","样本2","样本2"],["尔雅","尔雅","尔雅","尔雅","尔雅","尔雅","尔雅","尔雅","尔雅","尔雅","尔雅","尔雅","尔雅","尔雅","智慧树","智慧树","智慧树","智慧树"],[2013,2014,2014,2015,2015,2016,2016,2017,2017,2015,2016,2016,2017,2017,2016,2017,2017,2018],["秋","春","秋","春","秋","春","秋","春","秋","秋","春","秋","春","秋","秋","春","秋","春"],[973,1537,2811,2213,4582,904,453,295,115,9320,2434,7831,4221,6285,607,1307,1673,4410]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>学生群组<\/th>\n      <th>在线课程平台<\/th>\n      <th>年份<\/th>\n      <th>学期<\/th>\n      <th>选课人数<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":10,"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+
+.red[.small[说明：考虑在线平台启用时间的不同，智慧树平台只统计样本2学生的选课记录。]]
+
+
+---
+class: duke-orange, middle, center
+## （三）在线课程选择分化与学习效果
+## 的实证分析
+
+---
+### 1. 分析方法和过程
+
+**倾向得分分析（propensity score analysis, PSA）**方法，作为效果评估的常用工具，能把观察性样本数据，处理成随机实验等效的样本数据（考虑到学生潜在可能选择传统课程并获得可能的课程成绩），从而减弱了**样本自选择**引起的模型内生性问题。
+
+倾向得分分析（PSM）的**四个步骤**为：
+
+-  采用logit模型计算倾向得分。以二值变量“是否选择在线课程”（treat）作为因变量建模。
+
+-  倾向得分样本匹配。采用特定匹配算法（本文为full）匹配选择在线课程的学生样本和选择传统课程的学生样本，并对多个协变量（如高考分数、性别、生源地等）进行匹配平衡。
+
+-  利用匹配样本进行多元回归分析。以课程成绩为因变量构建多元回归模型。
+
+-  利用多元回归分析结果，计算两类处置效应：平均处置效应（ATE）和处置后的平均处置效应（ATT）。
+
+---
+### 2. 数据和变量说明1
+
+
+
+这一部分的实证数据为**2013年和2014年入学**的总计10331名学生，因为在数据统计期内（2013年秋学期-2018年春学期）他们都已经毕业离校，能更好地对课程形式选择和学习成绩做综合比对。
+
+
+
+
+<div id="htmlwidget-1aa592f2817a90c57e5d" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1aa592f2817a90c57e5d">{"x":{"filter":"none","caption":"<caption>定量变量的描述性统计n= 10331<\/caption>","data":[["age_enroll","n_course","score","score_diff"],["入学年龄","选修课程数","课程成绩","高考分数与录取线分数差值"],[18.5643209757042,4.32494434227084,74.2488562066634,37.0503565966509],[0.947407361068511,3.95064127580913,14.4397394973179,36.7519315474725]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>变量<\/th>\n      <th>定义<\/th>\n      <th>均值<\/th>\n      <th>标准差<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":6,"dom":"t","columnDefs":[{"className":"dt-center","targets":"_all"}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[6,10,25,50,100],"rowCallback":"function(row, data) {\nDTWidget.formatRound(this, row, data, 2, 4, 3, ',', '.');\nDTWidget.formatRound(this, row, data, 3, 4, 3, ',', '.');\n}"}},"evals":["options.rowCallback"],"jsHooks":[]}</script>
+
+
+---
+### 2. 数据和变量说明2
+
+<div id="htmlwidget-b6542062bb55dc64eb49" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b6542062bb55dc64eb49">{"x":{"filter":"none","caption":"<caption>定性变量的描述性统计n= 10331<\/caption>","data":[["treat=0","treat=1","province=east","province=west","province=mid","diploma=grad","diploma=fail","role=sci","role=art","nation=han","nation=min","politic=CPM","politic=CLM","politic=MAS","habitat=urban","habitat=rural","batch=pre","batch=cur","gender=male","gender=female"],["选择传统课程","选择在线课程","东部地区","西部地区","中部地区","正常毕业","肄业或不能毕业","理科生","文科生","汉族","少数民族","共产党员","共青团员","群众","城镇","农村","往届","应届","男性","女性"],[5078,5253,2579,5540,2212,9694,637,9643,688,9447,884,1720,8369,242,5696,4635,1616,8715,5239,5092],["49.2%","50.8%","25.0%","53.6%","21.4%","93.8%","6.2%","93.3%","6.7%","91.4%","8.6%","16.6%","81.0%","2.3%","55.1%","44.9%","15.6%","84.4%","50.7%","49.3%"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>变量及取值<\/th>\n      <th>定义<\/th>\n      <th>样本数<\/th>\n      <th>百分比<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":8,"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[8,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+
+---
+### 3. 成绩均值的群组比较
+
+在**课程方式**（在线课程、传统课程）分组情形下，大部分变量下都表现出**显著的**分组均值差异。
+
+
+<div id="htmlwidget-df412da989cf2c588561" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-df412da989cf2c588561">{"x":{"filter":"none","caption":"<caption>分组情形下协变量均值差异的t检验<\/caption>","data":[["score","score_diff","age_enroll","province_east","role_sci","nation_han","politic_CPM","habitat_rural","batch_cur","gender_female"],["73.8340(9.9152)","38.3026(33.6706)","18.5707(0.9717)","0.2424(0.4286)","0.9403(0.2369)","0.9061(0.2918)","0.1835(0.3871)","0.4728(0.4993)","0.8454(0.3615)","0.5719(0.4949)"],["74.6499(17.7410)","35.8398(39.4682)","18.5582(0.9233)","0.2566(0.4368)","0.9267(0.2606)","0.9225(0.2674)","0.1500(0.3571)","0.4253(0.4944)","0.8418(0.3650)","0.4165(0.4930)"],[-2.89759458219911,3.41600703685035,0.671967594322413,-1.6674050992945,2.78158114746079,-2.98575006714741,4.57124138292049,4.86162645517664,0.504583348735392,15.9813320767711],["***","***","","*","***","***","***","***","","***"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>变量<\/th>\n      <th>传统课程<\/th>\n      <th>在线课程<\/th>\n      <th>t值<\/th>\n      <th>显著性<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":8,"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[8,10,25,50,100],"rowCallback":"function(row, data) {\nDTWidget.formatRound(this, row, data, 3, 2, 3, ',', '.');\n}"}},"evals":["options.rowCallback"],"jsHooks":[]}</script>
+
+.red[.small[说明：括号内数字表示标准差；
+`\(^{\ast\ast\ast}\)`表示极显著、 
+`\(^{\ast\ast}\)`表示比较显著、
+`\(^{\ast}\)`表示显著]]
+
+---
+
+### 4. 步骤1：logit模型估计倾向得分
+
+倾向得分的二分类logit模型简要结论如下：
+
+- 高考分数与一本录取线分差越大、入学年龄越大、理科生、政治面貌为党员、来自农村地区、女生，越**不倾向于**选择在线课程；
+
+- 学生更倾向于认为在线课程和传统课程学习形式在学习决策中具有较强的替代性关系。
+
+.red[.footnote[**说明**：具体实证结果见后3页slide] ]
+
+
+
+
+
+
+---
+
+（1）是否选择在线课程（treat）的倾向得分logit模型估计结果如下：
+
+<div id="htmlwidget-b9ce194aae769ab5d97f" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b9ce194aae769ab5d97f">{"x":{"filter":"none","data":[["(Intercept)","score_diff","age_enroll","province_east","role_sci","nation_han","politic_CPM","habitat_rural","batch_cur","gender_female"],[1.38351795383597,-0.00231737019844597,-0.0406905977749659,0.0366412822575699,-0.333815083304958,0.291897952522022,-0.1473866205641,-0.224110271862219,-0.02421518830895,-0.662096872176886],[2.77078426510601,-3.93634285228611,-1.66811641317081,0.777323272657184,-4.06955891208783,3.84121821573681,-2.70026125713818,-5.37926806040949,-0.392311275495003,-16.1141809586273],["***","***","*","","***","***","***","***","","***"],[3.98890977348117,0.997685312830948,0.960126149163091,1.03732084869675,0.716186204769282,1.33896637252585,0.862960274724105,0.799226997260609,0.9760756470893,0.515768698779853]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>变量X<\/th>\n      <th>回归系数b<\/th>\n      <th>Z统计量<\/th>\n      <th>显著性<\/th>\n      <th>发生比<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":10,"dom":"t","columnDefs":[{"className":"dt-center","targets":"_all"}],"order":[],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data) {\nDTWidget.formatRound(this, row, data, 1, 3, 3, ',', '.');\nDTWidget.formatRound(this, row, data, 2, 3, 3, ',', '.');\nDTWidget.formatRound(this, row, data, 4, 3, 3, ',', '.');\n}"}},"evals":["options.rowCallback"],"jsHooks":[]}</script>
+
+.red[**说明**：因变量为；**发生比**表示选择在线课程与选择传统课程的概率比；拟合优度指标中麦克法登伪
+`\(R^2\)`值为0.0240；模型预测正确率为58.1%。]
+
+
+---
+
+（2）倾向得分的二分类logit模型的概率分布对比
+
+&lt;img src="slide-01-CSPS-score-model_files/figure-html/ps-hist-1.png" style="display: block; margin: auto;" /&gt;
+
+
+---
+### 5. 步骤2：倾向得分匹配
+
+
+
+
+
+
+
+- **匹配算法**：采用R包`MatchIt`中的一种全局性匹配算法**full**进行完全样本匹配。也即：把处置条件不同（选择在线课程，或者选择传统课程）、但倾向得分相近的样本做完全配对。
+
+- **匹配平衡**：如果样本匹配较好，那么**处置组**和**控制组**将会在每一个协变量上都具有相同的倾向得分值。
+
+- **匹配结果**：对匹配后的样本数据做分组均值差异的t检验分析，进一步表明配对样本协变量均值是无差异的，也即样本在协变量上是平衡的。而且匹配后的样本数据（总数为10331）在大部分**协变量**平衡上的有了明显改善。
+
+
+.red[.footnote[**说明**：匹配样本数据此处不再展示；匹配改善分析表见下一页slide！]]
+
+---
+
+<div id="htmlwidget-a84ceacdd0ddef40d4c7" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a84ceacdd0ddef40d4c7">{"x":{"filter":"none","caption":"<caption>倾向得分匹配后样本在协变量平衡上的改善情况<\/caption>","data":[["distance","score_diff","age_enroll","province_east","role_sci","nation_han","politic_CPM","habitat_rural","batch_cur","gender_female"],["99.9%","53.3%","9.8%","66.5%","64.1%","83.1%","78.5%","98.5%","41.8%","98.2%"],["96%","1%","-141%","10%","1%","80%","82%","90%","-18%","99%"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>变量<\/th>\n      <th>均值差改善百分比%<\/th>\n      <th>QQ图均值差改善百分比%<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":10,"dom":"t","columnDefs":[{"className":"dt-center","targets":"_all"}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+
+.red[.footnote[ **说明**：Q-Q图差异对比指标还有中位数、极大值等，因为自变量多为虚拟变量，故此处仅使用均值指标。]]
+
+---
+### 6. 步骤3：学习成绩的多元回归分析
+
+
+
+
+**课程成绩**多元回归模型的简要结论如下（.red[具体结果见下一页slide]）：
+
+- 作为最关心的重要变量，**是否选择在线课程**（处置条件treat）对课程成绩有显著正向影响。如果某个学生选择在线课程，则会比其选择传统课程高1.521分。
+- **高考分数与录取线的分差**（socre-diff）对课程学习成绩有显著正向影响，其系数为0.021。如果一个学生高考分数与录取线（本省一本）的分差35分，那么这一分差水平将会为其带来课程成绩0.741分的提高。
+- **是否为理科生**（role_sci）表现出显著负向影响作用，意味着一个理科生相比于一个文科生，其课程成绩要相对少-1.757分。
+- **政治面貌为共产党员**的学生（politic_CMP）成绩显著要高于其他情形（共青团员或群众），相比其他情形（共青团员或群众）其课程成绩要显著高出2.651分。
+- **来自农村**的学生（habitat_rural），其课程成绩要显著好于来自城镇的学生，平均约高出1.351分。 **女性学生**（gender_female），其课程成绩要显著好于男性学生，平均约高出3.418分。
+- 学生入学年龄（age_roll）、是否是东部省区（province_east）、是否是汉族（nation_han）、是否为应届生（batch_cur）对课程成绩没有显著影响，这与大多数相关研究的结论基本一致。
+
+
+
+---
+
+<div id="htmlwidget-d4268eac7838b3f45fbd" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d4268eac7838b3f45fbd">{"x":{"filter":"none","caption":"<caption>学习成绩（score）的多元回归模型估计结果<\/caption>","data":[["(Intercept)","treat","score_diff","age_enroll","province_east","role_sci","nation_han","politic_CPM","habitat_rural","batch_cur","gender_female"],[72.854058435757,1.52051067829393,0.0211602852634674,-0.0921471047614996,0.421784799734613,-1.7569344419257,0.0970227214099938,2.6510753388956,1.35101911459263,0.310703094002713,3.41787505454467],[20.8043495583542,5.33284130638201,5.21663430730553,-0.539484454765969,1.27844189867455,-3.066816711375,0.183047182132374,6.93574976198209,4.62720345844089,0.718615198563401,11.7501641708802],["***","***","***","","","***","","***","***","","***"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>变量<\/th>\n      <th>回归系数b<\/th>\n      <th>t统计量<\/th>\n      <th>显著性<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":11,"dom":"t","columnDefs":[{"className":"dt-center","targets":"_all"}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[10,11,25,50,100],"rowCallback":"function(row, data) {\nDTWidget.formatRound(this, row, data, 1, 4, 3, ',', '.');\nDTWidget.formatRound(this, row, data, 2, 4, 3, ',', '.');\n}"}},"evals":["options.rowCallback"],"jsHooks":[]}</script>
+
+.red[**说明**：调整判定系数为
+`\(\bar{R^2}=0.0264\)`；模型整体显著性F检验结果为
+`\(F^{\ast}=29.06\)`。
+`\(^{\ast\ast\ast}\)`表示极显著、 
+`\(^{\ast\ast}\)`表示比较显著、
+`\(^{\ast}\)`表示显著]
+
+---
+### 7. 步骤4：计算处置效应
+
+**处置效应**主要用于分析选择在线课程带来的潜在影响，主要结论如下：
+
+- 男生的在线课成绩会潜在低于其传统课程成绩；高考分数与录取线分差小的学生、来自城镇的学生、非东部生源学生，这三类群体在线课程成绩都会潜在高于其传统课程成绩。
+
+- 如果能够自由选择在线课程，那么选择在线课程确实能够提高这些学生课程成绩（因为ATT计算结果为正数）；
+
+- 因为学生能选择在线课程，这反而会拉低全体学生的平均课程成绩（因为ATE计算结果为负数）。
+
+- **在线课程**学习一方面可以成为某些学生群体（如能充分利用在线课程时空便利性等学生群体）的“成绩刷分器”——确实可以提高其课程成绩（ATT效应）；另一方面也成为某些学生群体（如高考录取分差小或/且男性学生群体）的“心理庇护所”——看似更自由学习形式背后可能潜藏更高的低成绩风险。
+
+.red[.footnote[**说明**：处置效应的计算出此处不再展示；最终计算结果表见下两页slide！]]
+
+
+
+---
+
+
+（1）四类**典型群体**的学习成绩与基准群体的差异比较：
+
+<div id="htmlwidget-2563a3d90a383f2e7e7f" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2563a3d90a383f2e7e7f">{"x":{"filter":"none","caption":"<caption>几类典型群体的学习成绩（与基准组对比）<\/caption>","data":[["男性群体","高考分差低的群体","城镇群体","非东部生源群体"],["treat=1;gender_female=0","treat=1;score_diff=5","treat=1;habitat_rural=0","treat=1;province_east=0"],[78.3832729505878,78.3667120538075,78.3708678583444,78.3683385236547],[76.4808994224251,79.2254207081121,78.534756513133,79.47210439838],[-1.90237352816276,0.858708654304579,0.163888654788622,1.10376587472526]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>群组命名<\/th>\n      <th>群组特征<\/th>\n      <th>传统课程<\/th>\n      <th>在线课程<\/th>\n      <th>均值差<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":8,"dom":"t","columnDefs":[{"className":"dt-center","targets":"_all"}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[8,10,25,50,100],"rowCallback":"function(row, data) {\nDTWidget.formatRound(this, row, data, 2, 2, 3, ',', '.');\nDTWidget.formatRound(this, row, data, 3, 2, 3, ',', '.');\nDTWidget.formatRound(this, row, data, 4, 4, 3, ',', '.');\n}"}},"evals":["options.rowCallback"],"jsHooks":[]}</script>
+
+.red[.footnote[**说明**：给定**基准群体**为：选择传统课程、入学年龄为19岁、入学录取分差为36分、生源地为东部省份、理科生、汉族、共产党员、户籍为农村、应届、女生。也即：treat=0；age_enroll=19；score_diff=36；province_east=1；role_sci=1；nation_han=1；politic_CPM=1；habitat_rural=1；batch_cur=1；gender_female=1]]
+
+---
+
+（2）处置效应ATE和ATT计算表
+
+- **处置后的平均处置效应**（ATT）：是“学生实际选择**在线课程**的平均效应”。 它能回答：实际选择在线课程的学生群体平均收益水平是多少？
+
+- **平均处置效应**（ATE）：是“对课程选择行为做出**矫正后**的平均效应”。它能回答：**在线课程选择**存在的条件下，**全体学生**平均收益水平是多少？
+
+
+
+
+
+
+
+
+&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
+&lt;caption&gt;处置效应ATE和ATT计算表&lt;/caption&gt;
+ &lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="border-bottom:hidden" colspan="1"&gt;&lt;/th&gt;
+&lt;th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;处置条件均值mean&lt;/div&gt;&lt;/th&gt;
+&lt;th style="border-bottom:hidden" colspan="1"&gt;&lt;/th&gt;
+&lt;th style="border-bottom:hidden" colspan="1"&gt;&lt;/th&gt;
+&lt;th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;置信水平&lt;/div&gt;&lt;/th&gt;
+&lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; 效应类型 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 在线课程 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 传统课程 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 效应值TE &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 标准误se &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 2.5% &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 97.5% &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; ATE &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 73.8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 74.7 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -0.411 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.457 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 73.6 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 75.1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; ATT &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 73.8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 73.7 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.081 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 6.851 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 58.0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 90.0 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;tfoot&gt;&lt;tr&gt;&lt;td style="padding: 0; border: 0;" colspan="100%"&gt;
+&lt;span style="font-style: italic;"&gt;说明：&lt;/span&gt; &lt;sup&gt;&lt;/sup&gt; ATE和ATT根据模型估计结果并采用bootstrap迭代法进行1000次模拟计算得到。&lt;/td&gt;&lt;/tr&gt;&lt;/tfoot&gt;
+&lt;/table&gt;
+
+---
+## （四）在线课程评价指标体系设计
+
+
+<div id="htmlwidget-6420c487f3b5b096eaa7" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6420c487f3b5b096eaa7">{"x":{"filter":"none","data":[["课程内容与设计","课程内容与设计","课程内容与设计","教师水平","教师水平","教师水平","教学资源","教学资源","教学资源","学习过程","学习过程","考核","考核","学习支持","学习支持","学习支持","总体评价","总体评价"],["内容设计","教学组织","内容获得感","专业能力","讲授能力","授课方法","教学资源的丰富性","教学资源的可得性","教学资源的合理性","生生交互活动","师生过程指导","评分方式","考核内容","界面布局","视频质量","功能支持","获得感","满意度"],["课程设计合理，教学目标和重点明确，课程难易程度适当。","您认为该课程教学组织形式得当，授课时长设置安排合理、课程小测验和课后作业布置适量。","授课内容精彩，您能掌握课程内容。","教师学识渊博，教学水平高。","教师讲课条理清楚、通俗易懂，讲课表现力强，很吸引人，您学习时能保持注意力。","教师讲授内容具有启发性，能鼓励学生积极提问与讨论。","该门课程文本资料、练习题、作业、视音频等教学资源充足，能满足学习需求。","可以随时学习课程，课程资源方便下载，学习平台运行稳定。","课程资源（如论坛、视频、阅读材料、测试材料）设计合理，课程资源更新及时。","课程的在线论坛、讨论交流对您学习课程很有帮助。","学习时遇到问题容易获得帮助，教师能及时解答您提出的问题，在线答疑及时有效。","该课程的成绩构成和评分方式合理、公平。","课程测验和考试题难度合适、数量设置合理、知识点覆盖全面，能帮助您检测学习效果。","课程平台界面设计清晰，美观，操作容易，使用方便。","课程在线视频观看流畅、声音、画面清晰。","学习平台的各项功能（如笔记、测试、互动、答疑等）设置完善。","该门课程具有启发性，拓展了您的知识，对其他课程学习很有帮助，学习这门课程，您收获很大。","您对这门课程总体满意。"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>一级指标<\/th>\n      <th>二级指标<\/th>\n      <th>三级指标<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"dom":"tip","columnDefs":[{"className":"dt-left","targets":"_all"},{"width":"100px","targets":[0,1]}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+
+---
+
+# 五、特色和创新之处
+
+- 本研究利用大数据技术进行学习行为的数据挖掘、建模和实证分析，充分发挥教学实践中海量“沉默数据”、“孤岛数据”的社会价值，通过团队协作，有效地实现了“数据资源与分析能力”的创新整合。在研究工作范式上，对于教学改革研究实践具有一定启发意义。
+
+- 采用倾向得分分析法来论述学习行为与学习效果的**因果关系**，避免简单回归分析法中普遍存在的选择偏误和内生性问题，有利于得到更为客观的结论。这一方法框架还可以进一步加以扩展应用，并作出更全面的分析，潜在理论价值较大。
+
+- 本研究的主要结论中，重点指出在线课程可能会潜在带来学生整体学习效果的弱化。这一结论对于在线课程平台提供商市场开发、高校在线课程学分认定及相关政策制订等，具有重要的应用参考价值。
+
+---
+background-image: url("pic/thanks-end-earth.jpg")
+class: inverse,center
+# 汇报完毕
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "4:3"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

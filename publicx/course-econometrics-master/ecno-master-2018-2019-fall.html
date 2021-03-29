@@ -1,0 +1,1676 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>计量经济学II试题</title>
+
+<script src="ecno-master-2018-2019-fall_files/jquery/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="ecno-master-2018-2019-fall_files/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<script src="ecno-master-2018-2019-fall_files/bootstrap/js/bootstrap.min.js"></script>
+<script src="ecno-master-2018-2019-fall_files/bootstrap/shim/html5shiv.min.js"></script>
+<script src="ecno-master-2018-2019-fall_files/bootstrap/shim/respond.min.js"></script>
+<script src="ecno-master-2018-2019-fall_files/jqueryui/jquery-ui.min.js"></script>
+<link href="ecno-master-2018-2019-fall_files/tocify/jquery.tocify.css" rel="stylesheet" />
+<script src="ecno-master-2018-2019-fall_files/tocify/jquery.tocify.js"></script>
+<script src="ecno-master-2018-2019-fall_files/navigation/tabsets.js"></script>
+<link href="ecno-master-2018-2019-fall_files/highlightjs/default.css" rel="stylesheet" />
+<script src="ecno-master-2018-2019-fall_files/highlightjs/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">计量经济学II试题</h1>
+
+</div>
+
+
+<div id="第一部分鳕鱼供需案例分析计算共3大题共75分-得分_______分" class="section level1">
+<h1><span class="header-section-number">1</span> <strong>第一部分：鳕鱼供需案例分析计算</strong>（共3大题，共75分） 得分：_______分</h1>
+<p><strong>案例背景介绍</strong>：研究者收集了纽约市<strong>Fulton海鲜市场</strong>1991-12-02日到1992-05-08日期间共111天的相关日度数据。研究者主要关注<strong>鳕鱼</strong>产品的市场价格和数量，以及其他市场相关变量，如<strong>工作日</strong>（周一~周五）、气候条件、鳕鱼存货量变化情况等。具体变量及含义见下表：</p>
+<table>
+<caption><span id="tab:fish-var">表1.1: </span>鳕鱼案例的变量说明</caption>
+<thead>
+<tr class="header">
+<th align="center">变量</th>
+<th align="center">含义</th>
+<th align="center">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">price</td>
+<td align="center">鳕鱼市场价格(美元/千克)</td>
+<td align="center">连续变量</td>
+</tr>
+<tr class="even">
+<td align="center">quan</td>
+<td align="center">鳕鱼的数量(吨)</td>
+<td align="center">连续变量</td>
+</tr>
+<tr class="odd">
+<td align="center">lprice</td>
+<td align="center">(自然)对数化的鳕鱼市场价格</td>
+<td align="center">连续变量</td>
+</tr>
+<tr class="even">
+<td align="center">lquan</td>
+<td align="center">(自然)对数化的鳕鱼数量</td>
+<td align="center">连续变量</td>
+</tr>
+<tr class="odd">
+<td align="center">mon</td>
+<td align="center">周一</td>
+<td align="center">虚拟变量:1=周一; 0=其他</td>
+</tr>
+<tr class="even">
+<td align="center">tue</td>
+<td align="center">周二</td>
+<td align="center">虚拟变量:1=周二; 0=其他</td>
+</tr>
+<tr class="odd">
+<td align="center">wen</td>
+<td align="center">周三</td>
+<td align="center">虚拟变量:1=周三; 0=其他</td>
+</tr>
+<tr class="even">
+<td align="center">thu</td>
+<td align="center">周四</td>
+<td align="center">虚拟变量:1=周四; 0=其他</td>
+</tr>
+<tr class="odd">
+<td align="center">stormy</td>
+<td align="center">暴风雨天气</td>
+<td align="center">虚拟变量:1=暴风雨; 0=其他</td>
+</tr>
+<tr class="even">
+<td align="center">cold</td>
+<td align="center">寒冷天气</td>
+<td align="center">虚拟变量:1=寒冷; 0=其他</td>
+</tr>
+<tr class="odd">
+<td align="center">change</td>
+<td align="center">鳕鱼存货变化情况</td>
+<td align="center">虚拟变量:1=变化大; 0=变化小</td>
+</tr>
+</tbody>
+</table>
+<!---
+收集到共111天的相关日度数据见下面的图\@ref(fig:fish-data)（此处仅显示前10天的数据）：
+
+--->
+<p>请根据以上案例背景和数据，分析计算并回答下面一系列问题：</p>
+<ol style="list-style-type: decimal">
+<li>（<strong>共计30分，共6小题</strong>）<strong>A同学</strong>重点考察鳕鱼价格的影响因素，并构建如下的多元回归<strong>价格模型</strong>：</li>
+</ol>
+<p><span class="math display">\[\begin{align}
+\begin{split}
+lprice_t &amp;= \beta_1+\beta_2lquan_t+\beta_3mon_t+\beta_4tue_t+\beta_5wed_t+\beta_6thu_t\\
+         &amp;+\beta_7stormy_t + \beta_8cold_t + \beta_9change_t + u_{t} 
+\end{split}
+\text{(价格模型)}
+\end{align}\]</span></p>
+<p>A同学利用统计软件对上述<strong>价格模型</strong>进行OLS回归分析，得到如下报告摘要：</p>
+<pre><code>
+Call:
+lm(formula = mod_mult, data = fultonfish)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-0.835 -0.240  0.027  0.252  0.726 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   0.6504     0.4408    1.48  0.14321    
+lquan        -0.0978     0.0501   -1.95  0.05343 .  
+mon          -0.0830     0.1042   -0.80  0.42780    
+tue          -0.0836     0.1048   -0.80  0.42677    
+wed          -0.0732     0.1077   -0.68  0.49801    
+thu           0.0538     0.1008    0.53  0.59441    
+stormy        0.2937     0.0815    3.60  0.00049 ***
+cold          0.0861     0.0713    1.21  0.22986    
+change       -0.1478     0.0738   -2.00  0.04801 *  
+---
+Signif. codes:  
+0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.341 on 102 degrees of freedom
+Multiple R-squared:  0.261, Adjusted R-squared:  0.203 
+F-statistic:  4.5 on 8 and 102 DF,  p-value: 0.000104</code></pre>
+<p>请根据以上回归结果，回答如下问题：</p>
+<p>（1）（5分）根据A同学的回归分析报告，请你写出相应的样本回归模型（要求写出理论表达式和数值表达式）。</p>
+<p><br/></p>
+<p><br/></p>
+<p>（2）（2分）关于变量<span class="math inline">\(lquan\)</span>的回归系数，它有什么样的经济学含义（请进行简单的经济学解释）？其符号和大小是否符合理论上的预期（请简要说明理由）？</p>
+<p><br/></p>
+<p><br/></p>
+<p>（3）（5分）A同学的统计分析报告中：回归系数的t检验结果为显著（给定<span class="math inline">\(\alpha=0.1\)</span>）的变量包括哪些？（请简要说明判断依据）？回归方程的整体显著性F检验结果如何？（请简要说明判断依据）？回归方程的判定系数<span class="math inline">\(R^2\)</span>和调整判定系数<span class="math inline">\(\bar{R}^2\)</span>分别是多少？</p>
+<p><br/></p>
+<p><br/></p>
+<p><br/></p>
+<p>（4）（5分）如果A同学给出一些已知条件<strong>{ 暴风雨；寒冷；鳕鱼存量变化小；鳕鱼的市场<em>数量</em>为54.5996 吨 }</strong>，也即<strong>{ <span class="math inline">\(stormy=1; cold=1; change=0; quan=\)</span> 54.5996 }</strong>。请计算在给定条件下，Fulton生鲜市场在<strong>星期五</strong>的鳕鱼<strong>期望价格</strong>是多少？（要求：请写出理论表达式，并计算出数值结果；对数计算请以自然数<span class="math inline">\(e=2.7183\)</span>为底；计算结果保留2位小数）。</p>
+<p><br/></p>
+<p><br/></p>
+<p><br/></p>
+<!---
+
+
+
+答：
+
+- 给定上述条件下，价格预期的理论表达式为：
+
+\begin{align}
+\begin{split}
+E(lprice&|lquan=4.6;mon=0.0;tue=0.0;wed=0.0;thu=0.0;stormy=1.0;cold=1.0;change=0.0)\\
+=&+\beta_{1}+\beta_{2}(4.6)+\beta_{3}(0)+\beta_{4}(0)+\beta_{5}(0)\\
+&+\beta_{6}(0)+\beta_{7}(1)+\beta_{8}(1)+\beta_{9}(0)\\
+=&+\beta_{1}+4.6\beta_{2}\\
+&+\beta_{7}+\beta_{8}\\
+\end{split}
+\end{align}
+
+- 给定上述条件下，根据回归系数，价格预期的数值计算为（回归系数可以保留两位数计算）：
+
+\begin{align}
+\begin{split}
+(\widehat{lprice}&|lquan=4.6;mon=0.0;tue=0.0;wed=0.0;thu=0.0;stormy=1.0;cold=1.0;change=0.0)\\
+=&+\hat{\beta}_{1}+\hat{\beta}_{2}(4.6)+\hat{\beta}_{3}(0)+\hat{\beta}_{4}(0)+\hat{\beta}_{5}(0)\\
+&+\hat{\beta}_{6}(0)+\hat{\beta}_{7}(1)+\hat{\beta}_{8}(1)+\hat{\beta}_{9}(0)\\
+=&+[0.65]+[-0.10]\cdot(4.6)+[-0.08]\cdot(0)+[-0.08]\cdot(0)+[-0.07]\cdot(0)\\
+&+[0.05]\cdot(0)+[0.29]\cdot(1)+[0.09]\cdot(1)+[-0.15]\cdot(0)\\
+=&0.5801\\
+\end{split}
+\end{align}
+
+- 因为期望的对数化鳕鱼价格为$lprice=$ 0.5796，因此水产市场上**星期五**期望的鳕鱼价格为$price=e^{lprice}=$ 1.7854 美元/千克。
+
+--->
+<p>（5）（5分）为了诊断<strong>价格模型</strong>是否存在多重共线性问题，A同学利用统计软件得到了下面表<a href="#tab:vif">1.2</a>所示的<strong>方差膨胀因子计算表</strong>。</p>
+<table>
+<caption><span id="tab:vif">表1.2: </span>回归方程的方差膨胀因子VIF</caption>
+<tbody>
+<tr class="odd">
+<td align="left">X</td>
+<td align="center">lquan</td>
+<td align="center">mon</td>
+<td align="center">tue</td>
+<td align="center">wed</td>
+<td align="center">thu</td>
+<td align="center">stormy</td>
+<td align="center">cold</td>
+<td align="center">change</td>
+</tr>
+<tr class="even">
+<td align="left">VIF</td>
+<td align="center">1.305</td>
+<td align="center">1.592</td>
+<td align="center">1.723</td>
+<td align="center">1.697</td>
+<td align="center">1.594</td>
+<td align="center">1.302</td>
+<td align="center">1.212</td>
+<td align="center">1.106</td>
+</tr>
+</tbody>
+</table>
+<p>根据表<a href="#tab:vif">1.2</a>的信息，请判断回归方程是否存在多重共线性问题？（请简要说明判断依据。）</p>
+<p><br/></p>
+<p><br/></p>
+<p>（6）（<strong>小计8分</strong>，共2小问）为了诊断<strong>价格模型</strong>是否存在异方差问题，A同学利用统计软件对上述回归方程的残差<span class="math inline">\(e_t\)</span>进行绘图，得到如下时序图（见图<a href="#fig:resid-graph">1.1</a>）：</p>
+<div class="figure" style="text-align: center"><span id="fig:resid-graph"></span>
+<img src="ecno-master-2018-2019-fall_files/figure-html/resid-graph-1.png" alt="残差e~t~的时序图" width="768" />
+<p class="caption">
+图1.1: 残差e<sub>t</sub>的时序图
+</p>
+</div>
+<p>同时，为定量化地考察<strong>价格模型</strong>是否存在异方差问题。A同学决定进行怀特异方差诊断（White Test），对残差<span class="math inline">\(e_t\)</span>构建如下<strong>辅助回归模型</strong>：</p>
+<p><span class="math display">\[\begin{equation}
+\begin{alignedat}{999}
+&amp;e_t^2=&amp;&amp; + \alpha_{1} &amp;&amp; + \alpha_{2} lquan&amp;&amp; + \alpha_{3} mon&amp;&amp; + \alpha_{4} tue\\
+&amp; &amp;&amp; + \alpha_{5} wed&amp;&amp; + \alpha_{6} thu&amp;&amp; + \alpha_{7} stormy&amp;&amp; + \alpha_{8} cold\\
+&amp; &amp;&amp; + \alpha_{9} change&amp;&amp; + \alpha_{10} (lquan)^2&amp;&amp;+v_t\\
+\end{alignedat}
+\end{equation}\]</span></p>
+<p>并得到<strong>辅助回归模型</strong>的分析结果为：</p>
+<p><span class="math display">\[\begin{equation}
+\begin{alignedat}{999}
+&amp;\hat{e}_t^2=&amp;&amp;-1.09&amp;&amp;+0.30lquan&amp;&amp;-0.03mon&amp;&amp;-0.05tue\\
+&amp;\text{(t)}&amp;&amp;(-0.8705)&amp;&amp;(0.9923)&amp;&amp;(-0.7829)&amp;&amp;(-1.0942)\\
+&amp;\text{(se)}&amp;&amp;(1.2536)&amp;&amp;(0.3054)&amp;&amp;(0.0441)&amp;&amp;(0.0438)\\
+&amp;\text{(cont.)}&amp;&amp;-0.07wed&amp;&amp;-0.05thu&amp;&amp;+0.02stormy&amp;&amp;-0.00cold\\
+&amp;\text{(t)}&amp;&amp;(-1.4756)&amp;&amp;(-1.0744)&amp;&amp;(0.7264)&amp;&amp;(-0.0555)\\
+&amp;\text{(se)}&amp;&amp;(0.0450)&amp;&amp;(0.0421)&amp;&amp;(0.0342)&amp;&amp;(0.0298)\\
+&amp;\text{(cont.)}&amp;&amp;+0.00change&amp;&amp;-0.02(lquan)^2\\
+&amp;\text{(t)}&amp;&amp;(0.1213)&amp;&amp;(-1.0006)\\
+&amp;\text{(se)}&amp;&amp;(0.0310)&amp;&amp;(0.0185)\\
+&amp;\text{(fitness)}&amp;&amp; n=111;&amp;&amp; R^2=0.0429;&amp;&amp; \bar{R^2}=-0.0424\\
+&amp; &amp;&amp; F^{\ast}=0.50;&amp;&amp; p=0.8691\\
+\end{alignedat}
+\end{equation}\]</span></p>
+<p>请根据以上分析结果，对<strong>价格模型</strong>是否存在异方差问题进行如下回答：</p>
+<p>a）（3分）观测残差的时序图（图<a href="#fig:resid-graph">1.1</a>），请初步判断<strong>价格模型</strong>是否存在明显的异方差问题？（请简要说明理由）。</p>
+<p><br/></p>
+<p><br/></p>
+<p>b）（5分）利用上述怀特异方差检验的<strong>辅助回归模型</strong>的回归结果，对<strong>异方差问题</strong>进行<span class="math inline">\(\chi^2\)</span>显著性检验。（给定<span class="math inline">\(\alpha=0.05\)</span>水平下，理论查表值有<span class="math inline">\(\chi^2_{0.95}(9)=\)</span> 16.92；<span class="math inline">\(\chi^2_{0.95}(10)=\)</span> 18.31。）（要求：写出原假设<span class="math inline">\(H_0\)</span>和备择假设<span class="math inline">\(H_1\)</span>；计算出卡方统计量<span class="math inline">\({\chi^{\ast}}^2= n\cdot R^2 \sim \chi^2(f)\)</span>；确定正确的理论查表值<span class="math inline">\(\chi^2_{1-\alpha}(f)\)</span>；明确给出<strong>价格模型</strong>是否存在异方差的诊断结论。）</p>
+<p><br/></p>
+<p><br/></p>
+<p><br/></p>
+<p><br/></p>
+<ol start="2" style="list-style-type: decimal">
+<li>（<strong>共计20分，共3小题</strong>）<strong>B同学</strong>重点关注鳕鱼对数化价格变量<span class="math inline">\(lprice_t\)</span>的<strong>平稳性</strong>和<strong>预测</strong>问题。</li>
+</ol>
+<!---
+关于序列平稳性分析。首先，B同学绘制出鳕鱼对数化价格变量$lprice_t$的时序图（见图\@ref(fig:lprice-series)）。
+--->
+<p>（1）（5分）为了分析对数化价格变量<span class="math inline">\(lprice_t\)</span>的<strong>平稳性</strong>问题，B同学采用<strong>增广迪基-富勒检验法（Augmented Dickey-Fuller Test，ADF）</strong>进行验证。B同学利用统计软件分析，得出如下表（表<a href="#tab:out-adf">1.3</a>）所示的分析结果：</p>
+<table>
+<caption><span id="tab:out-adf">表1.3: </span>对数化价格变量lprice的增广迪基-富勒检验（ADF）</caption>
+<thead>
+<tr class="header">
+<th align="left">项目</th>
+<th align="left">细节</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">检验方法</td>
+<td align="left">Augmented Dickey-Fuller Test</td>
+</tr>
+<tr class="even">
+<td align="left">备择假设H<sub>1</sub></td>
+<td align="left">alternative hypothesis:stationary（平稳）</td>
+</tr>
+<tr class="odd">
+<td align="left">检验变量</td>
+<td align="left">lprice</td>
+</tr>
+<tr class="even">
+<td align="left">迪基-富勒统计量</td>
+<td align="left">Dickey-Fuller =-4.76</td>
+</tr>
+<tr class="odd">
+<td align="left">滞后阶数</td>
+<td align="left">Lag order =4</td>
+</tr>
+<tr class="even">
+<td align="left">概率值</td>
+<td align="left">p-value =0.01</td>
+</tr>
+</tbody>
+</table>
+<p>请根据以上信息，判断对数化价格变量<span class="math inline">\(lprice_t\)</span>是不是平稳时间序列？（请简要给出理由。）</p>
+<p><br/></p>
+<p><br/></p>
+<p><br/></p>
+<p>（2）（5分）为了识别对数化价格变量<span class="math inline">\(lprice_t\)</span>的波动模式，B同学进一步绘制出了<span class="math inline">\(lprice_t\)</span>序列的自相关图（ACF，见图<a href="#fig:graph-acf">1.2</a>）和偏自相关图（PACF，见图<a href="#fig:graph-pacf">1.3</a>）</p>
+<div class="figure" style="text-align: center"><span id="fig:graph-acf"></span>
+<img src="ecno-master-2018-2019-fall_files/figure-html/graph-acf-1.png" alt="对数化价格变量lprice的自相关图" width="672" />
+<p class="caption">
+图1.2: 对数化价格变量lprice的自相关图
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:graph-pacf"></span>
+<img src="ecno-master-2018-2019-fall_files/figure-html/graph-pacf-1.png" alt="对数化价格变量lprice的偏自相关图" width="672" />
+<p class="caption">
+图1.3: 对数化价格变量lprice的偏自相关图
+</p>
+</div>
+<p>请根据以上图形信息，初步判断对数化价格变量<span class="math inline">\(lprice_t\)</span>的时间序列过程是属于哪一种模式？（要求：指明是AR过程/MA过程/ARMA过程中的哪一种，不需要指明阶数，并给出简要理由。）</p>
+<p><br/></p>
+<p><br/></p>
+<p>（3）（<strong>小计10分，共2小问</strong>）为进一步对变量<span class="math inline">\(lprice_t\)</span>进行准确<span class="math inline">\(ARMA(p,q)\)</span>建模，B同学尝试进行<span class="math inline">\(ARMA(2,0)\)</span>建模分析。B同学使用统计软件，得到如下分析结果：</p>
+<pre><code>Series: fultonfish$lprice 
+ARIMA(2,0,0) with non-zero mean 
+
+Coefficients:
+        ar1     ar2    mean
+      0.908  -0.198  -0.186
+s.e.  0.095   0.095   0.079
+
+sigma^2 estimated as 0.0625:  log likelihood=-2.55
+AIC=13.1   AICc=13.47   BIC=23.93</code></pre>
+<p>同时，B同学进一步对以上<span class="math inline">\(ARMA(2,0)\)</span>建模结果的残差绘图，得到回归残差的自相关图（ACF，见图<a href="#fig:arma-acf">1.4</a>）和偏自相关图（PACF，见图<a href="#fig:arma-pacf">1.5</a>）</p>
+<div class="figure" style="text-align: center"><span id="fig:arma-acf"></span>
+<img src="ecno-master-2018-2019-fall_files/figure-html/arma-acf-1.png" alt="残差的自相关图" width="672" />
+<p class="caption">
+图1.4: 残差的自相关图
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:arma-pacf"></span>
+<img src="ecno-master-2018-2019-fall_files/figure-html/arma-pacf-1.png" alt="残差的偏自相关图" width="672" />
+<p class="caption">
+图1.5: 残差的偏自相关图
+</p>
+</div>
+<p>请回答：</p>
+<p>a）（6分）根据分析报告摘要信息，写出<span class="math inline">\(ARMA(2,0)\)</span>模型的样本回归方程形式。</p>
+<p><br/></p>
+<p><br/></p>
+<p>b）（4分）根据残差绘图结果（图<a href="#fig:arma-acf">1.4</a>和图<a href="#fig:arma-pacf">1.5</a>），判断B同学的<span class="math inline">\(ARMA(2,0)\)</span>建模是否合理，并给出简要理由。</p>
+<p><br/></p>
+<p><br/></p>
+<ol start="3" style="list-style-type: decimal">
+<li>（<strong>共计25分，共5小题</strong>）C同学重点关注鳕鱼供需关系的联立方程建模分析。</li>
+</ol>
+<p>对此，C同学构建了如下的联立方程：</p>
+<p><span class="math display">\[\begin{align}
+lquan_t &amp;= \alpha_0+\alpha_1lprice_t+\alpha_2mon_t+\alpha_3tue_t+\alpha_4wen_t+\alpha_5thu_t+u_{1,t}  &amp;\text{(需求方程)}  \\
+lquan_t &amp;= \beta_0+\beta_1lprice_t+\beta_3stormy_t+u_{2,t}    &amp;\text{(供给方程)} 
+\end{align}\]</span></p>
+<p>（1）（3分）对于以上联立方程模型，<strong>需求方程</strong>中变量<span class="math inline">\(lprice_t\)</span>的参数<span class="math inline">\(\alpha_1\)</span>，以及<strong>供给方程</strong>中变量<span class="math inline">\(lprice_t\)</span>的参数<span class="math inline">\(\beta_1\)</span>，理论上这两个参数的大小和符号应该分别有什么要求？</p>
+<p><br/></p>
+<p><br/></p>
+<p>（2）（5分）请根据<strong>阶条件规则</strong>，对上述联立方程模型中<strong>需求方程</strong>和<strong>供给方程</strong>分别作出识别性问题的判断，并请说明判断依据。</p>
+<p><br/></p>
+<p><br/></p>
+<p><br/></p>
+<!---
+下面，我们根据**阶条件规则2**，对上述联立方程模型进行判断：
+
+- 联立方程模型中前定变量个数$K=5$（分别是什么？）
+- 对于第一个方程（需求方程），前定变量个数$k=4$，则$(K-k)=1$；第一个方程的内生变量个数$m=2$，则$(m-1)=1$；显然$(K-k)>(m-1)$。因此第一个方程是**过度识别的**
+- 对于第二个方程（供给方程），前定变量个数$k=1$，则$(K-k)=4$；第二个方程的内生变量个数$m=2$，则$(m-1)=1$；显然$(K-k)>(m-1)$。因此第二个方程是**过度识别的**
+- 结论：需求方程和供给方程都是**过度识别的**
+
+--->
+<p>（3）（5分）请将以上<strong>需求方程</strong>和<strong>供给方程</strong>分别表达成约简方程形式。（要求：不需要写出结构系数与约简系数的关系式。<strong>数量方程</strong>（<span class="math inline">\(lquan\)</span>）约简系数记为<span class="math inline">\(\pi_{1,p} \ \ (p=1,2,...)\)</span>，随机干扰项记为<span class="math inline">\(v_{1,t}\)</span>；<strong>价格方程</strong>（<span class="math inline">\(lprice\)</span>）约简系数记为<span class="math inline">\(\pi_{2,q} \ \ (q=1,2,...)\)</span>，随机干扰项记为<span class="math inline">\(v_{2,t}\)</span>。）</p>
+<p><br/></p>
+<p><br/></p>
+<p><br/></p>
+<!---
+
+答：可得到约简方程：
+
+$$\begin{alignat}{3}
+lquan_t &= \Pi_{1,0} + \Pi_{1,1}mon_t+\Pi_{1,2}tue_t+\Pi_{1,3}wen_t+\Pi_{1,4}thu_t\\
+        &+\Pi_{1,5}stormy_t+v_{1,t} &\text{(约简方程1)}\\
+lprice_t &= \Pi_{2,0} + \Pi_{2,1}mon_t+\Pi_{2,2}tue_t+\Pi_{2,3}wen_t+\Pi_{2,4}thu_t\\
+        &+\Pi_{2,5}stormy_t+v_{2,t} &\text{(约简方程2)}\\
+\end{alignat}$$
+
+--->
+<p>（4）（<strong>小计6分，共2小问</strong>）C同学直接使用<strong>普通最小二乘法</strong>（OLS）对前述<strong>第（3）问</strong>中的约简方程分别进行回归，并得到如下分析结果。</p>
+<p><strong>对数化鳕鱼数量</strong>（<span class="math inline">\(lquan\)</span>）的约简方程OLS回归结果为：
+<span class="math display">\[\begin{equation}
+\begin{alignedat}{999}
+&amp;\widehat{lquan}=&amp;&amp;+8.81&amp;&amp;+0.10mon&amp;&amp;-0.48tue\\
+&amp;\text{(t)}&amp;&amp;(59.9225)&amp;&amp;(0.4891)&amp;&amp;(-2.4097)\\
+&amp;\text{(se)}&amp;&amp;(0.1470)&amp;&amp;(0.2065)&amp;&amp;(0.2011)\\
+&amp;\text{(cont.)}&amp;&amp;-0.55wed&amp;&amp;+0.05thu&amp;&amp;-0.39stormy\\
+&amp;\text{(t)}&amp;&amp;(-2.6875)&amp;&amp;(0.2671)&amp;&amp;(-2.6979)\\
+&amp;\text{(se)}&amp;&amp;(0.2058)&amp;&amp;(0.2010)&amp;&amp;(0.1437)\\
+&amp;\text{(fitness)}&amp;&amp; n=111;&amp;&amp; R^2=0.1934;&amp;&amp; \bar{R^2}=0.1550\\
+&amp; &amp;&amp; F^{\ast}=5.03;&amp;&amp; p=0.0004\\
+\end{alignedat}
+\end{equation}\]</span></p>
+<p><strong>对数化鳕鱼价格</strong>（<span class="math inline">\(lprice\)</span>）的约简方程OLS回归结果为：
+<span class="math display">\[\begin{equation}
+\begin{alignedat}{999}
+&amp;\widehat{lprice}=&amp;&amp;-0.27&amp;&amp;-0.11mon&amp;&amp;-0.04tue\\
+&amp;\text{(t)}&amp;&amp;(-3.5569)&amp;&amp;(-1.0525)&amp;&amp;(-0.3937)\\
+&amp;\text{(se)}&amp;&amp;(0.0764)&amp;&amp;(0.1073)&amp;&amp;(0.1045)\\
+&amp;\text{(cont.)}&amp;&amp;-0.01wed&amp;&amp;+0.05thu&amp;&amp;+0.35stormy\\
+&amp;\text{(t)}&amp;&amp;(-0.1106)&amp;&amp;(0.4753)&amp;&amp;(4.6387)\\
+&amp;\text{(se)}&amp;&amp;(0.1069)&amp;&amp;(0.1045)&amp;&amp;(0.0747)\\
+&amp;\text{(fitness)}&amp;&amp; n=111;&amp;&amp; R^2=0.1789;&amp;&amp; \bar{R^2}=0.1398\\
+&amp; &amp;&amp; F^{\ast}=4.58;&amp;&amp; p=0.0008\\
+\end{alignedat}
+\end{equation}\]</span></p>
+<p>a）（4分）如果已知条件为<strong>{ 周一；暴风雨 }</strong>，也即<strong>{ <span class="math inline">\(mon=1； stormy=1\)</span> }</strong>。在给定条件下，根据上述约简方程结果，请计算Fulton生鲜市场的<strong>鳕鱼价格</strong> <span class="math inline">\(price\)</span> 和<strong>鳕鱼数量</strong> <span class="math inline">\(quan\)</span>分别是多少？（要求：对数计算请以自然数 <span class="math inline">\(e=2.7183\)</span> 为底；计算结果保留2位小数）。</p>
+<p><br/></p>
+<p><br/></p>
+<p>b）（2分）<strong>C同学</strong>坚持认为：以上步骤计算得到的<strong>鳕鱼价格</strong><span class="math inline">\(price\)</span>和<strong>鳕鱼数量</strong><span class="math inline">\(quan\)</span>就是Fulton生鲜市场在<strong>周一</strong>且天气为<strong>暴风雨</strong>时的<strong>市场均衡价格</strong>和<strong>市场均衡数量</strong>。你认为C同学的观点是否正确？请简要说明你的理由。</p>
+<p><br/></p>
+<p><br/></p>
+<p>（5）（<strong>小计6分，共2小问</strong>）<strong>C同学</strong>随后又采用了<strong>两阶段最小二乘法（2SLS）</strong>对联立方程模型进行了回归分析，得到如下表所示的分析结果（见表<a href="#tab:fish-2SLS-model">1.4</a>）：</p>
+<table>
+<caption><span id="tab:fish-2SLS-model">表1.4: </span>两阶段最小二乘法（2SLS）回归结果</caption>
+<thead>
+<tr class="header">
+<th align="center">eq</th>
+<th align="center">vars</th>
+<th align="center">Estimate</th>
+<th align="center">Std. Error</th>
+<th align="center">t value</th>
+<th align="center">Pr(&gt;|t|)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">eq1</td>
+<td align="center">(Intercept)</td>
+<td align="center">8.5059</td>
+<td align="center">0.1662</td>
+<td align="center">51.1890</td>
+<td align="center">0.0000</td>
+</tr>
+<tr class="even">
+<td align="center">eq1</td>
+<td align="center">lprice</td>
+<td align="center">-1.1194</td>
+<td align="center">0.4286</td>
+<td align="center">-2.6115</td>
+<td align="center">0.0103</td>
+</tr>
+<tr class="odd">
+<td align="center">eq1</td>
+<td align="center">mon</td>
+<td align="center">-0.0254</td>
+<td align="center">0.2148</td>
+<td align="center">-0.1183</td>
+<td align="center">0.9061</td>
+</tr>
+<tr class="even">
+<td align="center">eq1</td>
+<td align="center">tue</td>
+<td align="center">-0.5308</td>
+<td align="center">0.2080</td>
+<td align="center">-2.5518</td>
+<td align="center">0.0122</td>
+</tr>
+<tr class="odd">
+<td align="center">eq1</td>
+<td align="center">wed</td>
+<td align="center">-0.5664</td>
+<td align="center">0.2128</td>
+<td align="center">-2.6620</td>
+<td align="center">0.0090</td>
+</tr>
+<tr class="even">
+<td align="center">eq1</td>
+<td align="center">thu</td>
+<td align="center">0.1093</td>
+<td align="center">0.2088</td>
+<td align="center">0.5233</td>
+<td align="center">0.6018</td>
+</tr>
+<tr class="odd">
+<td align="center">eq2</td>
+<td align="center">(Intercept)</td>
+<td align="center">8.6284</td>
+<td align="center">0.3890</td>
+<td align="center">22.1826</td>
+<td align="center">0.0000</td>
+</tr>
+<tr class="even">
+<td align="center">eq2</td>
+<td align="center">lprice</td>
+<td align="center">0.0011</td>
+<td align="center">1.3095</td>
+<td align="center">0.0008</td>
+<td align="center">0.9994</td>
+</tr>
+<tr class="odd">
+<td align="center">eq2</td>
+<td align="center">stormy</td>
+<td align="center">-0.3632</td>
+<td align="center">0.4649</td>
+<td align="center">-0.7813</td>
+<td align="center">0.4363</td>
+</tr>
+</tbody>
+</table>
+<p>a）（2分）基于以上分析报告，请你计算出鳕鱼的需求价格弹性<span class="math inline">\(\eta_1\)</span>和供给价格弹性<span class="math inline">\(\eta_2\)</span>分别是多少？</p>
+<p><br/></p>
+<p><br/></p>
+<p>b）（4分）基于以上分析报告，请你帮C同学计算出Fulton生鲜市场在<strong>周一</strong>且天气为<strong>暴风雨</strong>时（也即<strong>{ mon=1； stormy=1 }</strong>）鳕鱼的<strong>市场均衡价格</strong>和<strong>市场均衡数量</strong>。（计算结果保留2位小数。）</p>
+<p><br/></p>
+<p><br/></p>
+</div>
+<div id="第二部分乳腺癌案例分析计算-共5小题共25分-得分_______分" class="section level1">
+<h1><span class="header-section-number">2</span> <strong>第二部分：乳腺癌案例分析计算</strong> （<strong>共5小题，共25分</strong>） 得分：_______分</h1>
+<!---
+资料来源：
+
+- Pastides, H., J. L. Kelsey, et al. Oral contraceptive use and fibrocystic breast disease with special reference to its histopathology [J]. JNCI Journal of the National Cancer Institute. 1983, 71(1): 5-9.
+
+- Pastides, H., J. L. Kelsey, et al. An epidemiologic study of fibrocystic breast disease with reference to ductal epithelial atypia [J]. American journal of epidemiology. 1985, 121(3): 440-447.
+
+[参考资料1](http://www.sthda.com/english/articles/36-classification-methods-essentials/148-logistic-regression-assumptions-and-diagnostics-in-r/#building-a-logistic-regression-model)
+
+[参考资料1](https://www.princeton.edu/~otorres/LogitR101.pdf)
+
+--->
+<p><strong>案例背景介绍</strong>：一项关于<strong>女性乳腺癌患病</strong>情况的控制性研究，收集了共178名女性的相关资料。研究者主要关注二分类变量<strong>是否患乳腺癌</strong>（<span class="math inline">\(Cancer\)</span>），以及与其他相关变量的关系，如年龄、受教育年数、是否接受过正规检查、生育第一胎时的年龄、流产次数、体重等。具体变量及含义见下表所示（<a href="#tab:breast-var">2.1</a>）</p>
+<table>
+<caption><span id="tab:breast-var">表2.1: </span>女性乳腺癌案例的变量说明</caption>
+<thead>
+<tr class="header">
+<th align="left">变量</th>
+<th align="left">含义</th>
+<th align="left">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Cancer</td>
+<td align="left">是否患乳腺癌</td>
+<td align="left">虚拟变量:1=患有乳腺癌; 0=未患乳腺癌</td>
+</tr>
+<tr class="even">
+<td align="left">Age</td>
+<td align="left">年龄(岁)</td>
+<td align="left">数值变量</td>
+</tr>
+<tr class="odd">
+<td align="left">HIGD</td>
+<td align="left">受教育年数(年)</td>
+<td align="left">数值变量</td>
+</tr>
+<tr class="even">
+<td align="left">CHK</td>
+<td align="left">是否接受过正规检查</td>
+<td align="left">虚拟变量:1=接受过正规检查; 0=未接受过正规检查</td>
+</tr>
+<tr class="odd">
+<td align="left">AGPI</td>
+<td align="left">生育第一胎时的年龄</td>
+<td align="left">数值变量</td>
+</tr>
+<tr class="even">
+<td align="left">Miscar</td>
+<td align="left">流产次数(次)</td>
+<td align="left">数值变量</td>
+</tr>
+<tr class="odd">
+<td align="left">Births</td>
+<td align="left">生育子女数(个)</td>
+<td align="left">数值变量</td>
+</tr>
+<tr class="even">
+<td align="left">Weight</td>
+<td align="left">体重(磅)</td>
+<td align="left">数值变量</td>
+</tr>
+</tbody>
+</table>
+<!---
+该项研究中，到收集共178个被调查者的个体数据如下图所示（见图\@ref(fig:breast-data)，此处仅显示前10个被调查者的数据）：
+--->
+<p>对变量<strong>是否患有乳腺癌</strong><span class="math inline">\((Cancer)\)</span>，构造如下的总体回归模型（见公式<a href="#eq:mod-cancer">(2.1)</a>）：</p>
+<p><span class="math display" id="eq:mod-cancer">\[\begin{equation}
+\begin{alignedat}{999}
+&amp;Cancer=&amp;&amp; + \beta_{1} &amp;&amp; + \beta_{2} Age&amp;&amp; + \beta_{3} HIGD\\
+&amp;\text{(cont.)}&amp;&amp; + \beta_{4} CHK&amp;&amp; + \beta_{5} AGPI&amp;&amp; + \beta_{6} Miscar\\
+&amp;\text{(cont.)}&amp;&amp; + \beta_{7} Births&amp;&amp; + \beta_{8} Weight&amp;&amp;+u\\
+\end{alignedat}
+\tag{2.1}
+\end{equation}\]</span></p>
+<p>研究者对上述模型（公式<a href="#eq:mod-cancer">(2.1)</a>）进行logit形式的极大似然估计，统计软件的分析结果如下表所示（见表<a href="#tab:out-logit">2.2</a>）：</p>
+<table>
+<caption><span id="tab:out-logit">表2.2: </span>Logit回归估计结果</caption>
+<thead>
+<tr class="header">
+<th align="center">term</th>
+<th align="center">estimate</th>
+<th align="center">std.error</th>
+<th align="center">statistic</th>
+<th align="center">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">(Intercept)</td>
+<td align="center">-0.5273</td>
+<td align="center">2.3190</td>
+<td align="center">-0.2274</td>
+<td align="center">0.8201</td>
+</tr>
+<tr class="even">
+<td align="center">Age</td>
+<td align="center">0.0058</td>
+<td align="center">0.0219</td>
+<td align="center">0.2660</td>
+<td align="center">0.7902</td>
+</tr>
+<tr class="odd">
+<td align="center">HIGD</td>
+<td align="center">-0.0615</td>
+<td align="center">0.0860</td>
+<td align="center">-0.7144</td>
+<td align="center">0.4750</td>
+</tr>
+<tr class="even">
+<td align="center">CHK</td>
+<td align="center">-1.5960</td>
+<td align="center">0.5286</td>
+<td align="center">-3.0191</td>
+<td align="center">0.0025</td>
+</tr>
+<tr class="odd">
+<td align="center">AGPI</td>
+<td align="center">0.1339</td>
+<td align="center">0.0562</td>
+<td align="center">2.3844</td>
+<td align="center">0.0171</td>
+</tr>
+<tr class="even">
+<td align="center">Miscar</td>
+<td align="center">0.3415</td>
+<td align="center">0.2395</td>
+<td align="center">1.4257</td>
+<td align="center">0.1540</td>
+</tr>
+<tr class="odd">
+<td align="center">Births</td>
+<td align="center">0.2923</td>
+<td align="center">0.1302</td>
+<td align="center">2.2455</td>
+<td align="center">0.0247</td>
+</tr>
+<tr class="even">
+<td align="center">Weight</td>
+<td align="center">-0.0294</td>
+<td align="center">0.0100</td>
+<td align="center">-2.9310</td>
+<td align="center">0.0034</td>
+</tr>
+</tbody>
+</table>
+<p>基于以上的logit回归分析，研究者统计了乳腺癌患病预测情况，具体见下面的表<a href="#tab:fit-logit">2.3</a>：</p>
+<table>
+<caption><span id="tab:fit-logit">表2.3: </span>logit回归分析预测情况统计</caption>
+<thead>
+<tr class="header">
+<th align="center">真实值</th>
+<th align="center">预测值</th>
+<th align="center">频次</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">130</td>
+</tr>
+<tr class="even">
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">28</td>
+</tr>
+<tr class="odd">
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">8</td>
+</tr>
+<tr class="even">
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">12</td>
+</tr>
+</tbody>
+</table>
+<p>请回答下面的一系列问题：</p>
+<p>（1）（5分）给定<span class="math inline">\(Y_i\)</span>为二分类变量，<span class="math inline">\(X_i\)</span>为连续变量，如果分别构建probit模型和logit模型，并令概率<span class="math inline">\(P(Y_i=1|X) = \Phi(\beta_0+\beta_1X_i)\)</span>，且令<span class="math inline">\(Z_i=\beta_0+\beta_1X_i\)</span>。研究人员分别绘制下图所示的累积概率曲线（见图<a href="#fig:two-curve">2.1</a>）。</p>
+<div class="figure" style="text-align: center"><span id="fig:two-curve"></span>
+<img src="ecno-master-2018-2019-fall_files/figure-html/two-curve-1.png" alt="probit模型和logit模型下的累积概率曲线" width="768" />
+<p class="caption">
+图2.1: probit模型和logit模型下的累积概率曲线
+</p>
+</div>
+<p>请指出图<a href="#fig:two-curve">2.1</a>中，probit累积概率曲线和logit累积概率密度曲线分别是哪一条？并请写出logit累积概率函数表达式。</p>
+<p><br/></p>
+<p><br/></p>
+<!---
+
+A. 曲线a表示probit累积概率密度曲线，具体表达式为$P(Z)=\frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{z}{e^{-s^2/2}ds}$。
+
+B. 曲线a表示probit累积概率密度曲线，具体表达式为$P(Z)=\frac{1}{1+e^{-Z}}$ 。 
+
+C. 曲线b表示logit累积概率密度曲线，具体表达式为$P(Z)=\frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{z}{e^{-s^2/2}ds}$。
+
+D. 曲线b表示logit累积概率密度曲线，具体表达式为$P(Z)=\frac{1}{1+e^{-Z}}$ 。 
+--->
+<p>（2）（5分）根据Logit回归估计结果（见表<a href="#tab:out-logit">2.2</a>），请正确写出logit样本回归函数。（要求：logit变量用<span class="math inline">\(L_i\)</span>表达；回归系数保留4位小数）。</p>
+<p><br/></p>
+<p><br/></p>
+<p>（3） （5分）根据logit回归的预测情况统计（见表<a href="#tab:fit-logit">2.3</a>），请计算拟合优度指标——<strong>计数<span class="math inline">\(R^2\)</span>值</strong>。（要求：写出理论计算公式；计算结果保留2位小数）</p>
+<p><br/></p>
+<p><br/></p>
+<p>（4）（5分）如果已经计算得到<strong>似然比统计量</strong> <span class="math inline">\(LR^{\ast}= {\chi^2}^{\ast}=\)</span> 25.97，请对logit回归进行模型整体显著性卡方检验。（给定<span class="math inline">\(\alpha=0.05\)</span>水平下，卡方分布的理论查表值有<span class="math inline">\(\chi^2_{0.95}(7)=\)</span> 14.07；<span class="math inline">\(\chi^2_{0.95}(8)=\)</span> 15.51。）（要求：写出原假设<span class="math inline">\(H_0\)</span>和备择假设<span class="math inline">\(H_1\)</span>；确定正确的理论查表值<span class="math inline">\(\chi^2_{1-\alpha}(f)\)</span>；明确给出模型整体显著性检验结论。）</p>
+<p><br/></p>
+<p><br/></p>
+<p><br/></p>
+<p>（5）（5分）根据logit回归结果，请计算一个<strong>接受过正规检查</strong>（也即<span class="math inline">\(CHK=1\)</span>）与一个<strong>未接受过正规检查</strong>（也即<span class="math inline">\(CHK=0\)</span>）的女性，两种情形下罹患乳腺癌的<strong>机会比率值</strong>是多少（假定其他条件不变）？</p>
+<p><br/></p>
+<p><br/></p>
+<!---参考答案--->
+</div>
+<div id="参考答案" class="section level1">
+<h1><span class="header-section-number">3</span> 参考答案</h1>
+</div>
+<div id="第一部分鳕鱼供需案例分析计算共3大题共75分" class="section level1">
+<h1><span class="header-section-number">4</span> <strong>第一部分：鳕鱼供需案例分析计算</strong>（共3大题，共75分）</h1>
+<ol style="list-style-type: decimal">
+<li>答：</li>
+</ol>
+<p>（1）答：</p>
+<p>理论表达式为：</p>
+<p><span class="math display">\[\begin{equation}
+\begin{alignedat}{999}
+&amp;\widehat{lprice}=&amp;&amp;+\hat{\beta}_{1}&amp;&amp;+\hat{\beta}_{2}lquan&amp;&amp;+\hat{\beta}_{3}mon&amp;&amp;+\hat{\beta}_{4}tue\\
+&amp;\text{(cont.)}&amp;&amp;+\hat{\beta}_{5}wed&amp;&amp;+\hat{\beta}_{6}thu&amp;&amp;+\hat{\beta}_{7}stormy&amp;&amp;+\hat{\beta}_{8}cold\\
+&amp;\text{(cont.)}&amp;&amp;+\hat{\beta}_{9}change\\
+\end{alignedat}
+\end{equation}\]</span></p>
+<p>数值表达式为：</p>
+<p><span class="math display">\[\begin{equation}
+\begin{alignedat}{999}
+&amp;\widehat{lprice}=&amp;&amp;+0.65&amp;&amp;-0.10lquan&amp;&amp;-0.08mon&amp;&amp;-0.08tue\\
+&amp;\text{(t)}&amp;&amp;(1.4753)&amp;&amp;(-1.9541)&amp;&amp;(-0.7961)&amp;&amp;(-0.7979)\\
+&amp;\text{(se)}&amp;&amp;(0.4408)&amp;&amp;(0.0501)&amp;&amp;(0.1042)&amp;&amp;(0.1048)\\
+&amp;\text{(cont.)}&amp;&amp;-0.07wed&amp;&amp;+0.05thu&amp;&amp;+0.29stormy&amp;&amp;+0.09cold\\
+&amp;\text{(t)}&amp;&amp;(-0.6801)&amp;&amp;(0.5341)&amp;&amp;(3.6030)&amp;&amp;(1.2080)\\
+&amp;\text{(se)}&amp;&amp;(0.1077)&amp;&amp;(0.1008)&amp;&amp;(0.0815)&amp;&amp;(0.0713)\\
+&amp;\text{(cont.)}&amp;&amp;-0.15change\\
+&amp;\text{(t)}&amp;&amp;(-2.0013)\\
+&amp;\text{(se)}&amp;&amp;(0.0738)\\
+&amp;\text{(fitness)}&amp;&amp; n=111;&amp;&amp; R^2=0.2610;&amp;&amp; \bar{R^2}=0.2030\\
+&amp; &amp;&amp; F^{\ast}=4.50;&amp;&amp; p=0.0001\\
+\end{alignedat}
+\end{equation}\]</span></p>
+<p>（2）答：变量<span class="math inline">\(lquan\)</span>的回归系数<span class="math inline">\(\hat{\beta}_2\)</span>表示价格对数量的弹性，<span class="math inline">\(\hat{\beta}_2=-0.0978\)</span>，表示数量每增加它有什么样的经济学1%,价格会降低0.0978%。因为此处不能确定模型是否为需求函数还是供给函数，所以无法对起理论上的取值做出预期判断。</p>
+<p>（3）答：在<span class="math inline">\(\alpha=0.1\)</span>水平下，通过观察pr(&gt;|t|)一列可以发现t检验结果显著的回归元有3个：<span class="math inline">\(lquan;stormy; change\)</span>。F检验的<span class="math inline">\(F^{\ast}=4.5\)</span>，其对应的p概率值远远小于0.01，表明F检验结果为极显著。回归方程的判定系数<span class="math inline">\(R^2=0.261\)</span>，调整判定系数<span class="math inline">\(\bar{R}^2=0.203\)</span>。</p>
+<p>（4）答：<strong>{ <span class="math inline">\(mon=0; tue=0; wed=0; thu=0; stormy=1; cold=1; change=0; quan=\)</span> 54.5996 }</strong>情形下的期望价格计算公式为：</p>
+<p><span class="math display">\[\begin{align}
+\begin{split}
+E(lprice&amp;|lquan=4;mon=0;tue=0;wed=0;thu=0;stormy=1;cold=1;change=0)\\
+=&amp;+\beta_{1}+\beta_{2}(4)+\beta_{3}(0)+\beta_{4}(0)+\beta_{5}(0)\\
+&amp;+\beta_{6}(0)+\beta_{7}(1)+\beta_{8}(1)+\beta_{9}(0)\\
+=&amp;+\beta_{1}+4\beta_{2}\\
+&amp;+\beta_{7}+\beta_{8}\\
+\end{split}
+\end{align}\]</span></p>
+<p>具体数值计算结果为：</p>
+<p><span class="math display">\[\begin{align}
+\begin{split}
+(\widehat{lprice}&amp;|lquan=4;mon=0;tue=0;wed=0;thu=0;stormy=1;cold=1;change=0)\\
+=&amp;+\hat{\beta}_{1}+\hat{\beta}_{2}(4)+\hat{\beta}_{3}(0)+\hat{\beta}_{4}(0)+\hat{\beta}_{5}(0)\\
+&amp;+\hat{\beta}_{6}(0)+\hat{\beta}_{7}(1)+\hat{\beta}_{8}(1)+\hat{\beta}_{9}(0)\\
+=&amp;+[0.65]+[-0.10]\cdot(4)+[-0.08]\cdot(0)+[-0.08]\cdot(0)+[-0.07]\cdot(0)\\
+&amp;+[0.05]\cdot(0)+[0.29]\cdot(1)+[0.09]\cdot(1)+[-0.15]\cdot(0)\\
+=&amp;0.6388\\
+\end{split}
+\end{align}\]</span></p>
+<p>因此，可以计算得出Fulton生鲜市场在<strong>星期五</strong>的鳕鱼<strong>期望价格</strong>是<span class="math inline">\(price=e^{0.6388}=\)</span> 1.8942 美元/KG</p>
+<p>（5）答：不存在多重共线性问题。因为每个变量的VIF都小于10。</p>
+<p>（6）答：</p>
+<p>a）初步认为存在异方差问题。因为从残差图表现出均值波动的特征。</p>
+<p>b）</p>
+<p>第一步，提出假设：<span class="math inline">\(H_0:\)</span>同方差性；<span class="math inline">\(H_1:\)</span>异方差性。</p>
+<p>第二步，计算样本统计量：<span class="math inline">\(\chi^{\ast} = n \cdot R^2=111*0.0429=\)</span> 4.7619</p>
+<p>第三步，与查表值比较：<span class="math inline">\(\chi^{\ast} =\)</span> 4.7619 <span class="math inline">\(&lt; \chi_{0.95}(9)=\)</span> 16.92</p>
+<p>第四步，得出结论：在<span class="math inline">\(\alpha =0.05\)</span>水平下，不能显著拒绝原假设<span class="math inline">\(H_0\)</span>，应接受<span class="math inline">\(H_0\)</span>，认为模型是同方差性的。</p>
+<ol start="2" style="list-style-type: decimal">
+<li></li>
+</ol>
+<p>（1）答：ADF检验结果的概率值<span class="math inline">\(p=0.01\)</span>，表明显著拒绝原假设<span class="math inline">\(H_0\)</span>（非平稳性），从而接受备择假设<span class="math inline">\(H_1\)</span>，认为序列<span class="math inline">\(lprice_t\)</span>是平稳的。</p>
+<p>（2）答：ACF图形为波动模式，PACF图形为截尾模式，初步判断为序列<span class="math inline">\(lprice_t\)</span>是AR过程。</p>
+<p>（3）</p>
+<p>a） 答：根据摘要报告信息，可以将ARMA(2, 0)模型的样本回归方程整理为：</p>
+<p><span class="math display">\[
+\begin{align}
+\widehat{lprice}_t = -0.186 +0.908 lprice_{t-1} -1.98lprice_{t-2}
+\end{align}
+\]</span></p>
+<p>a） 答：初步认为ARMA(2, 0)建模是合理的。因为模型残差的ACF和PACF图表明残差是平稳的且没有显著的波动模式。</p>
+<ol start="3" style="list-style-type: decimal">
+<li>答：</li>
+</ol>
+<p>（1）答：理论上，需求方程中的<span class="math inline">\(\alpha_1\)</span>表示需求的价格弹性，因此<span class="math inline">\(-1 &lt; \alpha_1 &lt; 0\)</span>； 同理供给方程中的<span class="math inline">\(\beta_1\)</span>表示需求的价格弹性，因此<span class="math inline">\(0 &lt; \beta_1 &lt; 1\)</span>。</p>
+<p>（2）答：</p>
+<p>对于需求方程：<span class="math inline">\(K=5,k=4,m=2\)</span>，因此有<span class="math inline">\(K-k=1, m-1=1\)</span>，也即<span class="math inline">\((K-k)=(m-1)\)</span>，阶条件法则表明需求方程是<strong>恰好识别</strong>；</p>
+<p>对于供给方程：<span class="math inline">\(K=5,k=1,m=2\)</span>，因此有<span class="math inline">\(K-k=5, m-1=1\)</span>，也即<span class="math inline">\((K-k)&gt;(m-1)\)</span>，阶条件法则表明供给方程是<strong>过度识别</strong>；</p>
+<p>（3）答：以上结构方程组可以转换为如下的约简方程组：
+<span class="math display">\[
+\begin{alignat}{3}
+lquan_t &amp;&amp;= \Pi_{1,0} + \Pi_{1,1}mon_t+\Pi_{1,2}tue_t+\Pi_{1,3}wen_t+\Pi_{1,4}thu_t\\
+        &amp;&amp;+\Pi_{1,5}stormy_t+v_{1,t} \text{(约简方程1)}\\
+lprice_t &amp;&amp;= \Pi_{2,0} + \Pi_{2,1}mon_t+\Pi_{2,2}tue_t+\Pi_{2,3}wen_t+\Pi_{2,4}thu_t\\
+        &amp;&amp;+\Pi_{2,5}stormy_t+v_{2,t} \text{(约简方程2)}\\
+\end{alignat}
+\]</span></p>
+<p>（4）答：</p>
+<p>a）答：</p>
+<p><strong>{ 周一；暴风雨 }</strong>，也即<strong>{ <span class="math inline">\(mon=1； stormy=1\)</span> }</strong>情形下：</p>
+<p>鳕鱼价格<span class="math inline">\(price\)</span>的计算结果为：</p>
+<p><span class="math display">\[\begin{align}
+\begin{split}
+E(lprice&amp;|mon=1;tue=0;wed=0;thu=0;stormy=1)\\
+=&amp;+\beta_{1}+\beta_{2}(1)+\beta_{3}(0)+\beta_{4}(0)+\beta_{5}(0)+\beta_{6}(1)\\
+=&amp;+\beta_{1}+\beta_{2}+\beta_{6}\\
+\end{split}
+\end{align}\]</span></p>
+<p><span class="math display">\[\begin{align}
+\begin{split}
+(\widehat{lprice}&amp;|mon=1;tue=0;wed=0;thu=0;stormy=1)\\
+=&amp;+\hat{\beta}_{1}+\hat{\beta}_{2}(1)+\hat{\beta}_{3}(0)\\
+&amp;+\hat{\beta}_{4}(0)+\hat{\beta}_{5}(0)+\hat{\beta}_{6}(1)\\
+=&amp;+[-0.27]+[-0.11]\cdot(1)+[-0.04]\cdot(0)\\
+&amp;+[-0.01]\cdot(0)+[0.05]\cdot(0)+[0.35]\cdot(1)\\
+=&amp;-0.0382\\
+\end{split}
+\end{align}\]</span></p>
+<p>因此，可以计算得出Fulton生鲜市场在<strong>{ 周一；暴风雨 }</strong>的鳕鱼<strong>价格</strong>是<span class="math inline">\(price=e^{-0.0382}=\)</span> 0.9625 美元/KG</p>
+<p>鳕鱼数量<span class="math inline">\(quan\)</span>的计算结果为：</p>
+<p><span class="math display">\[\begin{align}
+\begin{split}
+E(lquan&amp;|mon=1;tue=0;wed=0;thu=0;stormy=1)\\
+=&amp;+\beta_{1}+\beta_{2}(1)+\beta_{3}(0)+\beta_{4}(0)+\beta_{5}(0)+\beta_{6}(1)\\
+=&amp;+\beta_{1}+\beta_{2}+\beta_{6}\\
+\end{split}
+\end{align}\]</span></p>
+<p><span class="math display">\[\begin{align}
+\begin{split}
+(\widehat{lquan}&amp;|mon=1;tue=0;wed=0;thu=0;stormy=1)\\
+=&amp;+\hat{\beta}_{1}+\hat{\beta}_{2}(1)+\hat{\beta}_{3}(0)\\
+&amp;+\hat{\beta}_{4}(0)+\hat{\beta}_{5}(0)+\hat{\beta}_{6}(1)\\
+=&amp;+[8.81]+[0.10]\cdot(1)+[-0.48]\cdot(0)\\
+&amp;+[-0.55]\cdot(0)+[0.05]\cdot(0)+[-0.39]\cdot(1)\\
+=&amp;8.5233\\
+\end{split}
+\end{align}\]</span></p>
+<p>因此，可以计算得出Fulton生鲜市场在<strong>{ 周一；暴风雨 }</strong>的鳕鱼<strong>数量</strong>是<span class="math inline">\(quan=e^{8.5233}=\)</span> 5030.6275 吨。</p>
+<p>b）答：C同学的观点是不正确的。因为联立方程简单地采用OLS估计，并不能判明供给方程和需求方程的真实情况，也就是说OLS方法估计的结果是不可靠的。</p>
+<p>（5）答：</p>
+<p>a）答：由回归分析报告易知：</p>
+<p>需求价格弹性<span class="math inline">\(\eta_1=\hat{\alpha}_1 = -1.1194\)</span>；</p>
+<p>供给价格弹性<span class="math inline">\(\eta_2=\hat{\beta}_1 = 0.0011\)</span>。</p>
+<p>b）答：<strong>{ 周一；暴风雨 }</strong>，也即<strong>{ <span class="math inline">\(mon=1； stormy=1\)</span> }</strong>情形下：</p>
+<p>鳕鱼价格<span class="math inline">\(price\)</span>的计算结果为：</p>
+<p><span class="math display">\[\begin{align}
+\widehat{lquan}|(mon=1； stormy=1) &amp; = \hat{\alpha}_0 + \hat{\alpha}_1 lprice +\hat{\alpha}_2 \\
+\widehat{lquan}|(mon=1； stormy=1) &amp; = \hat{\beta}_0 + \hat{\beta}_1 lprice +\hat{\beta}_2 \\
+\widehat{lquan}|(mon=1； stormy=1) &amp; = 8.5059 - 1.1194 lprice -0.0254 \\
+\widehat{lquan}|(mon=1； stormy=1) &amp; = 8.6284 + 0.0011 lprice -0.3632 \\
+lquan|(mon=1； stormy=1) &amp; = 8.27 \\
+lprice|(mon=1； stormy=1) &amp; = 0.19 \\
+quan|(mon=1； stormy=1) &amp; = e^{lquan} = 3904.95 \\
+price|(mon=1； stormy=1) &amp; = e^{lprice} = 1.21 \\
+\end{align}\]</span></p>
+</div>
+<div id="第二部分乳腺癌案例分析计算-共5小题共25分" class="section level1">
+<h1><span class="header-section-number">5</span> <strong>第二部分：乳腺癌案例分析计算</strong> （<strong>共5小题，共25分</strong>）</h1>
+<p>（1）答：a是probit累积概率密度曲线；b是logit累积概率密度曲线。Logit累积概率函数的表达式为：</p>
+<p><span class="math display">\[\begin{align}
+P(Z_i) &amp; = \frac{1}{1+e^{-Z_i}} \\
+Z_i &amp; = \beta_0 + \beta_1X_{1,i} + ... + \beta_kX_{k,i} + u_i
+\end{align}\]</span></p>
+<p>（2）答：Logistic样本回归模型为：</p>
+<p><span class="math display">\[\begin{equation}
+\begin{alignedat}{999}
+&amp;L_i=&amp;&amp; -0.5273 &amp;&amp; 0.0058 Age&amp;&amp; -0.0615 HIGD\\
+&amp;\text{(cont.)}&amp;&amp; -1.5960 CHK&amp;&amp; +0.1339 AGPI&amp;&amp; + 0.3415 Miscar\\
+&amp;\text{(cont.)}&amp;&amp; + 0.2923 Births&amp;&amp; -0.0294 Weight&amp;&amp;+ e_i\\
+\end{alignedat}
+\end{equation}\]</span></p>
+<p>（3）计数<span class="math inline">\(R^2\)</span>值计算结果如下：</p>
+<p>计数<span class="math inline">\(R^2=\frac{Y_i的正确预测数}{Y_i的总观测数n}=\frac{130+12}{178}=0.7978\)</span></p>
+<p>（4）答：</p>
+<p>第一步，提出假设：<span class="math inline">\(H_0:\beta_i,i \in (2,3,...,8)\)</span>全部等于0；<span class="math inline">\(H_1:\beta_i,i \in (2,3,...,8)\)</span>不全为0。</p>
+<p>第二步，计算样本统计量：<span class="math inline">\(LR^{\ast}=\chi^{\ast} = 25.97\)</span></p>
+<p>第三步，与查表值比较：<span class="math inline">\(\chi^{\ast} = 25.97 &gt; \chi_{0.95}(7)=\)</span> 14.07</p>
+<p>第四步，得出结论：在<span class="math inline">\(\alpha =0.05\)</span>水平下，显著拒绝原假设<span class="math inline">\(H_0\)</span>，应接受<span class="math inline">\(H_1\)</span>，认为模型是整体显著的。</p>
+<p>（5）答：
+CHK前的拟合系数为-1.5960，因此<span class="math inline">\(ln(\frac{P_i}{1-P_i})=ln(odd)=-1.5960\)</span>，进而<span class="math inline">\(odd=e^{-1.5960}=0.2027\)</span></p>
+<!---复习材料--->
+</div>
+<div id="教材和题型" class="section level1">
+<h1><span class="header-section-number">6</span> 教材和题型</h1>
+<ol style="list-style-type: decimal">
+<li>学习和考试教材</li>
+</ol>
+<p>本次考试，以古扎拉蒂的《计量经济学基础》（上下册）为准，电子版请登陆到<strong>网络教学平台</strong>下载学习。</p>
+<p><strong>Gujarati, D. and D. Porter. Basic Econometrics 5ed [M], McGraw-Hill Education, 2008.</strong></p>
+<p><br/></p>
+<ol start="2" style="list-style-type: decimal">
+<li>考试题型</li>
+</ol>
+<ul>
+<li><p>整个测试只有一个题型：<strong>分析计算题</strong>！</p></li>
+<li><p>整个测试会围绕2-3个案例数据展开，分大题分小题，一直提问下去……！</p></li>
+</ul>
+<p><br/></p>
+<ol start="3" style="list-style-type: decimal">
+<li>不要紧张，没有想象的那么难！——换一种测试风格，研究生才更精彩嘛！</li>
+</ol>
+<p>下面，就好好看复习要点吧！————》》》》》</p>
+</div>
+<div id="第一部分多元回归分析回顾本科阶段计量知识" class="section level1">
+<h1><span class="header-section-number">7</span> 第一部分：多元回归分析（回顾本科阶段计量知识）</h1>
+<div id="一约定的记号和写法" class="section level2">
+<h2><span class="header-section-number">7.1</span> （一）约定的记号和写法</h2>
+<p><strong>课程要求</strong>：熟练、准确地书写基本的模型和函数形式；</p>
+<ol style="list-style-type: decimal">
+<li>总体回归模型（PRM）：</li>
+</ol>
+<p>理论表达式：形如<span class="math inline">\(Y_i= \beta_1 + \beta_2X_{2i}+ \beta_3X_{3i}+u_i\)</span></p>
+<p><br/></p>
+<ol start="2" style="list-style-type: decimal">
+<li>总体回归函数（PRF）：</li>
+</ol>
+<p>理论表达式：形如<span class="math inline">\(E(Y_i|X_i)= \beta_1 + \beta_2X_{2i}+ \beta_3X_{3i}\)</span></p>
+<p><br/></p>
+<ol start="3" style="list-style-type: decimal">
+<li>样本回归模型（SRM）：</li>
+</ol>
+<p>理论表达式：形如<span class="math inline">\(Y_i= \hat{\beta}_1 + \hat{\beta}_2X_{2i}+ \hat{\beta}_3X_{3i}+e_i\)</span></p>
+<p>数值表达式：形如<span class="math inline">\(Y_i= 20.5 + 0.6X_{2i}+ 1.4X_{3i}+e_i\)</span></p>
+<p><br/></p>
+<ol start="4" style="list-style-type: decimal">
+<li>样本回归函数（SRF）：</li>
+</ol>
+<p>理论表达式：形如<span class="math inline">\(\hat{Y}_i= \hat{\beta}_1 + \hat{\beta}_2X_{2i}+ \hat{\beta}_3X_{3i}\)</span></p>
+<p>数值表达式为：形如<span class="math inline">\(\hat{Y}_i= 20.5 + 0.6X_{2i}+ 1.4X_{3i}\)</span></p>
+</div>
+<div id="二阅读统计软件给出的分析报告" class="section level2">
+<h2><span class="header-section-number">7.2</span> （二）阅读统计软件给出的分析报告</h2>
+<p><strong>课程要求</strong>：会熟练、正确阅读统计软件给出的各类分析报告，理解其中的关键信息和内涵。这些分析报告包括：传统的多元回归分析报告；时间序列分析报告；联立方程分析报告；logistics回归分析报告；以及各种计量检验的辅助分析报告（如异方差white检验报告）等。</p>
+<p>根据统计软件的不同（<code>stata</code>；<code>Eview</code>；<code>R</code> ……），各种分析报告呈现形式略有差异，但基本要素和信息都大抵一致。</p>
+<p>起码要了解下面一些报告形式：</p>
+<p><br/></p>
+<ol style="list-style-type: decimal">
+<li>整理好的<strong>精炼报告</strong>（形式1：多行方程表达法）。</li>
+</ol>
+<p>根据统计软件的原始报告，往往是选取最关键的信息，经过整理并以多行方程的形式呈现，<strong>精炼报告</strong>的形式一般为：</p>
+<p><span class="math display" id="eq:eq-demon">\[\begin{equation}
+\begin{alignedat}{999}
+&amp;\widehat{lprice}=&amp;&amp;+0.65&amp;&amp;-0.10lquan&amp;&amp;-0.08mon\\
+&amp;\text{(t)}&amp;&amp;(1.4753)&amp;&amp;(-1.9541)&amp;&amp;(-0.7961)\\
+&amp;\text{(se)}&amp;&amp;(0.4408)&amp;&amp;(0.0501)&amp;&amp;(0.1042)\\
+&amp;\text{(cont.)}&amp;&amp;-0.08tue&amp;&amp;-0.07wed&amp;&amp;+0.05thu\\
+&amp;\text{(t)}&amp;&amp;(-0.7979)&amp;&amp;(-0.6801)&amp;&amp;(0.5341)\\
+&amp;\text{(se)}&amp;&amp;(0.1048)&amp;&amp;(0.1077)&amp;&amp;(0.1008)\\
+&amp;\text{(cont.)}&amp;&amp;+0.29stormy&amp;&amp;+0.09cold&amp;&amp;-0.15change\\
+&amp;\text{(t)}&amp;&amp;(3.6030)&amp;&amp;(1.2080)&amp;&amp;(-2.0013)\\
+&amp;\text{(se)}&amp;&amp;(0.0815)&amp;&amp;(0.0713)&amp;&amp;(0.0738)\\
+&amp;\text{(fitness)}&amp;&amp; n=111;&amp;&amp; R^2=0.2610;&amp;&amp; \bar{R^2}=0.2030\\
+&amp; &amp;&amp; F^{\ast}=4.50;&amp;&amp; p=0.0001\\
+\end{alignedat}
+\tag{7.1}
+\end{equation}\]</span></p>
+<p><br/></p>
+<ol start="2" style="list-style-type: decimal">
+<li>整理好的<strong>精炼报告</strong>（形式2：表格列示法）。</li>
+</ol>
+<p>根据统计软件的原始报告，往往是选取最关键的信息，经过整理以表格形式呈现，<strong>表格列示法</strong>的形式一般为：</p>
+<table>
+<caption><span id="tab:demo-kable">表7.1: </span>回归分析的表格列示法</caption>
+<thead>
+<tr class="header">
+<th align="center">term</th>
+<th align="center">estimate</th>
+<th align="center">std.error</th>
+<th align="center">statistic</th>
+<th align="center">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">(Intercept)</td>
+<td align="center">0.6504</td>
+<td align="center">0.4408</td>
+<td align="center">1.4753</td>
+<td align="center">0.1432</td>
+</tr>
+<tr class="even">
+<td align="center">lquan</td>
+<td align="center">-0.0978</td>
+<td align="center">0.0501</td>
+<td align="center">-1.9541</td>
+<td align="center">0.0534</td>
+</tr>
+<tr class="odd">
+<td align="center">mon</td>
+<td align="center">-0.0830</td>
+<td align="center">0.1042</td>
+<td align="center">-0.7961</td>
+<td align="center">0.4278</td>
+</tr>
+<tr class="even">
+<td align="center">tue</td>
+<td align="center">-0.0836</td>
+<td align="center">0.1048</td>
+<td align="center">-0.7979</td>
+<td align="center">0.4268</td>
+</tr>
+<tr class="odd">
+<td align="center">wed</td>
+<td align="center">-0.0732</td>
+<td align="center">0.1077</td>
+<td align="center">-0.6801</td>
+<td align="center">0.4980</td>
+</tr>
+<tr class="even">
+<td align="center">thu</td>
+<td align="center">0.0538</td>
+<td align="center">0.1008</td>
+<td align="center">0.5341</td>
+<td align="center">0.5944</td>
+</tr>
+<tr class="odd">
+<td align="center">stormy</td>
+<td align="center">0.2937</td>
+<td align="center">0.0815</td>
+<td align="center">3.6030</td>
+<td align="center">0.0005</td>
+</tr>
+<tr class="even">
+<td align="center">cold</td>
+<td align="center">0.0861</td>
+<td align="center">0.0713</td>
+<td align="center">1.2080</td>
+<td align="center">0.2299</td>
+</tr>
+<tr class="odd">
+<td align="center">change</td>
+<td align="center">-0.1478</td>
+<td align="center">0.0738</td>
+<td align="center">-2.0013</td>
+<td align="center">0.0480</td>
+</tr>
+</tbody>
+</table>
+<p><br/></p>
+<ol start="3" style="list-style-type: decimal">
+<li><strong>原始报告</strong>——传统多元回归分析的<code>R</code>软件分析报告</li>
+</ol>
+<p>一般呈现为：</p>
+<pre><code>
+Call:
+lm(formula = mod_mult, data = fultonfish)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-0.835 -0.240  0.027  0.252  0.726 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   0.6504     0.4408    1.48  0.14321    
+lquan        -0.0978     0.0501   -1.95  0.05343 .  
+mon          -0.0830     0.1042   -0.80  0.42780    
+tue          -0.0836     0.1048   -0.80  0.42677    
+wed          -0.0732     0.1077   -0.68  0.49801    
+thu           0.0538     0.1008    0.53  0.59441    
+stormy        0.2937     0.0815    3.60  0.00049 ***
+cold          0.0861     0.0713    1.21  0.22986    
+change       -0.1478     0.0738   -2.00  0.04801 *  
+---
+Signif. codes:  
+0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.341 on 102 degrees of freedom
+Multiple R-squared:  0.261, Adjusted R-squared:  0.203 
+F-statistic:  4.5 on 8 and 102 DF,  p-value: 0.000104</code></pre>
+<p><br/></p>
+<ol start="4" style="list-style-type: decimal">
+<li><strong>原始报告</strong>——时间序列回归分析的<code>R</code>软件分析报告</li>
+</ol>
+<p>形式一般为（以<span class="math inline">\(ARMA(2,0)\)</span>模型为例）：</p>
+<pre><code>Series: fultonfish$lprice 
+ARIMA(2,0,0) with non-zero mean 
+
+Coefficients:
+        ar1     ar2    mean
+      0.908  -0.198  -0.186
+s.e.  0.095   0.095   0.079
+
+sigma^2 estimated as 0.0625:  log likelihood=-2.55
+AIC=13.1   AICc=13.47   BIC=23.93
+
+Training set error measures:
+                   ME   RMSE    MAE MPE MAPE   MASE
+Training set 0.002292 0.2466 0.1993 Inf  Inf 0.9593
+                  ACF1
+Training set -0.002839</code></pre>
+<p><br/></p>
+<ol start="5" style="list-style-type: decimal">
+<li><strong>原始报告</strong>——联立方程回归分析的<code>R</code>软件报告</li>
+</ol>
+<p>形式一般为（以两个方程的联立方程组回归分析为例。<strong>大家重点关注回归部分</strong>，诊断部分不需要关注！）：</p>
+<pre><code>
+systemfit results 
+method: 2SLS 
+
+         N  DF SSR detRCov OLS-R2 McElroy-R2
+system 222 213 110   0.107  0.094     -0.598
+
+      N  DF  SSR   MSE  RMSE    R2 Adj R2
+eq1 111 105 52.1 0.496 0.704 0.139  0.098
+eq2 111 108 57.5 0.533 0.730 0.049  0.032
+
+The covariance matrix of the residuals
+      eq1   eq2
+eq1 0.496 0.396
+eq2 0.396 0.533
+
+The correlations of the residuals
+      eq1   eq2
+eq1 1.000 0.771
+eq2 0.771 1.000
+
+
+2SLS estimates for &#39;eq1&#39; (equation 1)
+Model Formula: lquan ~ lprice + mon + tue + wed + thu
+Instruments: ~mon + tue + wed + thu + stormy
+
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   8.5059     0.1662   51.19   &lt;2e-16 ***
+lprice       -1.1194     0.4286   -2.61    0.010 *  
+mon          -0.0254     0.2148   -0.12    0.906    
+tue          -0.5308     0.2080   -2.55    0.012 *  
+wed          -0.5664     0.2128   -2.66    0.009 ** 
+thu           0.1093     0.2088    0.52    0.602    
+---
+Signif. codes:  
+0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.704 on 105 degrees of freedom
+Number of observations: 111 Degrees of Freedom: 105 
+SSR: 52.09 MSE: 0.496 Root MSE: 0.704 
+Multiple R-Squared: 0.139 Adjusted R-Squared: 0.098 
+
+
+2SLS estimates for &#39;eq2&#39; (equation 2)
+Model Formula: lquan ~ lprice + stormy
+Instruments: ~mon + tue + wed + thu + stormy
+
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  8.62835    0.38897   22.18   &lt;2e-16 ***
+lprice       0.00106    1.30955    0.00     1.00    
+stormy      -0.36325    0.46491   -0.78     0.44    
+---
+Signif. codes:  
+0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.73 on 108 degrees of freedom
+Number of observations: 111 Degrees of Freedom: 108 
+SSR: 57.522 MSE: 0.533 Root MSE: 0.73 
+Multiple R-Squared: 0.049 Adjusted R-Squared: 0.032 </code></pre>
+</div>
+<div id="三理解多元回归系数的含义计算拟合值或预测值拟合优度" class="section level2">
+<h2><span class="header-section-number">7.3</span> （三）理解多元回归系数的含义、计算拟合值或预测值、拟合优度</h2>
+<p><strong>课程要求</strong>：会正确理解回归系数的经济学含义；给定已知条件下，会利用回归方程结果，计算出Y的拟合值或预测值；掌握拟合优度的具体指标。</p>
+<ul>
+<li>系数的含义：</li>
+</ul>
+<p>双对数模型<span class="math inline">\(ln(Y_i)= \hat{\beta}_1+ \hat{\beta}_2ln(X_i)+ e_i\)</span>中，<span class="math inline">\(\hat{\beta_1}\)</span>表示Y对X的<strong>弹性</strong>。</p>
+<ul>
+<li>计算<span class="math inline">\(Y_i\)</span>的拟合值或预测值：</li>
+</ul>
+<p>模型<span class="math inline">\(ln(Y_i)=20+ 0.6X_i+ e_i\)</span>，在给定<span class="math inline">\(X_i=10\)</span>时，<span class="math inline">\(Y_i\)</span>的拟合值<span class="math inline">\(\hat{Y}_i=e^{(20+0.6 \ast 10)}=\)</span> 1.957310^{11}</p>
+<ul>
+<li>拟合优度的主要指标：</li>
+</ul>
+<p>在OLS估计法下的多元回归，其拟合优度指标有可决系数<span class="math inline">\(R^2\)</span>或调整可决系数<span class="math inline">\(\bar{R}^2\)</span>。</p>
+<p>（注意，在Logistics回归里，采用的是ML估计法，其拟合优度测度另有相应指标！）</p>
+</div>
+<div id="四主要的统计学检验和计量经济学检验" class="section level2">
+<h2><span class="header-section-number">7.4</span> （四）主要的统计学检验和计量经济学检验</h2>
+<p><strong>课程要求</strong>：熟练掌握假设检验的基本原理和过程；根据不同检验目的和手段，会进行基本的检验和判断。</p>
+<p><br/></p>
+<ol style="list-style-type: decimal">
+<li>假设检验的基本过程</li>
+</ol>
+<ul>
+<li><p>step1: 提出原假设<span class="math inline">\(H_0\)</span>和备择假设<span class="math inline">\(H_1\)</span></p></li>
+<li><p>step2: 构造合适的<strong>样本统计量</strong>（一般是<span class="math inline">\(Z^{\ast}\)</span>统计量、<span class="math inline">\(t^{\ast}\)</span>统计量、<span class="math inline">\(F^{\ast}\)</span>统计量、<span class="math inline">\(\chi^{2\ast}\)</span>统计量等）</p></li>
+<li><p>step3: 给定显著性水平（如<span class="math inline">\(\alpha=0.05\)</span>）和自由度（<span class="math inline">\(f\)</span>）下查出<strong>理论分布值</strong>，如<span class="math inline">\(Z_{0.975}(f_z);t_{0.975}(f_t);F_{0.95}(f_1, f_2);\chi^2_{0.95}(f_{\chi})\)</span>等。（注意：对称性分布如Z分布和t分布，采用双尾查表，得到右侧正值；非对称的F分布和<span class="math inline">\(\chi^2\)</span>分布），采用单尾查表。其次，不同情况下，自由度f的取自要视情况而定，需要牢记自由度f!）</p></li>
+<li><p>step4: 比较<strong>样本统计量</strong>与<strong>理论分布值</strong>的大小关系，得出检验结论。如果<strong>样本统计量</strong>大于<strong>理论分布值</strong>，则表明在<span class="math inline">\(1-\alpha=95\%\)</span>置信度下是<strong>显著的</strong>，应<strong>显著的</strong>拒绝原假设<span class="math inline">\(H_0\)</span>；如果<strong>样本统计量</strong>小于<strong>理论分布值</strong>，则表明在<span class="math inline">\(1-\alpha=95\%\)</span>置信度下是<strong>不显著的</strong>，也即不能<strong>显著的</strong>拒绝原假设<span class="math inline">\(H_0\)</span>，所以暂时接受原假设<span class="math inline">\(H_0\)</span>。</p></li>
+</ul>
+<p>注意1：原假设和备择假设，在不同检验目的下会不相同。怎么才能更好地记忆呢？一条基本的<strong>法则</strong>就是：原假设<span class="math inline">\(H_0\)</span>则一般是希望被拒绝的，从而希望得到备择假设<span class="math inline">\(H_1\)</span>。——也就是说，原假设<span class="math inline">\(H_0\)</span>永远只是“稻草人”，我们希望它被打到，真正的醉翁之意实际上是备择假设<span class="math inline">\(H_1\)</span>！</p>
+<p>注意2：除了使用step4的办法，我们还可以直接看<strong>样本统计量</strong>对应的p值，也可以判断是显著还是不显著！</p>
+<p><br/></p>
+<ol start="2" style="list-style-type: decimal">
+<li>重要的几类检验：</li>
+</ol>
+<ul>
+<li><p>t检验：主要是回归系数显著性检验……</p></li>
+<li><p>F检验：广泛用于模型整体显著性检验、约束条件模型检验等……</p></li>
+<li><p><span class="math inline">\(\chi^2\)</span>检验：用于异方差怀特检验、logit回归的模型整体显著性检验（对数似然LR检验）……</p></li>
+</ul>
+</div>
+<div id="五虚拟变量回归" class="section level2">
+<h2><span class="header-section-number">7.5</span> （五）虚拟变量回归</h2>
+<p><strong>课程要求</strong>：掌握定性变量如何用一组虚拟变量来表达；有截距模型和无截距模型的差异；给定初始条件，计算Y的拟合值或预测值。</p>
+<ul>
+<li>给定条件下Y期望值的表达和计算：</li>
+</ul>
+<p>给定{lquan=2.3026, mon=1, tue=0, wed=0, thu=0,stormy=1, cold=1, change=0 }下，<span class="math inline">\(E(lprice|...)\)</span>可以表达和计算为：</p>
+<p><span class="math display">\[\begin{align}
+\begin{split}E(lprice&amp;|lquan=2.3;mon=1.0;tue=0.0;wed=0.0;thu=0.0;\\ &amp;stormy=1.0; cold=1.0;change=0.0)\\=&amp;+\beta_{1}+\beta_{2}(2.3)+\beta_{3}(1)+\beta_{4}(0)+\beta_{5}(0)\\&amp;+\beta_{6}(0)+\beta_{7}(1)+\beta_{8}(1)+\beta_{9}(0)\\=&amp;+\beta_{1}+2.3\beta_{2}+\beta_{3}\\&amp;+\beta_{7}+\beta_{8}\\\end{split}\end{align}\]</span></p>
+</div>
+<div id="六多重共线性问题" class="section level2">
+<h2><span class="header-section-number">7.6</span> （六）多重共线性问题</h2>
+<p><strong>课程要求</strong>：掌握多重共线性问题的主要诊断方法，尤其是方差膨胀因子(VIF)。</p>
+</div>
+<div id="七异方差问题" class="section level2">
+<h2><span class="header-section-number">7.7</span> （七）异方差问题</h2>
+<p><strong>课程要求</strong>：掌握异方差问题的主要诊断方法，尤其是观测残差图初步识别法和怀特异方差检验(White test)法。</p>
+<p>怀特异方差检验(White test)法：</p>
+<ul>
+<li><p>需要注意怀特辅助诊断方程的设置特点！</p></li>
+<li><p>怀特检验将会采用<span class="math inline">\(\chi^2\)</span>统计量进行假设检验！</p></li>
+<li><p>熟记原假设和备择假设！</p></li>
+</ul>
+</div>
+</div>
+<div id="第二部分probit模型和logit模型" class="section level1">
+<h1><span class="header-section-number">8</span> 第二部分：probit模型和logit模型</h1>
+<p><strong>课程要求</strong>：理解二分类因变量回归模型的构建原理；掌握probit模型和logit模型的异同；重点要会解读logit回归模型的分析报告，尤其是回归系数的含义。</p>
+<p>重要的知识点包括：</p>
+<p><br/></p>
+<ol style="list-style-type: decimal">
+<li>识记logit累积概率函数和probit累积概率函数：</li>
+</ol>
+<p>能写出二者的函数表达式；能识别probit累积概率密度曲线和logit累积概率密度曲线（见书本第15章,pg:571）。</p>
+<p><br/></p>
+<ol start="2" style="list-style-type: decimal">
+<li>理解logit模型及表达：</li>
+</ol>
+<p>令<span class="math inline">\(Z_i=\beta_0+\beta_1X_i\)</span></p>
+<p><span class="math display">\[L_i=ln(\frac{P_i}{1-P_i})=Z_i=\beta_0+\beta_1X_i\]</span></p>
+<ol start="3" style="list-style-type: decimal">
+<li>掌握logit模型的拟合优度指标（见书本第15章,pg:562）</li>
+</ol>
+<p>计数<span class="math inline">\(R^2=\frac{Y_i的正确预测数}{Y_i的总观测数n}\)</span>（重点掌握）。</p>
+<p>麦克法登<span class="math inline">\(R^2\)</span>（Mcfadden <span class="math inline">\(R^2\)</span>）。</p>
+<ol start="4" style="list-style-type: decimal">
+<li>logit回归方程的解读，尤其是回归系数的含义（见书本第15章,pg:562-563）</li>
+</ol>
+<p>主要有三个层面的解读和计算：</p>
+<ul>
+<li><p>简单系数解读（没多大意义）。大概过程是：（假定<span class="math inline">\(X_2\)</span>也是二分类变量，且X_2前的回归系数<span class="math inline">\(\hat{\beta}_2=0.6\)</span>），若<span class="math inline">\(X_2\)</span>由0变为1的话，则（保持其他因素不变下）Logit估计值<span class="math inline">\(L_i\)</span>将变为0.6……</p></li>
+<li><p><strong>机会比率</strong>解读（有那么点实际意义）。大概过程是：（假定Y为二分类变量，<span class="math inline">\(X_2\)</span>也是二分类变量，且X_2前的回归系数<span class="math inline">\(\hat{\beta}_2=0.6\)</span>），若<span class="math inline">\(X_2\)</span>由0变为1的话，则（保持其他因素不变下）<span class="math inline">\(Y=1\)</span> 与 <span class="math inline">\(Y=0\)</span>的机会比率为1.8221……</p></li>
+<li><p>给定条件下<strong>Y=1</strong>的实际发生概率。计算稍微复杂，请自行训练和脑补吧！</p></li>
+</ul>
+</div>
+<div id="第三部分时间序列分析" class="section level1">
+<h1><span class="header-section-number">9</span> 第三部分：时间序列分析</h1>
+<p><strong>课程要求</strong>：</p>
+<ol style="list-style-type: decimal">
+<li>时间序列的平稳性检验——定量方法</li>
+</ol>
+<p>（见书本第21章,pg:764）</p>
+<p>对于时间序列变量，首先应该检验它是否平稳。</p>
+<p>我们需要重点关注采用<strong>增广迪基-富勒检验法（Augmented Dickey-Fuller Test，ADF）</strong>检验时间序列变量是否平稳。</p>
+<ul>
+<li><p>要注意<strong>增广迪基-富勒检验法（Augmented Dickey-Fuller Test）</strong>的基本检验原理</p></li>
+<li><p>要会看<strong>增广迪基-富勒检验法（Augmented Dickey-Fuller Test）</strong>的检验分析报告，并正确得出平稳性检验的结论。</p></li>
+</ul>
+<p>很遗憾，书中只给了一个不太实用的分析报告——估计你们也还是看不懂。</p>
+<p>下面给出<code>R</code>软件的<strong>增广迪基-富勒检验法（Augmented Dickey-Fuller Test）</strong>检验报告，你们自己要学会看懂！！（这个检验法经常要用到，所以还是咬咬牙搞定它吧！！）</p>
+<pre><code>
+    Augmented Dickey-Fuller Test
+
+data:  fultonfish$lprice
+Dickey-Fuller = -4.8, Lag order = 4, p-value =
+0.01
+alternative hypothesis: stationary</code></pre>
+<p><br/></p>
+<ol start="2" style="list-style-type: decimal">
+<li>时间序列的波动模式——初步的图形方法</li>
+</ol>
+<p>如果时间序列变量是平稳的，那么我们就可以很快对其进行<strong>平稳性序列建模</strong>并预测啦！</p>
+<p>但是……，平稳性序列建模有很多种形式啊——AR(p)模型,或者MA(q)模型，或者ARMA(p,q)模型，或者ARIMA(p,d,q)模型……。你选哪一种呢？（抓狂）。</p>
+<p>还好，我们先给一个简单一点的图形判断规则吧：</p>
+<p>直接看该时序变量的自相关图(PAC)和偏自相关图(PAC)吧。什么图形会匹配什么样的模型，也是有一个<strong>经验法则</strong>的（好好参看书本第22章,pg:790页吧！！！！）。</p>
+<p>至于自相关图(PAC)和偏自相关图(PAC)，大概长成这个样子喽：</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-26"></span>
+<img src="ecno-master-2018-2019-fall_files/figure-html/unnamed-chunk-26-1.png" alt="对数化价格变量lprice的自相关图" width="672" />
+<p class="caption">
+图9.1: 对数化价格变量lprice的自相关图
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-27"></span>
+<img src="ecno-master-2018-2019-fall_files/figure-html/unnamed-chunk-27-1.png" alt="对数化价格变量lprice的偏自相关图" width="672" />
+<p class="caption">
+图9.2: 对数化价格变量lprice的偏自相关图
+</p>
+</div>
+<p>自己去对照法则看图说话吧。这个还是很简单，也是很基本的“技能”！</p>
+<ul>
+<li><p><strong>后话1</strong>：实际上自相关图(PAC)和偏自相关图(PAC)也可以初步判明一个序列是不是平稳。这一点，我们往往可以用来查看回归<strong>残差</strong>序列。或者换句话说，如果残差没有明显的特定模式，那么就说回归模型很理想喽！！</p></li>
+<li><p><strong>后话2</strong>：当然，以上通过图形方法来识别还是很为难人的（只是个经验法则而已），其实也可以用更复杂和更高深的定量方法来识别究竟适合做哪一类平稳模型——AR(p)模型,或者MA(q)模型，或者ARMA(p,q)模型，或者ARIMA(p,d,q)模型……。我还是不说了吧，感兴趣的请自行脑补！！</p></li>
+</ul>
+<p><br/></p>
+<ol start="3" style="list-style-type: decimal">
+<li>能读懂ARMA(p, q)模型的回归分析报告！！！</li>
+</ol>
+<p>例如，能根据回归分析报告，正确写出样本回归函数形式。</p>
+<p>下面也给出<code>R</code>软件的回归分析结果：</p>
+<pre><code>Series: fultonfish$lprice 
+ARIMA(2,0,2) with non-zero mean 
+
+Coefficients:
+        ar1     ar2     ma1     ma2    mean
+      1.473  -0.604  -0.572  -0.074  -0.191
+s.e.  0.186   0.144   0.216   0.166   0.063
+
+sigma^2 estimated as 0.0627:  log likelihood=-1.7
+AIC=15.41   AICc=16.22   BIC=31.66
+
+Training set error measures:
+                   ME   RMSE    MAE MPE MAPE   MASE
+Training set 0.002642 0.2446 0.1984 Inf  Inf 0.9546
+                 ACF1
+Training set -0.01111</code></pre>
+<p>ar？ ma? mean? 分别是对应什么？请自行复习！</p>
+</div>
+<div id="第四部分联立方程模型" class="section level1">
+<h1><span class="header-section-number">10</span> 第四部分：联立方程模型</h1>
+<p><strong>这部分内容请自己看上课ppt和讲义</strong>。</p>
+<p>考察重点主要是：</p>
+<ul>
+<li><p>联立方程转换成约简形式</p></li>
+<li><p>联立方程的识别规则（重点还是<strong>阶条件</strong>识别法则）</p></li>
+<li><p>两阶段最小二乘法（2SLS）估计联立方程</p></li>
+<li><p>联立方程回归结果的经济学解释</p></li>
+</ul>
+<p><strong>后话1</strong>： 大家还是需要利用经济学知识，多关注回归结果的经济学解释。例如，弹性的概念（又提到它了！）；利用供给方程结果和需求方程结果，在给定条件下，计算市场<strong>均衡价格</strong>和<strong>均衡数量</strong>！！——经济学的烂账还是要补回来的，欠的账迟早要还啊！</p>
+<p><strong>后话2</strong>：识别的秩条件还是有点复杂和啰嗦，大家知道它跟阶条件的关系就行！</p>
+<p><br/></p>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "ecno-master-2018-2019-fall_files/mathjax-local/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
