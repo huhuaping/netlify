@@ -45,11 +45,16 @@ link-citations: yes
 </ul></li>
 <li><a href="#rmarkdown写作中引用文献"><span class="toc-section-number">3</span> Rmarkdown写作中引用文献</a>
 <ul>
-<li><a href="#引用形式"><span class="toc-section-number">3.1</span> 引用形式</a></li>
-<li><a href="#文献列表的位置"><span class="toc-section-number">3.2</span> 文献列表的位置</a></li>
-<li><a href="#文献列表序号和缩进"><span class="toc-section-number">3.3</span> 文献列表序号和缩进</a></li>
+<li><a href="#快速复制预览文献条目"><span class="toc-section-number">3.1</span> 快速复制预览文献条目</a></li>
+<li><a href="#引用形式"><span class="toc-section-number">3.2</span> 引用形式</a></li>
+<li><a href="#文献列表的位置"><span class="toc-section-number">3.3</span> 文献列表的位置</a></li>
+<li><a href="#文献列表序号和缩进"><span class="toc-section-number">3.4</span> 文献列表序号和缩进</a></li>
 </ul></li>
-<li><a href="#总结及注意事项"><span class="toc-section-number">4</span> 总结及注意事项</a></li>
+<li><a href="#总结及注意事项"><span class="toc-section-number">4</span> 总结及注意事项</a>
+<ul>
+<li><a href="#优点"><span class="toc-section-number">4.1</span> 优点</a></li>
+<li><a href="#重要提示"><span class="toc-section-number">4.2</span> 重要提示</a></li>
+</ul></li>
 <li><a href="#参考文献">参考文献</a></li>
 <li><a href="#附录">附录</a></li>
 </ul>
@@ -115,8 +120,17 @@ require(&quot;rbbt&quot;)</code></pre>
 </div>
 <div id="rmarkdown写作中引用文献" class="section level1" number="3">
 <h1><span class="header-section-number">3</span> Rmarkdown写作中引用文献</h1>
-<div id="引用形式" class="section level2" number="3.1">
-<h2><span class="header-section-number">3.1</span> 引用形式</h2>
+<div id="快速复制预览文献条目" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> 快速复制预览文献条目</h2>
+<p>很多时候，我们更希望直接看到指定预览格式的文献条目细节，或者希望直接快速地将预览格式的文献条目复制粘贴到word、Rmarkdown或txt里去。</p>
+<p>下面是实现操作（参看 <a href="https://www.zotero.org/support/creating_bibliographies#quick_copy">指导说明</a>）：</p>
+<ul>
+<li><p>设置指定预览格式。edit <span class="math inline">\(\Rightarrow\)</span> preference <span class="math inline">\(\Rightarrow\)</span> export。</p></li>
+<li><p>选中文献条目，直接用鼠标拉到你想要放置的地方去。</p></li>
+</ul>
+</div>
+<div id="引用形式" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> 引用形式</h2>
 <p>具体可以参看的Rmarkdown<a href="https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html">官方解释</a>。</p>
 <ul>
 <li>一次同时引用多条文献，用冒号区隔：<code>[@refkey1; @refkey2]</code></li>
@@ -140,8 +154,8 @@ require(&quot;rbbt&quot;)</code></pre>
 <p><span class="citation"><a href="#ref-tobin2020a" role="doc-biblioref">TOBIN</a> (<a href="#ref-tobin2020a" role="doc-biblioref">2020</a>)</span> 认为…。</p>
 </blockquote>
 </div>
-<div id="文献列表的位置" class="section level2" number="3.2">
-<h2><span class="header-section-number">3.2</span> 文献列表的位置</h2>
+<div id="文献列表的位置" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> 文献列表的位置</h2>
 <p>默认情况下，文献列表会出现在整个文档的最后。</p>
 <p>如果要指定其出现位置，则需要插入一小段html代码<code>&lt;div id="refs"&gt;&lt;/div&gt;</code>，具体如下（可<a href="https://rmd4sci.njtierney.com/citing-articles-bibliography-styles.html#how-to-move-the-bibliography-location">参看</a>）。</p>
 <pre><code># Introduction
@@ -157,20 +171,24 @@ require(&quot;rbbt&quot;)</code></pre>
 <li><p>如果使用了脚注功能<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>，脚注列表依旧会显示在文档最后。</p></li>
 </ul>
 </div>
-<div id="文献列表序号和缩进" class="section level2" number="3.3">
-<h2><span class="header-section-number">3.3</span> 文献列表序号和缩进</h2>
+<div id="文献列表序号和缩进" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> 文献列表序号和缩进</h2>
 <p>待解决！</p>
 </div>
 </div>
 <div id="总结及注意事项" class="section level1" number="4">
 <h1><span class="header-section-number">4</span> 总结及注意事项</h1>
+<div id="优点" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> 优点</h2>
 <p>Rmarkdown写作环境下，Zotero + <code>rbbt</code>的方式，基本上实现了比较满意的文献管理和引用流程，<strong>优点</strong>如下：</p>
 <ul>
 <li><p>Zotero的免费和相对开放性。免费+插件扩展。对很多网站的文章citation能够快速识别并导入到Zotero库里去，而且还能自动下载关联pdf！</p></li>
 <li><p>Zotero对bibTeX的友好性。因为Rmarkdown对bibTeX的要求，而Zotero的相关操作极为便捷简单。此外，Zotero对中文文献情景也比较友好。</p></li>
 <li><p>R包<code>rbbt</code>函数实现了对Zotero的实时联系，引用流程更加自动化。</p></li>
 </ul>
-<p><strong>重要提示</strong>：</p>
+</div>
+<div id="重要提示" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> 重要提示</h2>
 <ol style="list-style-type: decimal">
 <li><p>正确理解Rmd渲染输出、.bib文件状态和Zotero条目库的关系。简单说：a) Rmd的输出最终只会引用.bib文件里的文献条目。b)R引用包（<code>rbbt</code>）与Zotero可以实时联系（通过zotero-better-bibtex扩展插件），但是这<strong>并不</strong>意味着Rmd渲染输出也是与Zotero实时联系的。c).因此，在写作草稿阶段，可以暂时不用关心.bib，只需要保持与Zotero实时联系即可（完成实时搜索和插入条目）。但是在最后完稿之前，务必需要及时更新调整.bib文件（从Zotero 中导出文献为.bib文件，替换更新原来的.bib旧文件即可）。</p></li>
 <li><p>Zotero中Citekey的设置是一个关键步骤，我们需要做出合理的权衡。这是因为一方面<code>@nameYear</code>的引用便捷性，要求每条文献的citekey必须要简单易用；但是另一方面，Zotero往往会管理海量的文献条目，从而又要求文献的citekey不能重复——不然就没办法精确引用文献了。不过Zotero考虑并提供了选择，可以用动态key（dynamic key），也可以用锁定key（pined key）。</p></li>
@@ -179,6 +197,7 @@ require(&quot;rbbt&quot;)</code></pre>
 <li>设定导出规则：打开Zotero<span class="math inline">\(\Rightarrow\)</span> 编辑<span class="math inline">\(\Rightarrow\)</span> 首选项<span class="math inline">\(\Rightarrow\)</span> Better Bibtex（插件菜单）<span class="math inline">\(\Rightarrow\)</span> Export<span class="math inline">\(\Rightarrow\)</span> Fields<span class="math inline">\(\Rightarrow\)</span> Fields to omit frome export<span class="math inline">\(\Rightarrow\)</span> 输入abstract等（逗号分隔）</li>
 </ul></li>
 </ol>
+</div>
 </div>
 <div id="参考文献" class="section level1 unnumbered">
 <h1>参考文献</h1>
