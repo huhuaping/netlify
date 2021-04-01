@@ -25,7 +25,6 @@ output:
     number_sections: true
 ---
 
-
 使用Rmarkdown写科学论文，自然避免不了管理和使用参考文献，以及文献输出样式。
 
 # EndNote和流程
