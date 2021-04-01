@@ -1,0 +1,87 @@
+---
+title: project管理：使用renv维护R包环境
+author: huhuaping
+date: '2021-03-31'
+slug: pkg-dependency-maintain
+categories:
+  - R
+tags:
+  - renv
+subtitle: ''
+summary: '我们有时需要分享project repo，并希望在他人或其他设备上，实现一致的可复现效果（reproducibility）。主要有两种常用情形，一是自己在多个设备上工作，二是跟人协作。R包`renv`主要目标也是实现这种可复现效果，其核心是维护和管理R版本以及各种R包版本。'
+authors: [胡华平]
+lastmod: '2021-03-31T10:03:22+08:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: true
+---
+
+我们有时需要分享project repo，并希望在他人或其他设备上，实现一致的可复现效果（reproducibility）。主要有两种常用情形，一是自己在多个设备上工作，二是跟人协作。R包`renv`主要目标也是实现这种可复现效果，其核心是维护和管理R版本以及各种R包版本（[官方说明](https://rstudio.github.io/renv/articles/renv.html)）。
+
+# 基本逻辑
+
+## 基本工作流程
+
+对`renv`工作流最简单的理解是：
+
+- `renv::snapshot()`保存project的R包状态。背后大概需要记录：project使用的R包、R包的来源、R包的版本之类。
+
+- `renv::restore()`复现project的R包状态。会根据记录文件，比对R包信息。如果版本不一致，则会按记录进行相关R包的下载安装。
+
+## 使用版本控制工具
+
+无论是多用户合作，还是个人多设备使用，都建议使用版本控制工具，如github等。
+
+对于`renv`的使用而言，最大的好处是避免R包状态记录（`renv.lock`）在同时并发操作时（这个在多人合作时会更加常见）的冲突问题。
+
+## 注意R包的安装来源
+
+需要注意的是，用户在project维护过程中，经常会用到不同来源的R包。对此，`renv`也是有其能力边界的。简单的说，来自R包主流发布平台的应该都没有问题。如下应该是R包维护相对可靠的平台：
+
+- CRAN
+
+- Bioconductor
+
+- GitHub
+
+- Gitlab
+
+- Bitbucket
+
+当然，R包的安装方式本来也是多样化的，比如`devtools::install_xx()`、`remotes::install_xx()`等。这些会自然增加`renv`安装相关R包的难度。而且`renv`不能从R包文件的`DESCRIPTION`里掌握具体的R包安装源，因此`renv`也只能进行某些猜测性设定。
+
+特别需要关注的是，如果project使用了本地来源的R包，这些R包往往是正在开发的，并没有在任何R包平台发布。此时，我们显然需要对`renv`进行R包来源的特殊设置（具体参看[官方说明](https://rstudio.github.io/renv/articles/local-sources.html)）。
+
+# 多设备工作要点
+
+## X设备如何实现安装Y设备中已有的R包？
+
+R包的安装还是一个必须的过程，renv的存在也并不能改变这一点。
+
+我们只需要：
+
+- 首先，在X设备的project中使用`renv::snapshot()`，保存x设备的R包状态。git提交并推送到远端remote。
+
+- 然后，在Y设备的project下，git拉取远端到本地，保持与远端同步。
+
+- 最后，在Y设备的project下，使用`renv::restore()`复现X设备保存的R包状态。
+
+## git同步到远端时，renv::snapshot()是自动实现的么？
+
+`renv::history()`可以查看R包的镜像历史，它会注明git远端的提交备注（commit）信息。
+
+## project多个git分枝，如何配置renv？
+
+这种需求比较特殊：不同的分枝branch需要用到不同的库library。renv可以实现这一点。（请[参看](https://stackoverflow.com/questions/62557319/renv-and-git-interaction-r)）
+
+## 能否将A project 环境迁移到B project？
+
+renv可以实现这一点。但是正确的操作应该是直接复制renv.lock文件，然后再在B project里执行`renv::restore`。（请[参看](https://stackoverflow.com/questions/62557319/renv-and-git-interaction-r)）
+

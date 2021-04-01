@@ -53,6 +53,25 @@ Rmarkdown写作环境下，Zotero + rbbt的方式，基本上实现了比较满�
 
 - 更新citekey值：Zotero$\Rightarrow$ 选中文献条目$\Rightarrow$鼠标右键 $\Rightarrow$  Better Bibtex$\Rightarrow$ refresh Bibtex key。
 
+# 多设备下zotero全文附件的同步
+
+一种常见工作模式是，个人会在多设备下使用zotero。这时，就需要处理多个设备下，zotero全文附件的同步问题。
+
+当然，zotero官方本身是支持这一点的。但是对于免费用户，仅仅300M的网络共享空间是完全不够用的，如果要更大网络共享空间，则需要掏钱购买，费用也是不低（尤其对于学生党而言）。
+
+因此，为避开官方的收费方案，下面简要介绍如何搭建一个免费的、无限容量的、自动化zotero附件同步的工作流（[参看](https://ikashnitsky.github.io/2019/zotero/)）。
+
+- **准备同步工具**：google云盘备份同步工具（国内VPN、google账号）
+
+- **准备zotero插件**： 出了前述的插件外，还需要安装一个神奇插件`ZotFile`（[下载地址](http://zotfile.com/)）。
+
+- **设定zotero参数**：具体细节请[参看](https://ikashnitsky.github.io/2019/zotero/)。
+
+以上准备和设定都完成后，实际个人多设备使用工作流程其实很简单：
+
+- 在A设备上：保持google备份同步工具开启和正常联网，同时如常利用zotero进行文献收集、阅读和笔记记录。
+
+- 在B设备上：保持google备份同步工具开启和正常联网，zotero则会自动同步全部文献条目和全文附件（pdf）。 
 
 # Rmarkdown与Zotero自动关联
 
