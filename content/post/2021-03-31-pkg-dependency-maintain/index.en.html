@@ -1,5 +1,5 @@
 ---
-title: project管理：renv维护
+title: project管理：使用renv维护R包环境
 author: huhuaping
 date: '2021-03-31'
 slug: pkg-dependency-maintain
@@ -29,12 +29,13 @@ output:
 <ul>
 <li><a href="#基本逻辑"><span class="toc-section-number">1</span> 基本逻辑</a>
 <ul>
-<li><a href="#使用版本控制流程"><span class="toc-section-number">1.1</span> 使用版本控制流程</a></li>
-<li><a href="#注意r包的安装来源"><span class="toc-section-number">1.2</span> 注意R包的安装来源</a></li>
+<li><a href="#基本工作流程"><span class="toc-section-number">1.1</span> 基本工作流程</a></li>
+<li><a href="#使用版本控制工具"><span class="toc-section-number">1.2</span> 使用版本控制工具</a></li>
+<li><a href="#注意r包的安装来源"><span class="toc-section-number">1.3</span> 注意R包的安装来源</a></li>
 </ul></li>
 <li><a href="#多设备工作要点"><span class="toc-section-number">2</span> 多设备工作要点</a>
 <ul>
-<li><a href="#x设备如何安装y设备中已有的r包"><span class="toc-section-number">2.1</span> X设备如何安装Y设备中已有的R包？</a></li>
+<li><a href="#x设备如何实现安装y设备中已有的r包"><span class="toc-section-number">2.1</span> X设备如何实现安装Y设备中已有的R包？</a></li>
 <li><a href="#git同步到远端时renvsnapshot是自动实现的么"><span class="toc-section-number">2.2</span> git同步到远端时，renv::snapshot()是自动实现的么？</a></li>
 <li><a href="#project多个git分枝如何配置renv"><span class="toc-section-number">2.3</span> project多个git分枝，如何配置renv？</a></li>
 <li><a href="#能否将a-project-环境迁移到b-project"><span class="toc-section-number">2.4</span> 能否将A project 环境迁移到B project？</a></li>
@@ -45,18 +46,44 @@ output:
 <p>我们有时需要分享project repo，并希望在他人或其他设备上，实现一致的可复现效果（reproducibility）。主要有两种常用情形，一是自己在多个设备上工作，二是跟人协作。R包<code>renv</code>主要目标也是实现这种可复现效果，其核心是维护和管理R版本以及各种R包版本（<a href="https://rstudio.github.io/renv/articles/renv.html">官方说明</a>）。</p>
 <div id="基本逻辑" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> 基本逻辑</h1>
-<div id="使用版本控制流程" class="section level2" number="1.1">
-<h2><span class="header-section-number">1.1</span> 使用版本控制流程</h2>
+<div id="基本工作流程" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> 基本工作流程</h2>
+<p>对<code>renv</code>工作流最简单的理解是：</p>
+<ul>
+<li><p><code>renv::snapshot()</code>保存project的R包状态。背后大概需要记录：project使用的R包、R包的来源、R包的版本之类。</p></li>
+<li><p><code>renv::restore()</code>复现project的R包状态。会根据记录文件，比对R包信息。如果版本不一致，则会按记录进行相关R包的下载安装。</p></li>
+</ul>
 </div>
-<div id="注意r包的安装来源" class="section level2" number="1.2">
-<h2><span class="header-section-number">1.2</span> 注意R包的安装来源</h2>
+<div id="使用版本控制工具" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> 使用版本控制工具</h2>
+<p>无论是多用户合作，还是个人多设备使用，都建议使用版本控制工具，如github等。</p>
+<p>对于<code>renv</code>的使用而言，最大的好处是避免R包状态记录（<code>renv.lock</code>）在同时并发操作时（这个在多人合作时会更加常见）的冲突问题。</p>
+</div>
+<div id="注意r包的安装来源" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> 注意R包的安装来源</h2>
+<p>需要注意的是，用户在project维护过程中，经常会用到不同来源的R包。对此，<code>renv</code>也是有其能力边界的。简单的说，来自R包主流发布平台的应该都没有问题。如下应该是R包维护相对可靠的平台：</p>
+<ul>
+<li><p>CRAN</p></li>
+<li><p>Bioconductor</p></li>
+<li><p>GitHub</p></li>
+<li><p>Gitlab</p></li>
+<li><p>Bitbucket</p></li>
+</ul>
+<p>当然，R包的安装方式本来也是多样化的，比如<code>devtools::install_xx()</code>、<code>remotes::install_xx()</code>等。这些会自然增加<code>renv</code>安装相关R包的难度。而且<code>renv</code>不能从R包文件的<code>DESCRIPTION</code>里掌握具体的R包安装源，因此<code>renv</code>也只能进行某些猜测性设定。</p>
+<p>特别需要关注的是，如果project使用了本地来源的R包，这些R包往往是正在开发的，并没有在任何R包平台发布。此时，我们显然需要对<code>renv</code>进行R包来源的特殊设置（具体参看<a href="https://rstudio.github.io/renv/articles/local-sources.html">官方说明</a>）。</p>
 </div>
 </div>
 <div id="多设备工作要点" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> 多设备工作要点</h1>
-<div id="x设备如何安装y设备中已有的r包" class="section level2" number="2.1">
-<h2><span class="header-section-number">2.1</span> X设备如何安装Y设备中已有的R包？</h2>
+<div id="x设备如何实现安装y设备中已有的r包" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> X设备如何实现安装Y设备中已有的R包？</h2>
 <p>R包的安装还是一个必须的过程，renv的存在也并不能改变这一点。</p>
+<p>我们只需要：</p>
+<ul>
+<li><p>首先，在X设备的project中使用<code>renv::snapshot()</code>，保存x设备的R包状态。git提交并推送到远端remote。</p></li>
+<li><p>然后，在Y设备的project下，git拉取远端到本地，保持与远端同步。</p></li>
+<li><p>最后，在Y设备的project下，使用<code>renv::restore()</code>复现X设备保存的R包状态。</p></li>
+</ul>
 </div>
 <div id="git同步到远端时renvsnapshot是自动实现的么" class="section level2" number="2.2">
 <h2><span class="header-section-number">2.2</span> git同步到远端时，renv::snapshot()是自动实现的么？</h2>
