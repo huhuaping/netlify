@@ -1,0 +1,78 @@
+---
+title: 文献阅读：系统追踪和自动分析文献
+author: huhuaping
+date: '2021-04-02'
+slug: auto-paper-digest
+categories:
+  - Research
+tags:
+  - paper
+  - article
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2021-04-02T10:42:33+08:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+# 现实价值意义
+
+# 可用工具平台
+
+## 工具清单
+
+- **谷歌学术** [google schalar](https://scholar.google.com/)
+
+```{r}
+knitr::include_url(url = "https://scholar.google.com/")
+```
+
+
+- **文链** [connect papers](https://www.connectedpapers.com/)。具有形象的图形化截面。
+
+```{r}
+knitr::include_url(url = "https://www.connectedpapers.com/")
+```
+
+- **文萃** [paper digest](https://www.paper-digest.com/)。
+
+```{r}
+knitr::include_url(url = "https://www.paper-digest.com/")
+```
+
+## 横向对比
+
+下面以如下一篇讨论“因果推断”的文章为例，该文章收录在ArXiv开放数据库：
+
+> 
+- 文献条目：Mehler, David Marc Anton, and Konrad Paul Kording. “The Lure of Misleading Causal Statements in Functional Connectivity Research.” ArXiv E-Prints 1812 (December 1, 2018): arXiv:1812.03363. 
+- pdf地址为：https://arxiv.org/ftp/arxiv/papers/1812/1812.03363.pdf
+
+### google学术分析结果
+
+google学术记录的被引数为23篇。因为是被引论文，因此这23篇都是在2018年以后的文章。
+
+```{r, fig.cap="谷歌学术google scholars的文章引用关系"}
+knitr::include_url(url = "https://scholar.google.com/scholar?hl=zh-CN&as_sdt=0%2C5&as_ylo=2017&q=The+lure+of+causal+statements%3A+Rampant+mis-inference+of+causality+in+estimated+connectivity&btnG=")
+
+```
+
+
+### connect paper分析结果
+
+首先，我们可以看看文链connect paper的分析结果。文链connect paper共追踪到了2009-2020年间相关论文39篇左右。相似度最高（匹配值也仅有11.1）的一篇文献是2019年发表在nature上的：Reid, Andrew T., Drew B. Headley, Ravi D. Mill, Ruben Sanchez-Romero, Lucina Q. Uddin, Daniele Marinazzo, Daniel J. Lurie, Pedro A. Valdés-Sosa, Stephen José Hanson, and Bharat B. Biswal. “Advancing Functional Connectivity Research from Association to Causation.” Nature Neuroscience 22, no. 11 (2019): 1751–60.
+
+
+```{r, fig.cap="文链connect paper的文章关系图"}
+knitr::include_url(url = "https://www.connectedpapers.com/main/662e99cc56d5fa99629e2a322671eb7cd5a8b268/The-lure-of-misleading-causal-statements-in-functional-connectivity-research/graph")
+```
+
+
+
+# 几点忠告建议
+
