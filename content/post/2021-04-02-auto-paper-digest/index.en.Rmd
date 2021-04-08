@@ -26,6 +26,7 @@ output:
 
 # 现实价值意义
 
+
 对于科研新手或者非专业人士，科研文献的系统追踪和自动分析，似乎是快速了解研究领域、确定研究方向的一大利器。
 
 对于领域科研专家，及时追踪文献进展、关注领域动态是他们的首要工作。因为工作是否领先、观点是否足够有创新性，将会决定他们正在完成的科研成果是否能够有突破并得到同行重视。
@@ -43,13 +44,13 @@ knitr::include_url(url = "https://scholar.google.com/")
 - **语义学术** [semantic scholar](https://www.semanticscholar.org/)。
 
 ```{r}
-knitr::include_url(url = "https://www.semanticscholar.org/")
+knitr::include_url(url = "https://www.semanticscholar.org")
 ```
 
 - **文链** [connect papers](https://www.connectedpapers.com/)。具有形象的图形化界面。
 
 ```{r}
-knitr::include_url(url = "https://www.connectedpapers.com/")
+knitr::include_url(url = "https://www.connectedpapers.com")
 ```
 
 - **文萃** [paper digest](https://www.paper-digest.com/)。最大的不同是对文献进行了AI解构和信息提取。可惜还处在测试阶段，语义结构和信息提取结果对于人类还不是很友好（缺乏逻辑）。而且不少官方介绍的期刊平台文献都查询不到结果。

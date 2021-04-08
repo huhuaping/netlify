@@ -1,0 +1,56 @@
+---
+title: 语丝：开源社区的创新启示
+author: huhuaping
+date: '2021-04-08'
+slug: innovation-and-sprits
+categories:
+  - R
+tags:
+  - shiny
+subtitle: ''
+summary: '通过对R开源社区一些创新性开发和萌芽活动进行初步了解，简单梳理了其中的一些新观点、新设计和新思路，并提出了若干启发和思考。'
+authors: [胡华平]
+lastmod: '2021-04-08T08:43:36+08:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: true
+---
+
+# shiny创新动向
+
+R shiny本身是一个比较完整的网页应用架构，但是个性化开发则需要HTML, CSS, or JavaScript等技术和知识（可参看博文[Python and Dash vs. R and Shiny](https://appsilon.com/dash-vs-shiny/)
+）。目前为止，我对R shiny的认知也仅仅停留在此。尽管了解它的功能和价值，但因为陡峭的学习曲线，不得不避它三丈远，绕看惊叹而不敢近身。
+
+APPsilon公司展示了他们在R shiny领域的很多创新性发展，下面是几个youtube会议视频（参看[rstudio::global(2021)](https://blog.rstudio.com/2021/01/11/x-sessions-at-rstudio-global/)）：
+
+- [Empowering Data Scientists to Build Spectacular Shiny Apps](https://www.youtube.com/watch?v=_DG4XmRl3S4)
+
+- [Styling Shiny with CSS & SASS and Speeding Up Shiny Apps [youtube](https://www.youtube.com/watch?v=a4ff4DHNpAQ&t=505s)
+
+- [Enabling Remote Data Science Teams](https://www.youtube.com/watch?v=1RMf-C6GR7I&t=2043s)
+
+APPsilon公司的shiny架构方案自称获得了500强企业的认可和订单。对于其shiny方案的具体细节，当然我更加是知之甚少。初步感受、领略到的精髓大致有二：
+
+- shiny.react = react + shiny（参看其[github repo](https://github.com/Appsilon/shiny.react)）。使用了JavaScript的React library库。
+
+- shiny.fluent = fluent + shiny（参看其[github repo](https://github.com/Appsilon/shiny.fluent)）。基本上借助了microsoft的fluent设计，可以快速实现更多直观漂亮shiny的界面部件。
+
+> **启示**：APPsilon公司的shiny方案动向，让我突然感受到`hugo`使用`go`语言后建站速度显著提升的经历。工作流work-flow的整合，有点像是“多领域交叉融合”，各个环节都用上强兵猛将，解决用户实际需求痛点。
+
+# 图形可视化和自动化
+
+`RSTUDIO::GLOBAL 2021`的另一个板块是有关[learning]()，其中有两场报告关于R制图：
+
+- 一个报告主题为“自动美化制图”（Aesthetically automated figure production），具体可参看[视频链接](https://www.rstudio.com/resources/rstudioglobal-2021/aesthetically-automated-figure-production/)及[slide资料](https://github.com/MeganBeckett/presentations)。报告里面提到了自动化完成图片多国语言、数值表达体系等的快速细节更替。
+
+- 另一个报告主题为“始终看到绘图的闪光面”（Always look on the bright side of plots），具体可参看[视频链接](https://www.rstudio.com/resources/rstudioglobal-2021/always-look-on-the-bright-side-of-plots/)及[个人主页](https://blog.karawoo.com/)。
+
+
+> **启示**：工作中遇到的一些障碍，往往也是最真实的用户需求。我们需要更多地正视它，并更加注重细节和关键环节。
