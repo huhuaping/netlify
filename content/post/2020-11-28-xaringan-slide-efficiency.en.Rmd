@@ -24,6 +24,10 @@ output:
     number_sections: true
 ---
 
+> **导读**：这是`Xaringan`系列的第3篇，系列文章请分别参看：（系列之5）[Xaringan增强：若干辅助R包及工具](/2021/04/08/xaringan-enhanced)；（系列之4）[Xaringan美化：CSS功夫](/2021/02/01/css-base-xaringan)；（系列之3）[Xaringan效率：底层与简洁](/2020/11/28/xaringan-slide-efficiency)；（系列之2）[Xaringan发布：blogdown网站中的展示](/2019/03/01/post-xaringan-slide-to-website)；（系列之1）[Xaringan缘起：创建课程slide](/2019/02/24/xaringan-for-course-slide)。
+
+一般而言，保持project下的文件夹结构稳定和简洁，能够大大避免工作的低效率性。Xaringan包用于制作多个系列slide幻灯片，也会难免带来文件数量和类型的逐渐增加和膨胀。那么在Xaringan框架下，如何管理和组织文件夹结构，以提升工作效率和代码稳定性？
+
 # Xaringan底层逻辑
 
 ## Xaringan的渲染方式
@@ -142,7 +146,7 @@ remotes::install_github('yihui/xaringan', upgrade = TRUE)
 
 ## 结论
 
-xaringan实时渲染方式，会调用servr package来搭建本地网页服务[参看官方文档]  (https://bookdown.org/yihui/rmarkdown/xaringan-preview.html)
+xaringan实时渲染方式，会调用servr package来搭建本地网页服务[参看官方文档](https://bookdown.org/yihui/rmarkdown/xaringan-preview.html)
 
 因此实时渲染下：本地服务会寻找一个根目录（root directory），从而会引发上述的图片渲染问题。libs文件夹总是会和.Rmd文件并列
 

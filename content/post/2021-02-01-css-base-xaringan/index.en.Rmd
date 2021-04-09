@@ -24,6 +24,8 @@ output:
     number_sections: true
 ---
 
+> **导读**：这是`Xaringan`系列的第4篇，系列文章请分别参看：（系列之5）[Xaringan增强：若干辅助R包及工具](/2021/04/08/xaringan-enhanced)；（系列之4）[Xaringan美化：CSS功夫](/2021/02/01/css-base-xaringan)；（系列之3）[Xaringan效率：底层与简洁](/2020/11/28/xaringan-slide-efficiency)；（系列之2）[Xaringan发布：blogdown网站中的展示](/2019/03/01/post-xaringan-slide-to-website)；（系列之1）[Xaringan缘起：创建课程slide](/2019/02/24/xaringan-for-course-slide)。
+
 # CSS基础
 
 ## CSS selector
@@ -279,7 +281,7 @@ css:
 
 - 前导符设定。正文符号列表的前导符设定问题。
 
-- 动画效果。see [Earo Wang's slide](https://slides.earo.me/rladiesakl20/#1)
+- 动画效果。可以参看[Earo Wang's slide](https://slides.earo.me/rladiesakl20/#1)。以及另一个很不错的Xaringan slide报告题为[Reproducible Data Workflows](https://pkg.garrickadenbuie.com/drake-intro/#1)给出了绘制版流程图的动画效果，其背后的关键是连续的png部件是如何分解得到的（可参看其[Rstudio cloud project](https://rstudio.cloud/project/405721)）。有待进一步去找这样的draw工具，它应该能自动保存中间环节的png。
 
 - 添加logo。see [xaringan Tip: Add A Logo to All of Your Slides](https://www.garrickadenbuie.com/blog/xaringan-tip-logo-all-slides/)。
 

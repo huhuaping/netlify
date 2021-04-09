@@ -1,0 +1,140 @@
+---
+title: Xaringan增强：若干辅助R包及工具
+author: huhuaping
+date: '2021-04-08'
+slug: xaringan-enhanced
+categories:
+  - R
+tags:
+  - Xaringan
+  - XaringanExtra
+subtitle: ''
+summary: 'Xaringan生态正在不断扩展，也将会大大方便slide制作，提升slide美观度，增加slide的更多新功能。本文将持续关注相关增强辅助包和定制函数，包括xaringanthemer、xaringanBuilder和metathis等正在开发和维护中的R包，还有一些定制化的R函数。'
+authors: [胡华平]
+lastmod: '2021-04-08T14:45:30+08:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: true
+---
+
+> **导读**：这是`Xaringan`系列的第5篇，系列文章请分别参看：（系列之5）[Xaringan增强：若干辅助R包及工具](/2021/04/08/xaringan-enhanced)；（系列之4）[Xaringan美化：CSS功夫](/2021/02/01/css-base-xaringan)；（系列之3）[Xaringan效率：底层与简洁](/2020/11/28/xaringan-slide-efficiency)；（系列之2）[Xaringan发布：blogdown网站中的展示](/2019/03/01/post-xaringan-slide-to-website)；（系列之1）[Xaringan缘起：创建课程slide](/2019/02/24/xaringan-for-course-slide)。
+
+Xaringan生态正在不断扩展，也将会大大方便slide制作，提升slide美观度，增加slide的更多新功能。本文将持续关注相关增强辅助包和定制函数，包括xaringanthemer、xaringanBuilder和metathis等正在开发和维护中的R包，还有一些定制化的R函数。
+
+其中，博文[Making Extra Great Slides](https://www.garrickadenbuie.com/talk/extra-great-slides-nyhackr/)做出了基本的梳理。本文在此基础上做了进一步测试、对比和总结。
+
+
+
+# R包xaringanExtra
+
+R包`xaringanExtra`确实是“包”如其名，提供了不少Xaringan功能增强，可以说是大大缓解了Xaingan用户的大部分痛点。
+
+具体可以参看R包`xaringanExtra`的[说明文档](https://pkg.garrickadenbuie.com/xaringanExtra/#/README?id=xaringanextra)，以及关注追踪其[github repo](https://github.com/gadenbuie/xaringanExtra/)。
+
+整体来看，个人认为比较有用的增强功能包括：
+
+- Scribble。slide可以涂鸦啦。**一句话点评**：手写墨迹的保存需要手动浏览器打印，有点费手。白板（键盘B）状态下无法手写涂鸦，槽点还有，**距离好用总差那么一丢丢**。
+
+- Search。全域slide搜索功能。**一句话点评**：这个好，直接甩掉pptx几条街。
+
+- Clipboard。便于代码复制操作。**一句话点评**：码农一族的最爱，非码农表示不觉明厉。
+
+- Tile View。实现slide缩略图效果。**一句话点评**：pptx有的，咱也的有。
+
+- Editable。slide内容可编辑。**一句话点评**：必须指定可编辑内容域，功能实用性也不够明确。
+
+其中，比较有意思的slide操作包括：
+
+- Animate.css。动画效果。**一句话点评**：类似pptx幻灯片动画效果（进入、退出），但不是部件（element）的动画效果。无论如何，聊胜于无。此外，尤其要注意css独立文件的依赖关系，上传个人站点（如netlify）需仔细考证。
+
+- Panelset。面板集效果。**一句话点评**：它有点类似于Xaringan自带的navigator导航效果（`.right-column[]`+`.left-column`）。区别在于：前者面板是水平罗列，且只需在一个slide页面下完成（一个`---`下）；其优点是代码更少，结构更紧凑；最大的问题是pdf导出需要额外包来加持解决，其他不足还包括：slide页码下的代码特别多，不便于导航写内容；另外对math公式等支持还不完善（如裸的Rmarkdown数学表达式会无法显示，但是加上`.small[]`字体大小类css修饰则可以显示）。后者则是垂直罗列，且需要在多个slide页面下完成（多个`---`下）；其优点是便于导航编写内容，且每个pannel天然就占一张slide，方便导出pdf；不足在于垂直罗列后，右侧展示空间被压缩。
+
+- Broadcast。你讲你的slide，观众可自动实时跟随slide翻页。**一句话点评**：很炫酷的功能，但是国内网速和访问可达性还有待测试。
+
+- FreezeFrame。定格gif，免得它一直动。**一句话点评**：功夫是好功夫，不过都摆开了大架势秀舞姿了（gif嗨起来），还管得了台下观众头昏眼花么？
+
+- Webcam。调用摄像头，实现图中画效果。**一句话点评**：颜值后生美女们，定会喜大普奔吧。
+
+- Tachyons。大概包括了多种支持Xaringan的Tachyons“小部件”（[参看Tachyons官网](http://tachyons.io/)），如文本窗框（text box）。**一句话点评**：似乎普通的css设定也可以实现，这个有空再去推敲推敲其中有啥玄妙。
+
+
+# R包xaringanBuilder
+
+R包`xaringanBuilder`（[github repo](https://github.com/jhelvy/xaringanBuilder)）的目标是支持多种输出格式的Xaringan slide导出：
+
+- html
+
+- pdf
+
+- gif
+
+- pptx
+
+- mp4
+
+- png
+
+- social (png of first slide sized for sharing on social media)
+
+`xaringanBuilder`包的安装命令为：`remotes::install_github("jhelvy/xaringanBuilder")`。
+
+**优点**：
+
+- pdf和pptx两种格式导出是大多数人比较关心的。可以与其他导出方法比较，看哪一种方案的导出质量和速度更优。例如，pdf格式输出，感觉与后面提到的`xaringan_to_pdf()`过程和效果都很类似。
+
+- 同时支持多种格式输入和输出，还可以对“中间格式”进行处理。例如可以支持先导出为pdf，然后再进一步把pdf导出为pptx。
+
+- 支持复杂形式Xaringan slide的多格式输出。例如`xaringanBuilder::build_pptx("03-slide-class/04-data-measuring.Rmd",complex_slides = T)`就可以实现对计面板集（[panelsets](https://pkg.garrickadenbuie.com/xaringanExtra/#/panelset)）类型slide的完美输出。这个功能也即实现后面要提到的`xaringan_to_pdf()`函数过程和效果，必须点赞!
+
+**槽点**：
+
+- 可能的多种包依赖关系。例如pptx格式需要依赖`officer`包。
+
+- “伪”pptx格式输出。`xaringanBuilder::build_pptx("03-slide-class/04-data-measuring.Rmd",complex_slides = T)`的结果，pptx的每张幻灯片都只是png格式的图片而已。不过，这个槽点应该是能够预料到的（大家猜猜是为什么？因为Xaringan slide和pptx幻灯片的血统完全不一样啊！）。
+
+
+# R包xaringanthemer
+
+R包`xaringanthemer`提供了很多Xaringan slide风格的模板，具体可以查看[官方说明](https://pkg.garrickadenbuie.com/xaringanthemer/articles/xaringanthemer.html)，以及[github repo](https://github.com/gadenbuie/xaringanthemer)。实际上我个人基本上还没有使用上述任何style，因为目前有自己的定制化xaringan模板。
+
+**简单点评**：
+
+- 以满足个性化需求为首，切记千篇一律。style风格一事，不过是外貌形象而已，仁者见仁智者见智。大部分人的工作汇报场景应该是固定化、模式化的，因此自己设计和维护的个性化style反而会更加实用，细节操控自然也会心中有数，迭代更新相应也更加可靠。
+
+- 简单的就是最有力的。还是那句老话，越复杂的style、越多的新结构，也意味着更加难以控制。开源世界里采用或拥抱某些创新工具的基本法则应该是：简单可靠，步步为营。
+
+<!---
+# R包metathis
+
+--->
+
+# 输出pdf函数xaringan_to_pdf()
+
+显然，对Xaringan进行功能增强以后，带来的直接后果就是slide的结构和形式开始变得复杂多样。
+
+其中，使用`xaringanExtra`设计面板集（[panelsets](https://pkg.garrickadenbuie.com/xaringanExtra/#/panelset)）类型的slide时，简单使用chrome浏览器导出为pdf文件会不满足用户需求：pdf只会保留面板集slide下的第一个panel页面。
+
+为此，`xaringanExtra`包的开发者Garrick在博文"[Printing xaringan slides with chromote](https://www.garrickadenbuie.com/blog/print-xaringan-chromote/)"中，专门提到了这一用户需求和解决办法。他编写了一个输出pdf的R函数`xaringan_to_pdf()`，并且后续可能会直接添加到`xaringanExtra`包中去。`xaringan_to_pdf()`函数源代码下载链接[github Gist](https://gist.github.com/gadenbuie/f6b8ec0335bdd45ed5a68bead60ef4fa)。
+
+根据作者说明，`xaringan_to_pdf()`函数需要依赖如下工具和R包：
+
+- 本地浏览器Google Chrome
+
+- 依赖包`chromote`：安装`remotes::install_github("rstudio/chromote")`。
+
+- 其他依赖包：安装`install.packages(c("progress", "jsonlite", "pdftools", "digest"))`
+
+最后做一下**简单点评**：
+
+- pdf输出速度不太理想。`xaringan_to_pdf()`函数的pdf输出速度相对较慢，经测试180页slide大概需要5-10分钟（当然，根据slide的复杂程度会有一定差异）。这显然是因为依赖包过多或者工作流workflow过长 。
+
+- 限制是对html文件格式的pdf输出。例如`xaringan_to_pdf("03-slide-class/04-data-measuring.html")`，不能直接针对`.Rmd`文件。相当于工作流workflow进一步被延长了。
+
+- 后续更新支持不确定。
