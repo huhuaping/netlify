@@ -33,6 +33,13 @@ type: docs
 knitr::include_url("/course-statistics/03-slide-class/04-data-measuring.html")
 ```
 
+try xaringanextra
+
+```{r , echo=F, eval=T}
+# test the `include_url()`
+xaringanExtra::embed_xaringan(url = "/course-statistics/03-slide-class/04-data-measuring.html")
+```
+
 以下种类型课件都可以使用，两者可以互补，但强烈建议使用第一种类型`Xaringan slide`课件[^a]：
 
 **1.现代型课件（Xaringan slide）**（操作提示[^b]）：`r fontawesome::fa('slideshare', fill= "blue", height=17 )`[第04章-数据的概括性度量.html](/course-statistics/03-slide-class/04-data-measuring.html) 。
