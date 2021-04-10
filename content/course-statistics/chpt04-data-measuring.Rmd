@@ -33,9 +33,8 @@ type: docs
 knitr::include_url("/course-statistics/03-slide-class/04-data-measuring.html")
 ```
 
-try xaringanextra
 
-```{r , echo=F, eval=T}
+```{r , echo=F, eval=F}
 # test the `include_url()`
 xaringanExtra::embed_xaringan(url = "/course-statistics/03-slide-class/04-data-measuring.html")
 ```
