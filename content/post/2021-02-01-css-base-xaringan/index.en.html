@@ -39,6 +39,7 @@ output:
 <li><a href="#layout-html"><span class="toc-section-number">3.1</span> 头衬和底衬（header and footer）</a></li>
 <li><a href="#个性水印图片watermark"><span class="toc-section-number">3.2</span> 个性水印图片（watermark）</a></li>
 <li><a href="#各类窗框notes-box"><span class="toc-section-number">3.3</span> 各类窗框（notes box）</a></li>
+<li><a href="#序贯图片的动画效果"><span class="toc-section-number">3.4</span> 序贯图片的动画效果</a></li>
 </ul></li>
 <li><a href="#下一步需要处理的css问题"><span class="toc-section-number">4</span> 下一步需要处理的CSS问题</a>
 <ul>
@@ -349,6 +350,76 @@ div.notes {
 待完成：找到新数据，绘制一张条形图，但其不适合制作柱状图。
 
 ` ``</code></pre>
+</div>
+<div id="序贯图片的动画效果" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> 序贯图片的动画效果</h2>
+<p>幻灯片动画效果（animation）的背后，基本有两类思路：</p>
+<p>第一类：<strong>小部件</strong>（partial elements）动画效果。常见的设计工具如pptx，在一张slide里面，对动画小部件（窗体、文本、箭头等）进行时序上（timeline）的安排设计，从而实现动画效果。比较适合于那些只需要利用“标准化”小部件组合形成动画的幻灯片。其优点也是显而易见的：一块幕布，持续添加小部件，比较符合动画的内容本质和视觉直觉。难点在于需要大量操作来给小部件定位（position）以及修饰小部件。</p>
+<p>第二类，<strong>图片放映</strong>动画效果。利用人眼的视觉时间差特点，把事先设计好的系列序贯图片，连续反映展示，从而实现动画效果。比较适合于那些“手工绘制”多张序贯图片形成动画的幻灯片。其优点是：强调视觉定格（帧）关系，不太关注细节的严格一致。难点在于需要“手工绘制”，以及认为确定图片帧，小部件的细节可能会被认为并不太重要。</p>
+<p>目前为止，直接在xaringan（或reveal.js）slide上进行第一类小部件动画制作的工具，基本上没有看到相关便利性的工具包或解决方案。xaringan（或reveal.js）slide上的动画主要是基于第二类，<strong>图片放映</strong>动画效果。例如，一个R相关会议报告做了题为<a href="https://pkg.garrickadenbuie.com/drake-intro/#1">Reproducible Data Workflows</a>，就给出了“反映”型“流程图”（其实并不是流程）的动画效果，其背后就是利用序贯图片帧，不断反映，从而表现出“动画”效果。具体代码可参看其<a href="https://rstudio.cloud/project/405721">Rstudio cloud project</a>。</p>
+<p>总体而言，在xaringan（或reveal.js）slide上主要采用“反映”型动画效果，因为动画实现（多帧图片）和动画控制（方向键）都相对简单。然而，多帧图片的设计和获得则成了其中最大难题。这样就需要依赖R之外的“绘图”工具，而且它最好还要能够自动保存序贯图片帧（反映时序中的中间环节图片）。不过很遗憾，这样的外部“绘图”工具（不管是否支持小部件）目前我是暂时没有发现（起码放狗搜了一大圈是无所得）。</p>
+<p>不过还是找到了一个可以实现的“笨办法”。</p>
+<p>第一阶段：<strong>绘制图片</strong>阶段。用到的主要外部工具有<code>Powerpoint</code>（用于绘图） 和<code>Snagit</code>（用于截图）。工作流程基本上是：</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>利用<code>Powerpoint</code>绘图，设计好动画。在动画窗口中控制小部件的出现先后顺序。</p></li>
+<li><p>播放<code>Powerpoint</code>动画，再利用<code>Snagit</code>进行截图，获得图片帧，按要求进行图片自动命名（这一步很重要，方便后面调用）。需要注意在<code>Snagit</code>设置里，把截图质量设定为较高（File <span class="math inline">\(\Rrightarrow\)</span> Capture perference <span class="math inline">\(\Rrightarrow\)</span> Capture <span class="math inline">\(\Rrightarrow\)</span> Videa Quality）</p></li>
+</ol>
+<p>第二阶段：<strong>xaringan代码实现</strong>阶段。有了上述序贯图片，Xaringan里主要就是进行图片调用和css控制。</p>
+<ol style="list-style-type: lower-alpha">
+<li><p><strong>图片调用</strong>。因为涉及到调用系列图片（已经有规则地命名），因此可以将slide代码编程化，尽量减少代码数量，让文档结构更清晰。具体而言，需要用到的函数包括：</p>
+<ul>
+<li><code>base::dir()</code>函数调用图片路径。</li>
+<li><code>glue:glue()</code>函数组装slide语法要素。</li>
+<li><code>base::cat()</code>函数输出代码结果。</li>
+</ul></li>
+<li><p><strong>CSS控制</strong>。图片相对位置等的控制，可以启用tachyons的CSS样式，具体要用到<code>xaringanExtra</code>包的<code>xaringanExtra::use_tachyons()</code>函数。</p></li>
+</ol>
+<div class="notes">
+<p>
+<strong>注意</strong>：
+</p>
+<ul>
+<li>
+<p>
+<code>glue::glue()</code>函数的使用有两个坑：一是它对方括号<code>{your parameter}</code>敏感（默认为parameter），因此需要用双方括号嵌套，才能正确编写并识别latex代码<code>\frac{{your code}}</code>；二是它需要双斜线<code>\</code>来escape特定latex语法（如<code></code>）。
+</p>
+</li>
+<li>
+<p>
+R code chunk参数一定要记得设定<code>{r results=“asis”}</code>，这样才能实现正确代码输出（<code>cat()</code>函数）。
+</p>
+</li>
+</ul>
+</div>
+<p>下面是Xaringan中的代码演示：</p>
+<pre class="r"><code># 启用tachyons的CSS样式
+xaringanExtra::use_tachyons()
+# 调用图片位置
+proj_slides &lt;-sort(dir(&quot;../pic/sequence/&quot;, pattern = &quot;quatile-min-upper-.+png$&quot;, full.names = T),decreasing = T)
+# 组装slide代码要素
+proj_slides_txt &lt;- glue::glue(&quot;
+## （演示）分位数计算：较小制上限插值公式(推导)
+
+.fl.w-60[
+![]({proj_slides})
+]
+
+.fl.w-40[
+
+- 
+$f_i$表示各组所对应的频次，其中
+$i \\in 1,2,\\cdots,5$。
+$f_{{Q_j}}$表示分位数组的频次。
+$p_j$表示1/4或3/4分割位置，其中：
+$p_1=\\frac{{\\sum{{f_i}}}}{{4}}$，
+$p_3=\\frac{{3\\sum{{f_i}}}}{{4}}$。
+]
+
+---
+
+&quot;)
+# 输出代码结果
+cat(proj_slides_txt, sep = &quot;&quot;)</code></pre>
 </div>
 </div>
 <div id="下一步需要处理的css问题" class="section level1" number="4">
