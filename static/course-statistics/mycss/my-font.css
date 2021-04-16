@@ -1,0 +1,26 @@
+@import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+@import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+@import url(https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700);
+@import url('https://fonts.googleapis.com/css2?family=Long+Cang&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap');
+
+body { 
+  font-family:'Songti SC', serif, 'KaiTi', '楷体','Droid Serif', 'Palatino Linotype', 'Book Antiqua', Palatino, 'Microsoft YaHei' ; 
+  line-height: 2em;
+}
+/*h1, h2, h3 {
+  font-family: 'Yanone Kaffeesatz';
+  font-weight: normal;
+} */
+
+.remark-code, .remark-inline-code { 
+  font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace; 
+  line-height: 1em;
+}
+
+h1, h2, h3 {
+  font-family: 'Ma Shan Zheng', cursive,'楷体';
+  font-weight: normal;
+}
+
+table {line-height: 1em;}

@@ -320,6 +320,72 @@ cat(proj_slides_txt, sep = "")
 
 ```
 
+## 灵活选用字体
+
+解决字体灵活选用问题。工作量理论上不是很大，主要是受到中文字体适用性和加载速度等的限制。目前暂时还不想去碰它，大众字体就大众字体，先忍一忍。具体看yihui的相关思考和说明。如[思源宋体](https://yihui.org/cn/2017/04/source-han-serif/) ；[楷体](https://yihui.org/cn/2017/02/kaiti/#fnref:-1)。
+
+在Xaringan中给slide内容设定不同的个性化字体，基本有两种方案（当然二者结合也是可行的）：
+
+- **方案1**：个性化手动设置。首先，需要编写个性化字体CSS。然后，在`yaml区域`来指定调用字体CSS文件。`Xaringan`包的官方wiki ["Deploying Your Slides Online"](https://github.com/yihui/xaringan/wiki/Deploy-Slides-Online)给出了具体操作过程和办法。此外，还有一类是集成、友好性的css工具集，也可能更便捷地提供字体设定，例如`Tachyons`的[字体库管理方案](http://tachyons.io/docs/typography/font-family/)。
+
+- **方案2**：R包函数化设置。具体要用到R包`xaringanthemer`，其字体设置及相关R函数可参看其[官方说明](https://pkg.garrickadenbuie.com/xaringanthemer/articles/xaringanthemer.html#default-fonts)。
+
+上述两种方案，其关键都在于**可用“字体库”**（font family）。因此需要弄明白如下几个问题：
+
+- `Xaringan`默认的字体库是什么？它存放在哪里？（对于方案2的R包`xaringanthemer`，我们也同样需要问这样的问题。）
+
+> `Xaringan`字体css文件位置在："your-pkg-dir\xaringan\rmarkdown\templates\xaringan\resources\defualt-fonts.css"
+
+- 操作系统（如Win 10 或Mac OS）的字体库（system font libraries）与`Xaringan`的字体库是什么关系？（后者能直接调用前者的字体库么？）
+
+- 电脑本地渲染的slide字体，与网站开发（如netlify）上的slide字体是什么关系？（后者可能需要设置netlify的后台相关字体控制参数）。
+
+- 怎么来使用网络开源的字体库？slide的字体加载能否成功，以及加载速度够快么？
+
+下面提供一些可用的免费字体库：
+
+- [google font](https://fonts.google.com/)。找到自己喜欢的字体类型，例如[Ma Shan Zheng](https://fonts.google.com/specimen/Ma+Shan+Zheng?subset=chinese-simplified)，然后右侧调用`@import`。
+
+- 关于免费的[思源黑体和思源宋体](https://www.fyears.org/2017/04/source-han-sans-and-source-han-serif.html)安装和使用。
+
+下面再展示一下Xaringan slide个性化字体css文件(my-font.css)的代码设定（也可参看[说明]((https://github.com/yihui/xaringan/wiki/Deploy-Slides-Online)）：
+
+```{css}
+# my-font.css
+@import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap');
+
+body { font-family:'Songti SC', serif, 'KaiTi', '楷体','Droid Serif', 'Palatino Linotype', 'Book Antiqua', Palatino, 'Microsoft YaHei' ; }
+
+h1, h2, h3 {
+  font-family: 'Ma Shan Zheng', cursive,'楷体';
+  font-weight: normal;
+}
+
+```
+
+
+```{block, type='notes', echo=T}
+**注意**：
+
+- 字体使用有先后顺序。客户浏览器会根据操作系统字体情况，依次按顺序来加载字体。
+
+- 综合考虑不同平台和设备下的字体可用性。因此，往往需要设定字体库的“备胎计划”（fallback）。
+
+
+```
+
+此外，Xaringan中不同内容要素（elements）的字体应该考虑不同的设定，具体内容要素类别包括：
+
+- 标题（headings）：`h1,h2,h3,h4,...`
+
+- 代码区域（code chunk）以及行内代码（inline code）：`.remark-code`和 `.remark-inline-code`
+
+- 表格（table）：表题（caption），表注（notation）。
+
+- 图片（figture）：图题（caption），图注（notation）。
+
+- 数学公式符号（latex equation and symbol）：
+
 
 # 下一步需要处理的CSS问题
 
@@ -337,9 +403,7 @@ cat(proj_slides_txt, sep = "")
 
 - [Emi Tanaka's slide](https://emitanaka.org/ninja-theme/themes/kunoichi/kunoichi-theme-example.html#1)提供了关于页面布局的多种形式。
 
-## 灵活选用字体
 
-解决字体灵活选用问题。工作量理论上不是很大，主要是受到中文字体适用性和加载速度等的限制。目前暂时还不想去碰它，大众字体就大众字体，先忍一忍。具体看yihui的相关思考和说明。如[思源宋体](https://yihui.org/cn/2017/04/source-han-serif/) ；[楷体](https://yihui.org/cn/2017/02/kaiti/#fnref:-1)。
 
 ## 图文混排
 
