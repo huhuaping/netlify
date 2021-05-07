@@ -30,7 +30,7 @@
 /* Table width = 100% max-width */
 
 .remark-slide table{
-    width: 90%;
+    width: 100%;
 }
 
 /* Change the background color to white for shaded rows (even rows) */
@@ -64,7 +64,7 @@ div.my-header-h2 {
 }
 
 
-.remark-slide-content h2, h3,h4,h5{
+.remark-slide-content h1,h2, h3,h4,h5{
   position: relative;
   top: 0px;
   margin: 15px 0px 50px;
@@ -90,7 +90,8 @@ div.my-footer span {
     color: #F7F8FA;
     position: absolute;
     left: 15px;
-    bottom: 2px;
+    top: 0px;
+    line-height: 1.5em;
 }
 
 div.my-footer a {
@@ -104,7 +105,8 @@ div.my-footer a {
 
 .remark-slide-number {
   font-size: 10pt;
-  margin-bottom: -11.6px;
+  line-height: 0.5em;
+  margin-bottom: -5px;
   margin-right: 10px;
   color: #FFFFFF; /* white */
   opacity: 1; /* default: 0.5 */

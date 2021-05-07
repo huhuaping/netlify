@@ -46,6 +46,10 @@ output:
 </ul>
 </div>
 
+<blockquote>
+<p><strong>导读</strong>：这是<code>Xaringan</code>系列的第3篇，系列文章请分别参看：（系列之5）<a href="/2021/04/08/xaringan-enhanced">Xaringan增强：若干辅助R包及工具</a>；（系列之4）<a href="/2021/02/01/css-base-xaringan">Xaringan美化：CSS功夫</a>；（系列之3）<a href="/2020/11/28/xaringan-slide-efficiency">Xaringan效率：底层与简洁</a>；（系列之2）<a href="/2019/03/01/post-xaringan-slide-to-website">Xaringan发布：blogdown网站中的展示</a>；（系列之1）<a href="/2019/02/24/xaringan-for-course-slide">Xaringan缘起：创建课程slide</a>。</p>
+</blockquote>
+<p>一般而言，保持project下的文件夹结构稳定和简洁，能够大大避免工作的低效率性。Xaringan包用于制作多个系列slide幻灯片，也会难免带来文件数量和类型的逐渐增加和膨胀。那么在Xaringan框架下，如何管理和组织文件夹结构，以提升工作效率和代码稳定性？</p>
 <div id="xaringan底层逻辑" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Xaringan底层逻辑</h1>
 <div id="xaringan的渲染方式" class="section level2" number="1.1">
@@ -158,7 +162,7 @@ some long content balabala
 </div>
 <div id="结论" class="section level2" number="2.6">
 <h2><span class="header-section-number">2.6</span> 结论</h2>
-<p>xaringan实时渲染方式，会调用servr package来搭建本地网页服务[参看官方文档] (<a href="https://bookdown.org/yihui/rmarkdown/xaringan-preview.html" class="uri">https://bookdown.org/yihui/rmarkdown/xaringan-preview.html</a>)</p>
+<p>xaringan实时渲染方式，会调用servr package来搭建本地网页服务<a href="https://bookdown.org/yihui/rmarkdown/xaringan-preview.html">参看官方文档</a></p>
 <p>因此实时渲染下：本地服务会寻找一个根目录（root directory），从而会引发上述的图片渲染问题。libs文件夹总是会和.Rmd文件并列</p>
 <p>总之，使用相对路径引用图片是比较保险的方式。具体的地方包括</p>
 <ul>

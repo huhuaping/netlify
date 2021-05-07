@@ -44,6 +44,56 @@ tabyls: a tidy, fully-featured approach to counting things. [see link](https://c
 - **不足**：
 
     - `janitor::tabyl()`仅适合处理**原始数据**，并且是`data.frame`或`vector`。
+    
+### 注意函数使用次序
+    
+特别需要注意系列`janitor::adorn_xx()`函数的使用先后顺序关系。概括起来需要小心的是：
+
+- 先计算汇总，再设置格式。其核心要点在于，数据列格式的变换，会导致数据列类型（type）的改变，比如`numeric`类型会变为`character`类型。例如，需要先`adorn_total("rows")`进行行汇总，再`adorn_pct_formatting()`把比率转换为百分数。
+
+- 没有被汇总的`adorn_total()`，也不会被进一步调整格式`adorn_pct_formatting()`。这意味着手动计算的占比列（小数如0.32），不能够使用`adorn_pct_formatting()`调整为百分数（如32%）。
+
+- 添加汇总计算`adorn_total()`，结果将不再保持为标准数据表（tidy data table）。因此需要额外处理不适合汇总的列或行。例如累积百分比和累积次数，就不应该有汇总（Total）值。
+
+### 指定列进行汇总或调整格式
+
+- 首先，指定列进行汇总或调整格式需要满足前述函数使用的先后次序关系。
+
+- 其次，指定列进行汇总或调整格式需要完整使用`janitor::adorn_xx()`函数的所有参数设置。这一点非常不人性。
+
+- 最后，指定列进行汇总或调整格式需要使用`dplyr`包的`select`语法，如all_of(contains("p"))`。
+
+```{r, echo=T, eval=FALSE}
+require(DT)
+require(janitor)
+char <-c("非常不满意","不满意","一般","满意","非常满意")
+reps <- c(24L, 108L,93L, 45L,30L) 
+
+sat_list <- rep(char, reps)
+
+sat <- data.frame(groups=LETTERS[1:5],
+                  satisfication = sat_list,
+                  row.names=NULL) %>%
+  mutate(satisfication = factor(satisfication, levels = char))
+
+cum_calc <- sat %>%
+  janitor::tabyl(satisfication) %>%
+  mutate(min_cum_n = cumsum(n),
+         min_cum_p = cumsum(percent), #<<
+         max_cum_n =rev( cumsum(rev(n))), #<<
+         max_cum_p =rev( cumsum(rev(percent)))) 
+  
+cum_format<-  cum_calc %>%
+  mutate(min_cum_p = scales::percent(min_cum_p,accuracy = 0.1), #<<
+         max_cum_p = scales::percent(max_cum_p,accuracy = 0.1)) %>%
+  janitor::adorn_totals(.,where = "row",fill = "-",na.rm = TRUE, #<<
+                        name = "Total", all_of(c("n","percent"))) %>%
+  janitor::adorn_pct_formatting(.,digits = 1, #<<
+                                rounding ="half to even",
+                                affix_sign = TRUE,
+                                all_of(c("percent"))) #<<
+
+```
 
 
 # 分析场景与R函数

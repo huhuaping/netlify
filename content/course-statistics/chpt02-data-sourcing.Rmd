@@ -38,7 +38,7 @@ knitr::include_url("/course-statistics/03-slide-class/02-data-sourcing.html")
 **1.现代型课件（Xaringan slide）**（操作提示[^b]）：`r fontawesome::fa('slideshare', fill= "blue", height=17 )`[第02章-数据收集和整理.html](/course-statistics/03-slide-class/02-data-sourcing.html) 。
 
 
-**2.传统型课件（pdf）**：`r fontawesome::fa('file-pdf', fill= "blue", height=17 )`[第02章-数据收集和整理.pdf](/course-statistics/material/02-data-sourcing.2021.03.29.pdf) 。（2021.03.29更新）
+**2.传统型课件（pdf）**：`r fontawesome::fa('file-pdf', fill= "blue", height=17 )`[第02章-数据收集和整理.pdf](/course-statistics/material/02-data-sourcing.2021.5.8.pdf) 。（2021.05.08更新）
 
 
 以上两种类型课件的**差异**：

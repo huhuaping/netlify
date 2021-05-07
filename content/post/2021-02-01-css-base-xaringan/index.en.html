@@ -37,20 +37,26 @@ output:
 <li><a href="#xaringan的css美化"><span class="toc-section-number">3</span> Xaringan的CSS美化</a>
 <ul>
 <li><a href="#layout-html"><span class="toc-section-number">3.1</span> 头衬和底衬（header and footer）</a></li>
-<li><a href="#个性水印图片watermark"><span class="toc-section-number">3.2</span> 个性水印图片（watermark）</a></li>
-<li><a href="#各类窗框notes-box"><span class="toc-section-number">3.3</span> 各类窗框（notes box）</a></li>
+<li><a href="#添加水印图片watermark"><span class="toc-section-number">3.2</span> 添加水印图片（watermark）</a></li>
+<li><a href="#添加logo图片"><span class="toc-section-number">3.3</span> 添加logo图片</a></li>
+<li><a href="#各类窗框notes-box"><span class="toc-section-number">3.4</span> 各类窗框（notes box）</a></li>
+<li><a href="#序贯图片的动画效果"><span class="toc-section-number">3.5</span> 序贯图片的动画效果</a></li>
+<li><a href="#灵活选用字体"><span class="toc-section-number">3.6</span> 灵活选用字体</a></li>
 </ul></li>
 <li><a href="#下一步需要处理的css问题"><span class="toc-section-number">4</span> 下一步需要处理的CSS问题</a>
 <ul>
 <li><a href="#储备炫酷技能"><span class="toc-section-number">4.1</span> 储备炫酷技能</a></li>
-<li><a href="#灵活选用字体"><span class="toc-section-number">4.2</span> 灵活选用字体</a></li>
-<li><a href="#图文混排"><span class="toc-section-number">4.3</span> 图文混排</a></li>
-<li><a href="#todo清单"><span class="toc-section-number">4.4</span> Todo清单</a></li>
+<li><a href="#图文混排"><span class="toc-section-number">4.2</span> 图文混排</a></li>
+<li><a href="#todo清单"><span class="toc-section-number">4.3</span> Todo清单</a></li>
 </ul></li>
-<li><a href="#最后的若干思考和感受"><span class="toc-section-number">5</span> 最后的若干思考和感受</a></li>
+<li><a href="#tachyons-css"><span class="toc-section-number">5</span> Tachyons CSS</a></li>
+<li><a href="#最后的若干思考和感受"><span class="toc-section-number">6</span> 最后的若干思考和感受</a></li>
 </ul>
 </div>
 
+<blockquote>
+<p><strong>导读</strong>：这是<code>Xaringan</code>系列的第4篇，系列文章请分别参看：（系列之5）<a href="/2021/04/08/xaringan-enhanced">Xaringan增强：若干辅助R包及工具</a>；（系列之4）<a href="/2021/02/01/css-base-xaringan">Xaringan美化：CSS功夫</a>；（系列之3）<a href="/2020/11/28/xaringan-slide-efficiency">Xaringan效率：底层与简洁</a>；（系列之2）<a href="/2019/03/01/post-xaringan-slide-to-website">Xaringan发布：blogdown网站中的展示</a>；（系列之1）<a href="/2019/02/24/xaringan-for-course-slide">Xaringan缘起：创建课程slide</a>。</p>
+</blockquote>
 <div id="css基础" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> CSS基础</h1>
 <div id="css-selector" class="section level2" number="1.1">
@@ -252,8 +258,8 @@ div.my-footer a {
   text-decoration: none;
 }</code></pre>
 </div>
-<div id="个性水印图片watermark" class="section level2" number="3.2">
-<h2><span class="header-section-number">3.2</span> 个性水印图片（watermark）</h2>
+<div id="添加水印图片watermark" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> 添加水印图片（watermark）</h2>
 <p>水印图片的个性化设定。首先需要设定css，然后在slide里设定<code>layout: true</code>（见前面完整<a href="#layout-html">语句块</a>），并按html语法依次设定三个水印图片，其中之一如<code>&lt;div class="watermark1"&gt;&lt;/div&gt;</code>。</p>
 <pre class="css"><code>/* water remark image */
 
@@ -277,8 +283,18 @@ div.my-footer a {
  transform: rotate(-45deg);
 }</code></pre>
 </div>
-<div id="各类窗框notes-box" class="section level2" number="3.3">
-<h2><span class="header-section-number">3.3</span> 各类窗框（notes box）</h2>
+<div id="添加logo图片" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> 添加logo图片</h2>
+<p><strong>方案1：手工添加logo</strong>。可以参看：a. <a href="https://www.garrickadenbuie.com/blog/xaringan-tip-logo-all-slides/">xaringan Tip: Add A Logo to All of Your Slides</a>。以及“队长论坛”<a href="https://stackoverflow.com/questions/54450769/can-i-add-a-logo-to-every-slide-of-a-xaringan-template-using-css">贴文</a>“Can I add a logo to every slide of a xaringan template using css?”。</p>
+<p><strong>方案2：包函数添加logo</strong>。<code>xaringanExtra::use_logo(</code>能很好地处理logo图片，可以灵活使用<code>class:hide_logo</code>来指定特定slide不显示logo图片。具体请参看<a href="https://pkg.garrickadenbuie.com/xaringanExtra/#/logo">官方说明</a>。</p>
+<pre class="r"><code>xaringanExtra::use_logo(
+  image_url = &quot;https://raw.githubusercontent.com/rstudio/hex-stickers/master/PNG/xaringan.png&quot;,
+  link_url = &quot;http://slides.yihui.name/xaringan&quot;,
+  position = xaringanExtra::css_position(top = &quot;1em&quot;, right = &quot;1em&quot;)
+)</code></pre>
+</div>
+<div id="各类窗框notes-box" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> 各类窗框（notes box）</h2>
 <p>在多个写作场景下（如<code>xaringan</code>、<code>blogdown</code>、<code>rmarkdown</code>），可能会用到各类提示窗框（notes box）。可以利用css设定获得个性化的提示窗框效果，具体可参看desirée de leon的博文<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>。</p>
 <p><img src="/pic/div-tip-annotate.png" /><!-- --></p>
 <p>基本要点：</p>
@@ -347,6 +363,150 @@ div.notes {
 
 ` ``</code></pre>
 </div>
+<div id="序贯图片的动画效果" class="section level2" number="3.5">
+<h2><span class="header-section-number">3.5</span> 序贯图片的动画效果</h2>
+<p>幻灯片动画效果（animation）的背后，基本有两类思路：</p>
+<p>第一类：<strong>小部件</strong>（partial elements）动画效果。常见的设计工具如pptx，在一张slide里面，对动画小部件（窗体、文本、箭头等）进行时序上（timeline）的安排设计，从而实现动画效果。比较适合于那些只需要利用“标准化”小部件组合形成动画的幻灯片。其优点也是显而易见的：一块幕布，持续添加小部件，比较符合动画的内容本质和视觉直觉。难点在于需要大量操作来给小部件定位（position）以及修饰小部件。</p>
+<p>第二类，<strong>图片放映</strong>动画效果。利用人眼的视觉时间差特点，把事先设计好的系列序贯图片，连续反映展示，从而实现动画效果。比较适合于那些“手工绘制”多张序贯图片形成动画的幻灯片。其优点是：强调视觉定格（帧）关系，不太关注细节的严格一致。难点在于需要“手工绘制”，以及认为确定图片帧，小部件的细节可能会被认为并不太重要。</p>
+<p>目前为止，直接在xaringan（或reveal.js）slide上进行第一类小部件动画制作的工具，基本上没有看到相关便利性的工具包或解决方案。xaringan（或reveal.js）slide上的动画主要是基于第二类，<strong>图片放映</strong>动画效果。例如，一个R相关会议报告做了题为<a href="https://pkg.garrickadenbuie.com/drake-intro/#1">Reproducible Data Workflows</a>，就给出了“反映”型“流程图”（其实并不是流程）的动画效果，其背后就是利用序贯图片帧，不断反映，从而表现出“动画”效果。具体代码可参看其<a href="https://rstudio.cloud/project/405721">Rstudio cloud project</a>。</p>
+<p>总体而言，在xaringan（或reveal.js）slide上主要采用“反映”型动画效果，因为动画实现（多帧图片）和动画控制（方向键）都相对简单。然而，多帧图片的设计和获得则成了其中最大难题。这样就需要依赖R之外的“绘图”工具，而且它最好还要能够自动保存序贯图片帧（反映时序中的中间环节图片）。不过很遗憾，这样的外部“绘图”工具（不管是否支持小部件）目前我是暂时没有发现（起码放狗搜了一大圈是无所得）。</p>
+<p>不过还是找到了一个可以实现的“笨办法”。</p>
+<p>第一阶段：<strong>绘制图片</strong>阶段。用到的主要外部工具有<code>Powerpoint</code>（用于绘图） 和<code>Snagit</code>（用于截图）。工作流程基本上是：</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>利用<code>Powerpoint</code>绘图，设计好动画。在动画窗口中控制小部件的出现先后顺序。</p></li>
+<li><p>播放<code>Powerpoint</code>动画，再利用<code>Snagit</code>进行截图，获得图片帧，按要求进行图片自动命名（这一步很重要，方便后面调用）。需要注意在<code>Snagit</code>设置里，把截图质量设定为较高（File <span class="math inline">\(\Rrightarrow\)</span> Capture perference <span class="math inline">\(\Rrightarrow\)</span> Capture <span class="math inline">\(\Rrightarrow\)</span> Videa Quality）</p></li>
+</ol>
+<p>第二阶段：<strong>xaringan代码实现</strong>阶段。有了上述序贯图片，Xaringan里主要就是进行图片调用和css控制。</p>
+<ol style="list-style-type: lower-alpha">
+<li><p><strong>图片调用</strong>。因为涉及到调用系列图片（已经有规则地命名），因此可以将slide代码编程化，尽量减少代码数量，让文档结构更清晰。具体而言，需要用到的函数包括：</p>
+<ul>
+<li><code>base::dir()</code>函数调用图片路径。</li>
+<li><code>glue:glue()</code>函数组装slide语法要素。</li>
+<li><code>base::cat()</code>函数输出代码结果。</li>
+</ul></li>
+<li><p><strong>CSS控制</strong>。图片相对位置等的控制，可以启用tachyons的CSS样式，具体要用到<code>xaringanExtra</code>包的<code>xaringanExtra::use_tachyons()</code>函数。</p></li>
+</ol>
+<div class="notes">
+<p>
+<strong>注意</strong>：
+</p>
+<ul>
+<li>
+<p>
+<code>glue::glue()</code>函数的使用有两个坑：一是它对方括号<code>{your parameter}</code>敏感（默认为parameter），因此需要用双方括号嵌套，才能正确编写并识别latex代码<code>\frac{{your code}}</code>；二是它需要双斜线<code>\</code>来escape特定latex语法（如<code></code>）。
+</p>
+</li>
+<li>
+<p>
+R code chunk参数一定要记得设定<code>{r results=“asis”}</code>，这样才能实现正确代码输出（<code>cat()</code>函数）。
+</p>
+</li>
+</ul>
+</div>
+<p>下面是Xaringan中的代码演示：</p>
+<pre class="r"><code># 启用tachyons的CSS样式
+xaringanExtra::use_tachyons()
+# 调用图片位置
+proj_slides &lt;-sort(dir(&quot;../pic/sequence/&quot;, pattern = &quot;quatile-min-upper-.+png$&quot;, full.names = T),decreasing = T)
+# 组装slide代码要素
+proj_slides_txt &lt;- glue::glue(&quot;
+## （演示）分位数计算：较小制上限插值公式(推导)
+
+.fl.w-60[
+![]({proj_slides})
+]
+
+.fl.w-40[
+
+- 
+$f_i$表示各组所对应的频次，其中
+$i \\in 1,2,\\cdots,5$。
+$f_{{Q_j}}$表示分位数组的频次。
+$p_j$表示1/4或3/4分割位置，其中：
+$p_1=\\frac{{\\sum{{f_i}}}}{{4}}$，
+$p_3=\\frac{{3\\sum{{f_i}}}}{{4}}$。
+]
+
+---
+
+&quot;)
+# 输出代码结果
+cat(proj_slides_txt, sep = &quot;&quot;)</code></pre>
+</div>
+<div id="灵活选用字体" class="section level2" number="3.6">
+<h2><span class="header-section-number">3.6</span> 灵活选用字体</h2>
+<p>解决字体灵活选用问题。工作量理论上不是很大，主要是受到中文字体适用性和加载速度等的限制。目前暂时还不想去碰它，大众字体就大众字体，先忍一忍。具体看yihui的相关思考和说明。如<a href="https://yihui.org/cn/2017/04/source-han-serif/">思源宋体</a> ；<a href="https://yihui.org/cn/2017/02/kaiti/#fnref:-1">楷体</a>。</p>
+<p>在Xaringan中给slide内容设定不同的个性化字体，基本有两种方案（当然二者结合也是可行的）：</p>
+<ul>
+<li><p><strong>方案1</strong>：个性化手动设置。首先，需要编写个性化字体CSS。然后，在<code>yaml区域</code>来指定调用字体CSS文件。<code>Xaringan</code>包的官方wiki <a href="https://github.com/yihui/xaringan/wiki/Deploy-Slides-Online">“Deploying Your Slides Online”</a>给出了具体操作过程和办法。此外，还有一类是集成、友好性的css工具集，也可能更便捷地提供字体设定，例如<code>Tachyons</code>的<a href="http://tachyons.io/docs/typography/font-family/">字体库管理方案</a>。</p></li>
+<li><p><strong>方案2</strong>：R包函数化设置。具体要用到R包<code>xaringanthemer</code>，其字体设置及相关R函数可参看其<a href="https://pkg.garrickadenbuie.com/xaringanthemer/articles/xaringanthemer.html#default-fonts">官方说明</a>。</p></li>
+</ul>
+<p>上述两种方案，其关键都在于<strong>可用“字体库”</strong>（font family）。因此需要弄明白如下几个问题：</p>
+<ul>
+<li><code>Xaringan</code>默认的字体库是什么？它存放在哪里？（对于方案2的R包<code>xaringanthemer</code>，我们也同样需要问这样的问题。）</li>
+</ul>
+<blockquote>
+<p><code>Xaringan</code>字体css文件位置在：“your-pkg-dir-fonts.css”</p>
+</blockquote>
+<ul>
+<li><p>操作系统（如Win 10 或Mac OS）的字体库（system font libraries）与<code>Xaringan</code>的字体库是什么关系？（后者能直接调用前者的字体库么？）</p></li>
+<li><p>电脑本地渲染的slide字体，与网站开发（如netlify）上的slide字体是什么关系？（后者可能需要设置netlify的后台相关字体控制参数）。</p></li>
+<li><p>怎么来使用网络开源的字体库？slide的字体加载能否成功，以及加载速度够快么？</p></li>
+</ul>
+<p>下面提供一些可用的免费字体库：</p>
+<ul>
+<li><p><a href="https://fonts.google.com/">google font</a>。找到自己喜欢的字体类型，例如<a href="https://fonts.google.com/specimen/Ma+Shan+Zheng?subset=chinese-simplified">Ma Shan Zheng</a>，然后右侧调用<code>@import</code>。</p></li>
+<li><p>关于免费的<a href="https://www.fyears.org/2017/04/source-han-sans-and-source-han-serif.html">思源黑体和思源宋体</a>安装和使用。</p></li>
+</ul>
+<p>下面再展示一下Xaringan slide个性化字体css文件(my-font.css)的代码设定（也可参看[说明]((<a href="https://github.com/yihui/xaringan/wiki/Deploy-Slides-Online" class="uri">https://github.com/yihui/xaringan/wiki/Deploy-Slides-Online</a>)）：</p>
+<pre class="css"><code># my-font.css
+@import url(&#39;https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&amp;display=swap&#39;);
+
+body { font-family:&#39;Songti SC&#39;, serif, &#39;KaiTi&#39;, &#39;楷体&#39;,&#39;Droid Serif&#39;, &#39;Palatino Linotype&#39;, &#39;Book Antiqua&#39;, Palatino, &#39;Microsoft YaHei&#39; ; }
+
+h1, h2, h3 {
+  font-family: &#39;Ma Shan Zheng&#39;, cursive,&#39;楷体&#39;;
+  font-weight: normal;
+}
+</code></pre>
+<style type="text/css">
+# my-font.css
+@import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap');
+
+body { font-family:'Songti SC', serif, 'KaiTi', '楷体','Droid Serif', 'Palatino Linotype', 'Book Antiqua', Palatino, 'Microsoft YaHei' ; }
+
+h1, h2, h3 {
+  font-family: 'Ma Shan Zheng', cursive,'楷体';
+  font-weight: normal;
+}
+
+</style>
+<div class="notes">
+<p>
+<strong>注意</strong>：
+</p>
+<ul>
+<li>
+<p>
+字体使用有先后顺序。客户浏览器会根据操作系统字体情况，依次按顺序来加载字体。
+</p>
+</li>
+<li>
+<p>
+综合考虑不同平台和设备下的字体可用性。因此，往往需要设定字体库的“备胎计划”（fallback）。
+</p>
+</li>
+</ul>
+</div>
+<p>此外，Xaringan中不同内容要素（elements）的字体应该考虑不同的设定，具体内容要素类别包括：</p>
+<ul>
+<li><p>标题（headings）：<code>h1,h2,h3,h4,...</code></p></li>
+<li><p>代码区域（code chunk）以及行内代码（inline code）：<code>.remark-code</code>和 <code>.remark-inline-code</code></p></li>
+<li><p>表格（table）：表题（caption），表注（notation）。</p></li>
+<li><p>图片（figture）：图题（caption），图注（notation）。</p></li>
+<li><p>数学公式符号（latex equation and symbol）：</p></li>
+</ul>
+</div>
 </div>
 <div id="下一步需要处理的css问题" class="section level1" number="4">
 <h1><span class="header-section-number">4</span> 下一步需要处理的CSS问题</h1>
@@ -361,30 +521,42 @@ div.notes {
 <li><p><a href="https://emitanaka.org/ninja-theme/themes/kunoichi/kunoichi-theme-example.html#1">Emi Tanaka’s slide</a>提供了关于页面布局的多种形式。</p></li>
 </ul>
 </div>
-<div id="灵活选用字体" class="section level2" number="4.2">
-<h2><span class="header-section-number">4.2</span> 灵活选用字体</h2>
-<p>解决字体灵活选用问题。工作量理论上不是很大，主要是受到中文字体适用性和加载速度等的限制。目前暂时还不想去碰它，大众字体就大众字体，先忍一忍。具体看yihui的相关思考和说明。如<a href="https://yihui.org/cn/2017/04/source-han-serif/">思源宋体</a> ；<a href="https://yihui.org/cn/2017/02/kaiti/#fnref:-1">楷体</a>。</p>
-</div>
-<div id="图文混排" class="section level2" number="4.3">
-<h2><span class="header-section-number">4.3</span> 图文混排</h2>
+<div id="图文混排" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> 图文混排</h2>
 <p>图文混排技巧。</p>
 <ul>
 <li><p><code>remark.js</code>自带光环的边栏效果（side bar）<code>.left-column[]</code>或者<code>.right-column[]</code>。</p></li>
 <li><p><code>remark.js</code>自带光环的两栏效果（two columns）<code>.pull-left[]</code>或者<code>.pull-right[]</code>。</p></li>
 </ul>
 </div>
-<div id="todo清单" class="section level2" number="4.4">
-<h2><span class="header-section-number">4.4</span> Todo清单</h2>
+<div id="todo清单" class="section level2" number="4.3">
+<h2><span class="header-section-number">4.3</span> Todo清单</h2>
 <ul>
 <li><p>页面布局。页面紧凑度和宽松度灵活调整。例如<code>remark-slide-content.roomy</code>。</p></li>
 <li><p>前导符设定。正文符号列表的前导符设定问题。</p></li>
-<li><p>动画效果。see <a href="https://slides.earo.me/rladiesakl20/#1">Earo Wang’s slide</a></p></li>
-<li><p>添加logo。see <a href="https://www.garrickadenbuie.com/blog/xaringan-tip-logo-all-slides/">xaringan Tip: Add A Logo to All of Your Slides</a>。</p></li>
+<li><p>动画效果。可以参看<a href="https://slides.earo.me/rladiesakl20/#1">Earo Wang’s slide</a>。以及另一个很不错的Xaringan slide报告题为<a href="https://pkg.garrickadenbuie.com/drake-intro/#1">Reproducible Data Workflows</a>给出了绘制版流程图的动画效果，其背后的关键是连续的png部件是如何分解得到的（可参看其<a href="https://rstudio.cloud/project/405721">Rstudio cloud project</a>）。有待进一步去找这样的draw工具，它应该能自动保存中间环节的png。</p></li>
 </ul>
 </div>
 </div>
-<div id="最后的若干思考和感受" class="section level1" number="5">
-<h1><span class="header-section-number">5</span> 最后的若干思考和感受</h1>
+<div id="tachyons-css" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> Tachyons CSS</h1>
+<p>因为使用R包<code>xaringanExtra</code>的缘故，初次接触到<code>Tachyons</code>。简单地，<code>Tachyons</code>是一套创新的CSS架构理念和工具。</p>
+<p>该CSS架构的可能最初设想，是来自前端开发员Adam Morse的一篇倡议性短文<a href="https://mrmrs.cc/writing/scalable-css/">CSS and Scalability</a>（他的个人<a href="https://mrmrs.cc/">首页</a>）。然后经过实践探索和迭代坚持，诞生了目前的<code>Tachyons</code><a href="http://tachyons.io/">工具集</a>。具体的介绍可以参看
+<a href="https://github.com/dwyl/learn-tachyons">Learn Tachyons</a>。如果要使用各种css元件和样式，也可以登陆快速检索入口：<a href="https://roperzh.github.io/tachyons-cheatsheet">Cheat Sheet</a>。</p>
+<p>这里主要说两个与本人项目相关的话题。</p>
+<p><strong>第一个话题</strong>是：为什么要尝试选择<code>Tachyons</code>的CSS架构理念。其实也就是<code>Tachyons</code>要解决的主要CSS痛点。个人认为最重要的优点有：1）坚持“所见即所得”。下面的图既是最好的说明。具体而言，它坚持明确的“语义化代码”，让CSS显性化，实现人类友好。2）坚持“乐高组装模块化”。基于最小颗粒的CSS原件和风格，可以进行无限可能的模块化组合，从而实现CSS代码可复用性和稳定性，以及维护的简单化。3）坚持“函数化CSS开发”。与R语言类似的函数化编程思维一致，可以通过参数进行灵活控制。例如其中提到的“尺度化”（scale）概念，运用于字体大小（fontsize）、宽度（width）等。个人感觉类似于<code>ggplot2</code>的数据化映射思路。</p>
+<div class="figure">
+<img src="https://blog.byjasonli.com/media/posts/13/responsive/TachyonsExplanationNow-xl.png" alt="" />
+<p class="caption">tachons</p>
+</div>
+<div class="figure">
+<img src="https://blog.byjasonli.com/media/posts/13/responsive/TachyonsExplanationBefore-xl.png" alt="" />
+<p class="caption">before</p>
+</div>
+<p><strong>第二个话题</strong>是：如何将<code>Tachyons</code>的CSS架构运用于<code>Xaringan</code>的视觉输出设计中去？当然目前已经可以基于<code>xaringanExtra</code>包进行引入，但是里面也还有很多需要有效衔接的地方。</p>
+</div>
+<div id="最后的若干思考和感受" class="section level1" number="6">
+<h1><span class="header-section-number">6</span> 最后的若干思考和感受</h1>
 <p>这次对Xaringan 又一次发起冲锋，直接缘由是《计量经济学》双一流课程团队的视频录制。团队里其他人都不用R和Rmarkdown，更不要提Xaringan slide了。大家仍旧还是基于PowerPoint准备和制作授课幻灯片，有的老师甚至操作系统还是win7，office套件还是2010版！所以只能我事先用powerpoint设定好ppt模板，大家各自拿去制作自己的授课ppt（其实大部分团队老师甚至连ppt母版也不会用）。考虑到我自己的实际需求，我是希望能同时兼顾自己使用xaringan 和团队其他老师使用ppt的一致性——当然是不能奢求最后两者视觉效果的完全一样！目前在Xaringan上的设定调整，基本上达到了ppt模板类似效果的80%左右。</p>
 <p>事实上，Xaringan和ppt二者效果一致性的达成，并不是最大的挑战。基本上基于html的Xaringan slide，可以使用css技巧实现ppt里的几乎所有功能。而况Xaringan还有很多ppt无法实现的“现代的”以及“未来的”诸多功能！真正的挑战在于团队协作，尤其是对于非常技术守旧的团队（并不指技术之外的其他方面）。到此，我的基本态度就是：最低限度地在技术方面与其他人协作，重点是把协作任务下自己事情做完、基本ok即可！</p>
 <p>当然，这里面也还有一个在协作冲突中推动自己不断学习进步的问题。显然，如果没有这次的协作录制课程，我肯定还是会一如往常地坚持“最小化学习”策略：也即如无实际所需，绝不去茫然学习所谓的各种知识技能。这一次，我充分认识到了CSS对于Xaringan甚至对于Html的重要性，并且看到了一些文档协作、协作和输出的“未来”趋势和走向！</p>
