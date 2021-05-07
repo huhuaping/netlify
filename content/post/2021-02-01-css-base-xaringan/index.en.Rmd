@@ -435,7 +435,23 @@ h1, h2, h3 {
 
 - 动画效果。可以参看[Earo Wang's slide](https://slides.earo.me/rladiesakl20/#1)。以及另一个很不错的Xaringan slide报告题为[Reproducible Data Workflows](https://pkg.garrickadenbuie.com/drake-intro/#1)给出了绘制版流程图的动画效果，其背后的关键是连续的png部件是如何分解得到的（可参看其[Rstudio cloud project](https://rstudio.cloud/project/405721)）。有待进一步去找这样的draw工具，它应该能自动保存中间环节的png。
 
+# Tachyons CSS
 
+因为使用R包`xaringanExtra`的缘故，初次接触到`Tachyons`。简单地，`Tachyons`是一套创新的CSS架构理念和工具。
+
+该CSS架构的可能最初设想，是来自前端开发员Adam Morse的一篇倡议性短文[CSS and Scalability](https://mrmrs.cc/writing/scalable-css/)（他的个人[首页](https://mrmrs.cc/)）。然后经过实践探索和迭代坚持，诞生了目前的`Tachyons`[工具集](http://tachyons.io/)。具体的介绍可以参看
+[Learn Tachyons ](https://github.com/dwyl/learn-tachyons)。如果要使用各种css元件和样式，也可以登陆快速检索入口：[Cheat Sheet](https://roperzh.github.io/tachyons-cheatsheet)。
+
+这里主要说两个与本人项目相关的话题。
+
+
+**第一个话题**是：为什么要尝试选择`Tachyons`的CSS架构理念。其实也就是`Tachyons`要解决的主要CSS痛点。个人认为最重要的优点有：1）坚持“所见即所得”。下面的图既是最好的说明。具体而言，它坚持明确的“语义化代码”，让CSS显性化，实现人类友好。2）坚持“乐高组装模块化”。基于最小颗粒的CSS原件和风格，可以进行无限可能的模块化组合，从而实现CSS代码可复用性和稳定性，以及维护的简单化。3）坚持“函数化CSS开发”。与R语言类似的函数化编程思维一致，可以通过参数进行灵活控制。例如其中提到的“尺度化”（scale）概念，运用于字体大小（fontsize）、宽度（width）等。个人感觉类似于`ggplot2`的数据化映射思路。
+
+![tachons](https://blog.byjasonli.com/media/posts/13/responsive/TachyonsExplanationNow-xl.png)
+
+![before](https://blog.byjasonli.com/media/posts/13/responsive/TachyonsExplanationBefore-xl.png)
+
+**第二个话题**是：如何将`Tachyons`的CSS架构运用于`Xaringan`的视觉输出设计中去？当然目前已经可以基于`xaringanExtra`包进行引入，但是里面也还有很多需要有效衔接的地方。
 
 # 最后的若干思考和感受
 
