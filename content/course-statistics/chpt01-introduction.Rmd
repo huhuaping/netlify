@@ -38,7 +38,7 @@ knitr::include_url("/course-statistics/03-slide-class/01-introduction.html")
 **1.现代型课件（Xaringan slide）**（操作提示[^b]）：`r fontawesome::fa('slideshare', fill= "blue", height=17 )`[第01章-绪论.html](/course-statistics/03-slide-class/01-introduction.html) 。
 
 
-**2.传统型课件（pdf）**：`r fontawesome::fa('file-pdf', fill= "blue", height=17 )`[第01章-绪论.pdf](/course-statistics/material/01-introduction-2021.3.2.pdf) 。
+**2.传统型课件（pdf）**：`r fontawesome::fa('file-pdf', fill= "blue", height=17 )`[第01章-绪论.pdf](/course-statistics/material/01-introduction-2021.5.8.pdf) 。（更新日期：2021.5.8）
 
 
 以上两种类型课件的**差异**：
