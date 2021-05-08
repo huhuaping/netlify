@@ -100,6 +100,43 @@ R包`xaringanBuilder`（[github repo](https://github.com/jhelvy/xaringanBuilder)
 - “伪”pptx格式输出。`xaringanBuilder::build_pptx("03-slide-class/04-data-measuring.Rmd",complex_slides = T)`的结果，pptx的每张幻灯片都只是png格式的图片而已。不过，这个槽点应该是能够预料到的（大家猜猜是为什么？因为Xaringan slide和pptx幻灯片的血统完全不一样啊！）。
 
 
+## pdf输出时数学公式显示异常
+
+**问题描述**：如果直接使用chrome浏览器打印pdf，数学公式显示都是正常的（如同html预览效果）。但是使用`xaringanBuilder::build_pdf()`函数进行pdf输出，则数学公式总是显示异常（非常小）。
+
+
+**尝试办法**：
+
+- 怀疑html转会效果更好，尝试`.Rmd`转pdf或者`.html`转pdf，问题都依旧。
+
+
+```{r, eval=FALSE, echo=TRUE}
+# from html to pdf
+xaringanBuilder::build_pdf("03-slide-class/04-data-measuring-test.html","public/04-data-measuring-test.pdf", complex_slides = T, delay = 3)
+# from Rmd to pdf
+xaringanBuilder::build_pdf("03-slide-class/04-data-measuring-test.Rmd", complex_slides = T, delay = 2)
+```
+
+
+- 怀疑`MathJax.js`在线不稳定，尝试指定调用其他路径，问题依旧。
+
+> Rmarkdown的公式渲染主要有两种方式。
+- 默认渲染：xaringan会自动调用`MathJax.js`（集成在Rstudio中）来渲染数学公式和符号。
+- 本地渲染：需要在yaml区域指定本地路径下或其他网络地址的`MathJax.js`文件。
+
+```{yaml}
+---
+output:
+  xaringan::moon_reader:
+    chakra: libs/remark-latest.min.js
+    mathjax: "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML.js"
+    self_contained: false
+---
+
+```
+
+
+
 # R包xaringanthemer
 
 R包`xaringanthemer`提供了很多Xaringan slide风格的模板，具体可以查看[官方说明](https://pkg.garrickadenbuie.com/xaringanthemer/articles/xaringanthemer.html)，以及[github repo](https://github.com/gadenbuie/xaringanthemer)。实际上我个人基本上还没有使用上述任何style，因为目前有自己的定制化xaringan模板。
