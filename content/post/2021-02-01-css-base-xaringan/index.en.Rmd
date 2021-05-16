@@ -437,7 +437,11 @@ h1, h2, h3 {
 
 - 窗格动画效果。大抵类似于PowerPoint的动画窗格设计，目前在Xaringan或remark.js里还没有看到。可以参看[Earo Wang's slide](https://slides.earo.me/rladiesakl20/#1)。以及另一个很不错的Xaringan slide报告题为[Reproducible Data Workflows](https://pkg.garrickadenbuie.com/drake-intro/#1)给出了绘制版流程图的动画效果，其背后的关键是连续的png部件是如何分解得到的（可参看其[Rstudio cloud project](https://rstudio.cloud/project/405721)）。有待进一步去找这样的draw工具，它应该能自动保存中间环节的png。
 
+> 基于CSS的窗格动画[Build your own universe](https://slides.garrickadenbuie.com/build-your-own-universe/#p10)。相关资源可以参看：Garrick Aden‑Buie的[网站](https://www.garrickadenbuie.com/talk/build-your-own-universe/)。
+
 - 递进点击效果。可以参看Garrick Aden‑Buie的博文[Better Progressive xaringan Slides with CSS and :last-of-type](https://www.garrickadenbuie.com/blog/better-progressive-xaringan/)。其中通过CSS设计，实现递进点击效果。例如，bullets下最新一条醒目显示。
+
+
 
 # Tachyons CSS
 
