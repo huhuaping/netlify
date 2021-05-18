@@ -137,25 +137,19 @@ mod_origin &lt;- formula(lwage ~ educ + nwifeinc +exper+I(exper^2) + I(exper^2*c
 ols_origin &lt;- lm(formula = mod_origin, data = mroz)</code></pre>
 <p>默认形式：</p>
 <pre class="r"><code>lx_out&lt;- lx.est(lm.mod = mod_origin, lm.dt = mroz)</code></pre>
-<p><span class="math display">\[\begin{equation}
-\begin{alignedat}{999}
+<p><span class="math display">\[\begin{alignedat}{999}
 \widehat{lwage}&amp;=&amp;&amp;-0.53&amp;&amp;+0.10educ_i&amp;&amp;+0.01nwifeinc_i\\&amp;(s)&amp;&amp;0.2011&amp;&amp;0.0148&amp;&amp;0.0032\\&amp;(t)&amp;&amp;-2.61&amp;&amp;+6.67&amp;&amp;+1.59\\&amp;(cont.)&amp;&amp;+0.04exper_i&amp;&amp;-0.00exper^2_i&amp;&amp;+0.00exper^2*city_i\\&amp;(s)&amp;&amp;0.0132&amp;&amp;0.0004&amp;&amp;0.0002\\&amp;(t)&amp;&amp;+3.23&amp;&amp;-2.19&amp;&amp;+0.79
-\end{alignedat}
-\end{equation}\]</span></p>
+\end{alignedat}\]</span></p>
 <p>srm形式：</p>
 <pre class="r"><code>lx_out&lt;- lx.est(lm.mod = mod_origin, lm.dt = mroz, style = &quot;srm&quot;)</code></pre>
-<p><span class="math display">\[\begin{equation}
-\begin{alignedat}{999}
+<p><span class="math display">\[\begin{alignedat}{999}
 {lwage}&amp;=&amp;&amp;-0.53&amp;&amp;+0.10educ_i&amp;&amp;+0.01nwifeinc_i\\&amp;(s)&amp;&amp;0.2011&amp;&amp;0.0148&amp;&amp;0.0032\\&amp;(t)&amp;&amp;-2.61&amp;&amp;+6.67&amp;&amp;+1.59\\&amp;(cont.)&amp;&amp;+0.04exper_i&amp;&amp;-0.00exper^2_i&amp;&amp;+0.00exper^2*city_i&amp;&amp;+e_i\\&amp;(s)&amp;&amp;0.0132&amp;&amp;0.0004&amp;&amp;0.0002\\&amp;(t)&amp;&amp;+3.23&amp;&amp;-2.19&amp;&amp;+0.79
-\end{alignedat}
-\end{equation}\]</span></p>
+\end{alignedat}\]</span></p>
 <p>一行形式：</p>
 <pre class="r"><code>lx_out&lt;- lx.est(lm.mod = mod_origin, lm.dt = mroz, style = &quot;srm&quot;, opt = c(&quot;p&quot;))</code></pre>
-<p><span class="math display">\[\begin{equation}
-\begin{alignedat}{999}
+<p><span class="math display">\[\begin{alignedat}{999}
 {lwage}&amp;=&amp;&amp;-0.53&amp;&amp;+0.10educ_i&amp;&amp;+0.01nwifeinc_i\\&amp;(p)&amp;&amp;0.0093&amp;&amp;0.0000&amp;&amp;0.1116\\&amp;(cont.)&amp;&amp;+0.04exper_i&amp;&amp;-0.00exper^2_i&amp;&amp;+0.00exper^2*city_i&amp;&amp;+e_i\\&amp;(p)&amp;&amp;0.0014&amp;&amp;0.0288&amp;&amp;0.4322
-\end{alignedat}
-\end{equation}\]</span></p>
+\end{alignedat}\]</span></p>
 </div>
 </div>
 </div>
