@@ -1,5 +1,5 @@
 ---
-title: '使用Zotero实现文献引用的自动化Rmarkdown写作'
+title: '文献管理：使用Zotero进行Rmarkdown写作的文献自动化'
 author: huhuaping
 date: '2020-10-09'
 slug: rmarkdown-zotero-rbbt
@@ -19,8 +19,15 @@ image:
   focal_point: ''
   preview_only: no
 projects: []
+math: yes
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: true
+bibliography: "../bib/netlify.bib"
+csl: "../bib/china-national-standard-gb-t-7714-2015-author-date.csl"
+link-citations: yes
 ---
-
 
 > 
 Rmarkdown写作环境下，Zotero + rbbt的方式，基本上实现了比较满意的文献管理和引用流程。Zotero具有免费和相对开放性。Zotero对bibTeX和中文情景比较友好。此外，R包rbbt函数实现了对Zotero的实时联系，引用流程更加自动化。使用者需要正确理解Rmd渲染输出、.bib文件状态和Zotero条目库的关系。
@@ -38,7 +45,6 @@ Rmarkdown写作环境下，Zotero + rbbt的方式，基本上实现了比较满�
 
 - 安装Zotero扩展插件zotero-better-bibtex [开发者网站](https://retorque.re/zotero-better-bibtex/)。zotero-better-bibtex-5.2.78.xpi [下载安装](https://github.com/retorquere/zotero-better-bibtex/releases)。
 
-
 ## 设定Citekey的形式（默认形式太冗长）。
 
 具体修改[方法](https://retorque.re/zotero-better-bibtex/citing/)：
@@ -47,36 +53,48 @@ Rmarkdown写作环境下，Zotero + rbbt的方式，基本上实现了比较满�
 
 - 更新citekey值：Zotero$\Rightarrow$ 选中文献条目$\Rightarrow$鼠标右键 $\Rightarrow$  Better Bibtex$\Rightarrow$ refresh Bibtex key。
 
+# 多设备下zotero全文附件的同步
 
+一种常见工作模式是，个人会在多设备下使用zotero。这时，就需要处理多个设备下，zotero全文附件的同步问题。
 
+当然，zotero官方本身是支持这一点的。但是对于免费用户，仅仅300M的网络共享空间是完全不够用的，如果要更大网络共享空间，则需要掏钱购买，费用也是不低（尤其对于学生党而言）。
 
-# R环境准备
+因此，为避开官方的收费方案，下面简要介绍如何搭建一个免费的、无限容量的、自动化zotero附件同步的工作流（[参看](https://ikashnitsky.github.io/2019/zotero/)）。
+
+- **准备同步工具**：google云盘备份同步工具（国内VPN、google账号）
+
+- **准备zotero插件**： 出了前述的插件外，还需要安装一个神奇插件`ZotFile`（[下载地址](http://zotfile.com/)）。
+
+- **设定zotero参数**：具体细节请[参看](https://ikashnitsky.github.io/2019/zotero/)。
+
+以上准备和设定都完成后，实际个人多设备使用工作流程其实很简单：
+
+- 在A设备上：保持google备份同步工具开启和正常联网，同时如常利用zotero进行文献收集、阅读和笔记记录。
+
+- 在B设备上：保持google备份同步工具开启和正常联网，zotero则会自动同步全部文献条目和全文附件（pdf）。 
+
+# Rmarkdown与Zotero自动关联
 
 
 ## zotero导出.bib文件
 
-- 选定需要的Zotero的文献组(group)，直接导出为.bib文件
+- 选定需要的Zotero的文献组(group)，以`Better BibTeX`格式（前提是要安装相应插件）导出到工作路径`"netlify/content/bib/netlify.bib"`，注意同时要勾选“keep updated”选项。这样的话就能实现Zotero文献的自动关联。
 
-- 将.bib文件保存在写作文件.Rmd路径中
 
--  写作文件.Rmd的yaml区域指明对.bib的关联关系
-
-```
-bibliography: 
-  - bib-west.bib
-  - west-agri.bib
-```
-
-- 写作文件.Rmd的yaml区域设定文献列出样式（csl style）及关联关系
-    
-
-```
-biblio-style: "nnsfc.csl"
-csl: "nnsfc.csl"
+```{r, echo=FALSE}
+knitr::include_graphics("/pic/zetero-export-betterbib.png",error = F)
 ```
 
 
-## 安装`rbbt`包，并进行文献搜索和引用
+- 写作文件.Rmd的yaml区域指明对.bib的关联关系，并设定文献列出样式（csl style）及关联关系（参看“[文献管理：CSL风格样式](/2021/03/03/reference-manage-on-csl)”一文）。
+
+```yaml
+bibliography: "../../bib/netlify.bib"
+csl: "../../bib/china-national-standard-gb-t-7714-2015-author-date.csl"
+link-citations: yes
+```
+
+## 使用`rbbt`在Rmarkdown写作下调用文献
 
 ```{r}
 # remotes::install_github("paleolimbot/rbbt")
@@ -98,12 +116,81 @@ R包`rbbt`的主要作用[见github](https://github.com/paleolimbot/rbbt)：
 require("rbbt")
 ```
 
-- Rstudio$\Rightarrow$ 点击Addins$\Rightarrow$ Insert Zotero Citation。
+- 使用插件：Rstudio$\Rightarrow$ 点击Addins$\Rightarrow$ Insert Zotero Citation。
 
 
+# Rmarkdown写作中引用文献
+
+## 快速复制预览文献条目
+
+很多时候，我们更希望直接看到指定预览格式的文献条目细节，或者希望直接快速地将预览格式的文献条目复制粘贴到word、Rmarkdown或txt里去。
+
+下面是实现操作（参看 [指导说明](https://www.zotero.org/support/creating_bibliographies#quick_copy)）：
+
+- 设置指定预览格式。edit $\Rightarrow$ preference $\Rightarrow$ export。
+
+- 选中文献条目，直接用鼠标拉到你想要放置的地方去。
+
+
+## 引用形式
+
+具体可以参看的Rmarkdown[官方解释](https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html)。
+
+- 一次同时引用多条文献，用冒号区隔：`[@refkey1; @refkey2]`
+
+```
+一些国内学者[@liuhuaqin2014; @xiaohuizhong2019]一起发现...。
+```
+
+> 一些国内学者[@liuhuaqin2014; @xiaohuizhong2019]一起发现...。
+
+
+- 强制不出现作者名字，用减号：`[-@refkey]`
+
+```
+有学者[@alimov2018]...发现。他还发现[-@alimov2018]...。
+```
+
+> 有学者[@alimov2018]...发现。他还发现[-@alimov2018]...。
+
+- 行内引用（注意key和后面文本的空格），直接\@：`@refkey says that ...`
+
+```
+@tobin2020a 认为...。
+```
+
+> @tobin2020a 认为...。
+
+
+## 文献列表的位置
+
+默认情况下，文献列表会出现在整个文档的最后。
+
+如果要指定其出现位置，则需要插入一小段html代码`<div id="refs"></div>`，具体如下（可[参看](https://rmd4sci.njtierney.com/citing-articles-bibliography-styles.html#how-to-move-the-bibliography-location)）。
+
+```
+# Introduction
+
+# References {-}
+
+<div id="refs"></div>
+
+# Appendix
+
+```
+
+- 其中heading里面的`{-}`是为了保持不自动给出“索引id”。
+
+- 如果使用了脚注功能^[脚注列表与文献列表的位置关系，前者总是在文档最后，并且原生有一道横线。]，脚注列表依旧会显示在文档最后。
+
+## 文献列表序号和缩进
+
+待解决！
 
 
 # 总结及注意事项
+
+## 优点
 
 Rmarkdown写作环境下，Zotero + `rbbt`的方式，基本上实现了比较满意的文献管理和引用流程，**优点**如下：
 
@@ -114,8 +201,7 @@ Rmarkdown写作环境下，Zotero + `rbbt`的方式，基本上实现了比较�
 - R包`rbbt`函数实现了对Zotero的实时联系，引用流程更加自动化。
 
 
-
-**重要提示**：
+## 重要提示
 
 1. 正确理解Rmd渲染输出、.bib文件状态和Zotero条目库的关系。简单说：a) Rmd的输出最终只会引用.bib文件里的文献条目。b)R引用包（`rbbt`）与Zotero可以实时联系（通过zotero-better-bibtex扩展插件），但是这**并不**意味着Rmd渲染输出也是与Zotero实时联系的。c).因此，在写作草稿阶段，可以暂时不用关心.bib，只需要保持与Zotero实时联系即可（完成实时搜索和插入条目）。但是在最后完稿之前，务必需要及时更新调整.bib文件（从Zotero 中导出文献为.bib文件，替换更新原来的.bib旧文件即可）。
 
@@ -124,3 +210,10 @@ Rmarkdown写作环境下，Zotero + `rbbt`的方式，基本上实现了比较�
 3. 因为文献条目中可能包含了abstract等长文本域，为了避免Zotero导出.bib后，R包citr识别报错的问题。最好把Zotero 软件的Better Bibtex（插件菜单）做出如下导出设定。
 
     - 设定导出规则：打开Zotero$\Rightarrow$ 编辑$\Rightarrow$ 首选项$\Rightarrow$ Better Bibtex（插件菜单）$\Rightarrow$ Export$\Rightarrow$ Fields$\Rightarrow$  Fields to omit frome export$\Rightarrow$ 输入abstract等（逗号分隔）
+    
+# 参考文献 {-}
+
+<div id="refs"></div>
+
+# 附录{-}
+

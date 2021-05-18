@@ -15,6 +15,7 @@ type: docs
 
 操作提示：
 
+
 - 点击**课件区域**，按F键，可全屏观看
 
 - 按方向键，可以前进/后退
@@ -25,6 +26,8 @@ type: docs
 ```{r, echo=FALSE}
 knitr::include_url("/course-econometrics-master/part01-slide-04-reg-extention.html")
 ```
+
+**课件**[pdf下载](https://d.seit2019.xyz/wp-content/uploads/2020/10/part01-slide-04-reg-extention.pdf)
 
 **配套案例数据**：
 

@@ -1,0 +1,82 @@
+---
+title: 自动化数据抓取技术(IV)：正则表达Regex
+author: huhuaping
+date: '2020-12-04'
+slug: web-scraping-tech-regex
+categories:
+  - R
+tags:
+  - Website
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2020-12-04T16:48:02+08:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+output:
+  blogdown::html_page:
+    toc: true
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+<div id="TOC">
+<ul>
+<li><a href="#学习教程和文档">学习教程和文档</a></li>
+<li><a href="#常见问题场景">常见问题场景</a>
+<ul>
+<li><a href="#任意中文字符">任意中文字符</a></li>
+<li><a href="#指定出现次数">指定出现次数</a></li>
+</ul></li>
+<li><a href="#杂谈">杂谈</a>
+<ul>
+<li><a href="#中文半破折号">中文半破折号</a></li>
+</ul></li>
+</ul>
+</div>
+
+<div id="学习教程和文档" class="section level2">
+<h2>学习教程和文档</h2>
+<p><strong>Regex Cheat Sheet</strong>。参看rexegg.com网站教程](<a href="https://www.rexegg.com/regex-quickstart.html#lookarounds" class="uri">https://www.rexegg.com/regex-quickstart.html#lookarounds</a>)</p>
+<p><strong>regular-expressions.info</strong>。参看<a href="https://www.regular-expressions.info/tutorial.html">网站教程</a></p>
+</div>
+<div id="常见问题场景" class="section level2">
+<h2>常见问题场景</h2>
+<div id="任意中文字符" class="section level3">
+<h3>任意中文字符</h3>
+<p>具体请<a href="https://stackoverflow.com/questions/56723142/regex-to-match-any-chinese-character-in-r">参看</a></p>
+<pre class="r"><code>v=c(&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;中&quot;,&quot;e&quot;,&quot;文&quot;)
+    grep(&quot;[\\p{Han}]&quot;, v, value = T, perl = T)</code></pre>
+<pre><code>## [1] &quot;中&quot; &quot;文&quot;</code></pre>
+</div>
+<div id="指定出现次数" class="section level3">
+<h3>指定出现次数</h3>
+<p>具体请参看<a href="https://stackoverflow.com/questions/13874777/regex-exactly-n-or-m-times">参看</a></p>
+<ul>
+<li><p><code>?, ??</code> : 0 or 1 occurrences (<code>??</code> is lazy, <code>?</code> is greedy)</p></li>
+<li><p><code>*, *?</code> : any number of occurrences</p></li>
+<li><p><code>+, +?</code> : at least one occurrence</p></li>
+<li><p><code>{n}</code> : exactly n occurrences</p></li>
+<li><p><code>{n,m}</code> : n to m occurrences, inclusive</p></li>
+<li><p><code>{n,m}?</code> : n to m occurences, lazy</p></li>
+<li><p><code>{n,}, {n,}?</code> : at least n occurrence</p></li>
+</ul>
+<p>例子：</p>
+<p>To get “exactly N or M”, you need to write the quantified regex twice, unless m,n are special:</p>
+<pre><code>X{n,m} if m = n+1
+(?:X{n}){1,2} if m = 2n
+</code></pre>
+</div>
+</div>
+<div id="杂谈" class="section level2">
+<h2>杂谈</h2>
+<div id="中文半破折号" class="section level3">
+<h3>中文半破折号</h3>
+<p>通过regex查找替换</p>
+<pre><code>(\d{4})-(\d{4})  替换为 \1—\2</code></pre>
+</div>
+</div>

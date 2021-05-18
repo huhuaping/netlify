@@ -22,10 +22,11 @@ type: docs
 - 敲击数字键，再按Enter可进入任意指定的页码。如，敲击数字10，观看第10页
 
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, out.width="100%"}
 knitr::include_url("/course-econometrics-master/part01-slide-02-reg-matrix.html")
 ```
 
+**课件**[pdf下载](https://d.seit2019.xyz/wp-content/uploads/2020/10/part01-slide-02-reg-matrix.pdf)
 
 **配套案例数据**：
 

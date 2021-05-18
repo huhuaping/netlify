@@ -1,0 +1,40 @@
+---
+title: 问题集和方法荟萃
+author: huhuaping
+date: '2020-11-30'
+slug: issue-collection-tem
+categories:
+  - R
+tags:
+  - R language
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2020-11-30T17:05:48+08:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+<link href="/rmarkdown-libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/anchor-sections/anchor-sections.js"></script>
+
+
+<div id="r提醒程序執行完成" class="section level2">
+<h2>R提醒程序執行完成</h2>
+<p>R提醒程序執行完成 <a href="http://lc-research.blogspot.com/2015/02/r.html">参看</a></p>
+<p>一是beepr這個package，執行後電腦會發出聲音提醒你程式已經跑完。</p>
+<pre class="r"><code>library(beepr)
+beep(sound=8)</code></pre>
+<p>You just have to wrap it into a function like this:</p>
+<pre><code>options(error = function() {beep(9)})</code></pre>
+<p>最终方案：</p>
+<pre><code>beep_on_error(expr, sound = 1)</code></pre>
+</div>
+<div id="blogdown-的文件位置和关系" class="section level2">
+<h2>blogdown 的文件位置和关系</h2>
+<p>具体参看 <a href="https://blogdown-demo.rbind.io/2018/02/27/r-file-paths/#place-file-in-your-post-folder">Adding and reading local data files in R Markdown posts</a></p>
+</div>

@@ -1,5 +1,5 @@
 ---
-title: 个人网站开发“三剑客” (blogdown; github; netlify) 
+title: 个人建站：“三剑客”(blogdown+ github+ netlify) 
 author: huhuaping
 date: '2019-02-21'
 slug: three-sord
@@ -9,6 +9,10 @@ tags:
   - Blogdown
   - Github
   - Netlify
+subtitle: ''
+summary: "本文介绍了使用blogdown+ github+ netlify，三剑合璧持续性打造个人网站。（提示：因为hugo的流程变化，一些技术细节可能已经失效。2021.03.06）"
+authors: [胡华平]
+lastmod: '2019-02-21T21:08:21+08:00'
 image:
   caption: ''
   focal_point: ''
@@ -18,7 +22,7 @@ output:
     number_sections: true
 ---
 
-“三剑”合璧持续性打造个人网站(blogdown; github; netlify)
+本文介绍了使用blogdown+ github+ netlify，“三剑”合璧持续性打造个人网站。（提示：因为hugo的流程变化，一些技术细节可能已经失效。2021.03.06）
 
 # 在Rstudio中创建blogdown site
 
@@ -120,7 +124,7 @@ output:
 
 ## post文章里插入图片
 
-有两种插入图片的办法。不论如何，图片源文件默认都是放在`static/`文件夹下！
+有两种插入图片的办法。不论如何，图片源文件默认都是放在`static/`文件夹下[^2]！
 
 - 采用markdown语言：
 
@@ -136,11 +140,15 @@ output:
 
 ```
 # 源文件默认在`static/`文件夹下
-knitr::include_graphics("/img/facet-multiple-geom.png")
+knitr::include_graphics("/pic/facet-multiple-geom.png", error = FALSE)
 ```
 
 ```{r, echo =F, fig.cap = "include_graphics函数方法插入图片"}
-knitr::include_graphics("/img/facet-multiple-geom.png")
+knitr::include_graphics("/pic/facet-multiple-geom.png", error = FALSE)
 ```
 
+# 参考资料
+
 [^1]: [Headings with automatic numbering](https://github.com/rstudio/blogdown/issues/140)
+
+[^2]: [knitr::include_graphics in blogdown](https://github.com/rstudio/blogdown/issues/184#issuecomment-323073705)

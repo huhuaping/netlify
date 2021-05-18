@@ -1,0 +1,92 @@
+---
+title: 自动化数据抓取技术(IV)：正则表达Regex
+author: huhuaping
+date: '2020-12-04'
+slug: web-scraping-tech-regex
+categories:
+  - R
+tags:
+  - Website
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2020-12-04T16:48:02+08:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+output:
+  blogdown::html_page:
+    toc: true
+---
+
+```{r, echo=FALSE, eval=TRUE, message= FALSE}
+
+library("here")
+source(here("static", "Rscript", "set-chunk-option.R"))
+
+```
+
+## 学习教程和文档
+
+**Regex Cheat Sheet**。参看rexegg.com网站教程](https://www.rexegg.com/regex-quickstart.html#lookarounds)
+
+**regular-expressions.info**。参看[网站教程](https://www.regular-expressions.info/tutorial.html)
+
+
+## 常见问题场景
+
+### 任意中文字符
+
+具体请[参看](https://stackoverflow.com/questions/56723142/regex-to-match-any-chinese-character-in-r)
+
+```{r, eval= T, echo=T}
+v=c("a","b","c","中","e","文")
+	grep("[\\p{Han}]", v, value = T, perl = T)
+```
+
+
+
+### 指定出现次数
+
+具体请参看[参看](https://stackoverflow.com/questions/13874777/regex-exactly-n-or-m-times)
+
+
+- `?, ??` : 0 or 1 occurrences (`??` is lazy, `?` is greedy)
+
+- `*, *?` : any number of occurrences
+
+- `+, +?` : at least one occurrence
+
+- `{n}` : exactly n occurrences
+
+- `{n,m}` : n to m occurrences, inclusive
+
+- `{n,m}?` : n to m occurences, lazy
+
+- `{n,}, {n,}?` : at least n occurrence
+
+例子：
+
+To get "exactly N or M", you need to write the quantified regex twice, unless m,n are special:
+
+```
+X{n,m} if m = n+1
+(?:X{n}){1,2} if m = 2n
+
+```	
+
+
+## 杂谈
+
+### 中文半破折号
+
+
+通过regex查找替换
+
+```
+(\d{4})-(\d{4})  替换为 \1—\2
+```
+

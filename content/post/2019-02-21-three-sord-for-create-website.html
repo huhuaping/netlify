@@ -1,5 +1,5 @@
 ---
-title: 个人网站开发“三剑客” (blogdown; github; netlify) 
+title: 个人建站：“三剑客”(blogdown+ github+ netlify) 
 author: huhuaping
 date: '2019-02-21'
 slug: three-sord
@@ -9,6 +9,10 @@ tags:
   - Blogdown
   - Github
   - Netlify
+subtitle: ''
+summary: "本文介绍了使用blogdown+ github+ netlify，三剑合璧持续性打造个人网站。（提示：因为hugo的流程变化，一些技术细节可能已经失效。2021.03.06）"
+authors: [胡华平]
+lastmod: '2019-02-21T21:08:21+08:00'
 image:
   caption: ''
   focal_point: ''
@@ -18,24 +22,27 @@ output:
     number_sections: true
 ---
 
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
 <div id="TOC">
 <ul>
-<li><a href="#rstudioblogdown-site"><span class="toc-section-number">1</span> 在Rstudio中创建blogdown site</a></li>
-<li><a href="#gitgithub"><span class="toc-section-number">2</span> 利用git工具来管理github仓库</a></li>
-<li><a href="#netlifygithub"><span class="toc-section-number">3</span> 在netlify上关联github仓库并建站</a></li>
-<li><a href="#section"><span class="toc-section-number">4</span> 额外的问题</a><ul>
-<li><a href="#config.toml"><span class="toc-section-number">4.1</span> config.toml配置</a></li>
-<li><a href="#github-repo"><span class="toc-section-number">4.2</span> 版本控制（github repo）下添加忽略文件</a></li>
-<li><a href="#addin"><span class="toc-section-number">4.3</span> 用addin插件更新内容</a></li>
-<li><a href="#post"><span class="toc-section-number">4.4</span> 让博客文章(post)有目录、节编号、脚注</a></li>
-<li><a href="#post-1"><span class="toc-section-number">4.5</span> post文章里插入图片</a></li>
+<li><a href="#在rstudio中创建blogdown-site"><span class="toc-section-number">1</span> 在Rstudio中创建blogdown site</a></li>
+<li><a href="#利用git工具来管理github仓库"><span class="toc-section-number">2</span> 利用git工具来管理github仓库</a></li>
+<li><a href="#在netlify上关联github仓库并建站"><span class="toc-section-number">3</span> 在netlify上关联github仓库并建站</a></li>
+<li><a href="#额外的问题"><span class="toc-section-number">4</span> 额外的问题</a>
+<ul>
+<li><a href="#config.toml配置"><span class="toc-section-number">4.1</span> config.toml配置</a></li>
+<li><a href="#版本控制github-repo下添加忽略文件"><span class="toc-section-number">4.2</span> 版本控制（github repo）下添加忽略文件</a></li>
+<li><a href="#用addin插件更新内容"><span class="toc-section-number">4.3</span> 用addin插件更新内容</a></li>
+<li><a href="#让博客文章post有目录节编号脚注"><span class="toc-section-number">4.4</span> 让博客文章(post)有目录、节编号、脚注</a></li>
+<li><a href="#post文章里插入图片"><span class="toc-section-number">4.5</span> post文章里插入图片</a></li>
 </ul></li>
+<li><a href="#参考资料"><span class="toc-section-number">5</span> 参考资料</a></li>
 </ul>
 </div>
 
-<p>“三剑”合璧持续性打造个人网站(blogdown; github; netlify)</p>
-<div id="rstudioblogdown-site" class="section level1">
+<p>本文介绍了使用blogdown+ github+ netlify，“三剑”合璧持续性打造个人网站。（提示：因为hugo的流程变化，一些技术细节可能已经失效。2021.03.06）</p>
+<div id="在rstudio中创建blogdown-site" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> 在Rstudio中创建blogdown site</h1>
 <p>blogdown的设置比较简单，教程里基本也说得清楚。具体操作时，还是需要注意以下几个要点：</p>
 <ul>
@@ -64,17 +71,17 @@ install_hugo()
 # 判明版本号
 blogdown::hugo_version()</code></pre>
 </div>
-<div id="gitgithub" class="section level1">
+<div id="利用git工具来管理github仓库" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> 利用git工具来管理github仓库</h1>
 <p>git版本控制工具，还是需要学会的。这里就列出一个很好的参考学习资源吧——<a href="https://git-scm.com/book/zh/v2">git book(多国语言版)</a></p>
 </div>
-<div id="netlifygithub" class="section level1">
+<div id="在netlify上关联github仓库并建站" class="section level1" number="3">
 <h1><span class="header-section-number">3</span> 在netlify上关联github仓库并建站</h1>
 <p>如前所述，这里很重要的一步就是要记得设置hugo_version的环境变量，版本号需要与blogdown里安装的版本号一致。</p>
 </div>
-<div id="section" class="section level1">
+<div id="额外的问题" class="section level1" number="4">
 <h1><span class="header-section-number">4</span> 额外的问题</h1>
-<div id="config.toml" class="section level2">
+<div id="config.toml配置" class="section level2" number="4.1">
 <h2><span class="header-section-number">4.1</span> config.toml配置</h2>
 <ul>
 <li><p>baseurl存在的<a href="https://github.com/rstudio/blogdown/issues/114">斜杠问题</a>，可能会影响netlify建站更新。</p></li>
@@ -83,17 +90,17 @@ blogdown::hugo_version()</code></pre>
 <pre class="r"><code>[permalinks]
   post = &quot;/:year/:month/:day/:slug/&quot;</code></pre>
 </div>
-<div id="github-repo" class="section level2">
+<div id="版本控制github-repo下添加忽略文件" class="section level2" number="4.2">
 <h2><span class="header-section-number">4.2</span> 版本控制（github repo）下添加忽略文件</h2>
 <p>记得在工作目录下的.gitignore里添加忽视文件（否则会影响netlify建站更新）。</p>
 <pre class="r"><code>public/</code></pre>
 <p>此外，还会引起master和dev分支的合并冲突！！</p>
 </div>
-<div id="addin" class="section level2">
+<div id="用addin插件更新内容" class="section level2" number="4.3">
 <h2><span class="header-section-number">4.3</span> 用addin插件更新内容</h2>
 <p>提交新的博客文章(post)：最好使用Rstudio里Addin菜单中的New Post来写Rmd格式的博文。</p>
 </div>
-<div id="post" class="section level2">
+<div id="让博客文章post有目录节编号脚注" class="section level2" number="4.4">
 <h2><span class="header-section-number">4.4</span> 让博客文章(post)有目录、节编号、脚注</h2>
 <p>目录（toc）和节编号（number_sections）可以在rmardown文件yaml头里设置<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>：</p>
 <pre><code>output:
@@ -103,9 +110,9 @@ blogdown::hugo_version()</code></pre>
 <p>脚注的写法。正文里直接在脚注位置添加<code>[^1]</code>，并在rmarkdown最后进行对应的注释说明：</p>
 <pre><code>[^1]: [Headings with automatic numbering](https://github.com/rstudio/blogdown/issues/140)</code></pre>
 </div>
-<div id="post-1" class="section level2">
+<div id="post文章里插入图片" class="section level2" number="4.5">
 <h2><span class="header-section-number">4.5</span> post文章里插入图片</h2>
-<p>有两种插入图片的办法。不论如何，图片源文件默认都是放在<code>static/</code>文件夹下！</p>
+<p>有两种插入图片的办法。不论如何，图片源文件默认都是放在<code>static/</code>文件夹下<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>！</p>
 <ul>
 <li>采用markdown语言：</li>
 </ul>
@@ -119,18 +126,22 @@ blogdown::hugo_version()</code></pre>
 <li>或者采用函数 <code>knitr::include_graphics()</code></li>
 </ul>
 <pre><code># 源文件默认在`static/`文件夹下
-knitr::include_graphics(&quot;/img/facet-multiple-geom.png&quot;)</code></pre>
+knitr::include_graphics(&quot;/pic/facet-multiple-geom.png&quot;, error = FALSE)</code></pre>
 <div class="figure"><span id="fig:unnamed-chunk-1"></span>
-<img src="/img/facet-multiple-geom.png" alt="include_graphics函数方法插入图片"  />
+<img src="/pic/facet-multiple-geom.png" alt="include_graphics函数方法插入图片"  />
 <p class="caption">
 Figure 4.1: include_graphics函数方法插入图片
 </p>
 </div>
 </div>
 </div>
+<div id="参考资料" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> 参考资料</h1>
+</div>
 <div class="footnotes">
 <hr />
 <ol>
 <li id="fn1"><p><a href="https://github.com/rstudio/blogdown/issues/140">Headings with automatic numbering</a><a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p><a href="https://github.com/rstudio/blogdown/issues/184#issuecomment-323073705">knitr::include_graphics in blogdown</a><a href="#fnref2" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>

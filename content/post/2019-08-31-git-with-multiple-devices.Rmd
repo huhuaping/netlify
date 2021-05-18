@@ -1,5 +1,5 @@
 ---
-title: 多工作设备下的git控制和使用
+title: git操作：多工作设备下协调控制经验
 author: huhuaping
 date: '2019-08-31'
 slug: git-with-multiple-devices
@@ -8,12 +8,18 @@ categories:
 tags:
   - Github
   - 2-Factor authentication
+subtitle: ''
+summary: '本文总结了个人在多设备下git控制和使用，梳理了基本的git工作流程，并提出了实用性的忠告建议。'
+authors: [胡华平]
+lastmod: '2019-08-31T11:24:46+08:00'
 image:
   caption: ''
   focal_point: ''
+math: true
 output:
   blogdown::html_page:
     toc: true
+    number_sections: true
 ---
 
 ## 明确自己git使用的安全环境

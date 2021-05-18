@@ -2,5 +2,21 @@
 .Rhistory
 .RData
 .Ruserdata
-blogdown
-public/
+/blogdown
+/public/
+/publicx/
+/resources/
+
+
+
+# advise 
+.DS_Store
+Thumbs.db
+
+# IDEs
+.idea/
+
+# Hugo
+/resources/
+jsconfig.json
+node_modules/

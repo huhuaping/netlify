@@ -1,0 +1,473 @@
+---
+title: Xaringan美化：CSS功夫
+author: huhuaping
+date: '2021-02-01'
+slug: css-base-xaringan
+categories:
+  - R
+tags:
+  - Xaringan
+  - CSS
+subtitle: ''
+summary: '本文总结了CSS的学习架构和逻辑体系，并专门针对Xaringan slide制作技术进行了探索和应用。'
+authors: [胡华平]
+lastmod: '2021-02-01T09:23:57+08:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: true
+---
+
+> **导读**：这是`Xaringan`系列的第4篇，系列文章请分别参看：（系列之5）[Xaringan增强：若干辅助R包及工具](/2021/04/08/xaringan-enhanced)；（系列之4）[Xaringan美化：CSS功夫](/2021/02/01/css-base-xaringan)；（系列之3）[Xaringan效率：底层与简洁](/2020/11/28/xaringan-slide-efficiency)；（系列之2）[Xaringan发布：blogdown网站中的展示](/2019/03/01/post-xaringan-slide-to-website)；（系列之1）[Xaringan缘起：创建课程slide](/2019/02/24/xaringan-for-course-slide)。
+
+# CSS基础
+
+## CSS selector
+
+| 类型                                                                                                        | 含义         | 子类                           | 语法  | 示例             |
+|-------------------------------------------------------------------------------------------------------------|--------------|--------------------------------|-------|------------------|
+| Simple selector                                                                                             |              | ID                             | \#    | \#para1 { }      |
+|                                                                                                             |              | class/name                     | .     | .center{ }       |
+|                                                                                                             |              | Attribute selector             | [ ]   |                  |
+|                                                                                                             |              | Universal Selector             | \*    | \* { }           |
+|                                                                                                             |              | Grouping Selector              | ,     | h1, h2, p { }    |
+| Combinator selector                                                                                         | relationship | Descendant                     | space | div p { }        |
+|                                                                                                             |              | Child                          | \>    | div \> p { }     |
+|                                                                                                             |              | Adjacent sibling               | \+    | div + p { }      |
+|                                                                                                             |              | General sibling                | \~    | div \~ p { }     |
+| [Pseudo -class selector](https://www.w3schools.com/css/css_pseudo_classes.asp "All CSS Pseudo Classes")     | state        | Mouse over/ visited link/focus | :     | a:link {}        |
+| [Pseudo -element selector](https://www.w3schools.com/css/css_pseudo_elements.asp "All CSS Pseudo Elements") | part         | First letter/ line/ element    | ::    | ::first-line { } |
+|                                                                                                             |              | Insert content before or after | ::    | p::after { }     |
+
+: CSS selector
+
+## CSS layout
+
+-   布局：margin；border；padding
+
+-   位置：position: static/relative/fixed/absolute/sticky
+
+-   定位：top/right/bottom/left
+
+# Xaringan的本质
+
+Xaringan背后是基于remark.js的。remark.js后台基本工作流程，就是采用JavaScript语言把markdown文档，**映射**到html上，并形成独特的slide幻灯片样式。因此，还是很有必要了解一下remark.js的说明文档（见[Wiki页面](https://github.com/gnab/remark/wiki)）。那么Xaringan包又起到了什么作用呢？根据yihui的说法：它扩展支持了Rmarkdown语法以及R代码的直接运行！
+
+Xaringan本质上是以html形态呈现，并使用css样式进行style视觉美化。Xaringan的技术讨论和细节见其[wiki页面](https://github.com/yihui/xaringan/wiki)。
+
+归结起来这是对slide工具的一种选择，而且是选择了"未来感"的html呈现形态！那么CSS知识这是绕不过去的学习壁垒。html和css的学习至少也是需要在"三姑学院"（[W3school](https://www.w3schools.com/css/default.asp)）的汪洋里过水"捞一遍"（通读一遍）。
+
+# Xaringan的CSS美化
+
+## 头衬和底衬（header and footer） {#layout-html}
+
+调整header和footer视觉效果，主要是从某个slide开始里设定`layout: true`，并按html语法设置header和footer样式。其完整的语法如下：
+
+``` {.html}
+<!---slide area with layout--->
+---
+layout: true
+
+<div class="my-header-h2"></div>
+
+<div class="watermark1"></div>
+
+<div class="watermark2"></div>
+
+<div class="watermark3"></div>
+
+<div class="my-footer"><span>huhuaping@  &emsp;&emsp; <a href="#chapter01"> 第01章 导论</a>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+<a href="#sec-process">1.3 计量经济学分析过程</a> </span></div> 
+---
+```
+
+具体样式细节包括：
+
+-   heading文本居中设定。需要注意叠放层级参数`z-index`的设置。
+
+``` {.css}
+.remark-slide-content h2, h3,h4,h5{
+  position: relative;
+  top: 0px;
+  margin: 15px 0px 50px;
+  width: 99%;
+  text-shadow: 0px 0px;
+  text-align: center;
+  z-index: 5;
+}
+```
+
+-   header背景色和渐变方式。
+
+``` {.css}
+div.my-header-h2 {
+    background-color: #FFFFFF;
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,#f77a00), color-stop(0%,#f77a00), color-stop(10%,red), color-stop(74%,#fbd0ac), color-stop(83%,#fbd0ac), color-stop(100%,#fddfc8));
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 86.92913px;
+    width: 100%;
+}
+```
+
+-   footer导航样式。
+
+``` {.css}
+div.my-footer {
+    background-color: #272822;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    height: 20px;
+    width: 100%;
+}
+
+div.my-footer span {
+    font-size: 10pt;
+    color: #F7F8FA;
+    position: absolute;
+    left: 15px;
+    bottom: 2px;
+}
+```
+
+-   footer的导航链接功能。先在css里设定链接文本的颜色，然后在slide里设定`layout: true`（见前面完整[语句块](#layout-html)），并按html语法设定链接定位`#a-specify-id`。
+
+``` {.css}
+/* link text color*/
+div.my-footer a {
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
+}
+```
+
+## 添加水印图片（watermark）
+
+水印图片的个性化设定。首先需要设定css，然后在slide里设定`layout: true`（见前面完整[语句块](#layout-html)），并按html语法依次设定三个水印图片，其中之一如`<div class="watermark1"></div>`。
+
+``` {.css}
+/* water remark image */
+
+.watermark1::after {
+  content: "";
+  display: block;
+  width: 30%;
+  height: 20%;
+  position: absolute;
+  top: 150px;
+  left: 100px;
+  background-image: url("vlog-nwsuaf.jpg");
+  background-size: 80%;
+  background-position: 0px 20px;
+  background-repeat: no-repeat;
+  opacity: 0.04;  
+  /* Rotate div */
+ -ms-transform: rotate(-45deg); /* IE 9 */
+ -moz-transform: rotate(-45deg); /* firefox */
+ -webkit-transform: rotate(-45deg); /* Chrome, Safari, Opera */
+ transform: rotate(-45deg);
+}
+```
+
+## 添加logo图片
+
+**方案1：手工添加logo**。可以参看：a. [xaringan Tip: Add A Logo to All of Your Slides](https://www.garrickadenbuie.com/blog/xaringan-tip-logo-all-slides/)。以及“队长论坛”[贴文](https://stackoverflow.com/questions/54450769/can-i-add-a-logo-to-every-slide-of-a-xaringan-template-using-css)"Can I add a logo to every slide of a xaringan template using css?"。
+
+**方案2：包函数添加logo**。`xaringanExtra::use_logo(`能很好地处理logo图片，可以灵活使用`class:hide_logo`来指定特定slide不显示logo图片。具体请参看[官方说明](https://pkg.garrickadenbuie.com/xaringanExtra/#/logo)。
+
+```{r, echo=T, eval=FALSE}
+xaringanExtra::use_logo(
+  image_url = "https://raw.githubusercontent.com/rstudio/hex-stickers/master/PNG/xaringan.png",
+  link_url = "http://slides.yihui.name/xaringan",
+  position = xaringanExtra::css_position(top = "1em", right = "1em")
+)
+```
+
+## 各类窗框（notes box）
+
+在多个写作场景下（如`xaringan`、`blogdown`、`rmarkdown`），可能会用到各类提示窗框（notes box）。可以利用css设定获得个性化的提示窗框效果，具体可参看desirée de leon的博文[^1]。
+
+
+```{r, echo=FALSE}
+knitr::include_graphics("/pic/div-tip-annotate.png", error = FALSE)
+```
+
+基本要点：
+
+- 背后要用到html的`div`语块
+
+- 可以借用R包`bookdown`的`blocks`代码块，进行快捷应用。
+
+
+第一步：css文件（`/my-css/notes-tips.css`）设定如下：
+
+```{css}
+/* -----------div tips------------- */
+
+div.puzzle, div.fyi, div.demo, div.notes {
+    padding: 0.5em;
+    margin: 0.5em 0;
+    padding-left: 100px;
+    background-size: 70px;
+    background-repeat: no-repeat;
+    background-position: 15px center;
+    min-height: 100px;
+    color: #1f5386;
+    background-color: #bed3ec;
+    border: solid 5px #dfedff;
+}
+
+div.notes {
+  background-image: url("notes-light-bulb-ff5500.png");
+}
+
+```
+
+> 注意：需要自己手动下载背景图片，免费的图片icon下载网站有：
+
+>- [iconfinder](https://www.iconfinder.com/)。需要账号登陆。
+- [fontawesome.com](https://fontawesome.com/)。图标可以先编辑，在下载。正文里还可使用R函数`fontawesome::fa('slideshare')`。例如slide图标`r fontawesome::fa('slideshare', fill= "blue")`
+- [aiconica.net](https://aiconica.net/)。搜索功能比较弱。
+
+
+第二步：在`.Rmd`文件的`yaml`区域引用上面的css文件路径。
+
+```
+css: 
+  - ../mycss/notes-tips.css
+```
+
+
+第三步：在`.Rmd`文件下进行写作，并引用对应的css样式：
+
+``````
+` ``{block, type='notes', echo=T}
+
+待完成：找到新数据，绘制一张条形图，但其不适合制作柱状图。
+
+` ``
+``````
+
+## 序贯图片的动画效果
+
+幻灯片动画效果（animation）的背后，基本有两类思路：
+
+第一类：**小部件**（partial elements）动画效果。常见的设计工具如pptx，在一张slide里面，对动画小部件（窗体、文本、箭头等）进行时序上（timeline）的安排设计，从而实现动画效果。比较适合于那些只需要利用“标准化”小部件组合形成动画的幻灯片。其优点也是显而易见的：一块幕布，持续添加小部件，比较符合动画的内容本质和视觉直觉。难点在于需要大量操作来给小部件定位（position）以及修饰小部件。
+
+第二类，**图片放映**动画效果。利用人眼的视觉时间差特点，把事先设计好的系列序贯图片，连续反映展示，从而实现动画效果。比较适合于那些“手工绘制”多张序贯图片形成动画的幻灯片。其优点是：强调视觉定格（帧）关系，不太关注细节的严格一致。难点在于需要“手工绘制”，以及认为确定图片帧，小部件的细节可能会被认为并不太重要。
+
+目前为止，直接在xaringan（或reveal.js）slide上进行第一类小部件动画制作的工具，基本上没有看到相关便利性的工具包或解决方案。xaringan（或reveal.js）slide上的动画主要是基于第二类，**图片放映**动画效果。例如，一个R相关会议报告做了题为[Reproducible Data Workflows](https://pkg.garrickadenbuie.com/drake-intro/#1)，就给出了“反映”型“流程图”（其实并不是流程）的动画效果，其背后就是利用序贯图片帧，不断反映，从而表现出“动画”效果。具体代码可参看其[Rstudio cloud project](https://rstudio.cloud/project/405721)。
+
+总体而言，在xaringan（或reveal.js）slide上主要采用“放映”型动画效果，因为动画实现（多帧图片）和动画控制（方向键）都相对简单。然而，多帧图片的设计和获得则成了其中最大难题。这样就需要依赖R之外的“绘图”工具，而且它最好还要能够自动保存序贯图片帧（反映时序中的中间环节图片）。不过很遗憾，这样的外部“绘图”工具（不管是否支持小部件）目前我是暂时没有发现（起码放狗搜了一大圈是无所得）。
+
+
+不过还是找到了一个可以实现的“笨办法”。
+
+第一阶段：**绘制图片**阶段。用到的主要外部工具有`Powerpoint`（用于绘图） 和`Snagit`（用于截图）。工作流程基本上是：
+
+a. 利用`Powerpoint`绘图，设计好动画。在动画窗口中控制小部件的出现先后顺序。
+
+b. 播放`Powerpoint`动画，再利用`Snagit`进行截图，获得图片帧，按要求进行图片自动命名（这一步很重要，方便后面调用）。需要注意在`Snagit`设置里，把截图质量设定为较高（File $\Rrightarrow$ Capture perference $\Rrightarrow$ Capture  $\Rrightarrow$ Videa Quality）
+
+第二阶段：**xaringan代码实现**阶段。有了上述序贯图片，Xaringan里主要就是进行图片调用和css控制。
+
+a. **图片调用**。因为涉及到调用系列图片（已经有规则地命名），因此可以将slide代码编程化，尽量减少代码数量，让文档结构更清晰。具体而言，需要用到的函数包括：
+
+    - `base::dir()`函数调用图片路径。
+    - `glue:glue()`函数组装slide语法要素。
+    - `base::cat()`函数输出代码结果。
+
+b. **CSS控制**。图片相对位置等的控制，可以启用tachyons的CSS样式，具体要用到`xaringanExtra`包的`xaringanExtra::use_tachyons()`函数。
+
+
+```{block, type='notes', echo=T}
+
+**注意**：
+
+- `glue::glue()`函数的使用有两个坑：一是它对方括号`{your parameter}`敏感（默认为parameter），因此需要用双方括号嵌套，才能正确编写并识别latex代码`\\frac{{your code}}`；二是它需要双斜线`\\`来escape特定latex语法（如`\frac{}`）。
+
+- R code chunk参数一定要记得设定`{r  results="asis"}`，这样才能实现正确代码输出（`cat()`函数）。
+
+```
+
+下面是Xaringan中的代码演示：
+
+```{r project-spectrum, echo=T, eval=FALSE, results="asis"}
+# 启用tachyons的CSS样式
+xaringanExtra::use_tachyons()
+# 调用图片位置
+proj_slides <-sort(dir("../pic/sequence/", pattern = "quatile-min-upper-.+png$", full.names = T),decreasing = T)
+# 组装slide代码要素
+proj_slides_txt <- glue::glue("
+## （演示）分位数计算：较小制上限插值公式(推导)
+
+.fl.w-60[
+![]({proj_slides})
+]
+
+.fl.w-40[
+
+- 
+$f_i$表示各组所对应的频次，其中
+$i \\in 1,2,\\cdots,5$。
+$f_{{Q_j}}$表示分位数组的频次。
+$p_j$表示1/4或3/4分割位置，其中：
+$p_1=\\frac{{\\sum{{f_i}}}}{{4}}$，
+$p_3=\\frac{{3\\sum{{f_i}}}}{{4}}$。
+]
+
+---
+
+")
+# 输出代码结果
+cat(proj_slides_txt, sep = "")
+
+```
+
+## 灵活选用字体
+
+解决字体灵活选用问题。工作量理论上不是很大，主要是受到中文字体适用性和加载速度等的限制。目前暂时还不想去碰它，大众字体就大众字体，先忍一忍。具体看yihui的相关思考和说明。如[思源宋体](https://yihui.org/cn/2017/04/source-han-serif/) ；[楷体](https://yihui.org/cn/2017/02/kaiti/#fnref:-1)。
+
+在Xaringan中给slide内容设定不同的个性化字体，基本有两种方案（当然二者结合也是可行的）：
+
+- **方案1**：个性化手动设置。首先，需要编写个性化字体CSS。然后，在`yaml区域`来指定调用字体CSS文件。`Xaringan`包的官方wiki ["Deploying Your Slides Online"](https://github.com/yihui/xaringan/wiki/Deploy-Slides-Online)给出了具体操作过程和办法。此外，还有一类是集成、友好性的css工具集，也可能更便捷地提供字体设定，例如`Tachyons`的[字体库管理方案](http://tachyons.io/docs/typography/font-family/)。
+
+- **方案2**：R包函数化设置。具体要用到R包`xaringanthemer`，其字体设置及相关R函数可参看其[官方说明](https://pkg.garrickadenbuie.com/xaringanthemer/articles/xaringanthemer.html#default-fonts)。
+
+上述两种方案，其关键都在于**可用“字体库”**（font family）。因此需要弄明白如下几个问题：
+
+- `Xaringan`默认的字体库是什么？它存放在哪里？（对于方案2的R包`xaringanthemer`，我们也同样需要问这样的问题。）
+
+> `Xaringan`字体css文件位置在："your-pkg-dir\xaringan\rmarkdown\templates\xaringan\resources\defualt-fonts.css"
+
+- 操作系统（如Win 10 或Mac OS）的字体库（system font libraries）与`Xaringan`的字体库是什么关系？（后者能直接调用前者的字体库么？）
+
+- 电脑本地渲染的slide字体，与网站开发（如netlify）上的slide字体是什么关系？（后者可能需要设置netlify的后台相关字体控制参数）。
+
+- 怎么来使用网络开源的字体库？slide的字体加载能否成功，以及加载速度够快么？
+
+下面提供一些可用的免费字体库：
+
+- [google font](https://fonts.google.com/)。找到自己喜欢的字体类型，例如[Ma Shan Zheng](https://fonts.google.com/specimen/Ma+Shan+Zheng?subset=chinese-simplified)，然后右侧调用`@import`。
+
+- 关于免费的[思源黑体和思源宋体](https://www.fyears.org/2017/04/source-han-sans-and-source-han-serif.html)安装和使用。
+
+下面再展示一下Xaringan slide个性化字体css文件(my-font.css)的代码设定（也可参看[说明]((https://github.com/yihui/xaringan/wiki/Deploy-Slides-Online)）：
+
+```{css}
+# my-font.css
+@import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap');
+
+body { font-family:'Songti SC', serif, 'KaiTi', '楷体','Droid Serif', 'Palatino Linotype', 'Book Antiqua', Palatino, 'Microsoft YaHei' ; }
+
+h1, h2, h3 {
+  font-family: 'Ma Shan Zheng', cursive,'楷体';
+  font-weight: normal;
+}
+
+```
+
+
+```{block, type='notes', echo=T}
+**注意**：
+
+- 字体使用有先后顺序。客户浏览器会根据操作系统字体情况，依次按顺序来加载字体。
+
+- 综合考虑不同平台和设备下的字体可用性。因此，往往需要设定字体库的“备胎计划”（fallback）。
+
+
+```
+
+此外，Xaringan中不同内容要素（elements）的字体应该考虑不同的设定，具体内容要素类别包括：
+
+- 标题（headings）：`h1,h2,h3,h4,...`
+
+- 代码区域（code chunk）以及行内代码（inline code）：`.remark-code`和 `.remark-inline-code`
+
+- 表格（table）：表题（caption），表注（notation）。
+
+- 图片（figture）：图题（caption），图注（notation）。
+
+- 数学公式符号（latex equation and symbol）：
+
+
+# 下一步需要处理的CSS问题
+
+## 储备炫酷技能
+
+提前准备好各类丰富slide功能的css实现方法。具体明确的一些炫酷功能，相关slide和css样板可以参看：
+
+- Remark.js推荐的三个[Remark templates](https://github.com/gnab/remark/wiki/HTML-CSS-JS-samples)；尤其推荐Story模板[Remark-Apron](https://story.xaprb.com/slides/adirondack/#5)。
+
+- 另外，有空还要好好看看`xaringanthemer`[R包](https://github.com/gadenbuie/xaringanthemer)。
+
+- [Earo Wang's slide](https://slides.earo.me/rladiesakl20/#39)展示了很多炫酷技巧，包括Javascript交互实现动画效果等。源代码见其[github](https://github.com/earowang/rladiesakl20)。
+
+- [Yongfu Liao's slide](https://yongfu.name/slides/xaringan/#1)，提供了简单的xaringan使用介绍。其源代码[github](https://github.com/liao961120/slides-old/tree/master/xaringan)。
+
+- [Emi Tanaka's slide](https://emitanaka.org/ninja-theme/themes/kunoichi/kunoichi-theme-example.html#1)提供了关于页面布局的多种形式。
+
+
+
+## 图文混排
+
+图文混排技巧。
+
+- `remark.js`自带光环的边栏效果（side bar）`.left-column[]`或者`.right-column[]`。
+
+- `remark.js`自带光环的两栏效果（two columns）`.pull-left[]`或者`.pull-right[]`。
+
+## Todo清单
+
+- 页面布局。页面紧凑度和宽松度灵活调整。例如`remark-slide-content.roomy`。
+
+- 前导符设定。正文符号列表的前导符设定问题。
+
+- 播放动画效果。常见的进入或退出等动画效果。CSS可以参考相对比较成熟的[Animate.css](https://animate.style/)，可以直接拿来就用。
+
+- 窗格动画效果。大抵类似于PowerPoint的动画窗格设计，目前在Xaringan或remark.js里还没有看到。可以参看[Earo Wang's slide](https://slides.earo.me/rladiesakl20/#1)。以及另一个很不错的Xaringan slide报告题为[Reproducible Data Workflows](https://pkg.garrickadenbuie.com/drake-intro/#1)给出了绘制版流程图的动画效果，其背后的关键是连续的png部件是如何分解得到的（可参看其[Rstudio cloud project](https://rstudio.cloud/project/405721)）。有待进一步去找这样的draw工具，它应该能自动保存中间环节的png。
+
+> 基于CSS的窗格动画[Build your own universe](https://slides.garrickadenbuie.com/build-your-own-universe/#p10)。相关资源可以参看：Garrick Aden‑Buie的[网站](https://www.garrickadenbuie.com/talk/build-your-own-universe/)。
+
+- 递进点击效果。可以参看Garrick Aden‑Buie的博文[Better Progressive xaringan Slides with CSS and :last-of-type](https://www.garrickadenbuie.com/blog/better-progressive-xaringan/)。其中通过CSS设计，实现递进点击效果。例如，bullets下最新一条醒目显示。
+
+
+
+# Tachyons CSS
+
+因为使用R包`xaringanExtra`的缘故，初次接触到`Tachyons`。简单地，`Tachyons`是一套创新的CSS架构理念和工具。
+
+该CSS架构的可能最初设想，是来自前端开发员Adam Morse的一篇倡议性短文[CSS and Scalability](https://mrmrs.cc/writing/scalable-css/)（他的个人[首页](https://mrmrs.cc/)）。然后经过实践探索和迭代坚持，诞生了目前的`Tachyons`[工具集](http://tachyons.io/)。具体的介绍可以参看
+[Learn Tachyons ](https://github.com/dwyl/learn-tachyons)。如果要使用各种css元件和样式，也可以登陆快速检索入口：[Cheat Sheet](https://roperzh.github.io/tachyons-cheatsheet)。
+
+这里主要说两个与本人项目相关的话题。
+
+
+**第一个话题**是：为什么要尝试选择`Tachyons`的CSS架构理念。其实也就是`Tachyons`要解决的主要CSS痛点。个人认为最重要的优点有：1）坚持“所见即所得”。下面的图既是最好的说明。具体而言，它坚持明确的“语义化代码”，让CSS显性化，实现人类友好。2）坚持“乐高组装模块化”。基于最小颗粒的CSS原件和风格，可以进行无限可能的模块化组合，从而实现CSS代码可复用性和稳定性，以及维护的简单化。3）坚持“函数化CSS开发”。与R语言类似的函数化编程思维一致，可以通过参数进行灵活控制。例如其中提到的“尺度化”（scale）概念，运用于字体大小（fontsize）、宽度（width）等。个人感觉类似于`ggplot2`的数据化映射思路。
+
+![tachons](https://blog.byjasonli.com/media/posts/13/responsive/TachyonsExplanationNow-xl.png)
+
+![before](https://blog.byjasonli.com/media/posts/13/responsive/TachyonsExplanationBefore-xl.png)
+
+**第二个话题**是：如何将`Tachyons`的CSS架构运用于`Xaringan`的视觉输出设计中去？当然目前已经可以基于`xaringanExtra`包进行引入，但是里面也还有很多需要有效衔接的地方。
+
+# 最后的若干思考和感受
+
+这次对Xaringan 又一次发起冲锋，直接缘由是《计量经济学》双一流课程团队的视频录制。团队里其他人都不用R和Rmarkdown，更不要提Xaringan slide了。大家仍旧还是基于PowerPoint准备和制作授课幻灯片，有的老师甚至操作系统还是win7，office套件还是2010版！所以只能我事先用powerpoint设定好ppt模板，大家各自拿去制作自己的授课ppt（其实大部分团队老师甚至连ppt母版也不会用）。考虑到我自己的实际需求，我是希望能同时兼顾自己使用xaringan 和团队其他老师使用ppt的一致性------当然是不能奢求最后两者视觉效果的完全一样！目前在Xaringan上的设定调整，基本上达到了ppt模板类似效果的80%左右。
+
+事实上，Xaringan和ppt二者效果一致性的达成，并不是最大的挑战。基本上基于html的Xaringan slide，可以使用css技巧实现ppt里的几乎所有功能。而况Xaringan还有很多ppt无法实现的"现代的"以及"未来的"诸多功能！真正的挑战在于团队协作，尤其是对于非常技术守旧的团队（并不指技术之外的其他方面）。到此，我的基本态度就是：最低限度地在技术方面与其他人协作，重点是把协作任务下自己事情做完、基本ok即可！
+
+当然，这里面也还有一个在协作冲突中推动自己不断学习进步的问题。显然，如果没有这次的协作录制课程，我肯定还是会一如往常地坚持"最小化学习"策略：也即如无实际所需，绝不去茫然学习所谓的各种知识技能。这一次，我充分认识到了CSS对于Xaringan甚至对于Html的重要性，并且看到了一些文档协作、协作和输出的"未来"趋势和走向！
+
+
+[^1]:[MAKING PRETTY NOTE BOXES: A div tip for all occasions](https://desiree.rbind.io/post/2019/making-tip-boxes-with-bookdown-and-rmarkdown/)

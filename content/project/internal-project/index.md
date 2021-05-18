@@ -1,23 +1,33 @@
 ---
-date: "2016-04-27T00:00:00+08:00"
+title: 项目开放协作
+summary: R语言及相关学习总结，并列出了github仓库项目信息和材料。
+tags:
+- Data science
+date: "2016-04-27T00:00:00Z"
+
+# Optional external URL for project (replaces project detail page).
 external_link: ""
+
 image:
   caption: Photo by rawpixel on Unsplash
   focal_point: Smart
+
 links:
 - icon: twitter
   icon_pack: fab
   name: Follow
-  url: ""
-slides: 
-summary: R语言及相关学习总结，并列出了github仓库项目信息和材料。
-tags:
-- R language
-title: 项目开放协作
+  url: https://twitter.com/
 url_code: ""
 url_pdf: ""
 url_slides: ""
 url_video: ""
+
+# Slides (optional).
+#   Associate this project with Markdown slides.
+#   Simply enter your slide deck's filename without extension.
+#   E.g. `slides = "example-slides"` references `content/slides/example-slides.md`.
+#   Otherwise, set `slides = ""`.
+slides: ""
 ---
 
 > 行动是学习知识的最好老师！

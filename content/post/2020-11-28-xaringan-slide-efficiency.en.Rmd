@@ -1,0 +1,171 @@
+---
+title: Xaringan效率：底层与简洁
+author: huhuaping
+date: '2020-11-28'
+slug: xaringan-slide-efficiency
+categories:
+  - R
+tags:
+  - Xaringan
+subtitle: ''
+summary: '一般而言，保持project下的文件夹结构稳定和简洁，能够大大避免工作的低效率性。Xaringan包用于制作多个系列slide幻灯片，也会难免带来文件数量和类型的逐渐增加和膨胀。那么在Xaringan框架下，如何管理和组织文件夹结构，以提升工作效率和代码稳定性？'
+authors: [胡华平]
+lastmod: '2020-11-28T11:50:58+08:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+math: yes
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: true
+---
+
+> **导读**：这是`Xaringan`系列的第3篇，系列文章请分别参看：（系列之5）[Xaringan增强：若干辅助R包及工具](/2021/04/08/xaringan-enhanced)；（系列之4）[Xaringan美化：CSS功夫](/2021/02/01/css-base-xaringan)；（系列之3）[Xaringan效率：底层与简洁](/2020/11/28/xaringan-slide-efficiency)；（系列之2）[Xaringan发布：blogdown网站中的展示](/2019/03/01/post-xaringan-slide-to-website)；（系列之1）[Xaringan缘起：创建课程slide](/2019/02/24/xaringan-for-course-slide)。
+
+一般而言，保持project下的文件夹结构稳定和简洁，能够大大避免工作的低效率性。Xaringan包用于制作多个系列slide幻灯片，也会难免带来文件数量和类型的逐渐增加和膨胀。那么在Xaringan框架下，如何管理和组织文件夹结构，以提升工作效率和代码稳定性？
+
+# Xaringan底层逻辑
+
+## Xaringan的渲染方式
+
+Xaringan slide的渲染方式主要有两类
+
+1. 静态渲染方式：Rstudio菜单knit
+
+2. 实时渲染有两种方式（live preview）
+    - Rstudio里插件 "Infinite Moon Reader"
+    - console里调用xaringan::xaringan::inf_mr()
+
+## 共用文件夹的情形
+
+mycss：假定课程里全部slide都使用同样的css风格。
+
+pic：假定课程slide里的本地图片都放在pic文件夹下。
+
+若干可能的文件体系结构及面临的主要问题
+
+1. 体系1“全部一起堆放”：随着Rmd文件数的增加，一级目录下会有很多文件！`chn-chpt01.Rmd; chn-chpt02.Rmd；……；eng-chpt01.Rmd; eng-chpt02.Rmd；……`
+
+2. 体系2“分模块堆放”：比较合理。但是在实时渲染时，将面临如何管理css和pic等问题。子文件夹1：`Slide-chn：chn-chpt01.Rmd; chn-chpt02.Rmd；……`;子文件夹2：`Slide-eng：eng-chpt01.Rmd; eng-chpt02.Rmd；……`
+
+
+## 测试和发现
+
+测试：比较合理的体系2“分模块对方”下，进行实时渲染
+
+css问题：xaringan包已经解决此问题。只要确保css文件和Rmd文件在同一个work directory下即可。
+
+pic问题：假定pic文件夹与模块文件夹(slide-chn; slide-eng)并列
+
+- 静态渲染方式下，图片引用可以使用“相对路径”`("../pic/a.png")`或“绝对路径”（`here::here("pic", "a.png")`）引用的任何一种来实现正常显示。
+
+- 实时渲染方式下，图片引用只能使用“相对路径”("../pic/a.png")来实现正常显示。
+
+# Xaringan效率方法
+
+## 减少系统复杂性
+
+Yongfu的[博客文章](https://yongfu.name/2019/04/29/xaringan_tips.html)Tips to Reduce the Complexity of Slide Making with Xaringan，比较详细地介绍了如何减少xaringan制作复杂性的一些方法。
+
+- 使用子文档（child document）架构（see rmarkdown cookbook: [16.4 Child documents](https://bookdown.org/yihui/rmarkdown-cookbook/child-document.html)）。
+
+## 提高代码复用性
+
+- 引用代码块。前后slide如果要多次（2次及以上）用到同样的代码块，则可以使用代码块标签索引（see rmarkdown cookbook: [reference labels](https://bookdown.org/yihui/rmarkdown-cookbook/reuse-chunks.html)）。具体有两种操作情形：
+
+    - 简单重复引用代码块。先定义label，然后直接使用相同标签的代码块头即可。
+    - 组合引用多个代码块。先定义label，然后设定`ref.label=`参数进行引用即可。
+
+```
+# 简单重复引用代码块
+`` `{r, chunk-one, eval=TRUE} # def
+
+some long content balabala 
+
+`` `{r, chunk-one, eval=TRUE} # use
+
+```
+
+</br>
+
+```
+# 组合引用多个代码块
+
+`` `{r chunk-a} # def1
+
+some long content balabala 
+
+`` `{r chunk-b} # def2
+
+some long content balabala 
+
+`` `{r chunk-a, ref.label=c('chunk-c', 'chunk-b')} # use
+
+```
+
+## 修改预览实时化
+
+- 赶紧去看Yihui的blog，[The Ultimate Infinite Moon Reader for xaringan Slides](https://yihui.name/en/2019/02/ultimate-inf-mr/)。赶快安装更新包：
+
+```
+remotes::install_github('yihui/xaringan', upgrade = TRUE)
+
+```
+
+- 而且是Windows用户的又一个福音啊。前面刚说Rstudio里不能Viewer预览，但是更新Xaringan包后发现Chrome浏览器竟然可以“实时”同步预览了！yoo！
+
+定制自己的字体大小：
+
+- 在Rmd文档里添加代码：(参看[Customize font size for all the slides in xaringan](https://stackoverflow.com/questions/53481699/customize-font-size-for-all-the-slides-in-xaringan))
+
+```
+<style type="text/css">
+.remark-slide-content {
+    font-size: 30px;
+    padding: 1em 4em 1em 4em;
+}
+</style>
+
+```
+
+## 选用一个好模板
+
+- 比如我使用的杜克大学模板：[Slide Template for Duke University](https://johnlittle.info/dukeslides/)。
+
+- 初学者最好先不要删除模板的内容，里面的示例说明可以很好地参考。
+
+## 定制个性化模板
+
+- 关于动画设置。并不是ppt的专利。可以实现的，请参看[Animate Xaringan Slide Transitions](https://www.garrickadenbuie.com/blog/animate-xaringan-slide-transitions/)。
+
+- 关于定制样式。世界另一头，总有一个大牛，已经做好了包供你使用，具体请看[xaringanthemer](https://www.garrickadenbuie.com/project/xaringanthemer/)。
+
+## 结论
+
+xaringan实时渲染方式，会调用servr package来搭建本地网页服务[参看官方文档](https://bookdown.org/yihui/rmarkdown/xaringan-preview.html)
+
+因此实时渲染下：本地服务会寻找一个根目录（root directory），从而会引发上述的图片渲染问题。libs文件夹总是会和.Rmd文件并列
+
+总之，使用相对路径引用图片是比较保险的方式。具体的地方包括
+
+- remark.js背景图：`background-image: url("../pic/a.png")`
+
+- R函数正文图：`include_graphics("../pic/a.png")`
+
+- markdown行内图：`![]("../pic/a.png")`
+
+
+其次，css的yaml设置
+
+```			
+css: 
+      - default
+      - default-fonts
+      - duke-blue
+      - hygge-duke
+      - ../mycss/my-custom.css
+```

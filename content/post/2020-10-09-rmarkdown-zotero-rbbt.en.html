@@ -1,5 +1,5 @@
 ---
-title: '使用Zotero实现文献引用的自动化Rmarkdown写作'
+title: '文献管理：使用Zotero进行Rmarkdown写作的文献自动化'
 author: huhuaping
 date: '2020-10-09'
 slug: rmarkdown-zotero-rbbt
@@ -19,17 +19,55 @@ image:
   focal_point: ''
   preview_only: no
 projects: []
+math: yes
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: true
+bibliography: "../bib/netlify.bib"
+csl: "../bib/china-national-standard-gb-t-7714-2015-author-date.csl"
+link-citations: yes
 ---
 
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
+<div id="TOC">
+<ul>
+<li><a href="#zotero环境准备"><span class="toc-section-number">1</span> zotero环境准备</a>
+<ul>
+<li><a href="#安装zotero和扩展插件zotero-better-bibtex"><span class="toc-section-number">1.1</span> 安装zotero和扩展插件zotero-better-bibtex。</a></li>
+<li><a href="#设定citekey的形式默认形式太冗长"><span class="toc-section-number">1.2</span> 设定Citekey的形式（默认形式太冗长）。</a></li>
+</ul></li>
+<li><a href="#多设备下zotero全文附件的同步"><span class="toc-section-number">2</span> 多设备下zotero全文附件的同步</a></li>
+<li><a href="#rmarkdown与zotero自动关联"><span class="toc-section-number">3</span> Rmarkdown与Zotero自动关联</a>
+<ul>
+<li><a href="#zotero导出.bib文件"><span class="toc-section-number">3.1</span> zotero导出.bib文件</a></li>
+<li><a href="#使用rbbt在rmarkdown写作下调用文献"><span class="toc-section-number">3.2</span> 使用<code>rbbt</code>在Rmarkdown写作下调用文献</a></li>
+</ul></li>
+<li><a href="#rmarkdown写作中引用文献"><span class="toc-section-number">4</span> Rmarkdown写作中引用文献</a>
+<ul>
+<li><a href="#快速复制预览文献条目"><span class="toc-section-number">4.1</span> 快速复制预览文献条目</a></li>
+<li><a href="#引用形式"><span class="toc-section-number">4.2</span> 引用形式</a></li>
+<li><a href="#文献列表的位置"><span class="toc-section-number">4.3</span> 文献列表的位置</a></li>
+<li><a href="#文献列表序号和缩进"><span class="toc-section-number">4.4</span> 文献列表序号和缩进</a></li>
+</ul></li>
+<li><a href="#总结及注意事项"><span class="toc-section-number">5</span> 总结及注意事项</a>
+<ul>
+<li><a href="#优点"><span class="toc-section-number">5.1</span> 优点</a></li>
+<li><a href="#重要提示"><span class="toc-section-number">5.2</span> 重要提示</a></li>
+</ul></li>
+<li><a href="#参考文献">参考文献</a></li>
+<li><a href="#附录">附录</a></li>
+</ul>
+</div>
 
 <blockquote>
 <p>Rmarkdown写作环境下，Zotero + rbbt的方式，基本上实现了比较满意的文献管理和引用流程。Zotero具有免费和相对开放性。Zotero对bibTeX和中文情景比较友好。此外，R包rbbt函数实现了对Zotero的实时联系，引用流程更加自动化。使用者需要正确理解Rmd渲染输出、.bib文件状态和Zotero条目库的关系。</p>
 </blockquote>
-<div id="zotero环境准备" class="section level1">
-<h1>zotero环境准备</h1>
-<div id="安装zotero和扩展插件zotero-better-bibtex" class="section level2">
-<h2>安装zotero和扩展插件zotero-better-bibtex。</h2>
+<div id="zotero环境准备" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> zotero环境准备</h1>
+<div id="安装zotero和扩展插件zotero-better-bibtex" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> 安装zotero和扩展插件zotero-better-bibtex。</h2>
 <p>安装文献管理软件zotero和浏览器插件 。<a href="https://www.zotero.org/">官网</a></p>
 <ul>
 <li><p>软件本体Zotero 5.0 for Windows <a href="https://www.zotero.org/download/client/dl?channel=release&amp;platform=win32&amp;version=5.0.89">下载</a>。</p></li>
@@ -37,8 +75,8 @@ projects: []
 <li><p>安装Zotero扩展插件zotero-better-bibtex <a href="https://retorque.re/zotero-better-bibtex/">开发者网站</a>。zotero-better-bibtex-5.2.78.xpi <a href="https://github.com/retorquere/zotero-better-bibtex/releases">下载安装</a>。</p></li>
 </ul>
 </div>
-<div id="设定citekey的形式默认形式太冗长" class="section level2">
-<h2>设定Citekey的形式（默认形式太冗长）。</h2>
+<div id="设定citekey的形式默认形式太冗长" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> 设定Citekey的形式（默认形式太冗长）。</h2>
 <p>具体修改<a href="https://retorque.re/zotero-better-bibtex/citing/">方法</a>：</p>
 <ul>
 <li><p>设定citekey形式：打开Zotero<span class="math inline">\(\Rightarrow\)</span> 编辑<span class="math inline">\(\Rightarrow\)</span> 首选项<span class="math inline">\(\Rightarrow\)</span> Better Bibtex（插件菜单<span class="math inline">\(\Rightarrow\)</span> Citation keys。</p></li>
@@ -46,26 +84,39 @@ projects: []
 </ul>
 </div>
 </div>
-<div id="r环境准备" class="section level1">
-<h1>R环境准备</h1>
-<div id="zotero导出.bib文件" class="section level2">
-<h2>zotero导出.bib文件</h2>
+<div id="多设备下zotero全文附件的同步" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> 多设备下zotero全文附件的同步</h1>
+<p>一种常见工作模式是，个人会在多设备下使用zotero。这时，就需要处理多个设备下，zotero全文附件的同步问题。</p>
+<p>当然，zotero官方本身是支持这一点的。但是对于免费用户，仅仅300M的网络共享空间是完全不够用的，如果要更大网络共享空间，则需要掏钱购买，费用也是不低（尤其对于学生党而言）。</p>
+<p>因此，为避开官方的收费方案，下面简要介绍如何搭建一个免费的、无限容量的、自动化zotero附件同步的工作流（<a href="https://ikashnitsky.github.io/2019/zotero/">参看</a>）。</p>
 <ul>
-<li><p>选定需要的Zotero的文献组(group)，直接导出为.bib文件</p></li>
-<li><p>将.bib文件保存在写作文件.Rmd路径中</p></li>
-<li><p>写作文件.Rmd的yaml区域指明对.bib的关联关系</p></li>
+<li><p><strong>准备同步工具</strong>：google云盘备份同步工具（国内VPN、google账号）</p></li>
+<li><p><strong>准备zotero插件</strong>： 出了前述的插件外，还需要安装一个神奇插件<code>ZotFile</code>（<a href="http://zotfile.com/">下载地址</a>）。</p></li>
+<li><p><strong>设定zotero参数</strong>：具体细节请<a href="https://ikashnitsky.github.io/2019/zotero/">参看</a>。</p></li>
 </ul>
-<pre><code>bibliography: 
-  - bib-west.bib
-  - west-agri.bib</code></pre>
+<p>以上准备和设定都完成后，实际个人多设备使用工作流程其实很简单：</p>
 <ul>
-<li>写作文件.Rmd的yaml区域设定文献列出样式（csl style）及关联关系</li>
+<li><p>在A设备上：保持google备份同步工具开启和正常联网，同时如常利用zotero进行文献收集、阅读和笔记记录。</p></li>
+<li><p>在B设备上：保持google备份同步工具开启和正常联网，zotero则会自动同步全部文献条目和全文附件（pdf）。</p></li>
 </ul>
-<pre><code>biblio-style: &quot;nnsfc.csl&quot;
-csl: &quot;nnsfc.csl&quot;</code></pre>
 </div>
-<div id="安装rbbt包并进行文献搜索和引用" class="section level2">
-<h2>安装<code>rbbt</code>包，并进行文献搜索和引用</h2>
+<div id="rmarkdown与zotero自动关联" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Rmarkdown与Zotero自动关联</h1>
+<div id="zotero导出.bib文件" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> zotero导出.bib文件</h2>
+<ul>
+<li>选定需要的Zotero的文献组(group)，以<code>Better BibTeX</code>格式（前提是要安装相应插件）导出到工作路径<code>"netlify/content/bib/netlify.bib"</code>，注意同时要勾选“keep updated”选项。这样的话就能实现Zotero文献的自动关联。</li>
+</ul>
+<p><img src="/pic/zetero-export-betterbib.png" /><!-- --></p>
+<ul>
+<li>写作文件.Rmd的yaml区域指明对.bib的关联关系，并设定文献列出样式（csl style）及关联关系（参看“<a href="/2021/03/03/reference-manage-on-csl">文献管理：CSL风格样式</a>”一文）。</li>
+</ul>
+<pre class="yaml"><code>bibliography: &quot;../../bib/netlify.bib&quot;
+csl: &quot;../../bib/china-national-standard-gb-t-7714-2015-author-date.csl&quot;
+link-citations: yes</code></pre>
+</div>
+<div id="使用rbbt在rmarkdown写作下调用文献" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> 使用<code>rbbt</code>在Rmarkdown写作下调用文献</h2>
 <pre class="r"><code># remotes::install_github(&quot;paleolimbot/rbbt&quot;)
 #require(&quot;rbbt&quot;)</code></pre>
 <p>R包<code>rbbt</code>的主要作用<a href="https://github.com/paleolimbot/rbbt">见github</a>：</p>
@@ -80,19 +131,81 @@ csl: &quot;nnsfc.csl&quot;</code></pre>
 <pre><code># remotes::install_github(&quot;paleolimbot/rbbt&quot;)
 require(&quot;rbbt&quot;)</code></pre>
 <ul>
-<li>Rstudio<span class="math inline">\(\Rightarrow\)</span> 点击Addins<span class="math inline">\(\Rightarrow\)</span> Insert Zotero Citation。</li>
+<li>使用插件：Rstudio<span class="math inline">\(\Rightarrow\)</span> 点击Addins<span class="math inline">\(\Rightarrow\)</span> Insert Zotero Citation。</li>
 </ul>
 </div>
 </div>
-<div id="总结及注意事项" class="section level1">
-<h1>总结及注意事项</h1>
+<div id="rmarkdown写作中引用文献" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Rmarkdown写作中引用文献</h1>
+<div id="快速复制预览文献条目" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> 快速复制预览文献条目</h2>
+<p>很多时候，我们更希望直接看到指定预览格式的文献条目细节，或者希望直接快速地将预览格式的文献条目复制粘贴到word、Rmarkdown或txt里去。</p>
+<p>下面是实现操作（参看 <a href="https://www.zotero.org/support/creating_bibliographies#quick_copy">指导说明</a>）：</p>
+<ul>
+<li><p>设置指定预览格式。edit <span class="math inline">\(\Rightarrow\)</span> preference <span class="math inline">\(\Rightarrow\)</span> export。</p></li>
+<li><p>选中文献条目，直接用鼠标拉到你想要放置的地方去。</p></li>
+</ul>
+</div>
+<div id="引用形式" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> 引用形式</h2>
+<p>具体可以参看的Rmarkdown<a href="https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html">官方解释</a>。</p>
+<ul>
+<li>一次同时引用多条文献，用冒号区隔：<code>[@refkey1; @refkey2]</code></li>
+</ul>
+<pre><code>一些国内学者[@liuhuaqin2014; @xiaohuizhong2019]一起发现...。</code></pre>
+<blockquote>
+<p>一些国内学者<span class="citation">(<a href="#ref-liuhuaqin2014" role="doc-biblioref">刘华芹, 2014</a>; <a href="#ref-xiaohuizhong2019" role="doc-biblioref">肖辉忠, 2019</a>)</span>一起发现…。</p>
+</blockquote>
+<ul>
+<li>强制不出现作者名字，用减号：<code>[-@refkey]</code></li>
+</ul>
+<pre><code>有学者[@alimov2018]...发现。他还发现[-@alimov2018]...。</code></pre>
+<blockquote>
+<p>有学者<span class="citation">(<a href="#ref-alimov2018" role="doc-biblioref">ALIMOV, 2018</a>)</span>…发现。他还发现<span class="citation">(<a href="#ref-alimov2018" role="doc-biblioref">2018</a>)</span>…。</p>
+</blockquote>
+<ul>
+<li>行内引用（注意key和后面文本的空格），直接@：<code>@refkey says that ...</code></li>
+</ul>
+<pre><code>@tobin2020a 认为...。</code></pre>
+<blockquote>
+<p><span class="citation"><a href="#ref-tobin2020a" role="doc-biblioref">TOBIN</a> (<a href="#ref-tobin2020a" role="doc-biblioref">2020</a>)</span> 认为…。</p>
+</blockquote>
+</div>
+<div id="文献列表的位置" class="section level2" number="4.3">
+<h2><span class="header-section-number">4.3</span> 文献列表的位置</h2>
+<p>默认情况下，文献列表会出现在整个文档的最后。</p>
+<p>如果要指定其出现位置，则需要插入一小段html代码<code>&lt;div id="refs"&gt;&lt;/div&gt;</code>，具体如下（可<a href="https://rmd4sci.njtierney.com/citing-articles-bibliography-styles.html#how-to-move-the-bibliography-location">参看</a>）。</p>
+<pre><code># Introduction
+
+# References {-}
+
+&lt;div id=&quot;refs&quot;&gt;&lt;/div&gt;
+
+# Appendix
+</code></pre>
+<ul>
+<li><p>其中heading里面的<code>{-}</code>是为了保持不自动给出“索引id”。</p></li>
+<li><p>如果使用了脚注功能<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>，脚注列表依旧会显示在文档最后。</p></li>
+</ul>
+</div>
+<div id="文献列表序号和缩进" class="section level2" number="4.4">
+<h2><span class="header-section-number">4.4</span> 文献列表序号和缩进</h2>
+<p>待解决！</p>
+</div>
+</div>
+<div id="总结及注意事项" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> 总结及注意事项</h1>
+<div id="优点" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> 优点</h2>
 <p>Rmarkdown写作环境下，Zotero + <code>rbbt</code>的方式，基本上实现了比较满意的文献管理和引用流程，<strong>优点</strong>如下：</p>
 <ul>
 <li><p>Zotero的免费和相对开放性。免费+插件扩展。对很多网站的文章citation能够快速识别并导入到Zotero库里去，而且还能自动下载关联pdf！</p></li>
 <li><p>Zotero对bibTeX的友好性。因为Rmarkdown对bibTeX的要求，而Zotero的相关操作极为便捷简单。此外，Zotero对中文文献情景也比较友好。</p></li>
 <li><p>R包<code>rbbt</code>函数实现了对Zotero的实时联系，引用流程更加自动化。</p></li>
 </ul>
-<p><strong>重要提示</strong>：</p>
+</div>
+<div id="重要提示" class="section level2" number="5.2">
+<h2><span class="header-section-number">5.2</span> 重要提示</h2>
 <ol style="list-style-type: decimal">
 <li><p>正确理解Rmd渲染输出、.bib文件状态和Zotero条目库的关系。简单说：a) Rmd的输出最终只会引用.bib文件里的文献条目。b)R引用包（<code>rbbt</code>）与Zotero可以实时联系（通过zotero-better-bibtex扩展插件），但是这<strong>并不</strong>意味着Rmd渲染输出也是与Zotero实时联系的。c).因此，在写作草稿阶段，可以暂时不用关心.bib，只需要保持与Zotero实时联系即可（完成实时搜索和插入条目）。但是在最后完稿之前，务必需要及时更新调整.bib文件（从Zotero 中导出文献为.bib文件，替换更新原来的.bib旧文件即可）。</p></li>
 <li><p>Zotero中Citekey的设置是一个关键步骤，我们需要做出合理的权衡。这是因为一方面<code>@nameYear</code>的引用便捷性，要求每条文献的citekey必须要简单易用；但是另一方面，Zotero往往会管理海量的文献条目，从而又要求文献的citekey不能重复——不然就没办法精确引用文献了。不过Zotero考虑并提供了选择，可以用动态key（dynamic key），也可以用锁定key（pined key）。</p></li>
@@ -100,5 +213,32 @@ require(&quot;rbbt&quot;)</code></pre>
 <ul>
 <li>设定导出规则：打开Zotero<span class="math inline">\(\Rightarrow\)</span> 编辑<span class="math inline">\(\Rightarrow\)</span> 首选项<span class="math inline">\(\Rightarrow\)</span> Better Bibtex（插件菜单）<span class="math inline">\(\Rightarrow\)</span> Export<span class="math inline">\(\Rightarrow\)</span> Fields<span class="math inline">\(\Rightarrow\)</span> Fields to omit frome export<span class="math inline">\(\Rightarrow\)</span> 输入abstract等（逗号分隔）</li>
 </ul></li>
+</ol>
+</div>
+</div>
+<div id="参考文献" class="section level1 unnumbered">
+<h1>参考文献</h1>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-alimov2018" class="csl-entry">
+ALIMOV R, 2018. The <span>Shanghai Cooperation Organisation</span>: <span>Its</span> Role and Place in the Development of <span>Eurasia</span>[J]. Journal of Eurasian Studies, 9(2): 114–124. DOI:<a href="https://doi.org/10.1016/j.euras.2018.08.001">10.1016/j.euras.2018.08.001</a>.
+</div>
+<div id="ref-tobin2020a" class="csl-entry">
+TOBIN D, 2020. How to <span>Get Data</span> from <span>Multiple Sources</span>[Z]. https://www.xplenty.com/blog/get-data-from-multiple-sources/(2020–07).
+</div>
+<div id="ref-liuhuaqin2014" class="csl-entry">
+刘华芹, 2014. 深化上海合作组织区域经济合作的构想[J]. 俄罗斯东欧中亚研究, (1): 6–10.
+</div>
+<div id="ref-xiaohuizhong2019" class="csl-entry">
+肖辉忠, 2019. 俄罗斯伏尔加河沿岸联邦区农业问题研究[J]. 欧亚经济, (5): 7–14.
+</div>
+</div>
+</div>
+<div id="附录" class="section level1 unnumbered">
+<h1>附录</h1>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>脚注列表与文献列表的位置关系，前者总是在文档最后，并且原生有一道横线。<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>

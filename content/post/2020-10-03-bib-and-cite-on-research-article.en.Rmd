@@ -1,5 +1,5 @@
 ---
-title: Endnote参考文献及Rmarkdown引用问题
+title: 文献管理：Rmarkdown写作环境下的Endnote使用
 author: huhuaping
 date: '2020-10-03'
 slug: bib-and-cite-on-research-article
@@ -18,6 +18,11 @@ image:
   focal_point: ''
   preview_only: no
 projects: []
+math: yes
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: true
 ---
 
 使用Rmarkdown写科学论文，自然避免不了管理和使用参考文献，以及文献输出样式。

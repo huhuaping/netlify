@@ -1,0 +1,181 @@
+---
+title: Xaringan效率：底层与简洁
+author: huhuaping
+date: '2020-11-28'
+slug: xaringan-slide-efficiency
+categories:
+  - R
+tags:
+  - Xaringan
+subtitle: ''
+summary: '一般而言，保持project下的文件夹结构稳定和简洁，能够大大避免工作的低效率性。Xaringan包用于制作多个系列slide幻灯片，也会难免带来文件数量和类型的逐渐增加和膨胀。那么在Xaringan框架下，如何管理和组织文件夹结构，以提升工作效率和代码稳定性？'
+authors: [胡华平]
+lastmod: '2020-11-28T11:50:58+08:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+math: yes
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: true
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+<div id="TOC">
+<ul>
+<li><a href="#xaringan底层逻辑"><span class="toc-section-number">1</span> Xaringan底层逻辑</a>
+<ul>
+<li><a href="#xaringan的渲染方式"><span class="toc-section-number">1.1</span> Xaringan的渲染方式</a></li>
+<li><a href="#共用文件夹的情形"><span class="toc-section-number">1.2</span> 共用文件夹的情形</a></li>
+<li><a href="#测试和发现"><span class="toc-section-number">1.3</span> 测试和发现</a></li>
+</ul></li>
+<li><a href="#xaringan效率方法"><span class="toc-section-number">2</span> Xaringan效率方法</a>
+<ul>
+<li><a href="#减少系统复杂性"><span class="toc-section-number">2.1</span> 减少系统复杂性</a></li>
+<li><a href="#提高代码复用性"><span class="toc-section-number">2.2</span> 提高代码复用性</a></li>
+<li><a href="#修改预览实时化"><span class="toc-section-number">2.3</span> 修改预览实时化</a></li>
+<li><a href="#选用一个好模板"><span class="toc-section-number">2.4</span> 选用一个好模板</a></li>
+<li><a href="#定制个性化模板"><span class="toc-section-number">2.5</span> 定制个性化模板</a></li>
+<li><a href="#结论"><span class="toc-section-number">2.6</span> 结论</a></li>
+</ul></li>
+</ul>
+</div>
+
+<blockquote>
+<p><strong>导读</strong>：这是<code>Xaringan</code>系列的第3篇，系列文章请分别参看：（系列之5）<a href="/2021/04/08/xaringan-enhanced">Xaringan增强：若干辅助R包及工具</a>；（系列之4）<a href="/2021/02/01/css-base-xaringan">Xaringan美化：CSS功夫</a>；（系列之3）<a href="/2020/11/28/xaringan-slide-efficiency">Xaringan效率：底层与简洁</a>；（系列之2）<a href="/2019/03/01/post-xaringan-slide-to-website">Xaringan发布：blogdown网站中的展示</a>；（系列之1）<a href="/2019/02/24/xaringan-for-course-slide">Xaringan缘起：创建课程slide</a>。</p>
+</blockquote>
+<p>一般而言，保持project下的文件夹结构稳定和简洁，能够大大避免工作的低效率性。Xaringan包用于制作多个系列slide幻灯片，也会难免带来文件数量和类型的逐渐增加和膨胀。那么在Xaringan框架下，如何管理和组织文件夹结构，以提升工作效率和代码稳定性？</p>
+<div id="xaringan底层逻辑" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Xaringan底层逻辑</h1>
+<div id="xaringan的渲染方式" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Xaringan的渲染方式</h2>
+<p>Xaringan slide的渲染方式主要有两类</p>
+<ol style="list-style-type: decimal">
+<li><p>静态渲染方式：Rstudio菜单knit</p></li>
+<li><p>实时渲染有两种方式（live preview）</p>
+<ul>
+<li>Rstudio里插件 “Infinite Moon Reader”</li>
+<li>console里调用xaringan::xaringan::inf_mr()</li>
+</ul></li>
+</ol>
+</div>
+<div id="共用文件夹的情形" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> 共用文件夹的情形</h2>
+<p>mycss：假定课程里全部slide都使用同样的css风格。</p>
+<p>pic：假定课程slide里的本地图片都放在pic文件夹下。</p>
+<p>若干可能的文件体系结构及面临的主要问题</p>
+<ol style="list-style-type: decimal">
+<li><p>体系1“全部一起堆放”：随着Rmd文件数的增加，一级目录下会有很多文件！<code>chn-chpt01.Rmd; chn-chpt02.Rmd；……；eng-chpt01.Rmd; eng-chpt02.Rmd；……</code></p></li>
+<li><p>体系2“分模块堆放”：比较合理。但是在实时渲染时，将面临如何管理css和pic等问题。子文件夹1：<code>Slide-chn：chn-chpt01.Rmd; chn-chpt02.Rmd；……</code>;子文件夹2：<code>Slide-eng：eng-chpt01.Rmd; eng-chpt02.Rmd；……</code></p></li>
+</ol>
+</div>
+<div id="测试和发现" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> 测试和发现</h2>
+<p>测试：比较合理的体系2“分模块对方”下，进行实时渲染</p>
+<p>css问题：xaringan包已经解决此问题。只要确保css文件和Rmd文件在同一个work directory下即可。</p>
+<p>pic问题：假定pic文件夹与模块文件夹(slide-chn; slide-eng)并列</p>
+<ul>
+<li><p>静态渲染方式下，图片引用可以使用“相对路径”<code>("../pic/a.png")</code>或“绝对路径”（<code>here::here("pic", "a.png")</code>）引用的任何一种来实现正常显示。</p></li>
+<li><p>实时渲染方式下，图片引用只能使用“相对路径”(“../pic/a.png”)来实现正常显示。</p></li>
+</ul>
+</div>
+</div>
+<div id="xaringan效率方法" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Xaringan效率方法</h1>
+<div id="减少系统复杂性" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> 减少系统复杂性</h2>
+<p>Yongfu的<a href="https://yongfu.name/2019/04/29/xaringan_tips.html">博客文章</a>Tips to Reduce the Complexity of Slide Making with Xaringan，比较详细地介绍了如何减少xaringan制作复杂性的一些方法。</p>
+<ul>
+<li>使用子文档（child document）架构（see rmarkdown cookbook: <a href="https://bookdown.org/yihui/rmarkdown-cookbook/child-document.html">16.4 Child documents</a>）。</li>
+</ul>
+</div>
+<div id="提高代码复用性" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> 提高代码复用性</h2>
+<ul>
+<li><p>引用代码块。前后slide如果要多次（2次及以上）用到同样的代码块，则可以使用代码块标签索引（see rmarkdown cookbook: <a href="https://bookdown.org/yihui/rmarkdown-cookbook/reuse-chunks.html">reference labels</a>）。具体有两种操作情形：</p>
+<ul>
+<li>简单重复引用代码块。先定义label，然后直接使用相同标签的代码块头即可。</li>
+<li>组合引用多个代码块。先定义label，然后设定<code>ref.label=</code>参数进行引用即可。</li>
+</ul></li>
+</ul>
+<pre><code># 简单重复引用代码块
+`` `{r, chunk-one, eval=TRUE} # def
+
+some long content balabala 
+
+`` `{r, chunk-one, eval=TRUE} # use
+</code></pre>
+<p></br></p>
+<pre><code># 组合引用多个代码块
+
+`` `{r chunk-a} # def1
+
+some long content balabala 
+
+`` `{r chunk-b} # def2
+
+some long content balabala 
+
+`` `{r chunk-a, ref.label=c(&#39;chunk-c&#39;, &#39;chunk-b&#39;)} # use
+</code></pre>
+</div>
+<div id="修改预览实时化" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> 修改预览实时化</h2>
+<ul>
+<li>赶紧去看Yihui的blog，<a href="https://yihui.name/en/2019/02/ultimate-inf-mr/">The Ultimate Infinite Moon Reader for xaringan Slides</a>。赶快安装更新包：</li>
+</ul>
+<pre><code>remotes::install_github(&#39;yihui/xaringan&#39;, upgrade = TRUE)
+</code></pre>
+<ul>
+<li>而且是Windows用户的又一个福音啊。前面刚说Rstudio里不能Viewer预览，但是更新Xaringan包后发现Chrome浏览器竟然可以“实时”同步预览了！yoo！</li>
+</ul>
+<p>定制自己的字体大小：</p>
+<ul>
+<li>在Rmd文档里添加代码：(参看<a href="https://stackoverflow.com/questions/53481699/customize-font-size-for-all-the-slides-in-xaringan">Customize font size for all the slides in xaringan</a>)</li>
+</ul>
+<pre><code>&lt;style type=&quot;text/css&quot;&gt;
+.remark-slide-content {
+    font-size: 30px;
+    padding: 1em 4em 1em 4em;
+}
+&lt;/style&gt;
+</code></pre>
+</div>
+<div id="选用一个好模板" class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> 选用一个好模板</h2>
+<ul>
+<li><p>比如我使用的杜克大学模板：<a href="https://johnlittle.info/dukeslides/">Slide Template for Duke University</a>。</p></li>
+<li><p>初学者最好先不要删除模板的内容，里面的示例说明可以很好地参考。</p></li>
+</ul>
+</div>
+<div id="定制个性化模板" class="section level2" number="2.5">
+<h2><span class="header-section-number">2.5</span> 定制个性化模板</h2>
+<ul>
+<li><p>关于动画设置。并不是ppt的专利。可以实现的，请参看<a href="https://www.garrickadenbuie.com/blog/animate-xaringan-slide-transitions/">Animate Xaringan Slide Transitions</a>。</p></li>
+<li><p>关于定制样式。世界另一头，总有一个大牛，已经做好了包供你使用，具体请看<a href="https://www.garrickadenbuie.com/project/xaringanthemer/">xaringanthemer</a>。</p></li>
+</ul>
+</div>
+<div id="结论" class="section level2" number="2.6">
+<h2><span class="header-section-number">2.6</span> 结论</h2>
+<p>xaringan实时渲染方式，会调用servr package来搭建本地网页服务<a href="https://bookdown.org/yihui/rmarkdown/xaringan-preview.html">参看官方文档</a></p>
+<p>因此实时渲染下：本地服务会寻找一个根目录（root directory），从而会引发上述的图片渲染问题。libs文件夹总是会和.Rmd文件并列</p>
+<p>总之，使用相对路径引用图片是比较保险的方式。具体的地方包括</p>
+<ul>
+<li><p>remark.js背景图：<code>background-image: url("../pic/a.png")</code></p></li>
+<li><p>R函数正文图：<code>include_graphics("../pic/a.png")</code></p></li>
+<li><p>markdown行内图：<code>![]("../pic/a.png")</code></p></li>
+</ul>
+<p>其次，css的yaml设置</p>
+<pre><code>css: 
+      - default
+      - default-fonts
+      - duke-blue
+      - hygge-duke
+      - ../mycss/my-custom.css</code></pre>
+</div>
+</div>

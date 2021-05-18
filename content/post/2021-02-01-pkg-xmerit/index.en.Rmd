@@ -1,0 +1,204 @@
+---
+title: R包开发：xmetrics
+author: huhuaping
+date: '2021-02-01'
+slug: pkg-xmerit
+categories:
+  - Econometrics
+  - R
+tags:
+  - package
+subtitle: ''
+summary: '本文将总结和梳理开发R包`xmetrics`的主要思路和工作内容，目标是辅助计量经济学和统计学课程进行高效的、可重现的（reproducable）教学内容准备和演示。'
+authors: [胡华平]
+lastmod: '2021-02-01T21:12:57+08:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+math: TRUE
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: true
+---
+
+# 缘由
+
+> R包`xmetrics`定位于辅助计量经济学和统计学课程进行高效的、可重现的（reproducable）教学内容准备和演示。
+
+R包命名的原则应该坚持：a.词形或发音与表意一致性，也即与开发R包核心功能定位的一致；b.不能太范化或通用，避免后期用户搜索的混淆，或推广传播的混乱。
+
+拟定开发的R包命名`xmetrics`，音近于计量经济学英文**Econometrics**，`X`也有多种用途或神通广大的含义，而且metrics本身就是测量或度量的含义。通过google搜索关键词"xmetrics"的重合度或范化度，仅发现一款游泳穿戴设备名为"Xmetrics"（见[网页](https://swimswam.com/xmetrics-the-worlds-first-activity-tracker-for-swimmers/)）。继续google搜索关键词"R xmetrics"，发现一个定位为机器学习（Machine Learning）的R包命名为"Metrics"（见[CRAN](https://cran.r-project.org/web/packages/Metrics/index.html)）。
+
+
+```{r, echo=FALSE, comment="", message=FALSE}
+require("xmerit")
+require("tidyverse")
+
+# global options for knitr
+knitr::opts_chunk$set(comment = "",fig.align='center',echo = FALSE,message = FALSE,
+                      fig.width=11, fig.height=6)
+```
+
+
+功能类似R包主要有： `equatiomatic`（见github仓库[datalorax/equatiomatic](https://github.com/datalorax/equatiomatic)）
+
+> The goal of `equatiomatic` is to reduce the pain associated with writing LaTeX code from a fitted model. In the future, the package aims to support any model supported by `broom`.
+
+- 优点：简单、容易上手；支持较多的几类计量模型。
+
+- 不足：功能相对较少（见下面）
+
+# 开发思路
+
+## 主要功能
+
+math equation输出需要考虑的几个方面：
+
+- 支持纯latex符号公式（symbol equation）、模型结果数值化（value equation）以及二者的混合；
+
+- 支持计量经济学数学公式（math equation）的各类理论表达，如总体回归模型PRM、总体回归函数PRF、样本回归模型（SRM）、样本回归函数（SRF）等；
+
+- 支持多种数值结果形式输出，例如经典三行式（系数、标准误、t值），或者经典一行式（系数）。
+
+- 支持多种latex美化效果，包括`align`、`alignedat`等排列对齐环境；
+
+- 支持灵活个性化的参数符号（如$\alpha,\beta,\gamma,\cdots$）和下标符号（如$X_i, u_i, u_t$）选择等；
+
+- 支持多种模型估计方法，包括OLS回归、虚拟变量回归（ANOVA）等；
+
+- 与通用R包保持接口一致，如包`broom`等；
+
+## 主要挑战
+
+计量经济学的语言符号体系
+
+- 符号体系的标准化和一致性问题【低难度】
+
+- 数学证明和逻辑推导问题【工作强度大】。
+
+### 理论公式输出
+
+
+```{r, echo = TRUE}
+X <- c(paste0(rep(c("X","Z"),each=4),1:4), "fathedu", "mothedu")
+Y <- "lwage"
+Greek.g <- c("alpha","beta","lambda")
+Greek.n <- c(4,4,2)
+#type <- "srm"
+Obs <- "i"
+N.row <- 4
+Cst <- F
+```
+
+
+
+总体回归模型PRM：
+
+```{r, results= "asis"}
+prm_test1 <- lx.psm(x =X, y = Y,greek.g = Greek.g, greek.n = Greek.n,
+       type = "prm", intercept = Cst , lm.label = "prm",
+       obs = Obs, n.row = N.row )
+
+```
+
+样本回归模型SRM：
+
+```{r, results= "asis", echo = TRUE}
+srm_test <- lx.psm(x =X, y = Y, greek.g = Greek.g, greek.n = Greek.n,
+       type = "srm", intercept = Cst, lm.label = "srm", 
+       obs = Obs, n.row = N.row)
+```
+
+样本回归函数SRF：
+
+```{r, results= "asis", echo = TRUE}
+srf_test <- lx.psm(x =X, y = Y,greek.g = Greek.g, greek.n = Greek.n,
+       type = "srf", intercept = Cst, lm.label = "srf",
+       obs = Obs, n.row = N.row )
+```
+
+
+### 数值公式输出
+
+```{r, echo=TRUE, message=FALSE}
+require("wooldridge")
+mroz <- wooldridge::mroz %>%
+  as_tibble() %>%
+  select(lwage, educ,exper, 
+         fatheduc,motheduc,everything()) %>%
+  filter(!is.na(wage))
+
+mod_origin <- formula(lwage ~ educ + nwifeinc +exper+I(exper^2) + I(exper^2*city)  )
+
+ols_origin <- lm(formula = mod_origin, data = mroz)
+```
+
+
+默认形式：
+
+```{r, results="asis", echo=TRUE}
+lx_out<- lx.est(lm.mod = mod_origin, lm.dt = mroz)
+```
+
+srm形式：
+
+```{r, results="asis", echo=TRUE}
+lx_out<- lx.est(lm.mod = mod_origin, lm.dt = mroz, style = "srm")
+```
+
+一行形式：
+
+```{r, results="asis", echo=TRUE}
+lx_out<- lx.est(lm.mod = mod_origin, lm.dt = mroz, style = "srm", opt = c("p"))
+```
+
+
+# 一些工具函数
+
+## 将xls文件高保真地转换为xlsx文件
+
+参考资料1：[geosalz 源代码](https://rdrr.io/github/KWB-R/kwb.geosalz/man/convert_xls_as_xlsx.html)；参考资料2：["队长问答"](https://stackoverflow.com/questions/59248369/r-cannot-run-specific-cmd-code-that-converts-xls-to-xlsx)；参考资料3：[博客文章](http://justgeeks.blogspot.com/2014/08/)。
+
+函数作用：将本地文件夹下的`.xls`文件批量转换为`.xlsx`文件。适用于windowns操作系统下，具体会调用Microsoft的本地电脑程序端。
+
+函数名称：`convert_xls_as_xlsx(input_dir, export_dir)`
+
+> 使用场景："D:/github/article-west/R/xls2xlsx.R"；以及"D:/github/article-west/data-set-maintain.Rmd"
+
+```
+convert_xls_as_xlsx(input_dir = "d:/github/article-west/data/v4-cost-revenue/01-raw/",  
+                    export_dir = "d:/github/article-west/data/v4-cost-revenue/001-out/")
+```
+
+注意可能的提示（message）：
+
+```
+Found 2 versions of 'excelcnv.exe':
+  C:/Program Files/Microsoft Office/Updates/Download/PackageFiles/8BB798B7-EFF4-4781-AD0F-DE53892ADC7D/root/Office16/excelcnv.exe
+  C:/Program Files/Microsoft Office/root/Office16/excelcnv.exe
+```
+
+根据本地电脑的实际情况，很可能需要修改两个地方：
+
+- 本地电脑office的安装路径：`safe_office_folder()`函数的路径参数`office_path = "C:/Program Files/Microsoft Office")`
+
+- 可能有office更新版本：`get_excelcnv_exe()`函数的输出结果`paths[2]`
+
+
+## df数据列元素进行快速粘合输出
+
+```{r, eval=FALSE, echo=FALSE}
+#----- fun get pasted string of df column --------
+pasted.str <- function(dt, v){
+  out <- paste0(paste0("'", unlist(unique(dt[,v])), "'"), collapse = ",")
+  return(out)
+}
+
+```
+
+
+

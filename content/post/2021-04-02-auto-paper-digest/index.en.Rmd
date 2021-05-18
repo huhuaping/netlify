@@ -1,0 +1,104 @@
+---
+title: 文献阅读：系统追踪和自动分析文献
+author: huhuaping
+date: '2021-04-02'
+slug: auto-paper-digest
+categories:
+  - Research
+tags:
+  - paper
+  - article
+subtitle: ''
+summary: '对于科研新手或者非专业人士，科研文献的系统追踪和自动分析，似乎是快速了解研究领域、确定研究方向的一大利器。对于领域科研专家，及时追踪文献进展、关注领域动态是他们的首要工作。本文介绍和比较了当前几个文献分析平台，并给出了若干忠告建议。'
+authors: [胡华平]
+lastmod: '2021-04-02T10:42:33+08:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+output:
+  blogdown::html_page:
+    toc: true
+    number_sections: true
+---
+
+# 现实价值意义
+
+
+对于科研新手或者非专业人士，科研文献的系统追踪和自动分析，似乎是快速了解研究领域、确定研究方向的一大利器。
+
+对于领域科研专家，及时追踪文献进展、关注领域动态是他们的首要工作。因为工作是否领先、观点是否足够有创新性，将会决定他们正在完成的科研成果是否能够有突破并得到同行重视。
+
+# 可用工具平台
+
+## 工具清单
+
+- **谷歌学术** [google schalar](https://scholar.google.com/)。这个平台首屈一指，可谓科研工作之必备。
+
+```{r}
+knitr::include_url(url = "https://scholar.google.com/")
+```
+
+- **语义学术** [semantic scholar](https://www.semanticscholar.org/)。
+
+```{r}
+knitr::include_url(url = "https://www.semanticscholar.org")
+```
+
+- **文链** [connect papers](https://www.connectedpapers.com/)。具有形象的图形化界面。
+
+```{r}
+knitr::include_url(url = "https://www.connectedpapers.com")
+```
+
+- **文萃** [paper digest](https://www.paper-digest.com/)。最大的不同是对文献进行了AI解构和信息提取。可惜还处在测试阶段，语义结构和信息提取结果对于人类还不是很友好（缺乏逻辑）。而且不少官方介绍的期刊平台文献都查询不到结果。
+
+```{r}
+knitr::include_url(url = "https://www.paper-digest.com/")
+```
+
+## 应用对比
+
+下面以如下一篇讨论“因果推断”的文章为例，该文章收录在ArXiv开放数据库：
+
+> 
+- 文献条目：Mehler, David Marc Anton, and Konrad Paul Kording. “The Lure of Causal Statements: Rampant Mis-Inference of Causality in Estimated Connectivity.” ArXiv E-Prints, 2018, arXiv-1812.
+- pdf地址为：https://arxiv.org/ftp/arxiv/papers/1812/1812.03363.pdf
+
+### google学术分析结果
+
+google学术检索，会给出两类记录信息的检索结果。一是被引论文情况；二是相关文章情况。本次案例检索中，记录被引论文共23篇。因为是被引论文，因此这23篇都是在2018年以后的文章。
+
+```{r, fig.cap="谷歌学术google scholars的文章引用关系"}
+knitr::include_url(url = "https://scholar.google.com/scholar?cites=15306902070220841445&as_sdt=2005&sciodt=0,5&hl=zh-CN")
+
+```
+
+### semantic scholar分析结果
+
+语义学术semantic scholar对于被引（citations）情况有了更进一步的分类。
+
+> 例如，区分了Background Citations、Methods Citations、Results Citations。
+
+```{r, fig.cap="语义学术semantic scholar的文章关系"}
+knitr::include_url(url = "https://www.semanticscholar.org/paper/The-lure-of-causal-statements%3A-Rampant-of-causality-Mehler-Kording/9940107dbc58e4a30ef205538d8d704bf0ccc5bf")
+```
+
+### connect paper分析结果
+
+文链connect paper共追踪到了2009-2020年间相关论文39篇左右。相似度最高（匹配值也仅有11.7）的一篇文献是2019年发表在nature上的：Reid, Andrew T., Drew B. Headley, Ravi D. Mill, Ruben Sanchez-Romero, Lucina Q. Uddin, Daniele Marinazzo, Daniel J. Lurie, Pedro A. Valdés-Sosa, Stephen José Hanson, and Bharat B. Biswal. “Advancing Functional Connectivity Research from Association to Causation.” Nature Neuroscience 22, no. 11 (2019): 1751–60.
+
+
+```{r, fig.cap="文链connect paper的文章关系图"}
+knitr::include_url(url = "https://www.connectedpapers.com/main/9940107dbc58e4a30ef205538d8d704bf0ccc5bf/The-lure-of-causal-statements-Rampant-misinference-of-causality-in-estimated-connectivity/graph")
+```
+
+
+# 几点忠告建议
+
+- 机器只能做它擅长的，人的作用仍旧无法替代。显然，一些文献检索分析平台逐渐建立了庞大的基础检索数据库（Google学术）；另一些平台则利用现代用户交互界面提供友好人机检索和结果展示（如connect paper）；还有一些文献平台则尝试使用AI方法进行文章信息的结构和提取（如paper digest）。科研思想的原创性增长，离不开上述基础数据库的完善，但也更需要进一步发现和挖掘知识海洋的精华。大数据和人工智能的作用在辅助科研工作开展方面，持续地提供了便利性、及时性和透明度。但是无论如何，这些平台对于创新观点、思想延续和发展扩散等，仍旧需要研究人员进行综合评估和分析判断。
+
+- 对于研究专家而言，文献平台的自动化分析可能并不是那么重要。言外之意，对于大部分的初级入门或非专业人士，他们仅仅是希望快速掌握特定领域的基本状况，那么这些文献分析平台无疑是很有帮助的。事实上，对于长期沉浸某个特定研究领域、甚至终其一生都在研究思考的科研工作者，他们早已对特定研究领域的全貌、动态、主流、新的可能性谙熟于心。对于他们而言，最重要的是知识疆域里突然出现的天才创意和各种灵光乍现。
+

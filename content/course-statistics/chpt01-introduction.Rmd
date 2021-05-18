@@ -1,0 +1,60 @@
+---
+title: 第01章 绪论
+author: huhuaping
+date: '2021-02-28'
+slug: chpt01-introduction
+categories:
+  - Course
+tags:
+  - Statistics
+subtitle: ''
+summary: ''
+authors: [胡华平]
+lastmod: '2021-02-28T18:01:18+08:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+linktitle: 第01章:绪论
+menu:
+  course-statistics:
+    parent: 统计学在线课程 (简介)
+    weight: 11
+math: true
+type: docs
+---
+
+## 一、教学课件
+
+```{r slide01, echo=F, eval=F}
+# test the `include_url()`
+knitr::include_url("/course-statistics/03-slide-class/01-introduction.html")
+```
+
+以下种类型课件都可以使用，两者可以互补，但强烈建议使用第一种类型`Xaringan slide`课件[^a]：
+
+**1.现代型课件（Xaringan slide）**（操作提示[^b]）：`r fontawesome::fa('slideshare', fill= "blue", height=17 )`[第01章-绪论.html](/course-statistics/03-slide-class/01-introduction.html) 。
+
+
+**2.传统型课件（pdf）**：`r fontawesome::fa('file-pdf', fill= "blue", height=17 )`[第01章-绪论.pdf](/course-statistics/material/01-introduction-2021.5.8.pdf) 。（更新日期：2021.5.8）
+
+
+以上两种类型课件的**差异**：
+
+- 两者的课件内容基本一致，区别有：`Xaringan slide`课件内容会相对细节更丰富一些；`Xaringan slide`课件更新频率会更高、更及时（里面有一些技术性原因）。
+
+- `Xaringan slide`课件可以进行一些交互型操作，如表格、制图和代码展示等。`pdf`课件是静态文件，使用者不能进行内容上的交互。
+
+- 实际上你可以随时使用`chrome`浏览器自己将`Xaringan slide`课件导出为`pdf`课件。
+
+- `Xaringan slide`课件适合交互学习，而`pdf`课件适合线下打印或进行电子笔记。
+
+
+<!---footnote following--->
+
+[^a]:课件采用[Rmarkdown语言](https://rmarkdown.rstudio.com/)编写而成，课件`Slide`的形式由[Xaringan包](https://github.com/yihui/xaringan)渲染得到。
+
+[^b]:**操作提示**（电脑PC端操作）：点击**课件区域**，按**`F`**键，可全屏观看。按左/右方向键（$\leftarrow/\rightarrow$），可以前进/后退翻页。敲击数字键，再按**`Enter`**可进入任意指定的页码。如，敲击数字10，观看第10页。
+

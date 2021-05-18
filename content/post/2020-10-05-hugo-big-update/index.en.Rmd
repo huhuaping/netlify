@@ -1,0 +1,642 @@
+---
+title: 建站平台hugo-academic大升级
+author: huhuaping
+date: '2020-10-05'
+slug: hugo-big-update
+categories:
+  - R
+tags:
+  - Website
+  - hugo
+subtitle: ''
+summary: '对于搭建个人网站，曾经有一句经典的忠告摆在我的面前：永远不要使用复杂的模板，否则总有一天会掉入网站迁移漩涡，甚至万劫不复的境地。这种事，难免大家都会赶上那么一遭。这篇博文给出了一些hugo+blogdown建站使用经验和若干建议。本博文会随时更新。'
+authors: [胡华平]
+lastmod: '2020-10-05T21:08:21+08:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+output:
+  blogdown::html_page:
+    css: ../../../assets/scss/custom.scss
+    toc: true
+    number_sections: true
+---
+
+> 对于搭建个人网站，曾经有一句经典的忠告摆在我的面前：
+永远不要使用复杂的模板，否则总有一天会掉入网站迁移漩涡，甚至万劫不复的境地。 ————nobody
+
+这种事，总算是被我赶上了一遭。
+
+采用hugo-academic模板搭建个人网站，2020年9月3日以后，面临一次建站流程的全新大换代升级。
+
+> Convert an old Academic Kickstarter site If you have an existing site based on the Academic Kickstarter Template that was created before 3rd September 2020, it may need converting to use Hugo’s new modular system.
+
+在学习测试两天后，总算是跌跌撞撞地完成了网站的升级更新。截至写这篇博文，针对哪些blogdown用户，网络上还并没有足够完整和清晰的升级操作攻略。这里先记录一二，或许对于急迫升级的人有些许帮助。
+
+事先说明一下我的环境：
+
+- Win 10操作系统
+
+- R环境 `r version$version.string`。
+
+- 升级后hugo version: `Hugo Static Site Generator v0.75.1/extended windows/amd64 BuildDate: unknown`。
+
+- netlify 关联 github的仓库，自动激活建站开发。
+
+# hugo的大变革
+
+hugo academic的大换血，变革了什么？后面复杂的flow、原理之类东东我也没有完全明白。不过基本按照官方的提示，是可以完成网站升级的，完全可以忽略下面这些什么go module之类的工具或概念。
+
+对于windowns党，你大概需要本地安装一些工具：[Edit your site on your PC](https://wowchemy.com/docs/install-locally/)
+
+- [Hugo Extended](https://gohugo.io/getting-started/installing/)
+
+- [Go installed](https://golang.org/dl/) 用于执行hugo modules命令
+
+- git bash 这个不用多说了
+
+不过按照官方的说法，此次最大的变革是实现了“模块化”建站流程。
+
+就我个人后面的感受而言，比前一代思路确实更加简洁，最关键的是建站速度贼快。
+
+倒是让我收获了一个很深刻的领悟：
+
+> 平时我可能只关心hugo的建站工具性，从来不想了解背后的最基本的指导思想和运行原理（尽管可能还是会一知半解，技术细节确实可以完全忽视）。现在看来，既然把身家大计（网站）都托付给了它，起码不能完全对其漠然无知。工具性导向很容易误人误事！
+
+# 本地开发预览：一条思路填平若干个坑
+
+现在简单说一下blogdown用户，如何从早前一代的"hugo-academic"升级到新一代的"Wowchemy Hugo Module"流程。
+
+先说**一条思路**——实际上我们完全可以用两种方法来实现academic模板的建站。如果按官方说明正确安装软件、工具和环境，则可以：
+
+b. blogdown+hugo建站。如果默认安装，hugo执行程序应该在`C:\Users\yourname\AppData\Roaming\Hugo\hugo.exe`。
+
+a. Scoop+hugo建站。如果默认安装，hugo执行程序应该在`C:\Users\yourname\scoop\shims\hugo.exe`
+
+> 两种方式应该可以同时建站。如果报错，则建议把其中之一的hugo.exe修改为不可识别的（如hugo.exex）。
+
+
+我相信对于大部分blogdown用户而言，应该不太关心后一种。不过在目前的跨代升级中，这一条却是非常重要。因为前者的一些流程，需要后者来援助！
+
+下面列几个要点，跳开这几个坑应该就可以完成`blogdown+hugo`建站升级过程：
+
+1. 一定记得提前备份网站！（git用户表示窃喜中）
+
+2. 首先下载`starter-academica`模板到本地，解压缩**备用**。[Download Academic Template](https://github.com/wowchemy/starter-academic/archive/master.zip)
+
+3. 处理旧版网站的项目文件。如下操作删除旧模板。
+
+```
+git submodule deinit themes/hugo-academic    
+git rm themes -r
+```
+> 同时记得手动删除旧网站项目文件下的`public/`文件夹。    
+
+
+4. 把新模板`starter-academic`中的如下文件，拷贝或替换旧版网站项目文件：
+
+    a. 模板文件，整个`exampleSite`文件夹
+    b. 配置文件，整个`config`文件夹
+    b. 两个go文件，`go.sum`和`go.mod`文件
+    b. 其他`starter-academic`有，而旧项目文件里没有的文件。
+
+5. 在win power shell命令窗口中执行go操作
+
+    a. cd 命令进入到旧项目根文件夹下（此步骤自行脑补吧）
+    b. go 命令执行建站：`hugo server`（如果顺利，可以直接预览渲染的网站）；或者`hugo`（如果顺利，可以得到渲染后的public/文件夹）
+    c. 如果不能顺利进行go建站渲染，则按提示修改其中的升级跃迁断点问题（break issues）。我碰到的断点问题主要是：
+    
+> 
+- `callout`问题。按报错依次找到文件，替换参数即可。
+- jpg图片问题。按照toml里参数的提示，把文件夹路径更换即可。
+
+6. 网站内容的维护和调整。具体包括：
+
+    a. `config.toml`参数的更新调整（地址等）
+    b. `content/`文件夹各个.md的核查
+
+7. 如果在go建站预览下如果基本没有问题，则可以如常使用blogdown的`blogdown::serve_site()`进行独立的建站渲染。
+
+最后，blogdown可能还是会报出提示：
+
+```
+WARN 2020/10/05 21:08:20 Module "github.com/wowchemy/wowchemy-hugo-modules/wowchemy" is not compatible with this Hugo version; run "hugo mod graph" for more information.
+```
+
+不过，好在网站本地开发预览，总算是升级正常啦！
+
+# 云端开发预览：netlify的断点
+
+尽管前面的网站本地开发预览已经OK，但是云端自动开发流程我们还没有进行配置。——我几乎又花费了一个早上来查找问题，直到最后成功。
+
+**核心提示**：
+
+> 如果仍旧采用旧版网站的netlify开发流程，则云端开发会一直提示fail。所以需要采用新的netlify开发流程。
+
+netlify新开发流程，官方说是采用了CMS管理平台——里面的原理暂时没有深究。如果注意比较新旧流程开发同样的网站代码，会发现主要的区别是：
+
+- 开放工具链（tool chain）中，部分工具的版本新旧，如ruby、go等的调用
+
+- 开发速度上，新流程明显完成得更快
+
+为了解决这个新旧流程得断点（break point）问题，暂时摸索出来的办法如下：
+
+1. **新建一个netlify开发网站**。根据starter-academic的官方说明，利用github账号接入netlify的api，创建一个基于starter-academic模板的github repo（称之为repo-B）。netlify预览网站（称之为website-B）应该是正常的。——这里纯粹是为了获得新流程的CMS平台。后面的话，这个repo可以直接不用。
+
+2. **准备好本地开发成功的网站项目**。首先，准备工作。把本地开发预览正常的网站项目（称之为repo-A），推送到github远端（remote）。当然，关联给netlify云端的开发预览网站（称之为website-A）是不会成功更新的。
+
+3. **修改新旧网站的链接关系**。此时，我们有两个netlify网站（website-B和website-A）以及对应的两个github repo（repo-B和repo-A）。新流程下的website-B网站是完全可以云端正常自动开发的，但是旧流程下的website-A网站则是无法自动激发云端开发的。关键步骤就是“嫁接替换法”：
+
+> a. 将website-B关联的github仓库，修改为repo-A。netlify操作过程：`https://app.netlify.com/sites/huhuaping-kick/settings/deploys#continuous-deployment` --》build settings --》 edit setting --》reopsitory --》Link a different repository
+b. 将website-B的域名修改为原来website-A的域名。netlify操作过程：`https://app.netlify.com/sites/huhuaping/settings/general` --》sitede tails --》site information --》 change site name
+c. “嫁接替换”完成后，netlify就在CMS新流程下，开发了原来的repo-A的网站代码内容。
+
+至此，我们只需要继续维护本地更新升级后的repo-A，并持续推送给github，那么每次commit提交就会自动激活netlify使用新流程开发渲染网站内容啦！
+
+# 后续故事
+
+考虑到后期可能还会面临hugo academic升级的问题。相关升级问题记录如下：
+
+## 双服务器建站需求{#double-site}
+
+我的特殊“双服务器”建站需求。简单说，首先我会使用blogdown+hugo+github+netlify工作流建立一个服务器在netlify的网站（A服务器网站），同时会得到该网站的一个`public`文件夹。因为netlify服务器在国外，国际友人访问自然没有问题，但是国内访问速度明显就不行了。因此，我必须为国内访问用户搭建一个服务器在国内的同步“复刻网站”（B服务器网站），这时我只需要将前面的`public/`文件夹同步上去即可。因此，“双服务器”建站需求，并不是我个人有什么极客级别的建站癖好，纯粹只是出于“简单性”和“可用性”原则。以上双服务器网站的差异性和联系：
+
+- 二者是几乎是“完全复制”的。但就网站更新频率和时间先后而言，后者更新频率更低而且会滞后于前者。下面说原因！
+
+- netlify网站（A服务器网站）是基于自动化工作流的（automate workflow），只需要github提交（commit）即可后台自动更新整个网站。因此是时效性最强的。而且可以基于git分支进行测试（如feature 分支），即兴写博客post或测试新功能，简直是指哪打哪，顺服得不要不要的。
+
+- 国内网站（B服务器网站）采用的是goodsync的FTP自动上传同步功能。尽管也可以完全设定自动同步（例如，可以设定goodsync规则为：一旦`public、`有文件修改就自动上传），但是因为不具备git那样的分枝提交功能，会导致同步正在测试阶段的网站，从而导致用户访问失败或页面错乱。最要命的是goodsync的FTP上传速度很慢，对于我这个相对庞杂的网站，要完成一次完整的网站同步，大概需要4-6个小时才能完成（家里稳定网速下）。简单说，我不能让B服务器网站“实时同步”，而且只能在网站版本稳定后才“手动”进行goodsync同步（一般在晚上进行这个同步动作）。
+
+
+## 更新hugo extend
+
+注意hugo extend与hugo存在一定差异性，简单说hugo extend似乎功能性要更多一点（参看[社区问答](https://github.com/gohugoio/hugoDocs/issues/1152#issuecomment-646284959)）。建议windows用户下载使用hugo extend。原因很简单：因为hugo extend能够让我顺利生成网站的本地`public/`文件夹，而hugo则会报错无法生成`public/`文件夹！更新hugo extend基本上有两种方法：
+
+- **方法一（已测试）**：手动下载hugo extend版本进行升级更新。具体做法进入官方版本[下载界面](https://github.com/gohugoio/hugo/releases)，下载后解压缩并放到指定本地电脑路径下！还是要注意blogdown和scoop两种渲染网站的hugo路径是不同的。（见前面说过的这两种渲染方式。）
+
+```r
+# hugo extended
+hugo_extended_0.80.0_Windows-64bit.zip
+
+# target directory path for blogdown
+C:\Users\huhua\AppData\Roaming\Hugo\0.80.0\hugo.exe
+
+# target directory path for scoop
+C:\Users\huhua\scoop\shims\hugo.exe
+```
+
+
+- **方法二（未测试过）**：在windows 命令行里进行hugo升级（见[官方说明](https://wowchemy.com/docs/update/)）。
+
+```r
+# Update to get the very latest developments:
+hugo mod get -u ./...
+
+# Alternatively, update to the latest official release:
+hugo mod get -u
+
+```
+
+## 获得`public/`文件夹
+
+更新blogdown包。照常使用Rstudio addins `serv site`。需要注意的是新的hugo流程默认是在缓存里渲染网站，也就意味着`public/`文件夹默认不会随着渲染而自动更新。
+
+- 解决方案1（已测试）：那么需要blogdown执行的是**本地渲染**（参看 [网络问答](https://stackoverflow.com/questions/64500959/problem-with-rendering-hugo-blogdown-site)）。（尽管如此，blogdown本地预览会优先使用`public/`文件夹，所以好像必须要删除`public/`才能获得实时修改更新，这似乎是一个bug啊！目前对这个问题也是纠结中。因为它带来了goodsync的一个同步问题，每次获得blogdown方法下的`public/`文件夹里的每一个文件都是全新的、不同于原同步文件（生成时间或内容改变了），这将意味着goodsync每次同步都必须上传`public/`的所有文件！——而实际上我只是小步调更改了网站的部分内容！）
+
+
+```r
+blogdown::build_site(local=TRUE)
+
+```
+
+- 解决方案2（已测试）：直接在windows命令视窗里指定hugo生成`public/`文件夹。具体参看blogdown社区[讨论](https://github.com/rstudio/blogdown/issues/495)。
+
+```r
+hugo -d ./public
+
+```
+
+## 升级的副效应
+
+### RStudio插件(addins)New post的正确使用
+
+使用RStudio插件(addins)中blogdown下的`New post`暂时还会带来困扰（参看["stackoverflow队长"问答](https://stackoverflow.com/questions/64688201/blogdown-new-post-addin-creates-but-not-loads-new-file)）。
+
+按照hugo的新流程，每个blog都会建立自己的对应的文件夹（参看[网页](https://ropensci.org/technotes/2020/04/23/rmd-learnings/)）。当然，其背后的原因是hugo新版本（Hugo version 0.32以上）引入了“页面束捆”（[Page Bundles](https://gohugo.io/content-management/page-bundles/)）特性。具体文件夹结构如下：
+
+
+```{r, comment="", echo=FALSE}
+library(data.tree)
+
+post <- Node$new("post")
+  data <- post$AddChild("data")
+    rda<- data$AddChild("fultonfish.rda")
+    excel<- data$AddChild("fultonfish.xlsx")
+    other<- data$AddChild("other-data-file.dat")
+  pic <- post$AddChild("pic")
+    png<- pic$AddChild("check-box-invisible.png")
+    other<- pic$AddChild("other-image-file.jpeg")
+  rmd <- post$AddChild("2020-12-05-web-scraping-tech-webelem.en.Rmd")
+  html <- post$AddChild("2020-12-05-web-scraping-tech-webelem.en.html")
+  dir <- post$AddChild("2021-01-31-new-post")
+    files <- dir$AddChild("index.en_file")
+    rmd <- dir$AddChild("index.en.Rmd")
+    html <- dir$AddChild("index.en.html")
+  
+print(post)
+
+```
+
+blogdown这样的new-post文件夹系统变化带来的一个影响效应是：
+
+- 新旧文件夹体系的不一致性（见上面树形结构图）。虽然只是视觉上的差异，但是还是不够“一致”！当然，也可以关闭这样的新文件夹体系（“页面束捆”），具体需要在`.Rprofile`文件设定 `options(blogdown.new_bundle = FALSE)`。  
+
+- 致命的影响是Rmarkdown引以为傲的直接R代码块功能。新体系下，可以丝滑般得到正常的R代码块运行效果（已测试。这得益于新文件系统下的self-contained理念）；旧体系下则无法运行。而且经测试，新文件夹体系下，不会影响图片`/pic/.png`和数据文件`/data/.rds`的调用。
+
+<!---
+
+- 困扰2：默认情况下，yaml区域不会自动指定输出样式，从而导致报错。因此需要在yaml区域手动添加如下参数：
+
+```r
+output:
+  blogdown::html_page:
+    toc: true
+```
+--->
+
+### knitr::include_graphics函数调用图片可能会报错
+
+使用`knitr::include_graphics`函数调用图片，需要额外设定参数`error = FALSE`。（参看[网络问答](https://stackoverflow.com/questions/60292022/knitr-cannot-find-img-files-in-static-folder)）
+
+
+```{r}
+#knitr::include_graphics(here::here("static","pic","check-box-invisible.png"))
+
+#knitr::include_graphics("../../static/img/check-box-invisible.png")
+knitr::include_graphics("/pic/check-box-invisible.png", error = FALSE)
+```
+
+
+### netlify开发报错的验证与修复
+
+有时候本地预览显示正常，但netlify网站开发仍可能出错（Deploy failed），导致无法更新云端网站，此时则建议：
+
+- 登陆[netlify](https://app.netlify.com/)账户，立即查看开发日志（Deploy log）
+
+- Rstudio里利用`blogdown::check_site()`函数进行网站检查，并根据提示做出修改调整。具体参看blogdown[社区问答](https://github.com/rstudio/blogdown/issues/576#issuecomment-768379160)。
+
+下面是我的Rstudio里的一个网站检查结果和建议清单：
+
+```r
+blogdown::check_site()
+
+# here my check result
+― Running a series of automated checks for your blogdown website project...
+----------------------------------------------------------------------------------------------
+○ A successful check looks like this.
+● [TODO] A check that needs your attention looks like this.
+| Let's check out your blogdown site!
+----------------------------------------------------------------------------------------------
+― Checking config.toml
+| Checking "baseURL" setting for Hugo...
+○ Found baseURL = "https://huhuaping.netlify.app/"; nothing to do here!
+| Checking "ignoreFiles" setting for Hugo...
+● [TODO] Add these items to the "ignoreFiles" setting: "\\.knit\\.md$", "\\.utf8\\.md$"
+| Checking setting for Hugo's Markdown renderer...
+○ All set! Found the "unsafe" setting for goldmark.
+― Check complete: config.toml
+
+― Checking .gitignore
+| Checking for items to remove...
+○ Nothing to see here - found no items to remove.
+| Checking for items to change...
+● [TODO] Change items in .gitignore: blogdown -> /blogdown, public/ -> /public/
+| Checking for items you can safely ignore...
+● [TODO] You can safely add to .gitignore: .DS_Store, Thumbs.db
+| Checking for items to ignore if you build the site on Netlify...
+● [TODO] When Netlify builds your site, you can safely add to .gitignore: /public/, /resources/
+| Checking for files required by blogdown but not committed...
+● [TODO] Found 1 file that should be committed in GIT:
+
+  layouts/shortcodes/blogdown/postref.html
+― Check complete: .gitignore
+
+― Checking Hugo
+| Checking Hugo version...
+○ Found 4 versions of Hugo. You are using Hugo 0.80.0.
+| Checking .Rprofile for Hugo version used by blogdown...
+| Hugo version not set in .Rprofile.
+● [TODO] Set options(blogdown.hugo.version = "0.80.0") in .Rprofile and restart R.
+― Check complete: Hugo
+
+― Checking netlify.toml...
+○ Found HUGO_VERSION = 0.80.0 in [build] context of netlify.toml.
+| Checking that Netlify & local Hugo versions match...
+○ It's a match! Blogdown and Netlify are using the same Hugo version (0.80.0).
+| Checking that Netlify & local Hugo publish directories match...
+○ Good to go - blogdown and Netlify are using the same publish directory: public
+― Check complete: netlify.toml
+
+― Checking content files
+| Checking for validity of YAML metadata in posts...
+○ All YAML metadata appears to be syntactically valid.
+| Checking for previewed content that will not be published...
+○ Found 0 files with future publish dates.
+● [TODO] Found 2 files marked as drafts. To un-draft, run the command:
+
+  blogdown::edit_draft(c(
+  "content/privacy.md",
+  "content/terms.md"
+  ))
+
+  and change a file's YAML from 'draft: true' to 'draft: false' or delete it
+| Checking your R Markdown content...
+○ All R Markdown files have been knitted.
+● [TODO] Found 2 R Markdown files to update by re-rendering:
+
+  content/post/2019-04-10-note-for-git-version-control-skills.Rmd
+  content/post/2020-10-05-hugo-big-update/index.en.Rmd
+
+  To update a file, re-knit or use blogdown::build_site(build_rmd = 'timestamp')
+| Checking for .html/.md files to clean up...
+○ Found 0 duplicate .html output files.
+○ Found 0 incompatible .html files to clean up.
+| Checking for the unnecessary 'content/' directory in theme...
+○ Great! Your theme does not contain the content/ directory.
+― Check complete: Content
+```
+
+具体调整如下：
+
+调整1：根据建议，`config.toml`需要调整`ignoreFiles`参数
+
+```
+Checking "ignoreFiles" setting for Hugo...
+[TODO] Add these items to the "ignoreFiles" setting: "\\.knit\\.md$", "\\.utf8\\.md$"
+
+```
+
+调整2：根据建议，`.gitignore`需要调整参数
+
+
+```
+[TODO] Change items in .gitignore: blogdown -> /blogdown, public/ -> /public/
+```
+
+调整3：根据建议，`.Rprofilee`需要调整hugo版本参数
+
+```
+Hugo version not set in .Rprofile.
+[TODO] Set options(blogdown.hugo.version = "0.80.0") in .Rprofile and restart R.
+```
+
+调整4：根据建议，部分Rmd文件需要重新渲染更新，可采用函数`blogdown::build_site(build_rmd = 'timestamp')`
+
+```
+[TODO] Found 2 R Markdown files to update by re-rendering:
+
+  content/post/2019-04-10-note-for-git-version-control-skills.Rmd
+  content/post/2020-10-05-hugo-big-update/index.en.Rmd
+
+  To update a file, re-knit or use blogdown::build_site(build_rmd = 'timestamp')
+
+```
+
+## 一次意外报错
+
+实在莫名其妙，无论`hugo`渲染网站（powershell命令下`hugo server`），还是`blogdown`渲染网站（`server_site`）分别出现如下报错。
+
+1.报错信息1：
+
+```
+Error: from config: failed to resolve output format "WebAppManifest" from site config
+```
+
+
+2.报错信息2：
+
+```
+Error: from config: failed to resolve output format "headers" from site config
+```
+
+两次报错，如同官网提到的["Error: failed to resolve output format"](https://wowchemy.com/docs/guide/troubleshooting/#error-failed-to-resolve-output-format)：
+
+最后按照官方处理办法：
+
+a. `config.toml`的`[outputs]`清单中暂时先删除`"RSS", "JSON", "WebAppManifest"`
+
+b. 然后在`powershell`命令窗口中依次输入如下命令：
+
+```
+hugo mod clean
+hugo mod get -u ./...
+hugo mod tidy
+```
+
+c. 完成上述操作后，再把`"RSS", "JSON", "WebAppManifest"`补回原处即可。
+
+# blogdown的升级支持
+
+由于`hugo`在建站流程上做了很大的改变，`blogdown`包也在2021年1月迭代到了`v1.0`版本，显然这次是大版本升级以支持`hugo`，具体可以参看包作者的声明["Announcing blogdown v1.0"](https://blog.rstudio.com/2021/01/18/blogdown-v1.0/)。
+
+其中一些包函数值得关注：
+
+- `blogdown::built_site()`函数，涉及到是否产生`/public`文件夹和如何渲染`.Rmd`文件。
+
+- `blogdown::check_.()`类函数，主要用于核查和比对`blogdown`与`hugo`在配置等方面是否一致。
+
+- `blogdown::find_hugo('all')`函数，方便掌握自己正在（或曾经）使用的hugo版本。为稳定hugo版本，可以设定`.Rprofile`文件，具体可设定为例如`options(blogdown.hugo.version = "0.79.0")`。
+
+- `blogdown::remove_hugo()`函数，可以删除未使用的hugo版本。
+
+# hugo模板微调
+
+> 劝君更进一杯酒，模板莫要闲折腾。——somebody
+
+如果使用blogdown开发课程内容，网上有人提醒慎重升级[^1]：
+
+- 不要升级`hugo`（包括`hugo extend`）
+
+- 不要更新`hugo theme`
+
+- 课程开发期间，不要升级任何东西！
+
+## 基本原理
+
+考虑到`hugo-academic`模板会不断升级，如果用户想要对模板进行个性化调整，因此`hugo`开发了一套**模板查找顺位机制**（[template lookup](https://gohugo.io/templates/lookup-order/)）。用户可以在不直接修改`hugo-academic`官方模板文件下，独立地进行个性化修改和微调。当然用户的任何个性化修改，都需要在约定文件路径下，且使用`go`[语法](https://gohugo.io/hugo-modules/)。
+
+- 优点：官方模板文件和用户个性化修改文件互相分离和独立，保证了二者并行不悖。
+
+- 缺点：用户需要熟悉`go`语法。此外，因为官方模板会不断迭代变化，用户个性化修改可能会失效，因而需要不断去配合官方的迭代步骤！
+
+## 给post博文添加floating toc
+
+官方模板下，默认的`post`是基于`widget: pages`样式。其视觉效果特点是：
+
+- 在pc端，`chrome`浏览器下post博文正文宽度为720px，如果显示器分辨率为`1920*1080`，那么正文的宽度占比为`r scales::percent(720/1920, accuracy = 0.1)`。按照时兴的说法就是“屏占比”太低！
+
+- 在移动手机端，post博文正文宽度显示不错。
+
+- 默认情况下，是没有目录导航的（toc）。当然也可以通过添加yaml参数`toc: true`来添加目录导航，但是toc显示在正文之前（而且没有“目录”字样）。对于分节较多的长篇博文，非常不利于读者阅读定位和前后对照。
+
+因此，对于分节较多的长篇博文，自然就有了"侧边浮动目录"（sidebar floating toc）的个性化页面样式修订念头。yihui[建议](https://github.com/rstudio/blogdown/issues/375#issuecomment-476332000)可以通过JavaScript或CSS进行设定。Xiaoou WANG也提供了一个hugo语法下的[实现方法](https://xiaoouwang.github.io/post/add_a_float_toc_to_academic_theme/)，但是有不少bug。又比如CharlieLeee的[方法](https://github.com/wowchemy/wowchemy-hugo-modules/issues/1520#issuecomment-601982609)，只是对于`.md`格式的写作有效，而对`.Rmd`格式的写作[无效](https://github.com/wowchemy/wowchemy-hugo-modules/issues/1520#issuecomment-610210353)。因此，最后的忠告就是专注于内容写作：劝君更进一杯酒，模板莫要闲折腾。
+
+## 定制box text样式
+
+hugo academic模板下，可以使用CSS样式定制个性化文本窗框（box text）的集中常用`div`类型（例如puzzle、fyi、demo、note）。主要步骤如下：
+
+- **步骤1**：在工作目录下建立一个文件`"netlify/assets/scss/custom.scss"`。
+
+- **步骤2**：在`custom.scss`正常编写个性化css代码，设定文本窗框的各类属性。
+
+```css
+/* -----------div tips------------- */
+
+div.puzzle, div.fyi, div.demo, div.note {
+  padding: 1em;
+  margin: 1em 0;
+  padding-left: 100px;
+  background-size: 70px;
+  background-repeat: no-repeat;
+  background-position: 15px center;
+  min-height: 120px;
+  color: #1f5386;
+  background-color: #bed3ec;
+  border: solid 5px #dfedff;
+}
+
+/* -----------image icon------------- */
+
+div.puzzle {
+  background-image: url("/img/puzzle2-piece.png");
+}
+
+div.fyi {
+ background-image: url("/img/fyi2-comments.png");
+}
+
+div.demo {
+  background-image: url("/img/demo2-laptop-code.png");
+}
+
+div.note {
+  background-image: url("/img/note2-light-bulb-ff5500.png");
+}
+
+```
+
+- **步骤3**：在R markdown文件中设定`yaml`区域的参数，正确关联到`custom.scss`路径。
+
+```yaml
+output:
+  blogdown::html_page:
+    css: ../../../assets/scss/custom.scss
+    toc: true
+    number_sections: true
+```
+
+- **步骤4**：在R markdown文件中进行文本写作，使用`div`方法或`:::`方法引用特定窗框类型。
+
+```html
+<div class="puzzle">
+My content goes in here!
+</div>
+```
+
+```
+:::puzzle
+My content goes in here!
+:::
+```
+
+下面给大家展示上述定义的4种窗框类型：
+
+:::puzzle
+（这是一个**puzzle**窗框类型）
+
+**步骤1**中：
+
+a. `.scss`格式只是`.css`格式的一个扩展，前者运用了[Sass语言](https://sass-lang.com/guide)。二者的差异请参看：[Animating Your Hugo Academic Site](https://www.connorrothschild.com/post/animate-hugo-academic/#step-3-add-css)。
+
+b. 最好保持`custom.scss`的文件命名"custom"。经过测试，如果改动文件名，哪怕yaml里正确引用了路径，也会出现无法引用css风格的情况。猜测是hugo其他参数里默认了这个`custom.scss`的命名。
+
+c. 如果渲染建站成功，会发现hugo自动生成了一个相匹配的`scss/custom.css`的文件，或许这就是`.scss`的一个效果之一。
+:::
+
+
+:::note
+（这是一个**note**窗框类型）
+
+**步骤2**中：需要注意图片存放及路径的正确引用。对于hugo academic模板而言，`background-image:url('/path/of/image.png')`是相对路径，相对于`static/`文件夹而言的。因此，你可以把图片文件存放在`static/img/note.png`或者`static/pic/note.png`，然后正确引用这一文件路径！
+:::
+
+
+:::fyi
+（这是一个**fyi**(for your information)窗框类型）
+
+**步骤3**中：
+
+a. 注意css文件的相对引用路径。如果工作根目录为`netlify/`，那么R markdown写作文件以`netlify/content/post/your-post/index.Rmd`为例。因为此时的css文件存放在`netlify/assets/scss/custom.scss`，那么css文件的相对引用路径应该设定为`css: ../../../assets/scss/custom.scss`。
+
+b. 此时要求R markdown写作文件指定输出风格`output:`。请参看：[making pretty note boxes](http://desiree.rbind.io/post/2019/making-tip-boxes-with-bookdown-and-rmarkdown/)。这也意味着，每一次R markdown写作文件都要做这样的设定，可能略显麻烦了一点。
+:::
+
+:::demo
+（这是一个**demo**窗框类型）
+
+**步骤4**中：R markdown写作文件，要求是**.Rmd**格式，不是.md格式，或者.Rmarkdown格式。三者的差异请参看：[R Markdown vs. Markdown](https://bookdown.org/yihui/blogdown/output-format.html)
+:::
+
+## 添加站内搜索功能
+
+**问题**：原来hugo academic自带的站点搜索框，在升级后突然消失了。使得查找和检索站内博文或内容异常困难。
+
+blogdown社区的一些讨论如下：
+
+- [Enable site-wide search](https://github.com/yihui/hugo-prose/issues/9)
+
+下面是放狗找到的关于hugo添加站内搜索功能的文档或帮助。总体而言，这些方法能够实现全站点所有内容的搜索功能，但是需要学习到一些额外的新知识。
+
+- hugo的官方文档1[Search for your Hugo Website](https://gohugo.io/tools/search/)。文档介绍了多种实现方式，但没有进一步详细说明和演示。
+
+- hugo的官方文档2[Add search](https://wowchemy.com/docs/guide/search/)。
+
+- `lunr.js`（开源）。[Add Search Functionality to Your Hugo Static Site](https://www.forsure.dev/-/2019/09/03/add-search-functionality-to-your-hugo-static-site/)。介绍了使用开源`lunr.js`来搭建站内搜索功能。但是作者使用的是gitlab、而且博文的更新时间为`Sep 3, 2019`，可能已经不能实现了。
+
+- `lunr.js`（开源）。[The easier way to use lunr search with Hugo](https://palant.info/2020/06/04/the-easier-way-to-use-lunr-search-with-hugo/)。
+
+- `Fuse.js`（开源）。[Client Side Search Engine for Hugo Website](https://codingnconcepts.com/hugo/client-side-search-engine-hugo/)。正如其副标题所言“Search engine for Hugo without any server or additional build steps”。背后实际使用的是`Fuse.js`工具链，作者个人网站使用的是`Hugo Mainroad theme`模板。
+
+> `Fuse.js`号称是不依赖其他工具链（zero dependencies）。但是有不少用户反映，`Fuse.js`的搜索结果不是很理想（见[这篇博文](https://gpanders.com/blog/building-site-search-with-hugo/)）。
+
+- `Algolia`（商业）。[Static site search with Hugo + Algolia](https://forestry.io/blog/search-with-algolia-in-hugo/)。介绍了使用商业服务类型的`Algolia`来搭建站内搜索功能，过程步骤也比较详尽。但是博文的更新时间为`March 2, 2018`，而且感觉依赖的工具较多，链条比较复杂，可能实现难度比较大。
+
+以下是几个中文世界的应用：
+
+- 添加搜索按钮 [雨临Lewis](https://lewky.cn/posts/hugo-3.html/)
+
+- [Hugo 实现搜索功能小白教程](https://blog.csdn.net/weixin_44903718/article/details/108541002)
+
+- [为 Hugo 添加搜索功能](https://blog.humblepg.com/post/2019/06/hugo-search.html)
+
+- [5分钟给Hugo博客增加搜索功能](https://ttys3.dev/post/hugo/hugo-fast-search/)
+
+# 供参考的网络资源
+
+- [Hugo 静态网站构建手册](https://jimmysong.io/hugo-handbook/)。开源book，是一本介绍hugo的简明手册。
+
+- [A Spoonful of Hugo: How much Hugo do I need to know?](https://alison.rbind.io/post/2020-12-12-how-much-hugo/)。正如题目所言。
+
+- [making pretty note boxes](http://desiree.rbind.io/post/2019/making-tip-boxes-with-bookdown-and-rmarkdown/)。里面谈到了多种情境下，如blogdown、bookdown等，如何设置和定义个性化的文本窗框（text box），但有些地方已经不符合实际情况了。
+
+- [Animating Your Hugo Academic Site](https://www.connorrothschild.com/post/animate-hugo-academic/)。主旨是：Make your Hugo Academic homepage more engaging with a few lines of code.这个是效率的要求了，我更关注的是基本功能的实现和维护。
+
+
+
+<!---footnote--->
+
+
+[^1]:[blogdown advice](https://rstudio-education.github.io/sharing-short-notice/#148)
