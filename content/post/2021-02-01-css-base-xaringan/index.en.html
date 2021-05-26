@@ -369,7 +369,7 @@ div.notes {
 <p>第一类：<strong>小部件</strong>（partial elements）动画效果。常见的设计工具如pptx，在一张slide里面，对动画小部件（窗体、文本、箭头等）进行时序上（timeline）的安排设计，从而实现动画效果。比较适合于那些只需要利用“标准化”小部件组合形成动画的幻灯片。其优点也是显而易见的：一块幕布，持续添加小部件，比较符合动画的内容本质和视觉直觉。难点在于需要大量操作来给小部件定位（position）以及修饰小部件。</p>
 <p>第二类，<strong>图片放映</strong>动画效果。利用人眼的视觉时间差特点，把事先设计好的系列序贯图片，连续反映展示，从而实现动画效果。比较适合于那些“手工绘制”多张序贯图片形成动画的幻灯片。其优点是：强调视觉定格（帧）关系，不太关注细节的严格一致。难点在于需要“手工绘制”，以及认为确定图片帧，小部件的细节可能会被认为并不太重要。</p>
 <p>目前为止，直接在xaringan（或reveal.js）slide上进行第一类小部件动画制作的工具，基本上没有看到相关便利性的工具包或解决方案。xaringan（或reveal.js）slide上的动画主要是基于第二类，<strong>图片放映</strong>动画效果。例如，一个R相关会议报告做了题为<a href="https://pkg.garrickadenbuie.com/drake-intro/#1">Reproducible Data Workflows</a>，就给出了“反映”型“流程图”（其实并不是流程）的动画效果，其背后就是利用序贯图片帧，不断反映，从而表现出“动画”效果。具体代码可参看其<a href="https://rstudio.cloud/project/405721">Rstudio cloud project</a>。</p>
-<p>总体而言，在xaringan（或reveal.js）slide上主要采用“反映”型动画效果，因为动画实现（多帧图片）和动画控制（方向键）都相对简单。然而，多帧图片的设计和获得则成了其中最大难题。这样就需要依赖R之外的“绘图”工具，而且它最好还要能够自动保存序贯图片帧（反映时序中的中间环节图片）。不过很遗憾，这样的外部“绘图”工具（不管是否支持小部件）目前我是暂时没有发现（起码放狗搜了一大圈是无所得）。</p>
+<p>总体而言，在xaringan（或reveal.js）slide上主要采用“放映”型动画效果，因为动画实现（多帧图片）和动画控制（方向键）都相对简单。然而，多帧图片的设计和获得则成了其中最大难题。这样就需要依赖R之外的“绘图”工具，而且它最好还要能够自动保存序贯图片帧（反映时序中的中间环节图片）。不过很遗憾，这样的外部“绘图”工具（不管是否支持小部件）目前我是暂时没有发现（起码放狗搜了一大圈是无所得）。</p>
 <p>不过还是找到了一个可以实现的“笨办法”。</p>
 <p>第一阶段：<strong>绘制图片</strong>阶段。用到的主要外部工具有<code>Powerpoint</code>（用于绘图） 和<code>Snagit</code>（用于截图）。工作流程基本上是：</p>
 <ol style="list-style-type: lower-alpha">
@@ -534,7 +534,14 @@ h1, h2, h3 {
 <ul>
 <li><p>页面布局。页面紧凑度和宽松度灵活调整。例如<code>remark-slide-content.roomy</code>。</p></li>
 <li><p>前导符设定。正文符号列表的前导符设定问题。</p></li>
-<li><p>动画效果。可以参看<a href="https://slides.earo.me/rladiesakl20/#1">Earo Wang’s slide</a>。以及另一个很不错的Xaringan slide报告题为<a href="https://pkg.garrickadenbuie.com/drake-intro/#1">Reproducible Data Workflows</a>给出了绘制版流程图的动画效果，其背后的关键是连续的png部件是如何分解得到的（可参看其<a href="https://rstudio.cloud/project/405721">Rstudio cloud project</a>）。有待进一步去找这样的draw工具，它应该能自动保存中间环节的png。</p></li>
+<li><p>播放动画效果。常见的进入或退出等动画效果。CSS可以参考相对比较成熟的<a href="https://animate.style/">Animate.css</a>，可以直接拿来就用。</p></li>
+<li><p>窗格动画效果。大抵类似于PowerPoint的动画窗格设计，目前在Xaringan或remark.js里还没有看到。可以参看<a href="https://slides.earo.me/rladiesakl20/#1">Earo Wang’s slide</a>。以及另一个很不错的Xaringan slide报告题为<a href="https://pkg.garrickadenbuie.com/drake-intro/#1">Reproducible Data Workflows</a>给出了绘制版流程图的动画效果，其背后的关键是连续的png部件是如何分解得到的（可参看其<a href="https://rstudio.cloud/project/405721">Rstudio cloud project</a>）。有待进一步去找这样的draw工具，它应该能自动保存中间环节的png。</p></li>
+</ul>
+<blockquote>
+<p>基于CSS的窗格动画<a href="https://slides.garrickadenbuie.com/build-your-own-universe/#p10">Build your own universe</a>。相关资源可以参看：Garrick Aden‑Buie的<a href="https://www.garrickadenbuie.com/talk/build-your-own-universe/">网站</a>。</p>
+</blockquote>
+<ul>
+<li>递进点击效果。可以参看Garrick Aden‑Buie的博文<a href="https://www.garrickadenbuie.com/blog/better-progressive-xaringan/">Better Progressive xaringan Slides with CSS and :last-of-type</a>。其中通过CSS设计，实现递进点击效果。例如，bullets下最新一条醒目显示。</li>
 </ul>
 </div>
 </div>
