@@ -30,7 +30,11 @@ output:
 <ul>
 <li><a href="#分析场景与r包"><span class="toc-section-number">1</span> 分析场景与R包</a>
 <ul>
-<li><a href="#统计制表-vs-janitortabyl"><span class="toc-section-number">1.1</span> 统计制表 vs janitor::tabyl</a></li>
+<li><a href="#统计制表-vs-janitortabyl"><span class="toc-section-number">1.1</span> 统计制表 vs janitor::tabyl</a>
+<ul>
+<li><a href="#注意函数使用次序"><span class="toc-section-number">1.1.1</span> 注意函数使用次序</a></li>
+<li><a href="#指定列进行汇总或调整格式"><span class="toc-section-number">1.1.2</span> 指定列进行汇总或调整格式</a></li>
+</ul></li>
 </ul></li>
 <li><a href="#分析场景与r函数"><span class="toc-section-number">2</span> 分析场景与R函数</a>
 <ul>
@@ -58,6 +62,51 @@ output:
 <li><code>janitor::tabyl()</code>仅适合处理<strong>原始数据</strong>，并且是<code>data.frame</code>或<code>vector</code>。</li>
 </ul></li>
 </ul>
+<div id="注意函数使用次序" class="section level3" number="1.1.1">
+<h3><span class="header-section-number">1.1.1</span> 注意函数使用次序</h3>
+<p>特别需要注意系列<code>janitor::adorn_xx()</code>函数的使用先后顺序关系。概括起来需要小心的是：</p>
+<ul>
+<li><p>先计算汇总，再设置格式。其核心要点在于，数据列格式的变换，会导致数据列类型（type）的改变，比如<code>numeric</code>类型会变为<code>character</code>类型。例如，需要先<code>adorn_total("rows")</code>进行行汇总，再<code>adorn_pct_formatting()</code>把比率转换为百分数。</p></li>
+<li><p>没有被汇总的<code>adorn_total()</code>，也不会被进一步调整格式<code>adorn_pct_formatting()</code>。这意味着手动计算的占比列（小数如0.32），不能够使用<code>adorn_pct_formatting()</code>调整为百分数（如32%）。</p></li>
+<li><p>添加汇总计算<code>adorn_total()</code>，结果将不再保持为标准数据表（tidy data table）。因此需要额外处理不适合汇总的列或行。例如累积百分比和累积次数，就不应该有汇总（Total）值。</p></li>
+</ul>
+</div>
+<div id="指定列进行汇总或调整格式" class="section level3" number="1.1.2">
+<h3><span class="header-section-number">1.1.2</span> 指定列进行汇总或调整格式</h3>
+<ul>
+<li><p>首先，指定列进行汇总或调整格式需要满足前述函数使用的先后次序关系。</p></li>
+<li><p>其次，指定列进行汇总或调整格式需要完整使用<code>janitor::adorn_xx()</code>函数的所有参数设置。这一点非常不人性。</p></li>
+<li><p>最后，指定列进行汇总或调整格式需要使用<code>dplyr</code>包的<code>select</code>语法，如all_of(contains(“p”))`。</p></li>
+</ul>
+<pre class="r"><code>require(DT)
+require(janitor)
+char &lt;-c(&quot;非常不满意&quot;,&quot;不满意&quot;,&quot;一般&quot;,&quot;满意&quot;,&quot;非常满意&quot;)
+reps &lt;- c(24L, 108L,93L, 45L,30L) 
+
+sat_list &lt;- rep(char, reps)
+
+sat &lt;- data.frame(groups=LETTERS[1:5],
+                  satisfication = sat_list,
+                  row.names=NULL) %&gt;%
+  mutate(satisfication = factor(satisfication, levels = char))
+
+cum_calc &lt;- sat %&gt;%
+  janitor::tabyl(satisfication) %&gt;%
+  mutate(min_cum_n = cumsum(n),
+         min_cum_p = cumsum(percent), #&lt;&lt;
+         max_cum_n =rev( cumsum(rev(n))), #&lt;&lt;
+         max_cum_p =rev( cumsum(rev(percent)))) 
+  
+cum_format&lt;-  cum_calc %&gt;%
+  mutate(min_cum_p = scales::percent(min_cum_p,accuracy = 0.1), #&lt;&lt;
+         max_cum_p = scales::percent(max_cum_p,accuracy = 0.1)) %&gt;%
+  janitor::adorn_totals(.,where = &quot;row&quot;,fill = &quot;-&quot;,na.rm = TRUE, #&lt;&lt;
+                        name = &quot;Total&quot;, all_of(c(&quot;n&quot;,&quot;percent&quot;))) %&gt;%
+  janitor::adorn_pct_formatting(.,digits = 1, #&lt;&lt;
+                                rounding =&quot;half to even&quot;,
+                                affix_sign = TRUE,
+                                all_of(c(&quot;percent&quot;))) #&lt;&lt;</code></pre>
+</div>
 </div>
 </div>
 <div id="分析场景与r函数" class="section level1" number="2">

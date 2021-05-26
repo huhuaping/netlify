@@ -2,7 +2,7 @@
 title: 第07章 指数
 author: huhuaping
 date: '2021-05-15'
-slug: chpt05-corl-regression
+slug: chpt07-complex-index
 categories:
   - Course
 tags:

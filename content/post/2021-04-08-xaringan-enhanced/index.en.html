@@ -29,7 +29,10 @@ output:
 <div id="TOC">
 <ul>
 <li><a href="#r包xaringanextra"><span class="toc-section-number">1</span> R包xaringanExtra</a></li>
-<li><a href="#r包xaringanbuilder"><span class="toc-section-number">2</span> R包xaringanBuilder</a></li>
+<li><a href="#r包xaringanbuilder"><span class="toc-section-number">2</span> R包xaringanBuilder</a>
+<ul>
+<li><a href="#pdf输出时数学公式显示异常"><span class="toc-section-number">2.1</span> pdf输出时数学公式显示异常</a></li>
+</ul></li>
 <li><a href="#r包xaringanthemer"><span class="toc-section-number">3</span> R包xaringanthemer</a></li>
 <li><a href="#输出pdf函数xaringan_to_pdf"><span class="toc-section-number">4</span> 输出pdf函数xaringan_to_pdf()</a></li>
 </ul>
@@ -86,6 +89,34 @@ output:
 <li><p>可能的多种包依赖关系。例如pptx格式需要依赖<code>officer</code>包。</p></li>
 <li><p>“伪”pptx格式输出。<code>xaringanBuilder::build_pptx("03-slide-class/04-data-measuring.Rmd",complex_slides = T)</code>的结果，pptx的每张幻灯片都只是png格式的图片而已。不过，这个槽点应该是能够预料到的（大家猜猜是为什么？因为Xaringan slide和pptx幻灯片的血统完全不一样啊！）。</p></li>
 </ul>
+<div id="pdf输出时数学公式显示异常" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> pdf输出时数学公式显示异常</h2>
+<p><strong>问题描述</strong>：如果直接使用chrome浏览器打印pdf，数学公式显示都是正常的（如同html预览效果）。但是使用<code>xaringanBuilder::build_pdf()</code>函数进行pdf输出，则数学公式总是显示异常（非常小）。</p>
+<p><strong>尝试办法</strong>：</p>
+<ul>
+<li>怀疑html转会效果更好，尝试<code>.Rmd</code>转pdf或者<code>.html</code>转pdf，问题都依旧。</li>
+</ul>
+<pre class="r"><code># from html to pdf
+xaringanBuilder::build_pdf(&quot;03-slide-class/04-data-measuring-test.html&quot;,&quot;public/04-data-measuring-test.pdf&quot;, complex_slides = T, delay = 3)
+# from Rmd to pdf
+xaringanBuilder::build_pdf(&quot;03-slide-class/04-data-measuring-test.Rmd&quot;, complex_slides = T, delay = 2)</code></pre>
+<ul>
+<li>怀疑<code>MathJax.js</code>在线不稳定，尝试指定调用其他路径，问题依旧。</li>
+</ul>
+<blockquote>
+<p>Rmarkdown的公式渲染主要有两种方式。
+- 默认渲染：xaringan会自动调用<code>MathJax.js</code>（集成在Rstudio中）来渲染数学公式和符号。
+- 本地渲染：需要在yaml区域指定本地路径下或其他网络地址的<code>MathJax.js</code>文件。</p>
+</blockquote>
+<pre class="yaml"><code>---
+output:
+  xaringan::moon_reader:
+    chakra: libs/remark-latest.min.js
+    mathjax: &quot;https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML.js&quot;
+    self_contained: false
+---
+</code></pre>
+</div>
 </div>
 <div id="r包xaringanthemer" class="section level1" number="3">
 <h1><span class="header-section-number">3</span> R包xaringanthemer</h1>
