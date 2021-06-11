@@ -46,7 +46,6 @@ type: docs
 
 - `Xaringan slide`课件适合交互学习，而`pdf`课件适合线下打印或进行电子笔记。
 
-
 <!---footnote following--->
 
 [^a]:课件采用[Rmarkdown语言](https://rmarkdown.rstudio.com/)编写而成，课件`Slide`的形式由[Xaringan包](https://github.com/yihui/xaringan)渲染得到。
