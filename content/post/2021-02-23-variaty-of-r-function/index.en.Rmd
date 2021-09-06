@@ -140,4 +140,15 @@ names(drink) <-NULL
 drink
 ```
 
+## 探查样本数据集是否缺失
 
+- 问题：`lm(formula = lm.mod, data = lm.dt)`回归提示warning。表明数据集`lm.dt`中存在缺失值。
+
+```
+12 observation deleted due to missingness
+
+```
+
+- 处理：采用函数`stats::complete.cases(lm.dt)`来使用无缺失的数据集。或者查看存在缺失数据的行`which(!stats::complete.cases(lm.dt))`。
+
+- 参考[Observation deleted due to missingness in R](https://stackoverflow.com/questions/28429055/observation-deleted-due-to-missingness-in-r)
