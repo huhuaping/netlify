@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>04-simple-reg-hypothesis-test-slide.utf8</title>
+    <title>04-simple-reg-hypothesis-test-slide.knit</title>
     <meta charset="utf-8" />
+    <script src="libs/header-attrs-2.10.6/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
-    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/duke-blue.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/hygge-duke.css" rel="stylesheet" />
+    <link href="libs/tachyons-4.12.0/tachyons.min.css" rel="stylesheet" />
+    <link href="libs/panelset-0.2.4/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset-0.2.4/panelset.js"></script>
     <script src="libs/kePrint-0.0.1/kePrint.js"></script>
-    <link rel="stylesheet" href="libs\cc-fonts.css" type="text/css" />
-    <link rel="stylesheet" href="libs\figure-captions.css" type="text/css" />
-    <link rel="stylesheet" href="libs\animate.css" type="text/css" />
-    <link rel="stylesheet" href="libs\mycss\my-custom.css" type="text/css" />
+    <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../mycss/my-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../mycss/my-font.css" type="text/css" />
+    <link rel="stylesheet" href="../mycss/my-custom-for-video-roomy.css" type="text/css" />
+    <link rel="stylesheet" href="../mycss/text-box.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
 
-background-image: url("pic/slide-front-page.jpg")
+background-image: url("../pic/slide-front-page.jpg")
 class: center,middle
 
 # 计量经济学(Econometrics)
@@ -29,18 +33,50 @@ class: center,middle
 
 ### huhuaping01@hotmail.com
 
-### 2020-05-19
+### 2021-09-07
 
 
 
 
-
-
-
+<div>
+<style type="text/css">.xaringan-extra-logo {
+width: 110px;
+height: 70px;
+z-index: 0;
+background-image: url(../pic/logo/nwafu-logo-circle-wb.png);
+background-size: contain;
+background-repeat: no-repeat;
+position: absolute;
+top:0.2em;left:1em;
+}
+</style>
+<script>(function () {
+  let tries = 0
+  function addLogo () {
+    if (typeof slideshow === 'undefined') {
+      tries += 1
+      if (tries < 10) {
+        setTimeout(addLogo, 100)
+      }
+    } else {
+      document.querySelectorAll('.remark-slide-content:not(.title-slide):not(.inverse):not(.hide_logo)')
+        .forEach(function (slide) {
+          const logo = document.createElement('div')
+          logo.classList = 'xaringan-extra-logo'
+          logo.href = null
+          slide.appendChild(logo)
+        })
+    }
+  }
+  document.addEventListener('DOMContentLoaded', addLogo)
+})()</script>
+</div>
 
 
 ---
-class: center, middle,inverse
+class: center, middle, duke-orange,hide_logo
+name: chapter04
+
 # 第4章：一元回归：假设检验
 
 
@@ -61,7 +97,7 @@ class: center, middle,inverse
 
 ---
 layout: false
-class: inverse, center, middle, duke-softblue
+class: center, middle, duke-softblue,hide_logo
 name: review
 
 # 4.0 统计学的相关知识(回顾)
@@ -69,12 +105,15 @@ name: review
 ---
 layout: true
   
-&lt;div class="my-header"&gt;&lt;/div&gt;
+&lt;div class="my-header-h2"&gt;&lt;/div&gt;
+&lt;div class="watermark1"&gt;&lt;/div&gt;
+&lt;div class="watermark2"&gt;&lt;/div&gt;
+&lt;div class="watermark3"&gt;&lt;/div&gt;
 
-&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   第04章 一元回归：假设检验   
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   &lt;a href="#chapter04"&gt;第04章 一元回归：假设检验&lt;/a&gt;
 &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
 &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
-4.0 统计学的相关知识(回顾) &lt;/span&gt;&lt;/div&gt; 
+&lt;a href="#review"&gt;4.0 统计学的相关知识(回顾)&lt;/a&gt; &lt;/span&gt;&lt;/div&gt; 
 
 ---
 
@@ -173,7 +212,7 @@ layout: true
 
 ---
 layout: false
-class: inverse, center, middle, duke-softblue
+class: center, middle, duke-softblue,hide_logo
 name:interval
 
 # 4.1 回归系数的置信区间
@@ -181,12 +220,15 @@ name:interval
 ---
 layout: true
   
-&lt;div class="my-header"&gt;&lt;/div&gt;
+&lt;div class="my-header-h2"&gt;&lt;/div&gt;
+&lt;div class="watermark1"&gt;&lt;/div&gt;
+&lt;div class="watermark2"&gt;&lt;/div&gt;
+&lt;div class="watermark3"&gt;&lt;/div&gt;
 
-&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   第04章 一元回归：假设检验   
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   &lt;a href="#chapter04"&gt;第04章 一元回归：假设检验&lt;/a&gt;
 &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
 &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
-4.1 回归系数的置信区间 &lt;/span&gt;&lt;/div&gt; 
+&lt;a href="#interval"&gt;4.1 回归系数的置信区间 &lt;/a&gt;&lt;/span&gt;&lt;/div&gt; 
 
 ---
 
@@ -649,7 +691,7 @@ Y_i &amp; = \beta_1 + \beta_2 X_i +u_i \\
 
 ---
 layout: false
-class: inverse, center, middle, duke-softblue
+class: center, middle, duke-softblue,hide_logo
 name: hypothesis
 
 # 4.2 假设检验
@@ -657,12 +699,15 @@ name: hypothesis
 ---
 layout: true
   
-&lt;div class="my-header"&gt;&lt;/div&gt;
+&lt;div class="my-header-h2"&gt;&lt;/div&gt;
+&lt;div class="watermark1"&gt;&lt;/div&gt;
+&lt;div class="watermark2"&gt;&lt;/div&gt;
+&lt;div class="watermark3"&gt;&lt;/div&gt;
 
-&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   第04章 一元回归：假设检验   
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   &lt;a href="#chapter04"&gt;第04章 一元回归：假设检验&lt;/a&gt;
 &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
 &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
-4.2 假设检验 &lt;/span&gt;&lt;/div&gt; 
+&lt;a href="#hypothesis"&gt;4.2 假设检验 &lt;/a&gt;&lt;/span&gt;&lt;/div&gt; 
 
 ---
 
@@ -1045,7 +1090,7 @@ t^{\ast}_{\hat{\beta}_2}&amp;= \frac{0.7241}{0.0696}=10.4064
 
 ---
 layout: false
-class: inverse, center, middle, duke-softblue
+class: center, middle, duke-softblue,hide_logo
 name: ANOVA
 
 # 4.3 方差分析（ANOVA）和F检验
@@ -1053,12 +1098,15 @@ name: ANOVA
 ---
 layout: true
   
-&lt;div class="my-header"&gt;&lt;/div&gt;
+&lt;div class="my-header-h2"&gt;&lt;/div&gt;
+&lt;div class="watermark1"&gt;&lt;/div&gt;
+&lt;div class="watermark2"&gt;&lt;/div&gt;
+&lt;div class="watermark3"&gt;&lt;/div&gt;
 
-&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   第04章 一元回归：假设检验   
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   &lt;a href="#chapter04"&gt;第04章 一元回归：假设检验&lt;/a&gt;
 &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
 &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
-4.3 方差分析（ANOVA）和F检验&lt;/span&gt;&lt;/div&gt; 
+&lt;a href="#ANOVA"&gt;4.3 方差分析（ANOVA）和F检验&lt;/a&gt;&lt;/span&gt;&lt;/div&gt; 
 
 ---
 
@@ -1120,10 +1168,6 @@ layout: true
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-
----
-class: inverse, center, middle
-## 模型整体显著性检验：F检验
 
 ---
 
@@ -1235,10 +1279,9 @@ F检验与t检验的**不同**：
 - 检验原理的不同：F检验需要构造F统计量；t检验需要构造t统计量
 
 ---
-class: inverse, center, middle
 ## 方差分析（ANOVA）和F检验的案例应用
 
-### 教育程度与时均工资案例
+下面对教育程度与时均工资案例进行分析讨论。
 
 ---
 
@@ -1301,6 +1344,10 @@ F^{\ast} = \frac{\hat{\beta}_{2}^{2} \sum x_{i}^{2}}{\sum e_{i}^{2} /(n-2)}
 =\frac{95.4253}{0.8812}=108.2924
 \end {align}$$`
 
+---
+
+## 模型整体显著性检验
+
 - **步骤4**：给定
 `\(\alpha=0.05\)`下，查出F**理论值**
 `\(F_{1-\alpha}(1,n-2)=F_{0.95}(1,11)=\)` 4.8443
@@ -1314,7 +1361,7 @@ F^{\ast} = \frac{\hat{\beta}_{2}^{2} \sum x_{i}^{2}}{\sum e_{i}^{2} /(n-2)}
 
 ---
 layout: false
-class: inverse, center, middle, duke-softblue
+class: center, middle, duke-softblue,hide_logo
 name: predication
 
 # 4.4 回归预测
@@ -1322,12 +1369,15 @@ name: predication
 ---
 layout: true
   
-&lt;div class="my-header"&gt;&lt;/div&gt;
+&lt;div class="my-header-h2"&gt;&lt;/div&gt;
+&lt;div class="watermark1"&gt;&lt;/div&gt;
+&lt;div class="watermark2"&gt;&lt;/div&gt;
+&lt;div class="watermark3"&gt;&lt;/div&gt;
 
-&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   第04章 一元回归：假设检验   
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   &lt;a href="#chapter04"&gt;第04章 一元回归：假设检验&lt;/a&gt;
 &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
 &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
-4.4 回归预测 &lt;/span&gt;&lt;/div&gt; 
+&lt;a href="#predication"&gt;4.4 回归预测&lt;/a&gt; &lt;/span&gt;&lt;/div&gt; 
 
 
 ---
@@ -1383,26 +1433,26 @@ layout: true
 
 ### 两类预测——图示（样本内）
 
-&lt;img src="pic/chpt4-forecast-demo-01-insample.png" width="781" style="display: block; margin: auto;" /&gt;
+&lt;img src="../pic/chpt4-forecast-demo-01-insample.png" width="781" style="display: block; margin: auto;" /&gt;
 
 ---
 
 ### 两类预测——图示（样本外）
 
-&lt;img src="pic/chpt4-forecast-demo-02-outsample.png" width="782" style="display: block; margin: auto;" /&gt;
+&lt;img src="../pic/chpt4-forecast-demo-02-outsample.png" width="782" style="display: block; margin: auto;" /&gt;
 
 
 ---
 
 ### 两类预测——图示（均值预测）
 
-&lt;img src="pic/chpt4-forecast-demo-03-exp.png" width="778" style="display: block; margin: auto;" /&gt;
+&lt;img src="../pic/chpt4-forecast-demo-03-exp.png" width="778" style="display: block; margin: auto;" /&gt;
 
 ---
 
 ### 两类预测——图示（个值预测）
 
-&lt;img src="pic/chpt4-forecast-demo-04-ind.png" width="783" style="display: block; margin: auto;" /&gt;
+&lt;img src="../pic/chpt4-forecast-demo-04-ind.png" width="783" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -1435,7 +1485,7 @@ layout: true
 
 ## 预测分析的关键
 
-&lt;img src="pic/chpt4-forecast-demo-05-fitted.png" width="777" style="display: block; margin: auto;" /&gt;
+&lt;img src="../pic/chpt4-forecast-demo-05-fitted.png" width="777" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -1522,7 +1572,7 @@ S_{\hat{Y}_{0}} = \sqrt{S^2_{\hat{Y}_{0}}}=0.6145
 
 ### （均值预测）示例:教育程度和时均工资案例
 
-&lt;img src="pic/chpt4-forecast-demo-06-interval-exp.png" width="778" style="display: block; margin: auto;" /&gt;
+&lt;img src="../pic/chpt4-forecast-demo-06-interval-exp.png" width="778" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -1627,7 +1677,7 @@ S_{\hat{Y}_{0}} &amp;= \sqrt{S^2_{\hat{Y}_{0}}}=1.122
 
 ### （个值预测）示例:教育程度和时均工资案例
 
-&lt;img src="pic/chpt4-forecast-demo-09-interval-ind.png" width="781" style="display: block; margin: auto;" /&gt;
+&lt;img src="../pic/chpt4-forecast-demo-09-interval-ind.png" width="781" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -1654,13 +1704,13 @@ S_{\hat{Y}_{0}} &amp;= \sqrt{S^2_{\hat{Y}_{0}}}=1.122
 
 ## 置信带
 
-&lt;img src="pic/chpt4-forecast-demo-08-band-exp.png" width="780" style="display: block; margin: auto;" /&gt;
+&lt;img src="../pic/chpt4-forecast-demo-08-band-exp.png" width="780" style="display: block; margin: auto;" /&gt;
 
 ---
 
 ## 置信带
 
-&lt;img src="pic/chpt4-forecast-demo-10-band-ind.png" width="785" style="display: block; margin: auto;" /&gt;
+&lt;img src="../pic/chpt4-forecast-demo-10-band-ind.png" width="785" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -1702,7 +1752,7 @@ S_{\hat{Y}_{0}} &amp;= \sqrt{S^2_{\hat{Y}_{0}}}=1.122
 
 ---
 layout: false
-class: inverse, center, middle, duke-softblue
+class: center, middle, duke-softblue,hide_logo
 name: report
 
 # 4.5 报告回归分析结果
@@ -1710,12 +1760,15 @@ name: report
 ---
 layout: true
   
-&lt;div class="my-header"&gt;&lt;/div&gt;
+&lt;div class="my-header-h2"&gt;&lt;/div&gt;
+&lt;div class="watermark1"&gt;&lt;/div&gt;
+&lt;div class="watermark2"&gt;&lt;/div&gt;
+&lt;div class="watermark3"&gt;&lt;/div&gt;
 
-&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   第04章 一元回归：假设检验   
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   &lt;a href="#chapter04"&gt;第04章 一元回归：假设检验&lt;/a&gt;
 &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
 &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
-4.5 报告回归分析结果 &lt;/span&gt;&lt;/div&gt; 
+&lt;a href="#report"&gt;4.5 报告回归分析结果 &lt;/a&gt;&lt;/span&gt;&lt;/div&gt; 
 
 ---
 
@@ -1733,7 +1786,7 @@ layout: true
 
 ## 回归分析的形式（多行方程表达法）
 
-**形式1：多行方程表达法**（整理好的**精炼报告**）：根据统计软件的原始报告，往往是选取最关键的信息，经过整理并以多行**样本回归方程**（SRF）的形式呈现，**精炼报告**的形式一般为：
+**形式1：多行方程表达法**：统计软件的原始报告，往往是选取最关键的信息，经过整理并以多行**样本回归方程**（SRF）的形式呈现，**精炼报告**的形式一般为：
 
 `$$\begin{equation} \begin{alignedat}{999} &amp;\widehat{Y}=&amp;&amp;-0.01&amp;&amp;+0.72X\\ &amp;\text{(t)}&amp;&amp;(-0.0165)&amp;&amp;(10.4065)\\&amp;\text{(se)}&amp;&amp;(0.8746)&amp;&amp;(0.0696)\\&amp;\text{(fitness)}&amp;&amp; R^2=0.9078;&amp;&amp; \bar{R^2}=0.8994\\&amp; &amp;&amp; F^{\ast}=108.29;&amp;&amp; p=0.0000 \end{alignedat} \end{equation}$$`
 
@@ -1810,7 +1863,7 @@ layout: true
 **形式3：原始报告**：分析软件如`EViews`、`R`、`STATA`等直接自动生成的多元回归分析报告。`EViews`软件原始分析报告形式如下：**抬头区域**
 
 .pull-left[
-&lt;img src="pic/chpt4-eq-report-EViews.png" width="633" style="display: block; margin: auto;" /&gt;
+&lt;img src="../pic/chpt4-eq-report-EViews.png" width="633" style="display: block; margin: auto;" /&gt;
 ]
 
 --
@@ -1836,7 +1889,7 @@ layout: true
 **形式3：原始报告**：分析软件如`EViews`、`R`、`STATA`等直接自动生成的多元回归分析报告。`EViews`软件原始分析报告形式如下：**三线表区域**
 
 .pull-left[
-&lt;img src="pic/chpt4-eq-report-EViews.png" width="633" style="display: block; margin: auto;" /&gt;
+&lt;img src="../pic/chpt4-eq-report-EViews.png" width="633" style="display: block; margin: auto;" /&gt;
 ]
 
 --
@@ -1867,14 +1920,14 @@ layout: true
 **形式3：原始报告**：分析软件如`EViews`、`R`、`STATA`等直接自动生成的多元回归分析报告。`EViews`软件原始分析报告形式如下：**指标值区域（左）**
 
 .pull-left[
-&lt;img src="pic/chpt4-eq-report-EViews.png" width="633" style="display: block; margin: auto;" /&gt;
+&lt;img src="../pic/chpt4-eq-report-EViews.png" width="633" style="display: block; margin: auto;" /&gt;
 ]
 
 --
 
 .pull-right[
 
-- `R-squared`：回归模型**判定系数**
+- `R-squared`：回归**判定系数**
 `\(R^2\)`。
 
 - `Adjusted R-squared`：回归模型**调整判定系数**
@@ -1902,7 +1955,7 @@ layout: true
 **形式3：原始报告**：分析软件如`EViews`、`R`、`STATA`等直接自动生成的多元回归分析报告。`EViews`软件原始分析报告形式如下：**指标值区域（右）**
 
 .pull-left[
-&lt;img src="pic/chpt4-eq-report-EViews.png" width="633" style="display: block; margin: auto;" /&gt;
+&lt;img src="../pic/chpt4-eq-report-EViews.png" width="633" style="display: block; margin: auto;" /&gt;
 ]
 
 --
@@ -1910,7 +1963,7 @@ layout: true
 .pull-right[
 
 - `Mean dependent var`：Y的**均值**
-`\(\bar{Y}\)`。
+`\(\bar{Y}\)`
 
 - `S.D. dependent var`：Y的**样本标准差**
 `\(S_{Y}\)`。
@@ -1956,7 +2009,7 @@ F-statistic: 108.3 on 1 and 11 DF,  p-value: 4.958e-07
 
 ---
 layout: false
-background-image: url("pic/thank-you-gif-funny-little-yellow.gif")
+background-image: url("../pic/thank-you-gif-funny-little-yellow.gif")
 class: inverse,center
 # 本章结束
     </textarea>

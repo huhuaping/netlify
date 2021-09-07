@@ -1,31 +1,35 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>06-multiple-reg-matrix-slide.utf8</title>
+    <title>06-multiple-reg-matrix-slide.knit</title>
     <meta charset="utf-8" />
+    <script src="libs/header-attrs-2.10.6/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
-    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/duke-blue.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/hygge-duke.css" rel="stylesheet" />
+    <link href="libs/tachyons-4.12.0/tachyons.min.css" rel="stylesheet" />
+    <link href="libs/panelset-0.2.4/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset-0.2.4/panelset.js"></script>
     <script src="libs/kePrint-0.0.1/kePrint.js"></script>
-    <script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
-    <script src="libs/jquery-1.12.4/jquery.min.js"></script>
+    <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+    <script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+    <script src="libs/jquery-3.5.1/jquery.min.js"></script>
     <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-    <script src="libs/datatables-binding-0.13/datatables.js"></script>
+    <script src="libs/datatables-binding-0.17/datatables.js"></script>
     <link href="libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
     <link href="libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
     <script src="libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
-    <link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
-    <script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
-    <link rel="stylesheet" href="libs\cc-fonts.css" type="text/css" />
-    <link rel="stylesheet" href="libs\figure-captions.css" type="text/css" />
-    <link rel="stylesheet" href="libs\animate.css" type="text/css" />
-    <link rel="stylesheet" href="libs\mycss\my-custom.css" type="text/css" />
+    <link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
+    <script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
+    <link rel="stylesheet" href="../mycss/my-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../mycss/my-font.css" type="text/css" />
+    <link rel="stylesheet" href="../mycss/my-custom-for-video-roomy.css" type="text/css" />
+    <link rel="stylesheet" href="../mycss/text-box.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
 
-background-image: url("pic/slide-front-page.jpg")
+background-image: url("../pic/slide-front-page.jpg")
 class: center,middle
 
 # 计量经济学(Econometrics)
@@ -38,19 +42,51 @@ class: center,middle
 
 ### huhuaping01@hotmail.com
 
-### 2020-05-19
+### 2021-09-07
 
 
 
 
 
-
-
-
+<div>
+<style type="text/css">.xaringan-extra-logo {
+width: 110px;
+height: 70px;
+z-index: 0;
+background-image: url(../pic/logo/nwafu-logo-circle-wb.png);
+background-size: contain;
+background-repeat: no-repeat;
+position: absolute;
+top:0.2em;left:1em;
+}
+</style>
+<script>(function () {
+  let tries = 0
+  function addLogo () {
+    if (typeof slideshow === 'undefined') {
+      tries += 1
+      if (tries < 10) {
+        setTimeout(addLogo, 100)
+      }
+    } else {
+      document.querySelectorAll('.remark-slide-content:not(.title-slide):not(.inverse):not(.hide_logo)')
+        .forEach(function (slide) {
+          const logo = document.createElement('div')
+          logo.classList = 'xaringan-extra-logo'
+          logo.href = null
+          slide.appendChild(logo)
+        })
+    }
+  }
+  document.addEventListener('DOMContentLoaded', addLogo)
+})()</script>
+</div>
 
 
 ---
-class: center, middle,inverse
+class: center, middle, duke-orange,hide_logo
+name: chapter06b
+
 # 第6章：多元回归：矩阵部分
 
 
@@ -70,7 +106,7 @@ class: center, middle,inverse
 
 ---
 layout: false
-class: inverse, center, middle, duke-softblue
+class: center, middle, duke-softblue,hide_logo
 name: expression
 
 # 6.1 k变量模型的矩阵表达
@@ -78,12 +114,15 @@ name: expression
 ---
 layout: true
   
-&lt;div class="my-header"&gt;&lt;/div&gt;
+&lt;div class="my-header-h2"&gt;&lt;/div&gt;
+&lt;div class="watermark1"&gt;&lt;/div&gt;
+&lt;div class="watermark2"&gt;&lt;/div&gt;
+&lt;div class="watermark3"&gt;&lt;/div&gt;
 
-&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   第06章 多元回归II：矩阵部分   
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   &lt;a href="#chapter06b"&gt;第06章 多元回归II：矩阵部分&lt;/a&gt;
 &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
 &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
-6.1 6.1 k变量模型的矩阵表达 &lt;/span&gt;&lt;/div&gt; 
+&lt;a href="#expression"&gt;6.1 k变量模型的矩阵表达&lt;/a&gt; &lt;/span&gt;&lt;/div&gt; 
 
 ---
 
@@ -153,7 +192,7 @@ Y_{n} &amp;=\beta_{1}+\beta_{2} X_{2 n}+\beta_{3} X_{3 n}+\cdots+\beta_{k} X_{k 
 
 ---
 layout: false
-class: inverse, center, middle, duke-softblue
+class: center, middle, duke-softblue,hide_logo
 name: assumption
 
 # 6.2 模型假设的矩阵表达
@@ -161,12 +200,15 @@ name: assumption
 ---
 layout: true
   
-&lt;div class="my-header"&gt;&lt;/div&gt;
+&lt;div class="my-header-h2"&gt;&lt;/div&gt;
+&lt;div class="watermark1"&gt;&lt;/div&gt;
+&lt;div class="watermark2"&gt;&lt;/div&gt;
+&lt;div class="watermark3"&gt;&lt;/div&gt;
 
-&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   第06章 多元回归II：矩阵部分   
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   &lt;a href="#chapter06b"&gt;第06章 多元回归II：矩阵部分&lt;/a&gt; 
 &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
 &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
-6.2 模型假设的矩阵表达 &lt;/span&gt;&lt;/div&gt; 
+&lt;a href="#assumption"&gt;6.2 模型假设的矩阵表达&lt;/a&gt; &lt;/span&gt;&lt;/div&gt; 
 
 ---
 
@@ -292,7 +334,7 @@ var-cov(\boldsymbol{u})&amp;=E(\boldsymbol{uu'})
 
 ---
 layout: false
-class: inverse, center, middle, duke-softblue
+class: center, middle, duke-softblue,hide_logo
 name: OLS
 
 # 6.3 OLS估计的矩阵表达 
@@ -300,12 +342,15 @@ name: OLS
 ---
 layout: true
   
-&lt;div class="my-header"&gt;&lt;/div&gt;
+&lt;div class="my-header-h2"&gt;&lt;/div&gt;
+&lt;div class="watermark1"&gt;&lt;/div&gt;
+&lt;div class="watermark2"&gt;&lt;/div&gt;
+&lt;div class="watermark3"&gt;&lt;/div&gt;
 
-&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   第06章 多元回归II：矩阵部分   
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   &lt;a href="#chapter06b"&gt;第06章 多元回归II：矩阵部分&lt;/a&gt; 
 &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
 &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
-6.3 OLS估计的矩阵表达 &lt;/span&gt;&lt;/div&gt; 
+&lt;a href="#OLS"&gt;6.3 OLS估计的矩阵表达&lt;/a&gt; &lt;/span&gt;&lt;/div&gt; 
 
 ---
 
@@ -697,7 +742,7 @@ var-cov(\boldsymbol{\beta^{\ast}}) &amp; \geq var-cov(\boldsymbol{\hat{\beta}})
 
 ---
 layout: false
-class: inverse, center, middle, duke-softblue
+class: center, middle, duke-softblue,hide_logo
 name: hypothesis
 
 # 6.4 假设检验的矩阵表达
@@ -705,12 +750,15 @@ name: hypothesis
 ---
 layout: true
   
-&lt;div class="my-header"&gt;&lt;/div&gt;
+&lt;div class="my-header-h2"&gt;&lt;/div&gt;
+&lt;div class="watermark1"&gt;&lt;/div&gt;
+&lt;div class="watermark2"&gt;&lt;/div&gt;
+&lt;div class="watermark3"&gt;&lt;/div&gt;
 
-&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   第06章 多元回归II：矩阵部分   
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   &lt;a href="#chapter06b"&gt;第06章 多元回归II：矩阵部分&lt;/a&gt;
 &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
 &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
-6.4 假设检验的矩阵表达 &lt;/span&gt;&lt;/div&gt; 
+&lt;a href="#hypothesis"&gt;6.4 假设检验的矩阵表达&lt;/a&gt; &lt;/span&gt;&lt;/div&gt; 
 
 ---
 
@@ -969,9 +1017,7 @@ Y_i&amp;=\beta_1+u_i &amp;&amp; \text{(R-PRM)} \\
 Y_i&amp;=\hat{\beta}_1+e_i &amp;&amp; \text{(R-SRM)}
 \end{align}$$`
 
-此时，我们称总体回归模型和对应的样本回归模型为**受约束模型**（restricted model）。
-
-在备择假设
+此时，我们称总体回归模型和对应的样本回归模型为**受约束模型**（restricted model）。在备择假设
 `\(H_1:\beta_j\)`不全为0，
 `\(j \in (2,\cdots,k)\)`下，我们可以得到该假设下的一种特殊回归模型（如
 `\(\beta_j \neq 0, j \in (2,\cdots,k)\)`），也即无约束总体回归模型和无约束样本回归模型。
@@ -1124,7 +1170,7 @@ F^{\ast}&amp;=\frac{ESS_U/df_{ESS_U}}{RSS_U/df_{RSS_U}}
 ---
 
 layout: false
-class: inverse, center, middle, duke-softblue
+class: center, middle, duke-softblue,hide_logo
 name: forecast
 
 # 6.5 模型预测的矩阵表达
@@ -1133,12 +1179,15 @@ name: forecast
 
 layout: true
   
-&lt;div class="my-header"&gt;&lt;/div&gt;
+&lt;div class="my-header-h2"&gt;&lt;/div&gt;
+&lt;div class="watermark1"&gt;&lt;/div&gt;
+&lt;div class="watermark2"&gt;&lt;/div&gt;
+&lt;div class="watermark3"&gt;&lt;/div&gt;
 
-&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   第06章 多元回归II：矩阵部分   
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   &lt;a href="#chapter06b"&gt;第06章 多元回归II：矩阵部分&lt;/a&gt;
 &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
 &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
-6.5 模型预测的矩阵表达 &lt;/span&gt;&lt;/div&gt; 
+&lt;a href="#forecast"&gt;6.5 模型预测的矩阵表达&lt;/a&gt; &lt;/span&gt;&lt;/div&gt; 
 
 ---
 
@@ -1337,7 +1386,7 @@ S_{Y_0-\hat{Y}_0}
 ---
 
 layout: false
-class: inverse, center, middle, duke-softblue
+class: center, middle, duke-softblue,hide_logo
 name: case
 
 # 6.6 矩阵方法总结（示例） 
@@ -1345,12 +1394,15 @@ name: case
 ---
 layout: true
   
-&lt;div class="my-header"&gt;&lt;/div&gt;
+&lt;div class="my-header-h2"&gt;&lt;/div&gt;
+&lt;div class="watermark1"&gt;&lt;/div&gt;
+&lt;div class="watermark2"&gt;&lt;/div&gt;
+&lt;div class="watermark3"&gt;&lt;/div&gt;
 
-&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   第06章 多元回归II：矩阵部分   
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@   &lt;a href="#chapter06b"&gt;第06章 多元回归II：矩阵部分&lt;/a&gt;  
 &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
 &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
-6.6 矩阵方法总结（示例）  &lt;/span&gt;&lt;/div&gt; 
+&lt;a href="#case"&gt;6.6 矩阵方法总结（示例）&lt;/a&gt;  &lt;/span&gt;&lt;/div&gt; 
 
 ---
 
@@ -1358,8 +1410,8 @@ layout: true
 
 
 
-<div id="htmlwidget-d78e27e8e8cdca960c3f" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d78e27e8e8cdca960c3f">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"],[1956,1957,1958,1959,1960,1961,1962,1963,1964,1965,1966,1967,1968,1969,1970],[1673,1688,1666,1735,1749,1756,1815,1867,1948,2048,2128,2165,2257,2316,2324],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1839,1844,1831,1881,1883,1910,1969,2016,2126,2239,2336,2404,2487,2535,2595],[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Year<\/th>\n      <th>Y<\/th>\n      <th>one<\/th>\n      <th>X2<\/th>\n      <th>X3<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":5,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-7abb0d24e4186f88282a" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7abb0d24e4186f88282a">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"],[1956,1957,1958,1959,1960,1961,1962,1963,1964,1965,1966,1967,1968,1969,1970],[1673,1688,1666,1735,1749,1756,1815,1867,1948,2048,2128,2165,2257,2316,2324],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1839,1844,1831,1881,1883,1910,1969,2016,2126,2239,2336,2404,2487,2535,2595],[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Year<\/th>\n      <th>Y<\/th>\n      <th>one<\/th>\n      <th>X2<\/th>\n      <th>X3<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"tip","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":5,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[5,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 
 `$$\begin {align} 
 Y_{i} &amp;=\hat{\beta}_{1}+\hat{\beta}_{2} X_{2 i}+\hat{\beta}_{3} X_{3 i}+e_{i} 
@@ -1940,9 +1992,12 @@ $$
 
 ---
 layout:false
-background-image: url("pic/thank-you-gif-funny-little-yellow.gif")
+background-image: url("../pic/thank-you-gif-funny-little-yellow.gif")
 class: inverse,center
 # 本章结束
+
+
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
