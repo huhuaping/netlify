@@ -23,18 +23,18 @@ output:
 knitr::opts_chunk$set(echo = FALSE,message=FALSE, warning=FALSE)
 
 # devtools::install_github("rstudio/fontawesome")
-pkg <- c("xlsx","tidyverse","kableExtra", "bookdown", "blogdown", "fontawesome",
-         "ggplot2", "fontawesome")
-
-load.pkg <- lapply(pkg, require, character.only = TRUE)
-
+library("tidyverse")
+library("openxlsx")
+library("kableExtra")
+library("bookdown")
+library("blogdown")
+library("fontawesome")
+library("ggplot2")
 ```
 
 
-
-
 ```{r}
-tab <- xlsx::read.xlsx2("data/syllabus.xlsx", sheetIndex = 1) 
+tab <- openxlsx::read.xlsx("data/syllabus.xlsx", sheet = 1) 
 
 # combine with icons
 add_iconLink <- function(folder, file_name,icon) {
@@ -55,7 +55,7 @@ add_urlLink <- function(url, icon) {
 
 
 tab_out <- tab %>%
-as_tibble() %>%
+  as_tibble() %>%
  mutate(show_reading = if_else(file_reading=="no", "",
                                 add_iconLink(folder = "course-econometrics",
                                              file_name = file_reading, 
@@ -65,8 +65,12 @@ as_tibble() %>%
                                              file_name = file_slide, 
                                              icon = "file-powerpoint"))) %>%
   mutate(show_pdf = if_else(file_pdf=="no", "",
-                                add_urlLink(url = file_pdf, 
+                                add_iconLink(folder = "course-econometrics",
+                                             file_name = file_pdf, 
                                              icon = "file-pdf"))) %>%
+  #mutate(show_pdf = if_else(file_pdf=="no", "",
+                                #add_urlLink(url = file_pdf, 
+                                             #icon = "file-pdf"))) %>%
   mutate(show_exercise = if_else(file_exercise =="no", "", 
                                 add_iconLink(folder = "course-econometrics",
                                              file_name = file_exercise, 

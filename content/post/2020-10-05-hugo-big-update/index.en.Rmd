@@ -452,6 +452,8 @@ c. 完成上述操作后，再把`"RSS", "JSON", "WebAppManifest"`补回原处�
 
 - `blogdown::remove_hugo()`函数，可以删除未使用的hugo版本。
 
+
+
 # hugo模板微调
 
 > 劝君更进一杯酒，模板莫要闲折腾。——somebody
