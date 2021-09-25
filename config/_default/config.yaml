@@ -35,7 +35,7 @@ paginate: 10
 enableEmoji: true
 enableRobotsTXT: true
 footnotereturnlinkcontents: <sup>^</sup>
-ignoreFiles: [\.ipynb$, .ipynb_checkpoints$, \.Rmd$, \.Rmarkdown$, _cache$, \\.knit\\.md$, \\.utf8\\.md$]
+ignoreFiles: [\.ipynb$, .ipynb_checkpoints$, \.Rmd$, \.Rmarkdown$, _cache$, "\\.knit\\.md$", "\\.utf8\\.md$", "(^|/)renv$", "renv\\.lock$"]
 permalinks:
   event: '/talk/:slug/'
   tags: '/tag/:slug/'
@@ -44,7 +44,7 @@ permalinks:
   post: '/:year/:month/:day/:slug/'
 disableAliases: true
 outputs:
-  home: [HTML,RSS,headers,  WebAppManifest, redirects]
+  home: [HTML, RSS, JSON, WebAppManifest,redirects]
   section: [HTML, RSS]
 markup:
   defaultMarkdownHandler: goldmark

@@ -1,0 +1,73 @@
+---
+title: 参考资料电子版
+date: "2021-08-27T00:00:00+08:00"
+draft: false
+type: docs
+linktitle: 相关资源
+menu:
+  course-econometrics-master:
+    parent: 中级计量经济(简介)
+    weight: 40
+output:
+  blogdown::html_page:
+    toc: false
+    number_sections: false
+
+---
+
+>友情提示：
+    - 因新冠疫情，为方便师生教学，以下材料仅供延迟开学期间学生学习使用，后期将会择机删除。
+    - 任何个人和机构不得用于商业目的，如产生法律纠纷，后果一律使用者承担。
+    - 支持著者，保护版权！
+
+
+## 入门教材资源
+
+#### 古扎拉蒂《计量经济学基础》
+
+古扎拉蒂,计量经济学基础（上下册）(第5版)[M], 北京:中国人民大学出版社, 2013. 
+
+>点评：简单通俗，案例较多，适合入门！
+
+- 第01章 导论 [pdf下载](https://d.seit2019.xyz/wp-content/uploads/2020/03/book-gujarati-chpt01-introduction.pdf)
+
+- 第02章 一元回归分析：基本思想 [pdf下载](https://d.seit2019.xyz/wp-content/uploads/2020/03/book-gujarati-chpt02-simple-reg-basic.pdf)
+
+- 第18章、19章、20章 联立方程模型。[pdf下载](/course-econometrics-master/material/Basic-Econometrics-5th-Gujarati.pdf)
+
+
+### 李子奈《计量经济学》
+
+> 点评：本土计量教材权威，简单紧凑，但相对枯燥和抽象。
+
+> 友情提示：目前教学订购最新版为：李子奈, 计量经济学（第五版）.北京：高等教育出版社2020。与第四版相比，略有改动，差别不大。
+
+这里提供下载的是：李子奈,潘文卿.计量经济学(第四版)[M].高等教育出版社,北京:2015,9
+
+
+
+- 第一章 绪论 (pdf格式，文件大小14.4 MB)  [下载站点1](https://d.seit2019.xyz/wp-content/uploads/2020/03/book-v4-chpt1-intro.pdf)；[下载站点2](/course-econometrics/resource/book-v4-chpt1-intro.pdf);
+
+- 第二章 经典单方程计量经济学模型：一元线性回归模型 (pdf格式，文件大小13.4 MB) [下载站点1](https://d.seit2019.xyz/wp-content/uploads/2020/03/book-v4-chpt2-simple-reg.pdf)；[下载站点2](/course-econometrics/resource/book-v4-chpt2-simple-reg.pdf)
+
+- 第三章 经典单方程计量经济学模型：多元线性回归模型 (pdf格式，文件大小19.6 MB) [下载站点1](https://d.seit2019.xyz/wp-content/uploads/2020/03/book-v4-chpt3-multiple-reg.pdf)；[下载站点2](/course-econometrics/resource/book-v4-chpt3-multiple-reg.pdf)
+
+- 第四章 经典单方程计量经济学模型：放宽基本假定的模型 (pdf格式，文件大小17.8 MB) [下载站点1](https://d.seit2019.xyz/wp-content/uploads/2020/03/book-v4-chpt4-relax-reg.pdf)；[下载站点2](/course-econometrics/resource/book-v4-chpt4-relax-reg.pdf)
+
+- 第五章 时间序列计量经济学模型 (pdf格式，文件大小22.1 MB) [下载站点1](https://d.seit2019.xyz/wp-content/uploads/2020/03/book-v4-chpt5-time-series.pdf)；[下载站点2](/course-econometrics/resource/book-v4-chpt5-time-series.pdf)
+
+## 中阶资源
+
+- Hill, R. C., W. E. Griffiths and G. C. Lim. Principles of Econometrics 5ed [M], Wiley&Sons, 2017. 第10章（内生自变量）。容易上手！
+
+
+- Wooldridge, J. M. Introductory econometrics. A modern approach(6ed) [M], Cengage Learning, 2016. 第16章。相对简单通俗！
+
+- Greene, W. H. Econometric analysis(8ed) [M]. New York, Pearson, 2018. 第10章。与硕博接轨！
+
+## 高阶资源
+
+- Hansen B. Probability and Statistics for Economists[manuscript]. 2021. [free online](https://www.ssc.wisc.edu/~bhansen/probability/)。 气势恢宏，博士生慢慢啃吧。
+
+- HANSEN B. Econometrics [manuscript]. 2021. [free online](https://www.ssc.wisc.edu/~bhansen/econometrics/)。气势恢宏，博士生慢慢啃吧。
+

@@ -1,0 +1,28 @@
+---
+title: 中级计量经济学课程复习
+date: "2021-08-27T00:00:00+08:00"
+draft: false
+type: docs
+linktitle: 复习资料
+math: true
+menu:
+  course-econometrics-master:
+    parent: 中级计量经济(简介)
+    weight: 50
+output:
+  blogdown::html_page:
+    toc: false
+    number_sections: false
+
+---
+
+>**说明**： 以下复习提纲和测试试题集仅作为复习和训练参考，学生不应将其作为课程学习的唯一依据！考试题型和内容重点一切以当年授课和任课老师的最终安排为准！
+
+## 考试题型和复习提纲
+
+- 中级计量经济学（硕士研究生2019年秋）**复习提纲及考试题型** [html版](/course-econometrics-master/part-review/ecno-master-2019-fall-note.html)；[pdf版](/course-econometrics-master/part-review/ecno-master-2018-2019-fall-note-2019.1.4.pdf)
+
+
+## 测试试题集
+
+- 中级计量经济学（硕士研究生2018年秋）[测试题](/course-econometrics-master/part-review/ecno-master-2018-fall-exam.html)

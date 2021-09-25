@@ -12,29 +12,31 @@ type: docs
 math: true
 ---
 
-《计量经济学原理与方法：EViews软件实现》是对**计量经济学**课程的实验环节的详细说明书。共包括8次实验指导说明：
 
+这是本人目前正在编写的一本实验指导教材——《计量经济学原理与方法：EViews软件实现》（点击[在线阅读](https://book.huhuaping.com/)）。
 
-请点击下面链接进入各个实验指导说明：
+> **声明**：1.本书正在持续完善和修改中，欢迎提出修改意见。2.本书稿目前为手稿状态，后续将正式出版发行。如有转载引用，请标明原出处。禁止他人非法剽窃或用于商业用途，本人将保留追究法律责任的所有权利。
 
-- 实验1：[EViews软件入门与基本操作](https://hhp.seit2019.xyz/introduction.html)
+该书对**计量经济学**课程的实验环节的详细说明。共包括8次实验指导说明。请点击下面链接进入各个环节的实验指导说明：
 
-- 实验2：[一元线性回归模型](https://hhp.seit2019.xyz/simple-regression.html)
+- 实验1：[EViews软件入门与基本操作](https://book.huhuaping.com/introduction.html)
+
+- 实验2：[一元线性回归模型](https://book.huhuaping.com/simple-regression.html)
 
 
 > - 实验2的结果演示：[一元回归OLS方法的蒙特卡洛模拟实验](/course-econometrics/lab/lab2-monte.html)
 
 
-- 实验3：[模型函数形式与模型选择](https://hhp.seit2019.xyz/introduction.html)
+- 实验3：[模型函数形式与模型选择](https://book.huhuaping.com/introduction.html)
 
-- 实验4：[多元线性回归及矩阵运算](https://hhp.seit2019.xyz/matrix-regression.html)
+- 实验4：[多元线性回归及矩阵运算](https://book.huhuaping.com/matrix-regression.html)
 
-- 实验5：[多重共线性的诊断和矫正](https://hhp.seit2019.xyz/multilinearity.html)
+- 实验5：[多重共线性的诊断和矫正](https://book.huhuaping.com/multilinearity.html)
 
-- 实验6：[异方差的诊断和矫正](https://hhp.seit2019.xyz/heteroskedasticity.html)
+- 实验6：[异方差的诊断和矫正](https://book.huhuaping.com/heteroskedasticity.html)
 
-- 实验7：[自相关的诊断和矫](https://hhp.seit2019.xyz/auto-correlation.html)
+- 实验7：[自相关的诊断和矫](https://book.huhuaping.com/auto-correlation.html)
 
-- 实验8：[虚拟变量回归模型](https://hhp.seit2019.xyz/dummy-variable.html)
+- 实验8：[虚拟变量回归模型](https://book.huhuaping.com/dummy-variable.html)
 
 

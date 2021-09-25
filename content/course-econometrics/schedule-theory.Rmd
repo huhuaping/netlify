@@ -10,12 +10,11 @@ menu:
     weight: 20
 output:
   blogdown::html_page:
-    toc: true
+    toc: false
     number_sections: true
 
 ---
 
-# 内容安排（48学时）
 
 下表列出了教学内容和相关材料，大家可以**点击观看**或**下载**，并完成相关学习要求。
 
@@ -56,8 +55,8 @@ add_urlLink <- function(url, icon) {
 
 tab_out <- tab %>%
   as_tibble() %>%
- mutate(show_reading = if_else(file_reading=="no", "",
-                                add_iconLink(folder = "course-econometrics",
+  mutate(show_reading = if_else(file_reading=="no", "",
+                                add_iconLink(folder = "course-econometrics-master",
                                              file_name = file_reading, 
                                              icon = "book-open"))) %>%
   mutate(show_slide = if_else(file_slide=="no", "",
@@ -96,15 +95,6 @@ tab_out %>%
 ```
 
 
-
-# 教学环节
-
-## （课前）预习材料
-
-上课之前必须阅读提供的相关预习资料。
-
-## （课中）教学讲稿
-
 你可以用浏览器**在线观看**讲稿幻灯片。强烈建议360极速浏览器、chrome浏览器、Safari浏览器中任何之一。
 
 - 通过电脑pc在线观看。主要操作技巧有：
@@ -118,8 +108,6 @@ tab_out %>%
     - 建议横屏观看；
     - 前进后退：点击幻灯片的左/右区域。
 
-
-## （课后）随堂作业
 
 随堂作业应该在课堂内完成，师生讨论并点评。
 
