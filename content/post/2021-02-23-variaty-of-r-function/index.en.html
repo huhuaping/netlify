@@ -40,6 +40,7 @@ output:
 <ul>
 <li><a href="#数据类型读取"><span class="toc-section-number">2.1</span> 数据类型读取</a></li>
 <li><a href="#生成重复数据rep"><span class="toc-section-number">2.2</span> 生成重复数据rep()</a></li>
+<li><a href="#探查样本数据集是否缺失"><span class="toc-section-number">2.3</span> 探查样本数据集是否缺失</a></li>
 </ul></li>
 </ul>
 </div>
@@ -160,5 +161,17 @@ drink</code></pre>
 [37] &quot;碳酸饮料&quot; &quot;碳酸饮料&quot; &quot;碳酸饮料&quot; &quot;碳酸饮料&quot; &quot;碳酸饮料&quot; &quot;碳酸饮料&quot;
 [43] &quot;碳酸饮料&quot; &quot;碳酸饮料&quot; &quot;碳酸饮料&quot; &quot;碳酸饮料&quot; &quot;碳酸饮料&quot; &quot;碳酸饮料&quot;
 [49] &quot;碳酸饮料&quot; &quot;碳酸饮料&quot;</code></pre>
+</div>
+<div id="探查样本数据集是否缺失" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> 探查样本数据集是否缺失</h2>
+<ul>
+<li>问题：<code>lm(formula = lm.mod, data = lm.dt)</code>回归提示warning。表明数据集<code>lm.dt</code>中存在缺失值。</li>
+</ul>
+<pre><code>12 observation deleted due to missingness
+</code></pre>
+<ul>
+<li><p>处理：采用函数<code>stats::complete.cases(lm.dt)</code>来使用无缺失的数据集。或者查看存在缺失数据的行<code>which(!stats::complete.cases(lm.dt))</code>。</p></li>
+<li><p>参考<a href="https://stackoverflow.com/questions/28429055/observation-deleted-due-to-missingness-in-r">Observation deleted due to missingness in R</a></p></li>
+</ul>
 </div>
 </div>

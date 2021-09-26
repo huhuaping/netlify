@@ -10,8 +10,8 @@ menu:
     weight: 10
 output:
   blogdown::html_page:
-    toc: true
-    number_sections: true
+    toc: false
+    number_sections: false
 math: true
 ---
 

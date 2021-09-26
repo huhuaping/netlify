@@ -1,0 +1,112 @@
+---
+title: 中级计量经济学理论课教学安排
+date: "2021-08-27T00:00:00+08:00"
+draft: false
+type: docs
+linktitle: 理论教学
+menu:
+  course-econometrics-master:
+    parent: 中级计量经济(简介)
+    weight: 20
+output:
+  blogdown::html_page:
+    toc: false
+    number_sections: false
+
+---
+
+
+下表列出了教学内容和相关材料，大家可以**点击观看**或**下载**，并完成相关学习要求。
+
+```{r,echo=FALSE, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(echo = FALSE,message=FALSE, warning=FALSE)
+
+# devtools::install_github("rstudio/fontawesome")
+library("tidyverse")
+library("openxlsx")
+library("kableExtra")
+library("bookdown")
+library("blogdown")
+library("fontawesome")
+library("ggplot2")
+```
+
+
+```{r}
+tab <- openxlsx::read.xlsx("data/syllabus.xlsx", sheet = 1) 
+
+# combine with icons
+add_iconLink <- function(folder, file_name,icon) {
+  paste0("<a href=\"", 
+         stringr::str_c("/", folder, "/", file_name, sep = ""), 
+         "\">", 
+         as.character(fontawesome::fa(icon, fill= "blue", height=17 )), 
+         "</a>") 
+}
+
+add_urlLink <- function(url, icon) {
+  paste0("<a href=\"", 
+         url, 
+         "\">", 
+         as.character(fontawesome::fa(icon, fill= "blue", height=17 )), 
+         "</a>") 
+}
+
+
+tab_out <- tab %>%
+  as_tibble() %>%
+  # get relative path and file extension
+  mutate(file_slide = glue::glue("{dir_slide}/{file_name}.html"),
+         file_pdf = glue::glue("{dir_pdf}/{file_name}.pdf")) %>%
+  mutate(show_reading = if_else(file_reading=="no", "",
+                                add_iconLink(folder = "course-econometrics-master",
+                                             file_name = file_reading, 
+                                             icon = "book-open"))) %>%
+  mutate(show_slide = if_else(file_slide=="no", "",
+                                add_iconLink(folder = "course-econometrics-master",
+                                             file_name = file_slide, 
+                                             icon = "file-powerpoint"))) %>%
+  mutate(show_pdf = if_else(file_pdf=="no", "",
+                                add_iconLink(folder = "course-econometrics-master",
+                                             file_name = file_pdf, 
+                                             icon = "file-pdf"))) %>%
+  #mutate(show_pdf = if_else(file_pdf=="no", "",
+                                #add_urlLink(url = file_pdf, 
+                                             #icon = "file-pdf"))) %>%
+  mutate(show_exercise = if_else(file_exercise =="no", "", 
+                                add_iconLink(folder = "course-econometrics",
+                                             file_name = file_exercise, 
+                                             icon = "edit"))) 
+
+
+names_eng <- c("chpt_chn", "show_reading", "show_slide", "show_pdf", "show_exercise")
+names_chn <- c("章内容", "阅读材料", "幻灯片", "pdf课件",    "随堂作业")
+
+tab_out %>% 
+  mutate(chpt_chn = cell_spec(chpt_chn, "html", align = "l")) %>%
+  select(one_of(names_eng)) %>%
+  rename_at(vars(names_eng), ~names_chn) %>%
+  kable(format = "html", align = "c",escape = F,booktabs = T,) %>%
+  kable_styling("striped", full_width = F, fixed_thead = T)  %>%
+  column_spec(1, width = "20em",bold = T) %>%
+  column_spec(c(2:5), width = "8em") %>%
+  pack_rows("模块01 计量经济学基础", 2, 9) %>%
+  pack_rows("模块04 联立方程模型（SEM）", 10, 12) 
+  
+
+```
+
+
+
+你可以用浏览器**在线观看**讲稿幻灯片。强烈建议360极速浏览器、chrome浏览器、Safari浏览器中任何之一。
+
+- 通过电脑pc在线观看。主要操作技巧有：
+    - 全屏观看：先鼠标点击幻灯片，再按键盘F键；
+    - 退出全屏观看：按键盘Esc键；
+    - 前进后退：点击键盘方向键上/下；或左/右；
+    - 观看指定页码：按键盘数字键输入数字如“56”，再按键盘Enter则会播放第56页幻灯片。
+    
+
+- 手机可以观看。
+    - 建议横屏观看；
+    - 前进后退：点击幻灯片的左/右区域。

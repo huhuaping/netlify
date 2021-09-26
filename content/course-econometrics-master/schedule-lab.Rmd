@@ -1,0 +1,26 @@
+---
+title: 中级计量经济学案例应用与软件操作
+date: "2021-09-09T00:00:00+08:00"
+draft: false
+linktitle: 案例代码
+menu:
+  course-econometrics-master:
+    parent: 中级计量经济(简介)
+    weight: 30
+#toc: true
+type: docs
+math: true
+---
+
+**基本思路**：一套具体理论，一个分析案例，一份代码文本。让理论真正用于实践！
+
+
+**建议软件**：
+
+- R编程语言（下载[CRAN](https://cran.r-project.org/)）
+
+- Python编程语言
+
+> 说明：本人多年使用R编程语言，欢迎加入我的R世界小粉圈[Rworld](https://rworld.huhuaping.com/)
+
+
