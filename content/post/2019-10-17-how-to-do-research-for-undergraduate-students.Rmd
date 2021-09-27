@@ -1,5 +1,5 @@
 ---
-title: 本科生如何入手一个研究项目
+title: 如何入手一个研究项目
 author: huhuaping
 date: '2019-10-17'
 slug: how-to-do-research-for-undergraduate-students
@@ -120,3 +120,13 @@ output:
 - 要先学会“拿来主义”！
 - 阅读量要足够：起码15篇中文文献，5-10篇外文文献
 - 文献的质量要高：中文起码要CSSCI或中文核心期刊索引，外文文献应该是SSCI或SCI！
+
+## 若干选题方向
+
+我这边的初步选题方向有：
+
+- 农产品价格预测与市场波动分析。 例如，可使用[陕西农产品价格数据](http://nyncj.xa.gov.cn/nyfw/jgjc/jgxq/1.html)。
+
+- 农产品国际贸易非对称性影响。例如，可使用 中国海关总署 [对外经济贸易数据](http://www.gov.cn/shuju/bumenshuju/index.htm#4)；或者普渡大学的GTAP模型[分析数据](https://www.gtap.agecon.purdue.edu/)
+
+- 其他请具体咨询
