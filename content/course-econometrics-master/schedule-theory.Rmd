@@ -17,7 +17,6 @@ output:
 
 下表列出了教学内容和相关材料，大家可以**点击观看**或**下载**，并完成相关学习要求。
 
-
 <!---test again---->
 
 ```{r,echo=FALSE, message=FALSE, warning=FALSE}
@@ -100,6 +99,8 @@ tab_out %>%
   
 
 ```
+
+
 
 
 

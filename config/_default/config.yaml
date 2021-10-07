@@ -5,6 +5,7 @@
 
 title: Academic # Website name
 baseurl: 'https://huhuaping.netlify.app/' # Website URL
+relativeurls: true
 copyright: '© {year} huhuaping' # Footer text, e.g. '© {year} Me'
 
 ############################
