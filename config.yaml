@@ -45,7 +45,7 @@ permalinks:
 disableAliases: true
 outputs:
   home: [HTML]
-  section: [HTML, RSS, JSON, WebAppManifest,redirects]
+  section: [HTML,RSS, JSON, WebAppManifest,redirects]
 markup:
   defaultMarkdownHandler: goldmark
   goldmark:

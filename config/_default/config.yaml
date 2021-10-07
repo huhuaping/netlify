@@ -44,7 +44,7 @@ permalinks:
   post: '/:year/:month/:day/:slug/'
 disableAliases: true
 outputs:
-  home: [HTML, RSS, JSON, WebAppManifest,redirects]
+  home: [HTML,RSS, JSON, WebAppManifest,redirects]
   section: [HTML, RSS]
 markup:
   defaultMarkdownHandler: goldmark
