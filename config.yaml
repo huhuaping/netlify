@@ -5,6 +5,7 @@
 
 title: Academic # Website name
 baseurl: 'https://huhuaping.netlify.app/' # Website URL
+relativeurls: true
 copyright: '© {year} huhuaping' # Footer text, e.g. '© {year} Me'
 
 ############################
@@ -44,8 +45,8 @@ permalinks:
   post: '/:year/:month/:day/:slug/'
 disableAliases: true
 outputs:
-  home: [HTML]
-  section: [HTML, RSS, JSON, WebAppManifest,redirects]
+  home: [HTML,RSS, JSON, WebAppManifest,redirects]
+  section: [HTML, RSS]
 markup:
   defaultMarkdownHandler: goldmark
   goldmark:

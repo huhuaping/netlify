@@ -22,6 +22,7 @@ output:
 
 - 中级计量经济学（硕士研究生2019年秋）**复习提纲及考试题型** [html版](/course-econometrics-master/part-review/ecno-master-2019-fall-note.html)；[pdf版](/course-econometrics-master/part-review/ecno-master-2018-2019-fall-note-2019.1.4.pdf)
 
+- 中级计量经济学（硕士研究生2020年秋）**期末试题**[pdf版](/course-econometrics-master/part-review/ecno-master-acd-2020-fall-exam.pdf)
 
 ## 测试试题集
 

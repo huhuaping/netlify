@@ -15,8 +15,9 @@ output:
 
 ---
 
-
 下表列出了教学内容和相关材料，大家可以**点击观看**或**下载**，并完成相关学习要求。
+
+<!---test again---->
 
 ```{r,echo=FALSE, message=FALSE, warning=FALSE}
 knitr::opts_chunk$set(echo = FALSE,message=FALSE, warning=FALSE)
@@ -57,7 +58,10 @@ tab_out <- tab %>%
   as_tibble() %>%
   # get relative path and file extension
   mutate(file_slide = glue::glue("{dir_slide}/{file_name}.html"),
-         file_pdf = glue::glue("{dir_pdf}/{file_name}.pdf")) %>%
+         file_pdf = glue::glue("{dir_pdf}/{file_name}.pdf"),
+         file_exercise = ifelse(file_exercise!="no",
+                                glue::glue("{dir_exercise}/{file_exercise}.pdf"),
+                                file_exercise)) %>%
   mutate(show_reading = if_else(file_reading=="no", "",
                                 add_iconLink(folder = "course-econometrics-master",
                                              file_name = file_reading, 
@@ -74,7 +78,7 @@ tab_out <- tab %>%
                                 #add_urlLink(url = file_pdf, 
                                              #icon = "file-pdf"))) %>%
   mutate(show_exercise = if_else(file_exercise =="no", "", 
-                                add_iconLink(folder = "course-econometrics",
+                                add_iconLink(folder = "course-econometrics-master",
                                              file_name = file_exercise, 
                                              icon = "edit"))) 
 
@@ -95,6 +99,8 @@ tab_out %>%
   
 
 ```
+
+
 
 
 
