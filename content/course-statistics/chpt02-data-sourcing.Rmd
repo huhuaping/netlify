@@ -75,6 +75,11 @@ update <- lubridate::ymd("2022-03-26")
 
 - `Xaringan slide`课件适合交互学习，而`pdf`课件适合线下打印或进行电子笔记。
 
+## 二、本章学习资料
+
+- 【图书】Scheaffer R L, Mendenhall W, Ott L. Thomson Brooks/Cole. **Elementary survey sampling**[M]. 第4ed版, 2012, Southbank, Vic.Belmont, CA.（此pdf资料请联系老师，尊重著者权益，不得用于其他目的。）
+
+- 【资料】[**kish table.docx**](/course-statistics/material/Kish-Tables.docx) （请点击下载word文件）
 
 <!---footnote following--->
 
