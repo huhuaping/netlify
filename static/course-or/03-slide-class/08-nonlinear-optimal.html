@@ -1,0 +1,1677 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>08-nonlinear-optimal.knit</title>
+    <meta charset="utf-8" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/duke-blue.css" rel="stylesheet" />
+    <link href="libs/remark-css/hygge-duke.css" rel="stylesheet" />
+    <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
+    <script src="libs/htmlwidgets/htmlwidgets.js"></script>
+    <link href="libs/datatables-css/datatables-crosstalk.css" rel="stylesheet" />
+    <script src="libs/datatables-binding/datatables.js"></script>
+    <script src="libs/jquery/jquery-3.6.0.min.js"></script>
+    <link href="libs/dt-core/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="libs/dt-core/css/jquery.dataTables.extra.css" rel="stylesheet" />
+    <script src="libs/dt-core/js/jquery.dataTables.min.js"></script>
+    <link href="libs/crosstalk/css/crosstalk.min.css" rel="stylesheet" />
+    <script src="libs/crosstalk/js/crosstalk.min.js"></script>
+    <script src="libs/jszip/jszip.min.js"></script>
+    <link href="libs/dt-ext-buttons/css/buttons.dataTables.min.css" rel="stylesheet" />
+    <script src="libs/dt-ext-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="libs/dt-ext-buttons/js/buttons.html5.min.js"></script>
+    <script src="libs/dt-ext-buttons/js/buttons.colVis.min.js"></script>
+    <script src="libs/dt-ext-buttons/js/buttons.print.min.js"></script>
+    <link rel="stylesheet" href="../mycss/my-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../mycss/my-font.css" type="text/css" />
+    <link rel="stylesheet" href="../mycss/my-custom-for-video-roomy.css" type="text/css" />
+    <link rel="stylesheet" href="../mycss/text-box.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+background-image: url("../pic/slide-front-page.jpg")
+class: center,middle
+
+# 数据、模型与决策&lt;/br&gt;&lt;/br&gt;(Data, Model and Decision)
+
+&lt;!---    chakra: libs/remark-latest.min.js ---&gt;
+
+### 胡华平
+
+### 西北农林科技大学
+
+### 经济管理学院数量经济教研室
+
+### huhuaping01@hotmail.com
+
+### 2022-04-29
+
+
+
+
+
+
+
+<div>
+<style type="text/css">.xaringan-extra-logo {
+width: 110px;
+height: 70px;
+z-index: 0;
+background-image: url(../pic/logo/nwafu-logo-circle-wb.png);
+background-size: contain;
+background-repeat: no-repeat;
+position: absolute;
+top:0.2em;left:1em;
+}
+</style>
+<script>(function () {
+  let tries = 0
+  function addLogo () {
+    if (typeof slideshow === 'undefined') {
+      tries += 1
+      if (tries < 10) {
+        setTimeout(addLogo, 100)
+      }
+    } else {
+      document.querySelectorAll('.remark-slide-content:not(.title-slide):not(.inverse):not(.hide_logo)')
+        .forEach(function (slide) {
+          const logo = document.createElement('div')
+          logo.classList = 'xaringan-extra-logo'
+          logo.href = null
+          slide.appendChild(logo)
+        })
+    }
+  }
+  document.addEventListener('DOMContentLoaded', addLogo)
+})()</script>
+</div>
+
+---
+class: center, middle, duke-orange,hide_logo
+name: chapter08
+
+
+# 第08章 非线性最优化模型
+
+[8.1 一个生产应用——对Par公司的再思考](#par)
+
+[8.2  建立一个指数化证券投资基金](#fund)
+
+[8.3  Markowitz投资组合模型](#invest)
+
+[8.4  另一混合问题](#blending)
+
+[8.5  预测新产品的使用](#new)
+
+
+---
+layout: false
+class: center, middle, duke-softblue,hide_logo
+name: why
+
+# 8.1节 一个生产应用&lt;br&gt;&lt;br&gt;——对Par公司的再思考
+
+---
+layout: true
+
+&lt;div class="my-header-h2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark1"&gt;&lt;/div&gt;
+
+&lt;div class="watermark2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark3"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@  &amp;emsp;&amp;emsp; &lt;a href="#chapter08"&gt; 第08章 非线性最优化模型&lt;/a&gt;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&lt;a href="#par"&gt;8.1 一个生产应用——对Par公司的再思考&lt;/a&gt; &lt;/span&gt;&lt;/div&gt; 
+
+---
+
+## 引子
+
+.fyi[
+
+- 许多商业过程都以非线性方式运行。
+
+&gt; 例如，一个债券的价格是利率的非线性函数，一个优先购股权的价格是优先股票价格的非线性函数。
+非线性最优化问题是在目标函数或约束条件中至少有一项是非线性的最优化问题。
+
+- 应用LINGO和Excel规划来求解非线性规划。
+
+]
+
+
+---
+
+## 无约束问题：Par公司案例（需求）
+
+第2章中Par公司案例，Par公司制造标准的和豪华的高尔夫包，价格与需求之间存在一个反向的变动关系。
+
+假设二者分别有如下需求关系：
+
+`$$\begin{aligned}
+Q_s &amp;=2250-15 P_{s} \\ 
+Q_d &amp;=1500-5 P_{d}
+\end{aligned}$$`
+
+&gt; 其中
+`\(Q_s\)`为标准包需求；
+`\(Q_d\)`为豪华包需求
+
+---
+
+## 无约束问题：Par公司案例（利润）
+
+假设标准包单位生产成本为70美元，豪华包单位生产成本为150美元，则有：
+
+- 生产和销售
+`\(Q_s\)`个标准包的利润：
+
+`$$P_s Q_s -70Q_s = (150-1/15Q_s)Q_s - 70Q_s = 80Q_s - 1/15Q_s^2$$`
+
+- 生产和销售
+`\(Q_d\)`个豪华包的利润：
+
+`$$P_d Q_d-150Q_d =(300-1/5Q_d)Q_d -150Q_d = 150Q_d - 1/5Q_d^2$$`
+
+则可以求得总利润：
+
+`$$\begin{align}
+R = 80Q_s-1/15Q_s^2+150Q_d-1/5Q_d^2 
+\end{align}$$`
+
+---
+
+## 无约束问题：Par公司案例（无约束解）
+
+对于总利润函数：
+
+`$$\begin{align}
+R = 80Q_s-1/15Q_s^2+150Q_d-1/5Q_d^2 
+\end{align}$$`
+
+可以解出最大化总利润函数下的高尔夫包数量：
+
+`$$\begin{align}
+  \cases{
+    \frac{\partial{R}}{\partial{Q_s}} = 80-2/15Q_s=0\\
+    \frac{\partial{R}}{\partial{Q_d}} = 150-2/5Q_s=0
+  } 
+  \Rightarrow
+  \cases{
+    Q_s = 600\\
+    Q_d = 375
+  } 
+\end{align}$$`
+
+--
+
+进一步可以计算得到各自的价格：
+
+`$$\begin{align}
+  \cases{
+  P_s = 150-1/15Q_s \\
+  P_d = 300-1/5Q_d
+  } 
+  \Rightarrow
+  \cases{
+    P_s = 110\\
+    P_d = 225
+  } 
+\end{align}$$`
+
+--
+
+最终的总利润为：
+`\(R = 80Q_s-1/15Q_s^2+150Q_d-1/5Q_d^2 =52125\)`
+
+
+???
+.footnote[
+**说明**：当然，我们可以使用任何线性优化软件，例如LINGO计算得到同样的结果。
+]
+
+---
+
+## 无约束问题：Par公司案例（可行区域）
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="../pic/chpt08-PAR-unconstrained-solver.jpg" alt="可行区域和无约束最优解" width="664" /&gt;
+&lt;p class="caption"&gt;可行区域和无约束最优解&lt;/p&gt;
+&lt;/div&gt;
+
+
+---
+
+## 约束问题：Par公司案例（约束条件）
+
+
+
+
+考虑到各工艺的单位耗时，以及可用时长约束（见下表）：
+
+<div id="htmlwidget-942043c49bc5a2cfce05" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-942043c49bc5a2cfce05">{"x":{"filter":"none","vertical":false,"caption":"<caption>各工艺环节的单位耗时及可用时长（小时）<\/caption>","data":[["1","2","3","4"],["切割和染印","缝纫","成型","检测和包装"],["7/10","1/2","1","1/10"],["1","5/6","2/3","1/4"],[630,600,708,135]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>工艺环节<\/th>\n      <th>标准包<\/th>\n      <th>豪华包<\/th>\n      <th>可用时间<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+
+
+
+---
+
+## 约束问题：Par公司案例（非线性最大化约束）
+
+我们可以构造出如下的非线性最大化约束方程：
+
+`$$\begin{align}
+&amp;Max \quad R = 80Q_s-1/15Q_s^2+150Q_d-1/5Q_d^2  \\
+&amp;s.t.\\
+\end{align}$$`
+
+`$$\begin{alignedat}{4}
+\quad 7 / 10 Q_s &amp;&amp;+\quad Q_d  &amp;&amp; \leq 630 &amp;&amp; \quad \text{(切割和染印)}\\
+\quad 1 / 2 Q_s &amp;&amp;+5 / 6 Q_d  &amp;&amp; \leq 600 &amp;&amp; \quad \text{(缝纫)}\\
+\quad Q_s &amp;&amp;+2/3 Q_d &amp;&amp;\leq 708 &amp;&amp;  \quad \text{(成型)}\\
+\quad 1 / 10 Q_s &amp;&amp;+1 / 4 Q_d  &amp;&amp; \leq 135 &amp;&amp; \quad \text{(检测和包装)}\\
+\quad Q_s, &amp;&amp; Q_d &amp;&amp;\geq 0 &amp;&amp;
+\end{alignedat}$$`
+
+---
+
+## 约束问题：Par公司案例（LINGO求解）
+
+采用LINGO对上述非线性约束最大化求解结果见下图。其中：
+
+- 最大化利润值为`49920.55`美元。
+
+- 产量解为
+`\(Q_s=459.7166; Q_d=308.1984\)`
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="../pic/chpt08-PAR-nonlinear-solver-lingo.jpg" alt="LINGO求解结果" width="750" /&gt;
+&lt;p class="caption"&gt;LINGO求解结果&lt;/p&gt;
+&lt;/div&gt;
+
+---
+
+## 约束问题：Par公司案例（求解示意）
+
+前述非线性约束求解结果示意见下图。我们可以发现：
+
+- 最大化目标函数（利润）
+`\(R=49920.55\)`的最优解没有出现在可行区域的极值点上。
+
+- 最优解出现在“切割和染印”约束线上
+`\(7/10Q_s +Q_d = 630\)`
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="../pic/chpt08-PAR-nonlinear-solver-demo.jpg" alt="非线性约束求解结果示意" width="497" /&gt;
+&lt;p class="caption"&gt;非线性约束求解结果示意&lt;/p&gt;
+&lt;/div&gt;
+
+---
+exclude: true
+
+## 约束问题：Par公司案例（R求解）
+
+待完成。
+
+
+
+
+---
+
+## 局部和整体最优：概念
+
+非线性最优化问题可能有多个局部最优解，这意味着我们需要找到最好的局部最优解。如果没有其他更好目标函数值的可行点在可行域找到，这个可行解就是整体最优的。
+
+&gt;【前情回顾】前述Par公司最大化约束非线性问题的LINGO解得第一行显示，“找到了局部最优解”。如果没有其他有目标函数值的可行解可以在临近域里找到，这个可行解就是最优的。
+
+在许多**非线性**应用中，一个唯一的**局部最优解**（local optima）也是**整体最优解**（global optima）。
+
+两种情况：凸函数和凹函数（函数图形为谷形和山形）
+
+---
+
+## 局部和整体最优：单调凹函数（山形）
+
+若目标非线性函数为凹函数（concave function），一般表现为“山形”。
+
+&gt; 【回顾】前述Par公司案例的非线性最大化目标函数，就是属于非线性凹函数。
+`\(R = 80Q_s-1/15Q_s^2+150Q_d-1/5Q_d^2\)`
+
+
+.pull-left[
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="../pic/chpt08-concave-demo.png" alt="凹函数示意" width="385" /&gt;
+&lt;p class="caption"&gt;凹函数示意&lt;/p&gt;
+&lt;/div&gt;
+
+]
+
+.pull-right[
+
+例如，非线性目标函数：
+
+`$$\begin{equation}
+f(X, Y) = - X^2 - Y^2 
+\end{equation}$$`
+
+- 唯一的函数最大化值为
+`\(f(X, Y)=0\)`
+
+- 唯一最优解出现在
+`\(\{X=0, Y=0\}\)`处
+
+- 此时，局部最优解也就是全局最优解
+
+]
+
+---
+
+## 局部和整体最优：单调凸函数（谷形）
+
+若目标非线性函数为凸函数（convex function），一般表现为“谷形”。
+
+
+
+.pull-left[
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="../pic/chpt08-convex-demo.png" alt="凹函数示意" width="363" /&gt;
+&lt;p class="caption"&gt;凹函数示意&lt;/p&gt;
+&lt;/div&gt;
+
+]
+
+.pull-right[
+
+例如，非线性目标函数：
+
+`$$\begin{equation}
+f(X, Y) =  X^2 + Y^2 
+\end{equation}$$`
+
+- 唯一的函数最小化值为
+`\(f(X, Y)=0\)`
+
+- 唯一最优解出现在
+`\(\{X=0, Y=0\}\)`处
+
+- 此时，局部最优解也就是全局最优解
+
+]
+
+---
+
+## 局部和整体最优：非单调函数
+
+但是，一些非线性函数可以有多个局部最优解。
+
+- 下面展示的是如下目标函数及其两个图形视角：
+
+`$$\begin{align}
+f(X, Y)=3(1-X)^{2} e^{-X^{2}-(Y+1)^{2}}-10\left(X / 5-X^{3}-Y^{5}\right) e^{-X^{2}-Y^{2}}-e^{-(X+1)^{2}-Y^{2}} / 3
+\end{align}$$`
+
+.pull-left[
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="../pic/chpt08-multiple-local-maximum-01.png" alt="视角1" width="362" /&gt;
+&lt;p class="caption"&gt;视角1&lt;/p&gt;
+&lt;/div&gt;
+
+]
+
+.pull-right[
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="../pic/chpt08-multiple-local-maximum-02.png" alt="视角2" width="346" /&gt;
+&lt;p class="caption"&gt;视角2&lt;/p&gt;
+&lt;/div&gt;
+
+]
+
+---
+
+## 对偶价格
+
+.fyi[
+
+在第三章已经对**对偶价格**的概念作了介绍。
+
+- 对偶价格是约束条件右侧值每增加一单位最优值的改进。
+
+- 非线性模型中对偶价格的解释与线性规划师完全相同的。
+
+]
+
+然而，非线性问题中却不常报告可允许的增量和减量。
+
+&gt; 
+- 这是因为典型的非线性问题中可允许的增量和减量为零。
+- 如果你改变右侧值，即使是很小的一个值，对偶价格都会改变。
+
+---
+layout: false
+class: center, middle, duke-softblue,hide_logo
+name: fund
+
+# 8.2节 建立一个指数化证券投资基金
+
+---
+layout: true
+
+&lt;div class="my-header-h2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark1"&gt;&lt;/div&gt;
+
+&lt;div class="watermark2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark3"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@  &amp;emsp;&amp;emsp; &lt;a href="#chapter08"&gt; 第08章 非线性最优化模型&lt;/a&gt;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&lt;a href="#fund"&gt;8.2节 建立一个指数化证券投资基金&lt;/a&gt; &lt;/span&gt;&lt;/div&gt; 
+
+---
+
+## 指数化基金：背景知识
+
+指数化基金一般会针对特定的市场指数：
+
+
+
+.pull-left[
+
+<div id="htmlwidget-4dd7013a4179ddb4e136" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4dd7013a4179ddb4e136">{"x":{"filter":"none","vertical":false,"caption":"<caption>指数化基金<\/caption>","data":[["1","2","3","4"],["500指数基金","总股票指数基金","REIT指数基金","短期债券指数基金"],["25.81%","24.71%","24.18%","1.09%"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>基金<\/th>\n      <th>收益率<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+
+]
+
+.pull-right[
+
+<div id="htmlwidget-71e8227f121cee0a6059" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-71e8227f121cee0a6059">{"x":{"filter":"none","vertical":false,"caption":"<caption>市场指数<\/caption>","data":[["1","2","3","4"],["标准普尔500","MSCI广泛市场","MSCI REIT","Barclays US 1-5指数"],["25.25%","24.93%","24.41%","1.10%"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>指数<\/th>\n      <th>收益率<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+
+]
+
+.page-font-24[
+
+
+.fyi[
+
+- 前两个指数基金是股票投资型：对应标准普尔500指数和MSCI广泛市场指数
+
+- REIT指数化基金主要是紧盯房地市场上的投资，对应MSCI REIT市场指数
+
+- 短基债券指数化基金主要在公司偾券市场上投资，对应Barclays US 1-5市场指数
+
+- 即使收益显示基金间有相当大的变化，指数化基金在匹配对应市场指数的收益上依然表现很好。
+
+]
+
+
+]
+
+
+---
+
+## 指数化基金：共同基金方案（可选集）
+
+
+
+.small[
+
+<div id="htmlwidget-01253d74b14d93e67135" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-01253d74b14d93e67135">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"caption":"<caption>供选择的共同基金绩效方案<\/caption>","data":[["1","2","3","4","5","6","7"],["外国股票","中期债券","大市值成长","大市值价值","小市值成长","小市值价值","标准普尔500收益"],["FS","IB","LG","LV","SG","SV","SP"],["10.06%","17.64%","32.41%","32.36%","33.44%","24.56%","25.00%"],["13.12%","3.25%","18.71%","20.61%","19.40%","25.32%","20.00%"],["13.47%","7.51%","33.28%","12.93%","3.85%","-6.70%","8.00%"],["45.42%","-1.33%","41.46%","7.06%","58.68%","5.43%","30.00%"],["-21.93%","7.36%","-23.26%","-5.37%","-9.02%","17.31%","-10.00%"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>共同基金<\/th>\n      <th>投资比例变量<\/th>\n      <th>Year01<\/th>\n      <th>Year02<\/th>\n      <th>Year03<\/th>\n      <th>Year04<\/th>\n      <th>Year05<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bt","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":10,"buttons":["copy","csv","excel"],"initComplete":"function(settings, json) {\n$(this.api().table().header()).css({'background-color': '#517fb9', 'color': '#fff'});\n}","order":[],"autoWidth":false,"orderClasses":false},"callback":"function(table) {\n$(\"button.buttons-copy\").css(\"background\",\"yellow\");\n                $(\"button.buttons-csv\").css(\"background\",\"orange\");\n                $(\"button.buttons-excel\").css(\"background\",\"#a88d32\");\n                $(\"button.dt-button\").css(\"padding\",\"0.2em 0.2em\");\n                $(\"button.dt-button\").css(\"font-size\",\"0.6em\");\n                $(\"button.dt-button\").css(\"margin-right\",\"0.2em\");\n                $(\"button.dt-button\").css(\"margin-bottom\",\"0.1em\");\n                $(\"button.dt-button\").css(\"line-height\",\"1em\");\n                return table;\n}"},"evals":["options.initComplete","callback"],"jsHooks":[]}</script>
+]
+
+其中：
+
+- 投资比例变量，用来表达在相应基金上的投资配置比重（%）。
+
+- 标准普尔500收益仅作为投资的收益参照。
+
+---
+
+## 指数化基金：共同基金方案（年度投资回报）
+
+**投资目标**：我们想要通过选择投资组合投资于每个共有基金的比例，以尽可能地接近标准普尔500的回报。
+
+- 给定6种基金选择
+`\(i \in (1,2,3,4,5,6)\)`，和5个年度方案
+`\(n \in (1,2,3,4,5)\)`。
+
+- 给定五种基金的投资比率分别为：
+`\(c_i = \{FS, IB, LG, LV, SG, SV\}=  \{c_1, c_2, c_3, c_4,c_5\}\)`
+
+- 给定年度计划下6种基金的收益为（见上表）：
+`\(r_{ni} = \{r_{n1}, r_{n2},r_{n3},r_{n4},r_{n5},r_{n6}\}\)`。
+
+- 每一年度方案的投资组合的回报
+`\(R_n=\{R1,R2,R3,R4,R5\}\)`
+
+那么，年度方案的投资组合回报则为：
+
+`$$\begin{align}
+R_n = \sum_{i=1}^{6}{r_{ni}c_i} = r_{n1}\cdot FS + r_{n2}\cdot IB + r_{n3}\cdot LG + r_{n4}\cdot SG + r_{n5}\cdot SV
+\end{align}$$`
+
+
+---
+exclude: true
+
+## Helper function: 年度投资回报equation
+
+
+
+
+---
+
+## 指数化基金：共同基金方案（年度投资回报）
+
+
+
+年度方案的投资组合回报计算公式：
+
+`$$\begin{align}
+R_n = \sum_{i=1}^{6}{r_{ni}c_i} = r_{n1}\cdot FS + r_{n2}\cdot IB + r_{n3}\cdot LG + r_{n4}\cdot SG + r_{n5}\cdot SV
+\end{align}$$`
+
+根据前述年度方案表，可以得到每年的投资组合回报
+`\(R_n\)`分别为
+`\((n \in 1,\ldots,5)\)`：
+
+`$$\begin{align}
+R_1 = +10.06FS +17.64IB +32.41LG +32.36LV +33.44SG +24.56SV
+\end{align}$$`
+
+`$$\begin{align}
+R_2 = +13.12FS +3.25IB +18.71LG +20.61LV +19.40SG +25.32SV
+\end{align}$$`
+
+`$$\begin{align}
+R_3 = +13.47FS +7.51IB +33.28LG +12.93LV +3.85SG -6.70SV
+\end{align}$$`
+
+`$$\begin{align}
+R_4 = +45.42FS -1.33IB +41.46LG +7.06LV +58.68SG +5.43SV
+\end{align}$$`
+
+`$$\begin{align}
+R_5 = -21.93FS +7.36IB -23.26LG -5.37LV -9.02SG +17.31SV
+\end{align}$$`
+
+---
+exclude: true
+
+## Helper function：目标函数equation
+
+
+
+
+---
+
+## 指数化基金：共同基金方案（目标函数）
+
+为了达到投资组合的回报尽可能接近标准普尔500的回报，要求每个年度投资收益方案回报和标准普尔500的回报间的差值，尽可能最小化。
+
+- 因此可以设置线性最小化目标函数：
+
+`$$\begin{align}
+\textrm{Min}\quad (R_1-25.00)^1 + (R_2-20.00)^1 + (R_3-8.00)^1 + (R_4-30.00)^1 + (R_5+10.00)^1
+\end{align}$$`
+
+- 也可以考虑设置为非线性最小化目标函数：
+
+`$$\begin{align}
+\textrm{Min}\quad (R_1-25.00)^2 + (R_2-20.00)^2 + (R_3-8.00)^2 + (R_4-30.00)^2 + (R_5+10.00)^2
+\end{align}$$`
+
+---
+exclude: true
+
+## Helper function: 普通公式
+
+
+
+
+---
+
+## 指数化基金：共同基金方案（约束模型）
+
+最终，我们建立的完整的数学模型包括11个变量和6个约束条件：
+
+`$$\begin{align}
+\textrm{Min}\quad (R_1-25.00)^2 + (R_2-20.00)^2 + (R_3-8.00)^2 + (R_4-30.00)^2 + (R_5+10.00)^2
+\end{align}$$`
+
+&gt; s.t.
+
+.page-font-24[
+
+`$$\begin{align}
+R_1 = +10.06FS +17.64IB +32.41LG +32.36LV +33.44SG +24.56SV
+\end{align}$$`
+
+`$$\begin{align}
+R_2 = +13.12FS +3.25IB +18.71LG +20.61LV +19.40SG +25.32SV
+\end{align}$$`
+
+`$$\begin{align}
+R_3 = +13.47FS +7.51IB +33.28LG +12.93LV +3.85SG -6.70SV
+\end{align}$$`
+
+`$$\begin{align}
+R_4 = +45.42FS -1.33IB +41.46LG +7.06LV +58.68SG +5.43SV
+\end{align}$$`
+
+`$$\begin{align}
+R_5 = -21.93FS +7.36IB -23.26LG -5.37LV -9.02SG +17.31SV
+\end{align}$$`
+
+`$$\begin{align}
+FS + IB + LG + LV + SG + SV=1
+\end{align}$$`
+
+`$$\begin{align}
+FS ,IB ,LG ,LV ,SG ,SV \geq 0
+\end{align}$$`
+
+]
+
+---
+
+## 指数化基金：共同基金方案（模型特点）
+
+.notes[
+
+上述约束模型特点：
+
+- 最小化问题是非线性的，因为目标函数中出现了二次项。
+
+- 因为每个平方项的系数是正的，并且没有交叉乘积项，所以目标函数是凸函数。
+
+- 因此可以保证局部最小值也是整体最小值。
+
+]
+
+
+---
+
+## 指数化基金：共同基金方案（Lingo求解）
+
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="../pic/chpt08-plan-nonlinear-solver-lingo.jpg" alt="LINGO求解结果" width="750" /&gt;
+&lt;p class="caption"&gt;LINGO求解结果&lt;/p&gt;
+&lt;/div&gt;
+
+---
+
+## 指数化基金：共同基金方案（模型结果解读）
+
+
+
+
+经软件计算可得约束模型求解结果：
+
+- 目标函数的最优解是4.426893，即回报差值的平方和。
+
+- 投资组合求解结果：
+
+  - 30.33%的基金投资于外国股票基金（FS=0.30334）
+  - 不投资中期债券基金（IB = 0.00000）
+  - 不投资大市值成长基金（LG = 0.00000）
+  - 36.50%的基金投资于大市值价值基金（LV=0.36498）
+  - 22.66%的基金投资于小市值成长基金（SG=0.22655）
+  - 10.51%的基金投资于小市值价值基金（SV=0.10513）
+
+
+
+---
+
+## 指数化基金：共同基金方案（模型结果解读）
+
+经软件计算可得约束模型求解结果：
+  
+- 年度方案的投资回报（%）结果：
+
+<div id="htmlwidget-eff6f597b50c5c1b3a9e" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-eff6f597b50c5c1b3a9e">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5"],[1,2,3,4,5],["25.02","18.56","8.97","30.22","-8.84"],["25.00","20.00","8.00","30.00","-10.00"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>方案年度<\/th>\n      <th>年度投资回报<\/th>\n      <th>标普500回报<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+
+---
+layout: false
+class: center, middle, duke-softblue,hide_logo
+name: invest
+
+# 8.3节 Markowitz投资组合模型
+
+---
+layout: true
+
+&lt;div class="my-header-h2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark1"&gt;&lt;/div&gt;
+
+&lt;div class="watermark2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark3"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@  &amp;emsp;&amp;emsp; &lt;a href="#chapter08"&gt; 第08章 非线性最优化模型&lt;/a&gt;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&lt;a href="#invest"&gt;8.3节 Markowitz投资组合模型&lt;/a&gt; &lt;/span&gt;&lt;/div&gt; 
+
+---
+
+## Markowitz投资组合模型：其人其事
+
+.fyi[
+
+Harry Markowitz以他为投资组合最优化做出的突出贡献，而荣获了1990年的诺贝尔奖。 
+
+- Markowitz均方差投资组合模型是非线性规划的一个典型应用。
+
+- 这个基本模型的大量变种已经被全世界的货币管理公司采用。
+
+- 大部分投资组合最优化模型必须在风险与回报之间做出一个关键权衡。
+
+- 为了获得更大的回报，投资者也必须面对更大的风险。
+
+]
+
+---
+
+## Markowitz投资组合模型：期望收益
+
+基于上一节Hauck公司的共同基金投资组合案例，我们进一步建立Markowitz均方差投资组合模型。
+
+- 给定年度投资方案的回报为
+`\(R_s\)`，方案被选中的概率为
+`\(p_s\)`，其中
+`\(s \in (1, 2 , \ldots,n)\)`。那么
+n个方案的投资组合的期望收益是：
+
+`$$\overline{R} = \sum_{s=1}^n{p_s}R_s$$`
+
+- 假定Hack金融服务公司中，5个计划方案有相同的选中概率，则
+
+`$$\overline{R} = \sum_{s=1}^5{1/5R_s} = 1/5\sum_{s=1}^5{R_s}$$`
+
+
+---
+
+## Markowitz投资组合模型：风险测量
+
+要想衡量上述投资组合的风险大小，这往往具有一定的测量难度。
+
+Markowitz投资组合模型最常用的风险测量是投资组合的**方差**：
+
+`$$\begin{align}
+\operatorname{Var}&amp;=\sum_{s=1}^{n} p_{s}\left(R_{s}-\overline{R}\right)^{2} \\
+\operatorname{Var}&amp;=\sum_{s=1}^{n} 1/5\left(R_{s}-\overline{R}\right)^{2} = 1/5 \sum_{s=1}^{n} \left(R_{s}-\overline{R}\right)^{2}
+\end{align}$$`
+
+- 假定Hauck的客户想要构建一个投资组合，来最小化由投资组合方差测量的风险。而且客户还要求预期的投资收益至少为10%。
+
+- 此时该如何构建分析模型？
+
+---
+
+## Markowitz投资组合模型：约束模型
+
+.page-font-19[
+
+我们建立的完整的数学模型包括9个约束条件：
+
+
+`$$\begin{align}
+Min \quad f=1/5 \sum_{s=1}^{5} \left(R_{s}-\overline{R}\right)^{2}
+\end{align}$$`
+
+&gt; s.t.
+
+
+
+`$$\begin{align}
+R_1 = +10.06FS +17.64IB +32.41LG +32.36LV +33.44SG +24.56SV
+\end{align}$$`
+
+`$$\begin{align}
+R_2 = +13.12FS +3.25IB +18.71LG +20.61LV +19.40SG +25.32SV
+\end{align}$$`
+
+`$$\begin{align}
+R_3 = +13.47FS +7.51IB +33.28LG +12.93LV +3.85SG -6.70SV
+\end{align}$$`
+
+`$$\begin{align}
+R_4 = +45.42FS -1.33IB +41.46LG +7.06LV +58.68SG +5.43SV
+\end{align}$$`
+
+`$$\begin{align}
+R_5 = -21.93FS +7.36IB -23.26LG -5.37LV -9.02SG +17.31SV
+\end{align}$$`
+
+`$$\begin{align}
+FS + IB + LG + LV + SG + SV=1
+\end{align}$$`
+
+`$$\begin{align}
+1/5 \sum_{s=1}^{5} {R_{s}}=\overline{R}
+\end{align}$$`
+
+
+`$$\begin{align}
+\overline{R}\geq10
+\end{align}$$`
+
+`$$\begin{align}
+FS ,IB ,LG ,LV ,SG ,SV \geq 0
+\end{align}$$`
+
+]
+
+---
+
+## Markowitz投资组合模型：Lingo求解
+
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="../pic/chpt08-markowitz-nonlinear-solver-lingo.jpg" alt="LINGO求解结果" width="850" /&gt;
+&lt;p class="caption"&gt;LINGO求解结果&lt;/p&gt;
+&lt;/div&gt;
+
+---
+
+## Markowitz投资组合模型：模型结果解读
+
+
+
+
+经软件计算可得约束模型求解结果：
+
+- 目标函数的最优解是`27.13615`，也即最小化投资组合的方差。
+
+- 投资组合求解结果：
+
+  - 15.84%的基金投资于外国股票基金（FS=0.15841）
+  - 52.55%的基金投资于中期债券基金（IB = 0.52548）
+  - 4.21%的基金投资于大市值成长基金（LG = 0.04207）
+  - 不投资大市值价值基金（LV = 0.00000）
+  - 不投资小市值成长基金（SG = NA）
+  - 27.40%的基金投资于小市值价值基金（LV = 0.27405）
+  
+---
+
+## Markowitz投资组合模型：期望收益VS风险
+
+&gt; 高收益预期，同时也就意味着高风险。
+
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="../pic/chpt08-markowitz-nonlinear-solver-efficiency.jpg" alt="期望收益VS风险" width="850" /&gt;
+&lt;p class="caption"&gt;期望收益VS风险&lt;/p&gt;
+&lt;/div&gt;
+
+---
+layout: false
+class: center, middle, duke-softblue,hide_logo
+name: blending
+
+# 8.4节 另一混合问题
+
+---
+layout: true
+
+&lt;div class="my-header-h2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark1"&gt;&lt;/div&gt;
+
+&lt;div class="watermark2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark3"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@  &amp;emsp;&amp;emsp; &lt;a href="#chapter08"&gt; 第08章 非线性最优化模型&lt;/a&gt;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&lt;a href="#blending"&gt;8.4  另一混合问题&lt;/a&gt; &lt;/span&gt;&lt;/div&gt; 
+
+---
+
+## 另一混合问题：引子
+
+在实际中常常有这样的情形，在混合地点存储混合成分的设备数目少于存储成分的数目。
+
+- 在这种情况下各成分必须共用存储罐或者存储设备。
+
+- 同样，当运输这些成分时，它们常常需要共同一个管道或者传输容器。
+
+- 共用一个存储设备或者管道的成分称作混合成分。
+
+---
+
+## 另一混合问题：炼油厂混合问题
+
+下面我们考虑一个炼油厂的案例情形。
+
+.pull-left[
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="../pic/chpt08-blending-demo.png" alt="炼油厂油料混合" width="550" /&gt;
+&lt;p class="caption"&gt;炼油厂油料混合&lt;/p&gt;
+&lt;/div&gt;
+
+]
+
+.pull-right[
+
+决策变量：
+
+- 
+`\(y_1=\)`混合罐中成分1的加仑数
+
+- 
+`\(y_2=\)`混合罐中成分2的加仑数
+
+- 
+`\(x_{pr}=\)`常规汽油中混合成分1和成分2的加仑数
+
+- 
+`\(x_{pp}=\)`优质汽油中混合成分1和成分2的加仑数
+
+- 
+`\(x_{3r}=\)`常规汽油中成分3的加仑数
+
+- 
+`\(x_{3p}=\)`优质汽油中成分3的加仑数
+
+]
+
+在上图中，成分1和成分2混合在一个单独的存储罐，成分3有它自己的存储罐。常规和优质汽油由混合成分和成分3混合而成。
+
+---
+
+## 另一混合问题：考虑的混合问题
+
+炼油厂至少需要做出两类决策：
+
+.pull-left[
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="../pic/chpt08-blending-demo.png" alt="炼油厂油料混合" width="550" /&gt;
+&lt;p class="caption"&gt;炼油厂油料混合&lt;/p&gt;
+&lt;/div&gt;
+]
+
+.pull-right[
+
+- 第一，多少比例的成分1和成分2应该用于混合成混合物？
+
+- 第二，多少混合罐中成分1和成分2的混合物将与成分3混合来生产常规和优质汽油？
+
+]
+
+---
+
+## 另一混合问题：生产情形
+
+下面我们把炼油厂的生产情形表达出来：
+
+.pull-left[
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="../pic/chpt08-blending-demo.png" alt="炼油厂油料混合" width="550" /&gt;
+&lt;p class="caption"&gt;炼油厂油料混合&lt;/p&gt;
+&lt;/div&gt;
+]
+
+.pull-right[
+
+.page-font-21[
+
+生产的总加仑数：
+
+- 常规汽油
+`\(Q_r=x_{pr}+x_{3r}\)`
+- 优质汽油
+`\(Q_p=x_{pp}+x_{3p}\)`
+
+使用的总石油成分：
+
+- 消耗的成分1和成分2：
+`\(y_1+y_2=x_{pr}+x_{pp}\)`
+- 消耗的成分3：
+`\(x_{3r}+x_{3p}\)`
+
+
+成分可用量：
+
+- 成分1
+`\(y_1≤500\)`
+- 成分2
+`\(y_2≤10000\)`
+- 成分3
+`\(x_{3r}+x_{3p}≤10000\)`
+
+]
+
+]
+
+---
+
+## 另一混合问题：生产情形
+
+.pull-left[
+
+汽油产品的**具体要求**：
+
+- 常规汽油
+  
+  - 最多30%成分1
+  - 最少40%成分2
+  - 最多20%成分3
+
+- 优质汽油
+  - 最少25%成分1
+  - 最多45%成分2
+  - 最少30%成分3
+
+]
+
+.pull-right[
+
+**汽油价格**：
+
+- 常规汽油价格是2.9$/每加仑
+- 优质汽油价格是3.0$/每加仑
+
+**石油成分成本**：
+
+- 成分1、成分2、成分3的成本分别是2.5$、2.6$、2.84$。
+
+**最低产能**：
+
+- 生产至少10000加仑常规汽油。
+
+]
+
+
+---
+
+## 另一混合问题：约束模型（1/3）
+
+故此混合问题的完整非线性模型包含6个决策变量和12个约束条件。
+
+`$$\begin{align}
+\textrm{Max} 
+\quad f = &amp;2.9\left(x_{p r}+x_{3 r}\right)+3.00\left(x_{p p}+x_{3 p}\right) -
+2.5 y_{1}-2.6 y_{2}-2.84\left(x_{3 r}+x_{3 p}\right)
+\end{align}$$`
+
+
+`$$\begin{align}
+\begin{array}{ll}
+\text { s.t. } &amp;\text{(未完待续)} &amp;&amp;\\   
+&amp; y_{1}+y_{2} &amp;=x_{p r}+x_{p p} &amp;&amp;\text{(eq 1)}\\
+&amp;\left(\frac{y_{1}}{y_{1}+y_{2}}\right) x_{p r} &amp; \leq 0.3\left(x_{p r}+x_{3 r}\right) &amp;&amp;\text{(eq 2)}\\
+&amp;\left(\frac{y_{2}}{y_{1}+y_{2}}\right) x_{p r} &amp; \geq 0.4\left(x_{p r}+x_{3 r}\right) &amp;&amp;\text{(eq 3)}\\
+&amp;x_{3 r} &amp; \leq 0.2\left(x_{p r}+x_{3 r}\right)  &amp;&amp;\text{(eq 4)}\\
+&amp;\left(\frac{y_{1}}{y_{1}+y_{2}}\right) x_{p p} &amp; \geq 0.25\left(x_{p p}+x_{3 p}\right)  &amp;&amp;\text{(eq 5)}\\
+&amp;\left(\frac{y_{2}}{y_{1}+y_{2}}\right) x_{p p} &amp; \leq 0.45\left(x_{p p}+x_{3 p}\right)  &amp;&amp;\text{(eq 6)}\\
+&amp;x_{3 p} &amp; \geq 0.3\left(x_{p p}+x_{3 p}\right) &amp;&amp;\text{(eq 7)}
+\end{array}
+\end{align}$$`
+
+
+---
+
+## 另一混合问题：约束模型（2/3）
+
+
+故此混合问题的完整非线性模型包含6个决策变量和12个约束条件。
+
+`$$\begin{align}
+\textrm{Max} 
+\quad f = &amp;2.9\left(x_{p r}+x_{3 r}\right)+3.00\left(x_{p p}+x_{3 p}\right) -
+2.5 y_{1}-2.6 y_{2}-2.84\left(x_{3 r}+x_{3 p}\right)
+\end{align}$$`
+
+
+`$$\begin{align}
+\begin{array}{ll}
+\text { s.t. } &amp;\text{(未完待续)} &amp;&amp;\\   
+&amp;y_{1} &amp; \leq 5000   &amp;&amp;\text{(eq 8)}\\
+&amp;y_{2} &amp; \leq 10,000  &amp;&amp;\text{(eq 9)}\\
+&amp;x_{3 r}+x_{3 p} &amp; \leq 10,000 &amp;&amp;\text{(eq 10)}\\
+&amp;x_{p r}+x_{3 r} &amp; \geq 10,000  &amp;&amp;\text{(eq 11)}\\
+&amp;x_{p r}, x_{p p}, x_{3 r}, x_{3 p}, y_{1}, y_{2} &amp; \geq 0 
+\end{array}
+\end{align}$$`
+
+---
+
+## 另一混合问题：约束模型（3/3）
+
+故此混合问题的完整非线性模型包含6个决策变量和12个约束条件。
+
+`$$\begin{align}
+\textrm{Max} 
+\quad f = &amp;2.9\left(x_{p r}+x_{3 r}\right)+3.00\left(x_{p p}+x_{3 p}\right) -
+2.5 y_{1}-2.6 y_{2}-2.84\left(x_{3 r}+x_{3 p}\right)
+\end{align}$$`
+
+.fyi[
+
+其中：
+- 
+`\(\left(\frac{y_{2}}{y_{1}+y_{2}}\right)\)`成分1在混合池的占比
+
+- `\(\left(\frac{y_{2}}{y_{1}+y_{2}}\right)x_{pr}\)`成分1在混合池的存量
+]
+
+---
+
+## 另一混合问题：Lingo求解
+
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="../pic/chpt08-blending-nonlinear-solver-lingo.jpg" alt="LINGO求解结果" width="850" /&gt;
+&lt;p class="caption"&gt;LINGO求解结果&lt;/p&gt;
+&lt;/div&gt;
+
+---
+
+## 另一混合问题：模型结果解读
+
+
+
+
+经软件计算可得约束模型求解结果：
+
+- 目标函数的最优解是`5831.43`，也即大化销售收益。
+
+- 投资组合求解结果：
+
+  - 常规汽油中混合成分1和成分2的加仑数为（
+  `\(x_{pr}=8 000.00\)`）
+  - 常规汽油中成分3的加仑数（
+  `\(x_{3r}=2 000.00\)`）
+  - 优质汽油中混合成分1和成分2的加仑数（
+  `\(x_{pp}=6 000.00\)`）
+  - 优质汽油中成分3的加仑数（
+  `\(x_{3p}=2 571.43\)`）
+  - 混合罐中成分1的加仑数（
+  `\(y_{1}=5 000.00\)`）
+  - 混合罐中成分d的加仑数（
+  `\(y_{2}=9 000.00\)`）
+
+---
+
+## 另一混合问题：模型结果解读（混合情形）
+
+.fyi[
+显然，上述案例中炼油公司因为缺乏足够的存储罐分别存储各种石油成分，因此不得不进行混装（混合情形，成分1和成分2混装在一起）
+]
+
+
+此时，混合解的结果可以计算如下：
+
+
+
+
+<div id="htmlwidget-a27762b5101a09455030" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a27762b5101a09455030">{"x":{"filter":"none","vertical":false,"caption":"<caption>Grand strand混合解（加仑数,%）<\/caption>","data":[["1","2"],["常规","优质"],["2857.143(28.57%)","2142.857(25%)"],["5142.857(51.43%)","3857.143(45%)"],["2000(20%)","2571.429(30%)"],["10,000","8571.429"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>汽油品类<\/th>\n      <th>成分1<\/th>\n      <th>成分2<\/th>\n      <th>成分3<\/th>\n      <th>合计<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+
+---
+
+## 另一混合问题：模型结果解读（混合情形）
+
+例如，常规汽油中成分1的含量计算为：
+
+`$$\begin{align}
+\left(\frac{y_{1}}{y_{1}+y_{2}}\right) x_{p r}=\left(\frac{5000}{5000+9000}\right) 8000=2857.143
+\end{align}$$`
+
+.puzzle[
+
+此外，无论是常规汽油还是优质汽油，成分1和成分2的数量比都是一样的（请思考：为什么？）
+
+`$$\begin{align}
+\frac{2857.143}{5142.857}=0.556=\frac{2142.857}{3857.143}
+\end{align}$$`
+
+]
+
+---
+
+## 另一混合问题：模型结果解读（未混合情形）
+
+.fyi[
+事实上，假设炼油公司有足够的存储罐分别存储各种石油成分（未混合情形），那么混合解的结果则可以大不一样。
+]
+
+
+
+
+<div id="htmlwidget-861c530ae7f6bad653fc" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-861c530ae7f6bad653fc">{"x":{"filter":"none","vertical":false,"caption":"<caption>未进行混合下的Grand strand混合解（加仑数,%）<\/caption>","data":[["1","2"],["常规","优质"],["1250(12.50%)","3750(25%)"],["6750(67.50%)","3250(21.67%)"],["2000(20%)","8000(53.33%)"],["10,000","15,000"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>汽油品类<\/th>\n      <th>成分1<\/th>\n      <th>成分2<\/th>\n      <th>成分3<\/th>\n      <th>合计<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+
+此时，常规汽油和优质汽油，成分1和成分2的数量比则可以是不一样的：
+
+`$$\begin{align}
+1250/6750 &amp;=0.1852 &amp;&amp;\text{(常规汽油)}\\
+{3750/3250} &amp;=1.1538 &amp;&amp; \text{(优质汽油)}
+\end{align}$$`
+
+---
+
+## 另一混合问题：模型结果解读（总结）
+
+
+.notes[
+
+案例分析总结：
+
+- 对所有石油成分需要足够存储罐的缺乏，减少了混合可行解的数目，转而又导致生产较低的利润。
+
+- 事实上，这个模型的一个应用是在存储罐缺乏的情况下，为管理层提供一个关于利润损失的良好估计方法。
+
+- 管理层就能够据此评估购买更多存储罐的营利性。
+
+]
+
+---
+layout: false
+class: center, middle, duke-softblue,hide_logo
+name: new
+
+# 8.5节 预测新产品的使用
+
+---
+layout: true
+
+&lt;div class="my-header-h2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark1"&gt;&lt;/div&gt;
+
+&lt;div class="watermark2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark3"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@  &amp;emsp;&amp;emsp; &lt;a href="#chapter08"&gt; 第08章 非线性最优化模型&lt;/a&gt;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&lt;a href="#new"&gt;8.5 预测新产品的使用&lt;/a&gt; &lt;/span&gt;&lt;/div&gt; 
+
+---
+
+## 预测新产品的使用：Bass预测模型
+
+.fyi[
+这一节中，我们介绍由Frank Bass建立的一个预测模型，这个模型已经被证明对预测创新和新技术在市场上的使用特别有效。
+]
+
+这个模型有3个参数必须进行估计。
+
+- 
+`\(m=\)`最终使用新产品的估计人数
+
+- 
+`\(q=\)`模仿系数，测量影响购买的口碑效应
+
+- 
+`\(p=\)`创新系数，测量了在假定没有受到他人已购买产品的影响时使用的可能性。
+		
+- 
+`\(C_{t-1}\)` 表示到时间
+`\(t-1\)`已经使用的人数
+
+---
+
+## 预测新产品的使用：模型定义
+
+利用这些参数，可以建立预测模型。
+
+- `\(m\)`是最终使用产品的估计人数，所以，
+`\(m-C_{t-1}\)`是在时刻
+`\(t-1\)`剩下的潜在使用者的数目。
+
+- 使用新产品的可能性是由于模仿而使用的可能性加上由于创新而使用的可能性。
+
+- 因为
+`\(C_{t-1}/m\)`是到时间
+`\(t-1\)`使用产品的估计人数的比例，设模仿系数为
+`\(q\)`，则由于模仿而使用的可能性为
+`\(q(C_{t-1}/m)\)` 。
+
+- 由于创新而使用的可能性简单的可以看成是创新系数
+`\(p\)`。因此，使用的可能性为
+`\(p+ q(C_{t-1}/m)\)`。
+
+因此，在时期
+`\(t\)`新使用者人数的预测为：
+
+`$$F_t = \left(p+ q\cdot(C_{t-1}/m) \right)\cdot (m- C_{t-1})$$`
+.footnote[
+在上式中给出的Bass预测模型根据统计原理，能精确的导出，而不是提供一个强调模型直观方面的推导。
+在用Bass模型建立时期t新产品使用的预测时，Ct-1的值将从过去的销售数据中得到。但是我们也需要知道用于模型的参数值。
+]
+
+---
+
+## 预测新产品的使用：电影票房
+
+现在让我们来看看电影票房案例中，如何用非线性规划来估计参数值m、p、q。
+
+考虑下图，其反映了《再生之旅》、《终结者3》在发行后前12周票房收益（单位：百万美元）。
+
+.pull-left[
+
+&lt;img src="../pic/chpt08-new-prod-return-film01.png" width="565" height="300" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+
+&lt;img src="../pic/chpt08-new-prod-return-film02.png" width="607" height="300" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+## 预测新产品的使用：票房分析
+
+这两部电影有力的说明了不同的使用模式：
+
+- 《再生之旅》的收益一直增长，直到第四周开始下降，这部电影的大部分收益明显是由于口碑影响的。根据Bass模型，就是模仿因素强于创新因素，并且预期
+`\(q＞p\)`。
+
+- 电影《终结者3》收益峰值在第一周，之后急剧下降，说明创新因素强于模仿因素，预期
+`\(q＜p\)`。
+
+
+
+.pull-left[
+
+&lt;img src="../pic/chpt08-new-prod-return-film01.png" width="565" height="300" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+
+&lt;img src="../pic/chpt08-new-prod-return-film02.png" width="607" height="300" style="display: block; margin: auto;" /&gt;
+]
+
+
+---
+
+## 预测新产品的使用：预测及误差
+
+可以结合一个非线性最优化问题到预测模型等式中来，以找到对一系列数据给出最佳预测的
+`\(p、q、m\)`的值。
+
+- 假定有
+`\(N\)`期数据可用。
+
+- `\(S_t\)`表示在时期
+`\(t\)`使用者的实际数量
+`\((t=1, 2, \ldots,N)\)`。
+
+因此，每期的预测数
+`\(F_t\)`和对应的预测误差
+`\(E_t\)`定义为：
+
+`$$\begin{align}
+F_t &amp;= \left(p+ q\cdot(C_{t-1}/m) \right)\cdot (m- C_{t-1}) \\
+E_t &amp;= F_t - S_t 
+\end{align}$$`
+
+---
+
+## 预测新产品的使用：约束模型
+
+预测误差是预测值与实际值之间的差值，用最小化误差平方和来估计参数是很普遍的，由此可导出下面的非线性最优化问题：
+
+
+`$$\begin{align}
+\textrm{Min} \quad &amp;\sum_{t=1}^{N}{E^2_t} \\
+\textrm{s.t.} \quad &amp; \\
+&amp;F_t = \left(p+ q\cdot(C_{t-1}/m) \right)\cdot (m- C_{t-1}) \\
+&amp; E_t = F_t - S_t, \quad t \in (1, 2, \ldots,N)
+\end{align}$$`
+
+
+---
+
+## 预测新产品的使用：数据
+
+
+
+下表反映了《再生之旅》的票房收益
+`\(S_t\)`与累积收益
+`\(C_t\)`。
+
+
+<div id="htmlwidget-19ae09a8297df755bdd1" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-19ae09a8297df755bdd1">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"caption":"<caption>电影'再生之旅'的票房收益和累积收益（百万美元）<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12"],[1,2,3,4,5,6,7,8,9,10,11,12],[0.1,3,5.2,7,5.25,4.9,3,2.4,1.9,1.3,0.8,0.6],[0.1,3.1,8.3,15.3,20.55,25.45,28.45,30.85,32.75,34.05,34.85,35.45]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>周次<\/th>\n      <th>收益S_t<\/th>\n      <th>累计收益C_t<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Btp","columnDefs":[{"targets":1,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":6,"buttons":["copy","csv","excel"],"initComplete":"function(settings, json) {\n$(this.api().table().header()).css({'background-color': '#517fb9', 'color': '#fff'});\n}","order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[6,10,25,50,100]},"callback":"function(table) {\n$(\"button.buttons-copy\").css(\"background\",\"yellow\");\n                $(\"button.buttons-csv\").css(\"background\",\"orange\");\n                $(\"button.buttons-excel\").css(\"background\",\"#a88d32\");\n                $(\"button.dt-button\").css(\"padding\",\"0.2em 0.2em\");\n                $(\"button.dt-button\").css(\"font-size\",\"0.6em\");\n                $(\"button.dt-button\").css(\"margin-right\",\"0.2em\");\n                $(\"button.dt-button\").css(\"margin-bottom\",\"0.1em\");\n                $(\"button.dt-button\").css(\"line-height\",\"1em\");\n                return table;\n}"},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.initComplete","callback"],"jsHooks":[]}</script>
+
+
+
+---
+
+## 预测新产品的使用：数据建模
+
+利用上述数据，为《再生之旅》的Bass预测模型估计参数非线性模型如下：
+
+`$$\begin{align}
+\text { Min } \quad E_{1}^{2} &amp;+E_{2}^{2}+\cdots+E_{12}^{2} \\
+\text { s.t. } \quad F_{1} &amp;=(p) m \\
+F_{2} &amp;=\left[p+q(0.10 / m)\right](m - 0.10) \\
+F_{3} &amp;=[p+q(3.10 / m)](m - 3.10) \\
+&amp; \vdots \\
+F_{12} &amp;=[p+q(34.85 / m)](m - 34.85) \\
+E_{1} &amp;=F_{1}-0.10 \\
+E_{2} &amp;=F_{2}-3.00 \\
+&amp; \vdots \\
+E_{12} &amp;=F_{12}-0.60
+\end{align}$$`
+
+---
+
+## 预测新产品的使用：lingo解
+
+《再生之旅》非线性规划模型的LINGO解和类似的《终结者3》的非线性规划解如下表所示：
+
+
+
+
+<div id="htmlwidget-702aa0e5e8dde99b1322" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-702aa0e5e8dde99b1322">{"x":{"filter":"none","vertical":false,"caption":"<caption>两部电影的Lingo解<\/caption>","data":[["1","2","3"],["p","q","m"],[0.074,0.49,34.85],[0.49,20.018,149.54]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>参数<\/th>\n      <th>再生之旅<\/th>\n      <th>终结者3<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\", null);\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\", null);\n  }"},{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render"],"jsHooks":[]}</script>
+
+
+- 电影《再生之旅》表现为良好的口碑效应，其模仿系数
+`\(q=0.49\)`，显著地大于创新系数
+`\(p = 0.074\)`。但是在第4周之后，票房收入快速下降。
+
+- 而电影《终结者3》在上映第一周则收获高票房，然后持续下跌。其模仿系数
+`\(q=-0.018\)`，而创新系数高达
+`\(p = 0.49\)`。显然，口碑或者媒体宣传对票房都没有作用。
+
+---
+
+## 预测新产品的使用：预测
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="../pic/chpt08-bass-film-forcast.jpg" alt="票房收入的预测值与实际值" width="1677" height="350" /&gt;
+&lt;p class="caption"&gt;票房收入的预测值与实际值&lt;/p&gt;
+&lt;/div&gt;
+
+&gt; Bass预测模型能很好地描述《再生之旅》的收益。 对《终结者3》，Bass模型预测准确性更加明显。
+
+---
+
+## 预测新产品的使用：评析
+
+.fyi[
+你可能想知道，如果我们必须等到使用周期结束后才能估计参数，那么了解预测模型有什么好处？
+
+]
+
+- 新产品使用Bass预测模型的一种方法是，假定新产品销售的表现方式相似于之前的一种品，且这种产品的p和q已计算出来，我们只需再主观估计出新产品的潜在市场m。
+
+&gt; 例如，DVD播放器的销售相似于VCR的销售。那么用于DVD预测的p和q将是从VCR实际销出的P和q的值。
+
+- 第二种方法是等到有多期新产品数据可用后再预测。
+
+&gt; 例如，如果有5期销售数据可以用于预测第6期的需求。然后，在得到这6期的销售这个方法常被称做**滚动时域法**。
+
+
+
+---
+layout:false
+background-image: url("../pic/thank-you-gif-funny-little-yellow.gif")
+class: inverse,center
+# 本章结束
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="libs/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

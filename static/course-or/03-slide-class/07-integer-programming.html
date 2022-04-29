@@ -1,0 +1,2261 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>07-integer-programming.knit</title>
+    <meta charset="utf-8" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/duke-blue.css" rel="stylesheet" />
+    <link href="libs/remark-css/hygge-duke.css" rel="stylesheet" />
+    <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
+    <script src="libs/htmlwidgets/htmlwidgets.js"></script>
+    <link href="libs/datatables-css/datatables-crosstalk.css" rel="stylesheet" />
+    <script src="libs/datatables-binding/datatables.js"></script>
+    <script src="libs/jquery/jquery-3.6.0.min.js"></script>
+    <link href="libs/dt-core/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="libs/dt-core/css/jquery.dataTables.extra.css" rel="stylesheet" />
+    <script src="libs/dt-core/js/jquery.dataTables.min.js"></script>
+    <script src="libs/jszip/jszip.min.js"></script>
+    <link href="libs/dt-ext-buttons/css/buttons.dataTables.min.css" rel="stylesheet" />
+    <script src="libs/dt-ext-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="libs/dt-ext-buttons/js/buttons.html5.min.js"></script>
+    <script src="libs/dt-ext-buttons/js/buttons.colVis.min.js"></script>
+    <script src="libs/dt-ext-buttons/js/buttons.print.min.js"></script>
+    <link href="libs/crosstalk/css/crosstalk.min.css" rel="stylesheet" />
+    <script src="libs/crosstalk/js/crosstalk.min.js"></script>
+    <link rel="stylesheet" href="../mycss/my-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../mycss/my-font.css" type="text/css" />
+    <link rel="stylesheet" href="../mycss/my-custom-for-video-roomy.css" type="text/css" />
+    <link rel="stylesheet" href="../mycss/text-box.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+background-image: url("../pic/slide-front-page.jpg")
+class: center,middle
+exclude: FALSE
+
+# 数据、模型与决策&lt;/br&gt;&lt;/br&gt;(Data, Model and Decision)
+
+&lt;!---    chakra: libs/remark-latest.min.js ---&gt;
+
+### 胡华平
+
+### 西北农林科技大学
+
+### 经济管理学院数量经济教研室
+
+### huhuaping01@hotmail.com
+
+### 2022-04-29
+
+
+
+
+
+
+
+<div>
+<style type="text/css">.xaringan-extra-logo {
+width: 110px;
+height: 70px;
+z-index: 0;
+background-image: url(../pic/logo/nwafu-logo-circle-wb.png);
+background-size: contain;
+background-repeat: no-repeat;
+position: absolute;
+top:0.2em;left:1em;
+}
+</style>
+<script>(function () {
+  let tries = 0
+  function addLogo () {
+    if (typeof slideshow === 'undefined') {
+      tries += 1
+      if (tries < 10) {
+        setTimeout(addLogo, 100)
+      }
+    } else {
+      document.querySelectorAll('.remark-slide-content:not(.title-slide):not(.inverse):not(.hide_logo)')
+        .forEach(function (slide) {
+          const logo = document.createElement('div')
+          logo.classList = 'xaringan-extra-logo'
+          logo.href = null
+          slide.appendChild(logo)
+        })
+    }
+  }
+  document.addEventListener('DOMContentLoaded', addLogo)
+})()</script>
+</div>
+
+---
+class: center, middle, duke-orange,hide_logo
+name: chapter07
+exclude: FALSE
+
+# 第07章  整数线性规划
+
+### [7.1 整数线性规划的的分类](#cat)
+
+### [7.2 全整数线性规划的图解法](#graph)
+
+### [7.3 含有0-1变量的整数线性规划的应用](#dummy)
+
+### [7.4 0-1整数变量在建模过程中的灵活性分析](#flexibility)
+
+
+
+---
+layout: false
+class: center, middle, duke-softblue,hide_logo
+name: cat
+
+# 7.1节 整数线性规划的的分类
+
+---
+layout: true
+
+&lt;div class="my-header-h2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark1"&gt;&lt;/div&gt;
+
+&lt;div class="watermark2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark3"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@  &amp;emsp;&amp;emsp; &lt;a href="#chapter07"&gt; 第07章 整数线性规划&lt;/a&gt;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&lt;a href="#cat"&gt;7.1 整数线性规划的的分类&lt;/a&gt; &lt;/span&gt;&lt;/div&gt; 
+
+---
+
+## 整数线性规划：概念
+
+本章将讨论可以被构建成线性规划的一类模型。
+
+**整数线性规划**模型的概念：
+
+- 至少有一个变量是**整数**（integer）线性规划问题的模型。
+
+- 如果所有变量均为整数，就称其为**全整数线性规划**模型。
+
+---
+
+## 整数线性规划：特点
+
+**整数线性规划**建模的特点：
+
+- 整数变量（特别是0-1变量）可以使建模变得十分灵活，具有广泛的实践应用。
+
+- 但是整数线性规划问题，通常比较难以求解。
+
+
+.fyi[
+**对比**：
+
+- 一个含有上千个**连续变量**的线性规划问题，可以使用任何一款线性规划求解软件轻松进行求解。
+
+- 但是一个含有少于100个全整数变量的线性规划问题缺极难解决。
+
+]
+
+---
+
+## 整数线性规划的分类：全整数线性规划
+
+- **全整数线性规划**（all integer linear program）：所有决策变量均为整数的线性规划模型。
+
+.case[
+
+`$$\begin{align}
+\begin{array}{ll}
+\operatorname{Max} &amp; 2 x_{1}+3 x_{2} \\
+\text { s.t. } &amp; &amp;&amp;\\
+&amp; 3 x_{1}+3 x_{2} &amp;&amp;\leq 12 \\
+&amp; 2 / 3 x_{1}+1 x_{2} &amp;&amp;\leq 4 \\
+&amp; 1 x_{1}+2 x_{2} &amp;&amp;\leq 6 \\
+&amp; x_{1}, x_{2} &amp;&amp; \geq 0, \text {且为整数}
+\end{array}
+\end{align}$$`
+
+]
+
+注意：
+
+- 如果去掉此模型中的“整数”一词，将得到我们所熟悉的双变量线性规划。
+
+- 去掉整数要求后得到的线性规划称做整数线性规划的**LP松弛**。
+
+---
+
+## 整数线性规划的分类：混合整数线性规划
+
+- **混合整数线性规划**（mixed integer linear program）：只有一些决策变量是整数，而非全部变量都是整数的线性规划模型。
+
+.case[
+
+`$$\begin{align}
+\begin{array}{ll}
+\operatorname{Max} &amp; 3 x_{1}+4 x_{2} &amp;&amp; \\
+\text { s.t. } &amp; &amp;&amp;\\
+&amp;-1 x_{1}+2 x_{2} &amp;&amp; \leq 8 \\
+&amp;1 x_{1}+2 x_{2} &amp;&amp; \leq 12 \\
+&amp;2 x_{1}+1 x_{2} &amp;&amp; \leq 16 \\
+&amp;x_{1}, x_{2} &amp;&amp; \geq 0, \text {而且} x_{2} \text {为整数}
+\end{array}
+\end{align}$$`
+
+]
+
+**注意**：
+
+- 去掉“x2为整数”后，我们将得到此**混合整数线性规划**的LP松弛。
+
+---
+
+## 整数线性规划的分类：0-1整数线性规划
+
+**0-1整数线性规划**（0-1 integer linear program）：
+
+- 整数变量只能取0或1，这类规划被称做0-1整数线性规划。
+
+
+---
+layout: false
+class: center, middle, duke-softblue,hide_logo
+name: graph
+
+# 7.2节 全整数线性规划的图解法
+
+---
+layout: true
+
+&lt;div class="my-header-h2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark1"&gt;&lt;/div&gt;
+
+&lt;div class="watermark2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark3"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@  &amp;emsp;&amp;emsp; &lt;a href="#chapter07"&gt; 第07章 整数线性规划&lt;/a&gt;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&lt;a href="#graph"&gt;7.2 全整数线性规划的图解法&lt;/a&gt; &lt;/span&gt;&lt;/div&gt; 
+
+---
+
+### 伊斯特伯恩房地产公司：案例背景
+
+.case[
+**案例说明**：
+
+- 伊斯特伯恩房地产公司有200万美元可用于购买新的租赁财产。
+
+- 经筛选，公司已将投资项目的方案减少为联体别墅和公寓楼。
+
+- 每套联体别墅售价282,000美元，现有5套空置。
+
+- 每幢公寓楼售价400,000美元，而且开发商可以根据伊斯特伯恩公司的需要数量建房。
+
+
+]
+
+---
+
+### 伊斯特伯恩房地产公司：关注的问题
+
+.case[
+**关注问题**：
+
+- 伊斯特伯恩公司的财产经理每月有140小时用来处理这些新置财产，其中：
+
+  - 每套联体别墅预计每月要花4小时
+  
+  - 每幢公寓楼预计每月40小时
+
+- 扣除抵押偿还和经营成本后，年现金流量预计为：
+
+  - 每套联体别墅10000美元
+  
+  - 每幢公寓楼15000美元
+
+- 伊斯特伯恩的股东想知道：
+
+&gt; 在保证**年现金流量**最大的要求下，购买联体别墅和公寓楼的数量分别是多少？
+]
+
+---
+
+### 伊斯特伯恩房地产公司：决策变量和目标函数
+
+.pull-left[
+根据案例**已知**：
+
+- 预计年现金流：别墅为
+`\(F_t=10\)`千美元；公寓为
+`\(F_a=15\)`千美元；
+
+]
+
+.pull-right[
+
+我们定义**决策变量**如下：
+- 
+`\(T\)`：联体别墅的数量
+
+- 
+`\(A\)`：公寓楼的数量
+
+]
+
+------
+
+那么，目标函数为最大化房屋资产的年现金流：
+
+`$$\textrm{Max} \quad f
+= F_t\times T+F_a \times A
+= 10 T+15  A$$`
+
+---
+
+### 伊斯特伯恩房地产公司：约束条件
+
+.pull-left[
+根据案例**已知**：
+
+- 房产售价：别墅为
+`\(P_t=282\)`千美元；公寓为
+`\(P_a=400\)`千美元；
+
+- 预计年现金流：别墅为
+`\(F_t=10\)`千美元；公寓为
+`\(F_a=15\)`千美元；
+
+]
+
+.pull-right[
+
+我们还知道：
+
+- 可用资金2000千美元；
+
+- 别墅空置数为5套
+
+- 经理可用处理时间总数为140小时
+
+- 处理每套别墅需要耗时4小时/每月
+
+- 处理每套公寓需要耗时40小时/每月
+
+]
+
+------
+
+进一步地，我们可以得到如下约束条件：
+
+`$$\begin{align}
+282T+400A &amp;≤2000  &amp;&amp;\text{(可用资金)} \\
+4T+40A &amp;≤140    &amp;&amp;\text{(管理者的时间)} \\
+T &amp;≤5      &amp;&amp; \text{(可得联体别墅)} \\
+T,A &amp; ≥0, &amp;&amp; \text{(且均为整数)}
+\end{align}$$`
+
+---
+
+### 伊斯特伯恩房地产公司：全整数线性规划模型
+
+最终，伊斯特伯恩房地产问题的模型为如下的**全整数线性规划**：
+
+`$$\begin{align}
+\begin{array}{ll}
+\textrm{Max} \quad f&amp;=  10 T+15 A &amp; &amp;&amp;\\
+\text { s.t. } &amp; &amp;&amp;\\
+&amp;282T+400A &amp;≤2000  &amp;&amp;\text{(可用资金)} \\
+&amp;4T+40A &amp;≤140    &amp;&amp;\text{(管理者的时间)} \\
+&amp;T &amp;≤5      &amp;&amp; \text{(可得联体别墅)} \\
+&amp;T,A &amp; ≥0, &amp;&amp; \text{(且均为整数)}
+\end{array}
+\end{align}$$`
+
+---
+
+### 伊斯特伯恩房地产公司：转换为连续变量线性规划模型
+
+
+- 现在我们去掉决策变量T和A必须为整数的约束条件
+
+- 得到连续变量线性规划的LP松弛模型
+
+- 我们先来求解伊斯特伯恩公司的**LP松弛**问题：
+
+`$$\begin{align}
+\begin{array}{ll}
+\textrm{Max} \quad f&amp;=  10 T+15 A &amp; &amp;&amp;\\
+\text { s.t. } &amp; &amp;&amp;\\
+&amp;282T+400A &amp;≤2000  &amp;&amp;\text{(可用资金)} \\
+&amp;4T+40A &amp;≤140    &amp;&amp;\text{(管理者的时间)} \\
+&amp;T &amp;≤5      &amp;&amp; \text{(可得联体别墅)} \\
+&amp;T,A &amp; ≥0
+\end{array}
+\end{align}$$`
+
+---
+
+### 伊斯特伯恩房地产公司：LP松弛的图解法
+
+- 运用第2章中的图解步骤，可以得到最优的线性规划解法。
+
+
+&lt;img src="../pic/chpt07-house-LP-solution.png" width="614" style="display: block; margin: auto;" /&gt;
+
+
+
+---
+
+### 伊斯特伯恩房地产公司：LP松弛解的结果
+
+
+.pull-left[
+
+&lt;img src="../pic/chpt07-house-LP-solution.png" width="706" style="display: block; margin: auto;" /&gt;
+
+]
+
+.pull-right[
+
+此时：
+
+- 最优解为：
+`\(T=2.479\)`套联体别墅，
+`\(A=3.252\)`幢公寓楼
+
+- 目标函数的最优值为73.574千美元
+
+]
+
+
+- 然而，公司无法购买零星数量的联体别墅和公寓楼
+
+- 因此，我们还需要进一步分析
+
+---
+
+### 伊斯特伯恩房地产公司：近似整数解
+
+- 大多数情况下，可以通过使用本节的方法来求得可接受的整数解。
+
+.case[
+
+例如:
+
+- 关于生产进度问题求得的线性规划结果可能要求生产15132.4箱谷类食品。
+
+- 其近似结果为15132箱，而近似解对目标函数的值及其结果的可行性只产生极小的影响。
+
+- 因此，近似是一个较好的方法。
+]
+
+.notes[
+- 实际上，只要对目标函数的约束条件只产生极小的影响，大多数管理者都可以接受。此时，一个近似解就够了。
+
+- 然而近似并不是一个万能的方法。当决策变量取很小的数值就对目标函数的值和结果的可行性产生较大影响时，就需要一个最优的整数解
+
+]
+
+---
+
+### 伊斯特伯恩房地产公司：尝试近似整数解
+
+
+前面已知伊斯特伯恩房地产公司LP松弛解的结果：
+
+- 最优解为：
+`\(T=2.479\)`套联体别墅，
+`\(A=3.252\)`幢公寓楼
+
+- 目标函数的最优值为
+`\(73.574\)`千美元
+
+假设我们把LP松弛的解近似到整数，则有：
+
+- 近似整数解为
+`\(T=2,A=3\)`
+
+- 目标函数值为：
+`\(10 T+15 A= 10*2+15*3=65\)`千美元
+
+- 而且这个近似整数解也满足所有的松弛LP条件：
+
+`$$\begin{align}
+\begin{array}{ll}
+&amp;282T+400A=282\times 2+400 \times3 =1764&amp;≤2000  &amp;&amp;\text{(可用资金)} \\
+&amp;4T+40A = 4\times2+40\times 3 =128 &amp;≤140    &amp;&amp;\text{(管理者的时间)} \\
+&amp;T=2 &amp;≤5      &amp;&amp; \text{(可得联体别墅)} \\
+&amp;T=2,A=3 &amp; ≥0
+\end{array}
+\end{align}$$`
+
+
+---
+
+### 伊斯特伯恩房地产公司：尝试近似整数解
+
+.fyi[
+
+然而：
+
+- 近似整数解下65000美元年现金流，比LP松弛结果73754美元少很多。
+
+- 那么，有没有其他可能的近似解呢？
+
+]
+
+继续进行其他近似整数解的尝试2：
+
+
+- 近似整数解为
+`\(T=3,A=3\)`
+
+- 目标函数值为：
+`\(10*3+15*3=75\)`千美元
+
+但是却会超过公司的可用资金约束条件
+`\(282T+400A ≤2000  \text{(可用资金)}\)`：
+
+`$$\begin{align}
+(282T+400A &amp;= 282 \times 3 +400 \times 3 
+= 3738 ) &gt;2000
+\end{align}$$`
+
+---
+
+### 伊斯特伯恩房地产公司：尝试近似整数解
+
+.fyi[
+
+然而：
+
+- 近似整数解下65000美元年现金流，比LP松弛结果73754美元少很多。
+
+- 那么，有没有其他可能的近似解呢？
+
+]
+
+继续进行其他近似整数解的尝试3：
+
+
+- 近似整数解为
+`\(T=2,A=4\)`
+
+- 目标函数值为：
+`\(10*2+15*4=80\)`千美元
+
+但是也同样会超过公司的可用资金约束条件
+`\(282T+400A ≤2000  \text{(可用资金)}\)`：
+
+`$$\begin{align}
+(282T+400A &amp;= 282 \times 2 +400 \times 4 
+= 2164 ) &gt;2000
+\end{align}$$`
+
+---
+
+### 伊斯特伯恩房地产公司：全整数问题的图解法（思考）
+
+.fyi[
+
+**思考**：LP松弛下的近似整数解：
+
+- 如果近似整数解为
+`\(T=2,A=3\)`
+
+- 尽管满足所有LP约束条件，但是它会是最优解么？
+
+]
+
+我们马上会发现：
+
+- 近似整数解（
+`\(T=2,A=3\)`）不是以上问题最优解。
+
+- 因此，即使近似解是可行时，我们也无法保证我们找到了最优整数解。
+
+
+---
+
+### 伊斯特伯恩房地产公司：全整数问题的图解法（图示）
+
+
+&lt;img src="../pic/chpt07-house-integer-solution.png" width="730" style="display: block; margin: auto;" /&gt;
+
+
+
+---
+
+### 伊斯特伯恩房地产公司：全整数问题的图解法（步骤）
+
+.pull-left[
+
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="../pic/chpt07-house-integer-solution.png" alt="全整数图解法" width="1013" height="450" /&gt;
+&lt;p class="caption"&gt;全整数图解法&lt;/p&gt;
+&lt;/div&gt;
+
+]
+
+.pull-right[
+
+具体图解过程如下：
+
+- 首先，可行域图几乎和LP松弛问题的一样。
+
+- 然后，因为最优解一定是整数型的，我们可以标出可行的整数解。
+
+- 最后，不是将目标函数向可行域的极值点移动，而是尽量将它朝着使目标函数最优的方向移动。
+
+]
+
+---
+
+### 伊斯特伯恩房地产公司：全整数问题的图解法（说明）
+
+.pull-left[
+
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="../pic/chpt07-house-integer-solution.png" alt="全整数图解法" width="1013" height="450" /&gt;
+&lt;p class="caption"&gt;全整数图解法&lt;/p&gt;
+&lt;/div&gt;
+
+]
+
+.pull-right[
+
+此时，我们可以得到：
+
+- 最优整数解为：别墅
+`\(T=4\)`套，公寓
+`\(A=3\)`套。
+
+- 目标函数年现金流为70000美元。
+
+我们能够发现：
+
+- 这一结果比近似整数解
+`\(T=2,A=3\)`，年现金流为65000美元好的多。
+
+- 因此前面的整数**近似法**并不是房地产问题的最好的求解方法。
+
+]
+
+---
+
+### 伊斯特伯恩房地产公司：LP松弛边界VS最优整数解
+
+.pull-left[
+
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="../pic/chpt07-house-LP-solution.png" alt="LP松弛图解法" width="980" height="450" /&gt;
+&lt;p class="caption"&gt;LP松弛图解法&lt;/p&gt;
+&lt;/div&gt;
+
+]
+
+.pull-right[
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="../pic/chpt07-house-integer-solution.png" alt="最优整数图解法" width="1013" height="450" /&gt;
+&lt;p class="caption"&gt;最优整数图解法&lt;/p&gt;
+&lt;/div&gt;
+
+]
+
+---
+
+### 伊斯特伯恩房地产公司：应用LP松弛法建立约束边界
+
+.notes[
+
+从伊斯特伯恩房地产问题的研究中，我们可以得出一个结论：
+
+- 一定要处理好**最优整数解**的值和**LP松弛后最优解**的值之间的关系。
+
+]
+
+LP松弛的**上下限**特性：
+
+- 在含有**最大化**（Max）问题的整数线性规划中，LP松弛后的最优解的值就是最优整数解的值的**上限**。
+
+- 在含有**最小化**（Min）问题的整数线性规划中，LP松弛后的最优解的值就是最优整数解的值的**下限**。
+
+---
+
+### 伊斯特伯恩房地产公司：应用LP松弛法建立约束边界
+
+.notes[
+
+从伊斯特伯恩房地产问题的研究中，我们可以得出一个结论：
+
+- 一定要处理好**最优整数解**的值和**LP松弛后最优解**的值之间的关系。
+
+]
+
+
+通过LP松弛的上下限特性，我们可以得出**结论**：
+
+- 如果LP松弛的解**恰好**是整数，那么，它也是该整数线性规划的最优解。这一上下限的特性也可以用来确定近似解是否“足够好”。
+
+- 如果一个近似的LP松弛是可行的，并能使得到的目标函数值同LP松弛的目标函数值几乎一样好，我们就认为该近似解是最优近似整数解。此时，我们也可以不用整数线性规划来求解问题。
+
+
+---
+
+### 管理科学家软件MST的ILP求解：选择分析模块
+
+
+
+- **步骤1**：打开管理科学家软件，选择分析模块`4. Integer Linear Programming`。
+
+&lt;img src="../pic/seq-chpt07-house-integer/chpt07-house-integer-seq-01.jpg" width="700" style="display: block; margin: auto;" /&gt;
+
+---
+
+### 管理科学家软件MST的ILP求解：新建工作并设定参数
+
+- **步骤2**：新建ILP工作；设定决策变量、约束条件等。
+
+&lt;img src="../pic/seq-chpt07-house-integer/chpt07-house-integer-seq-02.jpg" width="815" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+### 管理科学家软件MST的ILP求解：
+
+- **步骤3**：根绝ILP模型，设定参数；确定整数变量；开始求解
+
+&lt;img src="../pic/seq-chpt07-house-integer/chpt07-house-integer-seq-03.jpg" width="800" style="display: block; margin: auto;" /&gt;
+
+---
+
+### 管理科学家软件MST的ILP求解：得到求解结果
+
+- **步骤4**：得到求解分析结果。
+
+&lt;img src="../pic/seq-chpt07-house-integer/chpt07-house-integer-seq-04.jpg" width="750" style="display: block; margin: auto;" /&gt;
+
+---
+
+### 管理科学家软件MST的ILP求解：保存工作
+
+- **步骤5**：把问题分析过程，保存下来。
+
+&lt;img src="../pic/seq-chpt07-house-integer/chpt07-house-integer-seq-05.jpg" width="750" style="display: block; margin: auto;" /&gt;
+
+
+---
+layout: false
+class: center, middle, duke-softblue,hide_logo
+name: dummy
+
+# 7.3节 含有0-1变量的整数线性规划的应用
+
+### [应用情形一：资金预算](#budget)
+
+### [应用情形二：固定成本核算](#fixed)
+
+### [应用情形三：分布系统设计](#distribution)
+
+### [应用情形四：银行选址](#bank)
+
+### [应用情形五：产品设计和市场份额的最优化](#pizza)
+
+---
+layout: true
+
+&lt;div class="my-header-h2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark1"&gt;&lt;/div&gt;
+
+&lt;div class="watermark2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark3"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@  &amp;emsp;&amp;emsp; &lt;a href="#chapter07"&gt; 第07章 整数线性规划&lt;/a&gt;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&lt;a href="#dummy"&gt;7.3 含有0-1变量的整数线性规划的应用&lt;/a&gt; &lt;/span&gt;&lt;/div&gt; 
+
+---
+
+## 引子
+
+现实问题：
+
+- 在很多应用中，如果采取相应行动，则变量值取1，否则取0。0-1变量因此提供着选择的功能（是或否）。
+
+- 整数线性规划在构建模型上的灵活性很大程度上是由于使用了0-1变量。
+
+
+.case[
+
+本节所讲含有0-1变量的整数线性规划的具体应用包括：
+
+- 应用一：资金预算
+
+- 应用二：固定成本核算
+
+- 应用三：分布系统设计
+
+- 应用四：银行选址
+
+- 应用五：产品设计和市场份额
+
+]
+
+---
+name: budget
+
+## 应用情形一：资金预算
+
+下面我们将讨论有0-1变量的整数线性规划在**资金预算**问题上的具体应用。
+
+- 我们将以爱斯柯德冰箱公司的投资案例进行分析和讨论。
+
+---
+
+### 爱斯柯德冰箱公司：案例背景
+
+.case[
+**案例说明**：
+
+- 爱斯柯德冰箱公司正在考虑随后四年内的投资方案，这些方案有着不同的资金需求。
+
+- 面对每年有限的资金，管理者需要选择最好的方案。
+
+
+]
+
+---
+
+### 爱斯柯德冰箱公司：数据信息
+
+
+
+
+- 每种项目方案的估计净现值、资金需求和4年内的可用资金见下表：
+
+<div id="htmlwidget-661399a5943704d72dee" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-661399a5943704d72dee">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"caption":"<caption>爱斯柯德冰箱公司的资金信息<\/caption>","data":[["1","2","3","4","5"],["净现值","第1年资金需求","第2年资金需求","第3年资金需求","第4年资金需求"],[90000,15000,20000,20000,15000],[40000,10000,15000,20000,5000],[10000,10000,null,null,4000],[37000,15000,10000,10000,10000],[null,40000,50000,40000,35000]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>名称<\/th>\n      <th>工厂扩建<\/th>\n      <th>仓库扩建<\/th>\n      <th>机器更新<\/th>\n      <th>新产品研发<\/th>\n      <th>可用资金总额<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bt","columnDefs":[{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 0, 3, \" \", \".\", null);\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 0, 3, \" \", \".\", null);\n  }"},{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 0, 3, \" \", \".\", null);\n  }"},{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 0, 3, \" \", \".\", null);\n  }"},{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 0, 3, \" \", \".\", null);\n  }"},{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":10,"buttons":["copy","csv","excel"],"initComplete":"function(settings, json) {\n$(this.api().table().header()).css({'background-color': '#517fb9', 'color': '#fff'});\n}","order":[],"autoWidth":false,"orderClasses":false},"callback":"function(table) {\n$(\"button.buttons-copy\").css(\"background\",\"yellow\");\n                $(\"button.buttons-csv\").css(\"background\",\"orange\");\n                $(\"button.buttons-excel\").css(\"background\",\"#a88d32\");\n                $(\"button.dt-button\").css(\"padding\",\"0.2em 0.2em\");\n                $(\"button.dt-button\").css(\"font-size\",\"0.6em\");\n                $(\"button.dt-button\").css(\"margin-right\",\"0.2em\");\n                $(\"button.dt-button\").css(\"margin-bottom\",\"0.1em\");\n                $(\"button.dt-button\").css(\"line-height\",\"1em\");\n                return table;\n}"},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render","options.columnDefs.4.render","options.initComplete","callback"],"jsHooks":[]}</script>
+
+.footnote[
+
+**说明**：此处单位为**美元**（dollar）。
+
+]
+
+---
+
+### 爱斯柯德冰箱公司：公司目标和决策变量
+
+在资金预算问题中，公司的**目标函数**是：
+
+- 使资金预算的净现值最大化。
+
+
+4个0-1**决策变量**如下：
+
+- 如果工厂扩建方案通过，
+`\(P=1\)`；如果否决，
+`\(P=0\)`
+
+- 如果仓库扩建方案通过，
+`\(W=1\)`；如果否决，
+`\(W=0\)`
+
+- 如果机器更新方案通过，
+`\(M=1\)`；如果否决，
+`\(M=0\)`
+
+- 如果新产品研发方案通过，
+`\(R=1\)`；如果否决，
+`\(R=0\)`
+
+---
+
+### 爱斯柯德冰箱公司：0-1 LP模型
+
+最终，爱斯柯德冰箱公司问题的**0-1整数线性规划模型**（01 LP）如下：
+
+
+`$$\begin{align}
+\begin{array}{ll}
+\textrm{Max} \quad f&amp;=  90P+40W+10M+37R\\
+\text { s.t. } &amp; &amp;&amp;\\   
+&amp;15P+10W+10M+15R &amp; \leq  40  &amp;&amp; \text{(第一年的可用资金)} \\
+&amp;20P+15W+10R &amp; \leq 50        &amp;&amp; \text{(第二年的可用资金)} \\
+&amp;20P+20W+10R &amp; \leq 40         &amp;&amp; \text{(第三年的可用资金)} \\
+&amp;15P+5W+4M+10R &amp;\leq 35       &amp;&amp; \text{(第四年的可用资金)} \\
+&amp;P,W,M,R&amp;=0,1
+\end{array}
+\end{align}$$`
+
+.footnote[
+
+**说明**：此处单位为**千美元**（thousand dollar）。
+
+]
+
+---
+
+### 爱斯柯德冰箱公司：管理科学家软件求解过程练习
+
+.puzzle[
+
+**课堂练习（15分钟）**：
+
+&gt; 请大家使用管理科学家软件MST，对上述0-1线性规划问题（0-1 LP）进行求解。
+
+]
+
+---
+
+### 爱斯柯德冰箱公司：管理科学家软件求解结果
+
+- 最终，管理科学家软件上述0-1线性规划问题（0-1 LP）的求解结果如下：
+
+
+
+&lt;img src="../pic/chpt07-fridge-intege-01-LP-mst-result.png" width="693" style="display: block; margin: auto;" /&gt;
+
+---
+name: fixed
+
+## 应用情形二：固定成本核算
+
+.fyi[
+
+**固定成本核算**：在许多应用中，产品的成本由两部分构成
+
+- 其一为配置成本，即固定成本
+
+- 其二为可变成本，直接与产量有关
+
+- 0-1变量的应用，使得在生产应用中考虑配置成本成为可能。
+
+]
+
+
+- 下面我们将通过RMC化学公司案例，来讨论固定成本问题的分析过程。
+
+---
+
+### RMC化学公司：案例背景
+
+.case[
+**案例说明**：
+
+- RMC化学公司是一家生产各种化学产品的小公司，使用三种原料（原料1、2和3）用来生产三种产品：燃料添加剂、溶剂、地板清洁剂。
+
+- 在生产过程中，需要将三种原材料混合以生产三种产品：
+
+  - 生产每吨燃料添加剂需要混合0.4吨原料1，以及0.6吨的原料3
+  
+  - 生产每吨溶剂需要混合0.5吨原料1、0.2吨原料2和0.3吨原料3
+  
+  - 生产每吨地板清洁剂需要0.6吨原料1、0.1吨原料2、0.3吨原料3
+  
+- 扣除相关成本后的利润贡献：
+
+   - 每生产1吨燃料添加剂的利润贡献为40美元
+   
+   - 每生产1吨溶剂基的利润贡献为30美元
+   
+   - 每生产1吨地板清洁剂的利润是50美元
+   
+- RMC共有20吨原料1、5吨原料2，以及21吨原料3
+
+
+]
+
+---
+
+### RMC化学公司：公司目标和决策变量
+
+在RMC化学公司案例中，公司的**目标函数**是：
+
+- 使产品总利润最大化。
+
+
+3个**决策变量**如下：
+
+- 生产的燃料添加剂的吨数
+`\(F\)`
+
+- 生产的溶剂的吨数
+`\(S\)`
+
+- 生产的地板清洁剂的吨数
+`\(C\)`
+
+---
+
+### RMC化学公司：线性规划模型
+
+因此，RMC化学公司利润最大化问题的**线性规划模型**（LP）如下：
+
+
+`$$\begin{align}
+\begin{array}{ll}
+\textrm{Max} \quad f&amp;40F+30S+50C\\
+\text { s.t. } &amp; &amp;&amp;\\   
+&amp;0.4F+0.5S+0.6C &amp;\leq 20     &amp;&amp; \text{(原料1)} \\
+&amp;0.2S+0.1C  &amp;\leq 5        &amp;&amp; \text{(原料2)} \\
+&amp;0.6F+0.3S+0.3C  &amp;\leq 21         &amp;&amp; \text{(原料3)} \\
+&amp;F,S,C&amp; \geq 0
+\end{array}
+\end{align}$$`
+
+---
+
+### RMC化学公司：线性规划模型的MST软件求解结果（解读）
+
+用管理科学家软件求解含有配置成本的RMC问题：
+
+- 最优解为：
+
+    - 生产
+`\(F=27.5\)`吨燃料添加剂；
+    - 生产
+    `\(S=0\)`吨溶剂；
+    - 生产
+`\(C=15\)`吨地板清洁剂
+
+&gt; 最优解的结果中：
+`\(SC=0\)`，表示应取消昂贵的400美元的地板清洁剂配置成本，因此不应生产地板清洁剂。
+
+- 扣除配置成本后的目标函数值为1850美元。
+
+
+---
+
+### RMC化学公司：线性规划模型的MST软件求解结果（图示）
+
+- 最终，管理科学家软件上线性规划问题（LP）的求解结果如下：
+
+
+&lt;img src="../pic/chpt07-RMC-LP-MST-result.png" width="513" style="display: block; margin: auto;" /&gt;
+
+---
+
+### RMC化学公司：成本和产能信息
+
+
+
+
+- 下面我们提供RMC化学公司的生产成本和产能的更多信息：
+
+<div id="htmlwidget-e4670835ae6886152774" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e4670835ae6886152774">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"caption":"<caption>RMC化学公司的成本和产量信息<\/caption>","data":[["1","2","3"],["燃料添加剂","溶剂","地板清洁剂"],[200,50,400],[50,25,40]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>产品<\/th>\n      <th>配置成本（美元）<\/th>\n      <th>最大生产量（吨）<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bt","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":10,"buttons":["copy","csv","excel"],"initComplete":"function(settings, json) {\n$(this.api().table().header()).css({'background-color': '#517fb9', 'color': '#fff'});\n}","order":[],"autoWidth":false,"orderClasses":false},"callback":"function(table) {\n$(\"button.buttons-copy\").css(\"background\",\"yellow\");\n                $(\"button.buttons-csv\").css(\"background\",\"orange\");\n                $(\"button.buttons-excel\").css(\"background\",\"#a88d32\");\n                $(\"button.dt-button\").css(\"padding\",\"0.2em 0.2em\");\n                $(\"button.dt-button\").css(\"font-size\",\"0.6em\");\n                $(\"button.dt-button\").css(\"margin-right\",\"0.2em\");\n                $(\"button.dt-button\").css(\"margin-bottom\",\"0.1em\");\n                $(\"button.dt-button\").css(\"line-height\",\"1em\");\n                return table;\n}"},"evals":["options.initComplete","callback"],"jsHooks":[]}</script>
+
+
+---
+
+### RMC化学公司：新的决策变量和目标函数
+
+在RMC化学公司案例中，公司的**目标函数**是：
+
+- 使产品总利润最大化。
+
+
+此时，我们现在可以利用0-1变量带来的的建模灵活性，把固定的配置成本加入到生产模型中。因此，共有6个**决策变量**如下：
+
+.pull-left[
+
+3个连续变量：
+
+- 生产的燃料添加剂的吨数
+`\(F\)`
+
+- 生产的溶剂的吨数
+`\(S\)`
+
+- 生产的地板清洁剂的吨数
+`\(C\)`
+
+]
+
+.pull-right[
+
+3个0-1变量：
+
+- 如果生产燃料添加剂，则
+`\(SF=1\)`；否则
+`\(SF=0\)`
+
+- 如果生产溶剂，则
+`\(SS=1\)`；否则
+`\(SS=0\)`
+
+- 如果生产地板清洁剂，则
+`\(SC=1\)`；否则
+`\(SC=0\)`
+
+]
+
+---
+
+### RMC化学公司：新的0-1线性规划模型
+
+因此，固定的配置成本加入到生产模型后，RMC化学公司利润最大化问题的**0-1线性规划模型**（0-1 LP）如下：
+
+
+`$$\begin{align}
+\begin{array}{ll}
+\textrm{Max} \quad f&amp; 40F+30S+50C-200SF-50SS-400SC \\
+\text { s.t. } &amp; &amp;&amp;\\   
+&amp;0.4F+0.5S+0.6C &amp;\leq 20     &amp;&amp; \text{(原料1)} \\
+&amp;0.2S+0.1C  &amp;\leq 5        &amp;&amp; \text{(原料2)} \\
+&amp;0.6F+0.3S+0.3C  &amp;\leq 21         &amp;&amp; \text{(原料3)} \\
+&amp;F- 50SF  &amp;\leq 0         &amp;&amp; \text{(F的最大值)} \\
+&amp;S- 25SF  &amp;\leq 0         &amp;&amp; \text{(S的最大值)} \\
+&amp;C- 40SF  &amp;\leq 0         &amp;&amp; \text{(C的最大值)} \\
+&amp;F,S,C&amp; \geq 0 \\
+&amp;SF,SS,SC&amp; \in \{0,1\}
+\end{array}
+\end{align}$$`
+
+---
+
+### RMC化学公司：0-1线性规划模型的MST软件求解（结果）
+
+用管理科学家软件求解含有配置成本的RMC问题（0-1线性规划模型）：
+
+- 最优解为：
+
+    - 生产
+`\(F=25\)`吨燃料添加剂（
+`\(SF=1\)`）；
+    - 生产
+    `\(S=20\)`吨溶剂（
+`\(SS=1\)`）；
+    - 不生产地板清洁剂（
+`\(C=0,SC=0\)`）
+
+&gt; 最优解的结果中：
+`\(SC=0\)`，表示应取消昂贵的400美元的地板清洁剂配置成本，因此不应生产地板清洁剂。
+
+- 扣除配置成本后的目标函数值为1350美元。
+
+- 燃料添加剂和溶剂的配置成本为
+`\(200+50=250\)`美元。
+
+
+---
+
+### RMC化学公司：0-1线性规划模型的MST软件求解（图示）
+
+- 最终，管理科学家软件上述0-1线性规划问题（0-1 LP）的求解结果如下：
+
+
+
+&lt;img src="../pic/chpt07-RMC-01-LP-MST-result.png" width="455" style="display: block; margin: auto;" /&gt;
+
+---
+
+### RMC化学公司：0-1线性规划模型的MST软件求解（注意）
+
+- 上述0-1线性规划问题（0-1 LP）模型，既有3个0-1整数决策变量，又有3个连续决策变量，因此在管理科学家软件MST求解前，需要设定好变量类型。
+
+
+&lt;img src="../pic/chpt07-RMC-01-LP-MST-result-attention.png" width="666" style="display: block; margin: auto;" /&gt;
+
+
+---
+name: distribution
+
+## 应用情形三：分布系统设计
+
+下面我们将讨论有0-1变量的整数线性规划在**分布系统设计**问题上的具体应用。
+
+- 我们将以马丁贝克公司的分销中心案例进行分析和讨论。
+
+---
+
+### 马丁贝克公司：案例背景
+
+.case[
+**案例说明**：
+
+- 马丁贝克公司在圣路易斯经营一家年产量为30000件产品的工厂。
+
+- 产品被运输到位于波士顿、亚特兰大和休斯敦的地区分销中心。
+
+- 由于预期将有需求的增长，马丁贝克公司计划在底特律、托莱多、丹佛和堪萨斯城中的一个或多个城市建立新工厂以增加生产力。
+
+]
+
+---
+
+### 马丁贝克公司公司：数据信息（固定成本和产能）
+
+
+
+
+- 四个城市建立工厂的年固定成本和年生产能力如下表：
+
+
+<div id="htmlwidget-543fffe7113012a0c614" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-543fffe7113012a0c614">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"caption":"<caption>马丁贝克公司的固定成本和产能信息<\/caption>","data":[["1","2","3","4"],["底特律","托莱多","丹佛","堪萨斯城"],[175000,300000,375000,500000],[10000,20000,30000,40000]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>目标工厂<\/th>\n      <th>年固定成本（美元）<\/th>\n      <th>年生产能力（件）<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bt","columnDefs":[{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 0, 3, \" \", \".\", null);\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 0, 3, \" \", \".\", null);\n  }"},{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":10,"buttons":["copy","csv","excel"],"initComplete":"function(settings, json) {\n$(this.api().table().header()).css({'background-color': '#517fb9', 'color': '#fff'});\n}","order":[],"autoWidth":false,"orderClasses":false},"callback":"function(table) {\n$(\"button.buttons-copy\").css(\"background\",\"yellow\");\n                $(\"button.buttons-csv\").css(\"background\",\"orange\");\n                $(\"button.buttons-excel\").css(\"background\",\"#a88d32\");\n                $(\"button.dt-button\").css(\"padding\",\"0.2em 0.2em\");\n                $(\"button.dt-button\").css(\"font-size\",\"0.6em\");\n                $(\"button.dt-button\").css(\"margin-right\",\"0.2em\");\n                $(\"button.dt-button\").css(\"margin-bottom\",\"0.1em\");\n                $(\"button.dt-button\").css(\"line-height\",\"1em\");\n                return table;\n}"},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.initComplete","callback"],"jsHooks":[]}</script>
+
+.footnote[
+
+**说明**：此处单位为**美元**（dollar）。
+
+]
+
+---
+
+### 马丁贝克公司公司：数据信息（年需求量）
+
+
+
+
+- 3个地区分销中心的年需求量如下：
+
+<div id="htmlwidget-093ec7e5f5bebbf5994f" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-093ec7e5f5bebbf5994f">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"caption":"<caption>马丁贝克公司的各地区分销中心的需求量<\/caption>","data":[["1","2","3"],["波士顿","亚特兰大","休斯敦"],[30000,20000,20000]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>分销中心<\/th>\n      <th>年需求量（件）<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bt","columnDefs":[{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 0, 3, \" \", \".\", null);\n  }"},{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":10,"buttons":["copy","csv","excel"],"initComplete":"function(settings, json) {\n$(this.api().table().header()).css({'background-color': '#517fb9', 'color': '#fff'});\n}","order":[],"autoWidth":false,"orderClasses":false},"callback":"function(table) {\n$(\"button.buttons-copy\").css(\"background\",\"yellow\");\n                $(\"button.buttons-csv\").css(\"background\",\"orange\");\n                $(\"button.buttons-excel\").css(\"background\",\"#a88d32\");\n                $(\"button.dt-button\").css(\"padding\",\"0.2em 0.2em\");\n                $(\"button.dt-button\").css(\"font-size\",\"0.6em\");\n                $(\"button.dt-button\").css(\"margin-right\",\"0.2em\");\n                $(\"button.dt-button\").css(\"margin-bottom\",\"0.1em\");\n                $(\"button.dt-button\").css(\"line-height\",\"1em\");\n                return table;\n}"},"evals":["options.columnDefs.0.render","options.initComplete","callback"],"jsHooks":[]}</script>
+
+---
+
+### 马丁贝克公司公司：数据信息（固定成本和产能）
+
+
+
+
+- 每件产品从各工厂到各分销中心的运费见表：
+
+<div id="htmlwidget-2463d5fe789bcfc47104" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2463d5fe789bcfc47104">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"caption":"<caption>马丁贝克公司的单位运输成本<\/caption>","data":[["1","2","3","4","5"],["底特律","托莱多","丹佛","堪萨斯城","圣路易斯"],[5,4,9,10,8],[2,3,7,4,4],[3,4,5,2,3]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>工厂地点<\/th>\n      <th>波士顿<\/th>\n      <th>亚特兰大<\/th>\n      <th>休斯顿<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bt","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":10,"buttons":["copy","csv","excel"],"initComplete":"function(settings, json) {\n$(this.api().table().header()).css({'background-color': '#517fb9', 'color': '#fff'});\n}","order":[],"autoWidth":false,"orderClasses":false},"callback":"function(table) {\n$(\"button.buttons-copy\").css(\"background\",\"yellow\");\n                $(\"button.buttons-csv\").css(\"background\",\"orange\");\n                $(\"button.buttons-excel\").css(\"background\",\"#a88d32\");\n                $(\"button.dt-button\").css(\"padding\",\"0.2em 0.2em\");\n                $(\"button.dt-button\").css(\"font-size\",\"0.6em\");\n                $(\"button.dt-button\").css(\"margin-right\",\"0.2em\");\n                $(\"button.dt-button\").css(\"margin-bottom\",\"0.1em\");\n                $(\"button.dt-button\").css(\"line-height\",\"1em\");\n                return table;\n}"},"evals":["options.initComplete","callback"],"jsHooks":[]}</script>
+
+
+---
+
+### 马丁贝克公司公司：网络演示图
+
+
+&lt;img src="../pic/chpt07-distribution-martin-network.png" width="747" height="550" style="display: block; margin: auto;" /&gt;
+
+---
+
+### 马丁贝克公司公司：目标函数
+
+马丁贝克公司公司需要选择最优的厂址、确定从各工厂到各分销中心的运输量。公司的**目标函数**是：
+
+- 年运输成本与经营新建立工厂的年固定成本之和最小化。
+
+---
+
+### 马丁贝克公司公司：决策变量
+
+马丁贝克公司公司需要选择最优的厂址、确定从各工厂到各分销中心的运输量。共有19个**决策变量**：
+
+.pull-left[
+
+对各工厂到每个各中心的运输量，共有
+`\(C_5^1*C_3^1=15\)`个连续决策变量：
+
+- 
+`\(x_{ij}\)`：工厂
+`\(i\)`到分销中心
+`\(j\)`的运输量
+
+
+- 其中，
+`\(i=(1,2,3,4,5)\)`，且
+`\(j=(1,2,)\)`。
+
+
+]
+
+.pull-right[
+
+共有4个0-1决策变量：
+
+- 如果在底特律建厂，则
+`\(y_1=1\)`；否则
+`\(y_1=0\)`
+
+- 如果在托莱多建厂，则
+`\(y_2=1\)`；否则
+`\(y_2=0\)`
+
+- 如果在丹佛建厂，则
+`\(y_3=1\)`；否则
+`\(y_3=0\)`
+
+- 如果在堪萨斯建厂，则
+`\(y_4=1\)`；否则
+`\(y_4=0\)`
+
+]
+
+---
+
+### 马丁贝克公司公司：0-1线性规划模型
+
+因此，马丁贝克公司公司分布系统设计问题的最小化**0-1线性规划模型**（0-1 LP）如下（19个决策变量，8个约束方程）：
+
+`$$\begin{align}
+\begin{array}{ll}
+\textrm{Mmin} \quad f&amp;= 5x_{11}+2x_{12}+3x_{13}+4x_{21}+3x_{22}+4x_{23}\\
+&amp;+9x_{31}+7x_{32}+5x_{33}+10x_{41} \\
+&amp; + 4x_{42}+2x_{43}+8x_{51}+4x_{52}+3x_{53} \\
+&amp;+175y_1+300y_2+375y_3+500y_4
+\end{array}
+\end{align}$$`
+
+
+`$$\begin{align}
+\begin{array}{ll}
+\text { s.t. (未完待续)} &amp; &amp;&amp;\\   
+&amp;x_{11}+x_{12}+x_{13}-10y_1 &amp;\leq 0 &amp;&amp;\text{(底特律的生产能力)}\\
+&amp;x_{21}+x_{22}+x_{23}-20y_2 &amp;\leq 0 &amp;&amp;\text{(托莱多的生产能力)}\\
+&amp;x_{31}+x_{32}+x_{33}-30y_3 &amp;\leq 0 &amp;&amp;\text{(丹佛的生产能力)}\\
+&amp;x_{41}+x_{42}+x_{43}-40y_4 &amp;\leq 0 &amp;&amp;\text{(堪萨斯城的生产能力)}\\
+&amp;x_{51}+x_{52}+x_{53}     &amp;\leq 30 &amp;&amp;\text{(圣路易斯的生产能力)}\\ \end{array}
+\end{align}$$`
+
+---
+
+### 马丁贝克公司公司：0-1线性规划模型
+
+因此，马丁贝克公司公司分布系统设计问题的最小化**0-1线性规划模型**（0-1 LP）如下（19个决策变量，8个约束方程）：
+
+
+`$$\begin{align}
+\begin{array}{ll}
+\text { s.t. (续前)} &amp; &amp;&amp;\\   
+&amp;x_{11}+x_{21}+x_{31}+x_{41}+x_{51} &amp;=30 &amp;&amp;\text{(波士顿的需求)}\\ 
+&amp;x_{12}+x_{22}+x_{32}+x_{42}+x_{52} &amp;=20 &amp;&amp;\text{(亚特兰大的需求)}\\ 
+&amp;x_{13}+x_{23}+x_{33}+x_{43}+x_{53} &amp;=20 &amp;&amp;\text{(休斯敦的需求)}\\ 
+&amp;x_{ij}&amp; \geq 0 \\
+&amp;y_1,y_2, y_3,y_4&amp; \in \{0,1\}
+\end{array}
+\end{align}$$`
+
+---
+
+### 马丁贝克公司公司：0-1线性规划模型的MST软件求解（结果）
+
+用管理科学家软件求解马丁贝克公司公司分布系统设计问题（0-1线性规划模型）：
+
+- 最优解为：
+
+    - 要在堪萨斯建立一个工厂（
+    `\(y4=1\)`）
+    
+    - 从堪萨斯到亚特兰大运输20000件产品（
+    `\(x_{42}=20\)`千件）
+    
+    - 从堪萨斯到休斯敦运输20000件产品（
+    `\(x_{43}=20\)`千件）
+    
+    - 从圣路易斯到波士顿运输30000件产品（
+    `\(x51=30\)`千件）
+
+&gt; 最优解的结果中：
+
+- 包括堪萨斯城工厂的固定成本500000美元在内
+
+- 该解所得到的总成本为TC=860000美元。
+
+
+---
+
+### 马丁贝克公司公司：0-1线性规划模型的MST软件求解（图示）
+
+
+&lt;img src="../pic/chpt07-martin-01-LP-MST-result-short.jpg" width="1495" height="520" style="display: block; margin: auto;" /&gt;
+
+---
+
+### 马丁贝克公司公司：0-1线性规划模型的MST软件求解（练习）
+
+.puzzle[
+
+**课堂练习（20分钟）**：
+
+&gt; 请大家使用管理科学家软件MST，对上述0-1线性规划问题（0-1 LP）进行求解。
+
+]
+
+---
+
+### 马丁贝克公司公司：若干讨论
+
+事实上，模型还可以进一步扩展，一些现实问题可以更多考虑进去：
+
+- 上述0-1 LP模型还可以进行扩展，可以适用于含有工厂与仓库、工厂与零售店之间的直接运输和多种产品的分布系统
+
+- 为了避免选址过于彼此靠近，还可以考虑增加新的约束条件。
+
+.case[
+
+例如：
+
+- 选址1为达拉斯，而选址2为沃斯堡，但是这两个城市相距很近
+
+- 为了避免两个城市同时被选址选中，可以增加如下约束条件（二者最多可能选择被选中1个）
+
+`$$y_1 +y_2 \leq 1$$`
+
+- 当然，如果需要二者必定选中1个，则约束条件应为：
+
+`$$y_1 +y_2 = 1$$`
+
+
+]
+
+---
+name: bank
+
+## 应用情形四：银行选址
+
+下面我们将讨论有0-1变量的整数线性规划在**分布系统设计**问题上的具体应用。
+
+- 我们将以俄亥俄州信托公司的银行选址案例进行分析和讨论。
+
+---
+
+### 俄亥俄州信托公司：案例背景
+
+.case[
+**案例说明**：
+
+- 俄亥俄州信托公司的长期计划部考虑在俄亥俄州东北部20个郡的地区开展业务。
+
+- 俄亥俄州信托公司目前在这20个郡没有一个营业处。
+
+- 根据该州相关法律，如果一个银行在任一个郡建立一个主营业处，即可在该郡及所有毗邻郡建立分行。
+
+- 但是，为了建立一个主营业处，俄亥俄州信托公司必须获得本州银行管理者的批准，或者购买一家当地现存的银行。
+
+- 俄亥俄州信托公司需要确定将来在这20个郡全部都营业总共需要建立的主营业处的最小数目。
+
+]
+
+---
+
+### 俄亥俄州信托公司：地理区位关系图
+
+&lt;img src="../pic/chpt07-bank-geography-demo.png" width="987" height="520" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+### 俄亥俄州信托公司：郡县临近关系
+
+
+
+.page-font-24[
+
+<div id="htmlwidget-3ece9ed4705907eaad7c" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3ece9ed4705907eaad7c">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"caption":"<caption><\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"],[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],["阿什特比拉","莱克","凯霍加","洛雷恩","休伦","里奇兰","阿什兰","韦恩","梅迪纳","萨米特","斯塔克","吉奥格","波帝奇","哥伦比亚纳","马霍宁","斯塔克","吉奥格","波帝奇","哥伦比亚纳","马霍宁"],["2, 12, 16","1, 3, 12","2, 4, 9, 10, 12, 13","3, 5, 7, 9","4, 6, 7","5, 7, 17","4, 5, 6, 8, 9, 17, 18","7, 9, 10, 11, 18","3, 4, 7, 8, 10","3, 8, 9, 11, 12, 13","8, 10, 13, 14, 15, 18, 19, 20","1, 2, 3, 10, 13, 16","3, 10, 11, 12, 15, 16","11, 15, 20","11, 13, 14, 16","1, 12, 13, 15","6, 7, 18","7, 8, 11, 17, 19","11, 18, 20","11, 14, 19"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>郡县标号<\/th>\n      <th>郡县名称<\/th>\n      <th>邻近郡县（标号）<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Btp","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":10,"buttons":["copy","csv","excel"],"initComplete":"function(settings, json) {\n$(this.api().table().header()).css({'background-color': '#517fb9', 'color': '#fff'});\n}","order":[],"autoWidth":false,"orderClasses":false},"callback":"function(table) {\n$(\"button.buttons-copy\").css(\"background\",\"yellow\");\n                $(\"button.buttons-csv\").css(\"background\",\"orange\");\n                $(\"button.buttons-excel\").css(\"background\",\"#a88d32\");\n                $(\"button.dt-button\").css(\"padding\",\"0.2em 0.2em\");\n                $(\"button.dt-button\").css(\"font-size\",\"0.6em\");\n                $(\"button.dt-button\").css(\"margin-right\",\"0.2em\");\n                $(\"button.dt-button\").css(\"margin-bottom\",\"0.1em\");\n                $(\"button.dt-button\").css(\"line-height\",\"1em\");\n                return table;\n}"},"evals":["options.initComplete","callback"],"jsHooks":[]}</script>
+
+
+
+
+---
+
+### 俄亥俄州信托公司：公司目标和决策变量
+
+
+
+在俄亥俄州信托公司的问题中，公司的**目标函数**是：
+
+- 最小化所需建立主营业处的数目。
+
+俄亥俄州信托公司面临的**决策环境**：
+
+- 如果某郡拥有1个主营业处或其邻郡拥有主营业处，那么俄亥俄州信托公司就可以在改郡建立分行。
+
+
+共有20个0-1**决策变量**：
+
+- 如果在
+`\(i\)`郡建立主营业处，则
+`\(x_i=1\)`；否则
+`\(x_i=0\)`。其中
+`\(i \in (1,2,\ldots, 20)\)`
+
+
+---
+
+### 俄亥俄州信托公司：0-1线性规划模型
+
+因此，俄亥俄州信托公司选址问题的最小化**0-1线性规划模型**（0-1 LP）如下（20个决策变量，20个约束方程）：
+
+`$$\begin{align}
+\begin{array}{ll}
+\textrm{Min} \quad f&amp;= x_1+x_2+ \ldots +x_{20} &amp;&amp; \\
+\text { s.t. } &amp; &amp;&amp;\\  
+&amp; x_1+x_2+x_{12}+x_{16} &amp; \geq 1&amp;&amp;\text{(阿什特比拉郡)}\\
+&amp; x_1+x_2+x_3+x_{12}   &amp; \geq  1 &amp;&amp;\text{(莱克郡)}\\
+&amp; \vdots &amp; \vdots &amp;&amp; (\vdots) \\
+&amp; x_{11}+x_{14}+x_{19}+x_{20}  &amp; \geq 1 &amp;&amp;\text{(卡罗尔郡)}\\
+&amp; x_i &amp;=0,1；\quad i \in (1,2, \ldots 20)
+\end{array}
+\end{align}$$`
+
+
+---
+
+### 俄亥俄州信托公司：0-1线性规划模型的MST软件求解（结果）
+
+用管理科学家软件求解俄亥俄州信托公司的选址问题（0-1线性规划模型）：
+
+- 最优解为：
+
+    - 需要在阿什兰、斯塔克、吉奥特3个郡设立主营业处，也即
+    `\(x_i=1, \quad i \in (7,11,12)\)`
+    - 其他所有决策变量的最优值都为0，不需要在这些郡设立主营业处，也即
+    `\(x_i=0, \quad i \notin (7,11,12)\)`
+    
+- 最优解的结果中：俄亥俄州信托公司最小化所需建立主营业处的数目为3。
+
+
+---
+
+### 俄亥俄州信托公司：0-1线性规划模型的MST软件求解（地理图）
+
+&lt;img src="../pic/chpt07-bank-geography-choose.png" width="975" height="520" style="display: block; margin: auto;" /&gt;
+
+---
+
+### 俄亥俄州信托公司：0-1线性规划模型的MST软件求解（截图）
+
+&lt;img src="../pic/chpt07-bank-01-LP-solution.png" width="485" style="display: block; margin: auto;" /&gt;
+
+---
+name: pizza
+
+## 应用情形五：产品设计和市场份额的最优化
+
+下面我们将讨论有0-1变量的整数线性规划在**产品设计和市场份额的最优化**问题上的具体应用。
+
+
+
+- 联合分析是一种市场研究方法，通过该种方法可以了解预期的购买者如何评价产品的属性。
+
+- 我们将以塞伦食品公司的市场份额案例进行分析和讨论。
+
+
+---
+
+### 塞伦食品公司：案例背景
+
+.case[
+**案例说明**：
+
+- 塞伦食品公司计划进入冷冻比萨饼市场。
+
+- 目前市场上已有两个品牌：安东澳和国王，它们占据了主要的市场份额。
+
+- 塞伦食品公司准备开发一种香肠比萨饼，并想以之夺取大量市场份额。
+
+- 为了使其品牌获得成功，塞伦食品公司意识到必须诱使市场上的消费者从他们中意的比萨饼品牌转变到塞伦的产品上来。
+
+
+]
+
+
+- 我们可以列出并解决一个整数线性规划模型来帮助塞伦得出设计方案。
+
+- 在市场营销领域，这个问题被称为**份额选择**问题。
+
+---
+
+### 塞伦食品公司：产品开发和市场份额设想
+
+.fyi[
+
+**竞争产品**：
+
+- **安东尼奥牌**比萨饼是：厚面包皮、意大利奶酪、块状调味酱、大众口味香肠的。
+
+- **国王牌**比萨饼是：薄面包皮、混合奶酪、细滑调味酱、清淡口味香肠的。
+
+
+]
+
+
+.fyi[
+
+- 塞伦公司准备开发一种香肠比萨饼，并想以之夺取最大市场份额。
+
+- 塞伦公司己确定顾客在购买冷冻香肠比萨饼时最关心的4个属性为：面包皮、奶酪、调味酱和香肠风味。
+
+  - 面包皮属性有2种（薄和厚）
+  
+  - 奶酪属性有2种（意大利和混合型）
+  
+  - 调味酱属性也有2种（细滑和块状）
+  
+  - 香肠风味有3种（清淡口味，大众口味，辣味）
+
+]
+
+---
+
+### 塞伦食品公司：消费者的产品局部价值（概念）
+
+**局部价值**：是消费者对某个属性品质给出的**效用**测量结果。
+
+
+.fyi[
+
+**局部价值**表的获得：
+
+- 塞伦公司首先准备了各种属性/品质组合的比萨饼
+
+- 然后请接受调查的消费者就这些比萨饼给出他们的偏好程度判断，以进行联合分析。
+
+- 再使用回归分析法来确定各种属性/品质组合的局部价值。
+
+
+]
+
+- 假设目前所研究的抽样调查的8位顾客可以代表整个冷冻香肠比萨市场
+
+- 下面的表，将展示8位目前在购买竞争对手（安东尼奥和国王品牌）比萨饼的消费者局部价值，但是他们也是有可能是塞伦品牌的潜在转化客户。
+
+---
+
+### 塞伦食品公司：产品属性和代表性消费者偏好数据
+
+
+
+.page-font-24[
+
+<div id="htmlwidget-fdc7e69798c60fcbd081" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-fdc7e69798c60fcbd081">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"caption":"<caption>塞伦食品公司产品潜在客户的产品特征局部价值信息<\/caption>","data":[["1","2","3","4","5","6","7","8"],[1,2,3,4,5,6,7,8],[11,11,7,13,2,12,9,5],[2,7,5,20,8,17,19,9],[6,15,8,20,6,11,12,4],[7,17,14,17,11,9,16,14],[3,16,16,17,30,2,16,23],[17,26,7,14,20,30,25,16],[26,14,29,25,15,22,30,16],[27,1,16,29,5,12,23,30],[8,10,19,10,12,20,19,3]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>顾客<\/th>\n      <th>面包皮&lt;/br&gt;(薄)<\/th>\n      <th>面包皮&lt;/br&gt;(厚)<\/th>\n      <th>奶酪&lt;/br&gt;(意大利)<\/th>\n      <th>奶酪&lt;/br&gt;(混合)<\/th>\n      <th>调味酱&lt;/br&gt;(细滑)<\/th>\n      <th>调味酱&lt;/br&gt;(带块)<\/th>\n      <th>香肠口味&lt;/br&gt;(清淡)<\/th>\n      <th>香肠口味&lt;/br&gt;(大众)<\/th>\n      <th>香肠口味&lt;/br&gt;(辣味)<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bt","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":10,"buttons":["copy","csv","excel"],"initComplete":"function(settings, json) {\n$(this.api().table().header()).css({'background-color': '#517fb9', 'color': '#fff'});\n}","order":[],"autoWidth":false,"orderClasses":false},"callback":"function(table) {\n$(\"button.buttons-copy\").css(\"background\",\"yellow\");\n                $(\"button.buttons-csv\").css(\"background\",\"orange\");\n                $(\"button.buttons-excel\").css(\"background\",\"#a88d32\");\n                $(\"button.dt-button\").css(\"padding\",\"0.2em 0.2em\");\n                $(\"button.dt-button\").css(\"font-size\",\"0.6em\");\n                $(\"button.dt-button\").css(\"margin-right\",\"0.2em\");\n                $(\"button.dt-button\").css(\"margin-bottom\",\"0.1em\");\n                $(\"button.dt-button\").css(\"line-height\",\"1em\");\n                return table;\n}"},"evals":["options.initComplete","callback"],"jsHooks":[]}</script>
+
+]
+
+.footnote[
+
+- **安东尼奥牌**比萨饼是：厚面包皮、意大利奶酪、块状调味酱、大众口味香肠的。
+- **国王牌**比萨饼是：薄面包皮、混合奶酪、细滑调味酱、清淡口味香肠的。
+
+]
+
+---
+
+### 塞伦食品公司：消费者的产品局部价值（示例）
+
+**局部价值**：是消费者对某个属性品质给出的**效用**测量结果。
+
+.case[
+
+**示例**：根据上表，我们还可以发现顾客1的局部价值分别为：
+
+- 在属性**面包皮**的两个品质上（薄或厚），他更青睐薄面包皮（
+`\(11&gt;2\)`），因此他在面包皮属性上的局部价值为11。
+
+- 在属性**奶酪**的两个品质上，他更青睐薄混合型（
+`\(7&gt;6\)`），因此他在奶酪属性上的局部价值为7。
+
+- 在属性**调味酱**的两个品质上，他更青睐带块状（
+`\(17&gt;3\)`），因此他在调味酱属性上的局部价值为17。
+
+
+- 在属性**香肠口味**的三个品质上，他更青睐大众口味（
+`\(27&gt;26 &gt;8\)`），因此他在香肠口味属性上的局部价值为27。
+
+]
+
+---
+
+### 塞伦食品公司：消费者的产品整体效用值（概念）
+
+消费者的**整体效用值**：消费者对产品属性/品质局部价值比较，权衡选择后，对整个产品的总效用测量值。
+
+.fyi[
+
+**竞品特征**：
+
+- **安东尼奥牌**比萨饼是：厚面包皮、意大利奶酪、块状调味酱、大众口味香肠的。
+
+- **国王牌**比萨饼是：薄面包皮、混合奶酪、细滑调味酱、清淡口味香肠的。
+
+**顾客的选择**：
+
+- 顾客1目前最喜的是**安东尼奥牌**比萨饼
+
+- 顾客2目前最喜的是**国王牌**比萨饼
+
+]
+
+---
+
+### 塞伦食品公司：消费者的产品整体效用值（示例）
+
+消费者的**整体效用值**：消费者对产品属性/品质局部价值比较，权衡选择后，对整个产品的总效用测量值（局部价值的加总数）。
+
+.case[
+
+**示例**：根据局部价值表和顾客选择，我们可以计算
+
+- **安东尼奥牌**比萨饼对于**顾客1**的整体效用值为
+`\(2+6+17+27=52\)`
+
+- **国王牌**比萨饼对于**顾客1**的整体效用值为
+`\(11+7+3+26=47\)`
+
+]
+
+---
+
+### 塞伦食品公司：公司目标和决策变量
+
+
+
+在塞伦食品公司的市场份额问题中，公司的**目标函数**是：
+
+- 选择每种属性的品质，以使偏好塞伦牌比萨饼的顾客人数达到最大。
+
+- 由于偏好塞伦比萨饼的顾客人数就是变量
+`\(y_k\)`的综合，所以目标函数就是：
+
+`$$\textrm{Max} \quad f=  y_1+y_2+\ldots+y_8$$`
+
+共有20个0-1**决策变量**：
+
+- 如果塞伦在属性（面包皮、奶酪、调味酱、香肠口味）
+`\(j\)`方面，选择品质
+`\(i\)`，则
+`\(l_{ij}=1\)`；否则
+`\(l_{ij}=0\)`。其中
+`\(j \in (1,2,3,4)\)`
+
+---
+
+### 塞伦食品公司：顾客转化的条件
+
+顾客转化的条件：塞伦食品公司希望能把竞争对手的当前消费者转化为自己的客户，那么必须在比萨饼的产品属性品质上做出某些决定。
+
+.case[
+
+- 顾客1目前选择的是**安东尼奥牌**比萨饼（厚面包皮、意大利奶酪、块状调味酱、大众口味香肠的），总体效用值为52。
+
+- 顾客1如果要转化为塞伦比萨饼的消费者，则必须满足如下的效用不等式：
+
+`$$\begin{align}
+11 l_{11}+2 l_{21}+6 l_{12}+7 l_{22}+3 l_{13}+17 l_{23}+26 l_{14}+27 l_{24}+8 l_{34}&gt;52
+\end{align}$$`
+
+- 而当顾客1转变为选择塞伦品牌的比萨饼时（至少要比原来的整体效用值多1），我们可以表达为如下的选择条件：
+
+`$$\begin{align}
+11 l_{11}+2 l_{21}+6 l_{12}+7 l_{22}+3 l_{13}+17 l_{23}+26 l_{14}+27 l_{24}+8 l_{34}&amp; \geq 52y_1 +1 \\
+11 l_{11}+2 l_{21}+6 l_{12}+7 l_{22}+3 l_{13}+17 l_{23}+26 l_{14}+27 l_{24}+8 l_{34}&amp; - 52y_1 \geq 1 
+\end{align}$$`
+
+]
+
+.footnote[
+
+- 其余7个顾客也可以照此表达。
+
+]
+
+---
+
+### 塞伦食品公司：0-1线性规划模型（1/2）
+
+因此，塞伦食品公司市场份额问题的最大化**0-1线性规划模型**（0-1 LP）如下（6个决策变量，12个约束方程）：
+
+`$$\begin{align}
+\begin{array}{ll}
+\textrm{Min} \quad f &amp;=  y_1+y_2+\ldots+y_8 &amp;&amp; \\
+\end{array}
+\end{align}$$`
+
+- 消费者转化需要满足的约束条件为（整体效用要至少多1）：
+
+`$$\begin{align}
+\begin{array}{ll}
+\text { s.t.} &amp; \text{ (未完待续)} &amp;&amp; \\ 
+&amp; 11l_{11}+2 l_{21}+6 l_{12}+7 l_{22}+3 l_{13}+17 l_{23}+26 l_{14}+27 l_{24}+8 l_{34} -52 y_{1} &amp;\geq 1  \\
+&amp; 11l_{11}+7 l_{21}+15 l_{12}+17 l_{22}+16 l_{13}+26 l_{23}+14 l_{14}+1 l_{24}+10 l_{34} -58 y_{2} &amp;\geq 1 \\
+&amp; 7l_{11}+5 l_{21}+8 l_{12}+14 l_{22}+16 l_{13}+7 l_{23}+29 l_{14}+16 l_{24}+19 l_{34} -66 y_{3} &amp;\geq 1 \\
+&amp; 13l_{11}+20 l_{21}+20 l_{12}+17 l_{22}+17 l_{13}+14 l_{23}+25 l_{14}+29 l_{24}+10 l_{34} -83 y_{4} &amp;\geq 1 \\
+&amp; 2l_{11}+8 l_{21}+6 l_{12}+11 l_{22}+30 l_{13}+20 l_{23}+15 l_{14}+5 l_{24}+12 l_{34} -58 y_{5} &amp;\geq 1 \\
+&amp; 12l_{11}+17 l_{21}+11 l_{12}+9 l_{22}+2 l_{13}+30 l_{23}+22 l_{14}+12 l_{24}+20 l_{34} - 70 y_{6} &amp;\geq 1 \\
+&amp; 9l_{11}+19 l_{21}+12 l_{12}+16 l_{22}+16 l_{13}+25 l_{23}+30 l_{14}+23 l_{24}+19 l_{34}- 79 y_{7} &amp;\geq 1 \\
+&amp; 5l_{11}+9 l_{21}+4 l_{12}+14 l_{22}+23 l_{13}+16 l_{23}+16  l_{14}+30 l_{24}+3 l_{34} -59 y_{8} &amp;\geq 1
+\end{array}
+\end{align}$$`
+
+---
+
+### 塞伦食品公司：0-1线性规划模型（2/2）
+
+因此，塞伦食品公司市场份额问题的最大化**0-1线性规划模型**（0-1 LP）如下（6个决策变量，12个约束方程）：
+
+`$$\begin{align}
+\begin{array}{ll}
+\textrm{Min} \quad f &amp;=  y_1+y_2+\ldots+y_8 &amp;&amp; \\
+\end{array}
+\end{align}$$`
+
+- 披萨饼属性品质选择，需要满足的约束条件为（同一个属性下的品质，只能选择其一）：
+
+`$$\begin{align}
+\begin{array}{ll}
+\text { s.t. } &amp; \text{(续前)} &amp;&amp;\\  
+&amp; l_{11}+l_{21}&amp;=1 &amp;&amp; \text{(面包片品质)}\\
+&amp;l_{12}+l_{22}&amp;=1 &amp;&amp; \text{(奶酪品质)}\\
+&amp;l_{13}+l_{23}&amp;=1 &amp;&amp; \text{(调味酱品质)}\\
+&amp;l_{14}+l_{24}+l_{34}&amp;=1 &amp;&amp; \text{(香肠口味品质)}
+\end{array}
+\end{align}$$`
+
+
+---
+
+### 塞伦食品公司：0-1线性规划模型的MST软件求解（结果）
+
+
+用管理科学家软件求解塞伦食品公司的市场份额问题（0-1线性规划模型），最优解为：
+    
+- 比萨饼属性/品质的最优解：
+    `\(l_{11}=l_{22}=l_{23}=l_{14} =1\)`。也即塞伦食品公司应该开发和推出的比萨饼设计是：薄面包皮、混合奶酪、块状、清淡口味香肠的比萨饼。
+
+- 选择塞伦食品公司的顾客为:
+`\(y_1= y_2 = y_6 =y_7\)`，也即顾客1、2、6、7将会偏好塞伦品牌的披萨饼。
+    
+- 最优解的结果中：塞伦食品公司最大化市场营销的客户转化数为4人。
+
+
+
+---
+
+### 塞伦食品公司：0-1线性规划模型的MST软件求解（练习）
+
+.puzzle[
+
+**课堂练习（20分钟）**：
+
+&gt; 请大家使用管理科学家软件MST，对上述0-1线性规划问题（0-1 LP）进行求解。
+
+]
+
+
+---
+layout: false
+class: center, middle, duke-softblue,hide_logo
+name: flexibility
+
+# 7.4节 0-1整数变量在建模过程中&lt;/br&gt;&lt;/br&gt;的灵活性分析
+
+---
+layout: true
+
+&lt;div class="my-header-h2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark1"&gt;&lt;/div&gt;
+
+&lt;div class="watermark2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark3"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@  &amp;emsp;&amp;emsp; &lt;a href="#chapter07"&gt; 第07章 整数线性规划&lt;/a&gt;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&lt;a href="#flexibility"&gt;7.4 0-1整数变量在建模过程中的灵活性分析&lt;/a&gt; &lt;/span&gt;&lt;/div&gt; 
+
+---
+
+## 引言
+
+本节将结合应用继续讨论0-1整数变量在构建模型中的灵活性。
+
+- 首先，0-1整数变量可以使得构建的模型中变量可以有多重选择特性，并且0-1代表的变量具有互斥特性。
+
+- 这些特性都使得我们可以构建从n个方案中挑选k个方案的模型，也可以把A方案作为B方案的约束条件，从而构建模型。
+
+
+本节的最后，我们将尝试讨论整数线性规划中的灵敏度分析及其在整数线性规划中所起的作用。
+
+---
+
+## 多重选择和互斥约束：回顾资金预算案例
+
+.fyi[
+
+**案例回顾**：前面爱斯柯德冰箱公司的资金预算案例（[点击链接](#budget)）。
+
+- 爱斯柯德冰箱公司正在考虑随后四年内的投资方案
+
+- 在资金预算问题中，公司的**目标函数**是：使资金预算的净现值最大化。
+
+其4个0-1**决策变量**如下：
+
+- 如果工厂扩建方案通过，
+`\(P=1\)`；如果否决，
+`\(P=0\)`
+
+- 如果仓库扩建方案通过，
+`\(W=1\)`；如果否决，
+`\(W=0\)`
+
+- 如果机器更新方案通过，
+`\(M=1\)`；如果否决，
+`\(M=0\)`
+
+- 如果新产品研发方案通过，
+`\(R=1\)`；如果否决，
+`\(R=0\)`
+
+]
+
+---
+
+## 多重选择和互斥约束：回顾资金预算案例
+
+.puzzle[
+
+**案例回顾**：新的方案要求
+
+- 假设爱斯柯德公司不是执行扩建一个仓库的方案，而是需要考虑扩建三个仓库的方案
+
+- 其中有一个仓库必须被扩建以迎合增长的产品需求，但是新增需求还没有达到必须扩建一个以上的仓库。
+
+]
+
+因此，我们需要重新定义变量和**多重选择约束**。
+
+- 实际上可以考虑用0-1整数线性规划模型，从而反映爱斯柯德公司目前所面临的局面。
+
+---
+
+## 多重选择和互斥约束：新的决策变量
+
+.notes[
+
+现在，爱斯柯德公司需要考虑如下3个0-1**决策变量**：
+
+- 如果扩建现有仓库的方案通过，
+`\(W_1=1\)`；如果否决，
+`\(W_1=0\)`
+
+- 如果扩建第2个仓库的方案通过，
+`\(W_2=1\)`；如果否决，
+`\(W_2=0\)`
+
+- 如果扩建第3个仓库的方案通过，
+`\(W_3=1\)`；如果否决，
+`\(W_3=0\)`
+
+]
+
+---
+
+## 多重选择和互斥约束：决策选择类型
+
+.notes[
+
+- 如果只能从方案中选择其一。则这一要求的**多重选择约束**为：
+
+`$$W_1+W_2+W_3=1$$`
+
+
+- 如果并不要求必须扩建一个仓库，则**多重选择约束条件**可以写成： 
+
+`$$W_1+W_2+W_3 \leq 1$$`
+
+&gt; 此时，允许不扩建任何仓库的（
+`\(W_1+W_2+W_3=0\)`）情况出现，但不允许出现扩建一个以上仓库的情况，这种多重选择约束条件称为**互斥约束**。
+
+]
+
+---
+
+## n选k约束
+
+进一步地，我们很容易得出n个方案中挑选k个方案的模型，也即**n选k约束**。
+
+.case[
+
+&gt; 设
+`\(W_1、W_2、W_3、W_4和W_5\)`代表五个潜在的仓库扩建方案（决策变量），且这些变量都是0-1变量。
+
+**约束决策1**：
+
+- 如果这五个方案中至少必须执行二个，那么约束条件可以写成：
+
+`$$W_1+W_2+W_3+W_4+W_5=2$$`
+**约束决策2**：
+
+- 如果五个方案中执行的方案不能超过二个，则约束条件可写成：
+
+`$$W_1+W_2+W_3+W_4+W_5 \leq 2$$`
+]
+    
+    
+---
+
+## 条件约束
+
+很多时候，必须执行一个方案才能触发另一个方案执行。
+
+.case[
+
+给定**决策变量定义**为：
+
+- P代表工厂扩建方案，而W代表仓库扩建方案，且这些变量都是0-1变量。
+
+爱斯柯德公司的**决策要求**是：
+
+- 工厂扩建方案是仓库扩建方案的必备条件。
+
+则需要引入**条件约束**来反映该要求：
+
+- 
+`\(W≤P\)`
+
+- 而且，P为0，则W就只能取0；而P取1，则W也有可能取1。
+
+- 这样，工厂和仓库才能被扩建。
+
+]
+
+---
+
+## 并行约束
+
+然而，执行工厂扩建方案，并不要求一定执行仓库扩建方案。这种情形下，我们就需要进行**并行约束**。
+
+.case[
+
+给定**决策变量定义**为：
+
+- P代表工厂扩建方案，而W代表仓库扩建方案，且这些变量都是0-1变量。
+
+爱斯柯德公司的**决策要求**是：
+
+- 不管工厂扩建方案执行与否，都必须执行仓库扩建的方案，反之亦然。
+
+则需要引入**并行约束**来反映该要求：
+
+- 可以用一个简单的等式来表达：
+`\(W=P\)`。
+
+]
+
+---
+
+## 关于灵敏度分析的讨论：作用
+
+.fyi[
+为什么要重视灵敏度分析？
+
+- 在线性规划问题中，特别是整数线性规划问题，灵敏度分析起到至关重要的作用。
+
+- 在一些应用中经常可以看到，当约束条件中某个参数发生很小的变化，就可能使得最优解的值产生很大的波动。
+
+]
+
+---
+
+## 关于灵敏度分析的讨论：示例（0-1 LP模型）
+
+下面我们考虑一个针对简单资本预算问题（相关案例可[点击回顾](#budget)）而构建的线性规划模型，它包括4个方案和一段时期内的预算约束条件。
+
+最大化问题的**线性规划模型**（LP）如下：
+
+
+`$$\begin{align}
+\begin{array}{ll}
+\textrm{Max} \quad f&amp;=40x_1+60x_2+70x_3+160x_4\\
+\text { s.t. } &amp; \\   
+&amp;16x_1+35x_2+45x_3+85x_4  &amp;≤ 100  \\
+&amp;x_i &amp; \in (0,1)
+\end{array}
+\end{align}$$`
+
+---
+
+## 关于灵敏度分析的讨论：示例（枚举计算）
+
+从这个资金预算问题中，我们可以看到：
+
+&gt; 由于最优解的值对预算资金这个条件参数有着极大的灵敏反应，人们通常建议在选择最后实施的最优解之前，先对各个条件参数稍加改变，多求解几次最优解的值。
+
+.case[
+
+我们可以简单地使用枚举法求出最优解：
+
+- `\(x_1=1,x_2=1,x_3=1,x_4=0\)`，且目标函数的值为170美元。
+
+如果预算变量增加1美元（比如从100美元增加到101美元），则最优解的值就会变成：
+
+- `\(x_1=1,x_2=0,x_3=0,x_4=1\)`，目标函数也会相应变成200美元。
+
+因此，预算中增加1美元就会导致收入增加30美元。
+
+管理层当然很乐意遇到这种情况，也乐意去增加1美元的预算。
+
+]
+
+
+---
+layout:false
+background-image: url("../pic/thank-you-gif-funny-little-yellow.gif")
+class: inverse,center
+# 本章结束
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="libs/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

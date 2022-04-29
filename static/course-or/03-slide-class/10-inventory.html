@@ -1,0 +1,3397 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>10-inventory.knit</title>
+    <meta charset="utf-8" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/duke-blue.css" rel="stylesheet" />
+    <link href="libs/remark-css/hygge-duke.css" rel="stylesheet" />
+    <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
+    <script src="libs/kePrint/kePrint.js"></script>
+    <link href="libs/lightable/lightable.css" rel="stylesheet" />
+    <script src="libs/htmlwidgets/htmlwidgets.js"></script>
+    <link href="libs/datatables-css/datatables-crosstalk.css" rel="stylesheet" />
+    <script src="libs/datatables-binding/datatables.js"></script>
+    <script src="libs/jquery/jquery-3.6.0.min.js"></script>
+    <link href="libs/dt-core/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="libs/dt-core/css/jquery.dataTables.extra.css" rel="stylesheet" />
+    <script src="libs/dt-core/js/jquery.dataTables.min.js"></script>
+    <script src="libs/jszip/jszip.min.js"></script>
+    <link href="libs/dt-ext-buttons/css/buttons.dataTables.min.css" rel="stylesheet" />
+    <script src="libs/dt-ext-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="libs/dt-ext-buttons/js/buttons.html5.min.js"></script>
+    <script src="libs/dt-ext-buttons/js/buttons.colVis.min.js"></script>
+    <script src="libs/dt-ext-buttons/js/buttons.print.min.js"></script>
+    <link href="libs/crosstalk/css/crosstalk.min.css" rel="stylesheet" />
+    <script src="libs/crosstalk/js/crosstalk.min.js"></script>
+    <link rel="stylesheet" href="../mycss/my-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../mycss/my-font.css" type="text/css" />
+    <link rel="stylesheet" href="../mycss/my-custom-for-video-roomy.css" type="text/css" />
+    <link rel="stylesheet" href="../mycss/text-box.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+background-image: url("../pic/slide-front-page.jpg")
+class: center,middle
+exclude: FALSE
+
+# 数据、模型与决策&lt;/br&gt;&lt;/br&gt;(Data, Model and Decision)
+
+&lt;!---    chakra: libs/remark-latest.min.js ---&gt;
+
+### 胡华平
+
+### 西北农林科技大学
+
+### 经济管理学院数量经济教研室
+
+### huhuaping01@hotmail.com
+
+### 2022-04-29
+
+
+
+
+
+
+
+<div>
+<style type="text/css">.xaringan-extra-logo {
+width: 110px;
+height: 70px;
+z-index: 0;
+background-image: url(../pic/logo/nwafu-logo-circle-wb.png);
+background-size: contain;
+background-repeat: no-repeat;
+position: absolute;
+top:0.2em;left:1em;
+}
+</style>
+<script>(function () {
+  let tries = 0
+  function addLogo () {
+    if (typeof slideshow === 'undefined') {
+      tries += 1
+      if (tries < 10) {
+        setTimeout(addLogo, 100)
+      }
+    } else {
+      document.querySelectorAll('.remark-slide-content:not(.title-slide):not(.inverse):not(.hide_logo)')
+        .forEach(function (slide) {
+          const logo = document.createElement('div')
+          logo.classList = 'xaringan-extra-logo'
+          logo.href = null
+          slide.appendChild(logo)
+        })
+    }
+  }
+  document.addEventListener('DOMContentLoaded', addLogo)
+})()</script>
+</div>
+
+---
+class: center, middle, duke-orange,hide_logo
+name: chapter10
+exclude: FALSE
+
+# 第10章 库存模型
+
+#### [10.1 经济订货批量模型(EOQ)](#eoq)
+
+#### [10.2 经济生产批量模型](#lot-size)
+
+#### [10.3 有计划缺货时的库存模型](#shortage)
+
+#### [10.4 EOQ模型的数量折扣](#discount)
+
+#### [10.5 概率需求下的单阶段库存模型](#single)
+
+#### [10.6 概率需求下的订货数量——再订货点模型](#reorder)
+
+#### [10.7 概率需求下的定期检查模型](#review)
+
+
+
+---
+layout: false
+class: center, middle, duke-softblue,hide_logo
+name: eoq
+
+# 10.1节 经济订货批量模型(EOQ)
+
+---
+layout: true
+
+&lt;div class="my-header-h2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark1"&gt;&lt;/div&gt;
+
+&lt;div class="watermark2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark3"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@  &amp;emsp;&amp;emsp; &lt;a href="#chapter10"&gt; 第10章 库存模型&lt;/a&gt;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&lt;a href="#eoq"&gt;10.1节 经济订货批量模型(EOQ)&lt;/a&gt; &lt;/span&gt;&lt;/div&gt; 
+
+---
+
+## 引言
+
+.fyi[
+
+**思考**：
+
+- 库存是指一个企业为满足日后所需储存起来的闲置货物或物料。
+
+- 库存是对不确定性及波动因素的一个缓冲，通过持有可得物料，以备企业及客户所需。
+
+- 涉及库存的问题中，管理者要回答以下问题：
+
+  - （1）库存补货的订货量是多少？
+  
+  - （2）何时进行库存补货？
+
+]
+
+---
+
+## 经济订货批量(EOQ)模型：应用情景
+
+经济订货量模型适用于需求率不变或近似产品不变，并且要求库存的总订货量在一个时间点到达。
+
+- 不变需求率假设：每段时间从库存中提取相同数量的货物。
+
+- 持有成本:维持或持有一定库存水平所需耗费的相关成本。
+
+- 订货成本:订购或组织生产的固定成本
+
+- 缺货成本:缺货带来的损失,含信誉成本
+
+
+---
+
+### R&amp;B公司案例：背景
+
+.case[
+
+**案例背景**：
+
+- R&amp;B公司中央仓库位于俄亥俄州哥伦布市，向近1000家零售商供应饮料产品。
+
+- 其中，啤酒的平均库存大约5000箱，占公司总库存40%。
+
+- 在每箱啤酒的库存成本大约为8美元的情况下，R&amp;B估计其啤酒库存成本达400000美元。
+
+- 仓库经理要做出关于订货批量和订货时间的决定，以尽可能降低总成本。
+
+]
+
+---
+
+### R&amp;B公司案例：需求数据
+
+
+
+
+
+&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
+&lt;caption&gt;R&amp;amp;B公司10周的啤酒需求数据&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; 周次 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 啤酒需求(箱) &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2025 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1950 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2100 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2050 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1975 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1900 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;background-color: orange !important;"&gt; 合计 &lt;/td&gt;
+   &lt;td style="text-align:center;background-color: orange !important;"&gt; 20000 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+- 啤酒总数为20000箱，平均2000箱/周
+
+---
+
+### R&amp;B公司案例：问题描述
+
+假定需求率不变，做出每周2000的库存计划。
+
+.fyi[
+
+确定订货数量需要权衡一下两点：
+
+- （1）持有少量库存，但订货频率高。这会导致较高的的订货成本。
+
+- （2）持有大量库存，但订货频率低。这会导致较高的库存成本。
+
+]
+
+为了在上述两个相互矛盾的选择中寻找一个合理的折中，引进EOQ模型。
+
+---
+
+### R&amp;B公司案例：存货持有成本
+
+**持有成本**（holding cost）：是指维持或持有一定库存水平所需耗费的相关成本。包括：
+
+- 对库存物品进行投资的融资成本，以及占用资金的机会成本等。
+
+&gt; **资金成本率**（cost of capital）通常用投资数量的百分比来表示。R&amp;B公司估计其资金成本率为每年18%。
+
+- 库存物品相关的保险、税金、损坏、盗窃以及仓储费用等。
+
+&gt; 例如，R&amp;B公司估计这些成本每年占其库存价值的7%。
+
+
+根据上述信息，假定R&amp;B公司啤酒库存总持有成本水平为
+`\(18\%+7\%=25\%\)`。
+
+- R&amp;B公司的一种Bub啤酒，每箱Bub啤酒的价值为8美元
+
+- 那么R&amp;B公司每存货1箱Bub啤酒，产生的持有成本将是
+`\(8 \times 25\% =2\)`美元/箱。
+
+---
+
+### R&amp;B公司案例：订货成本
+
+**订货成本**（ordering cost）：包括订单的准备及订单的处理（支付、邮寄、电话费、运输、发票确认、接受等）成本。
+
+- 可以暂时假定一种简单的情形：订货成本与订单大小无关
+
+&gt; 例如，R&amp;B公司需要的订货成本为32美元/每份订单，而无论订单上的订货数量是多少。
+
+---
+
+### R&amp;B公司案例：需要准备
+
+.notes[
+
+应用EOQ模型之前需要准备的三项数据包括：
+
+- 持有成本
+
+- 订货成本
+
+- 需求量Q
+
+]
+
+---
+
+### R&amp;B公司案例：Bub啤酒品类的库存
+
+当从供应商那里得到的订单规模大小为Q时：
+
+- Bub啤酒的库存最多将会持有Q单位。
+
+- Rub啤酒将会从库存中发货以满足顾客需求，直到库存耗尽。
+
+
+&lt;img src="../pic/chpt10-RB-bub-bear-stock-demo.png" width="700" style="display: block; margin: auto;" /&gt;
+
+---
+
+### R&amp;B公司案例：Bub啤酒品类的库存模式
+
+随着时间的推移，上述模式会反复循环，完整的库存模式如下图。
+
+&lt;img src="../pic/chpt10-RB-bub-bear-stock-demo-all.png" width="600" style="display: block; margin: auto;" /&gt;
+
+- 那么年平均库存为
+`\(\frac{Q}{2}\)`
+
+
+---
+
+### R&amp;B公司案例：相关变量定义（订货成本）
+
+.pull-left[
+
+- 
+`\(D\)`为产品年需求量。
+
+- 
+`\(Q\)`：订货批量（最大库存）
+
+- 年订单次数（采用等量订货）
+`\(\frac{D}{Q}\)`
+
+- 
+`\(C_o\)`：一次订货成本（与订货量无关）
+
+- 年订货成本：
+`\(\frac{D}{Q}\times C_0\)`
+
+]
+
+.pull-right[
+
+
+
+
+]
+
+---------
+
+.case[
+
+给定Bub啤酒：
+
+- 年需求量为
+`\(D=52\times 2000 = 104000\)`（箱/年）
+
+- 假定每次的订货数量都为
+`\(Q\)`，那么每年订单数量为
+`\(D/Q=\frac{104000}{Q}\)`
+
+- 假定一次订货成本与订货量无关，则一次订货成本为
+`\(C_o = 32\)`美元
+
+- 年订货成本为
+`\(\frac{D}{Q}\times C_0= \frac{104000}{Q}\times 32\)`
+
+]
+
+.footnote[
+**注意**：这里做了关于订货批量和单次订货成本的两个潜在假设！
+
+]
+
+---
+
+### R&amp;B公司案例：相关变量定义（年持有成本）
+
+.pull-left[
+
+- 年平均库存：
+`\(Q/2\)`单位
+
+- 
+`\(C\)`：库存产品的单位成本
+
+- 
+`\(I\)`：年持有成本率
+
+- 
+`\(C_h = C \times I\)`：单位库存的年持有成本
+
+]
+
+.pull-right[
+
+
+- 年持有成本=平均库存
+`\(\times\)` 单位库存的年持有成本
+
+`$$=\frac{Q}{2}\times C_h = \frac{Q}{2} \times C\times I$$`
+
+]
+
+---------
+
+.case[
+
+给定Bub啤酒：
+
+- 年平均库存
+`\(Q/2\)`单位
+
+- 库存产品的单位成本
+`\(C =8\)`（美元/箱）
+
+- 库存的年持有成本率
+`\(I=17\%+8\%=25\%\)`
+
+- 单位库存的年持有成本是
+`\(C_h = C \times I =8 \times 25\% =2\)`美元/箱
+
+- 年持有成本
+`\(=\frac{Q}{2}\times C_h = \frac{Q}{2} \times C\times I= \frac{Q}{2}\times 2 = Q\)`
+
+]
+
+.footnote[
+
+**注意**：如何正确理解**平均库存**的概念？
+
+]
+
+---
+
+### R&amp;B公司案例：相关变量定义（年度总成本）
+
+**年度总成本TC**
+`\(=\)`年订货成本
+`\(+\)` 年持有成本，也即：
+
+$$TC =\left(\frac{D}{Q} \times C_0 \right) + \left(\frac{1}{2}Q \times C_h\right) $$
+
+
+---------
+
+.case[
+
+给定Bub啤酒的前述存货信息，可以得出总年度成本模型为：
+
+`$$\begin{align}
+TC &amp;= \left(\frac{D}{Q} \times C \right) +\left(\frac{1}{2}Q \times C_h\right)  \\
+&amp;= \left(\frac{104000}{Q} \times 32 \right)  +\left(\frac{1}{2}Q \times 2\right) \\
+&amp;= \frac{3328000}{Q} + Q
+\end{align}$$`
+
+]
+
+---
+
+### R&amp;B公司案例：相关变量定义（年度总成本）
+
+**年度总成本TC**
+`\(=\)`年订货成本
+`\(+\)` 年持有成本，也即：
+
+$$TC =\left(\frac{D}{Q} \times C_0 \right) + \left(\frac{1}{2}Q \times C_h\right) $$
+
+
+---------
+
+.case[
+
+假设Bub啤酒的订货数量
+`\(Q=5000\)`，则总年度成本为5666美元：
+
+`$$\begin{align}
+TC &amp;= \left(\frac{D}{Q} \times C \right) +\left(\frac{1}{2}Q \times C_h\right)  \\
+&amp;= \left(\frac{104000}{Q} \times 32 \right)  +\left(\frac{1}{2}Q \times 2\right) \\
+&amp;= \frac{3328000}{Q} + Q = \frac{3328000}{5000} + 5000 = 5666
+\end{align}$$`
+
+]
+
+---
+exclude: true
+
+## R chunk：最优订货量及成本
+
+
+
+
+
+
+---
+
+### R&amp;B公司案例：可能订货数量及相关成本试算
+
+下面我们针对Bub啤酒集中可能的订货数量Q（5000; 4000; 3000; 2000; 1000），对订货成本、年度持有成本和年度总成本进行测算：
+
+&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
+&lt;caption&gt;Bub啤酒的集中可能订货数量Q和总成本&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; 年需求量D &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 订货批量Q &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 订单次数\(D/Q\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 单次订货成本\(C_o\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 总订货成本 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 平均库存\(Q/2\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 单位库存价值C &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 库存持有成本率I &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 单位库存持有成本\(C_h\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 总持有成本 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 年度总成本TC &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 104000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 5000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 21 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 32 &lt;/td&gt;
+   &lt;td style="text-align:center;background-color: yellow !important;"&gt; 666 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2500 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 25.0% &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;background-color: yellow !important;"&gt; 5000 &lt;/td&gt;
+   &lt;td style="text-align:center;background-color: yellow !important;font-weight: bold;color: red !important;"&gt; 5666 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 104000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 26 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 32 &lt;/td&gt;
+   &lt;td style="text-align:center;background-color: yellow !important;"&gt; 832 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 25.0% &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;background-color: yellow !important;"&gt; 4000 &lt;/td&gt;
+   &lt;td style="text-align:center;background-color: yellow !important;font-weight: bold;color: red !important;"&gt; 4832 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 104000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 35 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 32 &lt;/td&gt;
+   &lt;td style="text-align:center;background-color: yellow !important;"&gt; 1109 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1500 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 25.0% &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;background-color: yellow !important;"&gt; 3000 &lt;/td&gt;
+   &lt;td style="text-align:center;background-color: yellow !important;font-weight: bold;color: red !important;"&gt; 4109 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 104000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 52 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 32 &lt;/td&gt;
+   &lt;td style="text-align:center;background-color: yellow !important;"&gt; 1664 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 25.0% &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;background-color: yellow !important;"&gt; 2000 &lt;/td&gt;
+   &lt;td style="text-align:center;background-color: yellow !important;font-weight: bold;color: red !important;"&gt; 3664 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 104000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 104 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 32 &lt;/td&gt;
+   &lt;td style="text-align:center;background-color: yellow !important;"&gt; 3328 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 500 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 25.0% &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;background-color: yellow !important;"&gt; 1000 &lt;/td&gt;
+   &lt;td style="text-align:center;background-color: yellow !important;font-weight: bold;color: red !important;"&gt; 4328 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+---
+
+### R&amp;B公司案例：三类成本的关系
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="../pic/chpt10-RB-bub-bear-cost-graph.png" alt="Bub啤酒的订货成本、年持有成本和年度总成本关系" width="666" /&gt;
+&lt;p class="caption"&gt;Bub啤酒的订货成本、年持有成本和年度总成本关系&lt;/p&gt;
+&lt;/div&gt;
+
+---
+
+### R&amp;B公司案例：最优订货数量
+
+.pull-left[
+
+&lt;img src="../pic/chpt10-RB-bub-bear-cost-graph.png" width="666" style="display: block; margin: auto;" /&gt;
+
+]
+
+.pull-right[
+
+- 可以对总成本函数对Q求偏导，得到最优订货数量
+`\(Q^{\ast}\)`为1824箱：
+
+`$$\begin{align}
+TC &amp;=\left(\frac{D}{Q} \times C_0 \right) + \left(\frac{1}{2}Q \times C_h\right) \\
+\Rightarrow
+\frac{\partial{(TC)}}{\partial{Q}} &amp;= -\frac{D\times C_o}{Q^2} + \frac{C_h}{2} =0\\
+\Rightarrow
+Q^{\ast} &amp;= \sqrt{\frac{2\times D\times C_o}{C_h}} \\
+&amp;= \sqrt{\frac{2\times 104000\times 32}{C_h} } \\
+&amp;= 1 824.3
+\approx 1824
+\end{align}$$`
+
+]
+
+
+---
+
+### R&amp;B公司案例：最优订货数量
+
+.pull-left[
+
+&lt;img src="../pic/chpt10-RB-bub-bear-cost-graph.png" width="666" style="display: block; margin: auto;" /&gt;
+
+]
+
+.pull-right[
+
+此时，年度总成本为3649美元：
+
+`$$\begin{align}
+TC &amp;=\left(\frac{D}{Q^{\ast}} \times C_0 \right) + \left(\frac{1}{2}Q^{\ast} \times C_h\right) \\
+&amp;= \left(\frac{104000}{1824.3} \times 32 \right) + \left(\frac{1}{2}\times 1824.3 \times 2\right) \\
+&amp; =1824.3 +1824.3 \\
+&amp; =3648.6 \approx 3649
+\end{align}$$`
+
+- 此时，订货成本等于年度存货持有成本！
+
+]
+
+
+
+
+---
+
+## 订货时间决策：若干术语
+
+虽然我们已经指导了订货数量Q，但是我们还想指导应该在什么时候订货？
+
+关于订货时间的决策是通过**再订货点**（reorder point）来描述的。
+
+- **库存量**（inventory position）：是指现有库存量加上已订购但未收到的货物量。
+
+- **再订货点**（reorder point）：是指需要下达新订单时的库存量。
+
+- **提前期**：从下新订单到完成交货之间的间隔期。
+
+.fyi[
+例如：Bub啤酒下订单后，需要2天才能完成交货。
+]
+
+
+- **提前期需求**：指提前期之内，市场对产品的需求量。
+
+.fyi[
+
+例如：在新订单的提前期（2天）内，市场对Bub啤酒的预计需求量为832箱。
+
+]
+
+---
+
+## 订货时间决策：再订货点的公式表达
+
+**再订货点**的表达式为：
+
+`$$\begin{align}
+r=d \cdot m
+\end{align}$$`
+
+其中：
+
+- 
+`\(r\)`：再订货点
+
+- 
+`\(d\)`：每天的需求量
+
+- 
+`\(m\)`：几天中新订单的提前期
+
+
+.footnote[
+**说明**: 再订货点
+`\(r\)`是需要签订新订单时的库存量。
+
+]
+
+---
+
+## 订货时间决策：订货周期T
+
+根据之前的计算，我们已经知道了年度订货的频率为
+`\(\frac{D}{Q}\)`（假定每次订货数量都相等）。
+
+订货周期
+`\(T\)`一般可以表达为：
+
+`$$\begin{align}
+T = \frac{250}{D/Q^{\ast}} = \frac{250\times Q^{\ast}}{D}
+\end{align}$$`
+
+
+.fyi[
+Bub啤酒案例中：
+
+- 可以算出，年度订单次数
+`\(=\frac{D}{Q^{\ast}}=\frac{104000}{1824} \approx 57\)`次。
+
+- 假定一年中有250个工作日，那么R&amp;B公司大概每
+`\(\frac{250}{57} = 4.39\)`个工作日就会订一次货。
+
+]
+
+---
+exclude: true
+
+## R chunk：成本变量的组合与比较
+
+
+
+
+---
+
+## EOQ模型的灵敏度分析：关注的问题
+
+.notes[
+简要回顾：
+
+- 目前为止，在R&amp;B公司Bub啤酒案例中，我们都时给定每份订单成本
+`\(C_o=32\)`美元，库存持有成本率为
+`\(I = 25\%\)`。
+
+- 但是要维持上述两个变量的水平不变，可能需要花费大量的时间和精力。
+
+- 那么，在上述两个变量不同水平的多个可能组合下，订货成本和持有成本会如何变化？进而使得总成本发生哪些改变？
+
+]
+
+例如：
+
+- 给定每份订单成本的3种可能性分别为
+`\(C_o \in (30; 32; 34)\)`美元；
+
+- 给定库存持有成本率的3种可能性分别为
+`\(I \in (24\%; 25\%; 26\%)\)`
+
+- 以上将会产生9种
+`\(\{C_o, I\}\)`可能性组合。而其中的一种
+`\(\{C_o=32, I=25\%\}\)`我们已经分析过了。
+
+---
+
+## EOQ模型的灵敏度分析：多种组合的对比
+
+
+&lt;table class="table table-striped" style="margin-left: auto; margin-right: auto;"&gt;
+&lt;caption&gt;几种可能成本的最佳订货数量&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; 库存持有成本率\(I\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 每次订货成本\(C_o\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 最佳订货量\(Q^{\ast}\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 最优订货总成本 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 最优库存持有成本 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 最优总成本\(TC\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 基准最优总成本\(TC^{\ast}\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 总成本差值 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 24% &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 30 &lt;/td&gt;
+   &lt;td style="text-align:center;background-color: grey !important;"&gt; 1803 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1731 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1731 &lt;/td&gt;
+   &lt;td style="text-align:center;background-color: yellow !important;"&gt; 3461 &lt;/td&gt;
+   &lt;td style="text-align:center;background-color: yellow !important;"&gt; 3462 &lt;/td&gt;
+   &lt;td style="text-align:center;color: red !important;"&gt; 0.24 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 24% &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 32 &lt;/td&gt;
+   &lt;td style="text-align:center;background-color: grey !important;"&gt; 1862 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1787 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1787 &lt;/td&gt;
+   &lt;td style="text-align:center;background-color: yellow !important;"&gt; 3575 &lt;/td&gt;
+   &lt;td style="text-align:center;background-color: yellow !important;"&gt; 3576 &lt;/td&gt;
+   &lt;td style="text-align:center;color: red !important;"&gt; 0.74 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 24% &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 34 &lt;/td&gt;
+   &lt;td style="text-align:center;background-color: grey !important;"&gt; 1919 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1842 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1842 &lt;/td&gt;
+   &lt;td style="text-align:center;background-color: yellow !important;"&gt; 3685 &lt;/td&gt;
+   &lt;td style="text-align:center;background-color: yellow !important;"&gt; 3690 &lt;/td&gt;
+   &lt;td style="text-align:center;color: red !important;"&gt; 4.74 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 25% &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 30 &lt;/td&gt;
+   &lt;td style="text-align:center;background-color: grey !important;"&gt; 1766 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1766 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1766 &lt;/td&gt;
+   &lt;td style="text-align:center;background-color: yellow !important;"&gt; 3533 &lt;/td&gt;
+   &lt;td style="text-align:center;background-color: yellow !important;"&gt; 3535 &lt;/td&gt;
+   &lt;td style="text-align:center;color: red !important;"&gt; 1.84 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;background-color: yellow !important;"&gt; 25% &lt;/td&gt;
+   &lt;td style="text-align:center;background-color: yellow !important;"&gt; 32 &lt;/td&gt;
+   &lt;td style="text-align:center;background-color: yellow !important;background-color: grey !important;"&gt; 1824 &lt;/td&gt;
+   &lt;td style="text-align:center;background-color: yellow !important;"&gt; 1824 &lt;/td&gt;
+   &lt;td style="text-align:center;background-color: yellow !important;"&gt; 1824 &lt;/td&gt;
+   &lt;td style="text-align:center;background-color: yellow !important;background-color: yellow !important;"&gt; 3649 &lt;/td&gt;
+   &lt;td style="text-align:center;background-color: yellow !important;background-color: yellow !important;"&gt; 3649 &lt;/td&gt;
+   &lt;td style="text-align:center;background-color: yellow !important;color: red !important;"&gt; 0.00 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 25% &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 34 &lt;/td&gt;
+   &lt;td style="text-align:center;background-color: grey !important;"&gt; 1880 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1880 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1880 &lt;/td&gt;
+   &lt;td style="text-align:center;background-color: yellow !important;"&gt; 3761 &lt;/td&gt;
+   &lt;td style="text-align:center;background-color: yellow !important;"&gt; 3763 &lt;/td&gt;
+   &lt;td style="text-align:center;color: red !important;"&gt; 1.73 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 26% &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 30 &lt;/td&gt;
+   &lt;td style="text-align:center;background-color: grey !important;"&gt; 1732 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1801 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1801 &lt;/td&gt;
+   &lt;td style="text-align:center;background-color: yellow !important;"&gt; 3603 &lt;/td&gt;
+   &lt;td style="text-align:center;background-color: yellow !important;"&gt; 3608 &lt;/td&gt;
+   &lt;td style="text-align:center;color: red !important;"&gt; 4.85 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 26% &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 32 &lt;/td&gt;
+   &lt;td style="text-align:center;background-color: grey !important;"&gt; 1789 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1860 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1860 &lt;/td&gt;
+   &lt;td style="text-align:center;background-color: yellow !important;"&gt; 3721 &lt;/td&gt;
+   &lt;td style="text-align:center;background-color: yellow !important;"&gt; 3722 &lt;/td&gt;
+   &lt;td style="text-align:center;color: red !important;"&gt; 0.72 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 26% &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 34 &lt;/td&gt;
+   &lt;td style="text-align:center;background-color: grey !important;"&gt; 1844 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1918 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1918 &lt;/td&gt;
+   &lt;td style="text-align:center;background-color: yellow !important;"&gt; 3835 &lt;/td&gt;
+   &lt;td style="text-align:center;background-color: yellow !important;"&gt; 3836 &lt;/td&gt;
+   &lt;td style="text-align:center;color: red !important;"&gt; 0.22 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+.page-font-22[
+- 成本变量对
+`\(\{C_o=32, I=25\%\}\)`为基准水平，得到的最优订货数量
+`\(Q^{\ast}=1824\)`为基准最优订货数量
+
+- 在它基础上算出来的总成本称为**基准最优总成本**
+`\(TC^{\ast}\)`
+
+]
+
+---
+
+## EOQ模型的灵敏度分析：点评
+
+.notes[
+
+通过对上述表格的分析，可以得到如下结论：
+
+- EOQ模型对所计算成本中的微小的变动和错误是不敏感的。
+
+- 一般而言，这种不敏感性是EOQ模型的一种特性。
+
+也就是说，如果我们能够合理的估计库存**订货成本**和**持有成本**，那么就很有希望得到一个订货数量，它能使总成本接近实际的最小值。
+
+]
+
+---
+exclude: true
+
+## EOQ模型：Excel解法
+
+
+---
+
+## EOQ模型假设：若干总结
+
+本节EOQ模型分析及相关公式，都是基于某些假定而建立的，具体而言：
+
+.case[
+
+- 1.需求量D是可以确定的，并按固定比率变化
+
+- .red[2.每份订单的订货量Q是相同的。每下一份订单，库存水平就上升Q。]
+
+- .red[3.每份订单的成本
+`\(C_o\)`固定的，并且与订货数量无关。]
+
+- 4.单位产品的采购价值C是不变的，并且与订货数量无关。
+
+- 5.每个时期的库存持有成本
+`\(C_h\)`是不变的，总库存持有成本是根据
+`\(C_h\)`和库存量而定的。
+
+- 6.不允许出现缺货及延迟订单等现象。
+
+- 7.订单的提前期是固定的
+
+- 8.必须不断进行库存量的检查。这样，只要库存量达到再订货点，就会有新的订单。
+
+]
+
+.page-font-24[
+
+- 在实际种，人们会使用很多不同的库存系统，以实现最佳的运作方式。
+
+]
+
+---
+layout: false
+class: center, middle, duke-softblue,hide_logo
+name: lot-size
+
+# 10.2节 经济生产批量模型
+
+---
+layout: true
+
+&lt;div class="my-header-h2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark1"&gt;&lt;/div&gt;
+
+&lt;div class="watermark2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark3"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@  &amp;emsp;&amp;emsp; &lt;a href="#chapter10"&gt; 第10章 库存模型&lt;/a&gt;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&lt;a href="#lot-size"&gt;10.2 经济生产批量模型&lt;/a&gt; &lt;/span&gt;&lt;/div&gt; 
+
+---
+
+## 经济生产批量模型：简介
+
+**经济生产批量模型**与**经济订单批量模型**（EOQ）相类似。
+
+.notes[
+- **经济订单批量模型**（EOQ）中，订货量和订货时间是确定的，而且假设需求率不发生改变。
+
+- **经济生产批量模型**中，假设订单数量是在数日或数周之内，以一个固定速率达到的，而不是一次性按照订单数量
+`\(Q^{\ast}\)`运输货物。
+]
+
+---
+
+## 经济生产批量模型：固定供应率
+
+**固定供应率**：是指每段时期内供货的数量是一样的。
+
+.case[
+
+例如：工厂每天生产50个单位货物，并且计划生产10天。
+
+- 这种供货模式是为了满足生产条件而设计的。
+
+- 一旦完成订单，就开始生产；同时仓库中每天都会增加相同数量的货物供应，直到生产周期结束。
+
+- 生产批量为
+`\(Q=50\times 10=500\)`（单位）
+
+]
+
+产能大于市场需求的**假设**：要求生产率必须大于需求率。
+
+.case[
+例如：
+
+- 如果需求率为每天50单位，则生产率必须至少每天生产50单位。
+
+]
+
+---
+
+## 经济生产批量模型：库存模式
+
+在生产周期内，市场需求使得库存减少，而生产使得库存增加，不断持续下一个生产周期。完整的库存模式如下图：
+
+&lt;img src="../pic/chpt10-lot-sizes-stock-mode.png" width="700" style="display: block; margin: auto;" /&gt;
+
+- 生产阶段内的库存累积率固定不变
+
+- 非生产阶段内的库存消耗率也是固定不变的
+
+- 平均库存还是最大库存的一半
+`\(Q/2\)`
+
+---
+
+## 经济生产批量模型：订货成本和持有成本
+
+我们同样需要计算两项成本：
+
+- 订货成本
+
+- 持有成本
+
+
+此处的订货成本更准确的讲应该叫**生产启动成本**：
+
+- 包括为生产系统的生产做准备所需的人工、物料以及损耗生产成本
+
+- 它在每个生产周期内都是固定的，且与生产批量无关。
+
+---
+
+### 总成本模型：最大库存量和平均库存量
+
+在给定了持有成本、启动成本、年需求率、年生产率的估计值的情况下，可以计算不同生产批量下的年度总成本。
+
+.pull-left[
+- 
+`\(d\)`：日需求率
+
+- 
+`\(p\)`：日生产率
+
+- 
+`\(t\)`：一个生产周期的天数
+
+- 生产批量
+`\(Q=p\times t\)`
+
+- 生产时间
+`\(t=Q/p\)`
+]
+
+.pull-right[
+
+- 最大库存量：
+
+`$$\begin{align}
+&amp;=(p-d)t \\
+&amp;=(p-d)\left(\frac{Q}{p}\right)\\
+&amp;=\left( 1- \frac{d}{p}\right)Q
+\end{align}$$`
+
+- 平均库存量=最大库存量的一半：
+
+`$$\begin{align}
+&amp;=\frac{1}{2}\left( 1- \frac{d}{p}\right)Q
+\end{align}$$`
+
+]
+
+---
+
+### 总成本模型：年启动成本和年持有成本
+
+.pull-left[
+- 
+`\(D\)`：产品的年需求量
+
+- 
+`\(P\)`：产品的年生产量
+
+- 
+`\(C_o\)`：生产周期的启动成本
+
+- 
+`\(c_h\)`：单位产品的年持有成本
+
+- 年度总成本
+`\(TC\)`
+
+
+]
+
+.pull-right[
+
+- 年启动成本=年生产循环次数X每次循环的启动成本：
+
+`$$\begin{align}
+&amp;=\frac{D}{Q}\times C_o
+\end{align}$$`
+
+- 年持有成本=平均库存量X单位年成本：
+
+`$$\begin{align}
+&amp;=\frac{1}{2}\left( 1- \frac{d}{p}\right)Q\times C_h
+\end{align}$$`
+
+
+]
+
+---
+
+### 总成本模型：年度总成本
+
+.pull-left[
+- 
+`\(D\)`：产品的年需求量
+
+- 
+`\(P\)`：产品的年生产量
+
+- 
+`\(C_o\)`：生产周期的启动成本
+
+- 
+`\(C_h\)`：单位产品的年持有成本
+
+- 年度总成本
+`\(TC\)`
+
+
+]
+
+.pull-right[
+
+
+- 年度总成本=年启动成本+年库存持有成本：
+
+`$$\begin{align}
+TC&amp;=\frac{D}{Q}\times C_o +
+\frac{1}{2}\left( 1- \frac{d}{p}\right)Q\times C_h
+\end{align}$$`
+
+]
+
+
+.case[
+假定生产设备每年运行
+`\(Y=250\)`天（工作日）：
+
+- 日需求量
+`\(d=D/250\)`；
+
+- 日生产量
+`\(p=P/250\)`；且年生产量
+`\(P=250p\)`
+
+- 以下等式成立&lt;sup&gt;a&lt;/sup&gt;：
+`\(\frac{d}{p}=\frac{D/250}{P/250}=\frac{D}{P}\)`
+
+- 年度总成本也可写成&lt;sup&gt;b&lt;/sup&gt;：
+`\(TC=\frac{D}{Q}\times C_o +\frac{1}{2}\left( 1- \frac{D}{P}\right)Q\times C_h\)`
+
+]
+
+.footnote[
+
+说明：**&lt;sup&gt;a&lt;/sup&gt;**实际上生产天数250天并不重要，此等式依旧成立。**&lt;sup&gt;b&lt;/sup&gt;**因为年度数据比日度数据要更方便收集一些。
+
+]
+
+---
+
+### 最优经济生产批量：理论推导
+
+根据年度总成本，我们可以用微积分方法求解得到最优经济生产批量
+`\(Q^{\ast}\)`：
+
+
+`$$\begin{align}
+TC&amp;=\frac{D}{Q}\times C_o +
+\frac{1}{2}\left( 1- \frac{D}{P}\right)Q\times C_h \\
+\Rightarrow 
+\frac{\partial{TC}}{\partial{Q}} &amp; =
+-\frac{D}{Q^2}\times C_o +
+\frac{1}{2}\left( 1- \frac{D}{P}\right) C_h =0 \\
+\Rightarrow 
+Q^{\ast} &amp;=
+\sqrt{\frac{2D\times C_o}{\left(1-D/P\right)\times C_h}}
+\end{align}$$`
+
+---
+
+### 最优经济生产批量：示例计算
+
+.case[
+
+美丽牌肥皂公司案例：
+
+- 年生产能力
+`\(P=60000\)`箱；年需求量
+`\(D=26000\)`箱；生产启动成本
+`\(C_o=135\)`美元；单位产品制造成本
+`\(C=4.50\)`美元/箱；年持有成本率
+`\(I=24\%\)`；单位库年存持有成本
+`\(C_h=C\times I=4.5\times 24\%=1.08\)`美元。
+
+- 可得到年度最优经济生产批量3387美元，最优生产总成本2073美元：
+
+`$$\begin{align}
+Q^{\ast} &amp;=
+\sqrt{\frac{2D\times C_o}{\left(1-D/P\right)\times C_h}}
+=
+\sqrt{\frac{2\times 26000 \times 135}{\left(1-26000/6000\right)\times 1.08}} = 3387\\
+TC&amp;=\frac{D}{Q^{\ast}}\times C_o +
+\frac{1}{2}\left( 1- \frac{D}{P}\right)Q^{\ast}\times C_h \\ 
+&amp;=\frac{26000}{3387}\times 135 +
+\frac{1}{2}\left( 1- \frac{26000}{6000}\right)\times3387\times 1.08
+=2073
+\end{align}$$`
+
+]
+
+---
+
+### 最优经济生产批量：示例计算（订货时间决策）
+
+.case[
+
+美丽牌肥皂公司案例，进一步给定如下信息：
+
+- 生产订单的提前期为
+`\(m=5\)`天，用来规划和启动生产
+
+- 每的工作日年
+`\(Y=250\)`天
+
+那么，可以计算得到：
+
+- 再订货点（提前期的需求）为
+`\(r=d\times m=\frac{D}{Y} \times m =\frac{26000}{250} \times 5=520\)`箱
+
+- 生产周期T是指生产阶段之间的时间。
+`\(T=250Q^{\ast}/D=250 \times 3387/26000 \approx 33\)`天。
+
+- 生产率
+`\(p=P/Y=60000/250=240\)`箱/天
+
+- 每个周期的生产天数
+`\(3387/240=14.1\)`天
+
+- 也即，生产周期方案为：每33天生产3387单位产品，每个生产周期需要开工14.1天。
+
+]
+
+
+---
+layout: false
+class: center, middle, duke-softblue,hide_logo
+name: shortage
+
+# 10.3节 有计划缺货时的库存模型
+
+---
+layout: true
+
+&lt;div class="my-header-h2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark1"&gt;&lt;/div&gt;
+
+&lt;div class="watermark2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark3"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@  &amp;emsp;&amp;emsp; &lt;a href="#chapter10"&gt; 第10章 库存模型&lt;/a&gt;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&lt;a href="#shortage"&gt;10.3 有计划缺货时的库存模型&lt;/a&gt; &lt;/span&gt;&lt;/div&gt; 
+
+---
+
+## 有计划缺货时的库存模型：问题描述
+
+**缺货**（shortate）或**脱销**（stockout）是指供不应求。
+
+在许多情况下，缺货是令人厌烦的，但有些时候，缺货是人们所期望的（因为持有成本很高）。因此，从经济学角度来看，人们会计划并允许缺货。本节，我们重点讨论一种缺货现象，称为**延迟订货**。
+
+**延迟订货**（backorder）：当一位顾客下订单时，如果发现供应商缺货，则等待，直到新货到来时才履行订单的交付。通常情况下：
+
+- 延迟订货状态下，顾客等待的时间一般相对较短。
+
+- 公司会说服顾客，让他们等待（例如向客户保证具有新货订货的优先权）
+
+此时，延迟订货的假设和操作是有效和成立的！
+
+
+
+---
+
+## 有计划缺货时的库存模型：库存模式
+
+.fyi[
+
+- 经济订货批量模型（EOQ）中，所有货物的需求率都是不变的，并且在同一时间存入仓库。
+
+- 而延迟订货模型是EOQ模型的一种扩展，但是允许出现缺货状态。
+
+]
+
+&lt;img src="../pic/chpt10-shortage-stock-mode.png" width="700" style="display: block; margin: auto;" /&gt;
+
+---
+
+## 有计划缺货时的库存模型：库存模式
+
+
+延迟订货模型完整的库存模式如下图，并具有如下特点：
+
+- 当订货到达时首先满足已订购尚未交货的需求。设订货批量为
+`\(Q\)`，缺货为
+`\(S\)`（最大延迟订货数量），则最大库存量为
+`\(Q-S\)`。
+
+- 库存周期（
+`\(T\)`）被分成两个阶段：有现货阶段（
+`\(t_1\)`）,缺货阶段（
+`\(t_2\)`）
+
+
+
+&lt;img src="../pic/chpt10-shortage-stock-mode.png" width="700" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+## 有计划缺货时的库存模型：延迟订货成本
+
+明确了库存模式，我们可以按之前的方法继续推到总成本模型。我们同样需要计算两项成本：
+
+- 订货成本
+
+- 持有成本
+
+
+与之前不同，这里我们需要考虑**延迟订货成本**：
+
+- **延迟订货成本**，是指与处理延迟订货相关的人工以及特殊发货成本，以及由于延迟交货导致顾客不得不等待，而造成对公司信誉的损失（信誉成本）。
+
+- 而且**信誉成本**一般取决于顾客的等待时间。等待时间越长，信誉成本越高。
+
+- 因此，**延迟订货成本**可以表示为（基于延迟时间）：在固定时间内，持有一单位延迟订单中产品的成本。
+
+- 一旦我们知道了平均延迟订货水平，以及每个周期内每份延迟订单的成本，那么我们就可以计算延迟订货的年度总成本。
+
+---
+
+### 总成本模型：平均库存量
+
+.pull-left[
+
+- 现货阶段
+`\(t_1\)`时期内，平均库存为
+`\(\frac{Q-S}{2}\)`
+
+- 缺货阶段
+`\(t_2\)`时期内，持有延迟订单。
+
+- 因此在生产周期
+`\(T=t_1 +t_2\)`时期内，可以计算周期内的平均库存量：
+
+`$$\begin{align}
+平均库存量&amp;=\frac{1 / 2(Q-S) t_{1}+0 \times t_{2}}{t_{1}+t_{2}}\\
+&amp;=\frac{1 / 2(Q-S) t_{1}}{T}
+\end{align}$$`
+
+]
+
+.pull-right[
+
+&lt;img src="../pic/chpt10-shortage-stock-mode.png" width="2107" height="300" style="display: block; margin: auto;" /&gt;
+
+]
+
+
+---
+
+### 总成本模型：平均库存量
+
+.pull-left[
+
+- 
+`\(D\)`：年需求量
+
+- 
+`\(d\)`：日固定需求量
+
+- 最大库存会在现货阶段用完。因此：现货时长
+`\(t_1 = \frac{Q-S}{d}\)`
+
+- 每个周期都会有
+`\(Q\)`单位订单。因此，周期长度
+`\(T=\frac{Q}{d}\)`
+
+]
+
+.pull-right[
+
+&lt;img src="../pic/chpt10-shortage-stock-mode.png" width="2107" height="300" style="display: block; margin: auto;" /&gt;
+
+]
+
+此时，通过两个决策变量：订货数量
+`\(Q\)`和最大延迟订货数量
+`\(S\)`，我们就可以表达出**平均库存量**。
+
+`$$\begin{align}
+平均库存量&amp;==\frac{1 / 2(Q-S) t_{1}}{T}
+=\frac{1 / 2(Q-S)\left(\left(Q-S\right) / d\right)}{Q / d}=\frac{(Q-S)^{2}}{2 Q}
+\end{align}$$`
+
+---
+
+### 总成本模型：平均延迟订货量
+
+.pull-left[
+
+- 
+`\(Q\)`：周期内的订货批量
+
+- 
+`\(S\)`：最大延迟订货量
+
+- 在现货阶段
+`\(t_1\)`内，没有延迟订货。
+
+- 在缺货阶段
+`\(t_2\)`内，平均延迟订货数量
+`\(=\frac{S}{2}\)`
+
+- 每个周期内，平均延迟订货量：
+
+`$$\begin{align}
+平均延迟订货量&amp;=\frac{0\times t_1 + (S/2)\times t_2 }{T} \\
+&amp;=\frac{(S/2)\times t_2}{T}
+\end{align}$$`
+
+]
+
+.pull-right[
+
+&lt;img src="../pic/chpt10-shortage-stock-mode.png" width="2107" height="300" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+
+### 总成本模型：平均延迟订货量
+
+.pull-left[
+
+- 
+`\(Q\)`：周期内的订货批量
+
+- 
+`\(S\)`：最大延迟订货量
+
+- 
+`\(d\)`：日固定需求量
+
+- 在现货阶段
+`\(t_1\)`内，没有延迟订货。
+
+- 在缺货阶段
+`\(t_2\)`内，平均延迟订货数量
+`\(=\frac{S}{2}\)`
+
+- 周期内延迟订货时长为：
+`\(t_2 = \frac{S}{d}\)`
+
+]
+
+.pull-right[
+
+&lt;img src="../pic/chpt10-shortage-stock-mode.png" width="2107" height="300" style="display: block; margin: auto;" /&gt;
+
+]
+
+此时，通过两个决策变量：订货数量
+`\(Q\)`和最大延迟订货数量
+`\(S\)`，我们就可以表达出**平均延迟订货量**。
+
+`$$\begin{align}
+平均延迟订货量&amp;=\frac{(S/2)\times t_2}{T}
+= \frac{S^2}{2Q}
+\end{align}$$`
+
+---
+
+### 总成本模型：年度总成本
+
+
+.pull-left[
+
+- 
+`\(Q\)`：周期内的订货批量
+
+- 
+`\(S\)`：最大延迟订货量
+
+- 
+`\(C_o\)`：一次订货成本
+
+- 
+`\(C_h\)`：单位产品的年库存持有成本
+
+- 
+`\(C_b\)`：延迟订货单位产品的年持有成本
+
+]
+
+.pull-right[
+
+
+]
+
+此时，**年度总成本=年订货成本 + 年延迟订货成本 + 年库存持有成本**：
+
+`$$\begin{align}
+TC=
+\left( \frac{D}{Q}\times C_o \right) + 
+\left( \frac{S^2}{2Q} \times C_b \right) + 
+\left( \frac{(Q-S)^2}{2Q}\times C_h \right)
+\end{align}$$`
+
+---
+
+### 总成本模型：理论推导
+
+根据年度总成本公式，我们可以用微积分方法，求解得到年度总成本最小时的最优经济订货批量
+`\(Q^{\ast}\)`和延迟订单数量
+`\(S^{\ast}\)`：
+
+
+`$$\begin{align}
+TC &amp;=
+\left( \frac{D}{Q}\times C_o \right) + 
+\left( \frac{S^2}{2Q} \times C_b \right) + 
+\left( \frac{(Q-S)^2}{2Q}\times C_h \right) \\
+\Rightarrow &amp; 
+\begin{cases}
+  \frac{\partial{TC}}{\partial{Q}}  =0 \\
+  \frac{\partial{TC}}{\partial{S}}  =0 
+\end{cases} \\
+\Rightarrow &amp; 
+\begin{cases}
+  Q^{\ast} =
+  \sqrt{
+    \frac{2D\times C_o}{C_h}
+    \left(\frac{C_h+C_b}{C_b}\right)
+  } \\
+  S^{\ast} =Q^{\ast}
+    \left(\frac{C_h}{C_h+C_b}\right)
+\end{cases}
+\end{align}$$`
+
+---
+exclude: true
+
+## R chunk：最优订货量和延迟订单数量
+
+
+
+
+---
+
+### Higley收音机配件案例：最优经济订货批量和延迟订单数量
+
+.case[
+Higley收音机配件公司：
+
+- 产品年需求量：
+`\(D=2000\)`单位
+
+- 单位产品价值：
+`\(C=50\)`美元,
+
+- 库存持有成本率：
+`\(I=20\%\)`
+
+- 单位库存产品的年持有成本：
+`\(C_h =C\times I = 50\times 20\%=10\)`美元
+
+- 一次订货成本：
+`\(C_o =25\)`美元,
+
+- 延迟订货中单位产品的年持有成本：
+`\(C_b =30\)`美元 
+
+]
+
+`$$\begin{align}
+Q^{\ast} &amp;=
+\sqrt{
+  \frac{2D\times C_o}{C_h}
+  \left(\frac{C_h+C_b}{C_b}\right)
+} =
+\sqrt{
+  \frac{2\times 2000\times 25}{10}
+  \left(\frac{10+30}{30}\right)
+} =
+115.4701
+\approx
+115
+\end{align}$$`
+
+`$$\begin{align}
+S^{\ast} &amp;
+= Q^{\ast} \left(\frac{C_h}{C_h+C_b}\right)
+= 115 \left(\frac{10}{10+30}\right)
+28.8675
+\approx
+29
+\end{align}$$`
+
+---
+
+### Higley收音机配件案例：各类成本
+
+.case[
+
+Higley收音机配件案例：
+
+- 最优订货批量
+`\(Q^{\ast}=115.47\)`美元；最优延迟订单数量
+`\(S^{\ast}=28.87\)`
+
+- 最大库存量：
+`\(Q^{\ast}- S^{\ast}=115.47 -28.87=86.6\)`单位。
+
+- 产品年需求量：
+`\(D=2000\)`单位
+
+- 单位库存产品的年持有成本：
+`\(C_h =C\times I = 50\times 20\%=10\)`美元
+
+- 一次订货成本：
+`\(C_o =25\)`美元,
+
+- 延迟订货中单位产品的年持有成本：
+`\(C_b =30\)`美元 
+
+]
+
+`$$\begin{align}
+&amp;年订货成本 =
+\frac{D}{Q^{\ast}}\times C_o =
+\frac{2000}{115.47}\times 25 =433.01 \\
+&amp;年延迟订货成本  = 
+\frac{{S^{\ast}}^2}{2Q^{\ast}} \times C_b 
+= \frac{28.87^2}{2\times 115.47} \times 30 =108.25 \\
+&amp;年库存持有成本 =
+\frac{{(Q^{\ast}-S^{\ast})}^2}{2Q}\times C_h 
+= \frac{(115.47-28.87)^2}{2Q}\times 10=324.76
+\end{align}$$`
+
+---
+
+### Higley收音机配件案例：年度总成本
+
+.case[
+
+Higley收音机配件案例：
+
+- 最优订货批量
+`\(Q^{\ast}=115.47\)`美元；最优延迟订单数量
+`\(S^{\ast}=28.87\)`
+
+- 产品年需求量：
+`\(D=2000\)`单位
+
+- 单位库存产品的年持有成本：
+`\(C_h =C\times I = 50\times 20\%=10\)`美元
+
+- 一次订货成本：
+`\(C_o =25\)`美元,
+
+- 延迟订货中单位产品的年持有成本：
+`\(C_b =30\)`美元 
+
+]
+
+`$$\begin{align}
+年度总成本 &amp;=
+\left( \frac{D}{Q^{\ast}}\times C_o \right) + 
+\left( \frac{{S^{\ast}}^2}{2Q^{\ast}} \times C_b \right) + 
+\left( \frac{(Q^{\ast}-S^{\ast})^2}{2Q^{\ast}}\times C_h \right) \\
+&amp;= 433.01 +
+108.25 +
+324.76 \\
+&amp; =
+866.03
+\end{align}$$`
+
+---
+
+### Higley收音机配件案例：库存时间决策
+
+
+.case[
+Higley收音机配件公司：
+
+- 每年工作日：
+`\(Y=250\)`
+
+- 产品日需求率：
+`\(d=D/Y = 2000/250=8\)`单位/工作日
+
+- 订货周期：
+`\(T=\frac{Q^{\ast}}{D}\times Y =\frac{115.47}{2000}\times 250 = 14.43\)`工作日
+
+- 缺货时间：
+`\(t_2=\frac{S^{\ast}}{d}=\frac{28.87}{8}=3.60\)`工作日
+
+- 有现货时间：
+`\(t_1=T-t_2=14.43-3.60=10.83\)`工作日
+
+]
+
+---
+
+### Higley收音机配件案例：与EOQ模式的对比
+
+.fyi[
+
+假设不允许出现延迟订货，而是采用经济订货批量模型（EOQ），则：
+
+`$$\begin{align}
+Q^{\ast}_{EOQ} &amp;= \sqrt{\frac{2\times D\times C_o}{C_h}} 
+= \sqrt{\frac{2\times 2000\times 35}{10} }
+= 100
+\end{align}$$`
+
+`$$\begin{align}
+年订货成本_{EOQ} &amp;= \left(\frac{D}{Q^{\ast}_{EOQ}} \times C_0 \right) 
+= \left(\frac{2000}{100} \times 25 \right) 
+=500\\
+年库存持有成本_{EOQ} &amp;= \left(\frac{1}{2}Q^{\ast}_{EOQ} \times C_h\right)
+= \left(\frac{1}{2}\times 100 \times 10\right)
+= 500\\
+年度总成本TC_{EOQ} &amp; =500 + 500 =1000
+\end{align}$$`
+
+]
+
+
+- 采用允许延迟订货的模型，要比不允许缺货的EOQ模型，节省年度总成本
+`\(TC- TC_{EOQ} = 1000 -866 = 134\)`美元，也即节省
+`\(134/1000=13.4\%\)`。
+
+- 当然，如果企业认为延迟订货会导致销售额减少，这样做也可能得不偿失。
+
+---
+layout: false
+class: center, middle, duke-softblue,hide_logo
+name: discount
+
+# 10.4节 EOQ模型的数量折扣
+
+---
+layout: true
+
+&lt;div class="my-header-h2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark1"&gt;&lt;/div&gt;
+
+&lt;div class="watermark2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark3"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@  &amp;emsp;&amp;emsp; &lt;a href="#chapter10"&gt; 第10章 库存模型&lt;/a&gt;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&lt;a href="#discount"&gt;10.4 EOQ模型的数量折扣&lt;/a&gt; &lt;/span&gt;&lt;/div&gt; 
+
+---
+exclude: true
+
+## R Chunk：辅助函数及折扣安排
+
+
+
+
+
+
+---
+
+## 数量折扣：问题描述
+
+数量折扣发生在如下情形下：
+
+- 当大批量订购产品时，供应商往往会为了促使顾客增大订购批量而提供较低的购买价格。
+
+
+&gt; 例如：供应商不采用固定报价，而是如下图所示的折扣计划进行报价。
+
+
+
+&lt;table&gt;
+&lt;caption&gt;一种订单折扣安排方案&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; 折扣阶梯 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 订单大小 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 折扣率(%) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 单位成本(美元) &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 - 999 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 5.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1000 - 2499 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4.8 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2500 - Inf &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4.8 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+- 虽然订货数量越大，折扣优惠越是诱人。但是这也会导致更高的库存持有成本。
+
+---
+
+## 数量折扣：总成本模型
+
+.pull-left[
+
+- 
+`\(D\)`：年度需求量
+
+- 
+`\(Q\)`：订货批量
+
+- 
+`\(C_o\)`：一次订货成本
+
+
+]
+
+.pull-right[
+
+- 
+`\(C\)`：库存产品的单位成本
+
+- 
+`\(I\)`：年持有成本率
+
+- 
+`\(C_h=C\times I\)`：单位产品的年库存持有成本
+
+
+]
+
+**数量折扣模型**需要将**年采购成本**（采购价值
+`\(D\times C\)`）考虑到总成本中去。
+
+- 此时，**年度总成本=年订货成本  + 年库存持有成本+ 年采购成本**：
+
+$$TC =\left(\frac{D}{Q} \times C_0 \right) + \left(\frac{1}{2}Q \times C_h\right) +\left(D\times C\right) $$
+- 订货数量求解，还是与EOQ模型相同：
+
+`$$Q^{\ast} = \sqrt{\frac{2\times D\times C_o}{C_h}}$$`
+
+
+---
+
+## 数量折扣：示例计算（案例信息）
+
+
+.case[
+在三个阶梯的折扣情形下，给定如下信息：
+
+- 年度需求量
+`\(D=5000\)`
+
+- 一次订货成本
+`\(C_o=49\)`美元
+
+- 库存产品的单位成本
+`\(C=(C_1, C_2, C_3) = (5.00, \quad4.85, \quad4.75)\)`
+
+- 年持有成本率
+`\(I=20\%\)`
+
+- 单位产品的年库存持有成本
+`\(C_h=C\times I=(C_{h1}, C_{h2}, C_{h3}) = (1.00, \quad0.97, \quad0.95)\)`
+
+]
+
+---
+
+## 数量折扣：示例计算（案例信息表）
+
+<div id="htmlwidget-d3d0bb0fd39fd26ff31c" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d3d0bb0fd39fd26ff31c">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"caption":"<caption>不同折扣下的相关信息表<\/caption>","data":[["1","2","3"],["EOQ计算数据","EOQ计算数据","EOQ计算数据"],[1,2,3],["0 - 999","1000 - 2499","2500 - Inf"],["0.0%","3.0%","5.0%"],[5000,5000,5000],[49,49,49],[5,4.85,4.75],["20.0%","20.0%","20.0%"],[1,0.97,0.95]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>数据集<\/th>\n      <th>折扣阶梯<\/th>\n      <th>订单大小<\/th>\n      <th>折扣率<\/th>\n      <th>年度需求D<\/th>\n      <th>一次订货成本Co<\/th>\n      <th>库存产品的单位成本C<\/th>\n      <th>年持有成本率I<\/th>\n      <th>单位产品的年库存持有成本Ch<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bt","columnDefs":[{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":8,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":10,"buttons":["copy","csv","excel"],"initComplete":"function(settings, json) {\n$(this.api().table().header()).css({'background-color': '#517fb9', 'color': '#fff'});\n}","order":[],"autoWidth":false,"orderClasses":false},"callback":"function(table) {\n$(\"button.buttons-copy\").css(\"background\",\"yellow\");\n                $(\"button.buttons-csv\").css(\"background\",\"orange\");\n                $(\"button.buttons-excel\").css(\"background\",\"#a88d32\");\n                $(\"button.dt-button\").css(\"padding\",\"0.2em 0.2em\");\n                $(\"button.dt-button\").css(\"font-size\",\"0.6em\");\n                $(\"button.dt-button\").css(\"margin-right\",\"0.2em\");\n                $(\"button.dt-button\").css(\"margin-bottom\",\"0.1em\");\n                $(\"button.dt-button\").css(\"line-height\",\"1em\");\n                return table;\n}"},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.initComplete","callback"],"jsHooks":[]}</script>
+
+
+---
+
+## 数量折扣：示例计算（EOQ订货目标）
+
+.pull-left[
+
+在三种数量折扣情形下，我们分别可以计算得到EOQ库存模型下的最优订货批量：
+
+`$$\begin{align}
+Q^{\ast}&amp;= \sqrt{\frac{2\times D\times C_o}{C_h}} \\
+Q_{1}^{*}&amp;=\sqrt{\frac{2\times 5000 \times 49}{(0.20\times 5.00)}}=700 \\
+Q_{2}^{*}&amp;=\sqrt{\frac{2\times 5000 \times 49}{(0.20\times 4.85)}}=711 \\
+Q_{3}^{*}&amp;=\sqrt{\frac{2\times 5000 \times 49}{(0.20\times 4.75)}}=718
+\end{align}$$`
+
+]
+
+.pull-right[
+显然：
+
+- 三种情形下的最优批量，差异比较小，而且都没有达到第2阶梯（3%折扣优惠）和第3阶梯（5%折扣优惠）所需要的最小订货量。
+
+- 因此，我们需要将订货数量进行调整，以达到折扣方案的最小订货量要求。例如我们可以调整订货量为：
+
+`$$Q_1^{\ast}=700; \quad Q_2^{\ast}=1000; \quad Q_3^{\ast}=2500$$`
+]
+
+
+---
+
+## 数量折扣：示例计算（EOQ订货目标）
+
+<div id="htmlwidget-9bf49fd06899251bc3f1" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9bf49fd06899251bc3f1">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"caption":"<caption>有数量折扣的EOQ年度成本计算表<\/caption>","data":[["1","2","3"],["EOQ计算数据","EOQ计算数据","EOQ计算数据"],[1,2,3],["0.0%","3.0%","5.0%"],[5,4.85,4.75],[700,710.742315593533,718.184846459608],[350,344.710023062864,341.137802068314],[350,344.710023062864,341.137802068314],[25000,24250,23750],[25700,24939.4200461257,24432.2756041366]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>数据集<\/th>\n      <th>折扣阶梯<\/th>\n      <th>折扣率<\/th>\n      <th>库存产品的单位成本C<\/th>\n      <th>订货数量<\/th>\n      <th>订货成本<\/th>\n      <th>持有成本<\/th>\n      <th>采购成本<\/th>\n      <th>总成本<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bt","columnDefs":[{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 0, 3, \",\", \".\", null);\n  }"},{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 1, 3, \",\", \".\", null);\n  }"},{"targets":7,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 1, 3, \",\", \".\", null);\n  }"},{"targets":8,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 0, 3, \",\", \".\", null);\n  }"},{"targets":9,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 0, 3, \",\", \".\", null);\n  }"},{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":10,"buttons":["copy","csv","excel"],"initComplete":"function(settings, json) {\n$(this.api().table().header()).css({'background-color': '#517fb9', 'color': '#fff'});\n}","order":[],"autoWidth":false,"orderClasses":false},"callback":"function(table) {\n$(\"button.buttons-copy\").css(\"background\",\"yellow\");\n                $(\"button.buttons-csv\").css(\"background\",\"orange\");\n                $(\"button.buttons-excel\").css(\"background\",\"#a88d32\");\n                $(\"button.dt-button\").css(\"padding\",\"0.2em 0.2em\");\n                $(\"button.dt-button\").css(\"font-size\",\"0.6em\");\n                $(\"button.dt-button\").css(\"margin-right\",\"0.2em\");\n                $(\"button.dt-button\").css(\"margin-bottom\",\"0.1em\");\n                $(\"button.dt-button\").css(\"line-height\",\"1em\");\n                return table;\n}"},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render","options.columnDefs.4.render","options.columnDefs.5.render","options.initComplete","callback"],"jsHooks":[]}</script>
+
+- 在三种数量折扣情形下，EOQ库存模型下的最优订货批量，差异比较小，而且都没有达到第2阶梯（3%折扣优惠）和第3阶梯（5%折扣优惠）所需要的最小订货量要求。
+
+---
+
+## 数量折扣：示例计算（调整订货目标）
+
+<div id="htmlwidget-0e4f9a5d3b930814e34f" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-0e4f9a5d3b930814e34f">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"caption":"<caption>有数量折扣的EOQ年度成本计算表<\/caption>","data":[["1","2","3"],["目标调整数据","目标调整数据","目标调整数据"],[1,2,3],["0.0%","3.0%","5.0%"],[5,4.85,4.75],[700,1000,2500],[350,245,98],[350,485,1187.5],[25000,24250,23750],[25700,24980,25035.5]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>数据集<\/th>\n      <th>折扣阶梯<\/th>\n      <th>折扣率<\/th>\n      <th>库存产品的单位成本C<\/th>\n      <th>订货数量<\/th>\n      <th>订货成本<\/th>\n      <th>持有成本<\/th>\n      <th>采购成本<\/th>\n      <th>总成本<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bt","columnDefs":[{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 0, 3, \",\", \".\", null);\n  }"},{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 1, 3, \",\", \".\", null);\n  }"},{"targets":7,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 1, 3, \",\", \".\", null);\n  }"},{"targets":8,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 0, 3, \",\", \".\", null);\n  }"},{"targets":9,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 0, 3, \",\", \".\", null);\n  }"},{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":10,"buttons":["copy","csv","excel"],"initComplete":"function(settings, json) {\n$(this.api().table().header()).css({'background-color': '#517fb9', 'color': '#fff'});\n}","order":[],"autoWidth":false,"orderClasses":false},"callback":"function(table) {\n$(\"button.buttons-copy\").css(\"background\",\"yellow\");\n                $(\"button.buttons-csv\").css(\"background\",\"orange\");\n                $(\"button.buttons-excel\").css(\"background\",\"#a88d32\");\n                $(\"button.dt-button\").css(\"padding\",\"0.2em 0.2em\");\n                $(\"button.dt-button\").css(\"font-size\",\"0.6em\");\n                $(\"button.dt-button\").css(\"margin-right\",\"0.2em\");\n                $(\"button.dt-button\").css(\"margin-bottom\",\"0.1em\");\n                $(\"button.dt-button\").css(\"line-height\",\"1em\");\n                return table;\n}"},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render","options.columnDefs.4.render","options.columnDefs.5.render","options.initComplete","callback"],"jsHooks":[]}</script>
+
+- 人为地调整订货量，以比较三个折扣阶梯的成本情况：
+
+`$$Q_1^{\ast}=700; \quad Q_2^{\ast}=1000; \quad Q_3^{\ast}=2500$$`
+
+---
+
+## 数量折扣：不同折扣率下的总成本曲线
+
+.pull-left[
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="../pic/chpt10-discount-cat-curve.png" alt="不同订货量和折扣率下的总成本曲线" width="1869" height="450" /&gt;
+&lt;p class="caption"&gt;不同订货量和折扣率下的总成本曲线&lt;/p&gt;
+&lt;/div&gt;
+
+]
+
+.pull-right[
+
+根据计算表（上页）和左图，可以发现：
+
+- 以折扣阶梯2（3%的折扣）订货
+`\(Q^{\ast}_2=1000\)`单位，可以使得总成本达到最小（
+`\(TC_2 = 24980\)`美元）。
+
+- 尽管以折扣阶梯3（5%的折扣）很有吸引力，但是过多的订货量（
+`\(Q^{\ast}_2=1000\)`单位），会使得持有成本快速升高，从而总成本达到变大（
+`\(TC_2 = 25036\)`美元）。
+
+]
+
+---
+layout: false
+class: center, middle, duke-softblue,hide_logo
+name: single
+
+# 10.5节 概率需求下的单阶段库存模型
+
+---
+layout: true
+
+&lt;div class="my-header-h2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark1"&gt;&lt;/div&gt;
+
+&lt;div class="watermark2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark3"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@  &amp;emsp;&amp;emsp; &lt;a href="#chapter10"&gt; 第10章 库存模型&lt;/a&gt;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&lt;a href="#single"&gt;10.5 概率需求下的单阶段库存模型&lt;/a&gt; &lt;/span&gt;&lt;/div&gt; 
+
+
+---
+
+## 单阶段库存模型：问题描述
+
+.fyi[
+
+目前为止，我们讨论的库存模型都是基于如下假设：
+
+- 全年内需求率不变，且是**确定性的**
+
+]
+
+如果需求率不确定，则可以对需求进行概率分布表达。
+
+本节，我们将介绍的**单阶段库存模型**（single-period inventory）就是属于这种类型，具体库存决策特征有：
+
+- 首先发出订单订购该产品，在期末，该产品或者被售出，或者未被售出而以过剩产品按照废品回收的价值处理掉。
+
+- 单阶段库存模型适用于季节性或易腐烂产品的库存。这些产品不能在库存中存放以待将来出售。包括季节性衣物（如泳衣、冬季大衣），报纸等。
+
+- 此时，我们需要得到各种需求量概率分布的信息。
+
+---
+exclude: true
+
+## R Chunk：需求分布概率与订货量求解
+
+
+
+
+
+
+
+---
+exclude: true
+
+## R Chunk: ggplot uniform distribution
+
+&lt;img src="10-inventory_files/figure-html/plot-pdf-1.png" style="display: block; margin: auto;" /&gt;
+
+
+
+---
+
+### 强身鞋业公司：案例背景
+
+.case[
+现实问题：
+
+- 强身鞋业公司采购员决定采购一种新鞋，该鞋将参与春夏两季促销活动，因为该鞋是春夏款，不能在秋季销售。
+
+- 该公司计划举办8月清仓售卖活动，以半价30美元出售那些在7月31日之前未售出的产品。该鞋每双成本40美元，零售每双60美元。
+
+- 采购员将会为公司订购多少双这种鞋？
+
+]
+
+---
+
+### 强身鞋业公司：均匀需求概率分布
+
+.fyi[
+
+我们首先要提出的一个问题是：
+
+- 这种鞋的可能需求量为多少？
+
+]
+
+
+对于尺码10D这种鞋，假设其需求服从均匀概率分布（见右下图）：
+
+.pull-left[
+
+- 该鞋需求量范围是
+`\(350\sim 650\)`双。
+
+- 平均需求即期望需求为500双。
+
+]
+
+.pull-right[
+
+&lt;img src="../pic/chpt10-case-shoe-demand-demo.png" width="565" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+
+### 强身鞋业公司：均匀分布的概率密度pdf图
+
+&gt; 如果需求D服从均匀分布，则表达为
+`\(D \sim U(a, b)\)`。本案例中对应的为
+`\(D \sim U(350, 650)\)`，平均需求量为
+`\(E(D)= (a+b)/2=(350+650)/2=500\)`双。
+
+&lt;img src="10-inventory_files/figure-html/unnamed-chunk-34-1.png" height="400" style="display: block; margin: auto;" /&gt;
+
+---
+
+### 强身鞋业公司：增量分析（定义）
+
+**增量分析**（increamental analysis）：是一种用以决定单阶段库存模型的最佳订货数量的方法。
+
+&gt; 通过比较订购一单位额外产品与不订购该产品所发生的成本损失，增量分析解决了订购数量的问题。
+
+相关成本的定义如下：
+
+- 
+`\(c_o\)`：被高估需求的单位成本，表示每订购一单位额外产品，由于不能售出而带来的损失。一般为单位产品**采购成本**与单位产品**清仓销售价格**之差。
+
+- 
+`\(c_u\)`：被低估需求的单位成本，表示由于未订购一单位本可以卖出的产品而造成的机会损失。一般为单位产品**正常售价**与单位产品**采购成本**之差。
+
+---
+
+### 强身鞋业公司：增量分析（成本信息）
+
+**增量分析**（increamental analysis）：是一种用以决定单阶段库存模型的最佳订货数量的方法。
+
+&gt; 通过比较订购一单位额外产品与不订购该产品所发生的成本损失，增量分析解决了订购数量的问题。
+
+.case[
+强身鞋业公司案例：公司计划举办8月清仓售卖活动，以半价30美元出售那些在7月31日之前未售出的产品。该鞋每双成本40美元，零售每双60美元。
+
+
+- 
+`\(c_o =40-30=10\)`美元
+
+- 
+`\(c_u =60-40=20\)`美元
+
+]
+
+
+---
+
+### 强身鞋业公司：订货数量
+
+由于不知道尺码为10D鞋的确切需求量D，必须考虑需求概率，以及由其所导致的相关成本或损失的概率。
+
+.pull-left[
+
+
+.case[
+
+订购数量决策：
+
+- 强身鞋业公司设定一个与**平均（期望）需求量**相等的订购数量，即
+`\(Q=\frac{a+b}{2}=\frac{350+650}{2}=500\)`双。
+
+- 在增量分析中，可以考查订购500双与501双时各自所发生的相关成本。
+
+
+]
+
+]
+
+
+.pull-right[
+
+&lt;img src="../pic/chpt10-case-shoe-demand-demo.png" width="565" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+
+### 强身鞋业公司：可能成本与期望损失
+
+由于不知道尺码为10D鞋的确切需求量D，必须考虑需求概率，以及由其所导致的相关成本或损失的概率。
+
+订购数量的可选方案及其可能发生的成本和期望损失EL汇总如下：
+
+
+&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
+&lt;caption&gt;可能发生的成本汇总&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; 订购数量Q(双) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 损失情形描述 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 可能的损失(成本$) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 发生损失的概率表达 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 发生损失的概率P &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 期望损失EL &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 500 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(c_u\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 20 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(P(D &amp;gt;500)\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 10 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 501 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(c_o\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(P(D \leq 500)\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 5 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+- 低估需求下
+`\(EL =c_u\times P=20 \times 0.5=10\)`美元
+
+- 高估需求下
+`\(EL =c_o\times P = 10 \times 0.5=5\)`美元
+
+---
+
+### 强身鞋业公司：决策规则
+
+根据上表，可得两个订购方案的期望损失（EL）分别为：
+
+
+- 
+`\(EL(Q=500)=c_u \times P（需求\geq 500）=20 \times 0.5= 10\)`美元
+
+- 
+`\(EL(Q=501)=c_o \times P（需求\leq 500）=10 \times 0.5= 5\)`美元
+
+
+继续尝试
+`\(Q=502,503,\ldots\)`，直到找到最佳订货量
+`\(Q^{\ast}\)`，使下式成立：
+
+`$$\begin{align}
+EL(Q^{\ast} +1)= EL(Q^{\ast})
+\end{align}$$`
+
+直至增加一单位订货量，期望损失值不再减小，从而不会再有经济效益的改善。
+
+---
+
+### 强身鞋业公司：最优概率点（理论推导）
+
+.pull-left[
+
+- 期望损失
+
+`$$\begin{align}
+\begin{cases}
+EL(Q^{\ast} )&amp;= c_u\times P(D &gt; Q^{\ast})\\
+EL(Q^{\ast} +1)&amp;= c_o\times P(D \leq Q^{\ast}) \\
+\end{cases}
+\end{align}$$`
+
+]
+
+.pull-right[
+
+- 利用概率知识
+
+`$$\begin{align}
+P(D &gt; Q^{\ast}) + P(D \leq Q^{\ast}) &amp;=1 \\
+P(D &gt; Q^{\ast}) &amp;=1 - P(D \leq Q^{\ast})
+\end{align}$$`
+
+]
+
+- 进而可以得到：
+
+`$$\begin{align}
+EL(Q^{\ast} )= c_u\times P(D &gt; Q^{\ast})
+= c_u\times \left(1 - P(D \leq Q^{\ast}) \right) 
+\end{align}$$`
+
+- 根据需求决策规则，可以得到：
+
+`$$\begin{align}
+EL(Q^{\ast} )&amp;= EL(Q^{\ast} +1 ) \\
+\Rightarrow  c_u\times \left(1 - P(D \leq Q^{\ast}) \right) 
+&amp;= c_o\times P(D \leq Q^{\ast}) \\
+\Rightarrow P(D \leq Q^{\ast}) &amp;= \frac{c_u}{c_u +c_o}
+\end{align}$$`
+
+最优概率点
+`\(P^{\ast}\)`的求解，为单阶段库存模型最佳订货
+`\(Q^{\ast}\)`提供了一般条件。
+
+---
+
+### 强身鞋业公司：最优概率点（示例计算）
+
+.case[
+
+强身鞋业公司案例：
+
+- 根据上述需求决策规则，我们可以计算得到在最优订货量
+`\(Q^{\ast}\)`是的概率点（累积概率）为：
+
+`$$\begin{align}
+P(D \leq Q^{\ast}) &amp;= \frac{c_u}{c_u +c_o} 
+= \frac{20}{20 +10} =2/3
+\end{align}$$`
+
+- 此时，货品充足（高估市场需求）的概率为
+`\(P(D \leq Q^{\ast})=2/3\)`；货品短缺（低估市场需求）的概率为
+`\(P(D &gt; Q^{\ast})=1/3\)`
+
+]
+
+- 已知需求D服从均匀分布
+`\(D \sim U(350, 650)\)`
+
+- 因此我们可以借助均匀分布的累积概率密度，反过来计算得到概率点（累积概率值）对应的需求量（也即
+最优订货量
+`\(Q^{\ast}\)`）
+
+---
+
+### 强身鞋业公司：需求的概率密度pdf图
+
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="10-inventory_files/figure-html/unnamed-chunk-37-1.png" alt="均匀分布的概率密度pdf图" height="400" /&gt;
+&lt;p class="caption"&gt;均匀分布的概率密度pdf图&lt;/p&gt;
+&lt;/div&gt;
+
+- 我们再次回顾概率论知识，需求D服从均匀分布
+`\(D \sim U(350, 650)\)`
+
+- 那么服从均匀分布的需求D，则可以画出其**概率密度pdf图**以及**累积概率密度cdf图**
+
+---
+
+### 强身鞋业公司：需求的累积概率密度cdf图
+
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="10-inventory_files/figure-html/unnamed-chunk-38-1.png" alt="均匀分布的累积概率密度df图" height="400" /&gt;
+&lt;p class="caption"&gt;均匀分布的累积概率密度df图&lt;/p&gt;
+&lt;/div&gt;
+
+- 绘制均匀分布的累积概率密度图
+
+- 根据之前得到的概率点值（累积概率值，
+`\(P^{\ast}=2/3\)`），画出水平线（蓝色虚线）
+
+---
+
+### 强身鞋业公司：需求的累积概率密度cdf图
+
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="10-inventory_files/figure-html/unnamed-chunk-39-1.png" alt="均匀分布的累积概率密度df图" height="400" /&gt;
+&lt;p class="caption"&gt;均匀分布的累积概率密度df图&lt;/p&gt;
+&lt;/div&gt;
+
+.page-font-24[
+
+- 找到最优概率点值水平线（蓝色虚线）与累积概率密度图（绿色三角）的交集点K
+
+- 根据交集点K，画出铅垂线（黑色实线），则得到横轴上的最优订货批量（点M，
+`\(Q^{\ast}=550\)`）
+
+]
+
+---
+
+### 强身鞋业公司：需求的累积概率密度cdf图
+
+
+&lt;img src="10-inventory_files/figure-html/unnamed-chunk-40-1.png" height="400" style="display: block; margin: auto;" /&gt;
+
+.page-font-24[
+
+- 实际上，我们可以在Excel中使用如下函数进行计算得到：
+
+`$$Q^{\ast}=a+(a-b)\times P^{\ast} = 350+(650-350)\times 2/3=350+200=550$$`
+
+]
+
+???
+
+- 或者使用`R`统计软件的函数命令`qnorm(p=2/3, min =350, max=650)`计算得到
+`\(Q^{\ast}=550\)`。
+
+---
+exclude: true
+
+## R Chunk: ggplot standard norm distribution
+
+
+
+---
+exclude: true
+
+## R Chunk: ggplot norm distribution
+
+
+
+
+
+
+---
+
+### 全国汽车租赁公司：案例背景
+
+.case[
+
+全国汽车租赁公司想知道在劳动节周末提供多少辆标准汽车？
+
+已知：
+
+- 顾客对出租汽车的需求服从正态分布
+`\(D \sim N(150,14)\)`
+
+- 货品充足（高估市场需求）下的单位成本为
+`\(c_o =80\)`
+
+- 货品短缺（低估市场需求）下的单位成本为
+`\(c_u =200\)`
+
+]
+
+
+---
+
+### 全国汽车租赁公司：服从正态分布的市场需求
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="10-inventory_files/figure-html/unnamed-chunk-43-1.png" alt="汽车出租市场需求D服从正态分布"  /&gt;
+&lt;p class="caption"&gt;汽车出租市场需求D服从正态分布&lt;/p&gt;
+&lt;/div&gt;
+
+---
+
+### 全国汽车租赁公司：计算累积概率值
+
+.case[
+
+全国汽车租赁公司案例：
+
+- 根据上述需求决策规则，我们可以计算得到在最优订货量
+`\(Q^{\ast}\)`是的概率点（累积概率）为：
+
+`$$\begin{align}
+P(D \leq Q^{\ast}) &amp;= \frac{c_u}{c_u +c_o} 
+= \frac{200}{200 +10} =71.43\%
+\end{align}$$`
+
+- 出租车供给充足（高估市场需求）的概率为
+`\(P(D \leq Q^{\ast})=71.43\%\)`；
+
+- 出租车供给短缺（低估市场需求）的概率为
+`\(P(D &gt; Q^{\ast})=28.57\%\)`
+
+]
+
+---
+
+### 全国汽车租赁公司：提供出租车的最优数量
+
+因为出租车的市场需求**服从正态分布**，因此我们可以借助它与**标准正态分布**的关系，来计算提供出租车的最优数量
+`\(Q^{\ast}\)`。具体步骤：
+
+- 根据**Z标准正态分布表**，给定概率值
+`\(\alpha=P(D &gt; Q^{\ast})=28.57\%\)`下，可以查到统计量值
+`\(Z^{\ast}=0.57\)`。
+
+.fyi[
+请同学们自己动手查一下
+]
+
+- 然后利用公式计算得到供出租车的最优数量为158辆：
+
+`$$Q^{\ast} = \mu + Z^{\ast}\times \sigma = 150+  0.57 \times 14 \approx 158$$`
+
+---
+
+### 全国汽车租赁公司：标准正态分布VS正态分布
+
+.pull-left[
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="10-inventory_files/figure-html/unnamed-chunk-44-1.png" alt="正态分布N"  /&gt;
+&lt;p class="caption"&gt;正态分布N&lt;/p&gt;
+&lt;/div&gt;
+
+]
+
+.pull-right[
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="../pic/chpt10-taxi-excel-sdandard-normal-calcu.png" alt="标准正态分布Z" width="4399" /&gt;
+&lt;p class="caption"&gt;标准正态分布Z&lt;/p&gt;
+&lt;/div&gt;
+
+]
+
+
+`$$Q^{\ast} = \mu + Z^{\ast}\times \sigma = 150+  0.57 \times 14 \approx 158$$`
+
+---
+
+### 全国汽车租赁公司：提供出租车的最优数量
+
+&lt;img src="10-inventory_files/figure-html/unnamed-chunk-46-1.png" style="display: block; margin: auto;" /&gt;
+
+
+`$$Q^{\ast} = \mu + Z^{\ast}\times \sigma = 150+  0.57 \times 14 \approx 158$$`
+
+---
+
+### 全国汽车租赁公司：出租车供给短缺的累积概率
+
+&lt;img src="10-inventory_files/figure-html/unnamed-chunk-47-1.png" style="display: block; margin: auto;" /&gt;
+
+`$$Q^{\ast} = \mu + Z^{\ast}\times \sigma = 150+  0.57 \times 14 \approx 158$$`
+
+---
+
+### 全国汽车租赁公司：出租车供给充足的累积概率
+
+&lt;img src="10-inventory_files/figure-html/unnamed-chunk-48-1.png" style="display: block; margin: auto;" /&gt;
+
+`$$Q^{\ast} = \mu + Z^{\ast}\times \sigma = 150+  0.57 \times 14 \approx 158$$`
+
+---
+
+### 全国汽车租赁公司：最优数量（Excel直接求解）
+
+.fyi[
+Excel求解法：
+
+- 实际上我们也可以使用Excel函数`=NORM.INV(0.7143,150,14)`直接求解得到最优数量。
+]
+
+
+&lt;img src="../pic/chpt10-taxi-excel-normal-calcu.png" width="550" style="display: block; margin: auto;" /&gt;
+
+
+.footnote[
+
+**说明**：当然，我们也可以使用任何一款统计软件进行计算，例如R统计编程语言的代码`qnorm(p=0.7143, mu=150, sigma=14)`，就可以计算得出同样的结果。
+
+]
+
+---
+
+### 全国汽车租赁公司：最优数量（Excel直接求解）
+
+
+
+
+<div id="htmlwidget-8c493d3ee7bd471065f8" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-8c493d3ee7bd471065f8">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"caption":"<caption>Excel函数计算正态分布最优数量<\/caption>","data":[["1","2","3","4"],["参数1","参数2","参数3","计算结果"],["期望值","标准差","累积概率","最优数量"],["mu","sigma","p","Q"],[150,14,0.7143,157.923871912849]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>参数<\/th>\n      <th>说明<\/th>\n      <th>符号<\/th>\n      <th>数值<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bt","columnDefs":[{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 4, 3, \",\", \".\", null);\n  }"},{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":10,"buttons":["copy","csv","excel"],"initComplete":"function(settings, json) {\n$(this.api().table().header()).css({'background-color': '#517fb9', 'color': '#fff'});\n}","order":[],"autoWidth":false,"orderClasses":false},"callback":"function(table) {\n$(\"button.buttons-copy\").css(\"background\",\"yellow\");\n                $(\"button.buttons-csv\").css(\"background\",\"orange\");\n                $(\"button.buttons-excel\").css(\"background\",\"#a88d32\");\n                $(\"button.dt-button\").css(\"padding\",\"0.2em 0.2em\");\n                $(\"button.dt-button\").css(\"font-size\",\"0.6em\");\n                $(\"button.dt-button\").css(\"margin-right\",\"0.2em\");\n                $(\"button.dt-button\").css(\"margin-bottom\",\"0.1em\");\n                $(\"button.dt-button\").css(\"line-height\",\"1em\");\n                return table;\n}"},"evals":["options.columnDefs.0.render","options.initComplete","callback"],"jsHooks":[]}</script>
+
+.fyi[
+课堂测试（5分钟）：
+
+- 请大家点击上边`Excel`图标，下载Excel文件到自己电脑上
+
+- 利用前面介绍的Excel函数，自己动手算一算！
+
+]
+
+---
+layout: false
+class: center, middle, duke-softblue,hide_logo
+name: reorder
+
+# 10.6节 概率需求下的订货数量&lt;/br&gt;&lt;/br&gt;——再订货点模型
+
+---
+layout: true
+
+&lt;div class="my-header-h2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark1"&gt;&lt;/div&gt;
+
+&lt;div class="watermark2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark3"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@  &amp;emsp;&amp;emsp; &lt;a href="#chapter10"&gt; 第10章 库存模型&lt;/a&gt;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&lt;a href="#single"&gt;10.6 概率需求下的订货数量:再订货点模型&lt;/a&gt; &lt;/span&gt;&lt;/div&gt; 
+
+
+---
+
+## 引子：多阶段订货
+
+在上一节中我们讨论了需求概率已知的单阶段库存模型。
+
+本节将把讨论扩展到需求概率已知下的**多阶段订货**——再订货点库存模型。
+
+
+&lt;img src="../pic/chpt10-reorder-prob-stock-mode-demo.png" width="1687" height="450" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+## 多阶段订货：模式特点
+
+需求概率已知下的**订货—再订货点**库存模型，具有如下特点。
+
+- 在多阶段模型中，库存系统按照重复性的阶段或周期连续运作，库存可以从一个阶段转移到下一个阶段。
+
+- 当库存量达到再订货点时，就会发出订货量为Q的订单。
+
+- 由于需求是概率性分布的，因此我们不能实现确定库存何时会降至再定货点以及各订单之间的时间间隔是多少，也不能确定所订购的Q单位的产品何时存入库存。
+
+---
+
+## 多阶段订货：模式符号
+
+- 
+`\(Q\)`: 订货批量； 
+`\(m\)`: 交货期（订单提前期）；
+`\(r\)`: 再订货点
+
+
+&lt;img src="../pic/chpt10-reorder-prob-stock-mode-demo.png" width="1687" height="450" style="display: block; margin: auto;" /&gt;
+
+---
+
+## 多阶段订货：订货数量决策
+
+考虑近似EOQ库存模型：最大库存为Q，平均库存为Q/2,不考虑缺货（缺货概率比较小）。
+
+- 
+`\(D\)`：年平均需求量
+
+- 
+`\(Q\)`：订货数量
+
+- 
+`\(C_h=C\times I\)`：单位库存年持有成本
+
+- 
+`\(C_o\)`：一次订购成本
+
+
+根据前面的学习，我们知道EOQ的最优订货批量为：
+
+`$$\begin{align}
+Q^{\ast} &amp;= \sqrt{\frac{2\times D\times C_o}{C_h}} 
+\end{align}$$`
+
+
+---
+
+## 多阶段订货：订货时间决策
+
+- 设订单提前期（m天）内需求量X的概率密度为
+`\(P(X)\)`，给定允许的缺货概率为
+`\(\alpha\)`，则有现货状态的累积概率为
+`\(P(X≤r)=1-\alpha\)`。
+
+- 进一步假设不确定性的需求服从正态分布
+`\(X \sim N(\mu, \sigma^2)\)`
+
+- 在**标准正态分布**下，给定缺货概率为
+`\(\alpha=0.05\)`，则有现货状态的累积概率为
+`\(\Phi(Z)=P(X≤r)=1-\alpha=0.95\)`。我们可以算出其
+`\(Z^{\ast}=1.64\)`
+
+---
+exclude: true
+
+## R Chunk: ggplot standard norm distribution
+
+
+
+
+---
+exclude: true
+
+## R Chunk: ggplot norm distribution
+
+
+
+
+---
+
+### 德比克照明公司案例：关心的问题
+
+.case[
+**案例说明**：德比克公司从一家知名的灯泡生产厂家那里采购一种特殊的高亮度灯泡，用于其工业照明系统。公司希望知道：**订购多少，以及何时订购才能获得其最低库存成本策略？**
+
+相关信息如下：
+
+- 单位产品价值
+`\(C=6\)`美元；库存持有成本率
+`\(I=20\%\)`；单位库存产品的年持有成本
+`\(C_h =C\times I = 6\times 20\%=1.2\)`美元
+
+- 一次订货成本：
+`\(C_o =12\)`美元。
+
+- 公司有1000多家客户，而客户的需求是有概率性的。
+
+- 每份新灯泡进货订单的提前期为1周
+`\(m=1\)`，且这个时期内的需求量服从正态分布
+`\(X \sim N(\mu=154, \sigma^2=225)\)`
+
+- 公司允许缺货的最大概率为
+`\(\alpha=0.05\)`
+
+]
+
+---
+
+### 德比克照明公司案例：不确定需求服从正态分布
+
+
+&lt;img src="10-inventory_files/figure-html/unnamed-chunk-56-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+### 德比克照明公司案例：客户对公司产品的年度需求量
+
+.notes[
+
+已知：
+
+- 公司向上游供应商的订货提前期为
+`\(m=1\)`周
+
+- 全年共有工作周
+`\(\textrm{weeks} =52\)`周
+
+- 提前期内公司客户对产品的需求量服从正态分布
+`\(X \sim N(\mu=154, \sigma^2=25^2)\)`
+
+- 公司规定允许缺货的最大概率为
+`\(\alpha=0.05\)`
+
+]
+
+-------
+
+考虑到每个周的期望需求量为
+`\(\mu =154\)`个，因此可以计算得到：
+
+- 客户对公司产品的年度需求量的期望值为：
+
+`$$E(D)=\mu \times \textrm{weeks}=154 \times 52 = 8008$$`
+
+---
+
+### 德比克照明公司案例：最优订货批量
+
+.notes[
+已知：
+
+- 产品年期望需求量：
+`\(D=8008\)`单位
+
+- 每年工作日：
+`\(Y=250\)`
+
+- 单位产品价值
+`\(C=6\)`美元；库存持有成本率
+`\(I=20\%\)`；单位库存产品的年持有成本
+`\(C_h =C\times I = 6\times 20\%=1.2\)`美元
+
+- 一次订货成本：
+`\(C_o =12\)`美元。
+
+
+]
+
+- 根据前面的学习，我们知道EOQ的最优订货批量为400个：
+
+`$$\begin{align}
+Q^{\ast} &amp;= \sqrt{\frac{2\times D\times C_o}{C_h}} = \sqrt{\frac{2\times 8008\times 12}{1.2}} 
+\approx 400
+\end{align}$$`
+
+- 每年大概需要发出订单的数量为
+`\(m=D/Q^{\ast}=8008/400=20\)`份；每次订货之间的间隔为
+`\(Y/m=250/20=12.5\)`个工作日。
+
+
+
+---
+
+### 德比克照明公司案例：不确定需求下的再订货点
+
+.notes[
+已知：
+
+- 公司向上游供应商的订货提前期为
+`\(m=1\)`周
+
+- 提前期内公司客户对产品的需求量服从正态分布
+`\(X \sim N(\mu=154, \sigma^2=225)\)`；
+
+- 公司规定允许缺货的最大概率为
+`\(\alpha=0.05\)`
+
+]
+
+-------
+
+- 查表可得对应的标准正态分布统计量为
+`\(Z^{\ast}=1.64\)`。
+
+- 允许缺货概率（
+`\(\alpha=0.05\)`）下的再订货点：
+
+`$$r = \mu + Z^{\ast}\times \sigma=154 +1.645\times 25 \approx 195$$`
+
+---
+
+### 德比克照明公司案例：标准正态分布VS正态分布
+
+.pull-left[
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="10-inventory_files/figure-html/unnamed-chunk-57-1.png" alt="正态分布N"  /&gt;
+&lt;p class="caption"&gt;正态分布N&lt;/p&gt;
+&lt;/div&gt;
+
+]
+
+.pull-right[
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="../pic/chpt10-light-excel-sdandard-normal-calcu.png" alt="标准正态分布Z" width="4399" /&gt;
+&lt;p class="caption"&gt;标准正态分布Z&lt;/p&gt;
+&lt;/div&gt;
+
+]
+
+
+`$$r = \mu + Z^{\ast}\times \sigma=154 +1.645\times 25 \approx 195$$`
+
+---
+
+### 德比克照明公司案例：库存策略和安全库存量
+
+.fyi[
+为了保证缺货率不高于
+`\(\alpha =5\%\)`的目标，公司决定：
+
+- 每当库存数量达到再订货点
+`\(r = 195\)`，就立刻发出订货量为
+`\(Q^{\ast}=400\)`的订单进行补货。
+
+- 因此，**安全库存**数量为
+`\(s=r -\mu = 195 - 154 =41\)`个
+
+]
+
+
+&lt;img src="10-inventory_files/figure-html/unnamed-chunk-59-1.png" height="300" style="display: block; margin: auto;" /&gt;
+
+---
+
+### 德比克照明公司案例：计算各类成本
+
+.notes[
+已知：
+
+- 产品年期望需求量：
+`\(D=8008\)`单位
+
+- 最优订货数量
+`\(Q^{\ast}=400\)`
+
+- 单位产品价值
+`\(C=6\)`美元；库存持有成本率
+`\(I=20\%\)`；单位库存产品的年持有成本
+`\(C_h =C\times I = 6\times 20\%=1.2\)`美元
+
+- 一次订货成本：
+`\(C_o =12\)`美元。
+
+
+]
+
+根据前面的学习，我们知道：
+
+`$$\begin{align}
+&amp;年订货成本 =
+\frac{D}{Q^{\ast}}\times C_o =
+\frac{8008}{400}\times 1.2 =240 \\
+&amp;正常库存的年度持有成本 =
+\frac{Q^{\ast}}{2}\times C_h 
+= \frac{400}{2}\times 1.2=240\\
+&amp;安全库存的年度持有成本  = 
+s \times C_h 
+= 41 \times 1.2 =49 
+\end{align}$$`
+
+
+---
+
+### 德比克照明公司案例：计算年度总成本
+
+.notes[
+已知：
+
+- 产品年期望需求量：
+`\(D=8008\)`单位
+
+- 最优订货数量
+`\(Q^{\ast}=400\)`
+
+- 单位产品价值
+`\(C=6\)`美元；库存持有成本率
+`\(I=20\%\)`；单位库存产品的年持有成本
+`\(C_h =C\times I = 6\times 20\%=1.2\)`美元
+
+- 一次订货成本：
+`\(C_o =12\)`美元。
+
+]
+
+因此，**年度总成本TC=年订货成本 + 正常库存的年度持有成本 + 安全库存的年度持有成本**：
+
+`$$\begin{align}
+TC &amp; = \left( \frac{D}{Q^{\ast}}\times C_o \right) + 
+\left( \frac{Q^{\ast}}{2}\times C_h \right) +
+\left( s \times C_h \right) \\
+&amp;= 240 +240 +49 =  529
+\end{align}$$`
+
+
+
+---
+
+### 德比克照明公司案例：点评
+
+.fyi[
+
+**对比情形**：
+
+- 假设德比克照明公司的灯泡年需求是确定的，且已知
+`\(D=8008\)`，EOQ最优订货数量解将仍旧为
+`\(Q^{\ast} = 400\)`个，再订货点为
+`\(r = 154\)`个。
+
+- 那么总成本将不用考虑安全库存的持有成本，从而等于
+`\(TC^{\prime}=240 +240 =480\)`美元
+
+]
+
+结论：
+
+- 当需求是不确定时，总成本会比确定性需求情形下要有所增加。
+`\((TC = 529) &gt; (TC^{\prime}=480)\)`
+
+- 不确定需求下，库存系统不得不存储更多的产品以控制缺货的次数。
+
+---
+layout: false
+class: center, middle, duke-softblue,hide_logo
+name: review
+
+# 10.7节 概率需求下的定期检查模型
+
+---
+layout: true
+
+&lt;div class="my-header-h2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark1"&gt;&lt;/div&gt;
+
+&lt;div class="watermark2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark3"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@  &amp;emsp;&amp;emsp; &lt;a href="#chapter10"&gt; 第10章 库存模型&lt;/a&gt;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&lt;a href="#review"&gt;10.7 概率需求下的定期检查模型(EOQ)&lt;/a&gt; &lt;/span&gt;&lt;/div&gt; 
+
+---
+exclude: true
+
+## R Chunk: ggplot standard norm distribution
+
+
+
+
+---
+exclude: true
+
+## R Chunk: ggplot norm distribution
+
+
+
+---
+
+## 定期检查库存：引子
+
+.fyi[
+
+**知识回顾**：
+
+在上一节中我们讨论的“订货量-再订货点”模型，实际上是要求有**连续检查库存系统**：
+
+- 库存处于连续的监测之中。
+
+- 只要库存量降低到在订货点r，就会发出订单
+
+- 对于计算机化的库存系统来说，能很方便实现这样的库存管理和连续监测
+
+]
+
+本节将把讨论扩展到需要用到**定期检查库存系统**的情形中。
+
+
+---
+
+## 定期检查库存：模式特点
+
+需求概率已知下的**定期检查库存系统**，具有如下特点。
+
+- 库存状况的检查以及再订货，只在固定时点进行。
+
+&gt; 例如，每周、每两周或每月，进行库存状况的检查，并发出订单
+
+- 当一家企业同时经营多种产品时，定期检查库存系统的可以使同时订购几种产品的订单，按照预先排好的时间同时发出。
+
+- 这种系统对于多种产品的订单而言，能很好地协调产品的运输和接收工作。
+
+---
+
+## 定期检查库存：模式图和符号表达
+
+- 
+`\(m\)`: 交货期（订单提前期）；
+`\(s\)`: 检查期
+
+- 
+`\(Q\)`: 订货批量；
+`\(M\)`：补货水平；
+`\(H\)`：检查前的现有库存量。
+`\(Q = M - H\)`
+
+
+&lt;img src="../pic/chpt10-review-prob-stock-mode-demo.png" width="637" style="display: block; margin: auto;" /&gt;
+
+---
+
+## 定期检查库存：模式图和符号表达
+
+- 决策变量是补货水平
+`\(M\)`。
+
+- 订货量
+`\(Q\)`在每次检查时都是变化的，而非常高的市场需求偶尔会导致缺货。
+
+
+&lt;img src="../pic/chpt10-review-prob-stock-mode-demo.png" width="637" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+### 中央仓库案例：案例背景
+
+.case[
+**案例说明**：Dollar Discounts公司经营着几家日用品零售店，产品的品种比较广。
+
+- 其库存系统每2周进行一次检查。
+
+- 零售店的经理每隔2周从Dollar Discounts公司的中央仓库进行订货，订货的数量和品种由经理来决定。
+
+- 同一家零售店所订的全部货物将一次性运达该店。
+
+- 经理们很清楚，在下一个检查期到来之前，是不能够对产品进行再次订货的。
+
+]
+
+---
+
+### 中央仓库案例：不确定需求服从正态分布
+
+
+&lt;img src="10-inventory_files/figure-html/unnamed-chunk-64-1.png" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+### 中央仓库案例：不确定需求下的补货水平
+
+.notes[
+已知：
+
+- 零售店经理定期检查的周期为每2周，也即
+`\(s=2\)`周
+
+- 提前期内公司客户对产品的需求量服从正态分布
+`\(X \sim N(\mu=250, \sigma^2=45^2)\)`；
+
+- 公司规定零售店里允许缺货的最大概率为
+`\(\alpha=0.01\)`
+
+]
+
+-------
+
+- 查表可得对应的标准正态分布统计量为
+`\(Z^{\ast}=2.33\)`。
+
+- 允许缺货概率（
+`\(\alpha=0.01\)`）下的补货水平为：
+
+`$$M = \mu + Z^{\ast}\times \sigma=250 +2.33\times 45 \approx 355$$`
+
+---
+
+### 中央仓库案例：标准正态分布VS正态分布
+
+.pull-left[
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="10-inventory_files/figure-html/unnamed-chunk-65-1.png" alt="正态分布N"  /&gt;
+&lt;p class="caption"&gt;正态分布N&lt;/p&gt;
+&lt;/div&gt;
+
+]
+
+.pull-right[
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="../pic/chpt10-retail-excel-sdandard-normal-calcu.png" alt="标准正态分布Z" width="4399" /&gt;
+&lt;p class="caption"&gt;标准正态分布Z&lt;/p&gt;
+&lt;/div&gt;
+
+]
+
+`$$M = \mu + Z^{\ast}\times \sigma=250 +2.33\times 45 \approx 355$$`
+
+---
+
+### 中央仓库案例：库存策略和安全库存量
+
+.fyi[
+为了保证缺货率不高于
+`\(\alpha =1\%\)`的目标，公司决定：
+
+- 补货水平为
+`\(M=355\)`。定期检查时的库存水平为
+`\(H\)`。当每次定期检查完成后，计算出订货数量为
+`\(Q^{\ast} = M-H\)`，然后经理发出订单，进行补货。
+
+- 因此，**安全库存**数量为
+`\(Q_s=M -\mu = 355 - 250 =105\)`单位
+
+]
+
+
+&lt;img src="10-inventory_files/figure-html/unnamed-chunk-67-1.png" height="300" style="display: block; margin: auto;" /&gt;
+
+---
+
+### 中央仓库案例：点评
+
+.fyi[
+
+**对比情形**：
+
+- 假设零售点的产品需求是确定的，那么补货水平应该为
+`\(M = 250\)`单位。
+
+- 那么不会发生缺货现象，总成本将不用考虑安全库存的持有成本。
+
+]
+
+结论：
+
+- 当需求是不确定时（满足概率分布），总成本会比确定性需求情形下要有所增加。
+
+- 不确定需求下，安全库存量为
+`\(Q_s=M -\mu = 355 - 250 =105\)`单位，库存系统不得不存储更多的产品以控制缺货次数发生的概率（小于1%）。
+
+- 当然，因为我们目前没有Dollar Discounts公司各个零售店的检查期库存量
+`\(H\)`，所以无法计算出零售店经理的订货量
+`\(Q = 355 -H\)`。因此就无法进行下一步的成本分析和计算。
+
+
+
+
+---
+layout:false
+background-image: url("../pic/thank-you-gif-funny-little-yellow.gif")
+class: inverse,center
+# 本章结束
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="libs/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

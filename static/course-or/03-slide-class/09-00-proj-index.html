@@ -1,0 +1,2101 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>09-00-proj-index.knit</title>
+    <meta charset="utf-8" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/duke-blue.css" rel="stylesheet" />
+    <link href="libs/remark-css/hygge-duke.css" rel="stylesheet" />
+    <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
+    <script src="libs/htmlwidgets/htmlwidgets.js"></script>
+    <link href="libs/datatables-css/datatables-crosstalk.css" rel="stylesheet" />
+    <script src="libs/datatables-binding/datatables.js"></script>
+    <script src="libs/jquery/jquery-3.6.0.min.js"></script>
+    <link href="libs/dt-core/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="libs/dt-core/css/jquery.dataTables.extra.css" rel="stylesheet" />
+    <script src="libs/dt-core/js/jquery.dataTables.min.js"></script>
+    <script src="libs/jszip/jszip.min.js"></script>
+    <link href="libs/dt-ext-buttons/css/buttons.dataTables.min.css" rel="stylesheet" />
+    <script src="libs/dt-ext-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="libs/dt-ext-buttons/js/buttons.html5.min.js"></script>
+    <script src="libs/dt-ext-buttons/js/buttons.colVis.min.js"></script>
+    <script src="libs/dt-ext-buttons/js/buttons.print.min.js"></script>
+    <link href="libs/crosstalk/css/crosstalk.min.css" rel="stylesheet" />
+    <script src="libs/crosstalk/js/crosstalk.min.js"></script>
+    <script src="libs/kePrint/kePrint.js"></script>
+    <link href="libs/lightable/lightable.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../mycss/my-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../mycss/my-font.css" type="text/css" />
+    <link rel="stylesheet" href="../mycss/my-custom-for-video-roomy.css" type="text/css" />
+    <link rel="stylesheet" href="../mycss/text-box.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+background-image: url("../pic/slide-front-page.jpg")
+class: center,middle
+
+# 数据、模型与决策&lt;/br&gt;&lt;/br&gt;(Data, Model and Decision)
+
+&lt;!---    chakra: libs/remark-latest.min.js ---&gt;
+
+### 胡华平
+
+### 西北农林科技大学
+
+### 经济管理学院数量经济教研室
+
+### huhuaping01@hotmail.com
+
+### 2022-04-29
+
+
+
+
+
+
+
+<div>
+<style type="text/css">.xaringan-extra-logo {
+width: 110px;
+height: 70px;
+z-index: 0;
+background-image: url(../pic/logo/nwafu-logo-circle-wb.png);
+background-size: contain;
+background-repeat: no-repeat;
+position: absolute;
+top:0.2em;left:1em;
+}
+</style>
+<script>(function () {
+  let tries = 0
+  function addLogo () {
+    if (typeof slideshow === 'undefined') {
+      tries += 1
+      if (tries < 10) {
+        setTimeout(addLogo, 100)
+      }
+    } else {
+      document.querySelectorAll('.remark-slide-content:not(.title-slide):not(.inverse):not(.hide_logo)')
+        .forEach(function (slide) {
+          const logo = document.createElement('div')
+          logo.classList = 'xaringan-extra-logo'
+          logo.href = null
+          slide.appendChild(logo)
+        })
+    }
+  }
+  document.addEventListener('DOMContentLoaded', addLogo)
+})()</script>
+</div>
+
+&lt;!--- control all child  title and chapter slide----&gt;
+
+
+
+---
+class: center, middle, duke-orange,hide_logo
+name: chapter09
+
+
+# 第9章 项目安排:&lt;/br&gt;&lt;/br&gt;计划评审法/关键路线法
+
+### [9.1 活动时间已知的项目安排](#known)
+
+### [9.2 活动时间不确定的项目安排](#uncertain)
+
+### [9.3 时间与成本抉择](#option)
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+background-image: url("../pic/slide-front-page.jpg")
+class: center,middle
+exclude: TRUE
+
+# 数据、模型与决策&lt;/br&gt;&lt;/br&gt;(Data, Model and Decision)
+
+&lt;!---    chakra: libs/remark-latest.min.js ---&gt;
+
+### 胡华平
+
+### 西北农林科技大学
+
+### 经济管理学院数量经济教研室
+
+### huhuaping01@hotmail.com
+
+### 2022-04-29
+
+
+
+
+
+
+
+<div>
+<style type="text/css">.xaringan-extra-logo {
+width: 110px;
+height: 70px;
+z-index: 0;
+background-image: url(../pic/logo/nwafu-logo-circle-wb.png);
+background-size: contain;
+background-repeat: no-repeat;
+position: absolute;
+top:0.2em;left:1em;
+}
+</style>
+<script>(function () {
+  let tries = 0
+  function addLogo () {
+    if (typeof slideshow === 'undefined') {
+      tries += 1
+      if (tries < 10) {
+        setTimeout(addLogo, 100)
+      }
+    } else {
+      document.querySelectorAll('.remark-slide-content:not(.title-slide):not(.inverse):not(.hide_logo)')
+        .forEach(function (slide) {
+          const logo = document.createElement('div')
+          logo.classList = 'xaringan-extra-logo'
+          logo.href = null
+          slide.appendChild(logo)
+        })
+    }
+  }
+  document.addEventListener('DOMContentLoaded', addLogo)
+})()</script>
+</div>
+
+---
+class: center, middle, duke-orange,hide_logo
+name: chapter09
+exclude: TRUE
+
+
+# 第9章 项目安排:&lt;/br&gt;&lt;/br&gt;计划评审法/关键路线法
+
+### [.white[9.1 活动时间已知的项目安排]](#known)
+
+### [9.2 活动时间不确定的项目安排](#uncertain)
+
+### [9.3 时间与成本抉择](#option)
+
+
+---
+layout: false
+class: center, middle, duke-softblue,hide_logo
+name: known
+
+# 9.1 活动时间已知的项目安排
+
+---
+layout: true
+
+&lt;div class="my-header-h2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark1"&gt;&lt;/div&gt;
+
+&lt;div class="watermark2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark3"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@  &amp;emsp;&amp;emsp; &lt;a href="#chapter09"&gt; 第09章 项目安排&lt;/a&gt;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&lt;a href="#known"&gt;9.1 活动时间已知的项目安排&lt;/a&gt; &lt;/span&gt;&lt;/div&gt; 
+
+---
+
+## 引子
+
+.fyi[
+
+计划评审法和关键路径法可用来对大量项目进行计划、安排和控制：
+
+- （1）新产品及工艺的研发；
+- （2）工厂、建筑物及高速公路的建造；
+- （3）大型复杂设备的维护；
+- （4）新系统的设计与安装。
+
+]
+
+---
+
+## 引子
+
+.puzzle[
+管理者必须回答以下问题：
+
+- （1）完成该项目总工需要多少事件？
+- （2）每一特定活动的开始和完成日期？
+- （3）为了保证项目按计划进行，哪些活动是“极为重要的”，必须严格按照计划完成？
+- （4）“不重要”的活动最多可延时多长时间完成，而不致影响整个项目的完成时间？
+]
+
+
+---
+
+## 西山购物中心案例：案例背景
+
+.case[
+
+**案例说明**：
+
+- 西山购物中心公司（Western Hills Shopping Center）正在计划对现有32个购物中心综合体进行现在化改革并扩张规模。
+
+- 该项目预计能为8-10个新的商业购物中心综合体提供空间
+
+- 所有者要计划、安排、完成这个项目。
+
+]
+
+
+---
+
+## 西山购物中心案例：项目活动
+
+
+
+
+<div id="htmlwidget-5396f8937748b3abd2bc" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-5396f8937748b3abd2bc">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"caption":"<caption>西山购物中心项目活动列表<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10"],["A","B","C","D","E","F","G","H","I","合计"],["画出建筑图","识别潜在新客户","为客户写计划书","选承包商","准备建筑许可","获得建筑许可","施工","招商","客户进驻","-"],["-","-","A","A","A","E","D, F","B, C","G, H","-"],[5,6,4,3,1,4,14,12,2,51]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>活动代码<\/th>\n      <th>活动内容<\/th>\n      <th>紧前活动<\/th>\n      <th>活动时间(周)<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bt","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":10,"buttons":["copy","csv","excel"],"initComplete":"function(settings, json) {\n$(this.api().table().header()).css({'background-color': '#517fb9', 'color': '#fff'});\n}","order":[],"autoWidth":false,"orderClasses":false},"callback":"function(table) {\n$(\"button.buttons-copy\").css(\"background\",\"yellow\");\n                $(\"button.buttons-csv\").css(\"background\",\"orange\");\n                $(\"button.buttons-excel\").css(\"background\",\"#a88d32\");\n                $(\"button.dt-button\").css(\"padding\",\"0.2em 0.2em\");\n                $(\"button.dt-button\").css(\"font-size\",\"0.6em\");\n                $(\"button.dt-button\").css(\"margin-right\",\"0.2em\");\n                $(\"button.dt-button\").css(\"margin-bottom\",\"0.1em\");\n                $(\"button.dt-button\").css(\"line-height\",\"1em\");\n                return table;\n}"},"evals":["options.initComplete","callback"],"jsHooks":[]}</script>
+
+
+
+---
+
+## 西山购物中心案例：项目网络图
+
+根据表中给出的活动信息，可以构造一个项目网络图：
+
+- 网络中的节点（方形框）代表每项活动，弧（箭头线）代表各项活动之间的优先顺序。
+
+&lt;img src="../pic/chpt09-west-hill-graph.jpg" width="700" style="display: block; margin: auto;" /&gt;
+
+---
+
+## 西山购物中心案例：项目网络图+时间
+
+对项目网络图做一些改动，如下图，在每个节点左上方单元格中都给出了该活动的字母代码，其下方单元格中则列出了完成活动需要的时间。
+
+&lt;img src="../pic/chpt09-west-hill-graph-with-time.png" width="700" style="display: block; margin: auto;" /&gt;
+
+---
+
+## 西山购物中心案例：关键路径
+
+**路径**就是指从起点到终点之间相连节点的序列。
+
+- 为了确定完成项目所需要的时间，必须要找出关键路径。
+
+- 为了完成整个项目，网络中的所有路径都必须相互横越，因此需要找出其中最长的路径，它决定了完成项目与所需要的全部时间。
+
+- 如果最长路径上的活动被延误，那么整个活动完成的时间就会被延误，因此，最长路径即为**关键路径**。
+
+关键路径上的活动称为项目的**关键活动**。
+
+---
+
+## 西山购物中心案例：定义（ES和EF）
+
+对于一项活动，我们定义：
+
+- 最早开始时间（Earliest Start）：
+`\(ES\)`
+- 最早完成时间（Earliest Finish）：
+`\(EF\)`
+
+- 活动时间
+`\(t\)`
+
+
+我们需要对项目网络图进行**向后推进**，计算最早完成时间EF和最早开始时间ES：
+
+--------------
+
+&gt; **计算规则1**：一项活动的最早完成时间，等于最早开始时间加上活动时间：
+`\(EF=ES+t\)`
+
+--------------
+
+&gt; **计算规则2**：每项活动的最早开始时间
+`\((ES)\)`等于它的所有紧前活动的最早完成时间
+`\((EF)\)`的最大值。
+
+--------------
+
+???
+&gt; 如何确定每项活动的最早开始时间ES？如何确定每项活动的最早完成时间EF？
+
+
+---
+
+### 计算示例0：活动A的最早完成时间
+
+.puzzle[
+- 如何确定每项活动的最早开始时间ES？如何确定每项活动的最早完成时间EF？
+]
+
+- 将每项活动的所需时间
+`\(t\)`写在活动代码下方单元格。
+
+- 将每项活动的最早开始时间和最早完成时间写到节点处的右侧单元格。
+
+&lt;img src="../pic/chpt09-key-path-determin-calculate.jpg" width="400" style="display: block; margin: auto;" /&gt;
+
+- 设活动A最早开始时间为0，而完成活动A需要5周，所以活动A的最早完成时间为
+`\(EF=5\)`。
+
+
+---
+
+### 计算示例1：活动A和B的最早完成时间
+
+下图展示了整个项目网络图的部分（活动A、B、C和H）。
+
+.pull-left[
+
+&lt;img src="../pic/chpt09-key-path-calc-demo- 00.png" width="927" height="450" style="display: block; margin: auto;" /&gt;
+
+]
+
+.pull-right[
+
+观察易知：
+
+- 活动A是活动C的唯一紧前活动
+
+- 活动H有两个紧前活动，分别是活动B和活动C
+
+
+]
+
+---
+
+### 计算示例2：活动A和B的最早完成时间
+
+下图展示了整个项目网络图的部分（活动A、B、C和H）。
+
+.pull-left[
+
+&lt;img src="../pic/chpt09-key-path-calc-demo- 00.png" width="927" height="450" style="display: block; margin: auto;" /&gt;
+
+
+]
+
+.pull-right[
+
+容易计算：
+
+- 活动A的最早完成时间为
+`\(EF = ES +t = 0+ 5 =5\)`
+
+- 活动B的最早完成时间为
+`\(EF = ES +t = 0+ 6 =6\)`
+
+]
+
+---
+
+### 计算示例3：活动C的最早完成时间
+
+下图展示了整个项目网络图的部分（活动A、B、C和H）。
+
+.pull-left[
+
+&lt;img src="../pic/chpt09-key-path-calc-demo- 02.png" width="936" height="450" style="display: block; margin: auto;" /&gt;
+
+
+]
+
+.pull-right[
+
+进一步计算：
+
+- 活动C的最早完成时间为
+`\(EF = ES +t = 5+ 4 =9\)`
+
+]
+
+---
+
+### 计算示例4：活动H的最早完成时间
+
+下图展示了整个项目网络图的部分（活动A、B、C和H）。
+
+.pull-left[
+
+&lt;img src="../pic/chpt09-key-path-calc-demo- 02.png" width="936" height="450" style="display: block; margin: auto;" /&gt;
+
+
+]
+
+.pull-right[
+
+进一步计算：
+
+- 活动H的紧前活动有活动B和C，最大的最早完成时间出现在活动C上，即
+`\(ES_H=Max(EF_B, EF_C)= EF_C =9\)`
+
+- 因此，活动H的最早完成时间为
+`\(EF_H = ES_H +t = EF_C +t = 9+ 12 =21\)`
+
+]
+
+---
+
+### 计算示例5：所有活动的最早完成时间
+
+下图展示了整个项目网络图的最早开始时间和最早完成时间。
+
+
+&lt;img src="../pic/chpt09-key-path-calc-demo- 01.png" width="1232" height="450" style="display: block; margin: auto;" /&gt;
+
+---
+
+## 西山购物中心案例：定义（LS和LF）
+
+对于一项活动，进一步定义：
+
+- 最晚开始时间（Latest Start）：
+`\(LS\)`
+- 最晚完成时间（Latest Finish）：
+`\(LF\)`
+
+
+我们需要对项目网络图进行**向前逆推**，计算最晚开始时间LS和最晚完成时间LF：
+
+--------------
+
+&gt; **计算规则1**：一项活动的最晚开始时间LS，等于最晚完成时间LF减去活动时间t：
+`\(LS=LF-t\)`
+
+--------------
+
+&gt; **计算规则2**：一项活动的最晚完成时间LF，等于其所有**紧后活动**最晚开始时间的.red[**最小值**]。
+
+--------------
+
+???
+
+&gt; 区隔符号的使用
+
+---
+
+### 示例1：计算活动I的最晚开始时间LS和最晚完成时间LF
+
+
+- 将一项活动的最晚开始时间LS，写在该活动的最早开始时间ES下方的单元格
+
+- 将一项活动的最晚完成时间LF，写在该活动的最早完成时间EF下方的单元格
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="../pic/chpt09-key-path-LS-LF.png" alt="活动I的LS和LF" width="400" /&gt;
+&lt;p class="caption"&gt;活动I的LS和LF&lt;/p&gt;
+&lt;/div&gt;
+
+---
+
+### 示例2：计算活动I的最晚开始时间LS和最晚完成时间LF
+
+
+&lt;img src="../pic/chpt09-key-path-LS-LF-full-H.png" width="650" style="display: block; margin: auto;" /&gt;
+
+对于活动H：如何计算最晚开始时间和最晚完成时间？
+
+--
+
+- 其唯一紧后活动项目为活动I，而活动I的最晚开始时间为
+`\(LS_I=24\)`，因此活动H的最晚完成时间等于
+`\(LF_H=LS_I=24\)`。
+- 又因为活动H的用时为
+`\(t_H=12\)`，因此活动H的最晚开始时间为
+`\(LS_H = LF_H-t_H=24-12=12\)`。
+
+
+---
+
+### 示例3：项目所有活动的最晚开始时间LS和最晚完成时间LF
+
+对于整个项目网络图，我们可以计算出所有活动的最晚开始时间LS和最晚完成时间LF。
+
+&lt;img src="../pic/chpt09-key-path-LS-LF-full.png" width="780" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+## 西山购物中心案例：松弛（定义）
+
+**松弛**（又称时差，slack）：是指延误某项活动的活动时间而又不影响项目整体完工时间的时间长度。其计算公式为：
+
+`$$Slack =LS-ES=LF-EF$$`
+
+---
+
+### 示例1：活动C的松弛量计算
+
+&lt;img src="../pic/chpt09-key-path-LS-LF-full-CE.png" width="700" style="display: block; margin: auto;" /&gt;
+
+对于活动C：
+
+--
+
+- 活动C的松弛量
+`\(Slack_C =LS-ES=8-5=3\)`，或者
+`\(Slack_C =LF-EF=12-9=3\)`。
+
+- 也即活动C可以最多延误3周完成，而又不影响整个项目的计划完成时间。
+
+---
+
+### 示例2：活动E的松弛量计算
+
+&lt;img src="../pic/chpt09-key-path-LS-LF-full-CE.png" width="700" style="display: block; margin: auto;" /&gt;
+
+对于活动E：
+
+--
+
+- 活动E的松弛量
+`\(Slack_E =LS-ES=5-5=0\)`，或者
+`\(Slack_E =LF-EF=6-6=0\)`。
+
+- 活动E没有任何松弛，为了不影响整个项目的计划完成时间，活动E不能有任何延误。
+
+---
+
+## 西山购物中心案例：关键活动（定义）
+
+**关键活动**（又称重要活动）：是指没有任何松弛的活动。也即：
+
+`$$ES=LS, \quad \text{or} \quad EF=LF$$`
+.case[
+例如：
+
+- 前述计算中，活动C有3周的松弛量
+`\((Slack_C =LS-ES=8-5=3)\)`，因此活动C可以最多延误3周完成，而又不影响整个项目的计划完成时间。因此，从这个角度来看，活动C对于整个项目能否按期完成并不是那么重要。
+
+- 前述计算中，活动E没有任何松弛量
+`\((Slack_E =LS-ES=5-5=0)\)`，为了不影响整个项目的计划完成时间，活动E不能有任何延误。因此，从这个角度来看，活动E对于整个项目能否按期完成非常重要，因此是整个项目的**关键活动**之一！
+
+]
+
+---
+
+### 示例1：找到整个项目的所有关键活动
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="../pic/chpt09-key-path-LS-LF-full.png" alt="西山购物中心项目路径图" width="800" /&gt;
+&lt;p class="caption"&gt;西山购物中心项目路径图&lt;/p&gt;
+&lt;/div&gt;
+
+---
+
+### 示例2：找到整个项目的所有关键活动
+
+
+
+
+<div id="htmlwidget-ec420dceb959a4d85134" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ec420dceb959a4d85134">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"caption":"<caption>西山购物中心项目活动进度表<\/caption>","data":[["1","2","3","4","5","6","7","8","9"],["A","B","C","D","E","F","G","H","I"],[0,0,5,5,5,6,10,9,24],[0,6,8,7,5,6,10,12,24],[5,6,9,8,6,10,24,21,26],[5,12,12,10,6,10,24,24,26],[0,6,3,2,0,0,0,3,0],["Yes","NO","No","No","Yes","No","No","Yes","Yes"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>活动代码<\/th>\n      <th>最早开始时间&lt;/br&gt;ES<\/th>\n      <th>最早完成时间&lt;/br&gt;EF<\/th>\n      <th>最晚开始时间&lt;/br&gt;LS<\/th>\n      <th>最晚完成时间&lt;/br&gt;LF<\/th>\n      <th>松弛量&lt;/br&gt;LS-ES<\/th>\n      <th>是否关键活动<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bt","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":10,"buttons":["copy","csv","excel"],"initComplete":"function(settings, json) {\n$(this.api().table().header()).css({'background-color': '#517fb9', 'color': '#fff'});\n}","order":[],"autoWidth":false,"orderClasses":false},"callback":"function(table) {\n$(\"button.buttons-copy\").css(\"background\",\"yellow\");\n                $(\"button.buttons-csv\").css(\"background\",\"orange\");\n                $(\"button.buttons-excel\").css(\"background\",\"#a88d32\");\n                $(\"button.dt-button\").css(\"padding\",\"0.2em 0.2em\");\n                $(\"button.dt-button\").css(\"font-size\",\"0.6em\");\n                $(\"button.dt-button\").css(\"margin-right\",\"0.2em\");\n                $(\"button.dt-button\").css(\"margin-bottom\",\"0.1em\");\n                $(\"button.dt-button\").css(\"line-height\",\"1em\");\n                return table;\n}"},"evals":["options.initComplete","callback"],"jsHooks":[]}</script>
+
+---
+
+### 示例3：找到整个项目的所有关键活动
+
+&lt;img src="../pic/chpt09-key-path-LS-LF-full-all-keys.png" width="700" style="display: block; margin: auto;" /&gt;
+
+
+- 活动A、E、F、G、I都没有任何松弛量
+`\((Slack = 0)\)`
+
+- 因此这五项活动都是西山购物中心整个项目路径图的**关键活动**！
+
+- 这也进一步意味着：这些关键活动之前的**非关键活动**所能容忍的最大松弛量（或延误时间），都可能会增加整体项目的完工时间！
+
+---
+
+## 西山购物中心案例：确定关键路径
+
+根据以上规则和算法，我们可以为所有活动建立最早开始时间和最早完成时间:
+
+&lt;img src="../pic/chpt09-key-path-calc-demo- 03.png" width="750" style="display: block; margin: auto;" /&gt;
+
+&gt; 最后一项活动I的最早完成时间是26
+`\((EF=26)\)`，因此整个项目的完成时间为26周。
+
+
+
+
+---
+
+## PERT/CPM关键路径程序：理论步骤
+
+.notes[
+
+下面，简单总结一下PERT/CPM关键路径程序的主要步骤：
+
+- （1）列出组成项目的活动清单
+
+- （2）确定每项活动的紧前活动
+
+- （3）估计每项活动的完成时间
+
+- （4）画出项目网络图，描述在第1步和第2步中列出的活动及其紧前活动。
+
+- （5）利用项目网络图和活动时间估计，通过向前推的方法，确定每项活动的最早开始时间和最早完成时间。最后一项活动的最早完成时间也就是项目的完成时间。
+
+]
+
+---
+
+## PERT/CPM关键路径程序：理论步骤
+
+.notes[
+
+下面，简单总结一下PERT/CPM关键路径程序的主要步骤：
+
+- （6）将在第5步中求出的项目完成时间作为最后一项活动的最晚完成时间，利用向后逆推的方法，确定每项活动的最晚开始时间和最晚完成时间。
+
+- （7）比较每项活动的最早开始时间和最晚开始时间，确定松弛。
+
+- （8）找出所有松弛为0的活动，这些活动就是关键活动。
+
+- （9）利用从第5步和第6步中取得的信息为项目设计活动安排。
+
+]
+
+---
+
+### PERT/CPM关键路径程序：实操步骤1
+
+
+
+- **步骤1**：打开管理科学家软件，选择分析模块`7. PERT/CPM`。
+
+&lt;img src="../pic/seq-chpt09-cpm/chpt09-cmp-hill-seq-001.jpg" width="700" style="display: block; margin: auto;" /&gt;
+
+---
+
+### PERT/CPM关键路径程序：实操步骤2
+
+- **步骤2**：新建路径分析工作文件。
+
+&lt;img src="../pic/seq-chpt09-cpm/chpt09-cmp-hill-seq-002.jpg" width="630" style="display: block; margin: auto;" /&gt;
+
+---
+
+### PERT/CPM关键路径程序：实操步骤3
+
+- **步骤3**：确定分析类型，选择`Known Activity Times`；设定活动数量。
+
+&lt;img src="../pic/seq-chpt09-cpm/chpt09-cmp-hill-seq-003.jpg" width="630" style="display: block; margin: auto;" /&gt;
+
+---
+
+### PERT/CPM关键路径程序：实操步骤4
+
+- **步骤4**：设定各活动的所需时间；设定各活动的紧前活动都有哪些。
+
+&lt;img src="../pic/seq-chpt09-cpm/chpt09-cmp-hill-seq-004.jpg" width="630" style="display: block; margin: auto;" /&gt;
+
+---
+
+### PERT/CPM关键路径程序：实操步骤5
+
+- **步骤5**：点击开始求解。
+
+&lt;img src="../pic/seq-chpt09-cpm/chpt09-cmp-hill-seq-005.jpg" width="630" style="display: block; margin: auto;" /&gt;
+
+---
+
+### PERT/CPM关键路径程序：实操步骤6
+
+- **步骤6**：得到求解分析结果。
+
+&lt;img src="../pic/seq-chpt09-cpm/chpt09-cmp-hill-seq-006.jpg" width="630" style="display: block; margin: auto;" /&gt;
+
+---
+
+### PERT/CPM关键路径程序：实操步骤7
+
+- **步骤7**：把问题分析过程，保存下来。
+
+&lt;img src="../pic/seq-chpt09-cpm/chpt09-cmp-hill-seq-007.jpg" width="630" style="display: block; margin: auto;" /&gt;
+
+---
+
+### PERT/CPM关键路径程序：实操步骤8
+
+- **步骤8**：把工作文件保存到电脑中，给文件命名。以后可以直接用管理科学家软件再打开分析文件，方便进行查看或修改。
+
+&lt;img src="../pic/seq-chpt09-cpm/chpt09-cmp-hill-seq-008.jpg" width="700" style="display: block; margin: auto;" /&gt;
+
+
+---
+layout:false
+background-image: url("../pic/thank-you-gif-funny-fan.gif")
+class: inverse,center
+# 本节结束
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+background-image: url("../pic/slide-front-page.jpg")
+class: center,middle
+exclude: TRUE
+
+# 数据、模型与决策&lt;/br&gt;&lt;/br&gt;(Data, Model and Decision)
+
+&lt;!---    chakra: libs/remark-latest.min.js ---&gt;
+
+### 胡华平
+
+### 西北农林科技大学
+
+### 经济管理学院数量经济教研室
+
+### huhuaping01@hotmail.com
+
+### 2022-04-29
+
+
+
+
+
+
+
+<div>
+<style type="text/css">.xaringan-extra-logo {
+width: 110px;
+height: 70px;
+z-index: 0;
+background-image: url(../pic/logo/nwafu-logo-circle-wb.png);
+background-size: contain;
+background-repeat: no-repeat;
+position: absolute;
+top:0.2em;left:1em;
+}
+</style>
+<script>(function () {
+  let tries = 0
+  function addLogo () {
+    if (typeof slideshow === 'undefined') {
+      tries += 1
+      if (tries < 10) {
+        setTimeout(addLogo, 100)
+      }
+    } else {
+      document.querySelectorAll('.remark-slide-content:not(.title-slide):not(.inverse):not(.hide_logo)')
+        .forEach(function (slide) {
+          const logo = document.createElement('div')
+          logo.classList = 'xaringan-extra-logo'
+          logo.href = null
+          slide.appendChild(logo)
+        })
+    }
+  }
+  document.addEventListener('DOMContentLoaded', addLogo)
+})()</script>
+</div>
+
+---
+class: center, middle, duke-orange,hide_logo
+name: chapter09
+exclude: TRUE
+
+# 第9章 项目安排:&lt;/br&gt;&lt;/br&gt;计划评审法/关键路线法
+
+### [9.1 活动时间已知的项目安排](#known)
+
+### [.white[9.2 活动时间不确定的项目安排]](#uncertain)
+
+### [9.3 时间与成本抉择](#option)
+
+---
+layout: false
+class: center, middle, duke-softblue,hide_logo
+name: uncertain
+
+# 9.2 活动时间不确定的项目安排
+
+---
+layout: true
+
+&lt;div class="my-header-h2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark1"&gt;&lt;/div&gt;
+
+&lt;div class="watermark2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark3"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@  &amp;emsp;&amp;emsp; &lt;a href="#chapter09"&gt; 第09章 项目安排&lt;/a&gt;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&lt;a href="#uncertain"&gt;9.2 活动时间不确定的项目安排&lt;/a&gt; &lt;/span&gt;&lt;/div&gt; 
+
+---
+
+## 道特公司吸尘器案例：背景
+
+.case[
+
+**案例说明**：
+
+- 道特公司管理层希望对无绳吸尘器这种产品制造的可行性进行研究，以便决定是否生产该产品。
+
+- 为了完成可行性研究，公司需要从研发部门、产品测试部、生产部、成品估计部和市场调查部获取足够的信息。
+
+]
+
+---
+
+## 道特公司吸尘器案例：项目活动
+
+
+
+
+<div id="htmlwidget-d165424709bf7f428054" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d165424709bf7f428054">{"x":{"filter":"none","vertical":false,"caption":"<caption>道特公司吸尘器项目活动列表<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10"],["A","B","C","D","E","F","G","H","I","J"],["设计产品","市场调查计划","安排(生产工程)","制造原型模型","准备营销说明书","准备成本估算(工业工程)","初步产品测试","市场调查","准备定价和预测报告","准备最终报告"],["-","-","A","A","A","C","D","B, E","H","F, G, I"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>活动代码<\/th>\n      <th>活动内容<\/th>\n      <th>紧前活动<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+
+---
+
+## 道特公司吸尘器案例：网络图
+
+
+根据表中给出的活动信息，可以构造一个项目网络图：
+
+- 网络中的节点（方形框）代表每项活动，弧（箭头线）代表各项活动之间的优先顺序。
+
+&lt;img src="../pic/chpt09-PV-network-path-raw.png" width="750" style="display: block; margin: auto;" /&gt;
+
+---
+
+## 道特公司吸尘器案例：时间不确定性的类型
+
+.fyi[
+
+为了对不确定活动进行分析，需要获取每项活动的3个估计时间：     
+
+- 乐观的估计时间a：每项活动都能顺利进行的最小活动时间
+
+- 最可能的估计时间m：一般状态下最可能的活动时间
+
+- 悲观的估计时间b：遭遇重大延误时的最大活动时间
+
+]
+
+- 而且假设估计时间t服从期望
+`\(E(t)\)`和方差
+`\(var(t) \equiv \sigma^2_t\)`如下的
+`\(\beta\)`分布：
+
+`$$\begin{align}
+E(t) &amp;= \frac{a +4m +b}{6} \\
+var(t) \equiv \sigma^2_t &amp;= \left(\frac{b-a}{6} \right)^2
+\end{align}$$`
+
+---
+
+### 活动时间不确定性：数据表
+
+
+
+
+
+<div id="htmlwidget-f95de7f1ee5e0355aa60" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f95de7f1ee5e0355aa60">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"caption":"<caption><\/caption>","data":[["1","2","3","4","5","6","7","8","9","10"],["A","B","C","D","E","F","G","H","I","J"],[4,1,2,3,2,1.5,1.5,2.5,1.5,1],[5,1.5,3,4,3,2,3,3.5,2,2],[12,5,4,11,4,2.5,4.5,7.5,2.5,3]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>活动代码<\/th>\n      <th>乐观时间&lt;/br&gt;a<\/th>\n      <th>最可能时间&lt;/br&gt;m<\/th>\n      <th>悲观时间&lt;/br&gt;b<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bt","columnDefs":[{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 1, 3, \",\", \".\", null);\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 1, 3, \",\", \".\", null);\n  }"},{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 1, 3, \",\", \".\", null);\n  }"},{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":10,"buttons":["copy","csv","excel"],"initComplete":"function(settings, json) {\n$(this.api().table().header()).css({'background-color': '#517fb9', 'color': '#fff'});\n}","order":[],"autoWidth":false,"orderClasses":false},"callback":"function(table) {\n$(\"button.buttons-copy\").css(\"background\",\"yellow\");\n                $(\"button.buttons-csv\").css(\"background\",\"orange\");\n                $(\"button.buttons-excel\").css(\"background\",\"#a88d32\");\n                $(\"button.dt-button\").css(\"padding\",\"0.2em 0.2em\");\n                $(\"button.dt-button\").css(\"font-size\",\"0.6em\");\n                $(\"button.dt-button\").css(\"margin-right\",\"0.2em\");\n                $(\"button.dt-button\").css(\"margin-bottom\",\"0.1em\");\n                $(\"button.dt-button\").css(\"line-height\",\"1em\");\n                return table;\n}"},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.initComplete","callback"],"jsHooks":[]}</script>
+
+???
+道特公司吸尘器项目活动的可能时间
+
+---
+
+### 活动时间不确定性：计算活动A的期望时间及方差
+
+根据上述数据表，我们可以计算得到活动A的期望时间和方差：
+
+- A的期望活动时间：
+
+`$$\begin{align}
+E(t)_A &amp;= \frac{a +4m +b}{6} = \frac{4 +4\times5 +12}{6} = 6\\
+\end{align}$$`
+
+- A活动时间的方差：
+
+`$$\begin{align}
+var(t)_A \equiv \sigma^2_{t,A} &amp;= \left(\frac{b-a}{6} \right)^2 
+=\left(\frac{12-4}{6} \right)^2 = 1.78
+\end{align}$$`
+
+---
+
+### 活动时间不确定性：计算活动A的期望时间及方差
+
+考虑到活动时间不确定性是建立在
+`\(\beta\)`概率分布假设基础上的，我们可以将活动A的时间不确定性做如下展示：
+
+&lt;img src="../pic/chpt09-PV-A-Et.png" width="700" style="display: block; margin: auto;" /&gt;
+
+类似地，我们可以计算出其他所有活动的期望时间和方差（见下一页）。
+
+---
+
+### 活动时间不确定性：计算期望时间及方差
+
+
+<div id="htmlwidget-7689044dd810349ff8ba" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7689044dd810349ff8ba">{"x":{"filter":"none","vertical":false,"caption":"<caption>道特公司吸尘器项目活动的期望时间及方差<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10"],["A","B","C","D","E","F","G","H","I","J"],[4,1,2,3,2,1.5,1.5,2.5,1.5,1],[5,1.5,3,4,3,2,3,3.5,2,2],[12,5,4,11,4,2.5,4.5,7.5,2.5,3],[6,2,3,5,3,2,3,4,2,2],[1.77777777777778,0.444444444444444,0.111111111111111,1.77777777777778,0.111111111111111,0.0277777777777778,0.25,0.694444444444445,0.0277777777777778,0.111111111111111]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>活动代码<\/th>\n      <th>乐观时间&lt;/br&gt;a<\/th>\n      <th>最可能时间&lt;/br&gt;m<\/th>\n      <th>悲观时间&lt;/br&gt;b<\/th>\n      <th>期望时间&lt;/br&gt;E(t)<\/th>\n      <th>方差&lt;/br&gt;<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 1, 3, \",\", \".\", null);\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 1, 3, \",\", \".\", null);\n  }"},{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 1, 3, \",\", \".\", null);\n  }"},{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 1, 3, \",\", \".\", null);\n  }"},{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render","options.columnDefs.4.render"],"jsHooks":[]}</script>
+
+---
+
+## 道特公司吸尘器案例：关键路径
+
+.fyi[
+当我们知道了项目网络图和每项活动的期望活动时间后，就可以确定项目的关键路径，以便确定完成整个项目的期望时间和活动时间表，进而找出关键活动和关键路径。
+
+]
+
+具体思路如下：
+
+- 在计算时，将期望活动时间视为固定值或已知值。利用前述方法求关键路径，之后分析活动时间方差的影响。
+
+- 利用**向后推进**法求出每项活动的最早开始时间ES和最早完成时间EF
+
+- 利用**向前逆推**法，求出每项活动的最晚开始时间LS和最晚完成时间LF。
+
+- 计算各项活动的**松弛量**，以确定整个项目的所有**关键活动**
+
+- 依据**关键活动**，找出项目的**关键路径**！
+
+
+---
+
+### 道特公司吸尘器案例：活动时间
+
+<div id="htmlwidget-60496598151de91c1a97" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-60496598151de91c1a97">{"x":{"filter":"none","vertical":false,"caption":"<caption>道特公司吸尘器项目活动的期望时间及方差<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10"],["A","B","C","D","E","F","G","H","I","J"],[6,2,3,5,3,2,3,4,2,2],[1.77777777777778,0.444444444444444,0.111111111111111,1.77777777777778,0.111111111111111,0.0277777777777778,0.25,0.694444444444445,0.0277777777777778,0.111111111111111]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>活动代码<\/th>\n      <th>期望时间&lt;/br&gt;E(t)<\/th>\n      <th>方差&lt;/br&gt;<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 0, 3, \",\", \".\", null);\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render"],"jsHooks":[]}</script>
+
+
+---
+
+### 道特公司吸尘器案例：路径网络图（给出活动时间）
+
+- 根据数据表，给出道特公司吸尘器项目所有活动的期望时间E(t)。
+
+&lt;img src="../pic/chpt09-PV-path-network-with-time.png" width="850" style="display: block; margin: auto;" /&gt;
+
+---
+
+### 道特公司吸尘器案例：路径网络图（计算出ES和EF）
+
+- 利用“向后推进”法，计算得到道特公司吸尘器项目所有活动的最早开始时间ES和最早完成时间EF。
+
+&lt;img src="../pic/chpt09-PV-network-path-ES-EF.png" width="850" style="display: block; margin: auto;" /&gt;
+
+---
+
+### 道特公司吸尘器案例：路径网络图（计算出LS和LF）
+
+- 利用“向前逆推”法，计算得到道特公司吸尘器项目所有活动的最晚开始时间LS和最晚完成时间LF。
+
+&lt;img src="../pic/chpt09-PV-network-path-LS-LF.png" width="850" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+### 计算所有活动的松弛量和所有关键活动
+
+
+
+
+<div id="htmlwidget-fa15b30e0ff97e2cf5d9" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-fa15b30e0ff97e2cf5d9">{"x":{"filter":"none","vertical":false,"caption":"<caption>道特公司吸尘器项目活动进度表<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10"],["A","B","C","D","E","F","G","H","I","J"],[0,0,6,6,6,9,11,9,13,15],[0,7,10,7,6,13,12,9,13,15],[6,2,9,11,9,11,14,13,15,17],[6,9,13,12,9,15,15,13,15,17],[0,7,4,1,0,4,1,0,0,0],["Yes","No","No","No","Yes","No","No","Yes","Yes","Yes"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>活动代码<\/th>\n      <th>最早开始时间&lt;/br&gt;ES<\/th>\n      <th>最早完成时间&lt;/br&gt;EF<\/th>\n      <th>最晚开始时间&lt;/br&gt;LS<\/th>\n      <th>最晚完成时间&lt;/br&gt;LF<\/th>\n      <th>松弛量&lt;/br&gt;LS-ES<\/th>\n      <th>是否关键活动<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+
+---
+
+### 找到整个项目的所有关键活动
+
+&lt;img src="../pic/chpt09-PV-network-path-keys.png" width="700" style="display: block; margin: auto;" /&gt;
+
+
+- 活动A、E、H、I、J都没有任何松弛量
+`\((Slack = 0)\)`
+
+- 因此这五项活动都是道特公司吸尘器项目路径图的**关键活动**！
+
+- 这也进一步意味着：这些关键活动之前的**非关键活动**所能容忍的最大松弛量（或延误时间），都可能会增加整体项目的完工时间！
+
+---
+
+### 道特公司吸尘器案例：项目完成时间的方差
+
+.notes[
+关键路径上活动时间的方差可能会导致项目总体完成时间的方差。
+
+
+因此，我们将使用关键路径活动时间的方差来确定项目总体完成时间的方差。
+
+- 用T来表示完成整个项目所需要的总时间，则T的期望值就是所有关键活动期望完成时间之和。
+
+- 项目完成时间的方差就等于所有关键路径活动时间方差之和。
+]
+
+---
+exclude:true
+
+## R chunk: 4条路径的概率计算
+
+
+
+
+---
+
+## 道特公司吸尘器案例：路径的时间期望和方差
+
+我们重点观察如下四条关键路径：
+
+- 路径1： 
+`\(A \Rightarrow E \Rightarrow H \Rightarrow I \Rightarrow J\)`
+
+- 路径2： 
+`\(A \Rightarrow C  \Rightarrow F \Rightarrow J\)`
+
+- 路径3： 
+`\(A \Rightarrow D \Rightarrow G \Rightarrow  J\)`
+
+- 路径4： 
+`\(B \Rightarrow H \Rightarrow I \Rightarrow  J\)`
+
+---
+
+## 道特公司吸尘器案例：路径的时间期望和方差
+
+
+<div id="htmlwidget-395f4dd45c7bbe643ebb" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-395f4dd45c7bbe643ebb">{"x":{"filter":"none","vertical":false,"caption":"<caption>4条路径的时间期望和方差数据表<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10"],["A","B","C","D","E","F","G","H","I","J"],[6,2,3,5,3,2,3,4,2,2],[1.77777777777778,0.444444444444444,0.111111111111111,1.77777777777778,0.111111111111111,0.0277777777777778,0.25,0.694444444444445,0.0277777777777778,0.111111111111111],["Yes",null,null,null,"Yes",null,null,"Yes","Yes","Yes"],["Yes",null,"Yes",null,null,"Yes",null,null,null,"Yes"],["Yes",null,null,"Yes",null,null,"Yes",null,null,"Yes"],[null,"Yes",null,null,null,null,null,"Yes","Yes","Yes"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>活动代码<\/th>\n      <th>期望时间&lt;/br&gt;E(t)<\/th>\n      <th>方差&lt;/br&gt;<\/th>\n      <th>路径1<\/th>\n      <th>路径2<\/th>\n      <th>路径3<\/th>\n      <th>路径4<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 1, 3, \",\", \".\", null);\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render"],"jsHooks":[]}</script>
+
+
+---
+
+### 路径1的计算：活动的期望时长和方差（数据形式1）
+
+下面我们先计算路径1： 
+`\(A \Rightarrow E \Rightarrow H \Rightarrow I \Rightarrow J\)`活动时间的期望和方差。
+
+<div id="htmlwidget-2eb0e5819b64a1d41f97" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2eb0e5819b64a1d41f97">{"x":{"filter":"none","vertical":false,"caption":"<caption>路径1的时间期望和方差数据表<\/caption>","data":[["1","2","3","4","5"],["path1","path1","path1","path1","path1"],["A","E","H","I","J"],[6,3,4,2,2],[1.77777777777778,0.111111111111111,0.694444444444445,0.0277777777777778,0.111111111111111]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>路径方案<\/th>\n      <th>活动代码<\/th>\n      <th>期望时间&lt;/br&gt;E(t)<\/th>\n      <th>方差&lt;/br&gt;<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 0, 3, \",\", \".\", null);\n  }"},{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render"],"jsHooks":[]}</script>
+
+
+.footnote[
+**说明**：其他路径可以类似计算得到
+]
+
+---
+
+### 路径1的计算：活动的期望时长和方差（数据形式2）
+
+下面我们先计算路径1： 
+`\(A \Rightarrow E \Rightarrow H \Rightarrow I \Rightarrow J\)`活动时间的期望和方差。
+
+<div id="htmlwidget-cb05a478099964666c6b" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-cb05a478099964666c6b">{"x":{"filter":"none","vertical":false,"caption":"<caption>路径1的时间期望和方差数据表<\/caption>","data":[["1"],["path1"],[5],["A;E;H;I;J"],["6;3;4;2;2"],["1.78;0.11;0.69;0.03;0.11"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>路径方案<\/th>\n      <th>活动数量<\/th>\n      <th>活动代码<\/th>\n      <th>活动时长&lt;/br&gt;t<\/th>\n      <th>活动方差&lt;/br&gt;<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 0, 3, \",\", \".\", null);\n  }"},{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render"],"jsHooks":[]}</script>
+
+---
+
+### 路径1的计算：方案期望总时长和方案时长方差
+
+利用上述数据表，我们可以计算得到：
+
+- 路径1的期望总时长为17周：
+
+`$$\begin{align}
+E\left(T_{1}\right)=t_{\mathrm{A}}+t_{\mathrm{E}}+t_{\mathrm{H}}+t_{\mathrm{I}}+t_{\mathrm{J}}=6+3+4+2+2=17
+\end{align}$$`
+
+- 路径1的各项活动时长的方差为2.72周
+`\(^2\)`：
+
+`$$\begin{align}
+\sigma_{1}^{2}=\sigma_{\mathrm{A}}^{2}+\sigma_{\mathrm{E}}^{2}+\sigma_{\mathrm{H}}^{2}+\sigma_{\mathrm{I}}^{2}+\sigma_{\mathrm{J}}^{2}=1.78+0.11+0.69+0.03+0.11=2.72
+\end{align}$$`
+
+- 路径1的各项活动时长的标准差为1.65周：
+
+`$$\begin{align}
+\sigma_{1}=\sqrt{\sigma_1^2}=\sqrt{2.72} =1.65
+\end{align}$$`
+
+---
+
+### 路径1的计算：限期要求与完成的概率
+
+.puzzle[
+道特公司管理层希望计划在20周之内完成吸尘器项目，那么路径1的进度方案满足这个20周期限的概率是多少呢？
+]
+
+.pull-left[
+
+&lt;img src="../pic/chpt09-PV-z-distribution-demo01.png" width="876" height="400" style="display: block; margin: auto;" /&gt;
+
+]
+
+.pull-right[
+
+- 假设项目完成时间T服从正态分布（钟形分布），那么我们就可以利用这个分布图，计算得到满足特定完成期限要求的概率。
+
+]
+
+
+
+---
+
+### 路径1的计算：正态分布与概率计算
+
+.puzzle[
+道特公司管理层希望计划在20周之内完成吸尘器项目，那么路径1的进度方案满足这个20周期限的概率是多少呢？
+]
+
+
+
+.pull-left[
+
+&lt;img src="../pic/chpt09-PV-z-distribution-demo02.png" width="871" height="400" style="display: block; margin: auto;" /&gt;
+
+]
+
+.pull-right[
+
+- 如果T服从正态分布，则可以构造出一个标准正态分布
+
+`$$\begin{align}
+T &amp;\sim N(E(T), \sigma^2) \\
+Z = \frac{T-E(T)}{\sigma} &amp;\sim N(0, 1 )
+\end{align}$$`
+
+- 若期限设定为
+`\(T=20\)`周，则通过计算可得到统计量
+`\(Z^* = \frac{20-17}{1.65}=1.82\)`
+
+- 最后通过正态分布概率查表，可以得到期限内完成的概率值
+`\(p =0.9655\)`
+
+]
+
+---
+
+### 全部路径方案的计算：正态分布与概率计算（独立概率）
+
+根据同样的方法，我们可以算出在给定期限
+`\(T=20\)`周的要求下，全部4条安排方案都达到要求的概率值。
+
+<div id="htmlwidget-0f76d440fd1a055d6524" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-0f76d440fd1a055d6524">{"x":{"filter":"none","vertical":false,"caption":"<caption><\/caption>","data":[["1","2","3","4"],["path1","path2","path3","path4"],[5,4,4,4],["A;E;H;I;J","A;C;F;J","A;D;G;J","B;H;I;J"],["6;3;4;2;2","6;3;2;2","6;5;3;2","2;4;2;2"],["1.78;0.11;0.69;0.03;0.11","1.78;0.11;0.03;0.11","1.78;1.78;0.25;0.11","0.44;0.69;0.03;0.11"],[17,13,16,10],[2.72222222222222,2.02777777777778,3.91666666666667,1.27777777777778],[1.81827458019398,4.91572818223748,2.02116461055965,8.84651736929383],[0.965488912008272,0.99999955773472,0.978368636096545,1]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>路径方案<\/th>\n      <th>活动数量<\/th>\n      <th>活动代码<\/th>\n      <th>活动时长&lt;/br&gt;t<\/th>\n      <th>活动方差&lt;/br&gt;<\/th>\n      <th>方案时长&lt;/br&gt;E(T)<\/th>\n      <th>方案方差&lt;/br&gt;<\/th>\n      <th>统计量&lt;/br&gt;Z<\/th>\n      <th>方案概率&lt;/br&gt;p<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 0, 3, \",\", \".\", null);\n  }"},{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 0, 3, \",\", \".\", null);\n  }"},{"targets":7,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":8,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":9,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 4, 3, \",\", \".\", null);\n  }"},{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render","options.columnDefs.4.render"],"jsHooks":[]}</script>
+
+- 注意，这里计算得到的概率，是4条路径安排方案各自独立运行下，能在限期
+`\(T=20\)`周内都能完成的独立概率。
+
+---
+
+### 全部路径方案的计算：回看所有路径
+
+&lt;img src="../pic/chpt09-PV-network-path-keys.png" width="1533" height="520" style="display: block; margin: auto;" /&gt;
+
+---
+
+### 全部路径方案的计算：正态分布与概率计算（联合概率）
+
+如果4条方案同时进行，那么限期
+`\(T=20\)`周内都能完成的联合概率又是多少呢？
+
+<div id="htmlwidget-7ba22f30a1ab2a9f7b7d" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7ba22f30a1ab2a9f7b7d">{"x":{"filter":"none","vertical":false,"caption":"<caption><\/caption>","data":[["1","2","3","4"],["path1","path2","path3","path4"],[5,4,4,4],["A;E;H;I;J","A;C;F;J","A;D;G;J","B;H;I;J"],["6;3;4;2;2","6;3;2;2","6;5;3;2","2;4;2;2"],["1.78;0.11;0.69;0.03;0.11","1.78;0.11;0.03;0.11","1.78;1.78;0.25;0.11","0.44;0.69;0.03;0.11"],[17,13,16,10],[2.72222222222222,2.02777777777778,3.91666666666667,1.27777777777778],[1.81827458019398,4.91572818223748,2.02116461055965,8.84651736929383],[0.965488912008272,0.99999955773472,0.978368636096545,1]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>路径方案<\/th>\n      <th>活动数量<\/th>\n      <th>活动代码<\/th>\n      <th>活动时长&lt;/br&gt;t<\/th>\n      <th>活动方差&lt;/br&gt;<\/th>\n      <th>方案时长&lt;/br&gt;E(T)<\/th>\n      <th>方案方差&lt;/br&gt;<\/th>\n      <th>统计量&lt;/br&gt;Z<\/th>\n      <th>方案概率&lt;/br&gt;p<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 0, 3, \",\", \".\", null);\n  }"},{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 0, 3, \",\", \".\", null);\n  }"},{"targets":7,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":8,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \".\", null);\n  }"},{"targets":9,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 4, 3, \",\", \".\", null);\n  }"},{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render","options.columnDefs.4.render"],"jsHooks":[]}</script>
+
+
+
+
+我们可以根据下式计算得到联合概率为：
+
+`$$\begin{align}
+P_{all} &amp;= \prod_{i=1}^4{P_i}=P_1\times P_2\times P_3\times P_4\\
+&amp; = 0.9655\times 1.0000\times 0.9784\times 1.0000
+= 0.9446
+\end{align}$$`
+
+---
+
+### 管理科学家软件：PERT/CPM关键路径程序
+
+.notes[
+下面，我们还需要使用管理科学家软件，对活动时间不确定的项目安排，进行操作和训练。
+
+]
+
+---
+layout:false
+background-image: url("../pic/thank-you-gif-funny-fan.gif")
+class: inverse,center
+# 本节结束
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+background-image: url("../pic/slide-front-page.jpg")
+class: center,middle
+exclude: TRUE
+
+# 数据、模型与决策&lt;/br&gt;&lt;/br&gt;(Data, Model and Decision)
+
+&lt;!---    chakra: libs/remark-latest.min.js ---&gt;
+
+### 胡华平
+
+### 西北农林科技大学
+
+### 经济管理学院数量经济教研室
+
+### huhuaping01@hotmail.com
+
+### 2022-04-29
+
+
+
+
+
+
+
+<div>
+<style type="text/css">.xaringan-extra-logo {
+width: 110px;
+height: 70px;
+z-index: 0;
+background-image: url(../pic/logo/nwafu-logo-circle-wb.png);
+background-size: contain;
+background-repeat: no-repeat;
+position: absolute;
+top:0.2em;left:1em;
+}
+</style>
+<script>(function () {
+  let tries = 0
+  function addLogo () {
+    if (typeof slideshow === 'undefined') {
+      tries += 1
+      if (tries < 10) {
+        setTimeout(addLogo, 100)
+      }
+    } else {
+      document.querySelectorAll('.remark-slide-content:not(.title-slide):not(.inverse):not(.hide_logo)')
+        .forEach(function (slide) {
+          const logo = document.createElement('div')
+          logo.classList = 'xaringan-extra-logo'
+          logo.href = null
+          slide.appendChild(logo)
+        })
+    }
+  }
+  document.addEventListener('DOMContentLoaded', addLogo)
+})()</script>
+</div>
+
+---
+class: center, middle, duke-orange,hide_logo
+name: chapter09
+exclude: TRUE
+
+# 第9章 项目安排:&lt;/br&gt;&lt;/br&gt;计划评审法/关键路线法
+
+### [9.1 活动时间已知的项目安排](#known)
+
+### [9.2 活动时间不确定的项目安排](#uncertain)
+
+### [.white[9.3 时间与成本抉择]](#option)
+
+
+
+---
+layout: false
+class: center, middle, duke-softblue,hide_logo
+name: option
+
+# 9.3节 时间与成本抉择
+
+---
+layout: true
+
+&lt;div class="my-header-h2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark1"&gt;&lt;/div&gt;
+
+&lt;div class="watermark2"&gt;&lt;/div&gt;
+
+&lt;div class="watermark3"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;huhuaping@  &amp;emsp;&amp;emsp; &lt;a href="#chapter09"&gt; 第09章 项目安排&lt;/a&gt;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&lt;a href="#option"&gt;9.3 时间与成本抉择&lt;/a&gt; &lt;/span&gt;&lt;/div&gt; 
+
+---
+
+## 引子
+
+.fyi[
+
+**思考**：
+
+- 关键路径法的设计为项目经理提供了增加资源以减少项目完成时间的方法。
+
+- 增加资源一般都会增加项目成本，所以项目经理不得不在减少活动时间和增加额外成本之间做出抉择。
+
+
+]
+
+---
+exclude: true
+
+## R chunk: 项目活动
+
+
+
+---
+
+## 机器维修项目：项目活动
+
+下表描述了一项由5项活动构成的双机器维修项目：
+
+<div id="htmlwidget-cc56edf59b0a014884d3" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-cc56edf59b0a014884d3">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"caption":"<caption>机器维修项目的活动列表<\/caption>","data":[["1","2","3","4","5","6"],["A","B","C","D","E","合计"],["检修机器1","调试机器1","检修机器2","调试机器2","测试系统","-"],["-","A","-","C","B, D","-"],[7,3,6,3,2,21]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>活动代码<\/th>\n      <th>活动内容<\/th>\n      <th>紧前活动<\/th>\n      <th>活动时间(周)<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bt","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":10,"buttons":["copy","csv","excel"],"initComplete":"function(settings, json) {\n$(this.api().table().header()).css({'background-color': '#517fb9', 'color': '#fff'});\n}","order":[],"autoWidth":false,"orderClasses":false},"callback":"function(table) {\n$(\"button.buttons-copy\").css(\"background\",\"yellow\");\n                $(\"button.buttons-csv\").css(\"background\",\"orange\");\n                $(\"button.buttons-excel\").css(\"background\",\"#a88d32\");\n                $(\"button.dt-button\").css(\"padding\",\"0.2em 0.2em\");\n                $(\"button.dt-button\").css(\"font-size\",\"0.6em\");\n                $(\"button.dt-button\").css(\"margin-right\",\"0.2em\");\n                $(\"button.dt-button\").css(\"margin-bottom\",\"0.1em\");\n                $(\"button.dt-button\").css(\"line-height\",\"1em\");\n                return table;\n}"},"evals":["options.initComplete","callback"],"jsHooks":[]}</script>
+
+
+---
+
+## 机器维修项目：项目网络图
+
+根据表中给出的活动信息，可以构造一个项目网络图：
+
+- 网络中的节点（方形框）代表每项活动，弧（箭头线）代表各项活动之间的优先顺序。
+
+&lt;img src="../pic/chpt09-case-cost-network-path-time.png" width="1000" style="display: block; margin: auto;" /&gt;
+
+---
+
+### 机器维修项目：找到整个项目的所有关键活动
+
+根据活动时间确定情形下的项目时间相关计算，我们可以得到下表：
+
+
+
+
+<div id="htmlwidget-085f91b6e88205e031d9" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-085f91b6e88205e031d9">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"caption":"<caption>机器维修项目活动进度表<\/caption>","data":[["1","2","3","4","5"],["A","B","C","D","E"],[0,7,0,6,10],[0,7,1,7,10],[7,10,6,9,12],[7,10,7,10,12],[0,0,1,1,0],["Yes","Yes","No","No","Yes"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>活动代码<\/th>\n      <th>最早开始时间&lt;/br&gt;ES<\/th>\n      <th>最早完成时间&lt;/br&gt;EF<\/th>\n      <th>最晚开始时间&lt;/br&gt;LS<\/th>\n      <th>最晚完成时间&lt;/br&gt;LF<\/th>\n      <th>松弛量&lt;/br&gt;LS-ES<\/th>\n      <th>是否关键活动<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bt","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":10,"buttons":["copy","csv","excel"],"initComplete":"function(settings, json) {\n$(this.api().table().header()).css({'background-color': '#517fb9', 'color': '#fff'});\n}","order":[],"autoWidth":false,"orderClasses":false},"callback":"function(table) {\n$(\"button.buttons-copy\").css(\"background\",\"yellow\");\n                $(\"button.buttons-csv\").css(\"background\",\"orange\");\n                $(\"button.buttons-excel\").css(\"background\",\"#a88d32\");\n                $(\"button.dt-button\").css(\"padding\",\"0.2em 0.2em\");\n                $(\"button.dt-button\").css(\"font-size\",\"0.6em\");\n                $(\"button.dt-button\").css(\"margin-right\",\"0.2em\");\n                $(\"button.dt-button\").css(\"margin-bottom\",\"0.1em\");\n                $(\"button.dt-button\").css(\"line-height\",\"1em\");\n                return table;\n}"},"evals":["options.initComplete","callback"],"jsHooks":[]}</script>
+
+- 关键活动有3项，分别是活动A、B和E。
+
+- 关键路径为
+`\(A \Rightarrow B \Rightarrow E\)`，路径长度为
+`\(7+3+2=12\)`天。
+
+
+
+---
+
+### 机器维修项目：管理层关注的问题
+
+.fyi[
+**项目现实情况：**
+
+- 我们假设当前的生产水平要求该维修项目必须在10天之内完成。
+
+- 考虑到项目网络的关键路径长度为12天，我们认识到除非能够缩短活动的已知时间，否则要满足期望的不可能的。
+
+- 这通常可以靠增加资源来缩减活动时间，这种方法就是紧缩(crashing)
+
+- 但是，增加额外的资源来缩短活动时间，通常会导致项目成本的增加。
+
+]
+
+.puzzle[
+
+**管理层的关注**：
+
+- 那么，如何做到只需要最小资源的增加，就能达到紧缩活动时间的目的呢？
+
+]
+
+
+---
+
+### 机器维修项目：紧缩活动时间
+
+靠增加资源来缩减活动时间的方法就是所谓的**紧缩**（crashing），也称为**紧缩活动时间**。
+
+.case[
+
+&gt; 例如：总工期是12天，希望10天完成，需要缩短工期2天。
+
+]
+
+此时，我们需要先得到如下的信息
+
+- 正常或期望时间下的活动成本
+
+- 在最大紧缩时间内完成活动那个的时间（最短可能的活动时间）
+
+- 最大紧缩时间下的活动成本
+
+
+
+---
+
+### 机器维修项目：紧缩活动时间（定义）
+
+下面给出其他相关定义：
+
+.pull-left[
+
+- 
+`\(\tau_i\)`：活动
+`\(i\)`的正常时间（期望时间）
+
+- 
+`\(\tau_i'\)`：活动
+`\(i\)`的最短时间（最大紧缩下的时间）
+
+- 
+`\(M_i\)`：活动
+`\(i\)`的最大压缩时间
+
+- 
+`\(C_i\)`：活动
+`\(i\)`的正常费用（无紧缩）
+
+- 
+`\(C_i'\)`：活动
+`\(i\)`在最大紧缩时间下的费用
+
+]
+
+.pull-right[
+
+- 最大压缩时间：
+`\(M_i = \tau_i - \tau_i'\)`
+
+
+- 每项活动在单位时间上的紧缩成本：
+`\(K_i=\frac{(C_i'-C_i)}{M_i}\)`
+
+]
+
+---
+
+### 机器维修项目：紧缩活动时间（示例）
+
+.case[
+
+已知如下信息：
+
+- 给定活动A的正常完成时间
+`\(\tau_A=7\)`天，正常的活动费用为
+`\(C_A=500\)`美元。
+
+- 而在最大紧缩状态下，活动A的最短完成时间
+`\(\tau_A'=4\)`天，但费用会增加到
+`\(C_A'=800\)`美元。
+
+我们可以计算得到：
+
+- 最大压缩时间
+`\(M_A=\tau_A - \tau_A^{\prime}=7-4=3\)`
+
+- 单位时间的紧缩成本为
+`\(K_A=\frac{(C_A^{\prime}-C_A)}{M_A} = K_i=\frac{(800-800)}{3}=100\)`（美元/每天）
+
+]
+
+---
+exclude: true
+
+## R chunk: 紧缩计算
+
+
+
+
+---
+
+### 机器维修项目：时间与成本的关系
+
+<div id="htmlwidget-1088441c71897bb2eb6f" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1088441c71897bb2eb6f">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"caption":"<caption>正常活动和紧缩活动数据表<\/caption>","data":[["1","2","3","4","5","6"],["A","B","C","D","E","合计"],[7,3,6,3,2,21],[4,2,4,1,1,12],[500,200,500,200,300,1700],[800,350,900,500,550,3100],[3,1,2,2,1,9],[100,150,200,150,250,850]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>活动代码<\/th>\n      <th>正常时间&lt;/br&gt;T_i<\/th>\n      <th>紧缩时间&lt;/br&gt;T_i'<\/th>\n      <th>正常费用&lt;/br&gt;C_i<\/th>\n      <th>紧缩费用&lt;/br&gt;C_i'<\/th>\n      <th>最大紧缩时间&lt;/br&gt;M_i<\/th>\n      <th>单位紧缩费用&lt;/br&gt;K_i<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bt","columnDefs":[{"className":"dt-center","targets":"_all"},{"visible":false,"targets":0},{"orderable":false,"targets":0}],"pageLength":10,"buttons":["copy","csv","excel"],"initComplete":"function(settings, json) {\n$(this.api().table().header()).css({'background-color': '#517fb9', 'color': '#fff'});\n}","order":[],"autoWidth":false,"orderClasses":false},"callback":"function(table) {\n$(\"button.buttons-copy\").css(\"background\",\"yellow\");\n                $(\"button.buttons-csv\").css(\"background\",\"orange\");\n                $(\"button.buttons-excel\").css(\"background\",\"#a88d32\");\n                $(\"button.dt-button\").css(\"padding\",\"0.2em 0.2em\");\n                $(\"button.dt-button\").css(\"font-size\",\"0.6em\");\n                $(\"button.dt-button\").css(\"margin-right\",\"0.2em\");\n                $(\"button.dt-button\").css(\"margin-bottom\",\"0.1em\");\n                $(\"button.dt-button\").css(\"line-height\",\"1em\");\n                return table;\n}"},"evals":["options.initComplete","callback"],"jsHooks":[]}</script>
+
+.fyi[
+
+**思考**：为了以最小成本在10天期限内完成整个项目，哪些活动应该被紧缩？紧缩多少时间？
+
+]
+
+
+
+
+---
+
+### 机器维修项目：紧缩方案的一个试错修改
+
+为了以最小的成本在10天内完成，我们可能会最先考虑：
+
+- 应该紧缩关键路径上的活动，即A、B、E。
+
+- 而活动A在这3项活动中具有**最低**的单位紧缩成本
+`\((K_A=100)\)`
+
+- 因此将活动A紧缩2天可以使路径A-B-E的完成时间缩减为期望的10天。
+
+.notes[
+**注意**：
+
+- 当对现在的关键活动进行紧缩时，关键路径可能会改变
+
+- 因此需要检查修改后网络中的关键路径
+
+- 也许会你会发现其实是可以紧缩其他活动或是修改先前的决定
+
+- 对于小型项目网络，我们或许可以多次试错修改，但是对于复杂大型项目则会变得很困难！
+
+]
+
+---
+
+## 紧缩时间后的线性规划模型：问题描述
+
+.puzzle[
+&gt; 如何运用线性规划方法，系统分析项目网络的紧缩问题？
+]
+
+下面我们需要先进行问题描述。在PERT/CPM中，我们知道：
+
+- 完成时间=最早开始时间+活动时间。也即
+`\(EF= ES+t\)`
+
+- 如果活动具有松弛时间，则：完成时间＞最早开始时间+活动时间。也即:
+
+`$$LF &gt; (EF = ES +t)$$`
+
+- 由于我们不可能提前知道一项活动是否会于最早开始时间开始，则：完成时间≥最早开始时间+活动时间。也即：
+
+`$$LF \geq (EF = ES +t)$$`
+
+---
+
+### 线性规模模型示例：活动A
+
+对于一项活动，我们可以给出如下定义：
+
+- 
+`\(x_i\)`：活动i的最早完成时间
+`\((EF_i)\)`
+
+- 
+`\(y_i\)`：活动i的最大紧缩时间
+`\(M_i =(\tau_i - \tau_i^{\prime})\)`
+
+---
+
+### 线性规模模型示例：活动A
+
+对于活动A：
+
+.pull-left[
+
+- 活动A最早开始时间为
+`\(ES_A=0\)`，正常活动时间为
+`\(\tau_A=7\)`。
+
+- 那么A正常的最早完成时间为
+
+`$$x_A = EF_A = ES_A + \tau_A = 0+7 = 7$$`
+
+- 同时，活动A在紧缩状态下的最早完成时间为
+
+`$$\begin{align}
+x_A^{\prime} &amp;=  ES_A + \tau_A^{\prime} \\
+&amp;=  ES_A + (\tau_A - M_A)  = ES_A + (\tau_A - y_A) \\
+&amp;= 0+(7 - y_A ) 
+\end{align}$$`
+
+]
+
+.pull-right[
+
+- 那么，活动A的最早完成时间，正常状态下应该要比紧缩状态下更长。因此有：
+
+`$$\begin{align}
+x_A &amp; \geq x_A^{\prime} \\
+x_A &amp;\geq 0+(7 - y_A )\\
+x_A + y_A &amp;\geq 7 
+\end{align}$$`
+
+]
+
+---
+
+### 线性规模模型示例：全部活动的约束条件
+
+首先，我们需要考虑所有活动面临的约束条件：
+
+.pull-left[
+
+- 照前述方法，可以得到所有活动的如下关系：
+
+`$$\begin{align}
+x_A + y_A &amp;\geq 7  &amp;&amp; \text{(A)} \\
+x_B + y_B - x_A &amp;\geq 3  &amp;&amp; \text{(B)} \\
+x_C + y_C &amp;\geq 6  &amp;&amp; \text{(C)} \\
+x_D + y_D - x_C &amp;\geq 3  &amp;&amp; \text{(D)} \\
+x_E + y_E - x_B &amp;\geq 2  &amp;&amp; \text{(E1)} \\
+x_E + y_E - x_D &amp;\geq 2  &amp;&amp; \text{(E2)} \\
+\end{align}$$`
+
+
+]
+
+.pull-right[
+
+- 此外，我们还要求，项目必须在10天之内完成，因此需要约束活动活动E的完成时间：
+
+`$$x_E \leq 10$$`
+
+- 而且，每项活动都有最大紧缩时间的约束：
+
+$$ y_A \leq 3;  y_B \leq 1;  y_C \leq 2;  y_D \leq 2;  y_E \leq 1$$
+
+]
+
+.footnote[
+
+**注意**：由于活动E有两个紧前活动（B和D），因此活动E有两个约束条件。
+
+]
+
+---
+
+### 线性规模模型示例：目标函数
+
+.fyi[
+
+- 在正常状态下，项目的总成本为1700美元。
+
+- 而在紧缩状态下，我们可以通过最小化**总紧缩成本**来最小化**项目总成本**（=正常成本+总紧缩成本）。
+
+]
+
+最终我们得到如下的最小化目标函数：
+
+`$$\begin{align}
+\textrm{Min} \quad f&amp;=\sum_{i = 1}^{5}{K_i\cdot M_i} \\
+&amp; = K_i\cdot M_A + K_B\cdot M_B + K_C\cdot M_C + K_D\cdot M_D + K_E\cdot M_E \\
+&amp; = 100\cdot y_A + 150\cdot y_B + 200\cdot y_C + 150\cdot y_D + 250\cdot y_E 
+\end{align}$$`
+
+---
+
+### 线性规模模型示例：整个规划模型
+
+最终我们得到了具有10个变量和12个约束条件的线性规划模型：
+
+`$$\begin{align}
+\textrm{Min} \quad f&amp;= 100\cdot y_A + 150\cdot y_B + 200\cdot y_C + 150\cdot y_D + 250\cdot y_E 
+\end{align}$$`
+
+&gt; s.t.
+
+`$$\begin{align}
+x_A + y_A &amp;\geq 7  &amp;&amp; \text{(A)} \\
+x_B + y_B - x_A &amp;\geq 3  &amp;&amp; \text{(B)} \\
+x_C + y_C &amp;\geq 6  &amp;&amp; \text{(C)} \\
+x_D + y_D - x_C &amp;\geq 3  &amp;&amp; \text{(D)} \\
+x_E + y_E - x_B &amp;\geq 2  &amp;&amp; \text{(E1)} \\
+x_E + y_E - x_D &amp;\geq 2  &amp;&amp; \text{(E2)} \\
+x_E &amp; \leq 10 &amp;&amp;\\
+y_A \leq 3;  y_B \leq 1;  y_C \leq 2;  y_D \leq 2;  y_E &amp;\leq 1 &amp;&amp;
+\end{align}$$`
+
+
+---
+
+### 线性规模模型示例：MST分析结果及解读
+
+采用管理科学家软件MST对线性规划模型求解结果：
+
+
+&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; 活动代码 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 正常时间T_i &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 紧缩时间T_i' &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 正常费用C_i &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 紧缩费用C_i' &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 最大紧缩时间M_i &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 单位紧缩费用K_i &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 最优时间解 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; 紧缩量K_i &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; A &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 500 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 800 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 100 &lt;/td&gt;
+   &lt;td style="text-align:center;color: red !important;background-color: yellow !important;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:center;color: red !important;background-color: yellow !important;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; B &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 200 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 350 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 150 &lt;/td&gt;
+   &lt;td style="text-align:center;color: red !important;background-color: yellow !important;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;color: red !important;background-color: yellow !important;"&gt; 0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; C &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 500 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 900 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 200 &lt;/td&gt;
+   &lt;td style="text-align:center;color: red !important;background-color: yellow !important;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:center;color: red !important;background-color: yellow !important;"&gt; 0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; D &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 200 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 500 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 150 &lt;/td&gt;
+   &lt;td style="text-align:center;color: red !important;background-color: yellow !important;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;color: red !important;background-color: yellow !important;"&gt; 0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; E &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 300 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 550 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 250 &lt;/td&gt;
+   &lt;td style="text-align:center;color: red !important;background-color: yellow !important;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;color: red !important;background-color: yellow !important;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 合计 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 21 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 12 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1700 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3100 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 850 &lt;/td&gt;
+   &lt;td style="text-align:center;color: red !important;background-color: yellow !important;"&gt; 19 &lt;/td&gt;
+   &lt;td style="text-align:center;color: red !important;background-color: yellow !important;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+结果解读：
+
+--
+
+- 活动A和活动E最终活动时间分别为6天和1天，比正常状态下分别紧缩了1天时间。
+
+- 总紧缩成本为
+`\(K_A \cdot y_A +K_E \cdot y_E = 100 \times 1 +250 \times1 = 350\)`
+
+- 因此，正常状态下的项目总成本为1700美元，而紧缩状态下项目总成本为1700+350 = 2050美元。
+
+
+---
+
+## 紧缩时间后的线性规划模型：评析
+
+.notes[
+
+- 线性规划解为我们提供了修改后的活动时间，但没有提供修改后的最早开始时间，最晚开始时间和松弛等信息。
+
+- 我们必须用修改后的活动时间和一般的PERT/CPM方法来设计项目的活动时间安排表。
+
+]
+
+---
+
+### MST-LP线性规划求解：实操步骤1
+
+
+
+- **步骤1**：打开管理科学家软件，选择分析模块`4. Integer Linear Programming`。
+
+&lt;img src="../pic/seq-chpt09-crash-LP/chpt09-crash-lp-seq- 01.jpg" width="680" style="display: block; margin: auto;" /&gt;
+
+---
+
+### MST-LP线性规划求解：实操步骤2
+
+- **步骤2**：新建线性规划分析工作；设定相关参数。
+
+&lt;img src="../pic/seq-chpt09-crash-LP/chpt09-crash-lp-seq- 02.jpg" width="730" style="display: block; margin: auto;" /&gt;
+
+---
+
+### MST-LP线性规划求解：实操步骤3
+
+- **步骤3**：根据线性约束模型，填写相关参数；设定求解参数。
+
+&lt;img src="../pic/seq-chpt09-crash-LP/chpt09-crash-lp-seq- 03.jpg" width="1030" style="display: block; margin: auto;" /&gt;
+
+---
+
+### MST-LP线性规划求解：实操步骤4
+
+- **步骤4**：得到线性规划求解结果。
+
+&lt;img src="../pic/seq-chpt09-crash-LP/chpt09-crash-lp-seq- 04.jpg" width="500" style="display: block; margin: auto;" /&gt;
+
+---
+
+### MST-LP线性规划求解：实操步骤5
+
+- **步骤5**：把问题分析过程，保存下来。
+
+&lt;img src="../pic/seq-chpt09-crash-LP/chpt09-crash-lp-seq- 05.jpg" width="730" style="display: block; margin: auto;" /&gt;
+
+
+---
+layout:false
+background-image: url("../pic/thank-you-gif-funny-fan.gif")
+class: inverse,center
+# 本节结束
+
+
+
+---
+layout:false
+background-image: url("../pic/thank-you-gif-funny-little-yellow.gif")
+class: inverse,center
+# 本章结束
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="libs/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
