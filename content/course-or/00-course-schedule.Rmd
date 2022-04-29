@@ -57,3 +57,8 @@ knitr::include_url("/course-or/03-slide-class/00-course-schedule.html")
 
 [^b]:**操作提示**（电脑PC端操作）：点击**课件区域**，按**`F`**键，可全屏观看。按左/右方向键（$\leftarrow/\rightarrow$），可以前进/后退翻页。敲击数字键，再按**`Enter`**可进入任意指定的页码。如，敲击数字10，观看第10页。
 
+## 相关资料
+
+- **管理科学家**软件下载：[Management+Scientist-Tools.rar](/course-or/material/material/Management+Scientist-Tools.rar) 。（上传日期：2022.4.29）
+
+> 仅供教学使用，不得随便外传。请尊重软件创作者权益！
