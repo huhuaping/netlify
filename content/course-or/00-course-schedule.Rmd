@@ -57,8 +57,12 @@ knitr::include_url("/course-or/03-slide-class/00-course-schedule.html")
 
 [^b]:**操作提示**（电脑PC端操作）：点击**课件区域**，按**`F`**键，可全屏观看。按左/右方向键（$\leftarrow/\rightarrow$），可以前进/后退翻页。敲击数字键，再按**`Enter`**可进入任意指定的页码。如，敲击数字10，观看第10页。
 
-## 相关资料
+## 二、相关资料
 
-- **管理科学家**软件下载：[Management+Scientist-Tools.rar](/course-or/material/material/Management+Scientist-Tools.rar) 。（上传日期：2022.4.29）
+- **管理科学家**软件下载：[Management+Scientist-Tools.rar](/course-or/material/Management-Scientist-Tools.rar) 。（上传日期：2022.4.29）
 
-> 仅供教学使用，不得随便外传。请尊重软件创作者权益！
+> 
+- 仅供教学使用，不得随便外传。请尊重软件创作者权益！
+>
+- Windows操作系统下如果安装后，软件无法正常使用，并报错`Run-time error '339'`。那么请参照[【解决办法（点击）】](/course-or/03-slide-class/00-course-schedule.html#16)
+
