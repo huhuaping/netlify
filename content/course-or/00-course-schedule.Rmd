@@ -1,5 +1,5 @@
 ---
-title: 第00章 课程说明
+title: 课程说明
 author: huhuaping
 date: '2021-02-28'
 slug: chapter00-course-schedule
@@ -17,16 +17,16 @@ image:
   focal_point: ''
   preview_only: no
 projects: []
-linktitle: 第00章:课程说明
+linktitle: 课程说明
 menu:
   course-or:
     parent: 数据、模型与决策(简介)
-    weight: 2
+    weight: 1
 math: true
 type: docs
 ---
 
-## 一、教学课件
+## 一、教学课件{#slide}
 
 ```{r slide01, echo=F, eval=F}
 # test the `include_url()`
@@ -34,6 +34,7 @@ knitr::include_url("/course-or/03-slide-class/00-course-schedule.html")
 ```
 
 以下种类型课件都可以使用，两者可以互补，但强烈建议使用第一种类型`Xaringan slide`课件[^a]：
+
 
 **1.现代型课件（Xaringan slide）**（操作提示[^b]）：`r fontawesome::fa(name='slideshare',fill="blue",height='17px')`[第00章-课程说明.html](/course-or/03-slide-class/00-course-schedule.html) 。
 
@@ -57,7 +58,7 @@ knitr::include_url("/course-or/03-slide-class/00-course-schedule.html")
 
 [^b]:**操作提示**（电脑PC端操作）：点击**课件区域**，按**`F`**键，可全屏观看。按左/右方向键（$\leftarrow/\rightarrow$），可以前进/后退翻页。敲击数字键，再按**`Enter`**可进入任意指定的页码。如，敲击数字10，观看第10页。
 
-## 二、相关资料
+## 二、相关资料{#material}
 
 - **管理科学家**软件下载：[Management+Scientist-Tools.rar](/course-or/material/Management-Scientist-Tools.rar) 。（上传日期：2022.4.29）
 
@@ -65,4 +66,6 @@ knitr::include_url("/course-or/03-slide-class/00-course-schedule.html")
 - 仅供教学使用，不得随便外传。请尊重软件创作者权益！
 >
 - Windows操作系统下如果安装后，软件无法正常使用，并报错`Run-time error '339'`。那么请参照[【解决办法（点击）】](/course-or/03-slide-class/00-course-schedule.html#16)
+
+
 
