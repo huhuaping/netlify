@@ -1,0 +1,69 @@
+---
+title: RDD part02 断点效应评估
+author: huhuaping
+date: '2022-05-28'
+slug: RDD-part02
+categories:
+  - Course
+tags:
+  - seminar-econometrics
+subtitle: ''
+summary: ''
+authors: [胡华平]
+lastmod: '2022-05-28T18:01:18+08:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+linktitle: RDD断点效应
+menu:
+  seminar-econometrics:
+    parent: AE暑期班2022
+    weight: 12
+math: true
+type: docs
+---
+
+## 一、教学课件{#slide}
+
+```{r slide01, echo=F, eval=F}
+# test the `include_url()`
+knitr::include_url("/course-statistics/03-slide-class/01-introduction.html")
+```
+
+以下种类型课件都可以使用，两者可以互补，但强烈建议使用第一种类型`Xaringan slide`课件[^a]：
+
+**1.现代型课件（Xaringan slide）**（操作提示[^b]）：`r fontawesome::fa('slideshare', fill= "blue", height='17px' )`[RDD part02 断点效应评估.html](/seminar-econometrics/03-slide-class/seminar-RDD-part02.html) 。
+
+
+**2.传统型课件（pdf）**：`r fontawesome::fa('file-pdf', fill= "blue", height='17px' )`[RDD part02 断点效应评估.pdf](/seminar-econometrics/material/seminar-RDD-part02.pdf) 。（更新日期：2022.6.28）
+
+
+以上两种类型课件的**差异**：
+
+- 两者的课件内容基本一致，区别有：`Xaringan slide`课件内容会相对细节更丰富一些；`Xaringan slide`课件更新频率会更高、更及时（里面有一些技术性原因）。
+
+- `Xaringan slide`课件可以进行一些交互型操作，如表格、制图和代码展示等。`pdf`课件是静态文件，使用者不能进行内容上的交互。
+
+- 实际上你可以随时使用`chrome`浏览器自己将`Xaringan slide`课件导出为`pdf`课件。
+
+- `Xaringan slide`课件适合交互学习，而`pdf`课件适合线下打印或进行电子笔记。
+
+## 二、相关阅读资料{#material}
+
+> **温馨提示**：仅供教学使用，不得随便外传。请尊重原著者权益！
+
+- 【教材章节】 HANSEN B. Econometrics[M].2021（作者手稿）. 第21章 **Regression Discontinuity**。（[全书下载地址](/seminar-econometrics/material/Text-Hansen-2021-econometrics.pdf) ）
+
+- 【教材章节】 Cunningham S.  Causal Inference: The Mixtape[M]. Yale University Press, 2021. 章节**Regression Discontinuity**。（[部分章节下载地址](/seminar-econometrics/material/text-Cunningham-2021-Causal-Inference.pdf) ）
+
+
+
+<!---footnote following--->
+
+[^a]:课件采用[Rmarkdown语言](https://rmarkdown.rstudio.com/)编写而成，课件`Slide`的形式由[Xaringan包](https://github.com/yihui/xaringan)渲染得到。
+
+[^b]:**操作提示**（电脑PC端操作）：点击**课件区域**，按**`F`**键，可全屏观看。按左/右方向键（$\leftarrow/\rightarrow$），可以前进/后退翻页。敲击数字键，再按**`Enter`**可进入任意指定的页码。如，敲击数字10，观看第10页。
+
