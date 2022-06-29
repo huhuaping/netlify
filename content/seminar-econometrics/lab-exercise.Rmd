@@ -28,24 +28,36 @@ type: docs
 
 ## 一、实验说明{#before-lab}
 
-1.所有的原始代码
 
-1.**实操知识点**：
+大约花费两天时间，我将讲授非参数估计方法和RDD方法两个内容模块。
 
-- RDD part01 非参数估计方法 $\Rightarrow$ 1.均值估计(Means Estimator) $\Rightarrow$
-$\Rightarrow$ 1.1 箱组均值估计(Binned Means Estimator)
+这里给大家的是相关配套案例和R代码分析）。
 
-2.**授课内容关联点**：（课件内容）`r fontawesome::fa('slideshare', fill= "blue", height='17px' )`[1.1 箱组均值估计(Binned Means Estimator)](/seminar-econometrics/03-slide-class/seminar-RDD-part02.html#10) 。
+这里的实验配套的所有案例数据、R代码（`.R`）和Rmd编译文件（`.Rmd`）将全部开源共享。
+
+感谢开源编程世界！
+
+希望R语言开源统计社区因为你们的关注和加入而更加活跃和充满生命力！
+
 
 
 ## 二、R实操代码{#code-demo}
 
-> **温馨提示**：仅供教学使用，不得随便外传。请尊重原著者权益！
 
-- 【实操链接】 [**RDD Lab01 非参数估计: 均值估计**](/seminar-econometrics/_book/RDD-lab-mean-est.html)
+- Lab 1 R语言在计量经济的应用（新手启蒙）[点击打开](/seminar-econometrics/_book/lab-R-beginner.html)
+
+- Lab 2 均值估计（模拟数据）[点击打开](/seminar-econometrics/_book/lab-mean-est.html)
+
+- Lab 3 局部回归（模拟数据）[点击打开](/seminar-econometrics/_book/lab-local-reg.html)
+
+- Lab 4 局部线性估计及效率分析（工资案例）[点击打开](/seminar-econometrics/_book/lab-LL-wage.html)
+
+- Lab 5 无协变量的SRDD效应分析（儿童死亡率案例）[点击打开](/seminar-econometrics/_book/lab-srdd-nocovs.html)
+
+- Lab 6 引入协变量的RDD效应分析（儿童死亡率案例）[点击打开](/seminar-econometrics/_book/lab-srdd-withcovs.html)
+
 
 
 <!---footnote following--->
-
 
 
