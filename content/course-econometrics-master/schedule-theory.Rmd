@@ -1,6 +1,6 @@
 ---
 title: 中级计量经济学理论课教学安排
-date: "2021-08-27T00:00:00+08:00"
+date: "2022-08-27T00:00:00+08:00"
 draft: false
 type: docs
 linktitle: 理论教学
@@ -15,7 +15,9 @@ output:
 
 ---
 
+
 下表列出了教学内容和相关材料，大家可以**点击观看**或**下载**，并完成相关学习要求。
+
 
 <!---test again---->
 
@@ -41,7 +43,7 @@ add_iconLink <- function(folder, file_name,icon) {
   paste0("<a href=\"", 
          stringr::str_c("/", folder, "/", file_name, sep = ""), 
          "\">", 
-         as.character(fontawesome::fa(icon, fill= "blue", height=17 )), 
+         as.character(fontawesome::fa(icon, fill= "blue", height='17px' )), 
          "</a>") 
 }
 
@@ -49,7 +51,7 @@ add_urlLink <- function(url, icon) {
   paste0("<a href=\"", 
          url, 
          "\">", 
-         as.character(fontawesome::fa(icon, fill= "blue", height=17 )), 
+         as.character(fontawesome::fa(icon, fill= "blue", height='17px' )), 
          "</a>") 
 }
 
@@ -89,13 +91,13 @@ names_chn <- c("章内容", "阅读材料", "幻灯片", "pdf课件",    "随堂
 tab_out %>% 
   mutate(chpt_chn = cell_spec(chpt_chn, "html", align = "l")) %>%
   select(one_of(names_eng)) %>%
-  rename_at(vars(names_eng), ~names_chn) %>%
+  rename_at(all_of(names_eng), ~names_chn) %>%
   kable(format = "html", align = "c",escape = F,booktabs = T,) %>%
   kable_styling("striped", full_width = F, fixed_thead = T)  %>%
   column_spec(1, width = "20em",bold = T) %>%
   column_spec(c(2:5), width = "8em") %>%
-  pack_rows("模块01 计量经济学基础", 2, 9) %>%
-  pack_rows("模块04 联立方程模型（SEM）", 10, 12) 
+  pack_rows("模块01 计量经济学基础", 2, 8) %>%
+  pack_rows("模块04 联立方程模型（SEM）", 9, 12) 
   
 
 ```
