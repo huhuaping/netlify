@@ -119,6 +119,7 @@ div.my-footer a {
  -moz-transform: rotate(-45deg); /* firefox */
  -webkit-transform: rotate(-45deg); /* Chrome, Safari, Opera */
  transform: rotate(-45deg);
+ z-index: 0;
 }
 
 
@@ -139,6 +140,7 @@ div.my-footer a {
  -ms-transform: rotate(-45deg); /* IE 9 */
  -webkit-transform: rotate(-45deg); /* Chrome, Safari, Opera */
  transform: rotate(-45deg);
+ z-index: 0;
 }
 
 .watermark3::after {
@@ -159,6 +161,17 @@ div.my-footer a {
  -ms-transform: rotate(-45deg); /* IE 9 */
  -webkit-transform: rotate(-45deg); /* Chrome, Safari, Opera */
  transform: rotate(-45deg);
+ z-index: 0;
+}
+
+.remark-slide-content p{
+  position: relative;
+  z-index: 1;
+}
+
+.remark-slide-content ul{
+  position: relative;
+  z-index: 1;
 }
 
 

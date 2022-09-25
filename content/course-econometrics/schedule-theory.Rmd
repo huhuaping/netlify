@@ -15,7 +15,6 @@ output:
 
 ---
 
-
 下表列出了教学内容和相关材料，大家可以**点击观看**或**下载**，并完成相关学习要求。
 
 ```{r,echo=FALSE, message=FALSE, warning=FALSE}
@@ -40,7 +39,7 @@ add_iconLink <- function(folder, file_name,icon) {
   paste0("<a href=\"", 
          stringr::str_c("/", folder, "/", file_name, sep = ""), 
          "\">", 
-         as.character(fontawesome::fa(icon, fill= "blue", height=17 )), 
+         as.character(fontawesome::fa(icon, fill= "blue", height='17px' )), 
          "</a>") 
 }
 
@@ -48,7 +47,7 @@ add_urlLink <- function(url, icon) {
   paste0("<a href=\"", 
          url, 
          "\">", 
-         as.character(fontawesome::fa(icon, fill= "blue", height=17 )), 
+         as.character(fontawesome::fa(icon, fill= "blue", height='17px' )), 
          "</a>") 
 }
 
