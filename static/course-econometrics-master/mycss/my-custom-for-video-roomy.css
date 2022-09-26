@@ -33,6 +33,18 @@
     width: 100%;
 }
 
+.remark-slide-content table{
+  position: relative;
+  z-index: 1;
+}
+
+/* Change table font size and width */
+div.tbl-fontsize table{
+  font-size: 80%;
+  width: 100%;
+}
+
+
 /* Change the background color to white for shaded rows (even rows) */
 
 .remark-slide thead, .remark-slide tr:nth-child(2n) {
@@ -189,6 +201,18 @@ pre {
   padding-bottom: 5pt;
   padding-left: 5pt;
   padding-right: 5pt;
+  position: relative;
+  z-index: 1;
+}
+
+code.remark-code{
+  position: relative;
+  z-index: 1;
+}
+
+div.remark-code-line{
+  position: relative;
+  z-index: 1;
 }
 
 /***set vertical scroll***/
@@ -196,34 +220,50 @@ pre {
 .scroll-box-8 {
   height:8em;
   overflow-y: scroll;
+  position: relative;
+  z-index: 1;
 }
 .scroll-box-10 {
   height:10em;
   overflow-y: scroll;
+  position: relative;
+  z-index: 1;
 }
 .scroll-box-12 {
   height:12em;
   overflow-y: scroll;
+  position: relative;
+  z-index: 1;
 }
 .scroll-box-14 {
   height:14em;
   overflow-y: scroll;
+  position: relative;
+  z-index: 1;
 }
 .scroll-box-16 {
   height:16em;
   overflow-y: scroll;
+  position: relative;
+  z-index: 1;
 }
 .scroll-box-18 {
   height:18em;
   overflow-y: scroll;
+  position: relative;
+  z-index: 1;
 }
 .scroll-box-20 {
   height:20em;
   overflow-y: scroll;
+  position: relative;
+  z-index: 1;
 }
 .scroll-output {
   height: 80%;
   overflow-y: scroll;
+  position: relative;
+  z-index: 1;
 }
 
 
