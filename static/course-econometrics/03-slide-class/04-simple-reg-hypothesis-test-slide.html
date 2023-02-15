@@ -3,13 +3,13 @@
   <head>
     <title>04-simple-reg-hypothesis-test-slide.knit</title>
     <meta charset="utf-8" />
-    <script src="libs/header-attrs-2.10.6/header-attrs.js"></script>
+    <script src="libs/header-attrs-2.16/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/duke-blue.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/hygge-duke.css" rel="stylesheet" />
     <link href="libs/tachyons-4.12.0/tachyons.min.css" rel="stylesheet" />
-    <link href="libs/panelset-0.2.4/panelset.css" rel="stylesheet" />
-    <script src="libs/panelset-0.2.4/panelset.js"></script>
+    <link href="libs/panelset-0.2.6/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset-0.2.6/panelset.js"></script>
     <script src="libs/kePrint-0.0.1/kePrint.js"></script>
     <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
     <link rel="stylesheet" href="../mycss/my-theme.css" type="text/css" />
@@ -33,7 +33,7 @@ class: center,middle
 
 ### huhuaping01@hotmail.com
 
-### 2021-09-07
+### 2023-02-15
 
 
 
@@ -262,7 +262,7 @@ S^2_{\hat{\beta}_2} =\frac{\hat{\sigma}^{2}}{\sum x_{i}^{2}}
  \end{align}$$`
  
 `$$\begin{align} 
-\operatorname{Pr}\left[-t_{\alpha / 2,(n-2)} \leq \mathrm{T} \leq t_{\alpha / 2,(n-2)}\right]=1-\alpha
+\operatorname{Pr}\left[-t_{1-\alpha / 2,(n-2)} \leq \mathrm{T} \leq t_{1-\alpha / 2,(n-2)}\right]=1-\alpha
  \end{align}$$`
  
 
@@ -272,23 +272,23 @@ S^2_{\hat{\beta}_2} =\frac{\hat{\sigma}^{2}}{\sum x_{i}^{2}}
 
 
 `$$\begin {align} 
-\operatorname{Pr}\left[-t_{\alpha / 2,(n-2)} \leq \frac{\hat{\beta}_{2}-\beta_{2}}{S_{\hat{\beta}_{2}}} \leq t_{\alpha / 2 ,(n-2)}\right]=1-\alpha
+\operatorname{Pr}\left[-t_{1-\alpha / 2,(n-2)} \leq \frac{\hat{\beta}_{2}-\beta_{2}}{S_{\hat{\beta}_{2}}} \leq t_{1-\alpha / 2 ,(n-2)}\right]=1-\alpha
  \end {align}$$`
  
 `$$\begin {align} 
-\operatorname{Pr}\left[\hat{\beta}_{2}-t_{\alpha / 2,(n-2)} \cdot S_{\hat{\beta}_{2}} \leq \beta_{2} \leq \hat{\beta}_{2}+t_{\alpha / 2,(n-2)} \cdot S_{\hat{\beta}_{2}}\right]=1-\alpha
+\operatorname{Pr}\left[\hat{\beta}_{2}-t_{1-\alpha / 2,(n-2)} \cdot S_{\hat{\beta}_{2}} \leq \beta_{2} \leq \hat{\beta}_{2}+t_{1-\alpha / 2,(n-2)} \cdot S_{\hat{\beta}_{2}}\right]=1-\alpha
  \end {align}$$`
 
 因此，
 `\(\beta_2\)`的
 `\(100(1-\alpha)\%\)`置信上限和下限分别为：
 
-`$$\hat{\beta}_{2} \pm t_{\alpha / 2} \cdot S_{\hat{\beta}_{2}}$$`
+`$$\hat{\beta}_{2} \pm t_{1-\alpha / 2} \cdot S_{\hat{\beta}_{2}}$$`
 
 `\(\beta_2\)`的
 `\(100(1-\alpha)\%\)`置信区间为：
 
-`$$\left[ \hat{\beta}_{2} - t_{\alpha / 2} \cdot S_{\hat{\beta}_{2}}, \quad \hat{\beta}_{2} + t_{\alpha / 2} \cdot S_{\hat{\beta}_{2}} \right]$$`
+`$$\left[ \hat{\beta}_{2} - t_{1-\alpha / 2} \cdot S_{\hat{\beta}_{2}}, \quad \hat{\beta}_{2} + t_{1-\alpha / 2} \cdot S_{\hat{\beta}_{2}} \right]$$`
 
 
 ---
@@ -309,8 +309,8 @@ S^2_{\hat{\beta}_2} =\frac{\hat{\sigma}^{2}}{\sum x_{i}^{2}}
 \end {align}$$`
 
 `$$\begin{align} 
-T&amp;=\frac{\left(\hat{\beta}_{1}-\beta_{1}\right)}{S^2_{\hat{\beta}_1}}
-=\frac{\hat{\beta}_{1}-\beta_{1}}{\sqrt{S_{\beta_{1}}^{2}}}
+T&amp;=\frac{\left(\hat{\beta}_{1}-\beta_{1}\right)}{\sqrt{S^2_{\hat{\beta}_1}}}
+=\frac{\hat{\beta}_{1}-\beta_{1}}{\sqrt{S_{\hat{\beta}_{1}}^{2}}}
 =\frac{\hat{\beta}_{1}-\beta_{1}}{S_{\hat{\beta}_{1}}}
 &amp;&amp; \leftarrow T \sim t(n-2)
  \end{align}$$`
@@ -322,7 +322,7 @@ S^2_{\hat{\beta}_1} =\frac{\sum{X_i^2}}{n} \cdot \frac{\hat{\sigma}^{2}}{\sum x_
  \end{align}$$`
  
 `$$\begin{align} 
-\operatorname{Pr}\left[-t_{\alpha / 2,(n-2)} \leq \mathrm{T} \leq t_{\alpha / 2,(n-2)}\right]=1-\alpha
+\operatorname{Pr}\left[-t_{1-\alpha / 2,(n-2)} \leq \mathrm{T} \leq t_{1-\alpha / 2,(n-2)}\right]=1-\alpha
  \end{align}$$`
  
 
@@ -332,23 +332,23 @@ S^2_{\hat{\beta}_1} =\frac{\sum{X_i^2}}{n} \cdot \frac{\hat{\sigma}^{2}}{\sum x_
 
 
 `$$\begin {align} 
-\operatorname{Pr}\left[-t_{\alpha / 2,(n-2)} \leq \frac{\hat{\beta}_{1}-\beta_{1}}{S_{\hat{\beta}_{1}}} \leq t_{\alpha / 2 ,(n-2)}\right]=1-\alpha
+\operatorname{Pr}\left[-t_{1-\alpha / 2,(n-2)} \leq \frac{\hat{\beta}_{1}-\beta_{1}}{S_{\hat{\beta}_{1}}} \leq t_{1-\alpha / 2 ,(n-2)}\right]=1-\alpha
  \end {align}$$`
  
 `$$\begin {align} 
-\operatorname{Pr}\left[\hat{\beta}_{1}-t_{\alpha / 2,(n-2)} \cdot S_{\hat{\beta}_{1}} \leq \beta_{1} \leq \hat{\beta}_{1}+t_{\alpha / 2,(n-2)} \cdot S_{\hat{\beta}_{1}}\right]=1-\alpha
+\operatorname{Pr}\left[\hat{\beta}_{1}-t_{1-\alpha / 2,(n-2)} \cdot S_{\hat{\beta}_{1}} \leq \beta_{1} \leq \hat{\beta}_{1}+t_{1-\alpha / 2,(n-2)} \cdot S_{\hat{\beta}_{1}}\right]=1-\alpha
  \end {align}$$`
 
 因此，
 `\(\beta_1\)`的
 `\(100(1-\alpha)\%\)`置信上限和下限分别为：
 
-`$$\hat{\beta}_{1} \pm t_{\alpha / 2} \cdot S_{\hat{\beta}_{1}}$$`
+`$$\hat{\beta}_{1} \pm t_{1-\alpha / 2} \cdot S_{\hat{\beta}_{1}}$$`
 
 `\(\beta_1\)`的
 `\(100(1-\alpha)\%\)`置信区间为：
 
-`$$\left[ \hat{\beta}_{1} - t_{\alpha / 2} \cdot S_{\hat{\beta}_{1}}, \quad \hat{\beta}_{1} + t_{\alpha / 2} \cdot S_{\hat{\beta}_{1}} \right]$$`
+`$$\left[ \hat{\beta}_{1} - t_{1-\alpha / 2} \cdot S_{\hat{\beta}_{1}}, \quad \hat{\beta}_{1} + t_{1-\alpha / 2} \cdot S_{\hat{\beta}_{1}} \right]$$`
 
 ---
 
@@ -606,7 +606,7 @@ Y_i &amp; = \beta_1 + \beta_2 X_i +u_i \\
 
 给定
 `\(\alpha=0.05,\quad (1-\alpha) 100 \%=95 \%\)`，我们可以查t分布表得到理论参照值：
-`\(t_{\alpha / 2}(n-2)=t_{0.05 / 2}(11)=\)` 2.2010
+`\(t_{1-\alpha / 2}(n-2)=t_{0.05 / 2}(11)=\)` 2.2010
 
 
 
@@ -620,7 +620,7 @@ Y_i &amp; = \beta_1 + \beta_2 X_i +u_i \\
 `\(\beta_1\)`的95%置信区间为：
 
 `$$\begin{align}
-\hat{\beta}_{1} - t_{\alpha / 2} \cdot S_{\hat{\beta}_{1}} \quad \leq &amp; \beta_1 \leq \quad \hat{\beta}_{1} + t_{\alpha / 2} \cdot S_{\hat{\beta}_{1}} \\
+\hat{\beta}_{1} - t_{1-\alpha / 2} \cdot S_{\hat{\beta}_{1}} \quad \leq &amp; \beta_1 \leq \quad \hat{\beta}_{1} + t_{1-\alpha / 2} \cdot S_{\hat{\beta}_{1}} \\
 -0.0145-2.201\ast0.8746\quad \leq &amp; \beta_1 \quad \leq-0.0145+2.201\ast0.8746\\
 -1.9395\quad \leq &amp; \beta_1 \quad \leq1.9106\\
 \end{align}$$`
@@ -629,7 +629,7 @@ Y_i &amp; = \beta_1 + \beta_2 X_i +u_i \\
 `\(\beta_2\)`的95%置信区间为：
 
 `$$\begin{align}
-\hat{\beta}_{2} - t_{\alpha / 2} \cdot S_{\hat{\beta}_{2}} \quad \leq &amp; \beta_2 \leq \quad \hat{\beta}_{2} + t_{\alpha / 2} \cdot S_{\hat{\beta}_{2}} \\
+\hat{\beta}_{2} - t_{1-\alpha / 2} \cdot S_{\hat{\beta}_{2}} \quad \leq &amp; \beta_2 \leq \quad \hat{\beta}_{2} + t_{1-\alpha / 2} \cdot S_{\hat{\beta}_{2}} \\
 0.7241-2.201\ast0.0696\quad \leq &amp; \beta_2 \quad \leq0.7241+2.201\ast0.0696\\
 0.5709\quad \leq &amp; \beta_2 \quad \leq0.8772\\
 \end{align}$$`
@@ -639,12 +639,12 @@ Y_i &amp; = \beta_1 + \beta_2 X_i +u_i \\
 ## 随机干扰项的方差的置信区间
 
 `$$\begin {align} 
-\chi^{2} &amp; =(n-2) \frac{\hat{\sigma}^{2}}{\sigma^{2}}
-&amp;&amp;\leftarrow \quad \chi^{2} \sim \chi^{2}(n-2)
+{\chi^{2}}^\ast &amp; =(n-2) \frac{\hat{\sigma}^{2}}{\sigma^{2}}
+&amp;&amp;\leftarrow \quad {\chi^{2}}^\ast \sim \chi^{2}(n-2)
  \end {align}$$`
 
 `$$\begin {align} 
-\operatorname{Pr}\left(\chi_{\alpha / 2}^{2} \leq \chi^{2} \leq \chi_{\alpha / 2}^{2}\right)=1-\alpha
+\operatorname{Pr}\left(\chi_{\alpha / 2}^{2} \leq {\chi^{2}}^\ast \leq \chi_{1-\alpha / 2}^{2}\right)=1-\alpha
 \end {align}$$`
 
 `$$\begin {align} 
@@ -1122,7 +1122,7 @@ layout: true
 - 其中：
 `\(TSS\)`表示**总离差平方和**;
 `\(ESS\)`表示**回归平方和**;
-`\(RSS\)`表示**残差差平方和**
+`\(RSS\)`表示**残差平方和**
 
 ---
 
@@ -1209,6 +1209,16 @@ F &amp;= \frac{\chi^2_1/1}{\chi^2_2/n-2}
 F &amp; \sim F(1,n-2)
 \end {align}$$`
 
+???
+教材中简单说明了为何该随机变量会服从卡方分布，但并没有做过多解释。
+
+- Gujarati D N, Porter D C.  Basic econometrics[M]. 第5版.Boston: McGraw-Hill, 2009. chpter 4 pp.101
+
+- HANSEN B. Econometrics[J]. 2021. chpter 5.7 pp.146
+
+
+
+
 ---
 
 ## 模型整体显著性检验：F检验
@@ -1223,6 +1233,9 @@ F^{\ast} &amp;= \frac{\left(\hat{\beta}_{2}-\beta_{2}\right)^{2} \sum x_{i}^{2}}
 =\frac{MSS_{ESS}}{MSS_{RSS}}
 =\frac{\hat{\beta}_{2}^{2} \sum x_{i}^{2}}{\hat{\sigma}^{2}}
 \end {align}$$`
+
+???
+教材中简单说明了为何该统计量会服从F分布，但并没有做过多解释。Gujarati D N, Porter D C.  Basic econometrics[M]. 第5版.Boston: McGraw-Hill, 2009. chpter 8 pp.238
 
 
 ---
@@ -1531,7 +1544,7 @@ T &amp;=\frac{\hat{Y}_{0}-\mathrm{E}(\mathrm{Y} | \mathrm{X}_{0})}{S_{\hat{Y}_{0
 \end {align}$$`
  
 `$$\begin {align} 
-\operatorname{Pr}\left[\hat{\beta}+\hat{\beta}_{2} X_{0}-t_{1-\alpha / 2}(n-2) \cdot S_{\hat{Y}_{0}} \leq E(Y | X_{0}) \leq \hat{\beta}+\hat{\beta}_{2} X_{0}+t_{1- \alpha / 2}(n-2) \cdot S_{\hat{Y}_{0}}\right]=1-\alpha
+\operatorname{Pr}\left[\hat{\beta}_1+\hat{\beta}_{2} X_{0}-t_{1-\alpha / 2}(n-2) \cdot S_{\hat{Y}_{0}} \leq E(Y | X_{0}) \leq \hat{\beta}_1+\hat{\beta}_{2} X_{0}+t_{1- \alpha / 2}(n-2) \cdot S_{\hat{Y}_{0}}\right]=1-\alpha
 \end {align}$$`
 
 ---
@@ -1632,9 +1645,9 @@ T &amp;=\frac{(Y_{0} - \hat{Y}_{0})}{S_{(Y_{0} - \hat{Y}_{0})}} \sim t(n-2)
 \end {align}$$`
  
 `$$\begin {align} 
-\operatorname{Pr}\left[\hat{\beta}+\hat{\beta}_{2} X_{0}-t_{1-\alpha / 2}(n-2) \cdot S_{(Y_{0} - \hat{Y}_{0})} 
+\operatorname{Pr}\left[\hat{\beta}_1+\hat{\beta}_{2} X_{0}-t_{1-\alpha / 2}(n-2) \cdot S_{(Y_{0} - \hat{Y}_{0})} 
 \leq Y_{0} \leq 
-\hat{\beta}+\hat{\beta}_{2} X_{0}+t_{1- \alpha / 2}(n-2) \cdot S_{(Y_{0} - \hat{Y}_{0})}\right]=1-\alpha
+\hat{\beta}_1+\hat{\beta}_{2} X_{0}+t_{1- \alpha / 2}(n-2) \cdot S_{(Y_{0} - \hat{Y}_{0})}\right]=1-\alpha
 \end {align}$$`
 
 
@@ -2060,6 +2073,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable
