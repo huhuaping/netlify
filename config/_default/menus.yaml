@@ -21,18 +21,22 @@ main:
     url: "/course-econometrics-master/"
     parent: "Teaching"
     weight: 2
+  - name: "Advanced Econometrics III(PHD)"
+    url: "/course-em-eng/"
+    parent: "Teaching"
+    weight: 3
   - name: "高级计量暑期班(2022)"
     url: "/seminar-econometrics/"
     parent: "Teaching"
-    weight: 3
+    weight: 4
   - name: "统计学原理(本科生)"
     url: "/course-statistics/"
     parent: "Teaching"
-    weight: 4
+    weight: 5
   - name: "高级统计学(博士)"
     url: "/course-advanced-statistics/"
     parent: "Teaching"
-    weight: 5
+    weight: 6
   - name: "数据模型与决策(MBA)"
     url: "/course-or/"
     parent: "Teaching"
