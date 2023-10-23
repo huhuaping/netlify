@@ -41,6 +41,10 @@ main:
     url: "/course-or/"
     parent: "Teaching"
     weight: 6   
+  - name: "计量经济学(em)"
+    url: "/course-em/index.html"
+    parent: "Teaching"
+    weight: 7
   - name: Projects
     url: '#projects'
     weight: 40
