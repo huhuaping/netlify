@@ -7,9 +7,6 @@
 /publicx/
 /resources/
 
-# quarto site
-static/course-em/**
-
 # advise 
 .DS_Store
 Thumbs.db
